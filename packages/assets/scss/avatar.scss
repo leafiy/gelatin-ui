@@ -1,0 +1,54 @@
+@import './var.scss';
+
+.ui-avatar {
+  display: flex;
+  align-items: center;
+  user-select:none;
+}
+
+.ui-avatar-container {
+  background: $lighter;
+  border: 1px solid $lighter;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align:center;
+  .ui-avatar-image {
+    width: 100%;
+    height: 100%
+  }
+}
+.ui-avatar-name{
+  padding:0 6px;
+}
+.ui-avatar-string{
+  font-size:1.2em;
+  font-weight:400;
+}
+.ui-avatar-size-default {
+  .ui-avatar-container {
+    width: 40px;
+    height: 40px;
+  }
+}
+.ui-avatar-size-small {
+  .ui-avatar-container {
+    width: 28px;
+    height: 28px;
+  }
+}
+.ui-avatar-size-large {
+  .ui-avatar-container {
+    width: 76px;
+    height: 76px;
+  }
+}
+
+
+
+.ui-avatar-circle {
+  border-radius: 50%;
+}

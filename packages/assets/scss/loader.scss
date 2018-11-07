@@ -1,0 +1,27 @@
+.ui-loader {
+  width: 100%;
+
+  .ui-loader__header,
+  .ui-loader__footer {
+    position: relative;
+    text-align: center;
+
+    .ui-loader__header-text,
+    .ui-loader__footer-text {
+      width: 100%;
+      position: absolute;
+    }
+
+    .ui-loader__header-text {
+      bottom: 20px;
+    }
+
+    .ui-loader__footer-text {
+      top: 20px;
+    }
+  }
+
+  .ui-spinner {
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,65 @@
+@import './var.scss';
+
+@keyframes spinner-dot {
+
+    0%,
+    40%,
+    to {
+        opacity: 1
+    }
+
+    20% {
+        opacity: .4
+    }
+}
+
+.ui-spinner {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ui-spinner-center {
+    margin:0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+
+}
+
+.ui-spinner-dot {
+    width: 24px;
+    height: 6px;
+    text-align: center;
+    font-size: 10px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+
+    >div {
+        background-color: $light;
+        height: 100%;
+        width: 6px;
+        border-radius: 50%
+    }
+}
+
+
+
+.ui-spinner-dot>div {
+    -webkit-animation: a 1.3s infinite cubic-bezier(.645, .045, .355, 1);
+    animation: a 1.3s infinite cubic-bezier(.645, .045, .355, 1)
+}
+
+.ui-spinner-dot .rect2 {
+    -webkit-animation-delay: -1.2s;
+    animation-delay: -1.2s
+}
+
+.ui-spinner-dot .rect3 {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s
+}

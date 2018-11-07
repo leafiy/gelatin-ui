@@ -1,0 +1,168 @@
+@import './var.scss';
+.ui-upload-container {
+  input[type="file"] {
+    display: none;
+  }
+  margin:20px 0;
+
+  .ui-upload-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    // position: absolute;
+    // background-size: cover;
+    // background-position: center;
+    transition: all .2s linear;
+  }
+
+}
+
+.ui-upload-drag-supportted {
+  &.ui-upload-drag {
+    .ui-upload-inner {
+      border: 3px dashed $lighter;
+    }
+
+    .ui-upload-drag-over {
+      border: 3px dashed $primary-color;
+    }
+  }
+
+  &.ui-upload-select {
+    .ui-upload-drag-over {
+      .ui-upload-button {
+        background-color: $primary-color-dark;
+      }
+    }
+  }
+}
+
+.ui-upload-drag {
+  .ui-upload-inner {
+    background: lighten($lighter, 5%);
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+  }
+}
+
+.ui-upload-list-card {
+  &.ui-upload-drag {
+    .ui-upload-inner {
+      vertical-align: top;
+      float: left
+    }
+  }
+
+  .ui-upload-list {
+    margin: 0;
+    display: inline;
+    vertical-align: top;
+
+    .ui-upload-file-item {
+      float: left;
+    }
+  }
+}
+
+
+
+
+
+
+.ui-upload-button {
+  padding: 9px 15px;
+  color: #fff;
+  background-color: $primary-color;
+  border-color: $primary-color;
+  cursor: pointer;
+
+  &:not(:disabled):focus {
+    outline: none;
+  }
+
+  &:not(:disabled):active,
+  &:hover {
+    background-color: $primary-color-dark;
+    border-color: $primary-color-dark;
+    box-shadow: none;
+  }
+}
+
+
+
+
+.ui-upload-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.ui-upload-file-item {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .circle-progress {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+
+.ui-upload-file-finished {
+  .ui-upload-thumb {
+    border: 1px solid $lighter;
+  }
+}
+
+.ui-upload-file-aborted {
+  .ui-upload-thumb {
+    border-color: $warning-color;
+  }
+}
+
+.ui-upload-file-error {
+  .ui-upload-thumb {
+    border: 1px solid $error-color;
+    filter: grayscale(100%) opacity(50%);
+  }
+}
+
+
+.ui-upload-file-uploading {
+  .ui-upload-thumb {
+    border: 1px solid $lighter;
+    filter: grayscale(50%) opacity(30%);
+  }
+}
+
+
+
+
+
+
+
+.ui-upload-actions {
+  position: absolute;
+  user-select: none;
+  font-size: 12px;
+  bottom: 10px;
+  right: 10px;
+  z-index: 100;
+
+  >span {
+    cursor: pointer;
+    background: rgba(0, 0, 0, .7);
+    color: #fff;
+    padding: 2px 4px;
+    margin-left: 4px;
+  }
+}
