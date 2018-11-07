@@ -8315,14 +8315,14 @@ var getFileExt = function getFileExt(file) {
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/uplaoder/uploader-list.vue?vue&type=template&id=88ae8ae2&
-var uploader_listvue_type_template_id_88ae8ae2_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"upload-list"},_vm._l((_vm.fileList),function(file,index){return _c('div',{key:file.id || file.uid,staticClass:"upload-file-item",class:'upload-file-' + file.status,style:(_vm.listItemStyles)},[_c('img',{staticClass:"upload-thumb",attrs:{"src":file.url},on:{"click":function($event){_vm.handlePreview(file, index);}}}),(file)?_c('div',{staticClass:"upload-actions"},[(file.status == 'uploading')?_c('span',{domProps:{"innerHTML":_vm._s(_vm.lang.cancel)},on:{"click":function($event){$event.preventDefault();_vm.cancel(file, index);}}}):_vm._e(),(file.status == 'ready' && !_vm.autoUpload)?_c('span',{domProps:{"innerHTML":_vm._s(_vm.lang.ready)}}):_vm._e(),(file.status == 'error' || file.status == 'canceled')?_c('span',{domProps:{"innerHTML":_vm._s(_vm.lang.retry)},on:{"click":function($event){$event.preventDefault();_vm.retry(file, index);}}}):_vm._e(),(
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/uplaoder/uploader-list.vue?vue&type=template&id=7027b42c&
+var uploader_listvue_type_template_id_7027b42c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-upload-list"},_vm._l((_vm.fileList),function(file,index){return _c('div',{key:file.id || file.uid,staticClass:"ui-upload-file-item",class:'ui-upload-file-' + file.status,style:(_vm.listItemStyles)},[_c('img',{staticClass:"ui-upload-thumb",attrs:{"src":file.url},on:{"click":function($event){_vm.handlePreview(file, index);}}}),(file)?_c('div',{staticClass:"ui-upload-actions"},[(file.status == 'uploading')?_c('span',{domProps:{"innerHTML":_vm._s(_vm.lang.cancel)},on:{"click":function($event){$event.preventDefault();_vm.cancel(file, index);}}}):_vm._e(),(file.status == 'ready' && !_vm.autoUpload)?_c('span',{domProps:{"innerHTML":_vm._s(_vm.lang.ready)}}):_vm._e(),(file.status == 'error' || file.status == 'canceled')?_c('span',{domProps:{"innerHTML":_vm._s(_vm.lang.retry)},on:{"click":function($event){$event.preventDefault();_vm.retry(file, index);}}}):_vm._e(),(
           file.status == 'finished' || file.status == 'error' || !file.status
         )?_c('span',{domProps:{"innerHTML":_vm._s(_vm.lang.del)},on:{"click":function($event){$event.preventDefault();_vm.del(file, index);}}}):_vm._e()]):_vm._e(),(file.status == 'uploading')?_c('circle-progress',{attrs:{"percentage":file.percentage}}):_vm._e()],1)}))}
-var uploader_listvue_type_template_id_88ae8ae2_staticRenderFns = []
+var uploader_listvue_type_template_id_7027b42c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/uplaoder/uploader-list.vue?vue&type=template&id=88ae8ae2&
+// CONCATENATED MODULE: ./packages/uplaoder/uploader-list.vue?vue&type=template&id=7027b42c&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue-svg-circle-progress/circle-progress.vue?vue&type=template&id=468f0017&scoped=true&
 var circle_progressvue_type_template_id_468f0017_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"circle-progress",style:({width:_vm.size+'px',height:_vm.size+'px'}),attrs:{"data-pct":_vm.progressNumber}},[_c('svg',{attrs:{"width":_vm.size,"height":_vm.size,"viewPort":'0 0 '+ _vm.size + ' ' + _vm.size,"version":"1.1","xmlns":"http://www.w3.org/2000/svg"}},[_c('circle',{staticClass:"ring",attrs:{"stroke":_vm.ringColor,"r":_vm.r,"cx":_vm.size/2,"cy":_vm.size/2,"stroke-width":_vm.strokeWidth,"fill":"none"}}),_c('circle',{staticClass:"progress_circle",attrs:{"stroke":_vm.progressColor,"r":_vm.r,"cx":_vm.size/2,"cy":_vm.size/2,"stroke-width":_vm.strokeWidth,"fill":"none","stroke-dasharray":_vm.dasharray,"stroke-dashoffset":_vm.dashoffset}})])])}
@@ -8550,8 +8550,8 @@ circle_progress.install = function(Vue) {
 
 var uploader_list_component = normalizeComponent(
   uplaoder_uploader_listvue_type_script_lang_js_,
-  uploader_listvue_type_template_id_88ae8ae2_render,
-  uploader_listvue_type_template_id_88ae8ae2_staticRenderFns,
+  uploader_listvue_type_template_id_7027b42c_render,
+  uploader_listvue_type_template_id_7027b42c_staticRenderFns,
   false,
   null,
   null,

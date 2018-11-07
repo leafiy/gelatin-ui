@@ -1,18 +1,18 @@
 <template>
-  <div class="upload-list">
+  <div class="ui-upload-list">
     <div
       v-for="(file, index) of fileList"
       :key="file.id || file.uid"
-      :class="'upload-file-' + file.status"
-      class="upload-file-item"
+      :class="'ui-upload-file-' + file.status"
+      class="ui-upload-file-item"
       :style="listItemStyles"
     >
       <img
-        class="upload-thumb"
+        class="ui-upload-thumb"
         :src="file.url"
         @click="handlePreview(file, index);"
       />
-      <div class="upload-actions" v-if="file">
+      <div class="ui-upload-actions" v-if="file">
         <span
           v-if="file.status == 'uploading'"
           v-html="lang.cancel"
