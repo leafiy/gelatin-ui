@@ -6304,12 +6304,12 @@ avatar_avatar.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_avatar = (avatar_avatar);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/loader/loader.vue?vue&type=template&id=bc513a8c&
-var loadervue_type_template_id_bc513a8c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-loader"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:('pull-down' === _vm.pull.type),expression:"'pull-down' === pull.type"}],staticClass:"ui-loader__header",style:({ height: _vm.pullHeight + 'px' })},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.pull.available),expression:"!pull.available"}],staticClass:"ui-loader__header-text"},[_vm._v("\n      "+_vm._s(_vm.lang.pullDownToRefresh)+"\n    ")]),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.pull.available && 'pull-down' !== _vm.loadingType),expression:"pull.available && 'pull-down' !== loadingType"}],staticClass:"ui-loader__header-text"},[_vm._v("\n      "+_vm._s(_vm.lang.releaseToRefresh)+"\n    ")]),_c('div',{directives:[{name:"show",rawName:"v-show",value:('pull-down' === _vm.loadingType),expression:"'pull-down' === loadingType"}],staticClass:"ui-loader__header-text"},[_vm._t('pull-down-loading',[_c('ui-spinner')])],2)]),_c('div',{staticClass:"ui-loader__content"},[_vm._t("default")],2),(_vm.showFooter)?_c('div',{directives:[{name:"show",rawName:"v-show",value:('pull-up' === _vm.pull.type),expression:"'pull-up' === pull.type"}],staticClass:"ui-loader__footer",style:({ height: _vm.pullHeight + 'px' })},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.pull.available),expression:"!pull.available"}],staticClass:"ui-loader__footer-text"},[_vm._v("\n      "+_vm._s(_vm.lang.pullUpToLoad)+"\n    ")]),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.pull.available && 'pull-up' !== _vm.loadingType),expression:"pull.available && 'pull-up' !== loadingType"}],staticClass:"ui-loader__footer-text"},[_vm._v("\n      "+_vm._s(_vm.lang.releaseToRefresh)+"\n    ")]),_c('div',{directives:[{name:"show",rawName:"v-show",value:('pull-up' === _vm.loadingType),expression:"'pull-up' === loadingType"}],staticClass:"ui-loader__footer-text"},[_vm._t('pull-up-loading',[_c('ui-spinner')])],2)]):_vm._e(),(_vm.showFooter)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading && 'scroll' === _vm.loadingType),expression:"loading && 'scroll' === loadingType"}],staticClass:"ui-loader__footer",style:({ height: _vm.distance + 'px' })},[_c('div',{staticClass:"footer-text"},[_vm._t('scroll-loading',[_c('ui-spinner')])],2)]):_vm._e(),(_vm.showFooter)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showCompleted),expression:"showCompleted"}],staticClass:"ui-loader__footer",style:({ height: _vm.distance + 'px' })},[_c('div',{staticClass:"ui-loader__footer-text"},[_vm._v(_vm._s(_vm.lang.loadCompleted))])]):_vm._e()])}
-var loadervue_type_template_id_bc513a8c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/loader/loader.vue?vue&type=template&id=14e66605&
+var loadervue_type_template_id_14e66605_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-loader"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:('pull-down' === _vm.pull.type),expression:"'pull-down' === pull.type"}],staticClass:"ui-loader__header",style:({ height: _vm.pullHeight + 'px' })},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.pull.available),expression:"!pull.available"}],staticClass:"ui-loader__header-text"},[_vm._v("\n      "+_vm._s(_vm.lang.pullDownToRefresh)+"\n    ")]),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.pull.available && 'pull-down' !== _vm.loadingType),expression:"pull.available && 'pull-down' !== loadingType"}],staticClass:"ui-loader__header-text"},[_vm._v("\n      "+_vm._s(_vm.lang.releaseToRefresh)+"\n    ")]),_c('div',{directives:[{name:"show",rawName:"v-show",value:('pull-down' === _vm.loadingType),expression:"'pull-down' === loadingType"}],staticClass:"ui-loader__header-text"},[_vm._t('pull-down-loading',[_c('ui-spinner')])],2)]),_c('div',{staticClass:"ui-loader__content"},[_vm._t("default")],2),(_vm.showFooter)?_c('div',{directives:[{name:"show",rawName:"v-show",value:('pull-up' === _vm.pull.type),expression:"'pull-up' === pull.type"}],staticClass:"ui-loader__footer",style:({ height: _vm.pullHeight + 'px' })},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.pull.available),expression:"!pull.available"}],staticClass:"ui-loader__footer-text"},[_vm._v("\n      "+_vm._s(_vm.lang.pullUpToLoad)+"\n    ")]),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.pull.available && 'pull-up' !== _vm.loadingType),expression:"pull.available && 'pull-up' !== loadingType"}],staticClass:"ui-loader__footer-text"},[_vm._v("\n      "+_vm._s(_vm.lang.releaseToRefresh)+"\n    ")]),_c('div',{directives:[{name:"show",rawName:"v-show",value:('pull-up' === _vm.loadingType),expression:"'pull-up' === loadingType"}],staticClass:"ui-loader__footer-text"},[_vm._t('pull-up-loading',[_c('ui-spinner')])],2)]):_vm._e(),(_vm.showFooter)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading && 'scroll' === _vm.loadingType),expression:"loading && 'scroll' === loadingType"}],staticClass:"ui-loader__footer",style:({ height: _vm.distance + 'px' })},[_c('div',{staticClass:"footer-text"},[_vm._t('scroll-loading',[_c('ui-spinner')])],2)]):_vm._e(),(_vm.showFooter)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showCompleted),expression:"showCompleted"}],staticClass:"ui-loader__footer",style:({ height: _vm.distance + 'px' })},[_c('div',{staticClass:"ui-loader__footer-text"},[_vm._v(_vm._s(_vm.lang.loadCompleted))])]):_vm._e()])}
+var loadervue_type_template_id_14e66605_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/loader/loader.vue?vue&type=template&id=bc513a8c&
+// CONCATENATED MODULE: ./packages/loader/loader.vue?vue&type=template&id=14e66605&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
 var es6_number_constructor = __webpack_require__("c5f6");
@@ -6633,14 +6633,38 @@ spinner_spinner.install = function (Vue) {
       if (this.initScroll) {
         this.handleScroll();
       }
+    },
+    unBindEvents: function unBindEvents() {
+      var _this2 = this;
+
+      if (this.hasListen("scroll")) {
+        ["scroll", "resize"].forEach(function (e) {
+          _this2._container.removeEventListener(e, _this2.handleScroll);
+        });
+      } // touch
+
+
+      if (this.hasListen("pull-up") || this.hasListen("pull-down")) {
+        this._container.removeEventListener("touchstart", this.handleTouchStart);
+
+        this._container.removeEventListener("touchmove", this.handleTouchMove);
+
+        this._container.removeEventListener("touchend", this.handleTouchEnd);
+      }
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     this.$nextTick(function () {
-      _this2.init();
+      _this3.init();
     });
+  },
+  deactivated: function deactivated() {
+    this.unBindEvents();
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.unBindEvents();
   }
 });
 // CONCATENATED MODULE: ./packages/loader/loader.vue?vue&type=script&lang=js&
@@ -6655,8 +6679,8 @@ spinner_spinner.install = function (Vue) {
 
 var loader_component = normalizeComponent(
   loader_loadervue_type_script_lang_js_,
-  loadervue_type_template_id_bc513a8c_render,
-  loadervue_type_template_id_bc513a8c_staticRenderFns,
+  loadervue_type_template_id_14e66605_render,
+  loadervue_type_template_id_14e66605_staticRenderFns,
   false,
   null,
   null,

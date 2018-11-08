@@ -246,12 +246,35 @@ export default {
       if (this.initScroll) {
         this.handleScroll();
       }
+    },
+    unBindEvents() {
+      if (this.hasListen("scroll")) {
+        ["scroll", "resize"].forEach(e => {
+          this._container.removeEventListener(e, this.handleScroll);
+        });
+      }
+
+      // touch
+      if (this.hasListen("pull-up") || this.hasListen("pull-down")) {
+        this._container.removeEventListener(
+          "touchstart",
+          this.handleTouchStart
+        );
+        this._container.removeEventListener("touchmove", this.handleTouchMove);
+        this._container.removeEventListener("touchend", this.handleTouchEnd);
+      }
     }
   },
   mounted() {
     this.$nextTick(() => {
       this.init();
     });
+  },
+  deactivated() {
+    this.unBindEvents();
+  },
+  beforeDestroy() {
+    this.unBindEvents();
   }
 };
 </script>
