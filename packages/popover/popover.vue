@@ -2,14 +2,13 @@
   <div class="ui-popover" v-click-outside="close" v-if="show" :style="stlyes">
     <span
       class="ui-popover-triangle"
-      :class="arrowClasses"
       v-if="arrow"
       :style="triangleStyles"
     ></span>
     <ul
       v-if="menu.length"
       class="ui-popover-menu"
-      :class="menuType ? 'ui-popover-menu-horizon' : ''"
+      :class="[`ui-popover-menu-${menuType}`]"
     >
       <ui-popover-item
         :params="params"
@@ -31,30 +30,23 @@
 </template>
 <script>
 import ClickOutside from "vue-click-outside";
-import { debounce } from "throttle-debounce";
+import { throttle } from "throttle-debounce";
 import UiPopoverItem from "./popover-item.vue";
 import "../assets/scss/popover.scss";
-
+import getAxis from "../../src/utils/getAxis.js";
+import isElement from "iselement";
 export default {
   name: "ui-popover",
-
   data() {
     return {
-      width: "",
       show: false,
-      arrow: true,
-      offset: 14,
-      triangleSize: 8,
-      triangleOffset: 15,
-      params: {},
-      menu: [],
-      menuType: "",
-      arrowPosition: "",
+      axis: {},
+      triangleLeft: "",
       closeOnClick: false,
       closeOnMouseleave: false,
       content: "",
       textAlign: "",
-      trigger: "",
+
       //not for options
       targetTop: "",
       placeOnTop: "",
@@ -65,22 +57,60 @@ export default {
       top: "",
       borderTopColor: "",
       borderBottomColor: "",
-      marginLeft: "",
-      float: "",
-      marginRight: "",
-      arrowTop: ""
+      arrowTop: "",
+      triggerOffset: "",
+      popoverOffset: ""
     };
+  },
+  props: {
+    trigger: "",
+    width: Number,
+    arrow: {
+      type: Boolean,
+      default: true
+    },
+    offset: {
+      type: Number,
+      default: 14
+    },
+    triangleSize: {
+      type: Number,
+      default: 8
+    },
+    triangleOffset: {
+      type: Number,
+      default: 15
+    },
+    params: Object,
+    menu: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    menuType: {
+      type: String,
+      default: "vertical",
+      validator: function(value) {
+        return ["horizon", "vertical"].indexOf(value) !== -1;
+      }
+    },
+    arrowPosition: {
+      type: String,
+      default: "center",
+      validator: function(value) {
+        return ["right", "left", "auto"].indexOf(value) !== -1;
+      }
+    },
+    radius: {
+      type: Number,
+      default: 14
+    }
   },
   components: {
     UiPopoverItem
   },
   computed: {
-    arrowClasses() {
-      return {
-        "ui-popover-arrow-at-left": this.arrowPosition == "left",
-        "ui-popover-arrow-at-right": this.arrowPosition == "right"
-      };
-    },
     stlyes() {
       return {
         top: this.top + "px",
@@ -94,8 +124,8 @@ export default {
         borderWidth: `${this.triangleSize}px`,
         borderTopColor: this.borderTopColor,
         borderBottomColor: this.borderBottomColor,
-        float: this.float,
-        top: `${this.arrowTop}px`
+        top: `${this.arrowTop}px`,
+        left: `${this.triangleLeft}px`
       };
     },
     contentStyles() {
@@ -105,40 +135,42 @@ export default {
     }
   },
   methods: {
+    getAxis() {
+      this.axis = getAxis();
+    },
     close(e) {
       if (!e || e.target != this.trigger || this.closeOnMouseleave) {
         this.show = false;
         this.trigger.dataset.popoverId = "";
         window.removeEventListener("resize", this.calculatePopoverPosition);
+        window.removeEventListener("resize", this.getAxis);
         window.removeEventListener("scroll", this.calculatePopoverPosition);
         this.trigger.removeEventListener("mouseout", this.close);
       }
     },
-    getAxis() {
-      return {
-        x: window.innerWidth / 2,
-        y: window.innerHeight / 2
-      };
-    },
-    calculatePopoverPosition: debounce(10, function() {
-      let triggerOffset = this.trigger.getBoundingClientRect();
-      let popoverOffset = this.$el.getBoundingClientRect();
-      this.targetTop = triggerOffset.top;
-      this.placeOnTop = this.targetTop - popoverOffset.height;
+
+    calculatePopoverPosition: throttle(30, function() {
+      this.triggerOffset = this.trigger.getBoundingClientRect();
+      this.popoverOffset = this.$el.getBoundingClientRect();
+      this.targetTop = this.triggerOffset.top;
+      this.placeOnTop = this.targetTop - this.popoverOffset.height;
       this.placeOnRight =
-        triggerOffset.left +
-        triggerOffset.width -
-        popoverOffset.width +
+        this.triggerOffset.left +
+        this.triggerOffset.width -
+        this.popoverOffset.width +
         this.offset;
-      this.placeOnBottom = this.targetTop + triggerOffset.height;
-      this.placeOnLeft = triggerOffset.left + this.offset;
-      let axis = this.getAxis();
-      if (this.placeOnLeft < axis.x) {
+      this.placeOnBottom = this.targetTop + this.triggerOffset.height;
+      this.placeOnLeft = this.triggerOffset.left + this.offset;
+      if (this.placeOnLeft < this.axis.x) {
         this.left = this.placeOnLeft;
       } else {
-        this.left = this.placeOnRight;
+        this.left =
+          this.placeOnRight + this.popoverOffset.width + this.offset >=
+          this.axis.x * 2
+            ? this.placeOnRight - this.offset
+            : this.placeOnRight;
       }
-      if (axis.y > this.targetTop) {
+      if (this.axis.y > this.targetTop) {
         this.top = this.offset
           ? this.placeOnBottom + this.offset
           : this.placeOnBottom;
@@ -152,26 +184,31 @@ export default {
       }
     }),
     setTrianglePosition() {
-      let axis = this.getAxis();
-      let popoverOffset = this.$el.getBoundingClientRect();
-      if (!this.arrowPosition) {
-        if (this.placeOnLeft < axis.x) {
-          this.arrowPosition = "left";
-        } else {
-          this.arrowPosition = "right";
-        }
+      if (this.arrowPosition == "auto") {
+        this.triangleLeft =
+          this.triggerOffset.left -
+          this.popoverOffset.left +
+          this.triggerOffset.width / 2 -
+          this.triangleSize / 2;
       }
-
-      if (axis.y > this.targetTop) {
-        // this.popover.insertBefore(this.triangle, this.popover.childNodes[0])
+      if (this.arrowPosition == "left") {
+        this.triangleLeft = this.triangleSize + this.offset;
+      }
+      if (this.arrowPosition == "right") {
+        this.triangleLeft =
+          this.popoverOffset.width -
+          this.triangleSize -
+          this.offset -
+          this.radius;
+      }
+      if (this.axis.y > this.targetTop) {
         this.borderTopColor = "transparent";
         this.borderBottomColor = "#fff";
         this.arrowTop = -this.triangleSize * 2;
       } else {
-        // this.popover.appendChild(this.triangle)
         this.borderBottomColor = "transparent";
         this.borderTopColor = "#fff";
-        this.arrowTop = popoverOffset.height;
+        this.arrowTop = this.popoverOffset.height;
       }
     },
     bindEvents() {
@@ -181,12 +218,17 @@ export default {
     }
   },
   mounted() {
-    // this.show = true;
+    this.show = true;
     this.$nextTick(() => {
+      if (!isElement(this.trigger)) {
+        throw new Error("trigger must be a element");
+      }
+      this.getAxis();
       this.calculatePopoverPosition();
       this.bindEvents();
     });
     window.addEventListener("resize", this.calculatePopoverPosition);
+    window.addEventListener("resize", this.getAxis);
     window.addEventListener("scroll", this.calculatePopoverPosition);
   },
 

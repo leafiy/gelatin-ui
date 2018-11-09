@@ -1,5 +1,5 @@
 import uniqueId from "nanoid";
-import { getOrientation } from "../utils/imgUtils.js";
+import { getOrientation } from "../../utils/imgUtils.js";
 
 export default {
   methods: {

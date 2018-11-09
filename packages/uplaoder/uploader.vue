@@ -48,12 +48,12 @@
   </div>
 </template>
 <script>
-import uploadPropsFunctions from "../../src/mixins/uploadPropsFunctions.js";
-import uploadPropsOptions from "../../src/mixins/uploadPropsOptions.js";
-import uploadMethods from "../../src/mixins/uploadMethods.js";
-import uploadComputed from "../../src/mixins/uploadComputed.js";
-import uploadAction from "../../src/mixins/uploadAction.js";
-import uploadValidate from "../../src/mixins/uploadValidate.js";
+import uploadPropsFunctions from "../../src/mixins/uploader/uploadPropsFunctions.js";
+import uploadPropsOptions from "../../src/mixins/uploader/uploadPropsOptions.js";
+import uploadMethods from "../../src/mixins/uploader/uploadMethods.js";
+import uploadComputed from "../../src/mixins/uploader/uploadComputed.js";
+import uploadAction from "../../src/mixins/uploader/uploadAction.js";
+import uploadValidate from "../../src/mixins/uploader/uploadValidate.js";
 import UploadList from "./uploader-list.vue";
 import "../assets/scss/uploader.scss";
 export default {

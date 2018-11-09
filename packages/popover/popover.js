@@ -1,14 +1,13 @@
 import popoverTemplate from "./popover.vue";
 import Vue from "vue";
 const PopoverConstructor = Vue.extend(popoverTemplate);
-import isElement from "iselement";
+
 import nanoid from "nanoid";
 
 const instances = [];
 const Popover = function(options) {
-  // Object.assign(defaultOptions, options);
-  let { zIndex, trigger, slot } = options;
-  if (!trigger || !isElement(trigger)) {
+  let { trigger } = options;
+  if (!trigger) {
     return;
   }
 
@@ -21,7 +20,7 @@ const Popover = function(options) {
   } else {
     const instance = new PopoverConstructor({
       el: document.createElement("div"),
-      data: options
+      propsData: options
     });
     instance.$mount();
     instance.show = true;

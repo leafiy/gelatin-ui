@@ -16,17 +16,17 @@
   border-style: solid;
   border-right-color: transparent;
   border-left-color: transparent;
-  left: 50%;
-  transform: translateX(-50%);
+  // left: 50%;
+  // transform: translateX(-50%);
 
-  &.ui-popover-arrow-at-right {
-    right: 10px;
-    left: auto;
-  }
+  // &.ui-popover-arrow-at-right {
+  //   right: 10px;
+  //   left: auto;
+  // }
 
-  &.ui-popover-arrow-at-left {
-    left: 10px;
-  }
+  // &.ui-popover-arrow-at-left {
+  //   left: 10px;
+  // }
 }
 
 
@@ -55,6 +55,10 @@
       background: $lighter;
     }
   }
+}
+
+.ui-popover-menu-vertical{
+
 }
 
 .ui-popover-menu-horizon {

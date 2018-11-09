@@ -1,4 +1,4 @@
-import getFileExt from "@/utils/getFileExt.js";
+import getFileExt from "../../utils/getFileExt.js";
 
 export default {
   methods: {

@@ -1,4 +1,4 @@
-import uploader from "../utils/uploader.js";
+import uploader from "../../utils/uploader.js";
 export default {
   methods: {
     startUpload(file) {
