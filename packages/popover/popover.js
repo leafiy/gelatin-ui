@@ -18,12 +18,13 @@ const Popover = function(options) {
   if (instances.includes(trigger.dataset.popoverId)) {
     return;
   } else {
+    options.show = true;
     const instance = new PopoverConstructor({
       el: document.createElement("div"),
       propsData: options
     });
-    instance.$mount();
     instance.show = true;
+    instance.$mount();
     let el = instance.$el;
     document.body.appendChild(el);
     instances.push(trigger.dataset.popoverId);

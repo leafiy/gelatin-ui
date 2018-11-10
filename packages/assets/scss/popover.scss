@@ -8,7 +8,6 @@
 }
 
 .ui-popover-triangle {
-
   position: absolute;
   box-sizing: border-box;
   height: 0;
@@ -16,22 +15,11 @@
   border-style: solid;
   border-right-color: transparent;
   border-left-color: transparent;
-  // left: 50%;
-  // transform: translateX(-50%);
-
-  // &.ui-popover-arrow-at-right {
-  //   right: 10px;
-  //   left: auto;
-  // }
-
-  // &.ui-popover-arrow-at-left {
-  //   left: 10px;
-  // }
 }
 
 
 .ui-popover-menu {
-  border-radius: $radius;
+  // border-radius: $radius;
   box-shadow: $shadow;
 
   background: #fff;
@@ -76,9 +64,9 @@
   }
 }
 
-.ui-popover-content{
-  background:#fff;
-  box-shadow:$shadow;
-  border-radius:$radius;
-  padding:6px 12px;
-}
+// .ui-popover-content{
+//   background:#fff;
+//   box-shadow:$shadow;
+//   border-radius:$radius;
+//   padding:6px 12px;
+// }

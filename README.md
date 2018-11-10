@@ -19,3 +19,23 @@ plugins: [
     ]
   ]
 ```
+
+
+### popover / dropdown / tooltip
+
+```
+//popover
+Vue.$Popover({options})
+
+
+//dropdown
+<ui-dropdown>
+ <div slot="trigger" class="dropdown-trigger">
+  // trigger
+ </div>
+</ui-dropdown>
+
+
+//tooltip
+<component v-tooltip="content"></component>
+```
