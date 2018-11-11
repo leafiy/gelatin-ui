@@ -8977,10 +8977,13 @@ dropdown_dropdown.install = function (Vue) {
 
 /* harmony default export */ var packages_dropdown = (dropdown_dropdown);
 // CONCATENATED MODULE: ./packages/tooltip/tooltip.js
+
+console.log(pop);
 /* harmony default export */ var tooltip = ({
   name: "ui-tooltip",
   inserted: function inserted(el, binding, vnode) {
     console.log(el);
+    console.log(binding.expression);
   },
   update: function update(el, binding, vnode) {
     console.log(el);
