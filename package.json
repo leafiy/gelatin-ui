@@ -7,7 +7,7 @@
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "build": "vue-cli-service build --target lib --name gelatin-ui ./packages/index.js",
-    "publish-dev": "lint-staged && npm run build && git add . && lint-staged && git cz && git push",
+    "publish-dev": "lint-staged && npm run build && git add . && git cz && git push",
     "publish-master": "standard-version && git push"
   },
   "dependencies": {
