@@ -3,32 +3,50 @@ import Vue from "vue";
 const PopoverConstructor = Vue.extend(popoverTemplate);
 
 import nanoid from "nanoid";
-
 const instances = [];
 const Popover = function(options) {
   let { trigger } = options;
-  if (!trigger) {
+  if (!trigger || trigger.dataset.popover) {
     return;
   }
 
-  if (!trigger.dataset.popoverId) {
-    trigger.dataset.popoverId = nanoid();
-  }
+  let instance
 
-  if (instances.includes(trigger.dataset.popoverId)) {
-    return;
+  if (instances.map(instance => instance.key).includes(options.key)) {
+    instance = instances.filter(instance => instance.key == options.key)[0];
+    instance.show = true
   } else {
-    options.show = true;
-    const instance = new PopoverConstructor({
-      el: document.createElement("div"),
+
+    instance = new PopoverConstructor({
+      // el: document.createElement("div"),
+      data: {
+        key: options.key
+      },
       propsData: options
     });
-    instance.show = true;
+    instance.show = true
     instance.$mount();
     let el = instance.$el;
-    document.body.appendChild(el);
-    instances.push(trigger.dataset.popoverId);
+    if (options.insertAfter) {
+      trigger.parentNode.insertBefore(el,trigger.nextSibling)
+    } else {
+      document.body.appendChild(el);
+    }
+    // should keep the instances and closePopover or not??
+    // Leave it for the next time
+    if (options.key) {
+      instances.push(instance);
+    } else {
+      trigger.dataset.popover = true
+    }
+
   }
+  return instance
+
 };
+
+// Popover.closePopover = function(id) {
+//   instances.splice(instances.findIndex(pop => pop.key == id), 1);
+// }
 
 export default Popover;
