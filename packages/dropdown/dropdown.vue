@@ -3,13 +3,7 @@
     <div class="ui-dropdown-trigger" ref="trigger" @click="open">
       <slot name="trigger"></slot>
     </div>
-    <div
-      class="ui-dropdown-menu"
-      v-if="show"
-      :style="stlyes"
-      ref="dropdown-menu"
-      v-click-outside="close"
-    >
+    <div class="ui-dropdown-menu" v-if="show" :style="stlyes" ref="dropdown-menu" v-click-outside="close">
       <span
         class="ui-dropdown-triangle"
         :style="triangleStyles"
@@ -22,7 +16,7 @@
   </div>
 </template>
 <script>
-import { throttle } from "throttle-debounce";
+import ClickOutside from "vue-click-outside";
 import pop from "../../src/mixins/pop/pop.js";
 import "../assets/scss/dropdown.scss";
 export default {
@@ -46,8 +40,32 @@ export default {
     },
     close() {
       this.show = false;
-    }
+      this.unbindEvents()
+    },
+    unbindEvents() {
+      window.removeEventListener("resize", this.calculatePopoverPosition);
+      window.removeEventListener("scroll", this.calculatePopoverPosition);
+      window.removeEventListener('scroll', this.getAxis)
+      window.removeEventListener('resize', this.getAxis)
+      if (this.closeOnMouseleave) {
+        this.trigger.removeEventListener("mouseout", this.close);
+      }
+    },
+    bindEvents() {
+      window.addEventListener("resize", this.calculatePopoverPosition);
+      window.addEventListener("scroll", this.calculatePopoverPosition);
+      window.addEventListener('scroll', this.getAxis)
+      window.addEventListener('resize', this.getAxis)
+      if (this.closeOnMouseleave) {
+        this.trigger.addEventListener("mouseout", this.close);
+      }
+    },
+  },
+
+  directives: {
+    ClickOutside
   }
 };
+
 </script>
 <style lang="css" scoped></style>

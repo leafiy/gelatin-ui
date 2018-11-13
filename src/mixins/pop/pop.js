@@ -1,13 +1,13 @@
-import { throttle } from "throttle-debounce";
 import getAxis from "../../utils/getAxis.js";
-import ClickOutside from "vue-click-outside";
 import scrollbarWidth from "../../utils/scrollbar.js";
+import { debounce, throttle } from 'lodash'
 export default {
   data() {
     return {
       axis: {},
       triangleLeft: "",
       el: "",
+      key: "",
       // content: "",
       show: false,
       //not for options
@@ -22,7 +22,9 @@ export default {
       borderBottomColor: "",
       arrowTop: "",
       triggerOffset: "",
-      popoverOffset: ""
+      popoverOffset: "",
+      userOnClose: "",
+      translateX: ""
     };
   },
   props: {
@@ -35,38 +37,31 @@ export default {
       type: Number,
       default: 14
     },
-    triangleSize: {
+    arrowSize: {
       type: Number,
-      default: 8
+      default: 10
     },
     triangleOffset: {
       type: Number,
       default: 15
     },
-    // arrowPosition: {
-    //   type: String,
-    //   default: "auto",
-    //   validator: function(value) {
-    //     return ["right", "left", "auto"].indexOf(value) !== -1;
-    //   }
-    // },
-    // menuPosition: {
-    //   type: String,
-    //   default: "center",
-    //   validator: function(value) {
-    //     return ["center", "auto"].indexOf(value) !== -1;
-    //   }
-    // },
+    align: {
+      type: String,
+      default: "center",
+      validator: function(value) {
+        return ["center", "left", "right"].indexOf(value) !== -1;
+      }
+    },
     radius: {
       type: Number,
       default: 10
     },
-    closeOnClick: {
-      type: Boolean,
-      default: true
+
+    zIndex: {
+      type: Number,
+      default: 200
     },
-    closeOnMouseleave: Boolean,
-    zIndex: Number
+    textCetner:Boolean
   },
   computed: {
     stlyes() {
@@ -79,26 +74,33 @@ export default {
     },
     triangleStyles() {
       return {
-        borderWidth: `${this.triangleSize}px`,
+        borderWidth: `${this.arrowSize}px`,
         borderTopColor: this.borderTopColor,
         borderBottomColor: this.borderBottomColor,
         top: `${this.arrowTop}px`,
-        left: `${this.triangleLeft}px`
+        left: `${this.triangleLeft}px`,
+        zIndex: this.zIndex + 1
       };
     },
     menuStyles() {
       return {
-        borderRadius: `${this.radius}px`
+        borderRadius: `${this.radius}px`,
+        transform: `translateX(${this.translateX})`
       };
+    },
+    tooltipStyles() {
+      if (this.tooltip) {
+        return {
+          textAlign: this.textCetner ? 'center' : ''
+        }
+      }
     }
   },
   methods: {
     getAxis() {
       this.axis = getAxis();
     },
-    positionCorrection() {},
-
-    calculatePopoverPosition: throttle(30, function() {
+    calculatePopoverPosition: throttle(function(e) {
       this.triggerOffset = this.trigger.getBoundingClientRect();
       this.popoverOffset = this.el.getBoundingClientRect();
       this.targetTop = this.triggerOffset.top;
@@ -110,27 +112,31 @@ export default {
       // + this.offset;
       this.placeOnBottom = this.targetTop + this.triggerOffset.height;
       this.placeOnLeft = this.triggerOffset.left;
-      // if (this.menuPosition == 'auto') {
-      //   if (this.placeOnLeft < this.axis.x) {
-      //     this.left = this.placeOnLeft;
-      //   } else {
-      //     this.left =
-      //       this.placeOnRight + this.popoverOffset.width + this.offset >=
-      //       this.axis.x * 2 ?
-      //       this.placeOnRight - this.offset :
-      //       this.placeOnRight;
-      //   }
-      // } else if (menuPosition == 'center') {
 
-      // }
 
-      this.left =
-        this.triggerOffset.left +
-        this.triggerOffset.width / 2 -
-        this.popoverOffset.width / 2;
+      if (this.align == 'center') {
+        this.left =
+          this.triggerOffset.left +
+          this.triggerOffset.width / 2 -
+          this.popoverOffset.width / 2;
+      }
+
+      if (this.align == 'left') {
+        this.left =
+          this.triggerOffset.left + this.triggerOffset.width - this.popoverOffset.width
+      }
+
+      if (this.align == 'right') {
+        this.left = this.triggerOffset.left
+      }
+
+
 
       if (this.left <= this.offset) {
         this.left = this.offset;
+      }
+      if (this.left >= this.axis.x * 2 - this.offset) {
+        this.left = this.axis.x * 2 - this.popoverOffset.width - this.offset
       }
 
       if (this.left + this.popoverOffset.width > this.axis.x * 2) {
@@ -140,22 +146,21 @@ export default {
           scrollbarWidth() -
           this.offset;
       }
-
       if (this.axis.y > this.targetTop) {
-        this.top = this.offset
-          ? this.placeOnBottom + this.offset
-          : this.placeOnBottom;
+        this.top = this.offset ?
+          this.placeOnBottom + this.offset :
+          this.placeOnBottom;
       } else {
-        this.top = this.offset
-          ? this.placeOnTop - this.offset
-          : this.placeOnTop;
+        this.top = this.offset ?
+          this.placeOnTop - this.offset :
+          this.placeOnTop;
       }
       if (this.arrow) {
         this.$nextTick(() => {
           this.setTrianglePosition();
         });
       }
-    }),
+    }, 20),
     setTrianglePosition() {
       let popoverOffset = this.el.getBoundingClientRect();
 
@@ -163,43 +168,29 @@ export default {
         this.triggerOffset.left +
         this.triggerOffset.width / 2 -
         this.left -
-        this.triangleSize;
-
-      // if (this.arrowPosition == "auto") {
-
-      // }
-
-      // if (this.arrowPosition == "left") {
-      //   this.triangleLeft = this.triangleSize + this.offset;
-      // }
-      // if (this.arrowPosition == "right") {
-      //   this.triangleLeft =
-      //     popoverOffset.width -
-      //     this.triangleSize -
-      //     this.offset -
-      //     this.radius * 2;
-      // }
+        this.arrowSize;
       if (this.axis.y > this.targetTop) {
         this.borderTopColor = "transparent";
         this.borderBottomColor = "#fff";
-        this.arrowTop = -this.triangleSize * 2;
+        this.arrowTop = -this.arrowSize * 2;
       } else {
         this.borderBottomColor = "transparent";
         this.borderTopColor = "#fff";
         this.arrowTop = popoverOffset.height;
       }
-      // 最终位置修正
+
       this.$nextTick(() => {
-        if (
-          this.$refs["triangle"].getBoundingClientRect().right >=
-          popoverOffset.right
-        )
-          this.triangleLeft -= this.triangleSize;
-      });
+        let triangleOffset = this.$refs['triangle'].getBoundingClientRect()
+        if (triangleOffset.right + this.offset >= popoverOffset.right) {
+          this.translateX = `${this.arrowSize}px`
+        }
+        if (triangleOffset.left - this.offset <= popoverOffset.left) {
+          this.translateX = `-${this.arrowSize}px`
+        }
+      })
     }
   },
-
-  directives: {
-    ClickOutside
+  mounted() {
+    this.getAxis()
   }
 };

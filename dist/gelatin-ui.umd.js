@@ -96,6 +96,59 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ({
 
+/***/ "00fd":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__("9e69");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+  return result;
+}
+
+module.exports = getRawTag;
+
+
+/***/ }),
+
 /***/ "01e2":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -392,21 +445,6 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ "0d01":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("c1a7");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var add = __webpack_require__("499e").default
-var update = add("4c33c093", content, true, {"sourceMap":false,"shadowMode":false});
-
-/***/ }),
-
 /***/ "0d58":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -452,6 +490,82 @@ module.exports = function spread(callback) {
     return callback.apply(null, arr);
   };
 };
+
+
+/***/ }),
+
+/***/ "0f32":
+/***/ (function(module, exports, __webpack_require__) {
+
+var debounce = __webpack_require__("b047"),
+    isObject = __webpack_require__("1a8c");
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/**
+ * Creates a throttled function that only invokes `func` at most once per
+ * every `wait` milliseconds. The throttled function comes with a `cancel`
+ * method to cancel delayed `func` invocations and a `flush` method to
+ * immediately invoke them. Provide `options` to indicate whether `func`
+ * should be invoked on the leading and/or trailing edge of the `wait`
+ * timeout. The `func` is invoked with the last arguments provided to the
+ * throttled function. Subsequent calls to the throttled function return the
+ * result of the last `func` invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the throttled function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.throttle` and `_.debounce`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to throttle.
+ * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=true]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new throttled function.
+ * @example
+ *
+ * // Avoid excessively updating the position while scrolling.
+ * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
+ *
+ * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
+ * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
+ * jQuery(element).on('click', throttled);
+ *
+ * // Cancel the trailing throttled invocation.
+ * jQuery(window).on('popstate', throttled.cancel);
+ */
+function throttle(func, wait, options) {
+  var leading = true,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  if (isObject(options)) {
+    leading = 'leading' in options ? !!options.leading : leading;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+  return debounce(func, wait, {
+    'leading': leading,
+    'maxWait': wait,
+    'trailing': trailing
+  });
+}
+
+module.exports = throttle;
 
 
 /***/ }),
@@ -522,6 +636,42 @@ exports.f = __webpack_require__("9e1e") ? gOPD : function getOwnPropertyDescript
   } catch (e) { /* empty */ }
   if (has(O, P)) return createDesc(!pIE.f.call(O, P), O[P]);
 };
+
+
+/***/ }),
+
+/***/ "1310":
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+module.exports = isObjectLike;
 
 
 /***/ }),
@@ -648,6 +798,44 @@ module.exports = {
   set: setTask,
   clear: clearTask
 };
+
+
+/***/ }),
+
+/***/ "1a8c":
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
+
+module.exports = isObject;
 
 
 /***/ }),
@@ -1073,6 +1261,35 @@ __webpack_require__("214f")('split', 2, function (defined, SPLIT, $split) {
 
 /***/ }),
 
+/***/ "29f3":
+/***/ (function(module, exports) {
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+module.exports = objectToString;
+
+
+/***/ }),
+
 /***/ "2aba":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1159,6 +1376,22 @@ module.exports = Object.create || function create(O, Properties) {
 
 /***/ }),
 
+/***/ "2b3e":
+/***/ (function(module, exports, __webpack_require__) {
+
+var freeGlobal = __webpack_require__("585a");
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+module.exports = root;
+
+
+/***/ }),
+
 /***/ "2b4c":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1232,6 +1465,21 @@ module.exports = function (it) {
 module.exports = function isCancel(value) {
   return !!(value && value.__CANCEL__);
 };
+
+
+/***/ }),
+
+/***/ "2fbb":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("2350")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".ui-tooltip-content{padding:10px}", ""]);
+
+// exports
 
 
 /***/ }),
@@ -1383,6 +1631,17 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "33ae":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_style_index_0_id_075e5220_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("5bd9");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_style_index_0_id_075e5220_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_style_index_0_id_075e5220_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_style_index_0_id_075e5220_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "34ef":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1414,6 +1673,41 @@ module.exports = function fill(value /* , start = 0, end = @length */) {
   while (endPos > index) O[index++] = value;
   return O;
 };
+
+
+/***/ }),
+
+/***/ "3729":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__("9e69"),
+    getRawTag = __webpack_require__("00fd"),
+    objectToString = __webpack_require__("29f3");
+
+/** `Object#toString` result references. */
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag && symToStringTag in Object(value))
+    ? getRawTag(value)
+    : objectToString(value);
+}
+
+module.exports = baseGetTag;
 
 
 /***/ }),
@@ -1597,6 +1891,36 @@ if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__("499e").default
 var update = add("570f27d8", content, true, {"sourceMap":false,"shadowMode":false});
+
+/***/ }),
+
+/***/ "408c":
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__("2b3e");
+
+/**
+ * Gets the timestamp of the number of milliseconds that have elapsed since
+ * the Unix epoch (1 January 1970 00:00:00 UTC).
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Date
+ * @returns {number} Returns the timestamp.
+ * @example
+ *
+ * _.defer(function(stamp) {
+ *   console.log(_.now() - stamp);
+ * }, _.now());
+ * // => Logs the number of milliseconds it took for the deferred invocation.
+ */
+var now = function() {
+  return root.Date.now();
+};
+
+module.exports = now;
+
 
 /***/ }),
 
@@ -2537,6 +2861,33 @@ var store = global[SHARED] || (global[SHARED] = {});
 
 /***/ }),
 
+/***/ "585a":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+module.exports = freeGlobal;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("c8ba")))
+
+/***/ }),
+
+/***/ "5bd9":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("7137");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__("499e").default
+var update = add("0d394342", content, true, {"sourceMap":false,"shadowMode":false});
+
+/***/ }),
+
 /***/ "5ca1":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2792,6 +3143,36 @@ if (__webpack_require__("79e5")(function () { return $toString.call({ source: 'a
     return $toString.call(this);
   });
 }
+
+
+/***/ }),
+
+/***/ "7064":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("2fbb");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__("499e").default
+var update = add("0dd55650", content, true, {"sourceMap":false,"shadowMode":false});
+
+/***/ }),
+
+/***/ "7137":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("2350")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
 
 
 /***/ }),
@@ -3129,17 +3510,6 @@ exports.push([module.i, "\n.circle-progress[data-v-468f0017]{position:relative;t
 
 /***/ }),
 
-/***/ "8b2c":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_style_index_0_id_26da2167_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("0d01");
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_style_index_0_id_26da2167_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_style_index_0_id_26da2167_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dropdown_vue_vue_type_style_index_0_id_26da2167_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "8b97":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3348,6 +3718,19 @@ module.exports = function (it) {
 module.exports = !__webpack_require__("79e5")(function () {
   return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 });
+
+
+/***/ }),
+
+/***/ "9e69":
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__("2b3e");
+
+/** Built-in value references. */
+var Symbol = root.Symbol;
+
+module.exports = Symbol;
 
 
 /***/ }),
@@ -3561,6 +3944,276 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
     if (explicit) for (key in $iterators) if (!proto[key]) redefine(proto, key, $iterators[key], true);
   }
 }
+
+
+/***/ }),
+
+/***/ "b047":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("1a8c"),
+    now = __webpack_require__("408c"),
+    toNumber = __webpack_require__("b4b0");
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max,
+    nativeMin = Math.min;
+
+/**
+ * Creates a debounced function that delays invoking `func` until after `wait`
+ * milliseconds have elapsed since the last time the debounced function was
+ * invoked. The debounced function comes with a `cancel` method to cancel
+ * delayed `func` invocations and a `flush` method to immediately invoke them.
+ * Provide `options` to indicate whether `func` should be invoked on the
+ * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+ * with the last arguments provided to the debounced function. Subsequent
+ * calls to the debounced function return the result of the last `func`
+ * invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the debounced function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.debounce` and `_.throttle`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to debounce.
+ * @param {number} [wait=0] The number of milliseconds to delay.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=false]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {number} [options.maxWait]
+ *  The maximum time `func` is allowed to be delayed before it's invoked.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // Avoid costly calculations while the window size is in flux.
+ * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+ *
+ * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+ * jQuery(element).on('click', _.debounce(sendMail, 300, {
+ *   'leading': true,
+ *   'trailing': false
+ * }));
+ *
+ * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+ * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+ * var source = new EventSource('/stream');
+ * jQuery(source).on('message', debounced);
+ *
+ * // Cancel the trailing debounced invocation.
+ * jQuery(window).on('popstate', debounced.cancel);
+ */
+function debounce(func, wait, options) {
+  var lastArgs,
+      lastThis,
+      maxWait,
+      result,
+      timerId,
+      lastCallTime,
+      lastInvokeTime = 0,
+      leading = false,
+      maxing = false,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  wait = toNumber(wait) || 0;
+  if (isObject(options)) {
+    leading = !!options.leading;
+    maxing = 'maxWait' in options;
+    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+
+  function invokeFunc(time) {
+    var args = lastArgs,
+        thisArg = lastThis;
+
+    lastArgs = lastThis = undefined;
+    lastInvokeTime = time;
+    result = func.apply(thisArg, args);
+    return result;
+  }
+
+  function leadingEdge(time) {
+    // Reset any `maxWait` timer.
+    lastInvokeTime = time;
+    // Start the timer for the trailing edge.
+    timerId = setTimeout(timerExpired, wait);
+    // Invoke the leading edge.
+    return leading ? invokeFunc(time) : result;
+  }
+
+  function remainingWait(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime,
+        timeWaiting = wait - timeSinceLastCall;
+
+    return maxing
+      ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke)
+      : timeWaiting;
+  }
+
+  function shouldInvoke(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime;
+
+    // Either this is the first call, activity has stopped and we're at the
+    // trailing edge, the system time has gone backwards and we're treating
+    // it as the trailing edge, or we've hit the `maxWait` limit.
+    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+      (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
+  }
+
+  function timerExpired() {
+    var time = now();
+    if (shouldInvoke(time)) {
+      return trailingEdge(time);
+    }
+    // Restart the timer.
+    timerId = setTimeout(timerExpired, remainingWait(time));
+  }
+
+  function trailingEdge(time) {
+    timerId = undefined;
+
+    // Only invoke if we have `lastArgs` which means `func` has been
+    // debounced at least once.
+    if (trailing && lastArgs) {
+      return invokeFunc(time);
+    }
+    lastArgs = lastThis = undefined;
+    return result;
+  }
+
+  function cancel() {
+    if (timerId !== undefined) {
+      clearTimeout(timerId);
+    }
+    lastInvokeTime = 0;
+    lastArgs = lastCallTime = lastThis = timerId = undefined;
+  }
+
+  function flush() {
+    return timerId === undefined ? result : trailingEdge(now());
+  }
+
+  function debounced() {
+    var time = now(),
+        isInvoking = shouldInvoke(time);
+
+    lastArgs = arguments;
+    lastThis = this;
+    lastCallTime = time;
+
+    if (isInvoking) {
+      if (timerId === undefined) {
+        return leadingEdge(lastCallTime);
+      }
+      if (maxing) {
+        // Handle invocations in a tight loop.
+        timerId = setTimeout(timerExpired, wait);
+        return invokeFunc(lastCallTime);
+      }
+    }
+    if (timerId === undefined) {
+      timerId = setTimeout(timerExpired, wait);
+    }
+    return result;
+  }
+  debounced.cancel = cancel;
+  debounced.flush = flush;
+  return debounced;
+}
+
+module.exports = debounce;
+
+
+/***/ }),
+
+/***/ "b4b0":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("1a8c"),
+    isSymbol = __webpack_require__("ffd6");
+
+/** Used as references for various `Number` constants. */
+var NAN = 0 / 0;
+
+/** Used to match leading and trailing whitespace. */
+var reTrim = /^\s+|\s+$/g;
+
+/** Used to detect bad signed hexadecimal string values. */
+var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+
+/** Used to detect binary string values. */
+var reIsBinary = /^0b[01]+$/i;
+
+/** Used to detect octal string values. */
+var reIsOctal = /^0o[0-7]+$/i;
+
+/** Built-in method references without a dependency on `root`. */
+var freeParseInt = parseInt;
+
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+function toNumber(value) {
+  if (typeof value == 'number') {
+    return value;
+  }
+  if (isSymbol(value)) {
+    return NAN;
+  }
+  if (isObject(value)) {
+    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+    value = isObject(other) ? (other + '') : other;
+  }
+  if (typeof value != 'string') {
+    return value === 0 ? value : +value;
+  }
+  value = value.replace(reTrim, '');
+  var isBinary = reIsBinary.test(value);
+  return (isBinary || reIsOctal.test(value))
+    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+    : (reIsBadHex.test(value) ? NAN : +value);
+}
+
+module.exports = toNumber;
 
 
 /***/ }),
@@ -3836,21 +4489,6 @@ module.exports = function (it) {
   if (it == undefined) throw TypeError("Can't call method on  " + it);
   return it;
 };
-
-
-/***/ }),
-
-/***/ "c1a7":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("2350")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
 
 
 /***/ }),
@@ -4388,6 +5026,33 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
     }
   });
 };
+
+
+/***/ }),
+
+/***/ "c8ba":
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1, eval)("this");
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -6761,12 +7426,16 @@ loader_loader.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_loader = (loader_loader);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/popover/popover.vue?vue&type=template&id=2504772e&
-var popovervue_type_template_id_2504772e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.show)?_c('div',{directives:[{name:"click-outside",rawName:"v-click-outside",value:(_vm.close),expression:"close"}],staticClass:"ui-popover",style:(_vm.stlyes)},[(_vm.arrow)?_c('span',{ref:"triangle",staticClass:"ui-popover-triangle",style:(_vm.triangleStyles)}):_vm._e(),(_vm.menu.length)?_c('ul',{staticClass:"ui-popover-menu",class:[("ui-popover-menu-" + _vm.menuType)],style:(_vm.menuStyles)},_vm._l((_vm.menu),function(item){return _c('ui-popover-item',{key:item.content,attrs:{"params":_vm.params,"close-on-click":_vm.closeOnClick,"close-on-mouseleave":_vm.closeOnMouseleave,"item":item},on:{"close":_vm.close}})})):_vm._e()]):_vm._e()}
-var popovervue_type_template_id_2504772e_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/popover/popover.vue?vue&type=template&id=1f2497c4&
+var popovervue_type_template_id_1f2497c4_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.show)?_c('div',{directives:[{name:"click-outside",rawName:"v-click-outside",value:(_vm.close),expression:"close"}],staticClass:"ui-popover",class:{'ui-tooltip' : !!_vm.tooltip},style:(_vm.stlyes)},[(_vm.arrow)?_c('span',{ref:"triangle",staticClass:"ui-popover-triangle",style:(_vm.triangleStyles)}):_vm._e(),(_vm.menu.length)?_c('ul',{staticClass:"ui-popover-menu",class:[("ui-popover-menu-" + _vm.menuType)],style:(_vm.menuStyles)},_vm._l((_vm.menu),function(item){return _c('ui-popover-item',{key:item.content,attrs:{"params":_vm.params,"close-on-click":_vm.closeOnClick,"close-on-mouseleave":_vm.closeOnMouseleave,"item":item},on:{"close":_vm.close}})})):_vm._e(),(_vm.tooltip)?_c('div',{staticClass:"ui-popover-menu ui-tooltip-content",style:([_vm.menuStyles,_vm.tooltipStyles]),domProps:{"innerHTML":_vm._s(_vm.tooltip)}}):_vm._e()]):_vm._e()}
+var popovervue_type_template_id_1f2497c4_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/popover/popover.vue?vue&type=template&id=2504772e&
+// CONCATENATED MODULE: ./packages/popover/popover.vue?vue&type=template&id=1f2497c4&
+
+// EXTERNAL MODULE: ./node_modules/vue-click-outside/index.js
+var vue_click_outside = __webpack_require__("e67d");
+var vue_click_outside_default = /*#__PURE__*/__webpack_require__.n(vue_click_outside);
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/popover/popover-item.vue?vue&type=template&id=490d9117&
 var popover_itemvue_type_template_id_490d9117_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.item)?_c('li',{class:[_vm.item.class, { pointer: _vm.item.action }],attrs:{"title":_vm.item.content},on:{"click":_vm.action,"mouseleave":_vm.mouseleave}},[(_vm.item.icon)?_c('icon',{attrs:{"name":_vm.item.icon}}):_vm._e(),_vm._v(_vm._s(_vm.item.content)+"\n")],1):_vm._e()}
@@ -6862,132 +7531,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 /* harmony default export */ var iselement_module = (function (input) {
   return input != null && (typeof input === 'undefined' ? 'undefined' : _typeof(input)) === 'object' && input.nodeType === 1 && _typeof(input.style) === 'object' && _typeof(input.ownerDocument) === 'object';
 });
-// CONCATENATED MODULE: ./node_modules/throttle-debounce/index.esm.js
-/* eslint-disable no-undefined,no-param-reassign,no-shadow */
-
-/**
- * Throttle execution of a function. Especially useful for rate limiting
- * execution of handlers on events like resize and scroll.
- *
- * @param  {Number}    delay          A zero-or-greater delay in milliseconds. For event callbacks, values around 100 or 250 (or even higher) are most useful.
- * @param  {Boolean}   [noTrailing]   Optional, defaults to false. If noTrailing is true, callback will only execute every `delay` milliseconds while the
- *                                    throttled-function is being called. If noTrailing is false or unspecified, callback will be executed one final time
- *                                    after the last throttled-function call. (After the throttled-function has not been called for `delay` milliseconds,
- *                                    the internal counter is reset)
- * @param  {Function}  callback       A function to be executed after delay milliseconds. The `this` context and all arguments are passed through, as-is,
- *                                    to `callback` when the throttled-function is executed.
- * @param  {Boolean}   [debounceMode] If `debounceMode` is true (at begin), schedule `clear` to execute after `delay` ms. If `debounceMode` is false (at end),
- *                                    schedule `callback` to execute after `delay` ms.
- *
- * @return {Function}  A new, throttled, function.
- */
-function throttle ( delay, noTrailing, callback, debounceMode ) {
-
-	/*
-	 * After wrapper has stopped being called, this timeout ensures that
-	 * `callback` is executed at the proper times in `throttle` and `end`
-	 * debounce modes.
-	 */
-	var timeoutID;
-
-	// Keep track of the last time `callback` was executed.
-	var lastExec = 0;
-
-	// `noTrailing` defaults to falsy.
-	if ( typeof noTrailing !== 'boolean' ) {
-		debounceMode = callback;
-		callback = noTrailing;
-		noTrailing = undefined;
-	}
-
-	/*
-	 * The `wrapper` function encapsulates all of the throttling / debouncing
-	 * functionality and when executed will limit the rate at which `callback`
-	 * is executed.
-	 */
-	function wrapper () {
-
-		var self = this;
-		var elapsed = Number(new Date()) - lastExec;
-		var args = arguments;
-
-		// Execute `callback` and update the `lastExec` timestamp.
-		function exec () {
-			lastExec = Number(new Date());
-			callback.apply(self, args);
-		}
-
-		/*
-		 * If `debounceMode` is true (at begin) this is used to clear the flag
-		 * to allow future `callback` executions.
-		 */
-		function clear () {
-			timeoutID = undefined;
-		}
-
-		if ( debounceMode && !timeoutID ) {
-			/*
-			 * Since `wrapper` is being called for the first time and
-			 * `debounceMode` is true (at begin), execute `callback`.
-			 */
-			exec();
-		}
-
-		// Clear any existing timeout.
-		if ( timeoutID ) {
-			clearTimeout(timeoutID);
-		}
-
-		if ( debounceMode === undefined && elapsed > delay ) {
-			/*
-			 * In throttle mode, if `delay` time has been exceeded, execute
-			 * `callback`.
-			 */
-			exec();
-
-		} else if ( noTrailing !== true ) {
-			/*
-			 * In trailing throttle mode, since `delay` time has not been
-			 * exceeded, schedule `callback` to execute `delay` ms after most
-			 * recent execution.
-			 *
-			 * If `debounceMode` is true (at begin), schedule `clear` to execute
-			 * after `delay` ms.
-			 *
-			 * If `debounceMode` is false (at end), schedule `callback` to
-			 * execute after `delay` ms.
-			 */
-			timeoutID = setTimeout(debounceMode ? clear : exec, debounceMode === undefined ? delay - elapsed : delay);
-		}
-
-	}
-
-	// Return the wrapper function.
-	return wrapper;
-
-}
-
-/* eslint-disable no-undefined */
-
-/**
- * Debounce execution of a function. Debouncing, unlike throttling,
- * guarantees that a function is only executed a single time, either at the
- * very beginning of a series of calls, or at the very end.
- *
- * @param  {Number}   delay         A zero-or-greater delay in milliseconds. For event callbacks, values around 100 or 250 (or even higher) are most useful.
- * @param  {Boolean}  [atBegin]     Optional, defaults to false. If atBegin is false or unspecified, callback will only be executed `delay` milliseconds
- *                                  after the last debounced-function call. If atBegin is true, callback will be executed only at the first debounced-function call.
- *                                  (After the throttled-function has not been called for `delay` milliseconds, the internal counter is reset).
- * @param  {Function} callback      A function to be executed after delay milliseconds. The `this` context and all arguments are passed through, as-is,
- *                                  to `callback` when the debounced-function is executed.
- *
- * @return {Function} A new, debounced function.
- */
-function debounce ( delay, atBegin, callback ) {
-	return callback === undefined ? throttle(delay, atBegin, false) : throttle(delay, callback, atBegin !== false);
-}
-
-
+// EXTERNAL MODULE: ./node_modules/lodash/throttle.js
+var throttle = __webpack_require__("0f32");
+var throttle_default = /*#__PURE__*/__webpack_require__.n(throttle);
 
 // CONCATENATED MODULE: ./src/utils/getAxis.js
 /* harmony default export */ var utils_getAxis = (function () {
@@ -6996,10 +7542,6 @@ function debounce ( delay, atBegin, callback ) {
     y: window.innerHeight / 2
   };
 });
-// EXTERNAL MODULE: ./node_modules/vue-click-outside/index.js
-var vue_click_outside = __webpack_require__("e67d");
-var vue_click_outside_default = /*#__PURE__*/__webpack_require__.n(vue_click_outside);
-
 // CONCATENATED MODULE: ./src/utils/scrollbar.js
 /* harmony default export */ var scrollbar = (function () {
   var outer = document.createElement("div");
@@ -7025,13 +7567,13 @@ var vue_click_outside_default = /*#__PURE__*/__webpack_require__.n(vue_click_out
 
 
 
-
 /* harmony default export */ var pop = ({
   data: function data() {
     return {
       axis: {},
       triangleLeft: "",
       el: "",
+      key: "",
       // content: "",
       show: false,
       //not for options
@@ -7046,7 +7588,9 @@ var vue_click_outside_default = /*#__PURE__*/__webpack_require__.n(vue_click_out
       borderBottomColor: "",
       arrowTop: "",
       triggerOffset: "",
-      popoverOffset: ""
+      popoverOffset: "",
+      userOnClose: "",
+      translateX: ""
     };
   },
   props: {
@@ -7059,38 +7603,30 @@ var vue_click_outside_default = /*#__PURE__*/__webpack_require__.n(vue_click_out
       type: Number,
       default: 14
     },
-    triangleSize: {
+    arrowSize: {
       type: Number,
-      default: 8
+      default: 10
     },
     triangleOffset: {
       type: Number,
       default: 15
     },
-    // arrowPosition: {
-    //   type: String,
-    //   default: "auto",
-    //   validator: function(value) {
-    //     return ["right", "left", "auto"].indexOf(value) !== -1;
-    //   }
-    // },
-    // menuPosition: {
-    //   type: String,
-    //   default: "center",
-    //   validator: function(value) {
-    //     return ["center", "auto"].indexOf(value) !== -1;
-    //   }
-    // },
+    align: {
+      type: String,
+      default: "center",
+      validator: function validator(value) {
+        return ["center", "left", "right"].indexOf(value) !== -1;
+      }
+    },
     radius: {
       type: Number,
       default: 10
     },
-    closeOnClick: {
-      type: Boolean,
-      default: true
+    zIndex: {
+      type: Number,
+      default: 200
     },
-    closeOnMouseleave: Boolean,
-    zIndex: Number
+    textCetner: Boolean
   },
   computed: {
     stlyes: function stlyes() {
@@ -7103,25 +7639,33 @@ var vue_click_outside_default = /*#__PURE__*/__webpack_require__.n(vue_click_out
     },
     triangleStyles: function triangleStyles() {
       return {
-        borderWidth: "".concat(this.triangleSize, "px"),
+        borderWidth: "".concat(this.arrowSize, "px"),
         borderTopColor: this.borderTopColor,
         borderBottomColor: this.borderBottomColor,
         top: "".concat(this.arrowTop, "px"),
-        left: "".concat(this.triangleLeft, "px")
+        left: "".concat(this.triangleLeft, "px"),
+        zIndex: this.zIndex + 1
       };
     },
     menuStyles: function menuStyles() {
       return {
-        borderRadius: "".concat(this.radius, "px")
+        borderRadius: "".concat(this.radius, "px"),
+        transform: "translateX(".concat(this.translateX, ")")
       };
+    },
+    tooltipStyles: function tooltipStyles() {
+      if (this.tooltip) {
+        return {
+          textAlign: this.textCetner ? 'center' : ''
+        };
+      }
     }
   },
   methods: {
     getAxis: function getAxis() {
       this.axis = utils_getAxis();
     },
-    positionCorrection: function positionCorrection() {},
-    calculatePopoverPosition: throttle(30, function () {
+    calculatePopoverPosition: throttle_default()(function (e) {
       var _this = this;
 
       this.triggerOffset = this.trigger.getBoundingClientRect();
@@ -7131,23 +7675,26 @@ var vue_click_outside_default = /*#__PURE__*/__webpack_require__.n(vue_click_out
       this.placeOnRight = this.triggerOffset.left + this.triggerOffset.width - this.popoverOffset.width; // + this.offset;
 
       this.placeOnBottom = this.targetTop + this.triggerOffset.height;
-      this.placeOnLeft = this.triggerOffset.left; // if (this.menuPosition == 'auto') {
-      //   if (this.placeOnLeft < this.axis.x) {
-      //     this.left = this.placeOnLeft;
-      //   } else {
-      //     this.left =
-      //       this.placeOnRight + this.popoverOffset.width + this.offset >=
-      //       this.axis.x * 2 ?
-      //       this.placeOnRight - this.offset :
-      //       this.placeOnRight;
-      //   }
-      // } else if (menuPosition == 'center') {
-      // }
+      this.placeOnLeft = this.triggerOffset.left;
 
-      this.left = this.triggerOffset.left + this.triggerOffset.width / 2 - this.popoverOffset.width / 2;
+      if (this.align == 'center') {
+        this.left = this.triggerOffset.left + this.triggerOffset.width / 2 - this.popoverOffset.width / 2;
+      }
+
+      if (this.align == 'left') {
+        this.left = this.triggerOffset.left + this.triggerOffset.width - this.popoverOffset.width;
+      }
+
+      if (this.align == 'right') {
+        this.left = this.triggerOffset.left;
+      }
 
       if (this.left <= this.offset) {
         this.left = this.offset;
+      }
+
+      if (this.left >= this.axis.x * 2 - this.offset) {
+        this.left = this.axis.x * 2 - this.popoverOffset.width - this.offset;
       }
 
       if (this.left + this.popoverOffset.width > this.axis.x * 2) {
@@ -7165,42 +7712,38 @@ var vue_click_outside_default = /*#__PURE__*/__webpack_require__.n(vue_click_out
           _this.setTrianglePosition();
         });
       }
-    }),
+    }, 20),
     setTrianglePosition: function setTrianglePosition() {
       var _this2 = this;
 
       var popoverOffset = this.el.getBoundingClientRect();
-      this.triangleLeft = this.triggerOffset.left + this.triggerOffset.width / 2 - this.left - this.triangleSize; // if (this.arrowPosition == "auto") {
-      // }
-      // if (this.arrowPosition == "left") {
-      //   this.triangleLeft = this.triangleSize + this.offset;
-      // }
-      // if (this.arrowPosition == "right") {
-      //   this.triangleLeft =
-      //     popoverOffset.width -
-      //     this.triangleSize -
-      //     this.offset -
-      //     this.radius * 2;
-      // }
+      this.triangleLeft = this.triggerOffset.left + this.triggerOffset.width / 2 - this.left - this.arrowSize;
 
       if (this.axis.y > this.targetTop) {
         this.borderTopColor = "transparent";
         this.borderBottomColor = "#fff";
-        this.arrowTop = -this.triangleSize * 2;
+        this.arrowTop = -this.arrowSize * 2;
       } else {
         this.borderBottomColor = "transparent";
         this.borderTopColor = "#fff";
         this.arrowTop = popoverOffset.height;
-      } // 最终位置修正
-
+      }
 
       this.$nextTick(function () {
-        if (_this2.$refs["triangle"].getBoundingClientRect().right >= popoverOffset.right) _this2.triangleLeft -= _this2.triangleSize;
+        var triangleOffset = _this2.$refs['triangle'].getBoundingClientRect();
+
+        if (triangleOffset.right + _this2.offset >= popoverOffset.right) {
+          _this2.translateX = "".concat(_this2.arrowSize, "px");
+        }
+
+        if (triangleOffset.left - _this2.offset <= popoverOffset.left) {
+          _this2.translateX = "-".concat(_this2.arrowSize, "px");
+        }
       });
     }
   },
-  directives: {
-    ClickOutside: vue_click_outside_default.a
+  mounted: function mounted() {
+    this.getAxis();
   }
 });
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/popover/popover.vue?vue&type=script&lang=js&
@@ -7218,18 +7761,7 @@ var vue_click_outside_default = /*#__PURE__*/__webpack_require__.n(vue_click_out
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -7242,6 +7774,7 @@ var vue_click_outside_default = /*#__PURE__*/__webpack_require__.n(vue_click_out
   mixins: [pop],
   props: {
     trigger: "",
+    tooltip: "",
     params: Object,
     menu: {
       type: Array,
@@ -7255,46 +7788,74 @@ var vue_click_outside_default = /*#__PURE__*/__webpack_require__.n(vue_click_out
       validator: function validator(value) {
         return ["horizon", "vertical"].indexOf(value) !== -1;
       }
-    }
+    },
+    closeOnClick: {
+      type: Boolean,
+      default: true
+    },
+    closeOnMouseleave: Boolean,
+    onClose: Function
   },
   components: {
     UiPopoverItem: popover_item
   },
   methods: {
-    close: function close(e) {
-      if (!e || e.target != this.trigger || this.closeOnMouseleave) {
-        this.trigger.dataset.popoverId = "";
-        window.removeEventListener("resize", this.calculatePopoverPosition);
-        window.removeEventListener("resize", this.getAxis);
-        window.removeEventListener("scroll", this.calculatePopoverPosition);
+    unbindEvents: function unbindEvents() {
+      window.removeEventListener("resize", this.calculatePopoverPosition);
+      window.removeEventListener("scroll", this.calculatePopoverPosition);
+      window.removeEventListener('scroll', this.getAxis);
+      window.removeEventListener('resize', this.getAxis);
+
+      if (this.closeOnMouseleave && !this.tooltip) {
         this.trigger.removeEventListener("mouseout", this.close);
-        this.show = false;
       }
     },
     bindEvents: function bindEvents() {
-      if (this.closeOnMouseleave) {
+      window.addEventListener("resize", this.calculatePopoverPosition);
+      window.addEventListener("scroll", this.calculatePopoverPosition);
+      window.addEventListener('scroll', this.getAxis);
+      window.addEventListener('resize', this.getAxis);
+
+      if (this.closeOnMouseleave && !this.tooltip) {
         this.trigger.addEventListener("mouseout", this.close);
+      }
+    },
+    close: function close(e) {
+      this.show = false;
+
+      if (!this.key) {
+        this.trigger.removeAttribute('data-popover');
       }
     }
   },
   mounted: function mounted() {
-    var _this = this;
-
     if (!iselement_module(this.trigger)) {
       throw new Error("trigger must be a element");
     }
+  },
+  directives: {
+    ClickOutside: vue_click_outside_default.a
+  },
+  watch: {
+    show: function show(_show) {
+      var _this = this;
 
-    this.getAxis();
-    this.$nextTick(function () {
-      _this.el = _this.$el;
+      if (!_show) {
+        if (this.onClose) {
+          this.onClose();
+        }
 
-      _this.calculatePopoverPosition();
+        this.unbindEvents();
+      } else {
+        this.$nextTick(function () {
+          _this.bindEvents();
 
-      _this.bindEvents();
-    });
-    window.addEventListener("resize", this.calculatePopoverPosition);
-    window.addEventListener("resize", this.getAxis);
-    window.addEventListener("scroll", this.calculatePopoverPosition);
+          _this.el = _this.$el;
+
+          _this.calculatePopoverPosition();
+        });
+      }
+    }
   }
 });
 // CONCATENATED MODULE: ./packages/popover/popover.vue?vue&type=script&lang=js&
@@ -7309,8 +7870,8 @@ var vue_click_outside_default = /*#__PURE__*/__webpack_require__.n(vue_click_out
 
 var popover_component = normalizeComponent(
   popover_popovervue_type_script_lang_js_,
-  popovervue_type_template_id_2504772e_render,
-  popovervue_type_template_id_2504772e_staticRenderFns,
+  popovervue_type_template_id_1f2497c4_render,
+  popovervue_type_template_id_1f2497c4_staticRenderFns,
   false,
   null,
   null,
@@ -7332,38 +7893,61 @@ var index_browser_default = /*#__PURE__*/__webpack_require__.n(index_browser);
 
 
 
+
 var PopoverConstructor = external_commonjs_vue_commonjs2_vue_root_Vue_default.a.extend(popover_popover);
 
 var instances = [];
 
-var popover_Popover = function Popover(options) {
+var Popover = function Popover(options) {
   var trigger = options.trigger;
 
-  if (!trigger) {
+  if (!trigger || trigger.dataset.popover) {
     return;
   }
 
-  if (!trigger.dataset.popoverId) {
-    trigger.dataset.popoverId = index_browser_default()();
-  }
+  var instance;
 
-  if (instances.includes(trigger.dataset.popoverId)) {
-    return;
+  if (instances.map(function (instance) {
+    return instance.key;
+  }).includes(options.key)) {
+    instance = instances.filter(function (instance) {
+      return instance.key == options.key;
+    })[0];
+    instance.show = true;
   } else {
-    options.show = true;
-    var instance = new PopoverConstructor({
-      el: document.createElement("div"),
+    instance = new PopoverConstructor({
+      // el: document.createElement("div"),
+      data: {
+        key: options.key
+      },
       propsData: options
     });
     instance.show = true;
     instance.$mount();
     var el = instance.$el;
-    document.body.appendChild(el);
-    instances.push(trigger.dataset.popoverId);
-  }
-};
 
-/* harmony default export */ var packages_popover_popover = (popover_Popover);
+    if (options.insertAfter) {
+      trigger.parentNode.insertBefore(el, trigger.nextSibling);
+    } else {
+      document.body.appendChild(el);
+    } // should keep the instances and closePopover or not??
+    // Leave it for the next time
+
+
+    if (options.key) {
+      instances.push(instance);
+    } else {
+      trigger.dataset.popover = true;
+    }
+  }
+
+  return instance;
+}; // Popover.closePopover = function(id) {
+//   instances.splice(instances.findIndex(pop => pop.key == id), 1);
+// }
+
+
+/* harmony default export */ var packages_popover_popover = (Popover);
 // CONCATENATED MODULE: ./packages/popover/index.js
 // import Popover from "./popover.js";
 // Popover.install = function(Vue) {
@@ -7707,7 +8291,7 @@ var toast_Toast = function Toast(options) {
     data: options
   });
   instance.$mount();
-  instance.id = id;
+  instance.$id = id;
   toastContainer[p].appendChild(instance.$el);
   instance.show = true;
   toast_instances.push(instance);
@@ -7716,7 +8300,7 @@ var toast_Toast = function Toast(options) {
 
 toast_Toast.closeToast = function (id) {
   toast_instances.splice(toast_instances.findIndex(function (toast) {
-    return toast.id == id;
+    return toast.$id == id;
   }), 1);
 };
 
@@ -8876,23 +9460,17 @@ uplaoder_uploader.install = function (Vue) {
 };
 
 /* harmony default export */ var uplaoder = (uplaoder_uploader);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/dropdown/dropdown.vue?vue&type=template&id=26da2167&scoped=true&
-var dropdownvue_type_template_id_26da2167_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-dropdown"},[_c('div',{ref:"trigger",staticClass:"ui-dropdown-trigger",on:{"click":_vm.open}},[_vm._t("trigger")],2),(_vm.show)?_c('div',{directives:[{name:"click-outside",rawName:"v-click-outside",value:(_vm.close),expression:"close"}],ref:"dropdown-menu",staticClass:"ui-dropdown-menu",style:(_vm.stlyes)},[_c('span',{ref:"triangle",staticClass:"ui-dropdown-triangle",style:(_vm.triangleStyles)}),_c('div',{staticClass:"ui-dropdown-content",style:(_vm.menuStyles)},[_vm._t("dropdown-content")],2)]):_vm._e()])}
-var dropdownvue_type_template_id_26da2167_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/dropdown/dropdown.vue?vue&type=template&id=075e5220&scoped=true&
+var dropdownvue_type_template_id_075e5220_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-dropdown"},[_c('div',{ref:"trigger",staticClass:"ui-dropdown-trigger",on:{"click":_vm.open}},[_vm._t("trigger")],2),(_vm.show)?_c('div',{directives:[{name:"click-outside",rawName:"v-click-outside",value:(_vm.close),expression:"close"}],ref:"dropdown-menu",staticClass:"ui-dropdown-menu",style:(_vm.stlyes)},[_c('span',{ref:"triangle",staticClass:"ui-dropdown-triangle",style:(_vm.triangleStyles)}),_c('div',{staticClass:"ui-dropdown-content",style:(_vm.menuStyles)},[_vm._t("dropdown-content")],2)]):_vm._e()])}
+var dropdownvue_type_template_id_075e5220_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/dropdown/dropdown.vue?vue&type=template&id=26da2167&scoped=true&
+// CONCATENATED MODULE: ./packages/dropdown/dropdown.vue?vue&type=template&id=075e5220&scoped=true&
 
 // EXTERNAL MODULE: ./packages/assets/scss/dropdown.scss
 var dropdown = __webpack_require__("e070");
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/dropdown/dropdown.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -8938,13 +9516,37 @@ var dropdown = __webpack_require__("e070");
     },
     close: function close() {
       this.show = false;
+      this.unbindEvents();
+    },
+    unbindEvents: function unbindEvents() {
+      window.removeEventListener("resize", this.calculatePopoverPosition);
+      window.removeEventListener("scroll", this.calculatePopoverPosition);
+      window.removeEventListener('scroll', this.getAxis);
+      window.removeEventListener('resize', this.getAxis);
+
+      if (this.closeOnMouseleave) {
+        this.trigger.removeEventListener("mouseout", this.close);
+      }
+    },
+    bindEvents: function bindEvents() {
+      window.addEventListener("resize", this.calculatePopoverPosition);
+      window.addEventListener("scroll", this.calculatePopoverPosition);
+      window.addEventListener('scroll', this.getAxis);
+      window.addEventListener('resize', this.getAxis);
+
+      if (this.closeOnMouseleave) {
+        this.trigger.addEventListener("mouseout", this.close);
+      }
     }
+  },
+  directives: {
+    ClickOutside: vue_click_outside_default.a
   }
 });
 // CONCATENATED MODULE: ./packages/dropdown/dropdown.vue?vue&type=script&lang=js&
  /* harmony default export */ var dropdown_dropdownvue_type_script_lang_js_ = (dropdownvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./packages/dropdown/dropdown.vue?vue&type=style&index=0&id=26da2167&lang=css&scoped=true&
-var dropdownvue_type_style_index_0_id_26da2167_lang_css_scoped_true_ = __webpack_require__("8b2c");
+// EXTERNAL MODULE: ./packages/dropdown/dropdown.vue?vue&type=style&index=0&id=075e5220&lang=css&scoped=true&
+var dropdownvue_type_style_index_0_id_075e5220_lang_css_scoped_true_ = __webpack_require__("33ae");
 
 // CONCATENATED MODULE: ./packages/dropdown/dropdown.vue
 
@@ -8957,11 +9559,11 @@ var dropdownvue_type_style_index_0_id_26da2167_lang_css_scoped_true_ = __webpack
 
 var dropdown_component = normalizeComponent(
   dropdown_dropdownvue_type_script_lang_js_,
-  dropdownvue_type_template_id_26da2167_scoped_true_render,
-  dropdownvue_type_template_id_26da2167_scoped_true_staticRenderFns,
+  dropdownvue_type_template_id_075e5220_scoped_true_render,
+  dropdownvue_type_template_id_075e5220_scoped_true_staticRenderFns,
   false,
   null,
-  "26da2167",
+  "075e5220",
   null
   
 )
@@ -8976,34 +9578,113 @@ dropdown_dropdown.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_dropdown = (dropdown_dropdown);
+// EXTERNAL MODULE: ./packages/assets/scss/tooltip.scss
+var tooltip = __webpack_require__("7064");
+
+// CONCATENATED MODULE: ./src/utils/mousePosition.js
+
+var x, y, mousePosition_target;
+document.addEventListener('mousemove', throttle_default()(onMouseUpdate, 100), false);
+document.addEventListener('mouseenter', throttle_default()(onMouseUpdate, 100), false);
+
+function onMouseUpdate(e) {
+  mousePosition_target = e.target;
+  x = e.pageX;
+  y = e.pageY;
+}
+
+/* harmony default export */ var mousePosition = (function () {
+  return {
+    x: x,
+    y: y,
+    target: mousePosition_target
+  };
+});
 // CONCATENATED MODULE: ./packages/tooltip/tooltip.js
 
-console.log(pop);
-/* harmony default export */ var tooltip = ({
-  name: "ui-tooltip",
-  inserted: function inserted(el, binding, vnode) {
-    console.log(el);
-    console.log(binding.expression);
-  },
-  update: function update(el, binding, vnode) {
-    console.log(el);
 
-    if (el.tooltip) {
-      vnode.context.$nextTick(function () {});
+
+
+
+
+
+
+var tooltip_options = {
+  closeOnMouseleave: true,
+  insertAfter: true,
+  key: index_browser_default()(),
+  textCetner: false,
+  openDelay: 0,
+  closeDelay: 50
+};
+
+var tooltip_Tooltip = function Tooltip(el, value) {
+  if (typeof_typeof(value) == 'object') {
+    Object.keys(value).forEach(function (v) {
+      tooltip_options[v] = value[v];
+    });
+    tooltip_options.tooltip = tooltip_options.content;
+  }
+
+  if (typeof value == 'string') {
+    tooltip_options.tooltip = value;
+  }
+
+  tooltip_options.trigger = el;
+  el.tooltip = null;
+  el.addEventListener('mouseover', function (e) {
+    if (!el.tooltip) {
+      setTimeout(function () {
+        el.tooltip = new packages_popover_popover(tooltip_options);
+      }, tooltip_options.openDelay);
+    } else {
+      setTimeout(function () {
+        el.tooltip.show = true;
+      }, tooltip_options.openDelay);
     }
+  });
+  el.addEventListener('mouseleave', function (e) {
+    setTimeout(function () {
+      var target = mousePosition().target;
+
+      if (!el.tooltip.$el.contains(target)) {
+        setTimeout(function () {
+          el.tooltip.show = false;
+        }, tooltip_options.closeDelay);
+      }
+
+      el.tooltip.$el.addEventListener('mouseleave', function () {
+        setTimeout(function () {
+          el.tooltip.show = false;
+        }, tooltip_options.closeDelay);
+      });
+    }, 200);
+  });
+};
+
+/* harmony default export */ var tooltip_tooltip = ({
+  name: "ui-tooltip",
+  inserted: function inserted(el, binding, vnode) {},
+  update: function update(el, binding, vnode) {
+    if (!binding.value) {
+      throw new Error('at least add some text');
+    }
+
+    var value = binding.value;
+    new tooltip_Tooltip(el, value);
   },
   unbind: function unbind(el) {
-    console.log(el);
+    delete el.tooltip;
   }
 });
 // CONCATENATED MODULE: ./packages/tooltip/index.js
 
 
-tooltip.install = function (Vue, opt) {
-  Vue.directive("ui-tooltip", tooltip);
+tooltip_tooltip.install = function (Vue, opt) {
+  Vue.directive("ui-tooltip", tooltip_tooltip);
 };
 
-/* harmony default export */ var packages_tooltip = (tooltip);
+/* harmony default export */ var packages_tooltip = (tooltip_tooltip);
 // CONCATENATED MODULE: ./packages/index.js
 
 
@@ -9065,6 +9746,42 @@ module.exports = __webpack_require__.p + "img/iconfont.f767c076.svg";
 
 module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
   '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
+
+
+/***/ }),
+
+/***/ "ffd6":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__("3729"),
+    isObjectLike = __webpack_require__("1310");
+
+/** `Object#toString` result references. */
+var symbolTag = '[object Symbol]';
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike(value) && baseGetTag(value) == symbolTag);
+}
+
+module.exports = isSymbol;
 
 
 /***/ })

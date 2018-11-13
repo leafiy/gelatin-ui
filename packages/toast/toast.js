@@ -1,6 +1,6 @@
 import ToastTemplate from "./toast.vue";
 import Vue from "vue";
-import uniqueId from "nanoid";
+import nanoid from "nanoid";
 const ToastConstructor = Vue.extend(ToastTemplate);
 
 const instances = [];
@@ -23,7 +23,7 @@ const Toast = function(options) {
   if (zIndex) {
     toastContainer[p].style.zIndex = zIndex;
   }
-  const id = uniqueId();
+  const id = nanoid();
 
   options.closeToast = function() {
     Toast.closeToast(id);
@@ -34,7 +34,7 @@ const Toast = function(options) {
     data: options
   });
   instance.$mount();
-  instance.id = id;
+  instance.$id = id;
   toastContainer[p].appendChild(instance.$el);
   instance.show = true;
   instances.push(instance);
@@ -42,7 +42,7 @@ const Toast = function(options) {
 };
 
 Toast.closeToast = function(id) {
-  instances.splice(instances.findIndex(toast => toast.id == id), 1);
+  instances.splice(instances.findIndex(toast => toast.$id == id), 1);
 };
 
 Toast.closeAll = function() {
