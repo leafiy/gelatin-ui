@@ -82,6 +82,7 @@ export default {
       this.show = false;
       if (this.onClose && typeof this.onClose == "function") {
         this.onClose(this);
+        this.closeToast()
       }
     },
     destroy() {

@@ -7961,12 +7961,12 @@ function typeof_typeof(obj) {
 
   return typeof_typeof(obj);
 }
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/toast/toast.vue?vue&type=template&id=c5e090e4&
-var toastvue_type_template_id_c5e090e4_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":_vm.transitionName},on:{"after-leave":_vm.destroy}},[(_vm.show)?_c('div',{staticClass:"ui-toast",class:[_vm.type && 'ui-toast-' + _vm.type, _vm.icon && 'ui-toast-with-icon'],on:{"mouseenter":_vm.pause,"mouseleave":_vm.resume}},[_c('div',{staticClass:"ui-toast-inner"},[(_vm.icon)?_c('div',{staticClass:"ui-toast-icon"},[_c('ui-icon',{attrs:{"name":_vm.icon}})],1):_vm._e(),(_vm.title)?_c('div',{staticClass:"ui-toast-title"},[_vm._v(_vm._s(_vm.title))]):_vm._e(),(_vm.type !== 'loading')?_c('div',{staticClass:"ui-toast-message",domProps:{"innerHTML":_vm._s(_vm.message)}}):_c('div',{staticClass:"ui-toast-message"}),(_vm.actions.length)?_c('div',{staticClass:"ui-toast-action"},_vm._l((_vm.actions),function(action){return _c('span',{key:action.text,staticClass:"ui-toast-action-item",on:{"click":function($event){_vm.click(action);}}},[(action.icon)?_c('icon',{attrs:{"name":action.icon}}):_vm._e(),_vm._v("\n          "+_vm._s(action.text))],1)})):_vm._e()]),(_vm.showClose)?_c('div',{staticClass:"ui-toast-close",on:{"click":_vm.stop}},[_c('ui-icon',{attrs:{"name":"icon-close-circle-fill"}})],1):_vm._e()]):_vm._e()])}
-var toastvue_type_template_id_c5e090e4_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/toast/toast.vue?vue&type=template&id=445731b8&
+var toastvue_type_template_id_445731b8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":_vm.transitionName},on:{"after-leave":_vm.destroy}},[(_vm.show)?_c('div',{staticClass:"ui-toast",class:[_vm.type && 'ui-toast-' + _vm.type, _vm.icon && 'ui-toast-with-icon'],on:{"mouseenter":_vm.pause,"mouseleave":_vm.resume}},[_c('div',{staticClass:"ui-toast-inner"},[(_vm.icon)?_c('div',{staticClass:"ui-toast-icon"},[_c('ui-icon',{attrs:{"name":_vm.icon}})],1):_vm._e(),(_vm.title)?_c('div',{staticClass:"ui-toast-title"},[_vm._v(_vm._s(_vm.title))]):_vm._e(),(_vm.type !== 'loading')?_c('div',{staticClass:"ui-toast-message",domProps:{"innerHTML":_vm._s(_vm.message)}}):_c('div',{staticClass:"ui-toast-message"}),(_vm.actions.length)?_c('div',{staticClass:"ui-toast-action"},_vm._l((_vm.actions),function(action){return _c('span',{key:action.text,staticClass:"ui-toast-action-item",on:{"click":function($event){_vm.click(action);}}},[(action.icon)?_c('icon',{attrs:{"name":action.icon}}):_vm._e(),_vm._v("\n          "+_vm._s(action.text))],1)})):_vm._e()]),(_vm.showClose)?_c('div',{staticClass:"ui-toast-close",on:{"click":_vm.stop}},[_c('ui-icon',{attrs:{"name":"icon-close-circle-fill"}})],1):_vm._e()]):_vm._e()])}
+var toastvue_type_template_id_445731b8_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/toast/toast.vue?vue&type=template&id=c5e090e4&
+// CONCATENATED MODULE: ./packages/toast/toast.vue?vue&type=template&id=445731b8&
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 function _classCallCheck(instance, Constructor) {
@@ -8142,6 +8142,7 @@ var toast = __webpack_require__("539c");
 
       if (this.onClose && typeof this.onClose == "function") {
         this.onClose(this);
+        this.closeToast();
       }
     },
     destroy: function destroy() {
@@ -8173,8 +8174,8 @@ var toast = __webpack_require__("539c");
 
 var toast_component = normalizeComponent(
   toast_toastvue_type_script_lang_js_,
-  toastvue_type_template_id_c5e090e4_render,
-  toastvue_type_template_id_c5e090e4_staticRenderFns,
+  toastvue_type_template_id_445731b8_render,
+  toastvue_type_template_id_445731b8_staticRenderFns,
   false,
   null,
   null,
