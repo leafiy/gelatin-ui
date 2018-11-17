@@ -1,20 +1,12 @@
 <template>
   <transition :name="transitionName" @after-leave="destroy">
-    <div
-      v-show="show"
-      class="ui-toast"
-      :class="[type && 'ui-toast-' + type, icon && 'ui-toast-with-icon']"
-      @mouseenter="pause"
-      @mouseleave="resume"
-    >
+    <div v-if="show" class="ui-toast" :class="[type && 'ui-toast-' + type, icon && 'ui-toast-with-icon']" @mouseenter="pause" @mouseleave="resume">
       <div class="ui-toast-inner">
-        <div class="ui-toast-icon" v-if="icon"><icon :name="icon"></icon></div>
+        <div class="ui-toast-icon" v-if="icon">
+          <ui-icon :name="icon"></ui-icon>
+        </div>
         <div class="ui-toast-title" v-if="title">{{ title }}</div>
-        <div
-          class="ui-toast-message"
-          v-html="message"
-          v-if="type !== 'loading'"
-        ></div>
+        <div class="ui-toast-message" v-html="message" v-if="type !== 'loading'"></div>
         <div class="ui-toast-message" v-else></div>
         <div class="ui-toast-action" v-if="actions.length">
           <span
@@ -24,19 +16,18 @@
             @click="click(action);"
           >
             <icon v-if="action.icon" :name="action.icon"></icon>
-            {{ action.text }}</span
-          >
+            {{ action.text }}</span>
         </div>
       </div>
       <div class="ui-toast-close" @click="stop" v-if="showClose">
-        <icon name="icon-close-circle-fill"></icon>
+        <ui-icon name="icon-close-circle-fill"></ui-icon>
       </div>
     </div>
   </transition>
 </template>
 <script>
 import Timer from "../../src/utils/timer.js";
-import Icon from "../icon";
+import UiIcon from "../icon";
 import "../assets/scss/toast.scss";
 
 export default {
@@ -56,11 +47,11 @@ export default {
       icon: "",
       title: "",
       actions: [],
-      zIndex: ""
+      zIndex: "",
     };
   },
   components: {
-    Icon
+    UiIcon
   },
   computed: {
     transitionName() {

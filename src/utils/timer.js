@@ -30,6 +30,7 @@ class Timer {
   }
   resume() {
     if (this.timeId == null) {
+      this.timeLeft
       this.timeId = this._start(this.callback, this.timeLeft);
     }
   }

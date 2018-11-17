@@ -28,15 +28,14 @@ const Toast = function(options) {
   options.closeToast = function() {
     Toast.closeToast(id);
   };
-
   const instance = new ToastConstructor({
-    el: document.createElement("div"),
+    // el: document.createElement("div"),
     data: options
   });
+  instance.show = true;
   instance.$mount();
   instance.$id = id;
   toastContainer[p].appendChild(instance.$el);
-  instance.show = true;
   instances.push(instance);
   return instance;
 };
@@ -53,11 +52,11 @@ Toast.closeAll = function() {
 
 const types = ["info", "error", "warning", "loading"];
 
-types.forEach(type => {
-  Toast[type] = options => {
-    options = typeof options === "string" ? { message: options } : options;
-    return Toast({ ...options, type });
-  };
-});
+// types.forEach(type => {
+//   Toast[type] = options => {
+//     options = typeof options === "string" ? { message: options } : options;
+//     return Toast({ ...options, type });
+//   };
+// });
 
 export default Toast;
