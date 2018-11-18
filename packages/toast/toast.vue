@@ -61,7 +61,7 @@ export default {
   methods: {
     resume() {
       if (this.duration > 0) {
-        this.timer.resume();
+        this.timer.resume(500);
       }
     },
     pause() {

@@ -28,10 +28,9 @@ class Timer {
     clearTimeout(this.timeId);
     this.timeId = null;
   }
-  resume() {
+  resume(extend) {
     if (this.timeId == null) {
-      this.timeLeft
-      this.timeId = this._start(this.callback, this.timeLeft);
+      this.timeId = this._start(this.callback, this.timeLeft + extend);
     }
   }
   cancel() {

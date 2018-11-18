@@ -7,7 +7,9 @@ import Toast from "./toast/index.js";
 import Upload from "./uplaoder/index.js";
 import Dropdown from "./dropdown/index.js";
 import Tooltip from "./tooltip/index.js";
-const components = [Avatar, Icon, Loader, Spinner, Upload, Dropdown];
+import Card from './card/index.js'
+import { Row, Col } from './layout/index.js'
+const components = [Avatar, Icon, Loader, Spinner, Upload, Dropdown, Card, Row, Col];
 
 const install = function(Vue) {
   if (install.installed) return;
@@ -32,5 +34,7 @@ export default {
   Toast,
   Upload,
   Dropdown,
-  Tooltip
+  Tooltip,
+  Row,
+  Col
 };

@@ -38,7 +38,7 @@ export default {
       type: String,
       default: "vertical",
       validator: function(value) {
-        return ["horizon", "vertical"].indexOf(value) !== -1;
+        return ["horizon", "vertical"].includes(value)
       }
     },
     closeOnClick: {

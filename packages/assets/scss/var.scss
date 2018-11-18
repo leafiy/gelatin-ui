@@ -5,5 +5,46 @@ $error-color:#FF8787;
 $light:#9B9B9B;
 $lighter:#E9EBEE;
 $shadow:4px 3px 20px rgba(0, 0, 0, 0.1);
+$shadow-hover:5px 4px 28px rgba(0, 0, 0, 0.2);
 $radius:14px;
+$gutter:1rem;
+$margin:2rem;
+$xs:30;
+$sm:48;
+$md:64;
+$lg:75;
 
+
+@mixin xs {
+  @media (min-width: $sx) {
+    @content
+  }
+}
+
+@mixin sm {
+  @media (min-width: $sm) {
+    @content
+  }
+}
+
+@mixin md {
+  @media (min-width: $md) {
+    @content
+  }
+}
+
+@mixin lg {
+  @media (min-width: $lg) {
+    @content
+  }
+}
+
+@mixin overflowText($fontSize, $lineHeight, $line) {
+  font-size: $fontSize+px;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  line-height: $lineHeight+px;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}

@@ -1,0 +1,20 @@
+$primary-color:#08D7B8;
+$primary-color-dark:darken($primary-color, 5%);
+$warning-color:#FFF73F;
+$error-color:#FF8787;
+$light:#9B9B9B;
+$lighter:#E9EBEE;
+
+.container {
+  margin: 1rem 0;
+}
+
+.box {
+  background: $primary-color;
+  min-height: 2rem;
+  margin-bottom: 1rem;
+  border:1px soild $light;
+  text-align:center;
+  color:#fff;
+  line-height:2rem;
+}
