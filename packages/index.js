@@ -8,8 +8,15 @@ import Upload from "./uplaoder/index.js";
 import Dropdown from "./dropdown/index.js";
 import Tooltip from "./tooltip/index.js";
 import Card from './card/index.js'
+import Alert from './alert/index.js'
+import Input from './input/index.js'
+import Image from './image/index.js'
+import Heading from './heading/index.js'
 import { Row, Col } from './layout/index.js'
-const components = [Avatar, Icon, Loader, Spinner, Upload, Dropdown, Card, Row, Col];
+import { Button, ButtonGroup } from './button/index.js'
+const components = [Avatar, Icon, Loader, Spinner, Upload, Dropdown, Alert, Row, Col, Card, Input, Image, Heading, Button,
+  ButtonGroup
+];
 
 const install = function(Vue) {
   if (install.installed) return;
@@ -36,5 +43,12 @@ export default {
   Dropdown,
   Tooltip,
   Row,
-  Col
+  Col,
+  Card,
+  Alert,
+  Input,
+  Image,
+  Heading,
+  Button,
+  ButtonGroup
 };

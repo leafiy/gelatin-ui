@@ -52,11 +52,11 @@ Toast.closeAll = function() {
 
 const types = ["info", "error", "warning", "loading"];
 
-// types.forEach(type => {
-//   Toast[type] = options => {
-//     options = typeof options === "string" ? { message: options } : options;
-//     return Toast({ ...options, type });
-//   };
-// });
+types.forEach(type => {
+  Toast[type] = options => {
+    options = typeof options === "string" ? { message: options } : options;
+    return Toast({ ...options, type });
+  };
+});
 
 export default Toast;

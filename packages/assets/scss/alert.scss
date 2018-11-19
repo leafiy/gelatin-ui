@@ -1,0 +1,70 @@
+@import './var.scss';
+
+.ui-alert {
+  position: relative;
+  padding: 12px 38px 12px 16px;
+  line-height: 16px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: $shadow;
+}
+
+.ui-alert.ui-alert-with-icon {
+  padding: 12px 38px 12px 66px;
+}
+
+.ui-alert-icon {
+  font-size: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 16px;
+  position: absolute
+}
+
+.ui-alert-title {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.ui-alert-success {
+  border-left: 3px solid $primary-color;
+
+  .ui-alert-icon {
+    color: $primary-color
+  }
+}
+
+
+
+.ui-alert-warning {
+  border-left: 3px solid $warning-color;
+
+  .ui-alert-icon {
+    color: $warning-color;
+  }
+}
+
+
+.ui-alert-error {
+  border-left: 3px solid $error-color;
+
+  .ui-alert-icon {
+    color: $error-color;
+  }
+}
+
+
+.ui-alert-close {
+  font-size: 12px;
+  position: absolute;
+  right: 16px;
+  top: 8px;
+  overflow: hidden;
+  cursor: pointer
+}
+
+.ui-alert-action {
+  position: absolute;
+  right: 32px;
+  top: 16px;
+}

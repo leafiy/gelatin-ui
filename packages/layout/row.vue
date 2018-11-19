@@ -61,7 +61,7 @@ export default {
     alignH: {
       type: String,
       validator: function(value) {
-        return ["start", "center", "end", "baseline", "stretch", "evenly"].includes(value)
+        return ["start", "center", "end", "baseline", "stretch", "evenly",'between'].includes(value)
       }
     },
     alignV: {
@@ -72,7 +72,7 @@ export default {
     },
     wrap: {
       type: String,
-      default: 'nowrap',
+      // default: 'nowrap',
       validator: function(value) {
         return ["nowrap", "wrap", "reverse"].includes(value)
       }
@@ -84,7 +84,7 @@ export default {
       return [
         'ui-row',
         this.getSizeProps().join(' '),
-        `ui-row-${this.wrap}`,
+        this.warp && `ui-row-${this.wrap}`,
         this.alignH && `ui-row-justify-content-${this.alignH}`,
         this.alignV && `ui-row-align-item-${this.alignV}`,
         this.alignContent && `ui-row-align-content-${this.alignContent}`,
@@ -111,6 +111,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.alignH)
     this.getSizeProps()
   },
   render(h) {

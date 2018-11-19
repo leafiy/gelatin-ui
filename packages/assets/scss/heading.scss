@@ -1,0 +1,69 @@
+@import './var.scss';
+
+h1 {
+  font-size: 2.4em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.4em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+h6 {
+  font-size: .85em;
+}
+
+.ui-heading {
+  font-family: "Muli, Futura, Helvetica, Arial, sans-serif";
+  word-wrap: break-word;
+  word-break: break-all;
+  position: relative;
+
+  small {
+    font-size: 12px;
+  }
+}
+
+.ui-heading-margin {
+  margin-bottom: 20px;
+}
+
+.ui-heading-bold {
+  font-weight: 400;
+}
+
+.ui-heading-primary {
+  line-height: 1.1;
+}
+
+.ui-heading-divider {
+  padding-bottom: 10px;
+  border-bottom: 1px solid $lighter;
+  line-height: 1.5;
+}
+
+.ui-heading-bullet {
+  position: relative;
+}
+
+.ui-heading-bullet::before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  top: calc(-0.1 * 1em);
+  vertical-align: middle;
+  height: .9em;
+  margin-right: 10px;
+  border-left: 5px solid $lighter;
+}

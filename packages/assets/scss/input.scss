@@ -1,0 +1,202 @@
+@import './var.scss';
+.ui-input,
+.ui-textarea {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  font-size: 16px;
+  margin-bottom: 2em;
+  color: #333;
+  .prefix-icon {
+    position: absolute;
+    left: 8px;
+  }
+  .suffix-icon {
+    position: absolute;
+    right: 4px;
+  }
+  .ui-input__prefix,
+  .ui-input__suffix {
+    bottom: 0;
+    font-size: 12px;
+    top: auto;
+  }
+}
+
+.ui-input {
+  [class*="ui-icon"] {
+    transition: all .2s;
+    color: $light;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.ui-textarea {
+  [class*="ui-icon"] {
+    position: absolute;
+    top: 12px;
+    left: 4px;
+  }
+}
+
+.ui-input__inner::-webkit-input-placeholder,
+.ui-textarea__inner::-webkit-input-placeholder,
+{
+  color: $light;
+}
+
+.ui-input__inner,
+.ui-textarea__inner {
+  display: inline-block;
+  width: 100%;
+  border-radius:$radius / 2;
+  border: 1px solid $lighter;
+  background-color: #FFF;
+  color: #333;
+  font-size: inherit;
+  appearance: none;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  outline: 0;
+  box-shadow: none;
+  &:active,
+  &:focus {
+
+    outline: 0;
+  }
+  &:disabled {
+    color: $light
+  }
+}
+.ui-input__with-prefix{
+    .ui-input__inner{
+      font-size:12px;
+      padding-top: 13px;
+    }
+}
+.ui-input__inner {
+  line-height: 1;
+  padding: 3px 10px 3px 2px;
+  height: 42px;
+}
+
+.ui-input__ghost {
+  .ui-input__inner {
+    border: none;
+    background: rgba(0, 0, 0, .6);
+    color: #fff;
+    box-shadow: $shadow-hover;
+  }
+  &.ui-input__focusin{
+    .ui-input__inner{
+        background: rgba(0, 0, 0, .7);
+    }
+  }
+}
+
+.ui-textarea__inner {
+  line-height: 24px;
+  border: 1px solid $lighter;
+  padding: 3px 10px;
+  font-size: 16px;
+  resize: none;
+  overflow: hidden;
+  color: #333;
+}
+
+
+.ui-input__with-icon {
+  .ui-input__inner {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .suffix-icon {
+    right: 0;
+  }
+  .ui-input__prefix {
+    left: 26px;
+  }
+}
+
+
+
+.ui-input__focusin,
+.ui-textarea__focusin {
+  .ui-input__inner,
+  .ui-textarea__inner {
+    border-color: $primary-color;
+    outline: 0;
+  }
+  [class*="icon-"] {
+    color: $primary-color;
+  }
+}
+
+.ui-input__with-error {
+  .ui-input__inner {
+    border-color: $error-color;
+  }
+  [class*="icon-"] {
+    color: $error-color;
+  }
+}
+
+.ui-input__flat {
+  margin-bottom: 0;
+  .ui-input__inner {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    height: auto;
+  }
+  &.ui-input__with-icon {
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+}
+
+.ui-input__error-msg {
+  color: $error-color;
+  font-size: 12px;
+  bottom: -20px;
+  left: 2px;
+  position: absolute;
+}
+
+.ui-input__prefix {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: normal;
+  color: $light;
+}
+
+.ui-input__suffix {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  user-select: none;
+  font-weight: normal;
+  color: $light;
+}
+
+.ui-input-counter {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  color: $light;
+}
+
+//fix grammarly
+grammarly-ghost {
+  >div {
+    border: 2px solid $light;
+  }
+  span {
+    color: #333 !important;
+  }
+}

@@ -1,5 +1,7 @@
 @import './var.scss';
 
+
+
 .ui-row {
   margin-right: auto;
   margin-left: auto;
@@ -27,10 +29,17 @@
 .ui-col {
   padding-right: $gutter / 2;
   padding-left: $gutter / 2;
+
+  >.ui-row {
+    flex: 1;
+  }
 }
 
 .ui-row-no-gutter {
-  [class*='ui-col'] {
+  margin-right: $gutter / 2;
+  margin-left: $gutter / 2;
+
+  >[class*='ui-col'] {
     padding-right: 0;
     padding-left: 0;
   }
@@ -836,7 +845,9 @@
 .ui-row-justify-content-evenly {
   justify-content: space-evenly;
 }
-
+.ui-row-justify-content-between {
+  justify-content: space-between;
+}
 
 .ui-row-align-item-top {
   align-items: flex-start;
@@ -888,4 +899,50 @@
 
 .ui-row-reverse {
   flex-wrap: wrap-reverse;
+}
+
+
+
+//helpers
+.children-full-height {
+  display: flex;
+  align-items: stretch;
+
+  >* {
+    flex: 1
+  }
+}
+
+.hide-on-xs {
+  visibility: hidden;
+
+  @include sm {
+    visibility: visible;
+  }
+}
+
+.hide-on-sm {
+
+  @include sm {
+    visibility: hidden;
+  }
+  @include md {
+    visibility: visible;
+  }
+}
+
+.hide-on-md {
+  @include md {
+    visibility: hidden;
+  }
+
+  @include lg {
+    visibility: visible;
+  }
+}
+
+.hide-on-lg {
+  @include lg {
+    visibility: hidden;
+  }
 }

@@ -1,0 +1,43 @@
+@import './var.scss';
+
+@mixin ui-image() {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.ui-image {
+  position: relative;
+  background: $lighter;
+
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 32px;
+    transform: translate3d(-50%, -50%, 0)
+  }
+}
+
+.ui-image-cover,
+.ui-image-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 1s;
+}
+
+.ui-image-image {
+  @include ui-image();
+}
+
+.ui-image-cover {
+  background-color: rgba(0, 0, 0, .2)
+}
+
+.ui-image-slot {
+  z-index: 10;
+}

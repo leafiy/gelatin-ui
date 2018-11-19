@@ -1,0 +1,160 @@
+@import './var.scss';
+$button-padding-horizontal:24px;
+$button-font-size:14px;
+$button-line-height:34px;
+$button-font-weight:400;
+$button-radius:14px;
+.ui-btn {
+  margin: 0;
+  border: 1px solid transparent;
+  overflow: visible;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 $button-padding-horizontal;
+  vertical-align: middle;
+  font-size: $button-font-size;
+  line-height: $button-line-height;
+  font-weight: $button-font-weight;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  border-radius: $button-radius;
+  cursor: pointer;
+  background-color: transparent;
+  &:disabled {
+    cursor: not-allowed;
+    background: $light;
+    &:hover {
+      background: $light;
+    }
+  }
+  &:hover {
+    text-decoration: none;
+  }
+  &:not(:disabled):focus {
+    outline: none;
+  }
+  &:not(:disabled):active,
+  &.active {
+    background-color: $primary-color-dark;
+    box-shadow: inset 0 1px 8px rgba(0, 0, 0, .1)
+  }
+}
+
+.ui-btn::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+.ui-btn-boundless {
+  border-color: transparent !important;
+}
+
+.ui-btn-light {
+  background: $lighter;
+  border: 1px solid $lighter;
+  color: #333;
+}
+.ui-btn-ghost{
+  color:rgba(255,255,255,.9);
+  border:1px solid rgba(255,255,255,.6);
+  background:rgba(0,0,0,.6);
+  &:hover{
+    border-color:#fff;
+  }
+}
+.ui-btn-primary {
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  color: #fff;
+  &:hover {
+    background-color: $primary-color-dark;
+  }
+  &:disabled {
+    border-color: $light
+  }
+}
+
+.ui-btn-border {
+  border: 1px solid $light;
+  &:hover {
+    color: $primary-color;
+    border-color: $primary-color;
+  }
+  &:disabled {
+    border-color: $light;
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.ui-btn-link {
+  line-height: 1;
+  padding: 0;
+  &:active {
+    box-shadow: none !important;
+  }
+}
+
+.ui-btn-dashed {
+  border: 1px dashed $light;
+}
+
+.ui-btn-warning {
+  background-color: $warning-color;
+  color: #fff;
+}
+
+.ui-btn-error {
+  background-color: $error-color;
+  color: #fff;
+}
+
+.ui-btn-full {
+  display: block;
+  width: 100%;
+}
+
+.ui-btn-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ui-btn-circle {
+  border-radius: 15px;
+}
+
+.ui-btn-sm {
+  line-height: 22px;
+  font-size:12px;
+  padding: 0 $button-padding-horizontal/2;
+}
+
+.ui-btn-lg {
+
+  line-height: 42px;
+  padding: 0 $button-padding-horizontal*1.5;
+}
+
+
+.ui-btn-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 0 1 auto;
+  >.ui-btn {
+    flex: 1;
+  }
+}
+
+.ui-btn-group-gutter {
+  >.ui-btn {
+    margin: 0 20px;
+  }
+}

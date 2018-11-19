@@ -13,6 +13,7 @@
     "docs:build": "vuepress build docs"
   },
   "dependencies": {
+    "autosize": "^4.0.2",
     "axios": "^0.18.0",
     "iselement": "^1.1.4",
     "lodash": "^4.17.11",
@@ -34,8 +35,8 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "standard-version": "^4.4.0",
-    "vuepress": "^1.0.0-alpha.23",
     "vue-template-compiler": "^2.5.17",
+    "vuepress": "^1.0.0-alpha.23",
     "webpack-bundle-analyzer": "^3.0.3"
   },
   "lint-staged": {
