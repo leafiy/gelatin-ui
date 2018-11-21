@@ -85,3 +85,47 @@
       </ui-col>
     </ui-row>
 ```
+
+
+### space between 最后一个item对齐方式
+
+
+![space between](@images/space-bewteen.png)
+
+[Flex-box: Align last row to grid](https://stackoverflow.com/a/34816625)
+
+```css
+.grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.grid::after {
+  content: "";
+  flex: auto;
+}
+```
+
+#### 固定宽度 space between,不适用ui-col
+
+```css
+.list {
+  &::after {
+    content: "";
+    @include lg {
+      width: 300px; // item宽度
+    }
+
+    @include md {
+      width: 300px;
+    }
+  }
+  @include xs{
+    justify-content: center;
+  }
+  @include sm{
+    justify-content: space-between;
+  }
+}
+```

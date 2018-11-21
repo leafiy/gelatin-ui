@@ -128,6 +128,7 @@
   .ui-textarea__inner {
     border-color: $primary-color;
     outline: 0;
+    box-shadow:$shadow-sm;
   }
   [class*="icon-"] {
     color: $primary-color;
@@ -176,7 +177,7 @@
 
 .ui-input__suffix {
   position: absolute;
-  right: 0;
+  right: 1em;
   top: 50%;
   transform: translateY(-50%);
   user-select: none;

@@ -1,0 +1,225 @@
+@import './var.scss';
+
+.ui-checkbox-inline {
+  display: inline;
+}
+
+
+.ui-checkbox {
+  display: inline-block;
+  user-select: none;
+  position: relative;
+  color:$primary-color;
+  ~ .ui-checkbox{
+   margin-left:1em;
+  }
+  svg {
+    position: absolute;
+    left: -1px;
+    top:0;
+    opacity:0;
+    transition:all .2s ease-in-out;
+    transform:scale(.2);
+
+  }
+
+  label {
+    position: relative;
+    padding-left: 1.5em;
+    line-height: 1em;
+    cursor: pointer;
+    display: inline-block;
+    color:$black;
+    &:before {
+      content: ' ';
+      border: 1px solid $lighter;
+      width: 1em;
+      height: 1em;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 3px;
+      background: #fff;
+      transition: all .2s ease-in-out;
+      transition-property: border, box-shadow;
+
+    }
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    display: none;
+
+    &:disabled+label {
+      cursor: not-allowed;
+      color:$light;
+    }
+
+    &:not(:checked) {
+      &+label {
+        &:hover {
+          &:before {
+            border-color: lighten($primary-color, 40%);
+          }
+        }
+      }
+
+    }
+
+  }
+
+  input[type="checkbox"] {
+    &:not(:checked)+label:hover:before {
+      // content: $iconCheckbox;
+    }
+
+    &:checked+label:before {
+      // content: $iconCheckbox;
+    }
+  }
+
+  input[type="radio"] {
+    &:not(:checked)+label:hover:before {
+      // content: $iconRadio;
+    }
+
+    &:checked+label:before {
+      // content: $iconRadio;
+    }
+  }
+
+
+
+  &.ui-checkbox-animate {
+    label {
+      // transition: color $transitionTime ease;
+      // -webkit-transition: color $transitionTime ease;
+
+      &:before {
+        // transition: background-color $transitionTime ease;
+        // -webkit-transition: background-color $transitionTime ease;
+      }
+    }
+  }
+
+  &.ui-checkbox-rounded {
+    label {
+      // @include labelBorderRadius($radiusRound);
+    }
+  }
+
+}
+
+.ui-checkbox-checked {
+  label {
+    &::before {
+      border-color: $primary-color;
+      box-shadow: 1px 1px 8px rgba($primary-color, .3)
+    }
+  }
+
+  svg {
+    fill: currentColor;
+    transform:scale(.6);
+    opacity:1;
+  }
+}
+
+.ui-toggle {
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  user-select: none;
+  cursor: pointer;
+  height: 2em;
+  // @include colorToggle(color(default), color(ddefault));
+  // border: 1px solid color(border);
+  // border-radius: $radiusDefault;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  &.ui-checkbox-rounded {
+    // border-radius: $radiusRound;
+  }
+
+  label {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    width: 200%;
+    // transition: left $transitionTimeToggle;
+    // -webkit-transition: left $transitionTimeToggle;
+  }
+
+  &.ui-checkbox-checked label {
+    left: 0;
+  }
+
+  &.ui-checkbox-disabled label {
+    cursor: not-allowed;
+  }
+
+  &.ui-checkbox-primary {
+    // @include colorToggle(color(primary), color(dprimary));
+  }
+
+  &.ui-checkbox-success {
+    // @include colorToggle(color(success), color(dsuccess));
+  }
+
+  &.ui-checkbox-warning {
+    // @include colorToggle(color(warning), color(dwarning));
+  }
+
+  &.ui-checkbox-danger {
+    // @include colorToggle(color(danger), color(ddanger));
+  }
+
+  .ui-toggle-label {
+    // padding: $paddingVertical $paddingHorizontal;
+    // transition: background $transitionTimeToggle;
+    // -webkit-transition: background $transitionTimeToggle;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    // border-radius: $radiusDefault;
+    color: inherit;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    text-align: center;
+
+    &.labelOn {
+      left: 0;
+      // padding-right: $paddingHorizontal + 30px;
+    }
+
+    &.labelOff {
+      right: 0;
+      // padding-left: $paddingHorizontal + 30px;
+    }
+  }
+
+  .ui-toggle-switch {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50px;
+    // border: 1px solid color(border);
+    // border-radius: $radiusDefault;
+    width: 20px;
+    z-index: 20;
+    background: white;
+  }
+
+  &.ui-checkbox-rounded {
+
+    .ui-toggle-label,
+    .ui-toggle-switch {
+      // border-radius: $radiusRound;
+    }
+  }
+
+
+
+}

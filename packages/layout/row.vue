@@ -52,6 +52,7 @@ export default {
     mdBottom: Boolean,
     lgBottom: Boolean,
     noGutter: Boolean,
+    gutterV:Boolean,
     alignContent: {
       type: String,
       validator: function(value) {
@@ -89,7 +90,8 @@ export default {
         this.alignV && `ui-row-align-item-${this.alignV}`,
         this.alignContent && `ui-row-align-content-${this.alignContent}`,
         this.reverse && 'ui-row-reverse',
-        this.noGutter && 'ui-row-no-gutter'
+        this.noGutter && 'ui-row-no-gutter',
+        this.gutterV && 'ui-row-gutter-vertical'
       ]
     }
   },
@@ -111,7 +113,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.alignH)
     this.getSizeProps()
   },
   render(h) {

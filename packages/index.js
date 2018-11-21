@@ -14,8 +14,9 @@ import Image from './image/index.js'
 import Heading from './heading/index.js'
 import { Row, Col } from './layout/index.js'
 import { Button, ButtonGroup } from './button/index.js'
+import { Checkbox, CheckboxGroup } from './checkbox/index.js'
 const components = [Avatar, Icon, Loader, Spinner, Upload, Dropdown, Alert, Row, Col, Card, Input, Image, Heading, Button,
-  ButtonGroup
+  ButtonGroup, Checkbox, CheckboxGroup
 ];
 
 const install = function(Vue) {
@@ -50,5 +51,7 @@ export default {
   Image,
   Heading,
   Button,
-  ButtonGroup
+  ButtonGroup,
+  Checkbox,
+  CheckboxGroup
 };

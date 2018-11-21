@@ -15,7 +15,10 @@ export default {
       default: 'div'
     },
     autoWidth: Boolean,
-    xs: Number,
+    xs: {
+      type: Number,
+      default: 12
+    },
     sm: Number,
     md: Number,
     lg: Number,

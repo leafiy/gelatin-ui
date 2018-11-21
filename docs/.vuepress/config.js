@@ -26,4 +26,11 @@ module.exports = {
     ]
   },
   lastUpdated: 'Last Updated',
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@images': '../images'
+      }
+    }
+  }
 }

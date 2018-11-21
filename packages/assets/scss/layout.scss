@@ -35,6 +35,13 @@
   }
 }
 
+.ui-row-gutter-vertical {
+  >[class*='ui-col'] {
+    margin: $gutter/2 0;
+  }
+}
+
+
 .ui-row-no-gutter {
   margin-right: $gutter / 2;
   margin-left: $gutter / 2;
@@ -845,6 +852,7 @@
 .ui-row-justify-content-evenly {
   justify-content: space-evenly;
 }
+
 .ui-row-justify-content-between {
   justify-content: space-between;
 }
@@ -926,6 +934,7 @@
   @include sm {
     visibility: hidden;
   }
+
   @include md {
     visibility: visible;
   }
