@@ -2,9 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-<a name="1.0.0"></a>
-# 1.0.0 (2018-11-23)
+<a name="0.0.6"></a>
+## [0.0.6](https://github.com/leafiy/gelatin-ui/compare/v1.0.0...v0.0.6) (2018-11-23)
 
+
+
+<a name="0.0.5"></a>
+## [0.0.5](https://github.com/leafiy/gelatin-ui/compare/v0.0.4...v0.0.5) (2018-11-19)
 
 ### Bug Fixes
 
@@ -21,13 +25,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **增加dropdown和tooltip:** popover定位方式
 * **add dropdown component:** 优化弹出框定位
-
-
-
-<a name="0.0.5"></a>
-## [0.0.5](https://github.com/leafiy/gelatin-ui/compare/v0.0.4...v0.0.5) (2018-11-19)
-
-
 
 <a name="0.0.4"></a>
 ## [0.0.4](https://github.com/leafiy/gelatin-ui/compare/v0.0.3...v0.0.4) (2018-11-17)
