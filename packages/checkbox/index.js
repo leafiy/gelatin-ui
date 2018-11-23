@@ -1,4 +1,7 @@
-import Checkbox from './checkbox.vue';
-import CheckboxGroup from './checkbox-group.vue';
-import '../assets/scss/checkbox.scss'
-export { Checkbox, CheckboxGroup };
+import Checkbox from "./checkbox.vue";
+
+Checkbox.install = function(Vue) {
+  Vue.component(Checkbox.name, Checkbox);
+};
+
+export default Checkbox;

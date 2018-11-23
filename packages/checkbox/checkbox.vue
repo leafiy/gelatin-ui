@@ -1,16 +1,23 @@
 <template>
-  <div class="ui-checkbox" :class="classes">
-    <input type="checkbox" :id="id" :name="name" :value="value" :class="className" :required="required" :disabled="disabled" @change="onChange" :checked="state">
-    <label :for="id">
+  <div :class="classes" class="ui-checkbox">
+    <input type="checkbox" :name="name" :id="id" :value="value" :checked="isChecked" :disabled="disabled" :indeterminate="!isChecked&&indeterminate" @change="setValue" />
+    <label :for="id" @click="prevent">
+      <slot name="checkbox-box">
+        <span class="ui-checkbox-box">
+         <svg v-if="isChecked" width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.5385 0.228769C11.0395 -0.16 10.3415 -0.0410482 9.97806 0.492783L4.78903 8.12889L1.93058 5.01584C1.50946 4.53423 0.802782 4.51102 0.352815 4.96362C-0.0971515 5.41331 -0.120227 6.17054 0.30378 6.64925C0.30378 6.64925 3.7766 10.5253 4.2756 10.9141C4.7746 11.3029 5.47263 11.1839 5.83606 10.6501L11.7866 1.89699C12.15 1.36026 12.0375 0.614635 11.5385 0.228769Z" />
+            </svg>
+        </span>
+        <span class="ui-checkbox-indeterminate-bar" v-if="indeterminate" ></span>
+      </slot>
       <slot></slot>
     </label>
-    <svg class="input-box-tick" viewBox="0 0 16 16">
-      <path fill="none" d="M1.7,7.8l3.8,3.4l9-8.8"></path>
-    </svg>
   </div>
 </template>
 <script>
 import nanoid from 'nanoid'
+import '../assets/scss/checkbox.scss'
+import isObjectEqual from '../../src/utils/isObjectEqual.js'
 export default {
   name: 'ui-checkbox',
   model: {
@@ -20,77 +27,84 @@ export default {
   props: {
     id: {
       type: String,
-      default () {
-        return nanoid();
+      default: function() {
+        return nanoid()
       },
     },
     name: String,
-    value: {
-      default: null,
-    },
-    modelValue: "",
-    className: String,
+    value: [String, Number, Object],
+    modelValue: [Array, String, Number, Boolean, Object],
     checked: Boolean,
-    required: Boolean,
     disabled: Boolean,
-    model: {}
+    indeterminate: Boolean,
+    switch: Boolean
   },
-  data() {
-    return {
-      isChecked: null,
-    }
-  },
-  mounted() {
-    if (this.checked && !this.state) {
-      this.toggle();
-    }
-  },
-
   computed: {
     classes() {
       return {
-        // 'ui-checkbox-animate': this.animate,
-        'ui-checkbox-checked': this.checked,
-        'ui-checkbox-disabled': this.disabled,
-        'ui-checkbox-indeterminate': this.indeterminate
+        'ui-checkbox-disabled':this.disabled,
+        'ui-checkbox-checked': this.isChecked,
+        'ui-checkbox-indeterminate': this.$options.propsData.hasOwnProperty('indeterminate')
       }
     },
-    state() {
-      if (this.modelValue === undefined) {
+    isChecked() {
+      if (!this.modelValue) {
         return this.checked;
       }
-      if (Array.isArray(this.modelValue)) {
-        return this.modelValue.indexOf(this.value) > -1;
+      if (this.isGroup) {
+        if (typeof this.value == 'object') {
+          return this.modelValue.some(item => isObjectEqual(item, this.value))
+        } else {
+          return this.modelValue.includes(this.value)
+        }
+
       }
       return !!this.modelValue;
+
+
+    },
+    isGroup() {
+      return this.$options.propsData.hasOwnProperty('value') && Array.isArray(this.modelValue)
+    },
+    checkList() {
+      return this.isGroup && this.modelValue
     }
+
   },
   methods: {
-    onChange() {
-      this.toggle();
+    prevent(e) {
+      if (this.$options.propsData.hasOwnProperty('indeterminate')) {
+        e.preventDefault()
+        return
+      }
     },
-    toggle() {
-      let value;
-      if (Array.isArray(this.modelValue)) {
-        value = this.modelValue.slice(0);
-        if (this.state) {
-          value.splice(value.indexOf(this.value), 1);
+    setValue(e) {
+      if (this.disabled || this.$options.hasOwnProperty('indeterminate')) return;
+      let value
+      if (!this.isGroup) {
+
+        if (!this.isChecked && this.value) {
+          value = this.value
         } else {
-          value.push(this.value);
+          value = !this.isChecked
         }
+
+
       } else {
-        value = !this.state;
+        if (this.isChecked) {
+          this.checkList.splice(this.checkList.indexOf(this.value), 1)
+        } else {
+          this.checkList.push(this.value)
+        }
+        value = this.checkList
       }
-      this.$emit('input', value);
-    }
-  },
-  watch: {
-    checked(newValue) {
-      if (newValue !== this.state) {
-        this.toggle();
-      }
-    }
-  },
-}
+
+
+      this.$emit("input", value);
+
+    },
+
+  }
+};
 
 </script>
