@@ -1,7 +1,5 @@
 import Accordion from "./accordion.vue";
+import AccordionItem from './accordion-item.vue'
 
-Accordion.install = function(Vue) {
-  Vue.component(Accordion.name, Accordion);
-};
 
-export default Accordion;
+export { Accordion, AccordionItem };

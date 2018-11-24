@@ -14,10 +14,11 @@ import Image from './image/index.js'
 import Heading from './heading/index.js'
 import { Row, Col } from './layout/index.js'
 import { Button, ButtonGroup } from './button/index.js'
+import { Accordion, AccordionItem } from './accordion/index.js'
 import Checkbox from './checkbox/index.js'
 import Radio from './radio/index.js'
 const components = [Avatar, Icon, Loader, Spinner, Upload, Dropdown, Alert, Row, Col, Card, Input, Image, Heading, Button,
-  ButtonGroup, Checkbox, Radio
+  ButtonGroup, Checkbox, Radio, Accordion, AccordionItem
 ];
 
 const install = function(Vue) {
@@ -54,5 +55,7 @@ export default {
   Button,
   ButtonGroup,
   Checkbox,
-  Radio
+  Radio,
+  Accordion,
+  AccordionItem
 };
