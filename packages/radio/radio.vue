@@ -1,6 +1,6 @@
 <template>
-  <div :class="classes" class="ui-radio">
-    <input type="radio" :name="name" :id="id" :value="value" :checked="isChecked" :disabled="disabled" @change="setValue" />
+  <div :class="classes" class="ui-radio" @click="setValue">
+    <input type="radio" :name="name" :id="id" :value="value" :checked="isChecked" :disabled="disabled" />
     <label :for="id">
       <slot name="radio-box">
         <span class="ui-radio-box">
@@ -32,13 +32,14 @@ export default {
     modelValue: [Array, String, Number, Boolean, Object],
     checked: Boolean,
     disabled: Boolean,
-    switch: Boolean
+    toggle: Boolean
   },
   computed: {
     classes() {
       return {
         'ui-radio-disabled': this.disabled,
         'ui-radio-checked': this.isChecked,
+        'ui-radio-toggle':this.toggle
       }
     },
     isChecked() {
@@ -59,7 +60,7 @@ export default {
       if (this.disabled) return;
       let value
       if (this.isChecked) {
-        return
+        value = false
       } else {
         value = this.value ? this.value : true
       }

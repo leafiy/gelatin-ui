@@ -1,17 +1,16 @@
 @import './var.scss';
+
 .ui-upload-container {
   input[type="file"] {
     display: none;
   }
+
   margin:20px 0;
 
   .ui-upload-thumb {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    // position: absolute;
-    // background-size: cover;
-    // background-position: center;
     transition: all .2s linear;
   }
 
@@ -21,6 +20,8 @@
   &.ui-upload-drag {
     .ui-upload-inner {
       border: 3px dashed $lighter;
+      border-radius: $radius;
+      box-shadow: $shadow-light;
     }
 
     .ui-upload-drag-over {
@@ -69,7 +70,13 @@
   }
 }
 
-
+.ui-upload-drag-supportted {
+  .ui-upload-file-item {
+    border-radius: $radius;
+    box-shadow: $shadow-light;
+    overflow: hidden;
+  }
+}
 
 
 

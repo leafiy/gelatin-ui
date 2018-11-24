@@ -1,14 +1,14 @@
 <template>
   <div :class="classes" class="ui-checkbox">
-    <input type="checkbox" :name="name" :id="id" :value="value" :checked="isChecked" :disabled="disabled" :indeterminate="!isChecked&&indeterminate" @change="setValue" />
+    <input type="checkbox" :id="id" :value="value" :checked="isChecked" :disabled="disabled" :indeterminate="!isChecked&&indeterminate" @change="setValue" />
     <label :for="id" @click="prevent">
       <slot name="checkbox-box">
         <span class="ui-checkbox-box">
-         <svg v-if="isChecked" width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+         <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
             <path d="M11.5385 0.228769C11.0395 -0.16 10.3415 -0.0410482 9.97806 0.492783L4.78903 8.12889L1.93058 5.01584C1.50946 4.53423 0.802782 4.51102 0.352815 4.96362C-0.0971515 5.41331 -0.120227 6.17054 0.30378 6.64925C0.30378 6.64925 3.7766 10.5253 4.2756 10.9141C4.7746 11.3029 5.47263 11.1839 5.83606 10.6501L11.7866 1.89699C12.15 1.36026 12.0375 0.614635 11.5385 0.228769Z" />
             </svg>
         </span>
-        <span class="ui-checkbox-indeterminate-bar" v-if="indeterminate" ></span>
+        <span class="ui-checkbox-indeterminate-bar" v-if="indeterminate && !toggle" ></span>
       </slot>
       <slot></slot>
     </label>
@@ -31,20 +31,20 @@ export default {
         return nanoid()
       },
     },
-    name: String,
     value: [String, Number, Object],
     modelValue: [Array, String, Number, Boolean, Object],
     checked: Boolean,
     disabled: Boolean,
     indeterminate: Boolean,
-    switch: Boolean
+    toggle: Boolean
   },
   computed: {
     classes() {
       return {
-        'ui-checkbox-disabled':this.disabled,
+        'ui-checkbox-disabled': this.disabled,
         'ui-checkbox-checked': this.isChecked,
-        'ui-checkbox-indeterminate': this.$options.propsData.hasOwnProperty('indeterminate')
+        'ui-checkbox-toggle': this.toggle,
+        'ui-checkbox-indeterminate': this.$options.propsData.hasOwnProperty('indeterminate') && this.indeterminate
       }
     },
     isChecked() {

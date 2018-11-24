@@ -1,10 +1,5 @@
 @import './var.scss';
 
-.ui-checkbox-inline {
-  display: inline;
-}
-
-
 .ui-checkbox,
 .ui-radio {
   display: inline-block;
@@ -16,9 +11,11 @@
     margin-left: 1em;
   }
 
+  .ui-checkbox-box,
+  .ui-radio-box {
+    transition: all .2s ease-in-out;
 
-
-
+  }
 
   label {
     position: relative;
@@ -69,8 +66,7 @@
     top: 0;
     border-radius: 3px;
     background: #fff;
-    transition: all .2s ease-in-out;
-    transition-property: border, box-shadow;
+
 
     svg {
       fill: currentColor;
@@ -107,7 +103,7 @@
   height: 4px;
   width: 8px;
   border-radius: 10px;
-  background: #fff;
+  background: $lighter;
   top: 5px;
   left: 3px;
 }
@@ -133,12 +129,13 @@
     border-radius: 50%;
     position: absolute;
     left: 0;
+    background: #fff;
 
     &:before {
       content: ' ';
       position: absolute;
-      width: 66%;
-      height: 66%;
+      width: .6em;
+      height: .6em;
       opacity: 0;
       border-radius: 50%;
       transition: all .2s ease-in;
@@ -147,7 +144,6 @@
       left: 2px;
     }
   }
-
 }
 
 .ui-radio-checked {
@@ -165,85 +161,56 @@
 
 
 
-.ui-toggle {
-  position: relative;
-  overflow: hidden;
-  vertical-align: middle;
-  user-select: none;
-  cursor: pointer;
-  height: 2em;
-  // @include colorToggle(color(default), color(ddefault));
-  // border: 1px solid color(border);
-  // border-radius: $radiusDefault;
-  margin-top: 5px;
-  margin-bottom: 5px;
 
-  &.ui-checkbox-rounded {
-    // border-radius: $radiusRound;
-  }
 
+.ui-radio-toggle.ui-radio,
+.ui-checkbox-toggle.ui-checkbox {
   label {
+    padding-left: 2.5em;
+  }
+
+  .ui-checkbox-box {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -100%;
-    width: 200%;
-    // transition: left $transitionTimeToggle;
-    // -webkit-transition: left $transitionTimeToggle;
-  }
-
-  &.ui-checkbox-checked label {
-    left: 0;
-  }
-
-  &.ui-checkbox-disabled label {
-    cursor: not-allowed;
-  }
-
-  .ui-toggle-label {
-    // padding: $paddingVertical $paddingHorizontal;
-    // transition: background $transitionTimeToggle;
-    // -webkit-transition: background $transitionTimeToggle;
-
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    // border-radius: $radiusDefault;
-    color: inherit;
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    text-align: center;
-
-    &.labelOn {
-      left: 0;
-      // padding-right: $paddingHorizontal + 30px;
-    }
-
-    &.labelOff {
-      right: 0;
-      // padding-left: $paddingHorizontal + 30px;
+    &:before {
+      content: ' ';
+      position: absolute;
+      border-radius: 50%;
+      left:2px;
+      transition: all .2s ease-in-out;
     }
   }
 
-  .ui-toggle-switch {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50px;
-    // border: 1px solid color(border);
-    // border-radius: $radiusDefault;
-    width: 20px;
-    z-index: 20;
-    background: white;
-  }
+  .ui-radio-box,
+  .ui-checkbox-box {
+    width: 2.1em;
+    border-radius: 24px;
 
-  &.ui-checkbox-rounded {
-
-    .ui-toggle-label,
-    .ui-toggle-switch {
-      // border-radius: $radiusRound;
+    &:before {
+      top: 1px;
+      width: .7em;
+      height: .7em;
+      opacity: 1;
+      background: $lighter;
+      transform: scale(1);
     }
   }
 
+  &.ui-radio-checked,&.ui-checkbox-checked  {
+    .ui-radio-box,.ui-checkbox-box {
+      background: $primary-color;
+      border-color: $primary-color;
+
+      &:before {
+        background: #fff;
+        transform: translateX(1em);
+      }
+    }
+  }
+
+  &.ui-checkbox-indeterminate{
+    .ui-checkbox-box{
 
 
+    }
+  }
 }

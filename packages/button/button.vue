@@ -15,16 +15,17 @@ export default {
     type: {
       validator(value) {
         return [
+          "default",
           "primary",
           "border",
-          "dashed",
           "warning",
           "error",
           "link",
           "light",
           "ghost"
         ].includes(value);
-      }
+      },
+      default:'default'
     },
     shape: {
       validator(value) {
@@ -38,6 +39,7 @@ export default {
     },
     loading: Boolean,
     disabled: Boolean,
+    shadow: Boolean,
     htmlType: {
       default: "button",
       validator(value) {
@@ -55,13 +57,14 @@ export default {
       return [
         `ui-btn`,
         {
-          [`ui-btn-disabled`]: !!this.disabled,
+          'ui-btn-disabled': !!this.disabled,
+          'ui-btn-shadow': this.shadow,
           [`ui-btn-${this.type}`]: !!this.type,
-          [`ui-btn-full`]: this.full,
-          [`ui-btn-center`]: this.center,
+          'ui-btn-full': this.full,
+          'ui-btn-center': this.center,
           [`ui-btn-${this.shape}`]: !!this.shape,
           [`ui-btn-${this.size}`]: !!this.size,
-          [`ui-btn-loading`]: this.loading != null && this.loading
+          'ui-btn-loading': this.loading != null && this.loading
         }
       ];
     }
@@ -109,4 +112,5 @@ export default {
     events.$off(`do-v-${this.group}`, () => {});
   }
 };
+
 </script>
