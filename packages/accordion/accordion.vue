@@ -21,10 +21,10 @@ export default {
     }
   },
   methods: {
-    handler({ id, active }) {
+    handler({ id, show }) {
       this.$slots.default.forEach(item => {
-        if (active && item.componentInstance.id !== id) {
-          item.componentInstance.active = false
+        if (show && item.componentInstance.id !== id) {
+          item.componentInstance.show = false
         }
       })
     }

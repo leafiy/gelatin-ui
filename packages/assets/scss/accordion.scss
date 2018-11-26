@@ -3,7 +3,7 @@
 
 .ui-accordion-container {
   border: 1px solid $lighter;
-  border-radius: $radius;
+  border-radius: $radius/2;
   margin: 1rem 0;
 
   >.ui-accordion-item {
@@ -16,7 +16,7 @@
 .ui-accordion-item {
   position: relative;
   border-bottom: 1px solid $lighter;
-  padding: 1em;
+  padding: .5em 1em;
 
   &-active {
     .ui-accordion-title {
@@ -31,16 +31,14 @@
 }
 
 .ui-accordion-title {
-  font-size: 1.3em;
+  font-size: 1.2em;
   cursor: pointer;
   transition: all .2s ease-in-out;
+  display: flex;
+  justify-content: space-between;
 
 }
 
 .ui-accordion-close-icon {
-  position: absolute;
-  top: 1em;
-  right: 1em;
-  cursor: pointer;
   transition: transform .2s ease-in-out;
 }

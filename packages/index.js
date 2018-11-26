@@ -17,8 +17,12 @@ import { Button, ButtonGroup } from './button/index.js'
 import { Accordion, AccordionItem } from './accordion/index.js'
 import Checkbox from './checkbox/index.js'
 import Radio from './radio/index.js'
+import Tag from './tag/index.js'
+import Hightlight from './highlight/index.js'
+
+import Autocomplete from './autocomplete/index.js'
 const components = [Avatar, Icon, Loader, Spinner, Upload, Dropdown, Alert, Row, Col, Card, Input, Image, Heading, Button,
-  ButtonGroup, Checkbox, Radio, Accordion, AccordionItem
+  ButtonGroup, Checkbox, Radio, Accordion, AccordionItem, Autocomplete, Tag
 ];
 
 const install = function(Vue) {
@@ -28,6 +32,7 @@ const install = function(Vue) {
   Vue.prototype.$Toast = Toast;
 
   Vue.directive(Tooltip.name, Tooltip);
+  Vue.directive(Hightlight.name, Hightlight)
 };
 
 if (typeof window !== "undefined" && window.Vue) {
@@ -57,5 +62,7 @@ export default {
   Checkbox,
   Radio,
   Accordion,
-  AccordionItem
+  AccordionItem,
+  Autocomplete,
+  Tag
 };

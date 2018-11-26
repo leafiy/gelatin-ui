@@ -1,0 +1,37 @@
+@import './var.scss';
+
+
+.ui-tag {
+  margin-right: 1em;
+  display: inline-block;
+  background: $lighter;
+  padding: .1em 1em;
+  border-radius: $radius;
+  position: relative;
+  &-warning{
+   background:$warning-color;
+   color:#fff;
+  }
+  &-error{
+   background: $error-color;
+   color:#fff;
+  }
+  &-success{
+   background: $primary-color;
+   color:#fff;
+  }
+}
+
+
+.ui-tag-with-icon {
+ padding-right: 2em;
+  .ui-icon-close {
+    cursor: pointer;
+    position: absolute;
+    font-size:.8em;
+    top:50%;
+    right:.6em;
+    transform: translateY(-50%);
+  }
+
+}

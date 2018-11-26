@@ -1,12 +1,14 @@
 <template>
   <div class="ui-accordion-item" :class="classes">
-    <p class="ui-accordion-title" v-html="title" @click="click" @mouseover="mouseover"></p>
+    <p class="ui-accordion-title" @click="click" @mouseover="mouseover">
+      <span v-html="title"></span>
+      <span class="ui-accordion-close-icon"><ui-icon name="plus"></ui-icon></span>
+    </p>
     <collapse-transition>
-      <div class="ui-accordion-content" v-show="active">
+      <div class="ui-accordion-content" v-show="show">
         <slot></slot>
       </div>
     </collapse-transition>
-    <span class="ui-accordion-close-icon" @click="click"><ui-icon name="plus"></ui-icon></span>
   </div>
 </template>
 <script>
@@ -19,13 +21,14 @@ export default {
   name: 'ui-accordion-item',
   data() {
     return {
-      active: false,
+      show: false,
       id: `ui-accordion-item-${nanoid()}`
     }
   },
   props: {
     title: String,
     openOnMouseOver: Boolean,
+    active: Boolean,
     accordion: {
       type: Boolean,
       default: true
@@ -38,27 +41,30 @@ export default {
   computed: {
     classes() {
       return {
-        'ui-accordion-item-active': this.active
+        'ui-accordion-item-active': this.show
       }
     }
   },
   inject: ['accordionId'],
   watch: {
-    active(val) {
+    show(val) {
       if (this.accordion) {
-        events.$emit(`${this.accordionId}`, { id: this.id, active: this.active })
+        events.$emit(`${this.accordionId}`, { id: this.id, show: this.show })
       }
     }
   },
   methods: {
     click() {
-      this.active = !this.active
+      this.show = !this.show
     },
     mouseover() {
       if (this.openOnMouseOver) {
-        this.active = !this.active
+        this.show = !this.show
       }
     }
+  },
+  mounted() {
+    if (this.active) this.show = true
   }
 }
 

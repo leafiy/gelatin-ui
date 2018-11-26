@@ -10,6 +10,11 @@
       <div class="ui-input-counter" v-if="showCounter && counter>0">{{counter}}/{{maxLength}}</div>
     </transition>
     <transition name="fade">
+      <div class="ui-input-clear" v-if="value && showClear" @click="clear">
+        <ui-icon name="close-circle-fill"></ui-icon>
+      </div>
+    </transition>
+    <transition name="fade">
       <ui-icon name="spinner" class="suffix-icon spin" v-if="loading"></ui-icon>
     </transition>
     <div class="ui-input__suffix" @click="focus" v-if="$slots.suffix">
@@ -25,6 +30,7 @@ import events from '../../src/utils/events.js'
 import Validators from "../../src/utils/validator.js";
 import { flatten } from 'lodash'
 import autosize from "autosize";
+import UiIcon from '../icon/index.js'
 export default {
   name: "ui-input",
   data() {
@@ -37,6 +43,10 @@ export default {
       paddingRight: "",
       supportTriggers: ["submit", "input", "blur", "focus", "keyup", "keydown"]
     };
+  },
+  model: {
+    prop: 'value',
+    event: 'input'
   },
   props: {
     rules: Array,
@@ -84,6 +94,10 @@ export default {
     //     return []
     //   }
     // },
+    showClear: {
+      type: Boolean,
+      default: true
+    },
     loading: {
       type: Boolean,
       default: false
@@ -101,6 +115,9 @@ export default {
     autoGrow: Boolean,
     autofocus: Boolean
   },
+  components: {
+    UiIcon
+  },
   computed: {
     counter() {
       return this.value.length;
@@ -113,9 +130,9 @@ export default {
     },
     wrapClasses() {
       return [
-        this.focusIn
-          ? `ui-${this.type == "textarea" ? "textarea" : "input"}__focusin`
-          : "",
+        this.focusIn ?
+        `ui-${this.type == "textarea" ? "textarea" : "input"}__focusin` :
+        "",
         this.type == "textarea" ? "ui-textarea" : "ui-input",
         this.disabled ? "ui-input__disabled" : "",
         this.icon ? "ui-input__with-icon" : "",
@@ -281,6 +298,9 @@ export default {
           resolve();
         }
       });
+    },
+    clear() {
+      this.$refs['input'].value = ''
     }
   },
   mounted() {
@@ -312,4 +332,5 @@ export default {
     value: "setVaule"
   }
 };
+
 </script>

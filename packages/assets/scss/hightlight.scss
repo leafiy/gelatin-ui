@@ -1,0 +1,19 @@
+@import './var.scss';
+
+
+.ui-highlight-text {
+  font-weight: 700;
+}
+
+
+.ui-highlight-primary {
+  color: $primary-color;
+}
+
+.ui-highlight-warning {
+  color: $warning-color;
+}
+
+.ui-highlight-error {
+  color: $error-color;
+}

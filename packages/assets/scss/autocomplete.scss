@@ -1,0 +1,37 @@
+@import './var.scss';
+
+
+.ui-autocomplete {
+  position: relative;
+
+  .ui-autocomplete-list {
+    position: absolute;
+    width: 100%;
+    top: 43px;
+    z-index: 100;
+  }
+  .ui-spinner{
+   margin:1em auto;
+  }
+}
+
+.ui-autocomplete-list {
+  border-radius: $radius/2;
+  background: #fff;
+  box-shadow: $shadow-light;
+  border: 1px solid $lighter;
+  overflow: hidden;
+  &-item {
+    padding: .6em 1em;
+    border-bottom: 1px solid $lighter;
+
+    &:last-child {
+      border: none;
+    }
+
+    &-active,&:hover {
+      background: $lighter;
+      cursor: pointer;
+    }
+  }
+}

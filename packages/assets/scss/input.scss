@@ -5,7 +5,7 @@
   position: relative;
   width: 100%;
   font-size: 16px;
-  margin-bottom: 2em;
+  margin-bottom: 1rem;
   color: #333;
   .prefix-icon {
     position: absolute;
@@ -77,7 +77,7 @@
 }
 .ui-input__inner {
   line-height: 1;
-  padding: 3px 10px 3px 2px;
+  padding: 3px 12px 3px 8px;
   height: 42px;
 }
 
@@ -200,4 +200,12 @@ grammarly-ghost {
   span {
     color: #333 !important;
   }
+}
+
+
+.ui-input-clear{
+  position: absolute;
+  right:1em;
+  top: 17px;
+  cursor: pointer;
 }
