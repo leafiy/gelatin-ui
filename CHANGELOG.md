@@ -66,19 +66,9 @@ All notable changes to this project will be documented in this file. See [standa
 <a name="0.0.3"></a>
 ## [0.0.3](https://github.com/leafiy/gelatin/compare/v2.0.0...v0.0.3) (2018-11-13)
 
-
-
-<a name="2.0.0"></a>
-# [2.0.0](https://github.com/leafiy/gelatin/compare/v0.0.3...v2.0.0) (2018-11-13)
-
-
 ### Features
 
 * **增加dropdown和tooltip:** 使用popover统一构建dropdown和 ([0114c29](https://github.com/leafiy/gelatin/commit/0114c29))
-
-
-### BREAKING CHANGES
-
 * **增加dropdown和tooltip:** popover定位方式
 
 
