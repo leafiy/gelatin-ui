@@ -20,7 +20,9 @@
   background: #fff;
   box-shadow: $shadow-light;
   border: 1px solid $lighter;
-  overflow: hidden;
+  overflow-y: scroll;
+  max-height: 220px;
+
   &-item {
     padding: .6em 1em;
     border-bottom: 1px solid $lighter;

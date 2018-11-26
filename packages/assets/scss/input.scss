@@ -119,7 +119,11 @@
     left: 26px;
   }
 }
+.ui-input__with-suffix{
+  .ui-input-clear{
 
+  }
+}
 
 
 .ui-input__focusin,
@@ -177,7 +181,7 @@
 
 .ui-input__suffix {
   position: absolute;
-  right: 1em;
+  right: 2.5rem;
   top: 50%;
   transform: translateY(-50%);
   user-select: none;

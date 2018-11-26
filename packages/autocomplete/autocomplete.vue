@@ -2,13 +2,13 @@
   <div class="ui-autocomplete">
     <ui-input :icon="icon" :placeholder="placeholder" @keydown.native="onKeyDown" @focus="show" @blur="hide" v-model="query" @keyup.native.enter="enterHandler"></ui-input>
     <collapse-transition>
-      <ul class="ui-autocomplete-list" v-if="showItems === true">
+      <ul class="ui-autocomplete-list" ref="list" v-if="showItems === true">
         <li v-if="loading">
           <ui-spinner></ui-spinner>
         </li>
         <li class="ui-autocomplete-list-item" v-if="isInclude(item)" :key="index" v-for="(item, index) in items" @click.prevent="selectItem(index)" v-ui-highlight="{text:value,type:'primary'}" :class="{ 'ui-autocomplete-list-item-active': index === activeItemIndex }">
           <slot name="item" :item="item">
-            <div v-html="item">
+            <div v-html="itemHandler(item)">
             </div>
           </slot>
         </li>
@@ -33,7 +33,8 @@ export default {
       lastSetQuery: null,
       items: [],
       showItems: false,
-      loading: false
+      loading: false,
+      itemHeight:''
     }
   },
   model: {
@@ -41,11 +42,8 @@ export default {
     event: 'input'
   },
   props: {
-    filterData: {
-      //是否过滤数据，只显示match的
-      type: Boolean,
-      default: true
-    },
+    filterData: Boolean,
+    //是否过滤数据，只显示match的
     debounce: {
       type: Number,
       default: 100
@@ -67,7 +65,12 @@ export default {
       required: true
     },
     onItemSelected: Function,
-    value: String
+    value: String,
+    // todo 根据maxnumber自动调整list高度
+    maxNumber: {
+      type: Number,
+      default: 5
+    }
   },
   components: {
     UiInput,
@@ -83,7 +86,16 @@ export default {
       }
     },
     hide() {
-      // this.showItems = false
+      this.showItems = false
+    },
+    itemHandler(item) {
+      if (typeof item == 'string') {
+        return item
+      }
+      // item.el must be a html string
+      if (typeof item == 'object' && item.el) {
+        return item.el
+      }
     },
     setInputQuery(value) {
       this.lastSetQuery = value
@@ -121,11 +133,7 @@ export default {
       }
     },
     enterHandler() {
-      if (this.onItemSelected) {
-        this.onItemSelected({ item: this.query })
-      } else {
-        this.onItemSelectedDefault({ item: this.query })
-      }
+      this.$emit('enter', this.query)
     },
     selectItem(index) {
       let item = null
@@ -187,6 +195,7 @@ export default {
       const result = this.onInputChange(value)
       this.items = []
       if (typeof result === 'undefined' || typeof result === 'boolean' || result === null) {
+        this.loading = false
         return
       }
       if (Array.isArray(result)) {

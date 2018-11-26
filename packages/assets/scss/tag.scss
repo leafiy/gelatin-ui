@@ -20,6 +20,10 @@
    background: $primary-color;
    color:#fff;
   }
+  &-border{
+    background: #fff;
+    border:1px solid $lighter;
+  }
 }
 
 

@@ -1,7 +1,9 @@
 <template>
   <fade-transition>
     <div class="ui-tag" :class="classes" v-if="show">
-      <slot></slot>
+      <div class="ui-tag-slot" v-html="html">
+        <slot></slot>
+      </div>
       <ui-icon name="close" class="ui-icon-close" @click.native="click" v-if="showClose"></ui-icon>
     </div>
   </fade-transition>
@@ -32,17 +34,19 @@ export default {
   },
   props: {
     showClose: Boolean,
+    html: String,
     type: {
       type: String,
       default: 'default',
       validator(value) {
-        return ['warning', 'error', 'success', 'default'].includes(value)
+        return ['warning', 'error', 'success', 'default', 'border'].includes(value)
       }
     }
   },
   methods: {
     click() {
       this.show = false
+      this.$emit('close')
     }
   }
 }

@@ -19,10 +19,10 @@ import Checkbox from './checkbox/index.js'
 import Radio from './radio/index.js'
 import Tag from './tag/index.js'
 import Hightlight from './highlight/index.js'
-
+import Hr from './hr/index.js'
 import Autocomplete from './autocomplete/index.js'
 const components = [Avatar, Icon, Loader, Spinner, Upload, Dropdown, Alert, Row, Col, Card, Input, Image, Heading, Button,
-  ButtonGroup, Checkbox, Radio, Accordion, AccordionItem, Autocomplete, Tag
+  ButtonGroup, Checkbox, Radio, Accordion, AccordionItem, Autocomplete, Tag, Hr
 ];
 
 const install = function(Vue) {
@@ -64,5 +64,6 @@ export default {
   Accordion,
   AccordionItem,
   Autocomplete,
-  Tag
+  Tag,
+  Hr
 };
