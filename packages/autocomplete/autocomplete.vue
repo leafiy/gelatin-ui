@@ -92,9 +92,9 @@ export default {
       if (typeof item == 'string') {
         return item
       }
-      // item.el must be a html string
-      if (typeof item == 'object' && item.el) {
-        return item.el
+      // item.content must be html string / string
+      if (typeof item == 'object' && item.content) {
+        return item.content
       }
     },
     setInputQuery(value) {

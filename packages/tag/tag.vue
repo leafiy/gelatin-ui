@@ -1,7 +1,7 @@
 <template>
   <fade-transition>
     <div class="ui-tag" :class="classes" v-if="show">
-      <div class="ui-tag-slot" v-html="html">
+      <div class="ui-tag-slot">
         <slot></slot>
       </div>
       <ui-icon name="close" class="ui-icon-close" @click.native="click" v-if="showClose"></ui-icon>
