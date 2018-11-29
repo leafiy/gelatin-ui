@@ -5,9 +5,9 @@ $error-color:#ea4335;
 $light:#9B9B9B;
 $lighter:#E9EBEE;
 $black:#333;
-$shadow:4px 3px 26px rgba(0, 0, 0, 0.1);
-$shadow-hover:5px 4px 32px rgba(0, 0, 0, 0.2);
-$shadow-light:0 2px 12px rgba(0, 0, 0, 0.1);
+$shadow:0 3px 26px rgba(0, 0, 0, 0.1);
+$shadow-hover:4px 4px 32px rgba(0, 0, 0, 0.2);
+$shadow-light:0 0px 10px rgba(0, 0, 0, 0.1);
 $radius:14px;
 $gutter:1rem;
 $margin:2rem;
@@ -49,4 +49,16 @@ $lg:75;
   line-height: $lineHeight+px;
   -webkit-line-clamp: $line;
   -webkit-box-orient: vertical;
+}
+
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .2s ease-in-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }

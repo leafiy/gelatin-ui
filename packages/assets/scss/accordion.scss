@@ -9,6 +9,10 @@
   >.ui-accordion-item {
     &:last-child {
       border: none;
+      border-radius: 0 0 $radius/2 $radius/2;
+    }
+    &:first-child{
+      border-radius: $radius/2 $radius/2 0 0;
     }
   }
 }
@@ -17,16 +21,19 @@
   position: relative;
   border-bottom: 1px solid $lighter;
   padding: .5em 1em;
+  user-select: none;
+
 
   &-active {
-    .ui-accordion-title {
+    >.ui-accordion-title {
       margin-bottom: 1em;
       color: $primary-color;
+
+      .ui-accordion-close-icon {
+        transform: rotate(-45deg);
+      }
     }
 
-    .ui-accordion-close-icon {
-      transform: rotate(-45deg);
-    }
   }
 }
 

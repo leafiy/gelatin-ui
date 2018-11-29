@@ -10,7 +10,8 @@
 .ui-image {
   position: relative;
   background: $lighter;
-
+  height:160px;
+  width:100%;
   .loader {
     position: absolute;
     top: 50%;

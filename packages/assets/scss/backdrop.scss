@@ -1,0 +1,40 @@
+@import './var.scss';
+
+.ui-backdrop {
+  position: absolute;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  z-index: 2000;
+  top: -1px;
+  left: -1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+
+  &-global {
+    z-index: 3000;
+    position: fixed;
+  }
+
+  &-white {
+    background: rgba(255, 255, 255, .9)
+  }
+
+  &-light {
+    background: rgba(255, 255, 255, .6)
+  }
+
+  &-dark {
+    background: rgba(0, 0, 0, .45);
+    color: #fff;
+
+  }
+
+  &-darker {
+    background: rgba(0, 0, 0, .85);
+    color: #fff;
+
+  }
+}

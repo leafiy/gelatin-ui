@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-image" :style="styles">
+  <div class="ui-image">
     <transition name="fade">
       <div class="ui-image-image" v-if="!loading" :style="backgroundStyle"></div>
     </transition>
@@ -18,14 +18,6 @@ export default {
     type: {
       type: String,
       default: "cover"
-    },
-    width: {
-      type: [Number, String],
-      default: "100%"
-    },
-    height: {
-      type: [Number, String],
-      default: "160px"
     },
     cover: {
       type: Boolean,
@@ -51,14 +43,6 @@ export default {
       });
   },
   computed: {
-    styles() {
-      return {
-        width:
-          typeof this.width == "number" ? `${this.width}px` : `${this.width}`,
-        height:
-          typeof this.height == "number" ? `${this.height}px` : `${this.height}`
-      };
-    },
     backgroundStyle() {
       return {
         backgroundImage: `url(${this.src})`

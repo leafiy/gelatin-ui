@@ -1,6 +1,6 @@
 <template>
   <div class="ui-autocomplete">
-    <ui-input :icon="icon" :placeholder="placeholder" @keydown.native="onKeyDown" @focus="show" @blur="hide" v-model="query" @keyup.native.enter="enterHandler"></ui-input>
+    <ui-input :icon="icon" :placeholder="placeholder" @keydown.native="onKeyDown" @focus="show" @blur="hide" v-model="query" @keyup.native.enter="enterHandler"><slot></slot></ui-input>
     <collapse-transition>
       <ul class="ui-autocomplete-list" ref="list" v-if="showItems === true">
         <li v-if="loading">
@@ -84,9 +84,11 @@ export default {
       if (this.showOnFocus) {
         this.onQueryChanged()
       }
+      this.$emit('open')
     },
     hide() {
       this.showItems = false
+      this.$emit('close')
     },
     itemHandler(item) {
       if (typeof item == 'string') {

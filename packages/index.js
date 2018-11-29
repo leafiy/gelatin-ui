@@ -10,6 +10,7 @@ import Tooltip from "./tooltip/index.js";
 import Card from './card/index.js'
 import Alert from './alert/index.js'
 import Input from './input/index.js'
+import Textarea from './textarea/index.js'
 import Image from './image/index.js'
 import Heading from './heading/index.js'
 import { Row, Col } from './layout/index.js'
@@ -20,9 +21,11 @@ import Radio from './radio/index.js'
 import Tag from './tag/index.js'
 import Hightlight from './highlight/index.js'
 import Hr from './hr/index.js'
+import { Backdrop, Cover } from './backdrop/index.js'
 import Autocomplete from './autocomplete/index.js'
+import Loading from './loading/index.js'
 const components = [Avatar, Icon, Loader, Spinner, Upload, Dropdown, Alert, Row, Col, Card, Input, Image, Heading, Button,
-  ButtonGroup, Checkbox, Radio, Accordion, AccordionItem, Autocomplete, Tag, Hr
+  ButtonGroup, Checkbox, Radio, Accordion, AccordionItem, Autocomplete, Tag, Hr, Backdrop, Textarea
 ];
 
 const install = function(Vue) {
@@ -30,9 +33,10 @@ const install = function(Vue) {
   components.forEach(component => Vue.component(component.name, component));
   Vue.prototype.$Popover = Popover;
   Vue.prototype.$Toast = Toast;
-
+  Vue.prototype.$Cover = Cover;
   Vue.directive(Tooltip.name, Tooltip);
   Vue.directive(Hightlight.name, Hightlight)
+  Vue.directive(Loading.name, Loading)
 };
 
 if (typeof window !== "undefined" && window.Vue) {
@@ -65,5 +69,7 @@ export default {
   AccordionItem,
   Autocomplete,
   Tag,
-  Hr
+  Hr,
+  Backdrop,
+  Textarea
 };

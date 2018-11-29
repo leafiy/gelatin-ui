@@ -50,6 +50,12 @@ export default {
     show(val) {
       if (this.accordion) {
         events.$emit(`${this.accordionId}`, { id: this.id, show: this.show })
+
+      }
+      if (val) {
+        this.$emit('open')
+      } else {
+        this.$emit('close')
       }
     }
   },

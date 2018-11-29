@@ -6,9 +6,7 @@
 <script>
 import '../assets/scss/card.scss';
 export default {
-
   name: 'ui-card',
-
   data() {
     return {
 
@@ -23,17 +21,15 @@ export default {
       type: Boolean,
       default: false
     },
-    type: String,
+    cardStyle: String
 
   },
   computed: {
     classes() {
       return [{
-          "ui-card-shadow": this.shadow,
-          "ui-card-shadow-hover": this.shadowHover
-        },
-        this.type ? `ui-card-${this.type}` : ""
-      ];
+        "ui-card-shadow": this.shadow,
+        "ui-card-shadow-hover": this.shadowHover
+      }]
     }
   }
 }

@@ -1,21 +1,21 @@
 <template>
-  <fade-transition>
-    <div class="ui-spinner" :class="classes" v-if="type == 'dot'">
+  <transition name="fade">
+    <div class="ui-spinner" :class="classes" v-if="type == 'dot' && isMounted">
       <div class="rect1"></div>
       <div class="rect2"></div>
       <div class="rect3"></div>
     </div>
-  </fade-transition>
+  </transition>
 </template>
 <script>
-import { FadeTransition } from 'vue2-transitions'
-
 import "../assets/scss/spinner.scss";
 export default {
   name: "ui-spinner",
 
   data() {
-    return {};
+    return {
+      isMounted:false
+    };
   },
   props: {
     type: {
@@ -29,8 +29,8 @@ export default {
       return [`ui-spinner-${this.type}`, { "ui-spinner-center": this.center }];
     }
   },
-  components: {
-    FadeTransition
+  mounted(){
+    this.isMounted = true
   }
 };
 

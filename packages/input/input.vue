@@ -1,72 +1,42 @@
 <template>
-  <div :class="wrapClasses">
-    <div class="ui-input__prefix" @click="focus" v-if="$slots.prefix">
+  <div :class="wrapClasses" class="ui-input">
+    <div class="ui-input-prefix" @click="focus" v-if="$slots.prefix" ref="prefix">
       <slot name="prefix"></slot>
     </div>
-    <ui-icon :name="icon" v-if="icon" class="prefix-icon"></ui-icon>
-    <input :tabindex="tabindex" v-if="type !== 'textarea'" :autofocus="autofocus" :readonly="ifReadonly" :disabled="disabled" :style="[paddingLeft,paddingRight]" class="ui-input__inner" :class="inputClasses" :value="currentValue" :type="type" :maxlength="maxLength" :placeholder="placeholder" :autocomplete="autoComplete" ref="input" @input="handleInput" @focus="handleFocus" @blur="handleBlur" @keyup="handleKeyup" @keydown="handleKeydown" @keyup.enter="handleEnter" @keyup.esc="handleEsc">
-    <textarea :tabindex="tabindex" v-if="type == 'textarea'" :readonly="ifReadonly" :disabled="disabled" :style="[paddingLeft,paddingRight]" class="ui-textarea__inner" :class="inputClasses" :value="currentValue" :type="type" :maxlength="maxLength" :placeholder="placeholder" :autocomplete="autoComplete" ref="input" @input="handleInput" @focus="handleFocus" @blur="handleBlur" @keyup="handleKeyup" @keydown="handleKeydown" @keyup.enter="handleEnter" @keyup.esc="handleEsc" :rows="rows"></textarea>
-    <transition name="fade">
-      <div class="ui-input-counter" v-if="showCounter && counter>0">{{counter}}/{{maxLength}}</div>
-    </transition>
-    <transition name="fade">
-      <div class="ui-input-clear" v-if="value && showClear" @click="clear">
+    <input :tabindex="tabindex" :autofocus="autofocus" :readonly="readonly" :disabled="disabled" class="ui-input-inner" v-model="inputVal" :type="type" :maxlength="maxLength" :minLength="minLength" :placeholder="placeholder" :autocomplete="autoComplete" ref="input" @input="handleInput" @focus="handleFocus" @blur="handleBlur" @keyup="handleKeyup" @keydown="handleKeydown" @keyup.enter="handleEnter" @keyup.esc="handleEsc" @change="handleChange">
+    <fade-transition>
+      <div class="ui-input-clear" v-if="inputVal && showClear" @click="clear">
         <ui-icon name="close-circle-fill"></ui-icon>
       </div>
-    </transition>
-    <transition name="fade">
-      <ui-icon name="spinner" class="suffix-icon spin" v-if="loading"></ui-icon>
-    </transition>
-    <div class="ui-input__suffix" @click="focus" v-if="$slots.suffix">
+    </fade-transition>
+    <div class="ui-input-suffix" @click="focus" v-if="$slots.suffix" ref="suffix">
       <slot name="suffix"></slot>
     </div>
-    <transition name="fade">
-      <span class="ui-input__error-msg" v-if="errorArr && errorArr.length">{{errorArr}}</span></transition>
   </div>
 </template>
 <script>
 import '../assets/scss/input.scss'
-import events from '../../src/utils/events.js'
-import Validators from "../../src/utils/validator.js";
-import { flatten } from 'lodash'
-import autosize from "autosize";
-import UiIcon from '../icon/index.js'
+import UiIcon from '../icon/icon.vue'
+import { FadeTransition } from 'vue2-transitions'
 export default {
   name: "ui-input",
   data() {
     return {
-      currentValue: this.value,
       focusIn: false,
+      inputVal: this.value,
       error: [],
-      triggers: {},
-      paddingLeft: "",
-      paddingRight: "",
-      supportTriggers: ["submit", "input", "blur", "focus", "keyup", "keydown"]
     };
   },
-  model: {
-    prop: 'value',
-    event: 'input'
-  },
+
   props: {
-    rules: Array,
-    group: String,
     tabindex: Number,
-    clearErrorOnInput: {
-      type: Boolean,
-      default: true
-    },
-    value: {
-      type: [String, Number]
-    },
+    value: [String, Number],
     type: {
       type: String,
       default: "text"
     },
-    maxLength: {
-      type: Number,
-      default: 40
-    },
+    maxLength: Number,
+    minLength: Number,
     placeholder: {
       type: String,
       default: "type in here"
@@ -75,261 +45,83 @@ export default {
       type: Boolean,
       default: false
     },
-    flat: {
-      type: Boolean,
-      default: false
-    },
     autoComplete: {
       type: Boolean,
       default: true
     },
-    icon: {
-      type: String,
-      default: ""
-    },
-    ghost: Boolean,
-    // errorArr: {
-    //   type: Array,
-    //   default () {
-    //     return []
-    //   }
-    // },
     showClear: {
       type: Boolean,
       default: true
-    },
-    loading: {
-      type: Boolean,
-      default: false
-    },
-    clickToCopy: {
-      type: Boolean,
-      default: false
     },
     readonly: {
       type: Boolean,
       default: false
     },
-    rows: Number,
-    showCounter: Boolean,
-    autoGrow: Boolean,
-    autofocus: Boolean
+    autofocus: Boolean,
+    theme: String, // flat/ghost
+    errors: Array
   },
   components: {
-    UiIcon
+    UiIcon,
+    FadeTransition
   },
   computed: {
-    counter() {
-      return this.value.length;
-    },
-    ifReadonly() {
-      return this.readonly ? "readonly" : false;
-    },
-    inputClasses() {
-      return [];
-    },
     wrapClasses() {
       return [
-        this.focusIn ?
-        `ui-${this.type == "textarea" ? "textarea" : "input"}__focusin` :
-        "",
-        this.type == "textarea" ? "ui-textarea" : "ui-input",
-        this.disabled ? "ui-input__disabled" : "",
-        this.icon ? "ui-input__with-icon" : "",
-        this.errorArr && this.errorArr.length ? "ui-input__with-error" : "",
-        this.$slots.suffix ? "ui-input__with-suffix" : "",
-        this.$slots.prefix ? "ui-input__with-prefix" : "",
-        this.flat ? "ui-input__flat" : "",
-        this.ghost ? "ui-input__ghost" : ""
+        this.focusIn && `ui-input-focusin`,
+        this.disabled && `ui-input-disabled`,
+        this.errors && `ui-input-with-error`,
+        this.$slots.suffix && `ui-input-with-suffix`,
+        this.$slots.prefix && `ui-input-with-prefix`,
+        this.theme && `ui-input-theme-${this.theme}`,
+        this.readonly && `ui-input-readonly`
       ];
-    },
-    errorArr() {
-      let errorArr = [];
-      for (let e of this.error) {
-        if (typeof e === "string") {
-          if (!errorArr.includes(e)) {
-            errorArr.push(e);
-          }
-        } else {
-          if (!errorArr.includes(e.message)) {
-            errorArr.push(e.message);
-          }
-        }
-      }
-      return errorArr.join(", ");
     }
   },
   methods: {
     select() {
-      this.$el.querySelector(".ui-input__inner").select();
+      this.$refs['input'].select();
     },
     focus() {
-      this.$el.querySelector(".ui-input__inner").focus();
-      this.triggerValidate("focus");
+      this.$refs['input'].focus();
     },
-    handleEnter() {
-      this.$emit("submit", event.target.value);
+    handleEnter(e) {
+      this.$emit("submit", this.inputVal);
     },
-    handleEsc() {
-      this.$emit("esc", event.target.value);
-      this.$el.querySelector(".ui-input__inner").blur();
+    handleEsc(e) {
+      this.$emit("esc", this.inputVal);
+      this.$refs['input'].blur();
     },
-    handleKeyup(event) {
-      this.$emit("keyup", event.target.value);
-      this.triggerValidate(event.type);
+    handleKeyup(e) {
+      this.$emit("keyup", this.inputVal);
     },
-    handleKeydown(event) {
-      this.$emit("keydown", event.target.value);
-      this.triggerValidate(event.type);
+    handleKeydown(e) {
+      this.$emit("keydown", this.inputVal);
     },
-    handleInput(event) {
-      let value = event.target.value;
-      this.currentValue = value;
-      this.$emit("input", value);
-      this.triggerValidate(event.type);
-      // if (this.type == 'textarea' && this.autoGrow) {
-      //   this.grow()
-      // }
-      if (this.clearErrorOnInput) {
-        this.error = [];
-      }
+    handleInput(e) {
+
+      this.$emit("input", this.inputVal);
     },
-    handleFocus(event) {
+    handleFocus(e) {
       this.focusIn = true;
-      this.$emit("focus", event.target.value);
-      this.triggerValidate(event.type);
+      this.$emit("focus", this.inputVal);
     },
-    handleBlur(event) {
+    handleBlur(e) {
       this.focusIn = false;
-      this.$emit("blur", event.target.value);
-      this.triggerValidate(event.type);
+      this.$emit("blur", this.inputVal);
     },
-    // grow() {
-    //   let el = this.$el.querySelector('textarea')
-    //   let height = el.offsetHeight;
-    //   if (el.scrollHeight > height) {
-    //     el.style.cssText = 'height:' + el.scrollHeight + 'px';
-    //   } else {
-    //     el.style.cssText = ''
-    //   }
-    // },
-    setVaule() {
-      this.currentValue = this.value;
-    },
-    initValidate() {
-      let triggers = {};
-      for (let rule of this.rules) {
-        if (typeof rule.trigger != "string") {
-          throw new Error("trigger must be string");
-        }
-        if (!this.supportTriggers.includes(rule.trigger)) {
-          throw new Error("only support: " + this.supportTriggers.join(", "));
-        }
-        if (!this[`${rule.type}Check`]) {
-          throw new Error(`[${t.type}] validator not support`);
-        }
-        if (!rule.type) {
-          throw new Error("must have a type");
-        }
-        if (!rule.v) {
-          throw new Error("must have validate method");
-        }
-        if (!triggers[rule.trigger]) {
-          triggers[rule.trigger] = [];
-        }
-        triggers[rule.trigger].push(rule);
-      }
-      this.triggers = triggers;
-    },
-    triggerValidate(type) {
-      if (this.triggers[type]) {
-        let p = [];
-        for (let t of this.triggers[type]) {
-          p.push(this[`${t.type}Check`](t));
-        }
-        Promise.all(p).then(data => {
-          data = data.map(e => {
-            if (e) {
-              this.error.push(e);
-            }
-          });
-          events.$emit(`do-v-${this.group}`, {
-            [this.$vnode.data.ref]: !!this.errorArr
-          });
-        });
-      }
-    },
-    requiredCheck(rule) {
-      return new Promise((resolve, reject) => {
-        if (this.currentValue) {
-          resolve();
-        } else {
-          resolve(rule.message);
-        }
-      });
-    },
-    regexCheck(rule) {
-      if (!Validators[rule.v]) {
-        throw new Error(`not support ${v}, use customValidator instead`);
-        return;
-      }
-      return new Promise((resolve, reject) => {
-        if (this.currentValue && !Validators[rule.v].test(this.currentValue)) {
-          resolve(rule.message);
-        } else {
-          resolve();
-        }
-      });
-    },
-    minLengthCheck(rule) {
-      return new Promise((resolve, reject) => {
-        if (this.currentValue && this.currentValue.length < rule.v) {
-          resolve(rule.message);
-        } else {
-          resolve();
-        }
-      });
-    },
-    maxLengthCheck(rule) {
-      return new Promise((resolve, reject) => {
-        if (this.currentValue && this.currentValue.length > rule.v) {
-          resolve(rule.message);
-        } else {
-          resolve();
-        }
-      });
+    handleChange(e) {
+      this.$emit('change', this.inputVal)
     },
     clear() {
-      this.$refs['input'].value = ''
+      this.inputVal = ''
+      this.focus()
     }
   },
-  mounted() {
-    if (this.$slots.prefix) {
-      let padding = this.$el.querySelector(".ui-input__prefix").offsetWidth;
-      if (this.icon) padding += 22;
-      this.paddingLeft = { paddingLeft: `${padding + 6}px` };
-    }
-    if (this.$slots.suffix) {
-      let padding = this.$el.querySelector(".ui-input__suffix").offsetWidth;
-      this.paddingRight = { paddingRight: `${padding + 6}px` };
-    }
-    if (this.rules) {
-      this.initValidate();
-      events.$on(`v-${this.group}`, () => {
-        this.triggerValidate("submit");
-      });
-    }
-    if (this.autoGrow && this.type == "textarea") {
-      autosize(this.$el.querySelector("textarea"));
-    }
-  },
-  beforeDestroy: function() {
-    events.$off(`v-${this.group}`, () => {});
-    events.$off(`do-v-${this.group}`, () => {});
-  },
-
   watch: {
-    value: "setVaule"
+    inputVal(val) {
+      this.$emit('input', val);
+    }
   }
 };
 
