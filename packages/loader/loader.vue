@@ -1,42 +1,59 @@
 <template>
   <div class="ui-loader">
-    <div class="ui-loader__header" :style="{ height: pullHeight + 'px' }" v-show="'pull-down' === pull.type">
+    <div
+      class="ui-loader__header"
+      :style="{ height: pullHeight + 'px' }"
+      v-show="'pull-down' === pull.type"
+    >
       <div class="ui-loader__header-text" v-show="!pull.available">
         {{ lang.pullDownToRefresh }}
       </div>
-      <div class="ui-loader__header-text" v-show="pull.available && 'pull-down' !== loadingType">
+      <div
+        class="ui-loader__header-text"
+        v-show="pull.available && 'pull-down' !== loadingType"
+      >
         {{ lang.releaseToRefresh }}
       </div>
       <div class="ui-loader__header-text" v-show="'pull-down' === loadingType">
-        <slot :name="'pull-down-loading'">
-          <ui-spinner></ui-spinner>
-        </slot>
+        <slot :name="'pull-down-loading'"> <ui-spinner></ui-spinner> </slot>
       </div>
     </div>
-    <div class="ui-loader__content">
-      <slot></slot>
-    </div>
-    <div class="ui-loader__footer" v-if="showFooter" :style="{ height: pullHeight + 'px' }" v-show="'pull-up' === pull.type">
+    <div class="ui-loader__content"><slot></slot></div>
+    <div
+      class="ui-loader__footer"
+      v-if="showFooter"
+      :style="{ height: pullHeight + 'px' }"
+      v-show="'pull-up' === pull.type"
+    >
       <div class="ui-loader__footer-text" v-show="!pull.available">
         {{ lang.pullUpToLoad }}
       </div>
-      <div class="ui-loader__footer-text" v-show="pull.available && 'pull-up' !== loadingType">
+      <div
+        class="ui-loader__footer-text"
+        v-show="pull.available && 'pull-up' !== loadingType"
+      >
         {{ lang.releaseToRefresh }}
       </div>
       <div class="ui-loader__footer-text" v-show="'pull-up' === loadingType">
-        <slot :name="'pull-up-loading'">
-          <ui-spinner></ui-spinner>
-        </slot>
+        <slot :name="'pull-up-loading'"> <ui-spinner></ui-spinner> </slot>
       </div>
     </div>
-    <div class="ui-loader__footer" v-if="showFooter" :style="{ height: distance + 'px' }" v-show="loading && 'scroll' === loadingType">
+    <div
+      class="ui-loader__footer"
+      v-if="showFooter"
+      :style="{ height: distance + 'px' }"
+      v-show="loading && 'scroll' === loadingType"
+    >
       <div class="footer-text">
-        <slot :name="'scroll-loading'">
-          <ui-spinner></ui-spinner>
-        </slot>
+        <slot :name="'scroll-loading'"> <ui-spinner></ui-spinner> </slot>
       </div>
     </div>
-    <div class="ui-loader__footer" v-if="showFooter" :style="{ height: distance + 'px' }" v-show="showCompleted">
+    <div
+      class="ui-loader__footer"
+      v-if="showFooter"
+      :style="{ height: distance + 'px' }"
+      v-show="showCompleted"
+    >
       <div class="ui-loader__footer-text">{{ lang.loadCompleted }}</div>
     </div>
   </div>
@@ -53,7 +70,7 @@ export default {
   props: {
     lang: {
       type: Object,
-      default () {
+      default() {
         return {
           pullDownToRefresh: "下拉刷新数据",
           releaseToRefresh: "松开刷新数据",
@@ -78,7 +95,7 @@ export default {
     },
     listens: {
       type: Array,
-      default () {
+      default() {
         return ["infinite-scroll", "pull-down", "pull-up"];
       }
     },
@@ -104,19 +121,20 @@ export default {
         type: null,
         available: false
       },
-      loadingType: null
+      loadingType: null,
+      inited: false
     };
   },
   computed: {
     _container() {
-      return this.container ?
-        this.$parent.$refs[this.container] :
-        window.window;
+      return this.container
+        ? this.$parent.$refs[this.container]
+        : window.window;
     },
     pullHeight() {
-      return this.pull.distance > this.distance ?
-        this.distance :
-        this.pull.distance;
+      return this.pull.distance > this.distance
+        ? this.distance
+        : this.pull.distance;
     },
     showCompleted() {
       return (
@@ -255,10 +273,16 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.init();
-      if(this.disableBrowserPull){
-        document.body.style['overscroll-behavior-y'] = 'contain'
+      this.inited = true;
+      if (this.disableBrowserPull) {
+        document.body.style["overscroll-behavior-y"] = "contain";
       }
     });
+  },
+  activated() {
+    if (this.inited) {
+      this.init();
+    }
   },
   deactivated() {
     this.unBindEvents();
@@ -267,5 +291,4 @@ export default {
     this.unBindEvents();
   }
 };
-
 </script>
