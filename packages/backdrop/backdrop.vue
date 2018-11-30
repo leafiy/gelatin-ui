@@ -2,7 +2,8 @@
   <transition name="fade">
     <div class="ui-backdrop" v-if="isMounted" :style="styles" :class="classes" @click="click">
       <slot></slot>
-        <ui-spinner v-if="showSpinner"></ui-spinner>
+      <ui-spinner v-if="showSpinner"></ui-spinner>
+      <span v-if="text">{{text}}</span>
     </div>
   </transition>
   </div>
@@ -10,29 +11,30 @@
 <script>
 import UiSpinner from '../spinner/spinner.vue'
 import '../assets/scss/backdrop.scss'
+import events from '../../src/utils/events.js'
 export default {
   name: 'ui-backdrop',
   data() {
     return {
       isMounted: false,
-
     }
   },
-  components:{
+  components: {
     UiSpinner
   },
   props: {
     type: {
       type: String
     },
-    showSpinner:Boolean,
+    showSpinner: Boolean,
     zIndex: Number,
     global: Boolean,
+    text:String,
     closeOnClick: Boolean,
     radius: [Number, String],
     color: {
       type: String,
-      default: 'light',
+      default: 'dark',
       validator(value) {
         return ['white', 'light', 'dark', 'darker'].includes(value)
       }
@@ -52,12 +54,18 @@ export default {
   methods: {
     click() {
       if (this.closeOnClick) {
-        this.isMounted = false
+        this.close()
       }
+    },
+    close() {
+      this.isMounted = false
     }
   },
   mounted() {
     this.isMounted = true
+    if (this.global) {
+      events.$on('close-backdrop', this.close)
+    }
   }
 
 }

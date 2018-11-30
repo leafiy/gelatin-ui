@@ -1,23 +1,20 @@
 import Backdrop from "./backdrop.vue";
 import Vue from "vue";
-
+import RenderCover from './render.js'
+import events from '../../src/utils/events.js'
 Backdrop.install = function(Vue) {
   Vue.component(Backdrop.name, Backdrop);
 };
 
-
-const BackdropConstructor = Vue.extend(Backdrop);
-const Cover = function(options = {}) {
-  options.global = true
-  let cover = new BackdropConstructor({
-    el: document.createElement('div'),
-    propsData: options
-  })
-  cover.$mount()
-  document.body.appendChild(cover.$el)
-  return cover
+const Cover = () => {
+  let cover = new RenderCover({ options: { global: true } })
+  return cover.backdrop
 }
 
 
+Cover.close = function() {
+  events.$emit('close-backdrop')
+
+}
 
 export { Backdrop, Cover };

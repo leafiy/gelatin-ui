@@ -4,12 +4,11 @@ const BackdropConstructor = Vue.extend(Backdrop);
 import RenderBackdrop from '../backdrop/render.js'
 
 const render = function({ el, options }) {
-  options.showSpinner = true
   el.loading = new RenderBackdrop({ el, options })
 }
 
 export default {
-  name: "ui-loading",
+  name: "ui-mask",
   inserted(el, binding, vnode) {
     if (typeof binding.value == 'object' || binding.value) {
       let options = typeof binding.value == 'object' ? binding.value : {}

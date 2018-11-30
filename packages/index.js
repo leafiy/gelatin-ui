@@ -24,6 +24,7 @@ import Hr from './hr/index.js'
 import { Backdrop, Cover } from './backdrop/index.js'
 import Autocomplete from './autocomplete/index.js'
 import Loading from './loading/index.js'
+import Mask from './mask/index.js'
 const components = [Avatar, Icon, Loader, Spinner, Upload, Dropdown, Alert, Row, Col, Card, Input, Image, Heading, Button,
   ButtonGroup, Checkbox, Radio, Accordion, AccordionItem, Autocomplete, Tag, Hr, Backdrop, Textarea
 ];
@@ -37,6 +38,7 @@ const install = function(Vue) {
   Vue.directive(Tooltip.name, Tooltip);
   Vue.directive(Hightlight.name, Hightlight)
   Vue.directive(Loading.name, Loading)
+  Vue.directive(Mask.name,Mask)
 };
 
 if (typeof window !== "undefined" && window.Vue) {
