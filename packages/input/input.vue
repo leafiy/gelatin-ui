@@ -1,47 +1,15 @@
 <template>
   <div :class="wrapClasses" class="ui-input">
-    <div
-      class="ui-input-prefix"
-      @click="focus"
-      v-if="$slots.prefix"
-      ref="prefix"
-    >
+    <div class="ui-input-prefix" @click="focus" v-if="$slots.prefix" ref="prefix">
       <slot name="prefix"></slot>
     </div>
-    <input
-      :tabindex="tabindex"
-      :name="name"
-      :autofocus="autofocus"
-      :readonly="readonly"
-      :disabled="disabled"
-      class="ui-input-inner"
-      v-model="inputVal"
-      :type="type"
-      :maxlength="maxLength"
-      :minLength="minLength"
-      :placeholder="placeholder"
-      :autocomplete="autoComplete"
-      ref="input"
-      @input="handleInput"
-      @focus="handleFocus"
-      @blur="handleBlur"
-      @keyup="handleKeyup"
-      @keydown="handleKeydown"
-      @keyup.enter="handleEnter"
-      @keyup.esc="handleEsc"
-      @change="handleChange"
-    />
+    <input :tabindex="tabindex" :name="name" :autofocus="autofocus" :readonly="readonly" :disabled="disabled" class="ui-input-inner" :value="inputVal" :type="type" :maxlength="maxLength" :minLength="minLength" :placeholder="placeholder" :autocomplete="autoComplete" ref="input" @input="handleInput" @focus="handleFocus" @blur="handleBlur" @keyup="handleKeyup" @keydown="handleKeydown" @keyup.enter="handleEnter" @keyup.esc="handleEsc" @change="handleChange" />
     <fade-transition>
       <div class="ui-input-clear" v-if="inputVal && showClear" @click="clear">
         <ui-icon name="close-circle-fill"></ui-icon>
       </div>
     </fade-transition>
-    <div
-      class="ui-input-suffix"
-      @click="focus"
-      v-if="$slots.suffix"
-      ref="suffix"
-    >
+    <div class="ui-input-suffix" @click="focus" v-if="$slots.suffix" ref="suffix">
       <slot name="suffix"></slot>
     </div>
   </div>
@@ -55,11 +23,12 @@ export default {
   data() {
     return {
       focusIn: false,
-      inputVal: this.value,
+      inputVal: this.value === undefined || this.value === null ?
+        '' :
+        this.value,
       error: []
     };
   },
-
   props: {
     tabindex: Number,
     value: [String, Number],
@@ -78,10 +47,7 @@ export default {
       type: Boolean,
       default: false
     },
-    autoComplete: {
-      type: Boolean,
-      default: true
-    },
+    autoComplete: Boolean,
     showClear: {
       type: Boolean,
       default: true
@@ -132,6 +98,7 @@ export default {
       this.$emit("keydown", this.inputVal);
     },
     handleInput(e) {
+      this.inputVal = e.target.value
       this.$emit("input", this.inputVal);
     },
     handleFocus(e) {
@@ -148,12 +115,14 @@ export default {
     clear() {
       this.inputVal = "";
       this.focus();
+      this.$emit("input", '');
     }
   },
   watch: {
-    inputVal(val) {
-      this.$emit("input", val);
+    value(val) {
+      this.inputVal = val
     }
   }
 };
+
 </script>
