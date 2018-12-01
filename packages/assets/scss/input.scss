@@ -21,7 +21,7 @@
     line-height: 46px;
     color: $black;
     width: 100%;
-    padding:0 12px;
+    padding: 0 12px;
 
     &::-webkit-input-placeholder {
       color: $light;
@@ -62,17 +62,46 @@
     cursor: crosshair;
 
   }
+
   &-with-prefix {
     .ui-input-inner {
       margin-top: 2px;
       padding-left: 0;
     }
   }
+
   &-with-suffix {
     .ui-input-inner {
       padding-right: 0;
     }
   }
+
+  &-with-error {
+    border-color: $error-color;
+    margin-bottom: 2rem;
+    position: relative;
+
+    .ui-input-inner {
+      color: $error-color;
+    }
+
+    .ui-icon {
+      color: $error-color;
+    }
+  }
+}
+
+.ui-input-errors {
+  position: absolute;
+  top: 50px;
+  color: $error-color;
+  padding-left: 10px;
+  font-size: 12px;
+  width: 100%;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
 }
 
 .ui-input-prefix,
@@ -89,6 +118,7 @@
 
 .ui-input-clear {
   cursor: pointer;
+  color: $lighter;
 }
 
 

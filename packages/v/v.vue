@@ -4,38 +4,62 @@
   </div>
 </template>
 <script>
+import validators from '../../src/mixins/v/validators.js'
 export default {
   name: "ui-v",
 
   data() {
     return {
-      fields: []
+      fields: [],
+      inited: false,
+      supportedTrigger: ['input', 'blur', 'focus', 'keyup', 'keydown', 'submit'],
+      builtinValidator: ['email', 'required', 'number', 'minLength', 'maxLength', 'link']
     };
   },
+  mixins: [validators],
   props: {
-    rules: Array
+    rules: Array,
   },
   methods: {
-    handleInput(e) {
-      console.log(e)
+    // inputHandler(instance, rule) {
+    //   this.trigger(instance, rule)
+    // },
+    // blurHandler(instance, rule) {
+    //   this.trigger(instance, rule)
+    // },
+    // focusHandler(instance, rule) { console.log('focus') },
+    // keyupHandler(instance, rule) { console.log('keyup') },
+    // keydownHandler(instance, rule) { console.log('keydown') },
+    applyRules(instance) {
+      this.rules.forEach(rule => {
+        if (rule.name == instance.name || rule.name == instance.$el.querySelector('input').name) {
+          if (!rule.trigger || !rule.type || !rule.message) {
+            throw new Error('rule must have trigger/type/message')
+          }
+          if (!this.supportedTrigger.includes(rule.trigger)) {
+            throw new Error('only support triggers: ' + this.supportedTrigger.join(','))
+          }
+          if (rule.trigger !== 'submit') {
+            instance.$on(rule.trigger, () => {
+              this.trigger(instance, rule)
+              console.log(rule.trigger,instance.inputVal)
+              // this[`${rule.trigger}Handler`](instance, rule)
+            })
+            instance.$on('clear', () => {
+              instance.errors = []
+            })
+          }
+
+        }
+      })
     },
-    handleBlur(e) { console.log(e) },
-    handleInput(e) { console.log(e) },
-    handleFocus(e) { console.log(e) },
-    handleKeyup(e) { console.log(e) },
-    handleKeydown(e) { console.log(e) },
     parseFileds() {
       this.$slots.default.forEach(field => {
-        if (field.componentInstance && !field.componentInstance.$el.querySelector('input').name) {
-          return new Error('input or component must have a name')
+        if (field.componentInstance && field.componentInstance.$el.querySelector('input').name) {
+          this.applyRules(field.componentInstance)
+          this.fields.push(field.componentInstance)
         }
-        // field.componentInstance.handleInput = this.handleInput
-        // field.componentInstance.handleBlur = this.handleBlur
-        // field.componentInstance.handleInput = this.handleInput
-        // field.componentInstance.handleFocus = this.handleFocus
-        // field.componentInstance.handleKeyup = this.handleKeyup
-        // field.componentInstance.handleKeydown = this.handleKeydown
-        this.fields.push(field.componentInstance)
+
 
       })
     }

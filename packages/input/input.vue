@@ -12,6 +12,9 @@
     <div class="ui-input-suffix" @click="focus" v-if="$slots.suffix" ref="suffix">
       <slot name="suffix"></slot>
     </div>
+    <transition name="fade">
+      <div class="ui-input-errors" v-if="errors.length">{{errors.join(', ')}}</div>
+    </transition>
   </div>
 </template>
 <script>
@@ -24,9 +27,8 @@ export default {
     return {
       focusIn: false,
       inputVal: this.value === undefined || this.value === null ?
-        '' :
-        this.value,
-      error: []
+        '' : this.value,
+      errors: []
     };
   },
   props: {
@@ -58,7 +60,6 @@ export default {
     },
     autofocus: Boolean,
     theme: String, // flat/ghost
-    errors: Array
   },
   components: {
     UiIcon,
@@ -69,7 +70,7 @@ export default {
       return [
         this.focusIn && `ui-input-focusin`,
         this.disabled && `ui-input-disabled`,
-        this.errors && `ui-input-with-error`,
+        this.errors.length && `ui-input-with-error`,
         this.$slots.suffix && `ui-input-with-suffix`,
         this.$slots.prefix && `ui-input-with-prefix`,
         this.theme && `ui-input-theme-${this.theme}`,
@@ -113,9 +114,13 @@ export default {
       this.$emit("change", this.inputVal);
     },
     clear() {
-      this.inputVal = "";
+
       this.focus();
-      this.$emit("input", '');
+      this.$emit('input', '')
+      this.$emit('change', '');
+      this.$emit('clear')
+      this.inputVal = "";
+      this.errors = []
     }
   },
   watch: {
