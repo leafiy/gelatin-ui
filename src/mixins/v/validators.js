@@ -1,35 +1,46 @@
 import validators from '../../utils/validator.js'
+import isValidDate from '../../utils/isValidDate.js'
 export default {
   methods: {
-    trigger(instance, rule) {
-      let type = rule.type
-      if (this.builtinValidator.includes(type)) {
-        this[`${type}Validate`](instance, rule).then(() => {}).catch(() => {
-          instance.errors.push(rule.message)
-        })
-      } else if (typeof type == 'function') {
-        this.costumFnValidate(instance, type).then(() => {
+    trigger({ instance, value, rule }) {
 
-        }).catch(() => {
-          instance.errors.push(rule.message)
-        })
-
-      } else if (typeof type == 'string' || (type instanceof RegExp && type.constructor == RegExp)) {
-        let re = type instanceof RegExp && type.constructor == RegExp ? type : new RegExp(type)
-        this.costumReValidate(instance, re).then(() => {}).catch(() => {
-          instance.errors.push(rule.message)
-        })
-      }
-    },
-    costumFnValidate(instance, fn) {
       return new Promise((resolve, reject) => {
-        let value = instance.inputVal
+
+        let type = rule.type
+
+        if (this.builtinValidator.includes(type)) {
+          this[`${type}Validate`]({ instance, rule, value }).then(() => {
+            resolve({ instance, message: rule.message })
+          }).catch(() => {
+            reject({ instance, message: rule.message })
+          })
+        } else if (typeof type == 'function') {
+          this.costumFnValidate({ instance, fn: type, value }).then(() => {
+            resolve({ instance, message: rule.message })
+          }).catch((msg) => {
+            reject({ instance, message: msg || rule.message })
+          })
+
+        } else if (typeof type == 'string' || (type instanceof RegExp && type.constructor == RegExp)) {
+          let re = type instanceof RegExp && type.constructor == RegExp ? type : new RegExp(type)
+          this.costumReValidate({ instance, re, value }).then(() => {
+            resolve({ instance, message: rule.message })
+          }).catch(() => {
+            reject({ instance, message: rule.message })
+          })
+        } else {
+          throw new Error('unsupported validate type')
+        }
+      })
+    },
+    costumFnValidate({ instance, fn, value }) {
+      return new Promise((resolve, reject) => {
         let f = fn(value)
         if (f.then) {
           f.then(() => {
             resolve()
-          }).catch(() => {
-            reject()
+          }).catch((msg) => {
+            reject(msg)
           })
         } else {
           if (f) {
@@ -40,9 +51,8 @@ export default {
         }
       })
     },
-    costumReValidate(instance, re) {
+    costumReValidate({ instance, re, value }) {
       return new Promise((resolve, reject) => {
-        let value = instance.inputVal
         if (re.test(value)) {
           resolve()
         } else {
@@ -50,9 +60,8 @@ export default {
         }
       })
     },
-    requiredValidate(instance, rule) {
+    requiredValidate({ instance, rule, value }) {
       return new Promise((resolve, reject) => {
-        let value = instance.inputVal
         if (!value) {
           reject()
         } else {
@@ -60,9 +69,8 @@ export default {
         }
       })
     },
-    numberValidate(instance, rule) {
+    numberValidate({ instance, rule, value }) {
       return new Promise((resolve, reject) => {
-        let value = instance.inputVal
         if (!Number(value)) {
           reject()
         } else {
@@ -70,9 +78,8 @@ export default {
         }
       })
     },
-    emailValidate(instance, rule) {
+    emailValidate({ instance, rule, value }) {
       return new Promise((resolve, reject) => {
-        let value = instance.inputVal
         if (validators['email'].test(value)) {
           resolve()
         } else {
@@ -80,9 +87,8 @@ export default {
         }
       })
     },
-    minLengthValidate(instance, rule) {
+    minLengthValidate({ instance, rule, value }) {
       return new Promise((resolve, reject) => {
-        let value = instance.inputVal
         if (value.length < rule.length) {
           reject()
         } else {
@@ -90,9 +96,8 @@ export default {
         }
       })
     },
-    maxLengthValidate(instance, rule) {
+    maxLengthValidate({ instance, rule, value }) {
       return new Promise((resolve, reject) => {
-        let value = instance.inputVal
         if (value.length > rule.length) {
           reject()
         } else {
@@ -100,9 +105,8 @@ export default {
         }
       })
     },
-    linkValidate(instance, rule) {
+    linkValidate({ instance, rule, value }) {
       return new Promise((resolve, reject) => {
-        let value = instance.inputVal
         if (validators['link'].test(value)) {
           resolve()
         } else {
@@ -110,5 +114,23 @@ export default {
         }
       })
     },
+    arrayValidate({ instance, rule, value }) {
+      return new Promise((resolve, reject) => {
+        if (Array.isArray(value)) {
+          resolve()
+        } else {
+          reject()
+        }
+      })
+    },
+    dateValidate({ instance, rule, value }) {
+      return new Promise((resolve, reject) => {
+        if (isValidDate(value)) {
+          resolve()
+        } else {
+          reject()
+        }
+      })
+    }
   }
 }

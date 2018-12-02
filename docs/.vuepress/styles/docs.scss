@@ -5,6 +5,10 @@ $error-color:#FF8787;
 $light:#9B9B9B;
 $lighter:#E9EBEE;
 
+* {
+  box-sizing: border-box;
+}
+
 .container {
   margin: 1rem 0;
 }
@@ -13,8 +17,8 @@ $lighter:#E9EBEE;
   background: $primary-color;
   min-height: 2rem;
   margin-bottom: 1rem;
-  border:1px soild $light;
-  text-align:center;
-  color:#fff;
-  line-height:2rem;
+  border: 1px soild $light;
+  text-align: center;
+  color: #fff;
+  line-height: 2rem;
 }

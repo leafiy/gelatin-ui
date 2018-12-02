@@ -6,22 +6,25 @@
   user-select: none;
   position: relative;
 
+
   ~.ui-checkbox,
   ~.ui-radio {
-    margin-left: 1em;
+    margin-left: 20px;
   }
 
   .ui-checkbox-box,
   .ui-radio-box {
     transition: all .2s ease-in-out;
+    box-sizing: content-box;
+
 
   }
 
   label {
     position: relative;
     cursor: pointer;
-    line-height: 1em;
     display: inline-block;
+    padding-left: 28px;
   }
 
   input[type="radio"],
@@ -51,22 +54,18 @@
 }
 
 .ui-checkbox {
-  label {
-    padding-left: 1.6em;
-  }
 
   .ui-checkbox-box {
     color: $primary-color;
     background: #fff;
     border: 1px solid $lighter;
-    width: 1em;
-    height: 1em;
+    width: 18px;
+    height: 18px;
     position: absolute;
     left: 0;
     top: 0;
     border-radius: 3px;
     background: #fff;
-
 
     svg {
       fill: currentColor;
@@ -74,8 +73,8 @@
       transition: all .2s ease-in-out;
       transform: scale(.2);
       position: absolute;
-      top: 0;
-      left: 2px;
+      top: 3px;
+      left: 4px;
     }
 
   }
@@ -90,21 +89,28 @@
   }
 }
 
-.ui-checkbox-indeterminate,
+
 .ui-checkbox-checked {
   .ui-checkbox-box {
     border-color: lighten($primary-color, 15%);
-    box-shadow: 1px 1px 8px rgba($primary-color, .3)
+    box-shadow: 1px 1px 8px rgba($primary-color, .4)
+  }
+}
+
+.ui-checkbox-indeterminate {
+  .ui-checkbox-box {
+    border-color: $light;
+    box-shadow: 1px 1px 8px rgba($light, .3)
   }
 }
 
 .ui-checkbox-indeterminate-bar {
   position: absolute;
   height: 4px;
-  width: 8px;
+  width: 14px;
   border-radius: 10px;
-  background: $lighter;
-  top: 5px;
+  background: $light;
+  top: 8px;
   left: 3px;
 }
 
@@ -118,13 +124,11 @@
 }
 
 .ui-radio {
-  label {
-    padding-left: 1.4em;
-  }
+
 
   .ui-radio-box {
-    width: 1em;
-    height: 1em;
+    width: 18px;
+    height: 18px;
     border: 1px solid $lighter;
     border-radius: 50%;
     position: absolute;
@@ -134,14 +138,14 @@
     &:before {
       content: ' ';
       position: absolute;
-      width: .6em;
-      height: .6em;
+      width: 12px;
+      height: 12px;
       opacity: 0;
       border-radius: 50%;
       transition: all .2s ease-in;
       transform: scale(.2);
-      top: 2px;
-      left: 2px;
+      top: 3px;
+      left: 3px;
     }
   }
 }
@@ -166,51 +170,52 @@
 .ui-radio-toggle.ui-radio,
 .ui-checkbox-toggle.ui-checkbox {
   label {
-    padding-left: 2.5em;
+    padding-left: 2.9em;
   }
 
   .ui-checkbox-box {
     position: absolute;
+
     &:before {
       content: ' ';
       position: absolute;
       border-radius: 50%;
-      left:2px;
+      left: 2px;
       transition: all .2s ease-in-out;
     }
   }
 
   .ui-radio-box,
   .ui-checkbox-box {
-    width: 2.1em;
+    width: 33px;
     border-radius: 24px;
 
     &:before {
       top: 1px;
-      width: .7em;
-      height: .7em;
+      width: 15px;
+      height: 15px;
       opacity: 1;
       background: $lighter;
       transform: scale(1);
     }
   }
 
-  &.ui-radio-checked,&.ui-checkbox-checked  {
-    .ui-radio-box,.ui-checkbox-box {
+  &.ui-radio-checked,
+  &.ui-checkbox-checked {
+
+    .ui-radio-box,
+    .ui-checkbox-box {
       background: $primary-color;
       border-color: $primary-color;
 
       &:before {
         background: #fff;
-        transform: translateX(1em);
+        transform: translateX(15px);
       }
     }
   }
 
-  &.ui-checkbox-indeterminate{
-    .ui-checkbox-box{
-
-
-    }
+  &.ui-checkbox-indeterminate {
+    .ui-checkbox-box {}
   }
 }

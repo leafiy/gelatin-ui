@@ -1,6 +1,6 @@
 <template>
   <div :class="classes" class="ui-radio" @click="setValue">
-    <input type="radio" :name="name" :id="id" :value="value" :checked="isChecked" :disabled="disabled" />
+    <input type="radio" :name="name" :id="id" :value="value" @change="change" :checked="isChecked" :disabled="disabled" />
     <label :for="id">
       <slot name="radio-box">
         <span class="ui-radio-box">
@@ -28,7 +28,7 @@ export default {
       },
     },
     name: String,
-    value: [String, Number, Object],
+    value: [String, Number, Object,Boolean],
     modelValue: [Array, String, Number, Boolean, Object],
     checked: Boolean,
     disabled: Boolean,
@@ -39,7 +39,7 @@ export default {
       return {
         'ui-radio-disabled': this.disabled,
         'ui-radio-checked': this.isChecked,
-        'ui-radio-toggle':this.toggle
+        'ui-radio-toggle': this.toggle
       }
     },
     isChecked() {
@@ -56,6 +56,9 @@ export default {
 
   },
   methods: {
+    change(e) {
+      this.$emit('change', e.target.value)
+    },
     setValue(e) {
       if (this.disabled) return;
       let value
@@ -64,11 +67,9 @@ export default {
       } else {
         value = this.value ? this.value : true
       }
-
       this.$emit("input", value);
 
     },
-
   }
 };
 

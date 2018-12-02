@@ -3,7 +3,7 @@
     <div class="ui-input-prefix" @click="focus" v-if="$slots.prefix" ref="prefix">
       <slot name="prefix"></slot>
     </div>
-    <input :tabindex="tabindex" :name="name" :autofocus="autofocus" :readonly="readonly" :disabled="disabled" class="ui-input-inner" :value="inputVal" :type="type" :maxlength="maxLength" :minLength="minLength" :placeholder="placeholder" :autocomplete="autoComplete" ref="input" @input="handleInput" @focus="handleFocus" @blur="handleBlur" @keyup="handleKeyup" @keydown="handleKeydown" @keyup.enter="handleEnter" @keyup.esc="handleEsc" @change="handleChange" />
+    <input :tabindex="tabindex" :name="name" :autofocus="autofocus" :readonly="readonly" :disabled="disabled" class="ui-input-inner" :value="inputVal" :type="type" :maxlength="maxLength" :minLength="minLength" :placeholder="placeholder" :autocomplete="autoComplete ? 'on' : 'off'" ref="input" @input="handleInput" @focus="handleFocus" @blur="handleBlur" @keyup="handleKeyup" @keydown="handleKeydown" @keyup.enter="handleEnter" @keyup.esc="handleEsc" @change="handleChange" />
     <fade-transition>
       <div class="ui-input-clear" v-if="inputVal && showClear" @click="clear">
         <ui-icon name="close-circle-fill"></ui-icon>
@@ -115,12 +115,15 @@ export default {
     },
     clear() {
 
-      this.focus();
+
       this.$emit('input', '')
       this.$emit('change', '');
       this.$emit('clear')
-      this.inputVal = "";
-      this.errors = []
+      this.$nextTick(() => {
+        this.inputVal = "";
+        this.errors = []
+        this.focus();
+      })
     }
   },
   watch: {

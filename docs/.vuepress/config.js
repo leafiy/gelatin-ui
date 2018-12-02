@@ -4,9 +4,8 @@ const path = require('path')
 module.exports = {
   title: 'Gelatin-Ui',
   description: '🎨 A vuejs ui toolkit from unicapsule.com',
-  port: 8008,
-  public: "0.0.0.0",
-  host: "gelatin.local",
+  port: 8108,
+  host: "localhost",
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
@@ -22,7 +21,9 @@ module.exports = {
     sidebar: [
       '/',
       ['/layout/', 'Layout 布局'],
-      ['/popover/', 'Popover']
+      ['/popover/', 'Popover 弹出'],
+      ['/checkbox/', 'Checkbox'],
+      ['/radio/', 'Radio'],
     ]
   },
   lastUpdated: 'Last Updated',

@@ -1,6 +1,6 @@
 <template>
   <div :class="classes" class="ui-checkbox">
-    <input type="checkbox" :id="id" :value="value" :checked="isChecked" :disabled="disabled" :indeterminate="!isChecked&&indeterminate" @change="setValue" />
+    <input type="checkbox" :id="id" :name="name" :value="value" :checked="isChecked" :disabled="disabled" :indeterminate="!isChecked&&indeterminate" @change="setValue" />
     <label :for="id" @click="prevent">
       <slot name="checkbox-box">
         <span class="ui-checkbox-box">
@@ -36,7 +36,8 @@ export default {
     checked: Boolean,
     disabled: Boolean,
     indeterminate: Boolean,
-    toggle: Boolean
+    toggle: Boolean,
+    name: String
   },
   computed: {
     classes() {
@@ -101,6 +102,7 @@ export default {
 
 
       this.$emit("input", value);
+      this.$emit('change', value)
 
     },
 
