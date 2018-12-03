@@ -271,6 +271,30 @@ exports.push([module.i, ".fade-enter-active,.fade-leave-active{-webkit-transitio
 
 /***/ }),
 
+/***/ "02f4":
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__("4588");
+var defined = __webpack_require__("be13");
+// true  -> String#at
+// false -> String#codePointAt
+module.exports = function (TO_STRING) {
+  return function (that, pos) {
+    var s = String(defined(that));
+    var i = toInteger(pos);
+    var l = s.length;
+    var a, b;
+    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
+    a = s.charCodeAt(i);
+    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+      ? TO_STRING ? s.charAt(i) : a
+      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+  };
+};
+
+
+/***/ }),
+
 /***/ "044b":
 /***/ (function(module, exports) {
 
@@ -3628,6 +3652,31 @@ module.exports = function (that, target, C) {
     setPrototypeOf(that, P);
   } return that;
 };
+
+
+/***/ }),
+
+/***/ "5df3":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $at = __webpack_require__("02f4")(true);
+
+// 21.1.3.27 String.prototype[@@iterator]()
+__webpack_require__("01f9")(String, 'String', function (iterated) {
+  this._t = String(iterated); // target
+  this._i = 0;                // next index
+// 21.1.5.2.1 %StringIteratorPrototype%.next()
+}, function () {
+  var O = this._t;
+  var index = this._i;
+  var point;
+  if (index >= O.length) return { value: undefined, done: true };
+  point = $at(O, index);
+  this._i += point.length;
+  return { value: point, done: false };
+});
 
 
 /***/ }),
@@ -13807,6 +13856,9 @@ mask.install = function (Vue, opt) {
 };
 
 /* harmony default export */ var packages_mask = (mask);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.iterator.js
+var es6_string_iterator = __webpack_require__("5df3");
+
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.link.js
 var es6_string_link = __webpack_require__("b54a");
 
@@ -14090,6 +14142,7 @@ error_component.options.__file = "error.vue"
 
 
 
+
 //
 //
 //
@@ -14098,6 +14151,15 @@ error_component.options.__file = "error.vue"
 
 
 
+
+
+Promise.almost = function (r) {
+  return Promise.all(r.map(function (p) {
+    return p.catch ? p.catch(function (e) {
+      return e;
+    }) : p;
+  }));
+};
 
 /* harmony default export */ var vvue_type_script_lang_js_ = ({
   name: "ui-v",
@@ -14184,6 +14246,13 @@ error_component.options.__file = "error.vue"
           instance.$on('clear', function () {
             _this2.clearErrors(instance.name);
           });
+          instance.$on('focus', function (value) {
+            if (!value) {
+              instance.errors = false;
+
+              _this2.clearErrors(instance.name);
+            }
+          });
         });
       }
     },
@@ -14213,62 +14282,45 @@ error_component.options.__file = "error.vue"
 
         _this3.validateStart({
           name: Object.keys(_this3.rules)
-        }); // MF tricks, should find a better way to due with promise rejcet all
-        // or refactor with async/await ?
+        });
 
+        var reflect = function reflect(p) {
+          return p.then(function (v) {
+            return {
+              v: v,
+              status: "fulfilled"
+            };
+          }, function (e) {
+            return {
+              e: e,
+              status: "rejected"
+            };
+          });
+        };
 
-        promises.forEach(function (p) {
-          p.then(function (_ref3) {
-            var name = _ref3.name,
-                message = _ref3.message;
+        Promise.all(promises.map(reflect)).then(function (v) {
+          var errors = [];
+          v.forEach(function (item) {
+            if (item.status == 'rejected') {
+              errors.push(item.e);
 
-            if (name) {
-              results.push({
-                name: name,
-                message: message
-              });
-
-              _this3.removeErros({
-                name: name,
-                message: message
-              });
-
-              if (results.length == promises.length) {
-                results = results.filter(function (item) {
-                  return item.name !== 'ReferenceError';
-                });
-                resolve(results);
-              }
-            }
-          }).catch(function (_ref4) {
-            var name = _ref4.name,
-                message = _ref4.message;
-
-            if (name) {
-              errors.push({
-                name: name,
-                message: message
-              });
-
-              _this3.parseErrors({
-                name: name,
-                message: message
-              });
-
-              if (errors.length == promises.length) {
-                errors = errors.filter(function (item) {
-                  return item.name !== 'ReferenceError';
-                });
-                reject(errors);
-              }
+              _this3.parseErrors(item.e);
+            } else {
+              _this3.removeErros(item.v);
             }
           });
+
+          if (errors.length) {
+            reject(errors);
+          } else {
+            resolve();
+          }
         });
       });
     },
-    parseErrors: function parseErrors(_ref5) {
-      var name = _ref5.name,
-          message = _ref5.message;
+    parseErrors: function parseErrors(_ref3) {
+      var name = _ref3.name,
+          message = _ref3.message;
       var instance = this.fields[name];
 
       if (instance) {
@@ -14289,11 +14341,11 @@ error_component.options.__file = "error.vue"
 
       this.$emit('add-error', newError);
     },
-    removeErros: function removeErros(_ref6) {
+    removeErros: function removeErros(_ref4) {
       var _this4 = this;
 
-      var name = _ref6.name,
-          message = _ref6.message;
+      var name = _ref4.name,
+          message = _ref4.message;
       var newError = {
         name: name,
         message: message
@@ -14312,21 +14364,21 @@ error_component.options.__file = "error.vue"
         instance.errors = false;
       }
 
-      this.$emit('remove-error', error);
+      this.$emit('remove-error', newError);
     },
     clearErrors: function clearErrors(name) {
       this.errors = this.errors.filter(function (item) {
         return item.name !== name;
       });
     },
-    validateStart: function validateStart(_ref7) {
-      var name = _ref7.name;
+    validateStart: function validateStart(_ref5) {
+      var name = _ref5.name;
       this.$emit('validate-start', name);
     },
-    validateFinish: function validateFinish(_ref8) {
-      var name = _ref8.name,
-          message = _ref8.message,
-          errors = _ref8.errors;
+    validateFinish: function validateFinish(_ref6) {
+      var name = _ref6.name,
+          message = _ref6.message,
+          errors = _ref6.errors;
       this.$emit('validate-finish', {
         name: name,
         message: message,

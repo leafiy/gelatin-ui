@@ -8,6 +8,7 @@ import validators from '../../src/mixins/v/validators.js'
 import Vue from 'vue'
 import Error from './error.vue'
 import isObjectEqual from '../../src/utils/isObjectEqual.js'
+Promise.almost = r => Promise.all(r.map(p => p.catch ? p.catch(e => e) : p));
 export default {
   name: "ui-v",
 
@@ -64,6 +65,12 @@ export default {
           instance.$on('clear', () => {
             this.clearErrors(instance.name)
           })
+          instance.$on('focus', (value) => {
+            if (!value) {
+              instance.errors = false
+              this.clearErrors(instance.name)
+            }
+          })
         })
       }
     },
@@ -85,32 +92,24 @@ export default {
 
         })
         this.validateStart({ name: Object.keys(this.rules) })
-        // MF tricks, should find a better way to due with promise rejcet all
-        // or refactor with async/await ?
-        promises.forEach(p => {
-          p.then(({ name, message }) => {
-            if (name) {
-              results.push({ name, message })
-              this.removeErros({ name, message })
-              if (results.length == promises.length) {
-                results = results.filter(item => item.name !== 'ReferenceError')
-                resolve(results)
-
-              }
-            }
-          }).catch(({ name, message }) => {
-            if (name) {
-              errors.push({ name, message })
-              this.parseErrors({ name, message })
-              if (errors.length == promises.length) {
-                errors = errors.filter(item => item.name !== 'ReferenceError')
-                reject(errors)
-
-              }
+        const reflect = p => p.then(v => ({ v, status: "fulfilled" }),
+          e => ({ e, status: "rejected" }));
+        Promise.all(promises.map(reflect)).then(v => {
+          let errors = []
+          v.forEach(item => {
+            if (item.status == 'rejected') {
+              errors.push(item.e)
+              this.parseErrors(item.e)
+            } else {
+              this.removeErros(item.v)
             }
           })
+          if (errors.length) {
+            reject(errors)
+          } else {
+            resolve()
+          }
         })
-
       })
     },
 
@@ -145,7 +144,7 @@ export default {
       if (!exist) {
         instance.errors = false
       }
-      this.$emit('remove-error', error)
+      this.$emit('remove-error', newError)
     },
     clearErrors(name) {
       this.errors = this.errors.filter(item => item.name !== name)
