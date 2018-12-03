@@ -10,6 +10,7 @@ module.exports = {
         "no-unused-vars": "off",
     },
     parserOptions: {
-        parser: "babel-eslint"
+        parser: "babel-eslint",
+        "ecmaVersion": 2017
     }
 };

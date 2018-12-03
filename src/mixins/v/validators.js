@@ -2,38 +2,35 @@ import validators from '../../utils/validator.js'
 import isValidDate from '../../utils/isValidDate.js'
 export default {
   methods: {
-    trigger({ instance, value, rule }) {
-
+    trigger({ name, value, rule }) {
       return new Promise((resolve, reject) => {
-
         let type = rule.type
-
         if (this.builtinValidator.includes(type)) {
-          this[`${type}Validate`]({ instance, rule, value }).then(() => {
-            resolve({ instance, message: rule.message })
+          this[`${type}Validate`]({ name, rule, value }).then(() => {
+            resolve({ name, message: rule.message })
           }).catch(() => {
-            reject({ instance, message: rule.message })
+            reject({ name, message: rule.message })
           })
         } else if (typeof type == 'function') {
-          this.costumFnValidate({ instance, fn: type, value }).then(() => {
-            resolve({ instance, message: rule.message })
+          this.costumFnValidate({ name, fn: type, value }).then(() => {
+            resolve({ name, message: rule.message })
           }).catch((msg) => {
-            reject({ instance, message: msg || rule.message })
+            reject({ name, message: msg || rule.message })
           })
 
         } else if (typeof type == 'string' || (type instanceof RegExp && type.constructor == RegExp)) {
           let re = type instanceof RegExp && type.constructor == RegExp ? type : new RegExp(type)
-          this.costumReValidate({ instance, re, value }).then(() => {
-            resolve({ instance, message: rule.message })
+          this.costumReValidate({ name, re, value }).then(() => {
+            resolve({ name, message: rule.message })
           }).catch(() => {
-            reject({ instance, message: rule.message })
+            reject({ name, message: rule.message })
           })
         } else {
           throw new Error('unsupported validate type')
         }
       })
     },
-    costumFnValidate({ instance, fn, value }) {
+    costumFnValidate({ name, fn, value }) {
       return new Promise((resolve, reject) => {
         let f = fn(value)
         if (f.then) {
@@ -51,7 +48,7 @@ export default {
         }
       })
     },
-    costumReValidate({ instance, re, value }) {
+    costumReValidate({ name, re, value }) {
       return new Promise((resolve, reject) => {
         if (re.test(value)) {
           resolve()
@@ -60,7 +57,7 @@ export default {
         }
       })
     },
-    requiredValidate({ instance, rule, value }) {
+    requiredValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (!value) {
           reject()
@@ -69,7 +66,7 @@ export default {
         }
       })
     },
-    numberValidate({ instance, rule, value }) {
+    numberValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (!Number(value)) {
           reject()
@@ -78,7 +75,7 @@ export default {
         }
       })
     },
-    emailValidate({ instance, rule, value }) {
+    emailValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (validators['email'].test(value)) {
           resolve()
@@ -87,7 +84,7 @@ export default {
         }
       })
     },
-    minLengthValidate({ instance, rule, value }) {
+    minLengthValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (value.length < rule.length) {
           reject()
@@ -96,7 +93,7 @@ export default {
         }
       })
     },
-    maxLengthValidate({ instance, rule, value }) {
+    maxLengthValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (value.length > rule.length) {
           reject()
@@ -105,7 +102,7 @@ export default {
         }
       })
     },
-    linkValidate({ instance, rule, value }) {
+    linkValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (validators['link'].test(value)) {
           resolve()
@@ -114,7 +111,7 @@ export default {
         }
       })
     },
-    arrayValidate({ instance, rule, value }) {
+    arrayValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (Array.isArray(value)) {
           resolve()
@@ -123,7 +120,7 @@ export default {
         }
       })
     },
-    dateValidate({ instance, rule, value }) {
+    dateValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (isValidDate(value)) {
           resolve()

@@ -79,7 +79,6 @@
 
   &-with-error {
     border-color: $error-color;
-    margin-bottom: 2rem;
     position: relative;
 
     .ui-input-inner {
@@ -92,13 +91,25 @@
   }
 }
 
-.ui-input-errors {
-  position: absolute;
-  top: 50px;
+.ui-input,
+.ui-textarea {
+  ~.ui-v-error-list {
+    margin-top: -10px;
+  }
+}
+
+.ui-v-error-list {
   color: $error-color;
-  padding-left: 10px;
   font-size: 12px;
-  width: 100%;
+  padding: 0 10px;
+
+  span {
+    &:last-child {
+      em {
+        display: none;
+      }
+    }
+  }
 }
 
 input:-webkit-autofill {
@@ -137,13 +148,16 @@ grammarly-ghost {
 .ui-input-theme-ghost {
   border-color: rgba(0, 0, 0, .6);
   background: rgba(0, 0, 0, .3);
+
   .ui-input-inner {
     background: none;
     color: rgba(255, 255, 255, .9);
+
     &::-webkit-input-placeholder {
       color: $lighter;
     }
   }
+
   .ui-input-prefix,
   .ui-input-suffix,
   .ui-input-clear {

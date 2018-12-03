@@ -1,26 +1,42 @@
-<template>
+<!-- <template>
   <div class="ui-v">
     <slot></slot>
   </div>
-</template>
+</template> -->
 <script>
 import validators from '../../src/mixins/v/validators.js'
+import Vue from 'vue'
+import Error from './error.vue'
+import isObjectEqual from '../../src/utils/isObjectEqual.js'
 export default {
   name: "ui-v",
 
   data() {
     return {
       fields: {},
+      errors: [],
       inited: false,
       supportedTrigger: ['input', 'blur', 'focus', 'keyup', 'keydown', 'submit', 'change'],
       builtinValidator: ['email', 'required', 'number', 'minLength', 'maxLength', 'link', 'array', 'date']
     };
   },
   mixins: [validators],
+  components: {
+    Error
+  },
   props: {
     rules: Object,
   },
   methods: {
+    parseFileds() {
+      let rulesKey = Object.keys(this.rules)
+      this.$slots.default.forEach(field => {
+        if (field.componentInstance && field.componentInstance.name && rulesKey.includes(field.componentInstance.name)) {
+          this.applyRules(field.componentInstance)
+          this.fields[field.componentInstance.name] = field.componentInstance
+        }
+      })
+    },
     applyRules(instance) {
       let rules = this.rules[instance.name]
       if (rules) {
@@ -32,21 +48,22 @@ export default {
             throw new Error('only support triggers: ' + this.supportedTrigger.join(','))
           }
           if (rule.trigger !== 'submit') {
-
             instance.$on(rule.trigger, (val) => {
-              this.validateStart({ name: instance.name })
+              let name = instance.name
+              this.validateStart({ name })
               let value = instance.$el.querySelector('input').value
               this.$nextTick(() => {
-                this.trigger({ instance, value, rule }).then(({ instance, message }) => {
-                  this.removeErros({ instance, message })
-                  this.validateFinish()
-                }).catch(({ instance, message }) => {
-                  this.parseErrors({ instance, message })
-                  this.validateFinish({ name: instance.name, message })
+                this.trigger({ name, value, rule }).then(({ name, message }) => {
+                  this.removeErros({ name, message })
+                }).catch(({ name, message }) => {
+                  this.parseErrors({ name, message })
                 })
               })
             })
           }
+          instance.$on('clear', () => {
+            this.clearErrors(instance.name)
+          })
         })
       }
     },
@@ -56,11 +73,11 @@ export default {
         let results = []
         let errors = []
         Object.keys(this.rules).forEach(name => {
+          let instance = this.fields[name]
           if (this.fields[name]) {
             this.rules[name].forEach(rule => {
-              let instance = this.fields[name]
               let value = instance.$el.querySelector('input').value || instance.value
-              promises.push(this.trigger({ instance, rule, value }))
+              promises.push(this.trigger({ name, rule, value }))
             })
           } else {
             resolve()
@@ -68,53 +85,79 @@ export default {
 
         })
         this.validateStart({ name: Object.keys(this.rules) })
-        // MF
+        // MF tricks, should find a better way to due with promise rejcet all
+        // or refactor with async/await ?
         promises.forEach(p => {
-          p.then(({ instance, message }) => {
-            results.push({ instance, message })
-            this.removeErros({ instance, message })
-            if (results.length == promises.length) {
-              resolve(results)
-              this.validateFinish()
+          p.then(({ name, message }) => {
+            if (name) {
+              results.push({ name, message })
+              this.removeErros({ name, message })
+              if (results.length == promises.length) {
+                results = results.filter(item => item.name !== 'ReferenceError')
+                resolve(results)
 
+              }
             }
-          }).catch(({ instance, message }) => {
-            errors.push({ name: instance.name, message })
-            this.parseErrors({ instance, message })
-            if (errors.length == promises.length) {
-              reject(errors)
-              this.validateFinish({ errors })
+          }).catch(({ name, message }) => {
+            if (name) {
+              errors.push({ name, message })
+              this.parseErrors({ name, message })
+              if (errors.length == promises.length) {
+                errors = errors.filter(item => item.name !== 'ReferenceError')
+                reject(errors)
 
+              }
             }
           })
         })
+
       })
     },
-    parseFileds() {
-      this.$slots.default.forEach(field => {
-        if (field.componentInstance && field.componentInstance.$el.querySelector('input').name) {
-          this.applyRules(field.componentInstance)
-          this.fields[field.componentInstance.name] = field.componentInstance
+
+    parseErrors({ name, message }) {
+      let instance = this.fields[name]
+      if (instance) {
+        instance.errors = true
+      }
+      let newError = {
+        name: name,
+        message: message
+      }
+      let exist = this.errors.some(error => {
+        return isObjectEqual(error, newError)
+      })
+      if (!exist) {
+        this.errors.push(newError)
+      }
+      this.$emit('add-error', newError)
+    },
+    removeErros({ name, message }) {
+      let newError = { name, message }
+      let instance = this.fields[name]
+      this.errors.forEach((error, index) => {
+        if (isObjectEqual(error, newError)) {
+          this.errors.splice(index, 1)
         }
       })
-    },
-    parseErrors({ instance, message }) {
-      if (instance.errors && !instance.errors.includes(message)) {
-        instance.errors.push(message)
+      let exist = this.errors.some(error => {
+        return isObjectEqual(error, newError)
+      })
+      if (!exist) {
+        instance.errors = false
       }
-      this.$emit('add-error', { name: instance.name, message: message })
+      this.$emit('remove-error', error)
     },
-    removeErros({ instance, message }) {
-      if (instance.errors && instance.errors.includes(message)) {
-        instance.errors.splice(instance.errors.indexOf(message), 1)
-      }
-      this.$emit('remove-error', { name: instance.name, message: message })
+    clearErrors(name) {
+      this.errors = this.errors.filter(item => item.name !== name)
     },
     validateStart({ name }) {
       this.$emit('validate-start', name)
     },
     validateFinish({ name, message, errors }) {
       this.$emit('validate-finish', { name, message, errors })
+    },
+    isInstance(item) {
+      return item && item.componentOptions && item.componentOptions.propsData && item.componentOptions.propsData.name
     }
   },
   mounted() {
@@ -123,6 +166,17 @@ export default {
     } else {
       throw new Error('why?')
     }
+  },
+  render(h) {
+    return (
+      <div class="ui-v">
+      {
+        this.$slots.default.map(item=>{
+          return  this.isInstance(item) ? <Error errors={this.errors} name={this.isInstance(item)}>{item}</Error> : item
+        })
+      }
+    </div>
+    )
   }
 };
 
