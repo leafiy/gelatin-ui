@@ -34,12 +34,15 @@ export default {
           if (rule.trigger !== 'submit') {
 
             instance.$on(rule.trigger, (val) => {
+              this.validateStart({ name: instance.name })
               let value = instance.$el.querySelector('input').value
               this.$nextTick(() => {
                 this.trigger({ instance, value, rule }).then(({ instance, message }) => {
                   this.removeErros({ instance, message })
+                  this.validateFinish()
                 }).catch(({ instance, message }) => {
                   this.parseErrors({ instance, message })
+                  this.validateFinish({ name: instance.name, message })
                 })
               })
             })
@@ -56,7 +59,7 @@ export default {
           if (this.fields[name]) {
             this.rules[name].forEach(rule => {
               let instance = this.fields[name]
-              let value = instance.$el.querySelector('input').value
+              let value = instance.$el.querySelector('input').value || instance.value
               promises.push(this.trigger({ instance, rule, value }))
             })
           } else {
@@ -64,17 +67,24 @@ export default {
           }
 
         })
+        this.validateStart({ name: Object.keys(this.rules) })
         // MF
         promises.forEach(p => {
-          p.then(o => {
-            results.push(o)
+          p.then(({ instance, message }) => {
+            results.push({ instance, message })
+            this.removeErros({ instance, message })
             if (results.length == promises.length) {
               resolve(results)
+              this.validateFinish()
+
             }
-          }).catch(o => {
-            errors.push(o)
+          }).catch(({ instance, message }) => {
+            errors.push({ name: instance.name, message })
+            this.parseErrors({ instance, message })
             if (errors.length == promises.length) {
               reject(errors)
+              this.validateFinish({ errors })
+
             }
           })
         })
@@ -92,17 +102,19 @@ export default {
       if (instance.errors && !instance.errors.includes(message)) {
         instance.errors.push(message)
       }
-      if (!instance.errors) {
-        this.$emit('add-error', { name: instance.name, message: message })
-      }
+      this.$emit('add-error', { name: instance.name, message: message })
     },
     removeErros({ instance, message }) {
       if (instance.errors && instance.errors.includes(message)) {
         instance.errors.splice(instance.errors.indexOf(message), 1)
       }
-      if (!instance.errors) {
-        this.$emit('remove-error', { name: instance.name, message: message })
-      }
+      this.$emit('remove-error', { name: instance.name, message: message })
+    },
+    validateStart({ name }) {
+      this.$emit('validate-start', name)
+    },
+    validateFinish({ name, message, errors }) {
+      this.$emit('validate-finish', { name, message, errors })
     }
   },
   mounted() {
