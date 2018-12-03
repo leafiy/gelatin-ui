@@ -14,7 +14,7 @@ export default {
 
   data() {
     return {
-      isMounted:false
+      isMounted: false
     };
   },
   props: {
@@ -22,14 +22,16 @@ export default {
       type: String,
       default: "dot"
     },
-    center: Boolean
+    center: Boolean,
+    light: Boolean,
+    dark: Boolean
   },
   computed: {
     classes() {
-      return [`ui-spinner-${this.type}`, { "ui-spinner-center": this.center }];
+      return [`ui-spinner-${this.type}`, { "ui-spinner-center": this.center }, { "ui-spinner-light": this.light }, { "ui-spinner-dark": this.dark }];
     }
   },
-  mounted(){
+  mounted() {
     this.isMounted = true
   }
 };

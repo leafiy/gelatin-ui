@@ -1,5 +1,5 @@
 <template>
-  <div :class="[classes,alignDirection]">
+  <div :class="classes">
     <slot></slot>
   </div>
 </template>
@@ -8,33 +8,25 @@ export default {
   name: "ui-button-group",
   props: {
     size: {
-      validator(value) {
-        return ["small", "large"].includes(value);
-      }
-    },
-    vertical: {
-      type: Boolean,
-      default: false
-    },
-    align: {
       type: String,
-      default: "left"
+      validator(value) {
+        return ["sm", "lg", 'md'].includes(value);
+      },
+      default: "md"
     },
-    gutter: Boolean
+    vertical: Boolean,
+    shadow: Boolean
   },
   computed: {
     classes() {
       return [
         `ui-btn-group`,
         {
-          [`ui-btn-group-${this.size}`]: !!this.size,
+          [`ui-btn-group-size-${this.size}`]: !!this.size,
           [`ui-btn-group-vertical`]: this.vertical,
-          [`ui-btn-group-gutter`]: this.gutter
+          [`ui-btn-group-shadow`]: this.shadow
         }
       ];
-    },
-    alignDirection() {
-      return `ui-btn-group-${this.align}`;
     }
   }
 };

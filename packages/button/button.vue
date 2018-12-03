@@ -1,115 +1,91 @@
 <template>
-  <button :type="htmlType" :class="classes" :disabled="disabled" :loading="loading" @click="handleClick" formnovalidate>
-    <span><slot></slot></span>
-    <transition name="fade">
-      <ui-icon name="spinner" class="spin" v-if="loading"></ui-icon>
-    </transition>
-  </button>
+  <div role="button" :class="classes" :disabled="disabled" :loading="loading" @click="handleClick" @mousedown="mouseDown" @mouseup="mouseUp">
+    <div class="ui-btn-inner">
+      <span><slot></slot></span>
+      <transition name="fade">
+        <ui-spinner :light="type !== 'border'" v-if="loading"></ui-spinner>
+      </transition>
+    </div>
+  </div>
 </template>
 <script>
+import UiSpinner from '../spinner/spinner.vue'
 import '../assets/scss/button.scss'
-import events from "../../src/utils/events.js";
+
 export default {
   name: "ui-button",
+  data() {
+    return {
+      isActive: false
+    }
+  },
+  components: { UiSpinner },
   props: {
     type: {
+      type: String,
       validator(value) {
         return [
-          "default",
           "primary",
           "border",
           "warning",
           "error",
-          "link",
-          "light",
           "ghost"
         ].includes(value);
       },
-      default:'default'
+      default: 'primary'
     },
-    shape: {
-      validator(value) {
-        return ["circle", "circle-outline"].includes(value);
-      }
-    },
+    // shape: {
+    //   type: String,
+    //   default: 'block',
+    //   validator(value) {
+    //     return ["circle", "block"].includes(value);
+    //   }
+    // },
     size: {
+      type: String,
+      default: 'md',
       validator(value) {
-        return ["sm", "lg"].includes(value);
+        return ["sm", "lg", 'md'].includes(value);
       }
     },
     loading: Boolean,
     disabled: Boolean,
     shadow: Boolean,
-    htmlType: {
-      default: "button",
-      validator(value) {
-        return ["button", "submit", "reset"].includes(value);
-      }
-    },
-    //icon: String,
     full: Boolean,
-    submit: Boolean,
-    center: Boolean,
-    group: String
+    center: Boolean
   },
   computed: {
     classes() {
       return [
         `ui-btn`,
-        {
-          'ui-btn-disabled': !!this.disabled,
-          'ui-btn-shadow': this.shadow,
-          [`ui-btn-${this.type}`]: !!this.type,
-          'ui-btn-full': this.full,
-          'ui-btn-center': this.center,
-          [`ui-btn-${this.shape}`]: !!this.shape,
-          [`ui-btn-${this.size}`]: !!this.size,
-          'ui-btn-loading': this.loading != null && this.loading
-        }
+        this.disabled && 'ui-btn-disabled',
+        this.shadow && 'ui-btn-shadow',
+        this.type && `ui-btn-${this.type}`,
+        this.full && 'ui-btn-full',
+        this.center && 'ui-btn-center',
+        // this.shape && `ui-btn-shape-${this.shape}`,
+        this.size && `ui-btn-size-${this.size}`,
+        this.loading && 'ui-btn-loading',
+        this.isActive && 'ui-btn-active'
       ];
     }
   },
-  data() {
-    return {
-      error: {}
-    };
-  },
   methods: {
     handleClick(event) {
-      if (!this.loading) {
+      if (!this.loading && !this.disabled) {
         this.$emit("click", event);
       }
-      if (this.group) {
-        events.$emit(`v-${this.group}`);
+    },
+    mouseDown() {
+      if (!this.loading && !this.disabled) {
+        this.isActive = true
       }
     },
-    handleError(e) {
-      let name = Object.keys(e)[0];
-      this.error[name] = e[name];
+    mouseUp() {
+      if (!this.loading && !this.disabled) {
+        this.isActive = false
+      }
     },
-    validate() {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          let arr = [];
-          for (let key of Object.keys(this.error)) {
-            arr.push(this.error[key]);
-          }
-          if (arr.indexOf(true) > -1) {
-            reject(arr);
-          } else {
-            resolve();
-          }
-        }, 20);
-      });
-    }
-  },
-  mounted() {
-    events.$on(`do-v-${this.group}`, e => {
-      this.handleError(e);
-    });
-  },
-  beforeDestroy() {
-    events.$off(`do-v-${this.group}`, () => {});
   }
 };
 

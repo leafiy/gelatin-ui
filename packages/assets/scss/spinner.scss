@@ -45,6 +45,12 @@
     width: 6px;
     border-radius: 50%
   }
+
+  &.ui-spinner-light {
+    >div {
+      background-color: rgba(255, 255, 255, .9);
+    }
+  }
 }
 
 
