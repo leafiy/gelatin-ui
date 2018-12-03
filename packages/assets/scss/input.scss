@@ -22,6 +22,7 @@
     color: $black;
     width: 100%;
     padding: 0 12px;
+    background: #fff;
 
     &::-webkit-input-placeholder {
       color: $light;
@@ -129,5 +130,31 @@ grammarly-ghost {
 
   span {
     color: #333 !important;
+  }
+}
+
+
+.ui-input-theme-ghost {
+  border-color: rgba(0, 0, 0, .6);
+  background: rgba(0, 0, 0, .3);
+  .ui-input-inner {
+    background: none;
+    color: rgba(255, 255, 255, .9);
+    &::-webkit-input-placeholder {
+      color: $lighter;
+    }
+  }
+  .ui-input-prefix,
+  .ui-input-suffix,
+  .ui-input-clear {
+    color: #fff;
+  }
+
+  &.ui-input-focusin {
+    border-color: rgba(0, 0, 0, .8);
+  }
+
+  &.ui-input-with-error {
+    border-color: rgba($error-color, .6);
   }
 }
