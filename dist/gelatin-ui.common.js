@@ -3752,7 +3752,7 @@ exports = module.exports = __webpack_require__("2350")(false);
 
 
 // module
-exports.push([module.i, ".fade-enter-active,.fade-leave-active{-webkit-transition:opacity .2s ease-in-out;transition:opacity .2s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.ui-card{background:#fff;position:relative;display:inline-block;width:100%;border-radius:14px;padding:1em}.ui-card-shadow{-webkit-transition:all .2s linear;transition:all .2s linear;-webkit-box-shadow:0 3px 26px rgba(0,0,0,.1);box-shadow:0 3px 26px rgba(0,0,0,.1)}.ui-card-shadow-hover:hover{-webkit-transform:translateY(-6px);transform:translateY(-6px);-webkit-box-shadow:4px 4px 32px rgba(0,0,0,.2);box-shadow:4px 4px 32px rgba(0,0,0,.2)}", ""]);
+exports.push([module.i, ".fade-enter-active,.fade-leave-active{-webkit-transition:opacity .2s ease-in-out;transition:opacity .2s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.ui-card{background:#fff;position:relative;display:inline-block;width:100%;border-radius:14px;padding:22px}.ui-card-shadow{-webkit-transition:all .2s linear;transition:all .2s linear;-webkit-box-shadow:0 3px 26px rgba(0,0,0,.1);box-shadow:0 3px 26px rgba(0,0,0,.1)}.ui-card-shadow-hover:hover{-webkit-transform:translateY(-6px);transform:translateY(-6px);-webkit-box-shadow:4px 4px 32px rgba(0,0,0,.2);box-shadow:4px 4px 32px rgba(0,0,0,.2)}", ""]);
 
 // exports
 
@@ -7823,7 +7823,7 @@ exports = module.exports = __webpack_require__("2350")(false);
 
 
 // module
-exports.push([module.i, ".fade-enter-active,.fade-leave-active{-webkit-transition:opacity .2s ease-in-out;transition:opacity .2s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.ui-input{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;height:46px;margin:1rem 0;border-radius:7px;border:1px solid #e9ebee;padding:11px 0;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out}.ui-input,.ui-input .ui-input-inner{width:100%;font-size:16px;color:#333}.ui-input .ui-input-inner{border:none;font-weight:300;line-height:46px;padding:0 12px;background:#fff}.ui-input .ui-input-inner::-webkit-input-placeholder{color:#9b9b9b}.ui-input-focusin{border-color:#34f7da;-webkit-box-shadow:0 0 10px rgba(0,0,0,.1);box-shadow:0 0 10px rgba(0,0,0,.1)}.ui-input-focusin .ui-input-prefix,.ui-input-focusin .ui-input-suffix{color:#08d7b8}.ui-input-focusin.ui-input-disabled .ui-input-prefix,.ui-input-focusin.ui-input-disabled .ui-input-suffix,.ui-input-focusin.ui-input-readonly .ui-input-prefix,.ui-input-focusin.ui-input-readonly .ui-input-suffix{color:#9b9b9b}.ui-input-disabled,.ui-input-disabled .ui-input-inner{cursor:not-allowed;background:#e9ebee;border-color:#9b9b9b}.ui-input-readonly,.ui-input-readonly .ui-input-inner{border-color:#9b9b9b;color:#9b9b9b;cursor:crosshair}.ui-input-with-prefix .ui-input-inner{margin-top:2px;padding-left:0}.ui-input-with-suffix .ui-input-inner{padding-right:0}.ui-input-with-error{border-color:#ea4335;position:relative}.ui-input-with-error .ui-icon,.ui-input-with-error .ui-input-inner{color:#ea4335}.ui-input~.ui-v-error-list,.ui-textarea~.ui-v-error-list{margin-top:-10px}.ui-v-error-list{color:#ea4335;font-size:12px;padding:0 10px}.ui-v-error-list span:last-child em{display:none}input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #fff inset}.ui-input-clear,.ui-input-prefix,.ui-input-suffix{padding:0 8px;color:#9b9b9b;white-space:nowrap;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out}.ui-input-clear{cursor:pointer;color:#e9ebee}grammarly-ghost>div{border:2px solid #9b9b9b}grammarly-ghost span{color:#333!important}.ui-input-theme-ghost{border-color:rgba(0,0,0,.6);background:rgba(0,0,0,.3)}.ui-input-theme-ghost .ui-input-inner{background:none;color:hsla(0,0%,100%,.9)}.ui-input-theme-ghost .ui-input-inner::-webkit-input-placeholder{color:#e9ebee}.ui-input-theme-ghost .ui-input-clear,.ui-input-theme-ghost .ui-input-prefix,.ui-input-theme-ghost .ui-input-suffix{color:#fff}.ui-input-theme-ghost.ui-input-focusin{border-color:rgba(0,0,0,.8)}.ui-input-theme-ghost.ui-input-with-error{border-color:rgba(234,67,53,.6)}", ""]);
+exports.push([module.i, ".fade-enter-active,.fade-leave-active{-webkit-transition:opacity .2s ease-in-out;transition:opacity .2s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.ui-input{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;width:100%;height:46px;font-size:16px;margin:1rem 0;color:#333;border-radius:7px;border:1px solid #e9ebee;padding:11px 0;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out}.ui-input>.ui-spinner{margin-right:10px}.ui-input .ui-input-inner{border:none;font-size:16px;font-weight:300;line-height:46px;color:#333;width:100%;padding:0 12px;background:#fff}.ui-input .ui-input-inner::-webkit-input-placeholder{color:#9b9b9b}.ui-input-focusin{border-color:#34f7da;-webkit-box-shadow:0 0 10px rgba(0,0,0,.1);box-shadow:0 0 10px rgba(0,0,0,.1)}.ui-input-focusin .ui-input-prefix,.ui-input-focusin .ui-input-suffix{color:#08d7b8}.ui-input-focusin.ui-input-disabled .ui-input-prefix,.ui-input-focusin.ui-input-disabled .ui-input-suffix,.ui-input-focusin.ui-input-readonly .ui-input-prefix,.ui-input-focusin.ui-input-readonly .ui-input-suffix{color:#9b9b9b}.ui-input-disabled,.ui-input-disabled .ui-input-inner{cursor:not-allowed;background:#e9ebee;border-color:#9b9b9b}.ui-input-readonly,.ui-input-readonly .ui-input-inner{border-color:#9b9b9b;color:#9b9b9b;cursor:crosshair}.ui-input-with-prefix .ui-input-inner{margin-top:2px;padding-left:0}.ui-input-with-suffix .ui-input-inner{padding-right:0}.ui-input-with-error{border-color:#ea4335;position:relative}.ui-input-with-error .ui-icon,.ui-input-with-error .ui-input-inner{color:#ea4335}.ui-input~.ui-v-error-list,.ui-textarea~.ui-v-error-list{margin-top:-10px}.ui-v-error-list{color:#ea4335;font-size:12px;padding:0 10px}.ui-v-error-list span:last-child em{display:none}input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #fff inset}.ui-input-clear,.ui-input-prefix,.ui-input-suffix{padding:0 8px;color:#9b9b9b;white-space:nowrap;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out}.ui-input-clear{cursor:pointer;color:#e9ebee}grammarly-ghost>div{border:2px solid #9b9b9b}grammarly-ghost span{color:#333!important}.ui-input-theme-ghost{border-color:rgba(0,0,0,.6);background:rgba(0,0,0,.3)}.ui-input-theme-ghost .ui-input-inner{background:none;color:hsla(0,0%,100%,.9)}.ui-input-theme-ghost .ui-input-inner::-webkit-input-placeholder{color:#e9ebee}.ui-input-theme-ghost .ui-input-clear,.ui-input-theme-ghost .ui-input-prefix,.ui-input-theme-ghost .ui-input-suffix{color:#fff}.ui-input-theme-ghost.ui-input-focusin{border-color:rgba(0,0,0,.8)}.ui-input-theme-ghost.ui-input-with-error{border-color:rgba(234,67,53,.6)}", ""]);
 
 // exports
 
@@ -11044,12 +11044,12 @@ alert_alert.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_alert = (alert_alert);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/input/input.vue?vue&type=template&id=25240820&
-var inputvue_type_template_id_25240820_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-input",class:_vm.wrapClasses},[(_vm.$slots.prefix)?_c('div',{ref:"prefix",staticClass:"ui-input-prefix",on:{"click":_vm.focus}},[_vm._t("prefix")],2):_vm._e(),_c('input',{ref:"input",staticClass:"ui-input-inner",attrs:{"tabindex":_vm.tabindex,"name":_vm.name,"autofocus":_vm.autofocus,"readonly":_vm.readonly,"disabled":_vm.disabled,"type":_vm.type,"maxlength":_vm.maxLength,"minLength":_vm.minLength,"placeholder":_vm.placeholder,"autocomplete":_vm.autoComplete ? 'on' : 'off'},domProps:{"value":_vm.inputVal},on:{"input":_vm.handleInput,"focus":_vm.handleFocus,"blur":_vm.handleBlur,"keyup":[_vm.handleKeyup,function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.handleEnter($event)},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"esc",27,$event.key,"Escape")){ return null; }return _vm.handleEsc($event)}],"keydown":_vm.handleKeydown,"change":_vm.handleChange}}),_c('fade-transition',[(_vm.inputVal && _vm.showClear)?_c('div',{staticClass:"ui-input-clear",on:{"click":_vm.clear}},[_c('ui-icon',{attrs:{"name":"close-circle-fill"}})],1):_vm._e()]),(_vm.$slots.suffix)?_c('div',{ref:"suffix",staticClass:"ui-input-suffix",on:{"click":_vm.focus}},[_vm._t("suffix")],2):_vm._e()],1)}
-var inputvue_type_template_id_25240820_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/input/input.vue?vue&type=template&id=62c7f6ac&
+var inputvue_type_template_id_62c7f6ac_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-input",class:_vm.wrapClasses},[(_vm.$slots.prefix)?_c('div',{ref:"prefix",staticClass:"ui-input-prefix",on:{"click":_vm.focus}},[_vm._t("prefix")],2):_vm._e(),_c('input',{ref:"input",staticClass:"ui-input-inner",attrs:{"tabindex":_vm.tabindex,"name":_vm.name,"autofocus":_vm.autofocus,"readonly":_vm.readonly,"disabled":_vm.disabled,"type":_vm.type,"maxlength":_vm.maxLength,"minLength":_vm.minLength,"placeholder":_vm.placeholder,"autocomplete":_vm.autoComplete ? 'on' : 'off'},domProps:{"value":_vm.inputVal},on:{"input":_vm.handleInput,"focus":_vm.handleFocus,"blur":_vm.handleBlur,"keyup":[_vm.handleKeyup,function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.handleEnter($event)},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"esc",27,$event.key,"Escape")){ return null; }return _vm.handleEsc($event)}],"keydown":_vm.handleKeydown,"change":_vm.handleChange}}),_c('fade-transition',[(_vm.inputVal && _vm.showClear)?_c('div',{staticClass:"ui-input-clear",on:{"click":_vm.clear}},[_c('ui-icon',{attrs:{"name":"close-circle-fill"}})],1):_vm._e()]),_c('fade-transition',[(_vm.loading)?_c('ui-spinner'):_vm._e()],1),(_vm.$slots.suffix)?_c('div',{ref:"suffix",staticClass:"ui-input-suffix",on:{"click":_vm.focus}},[_vm._t("suffix")],2):_vm._e()],1)}
+var inputvue_type_template_id_62c7f6ac_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/input/input.vue?vue&type=template&id=25240820&
+// CONCATENATED MODULE: ./packages/input/input.vue?vue&type=template&id=62c7f6ac&
 
 // EXTERNAL MODULE: ./packages/assets/scss/input.scss
 var input = __webpack_require__("babd");
@@ -11570,6 +11570,10 @@ var vue2_transitions_m_index = {
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -11585,6 +11589,7 @@ var vue2_transitions_m_index = {
   props: {
     tabindex: Number,
     value: [String, Number],
+    loading: Boolean,
     type: {
       type: String,
       default: "text"
@@ -11615,7 +11620,8 @@ var vue2_transitions_m_index = {
   },
   components: {
     UiIcon: icon_icon,
-    FadeTransition: FadeTransition
+    FadeTransition: FadeTransition,
+    UiSpinner: spinner_spinner
   },
   computed: {
     wrapClasses: function wrapClasses() {
@@ -11689,8 +11695,8 @@ var vue2_transitions_m_index = {
 
 var input_component = normalizeComponent(
   input_inputvue_type_script_lang_js_,
-  inputvue_type_template_id_25240820_render,
-  inputvue_type_template_id_25240820_staticRenderFns,
+  inputvue_type_template_id_62c7f6ac_render,
+  inputvue_type_template_id_62c7f6ac_staticRenderFns,
   false,
   null,
   null,

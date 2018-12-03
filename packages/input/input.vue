@@ -9,6 +9,9 @@
         <ui-icon name="close-circle-fill"></ui-icon>
       </div>
     </fade-transition>
+    <fade-transition>
+      <ui-spinner v-if="loading"></ui-spinner>
+    </fade-transition>
     <div class="ui-input-suffix" @click="focus" v-if="$slots.suffix" ref="suffix">
       <slot name="suffix"></slot>
     </div>
@@ -20,6 +23,7 @@
 <script>
 import "../assets/scss/input.scss";
 import UiIcon from "../icon/icon.vue";
+import UiSpinner from '../spinner/spinner.vue'
 import { FadeTransition } from "vue2-transitions";
 export default {
   name: "ui-input",
@@ -34,6 +38,7 @@ export default {
   props: {
     tabindex: Number,
     value: [String, Number],
+    loading: Boolean,
     type: {
       type: String,
       default: "text"
@@ -63,7 +68,8 @@ export default {
   },
   components: {
     UiIcon,
-    FadeTransition
+    FadeTransition,
+    UiSpinner
   },
   computed: {
     wrapClasses() {
