@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.13"></a>
+## [0.0.13](https://github.com/leafiy/gelatin-ui/compare/v0.0.12...v0.0.13) (2018-12-03)
+
+
+### Bug Fixes
+
+* **fix validation bugs:** validation增加状态事件，简化使用方法 ([41863ad](https://github.com/leafiy/gelatin-ui/commit/41863ad))
+
+
+
 <a name="0.0.12"></a>
 ## [0.0.12](https://github.com/leafiy/gelatin-ui/compare/v0.0.11...v0.0.12) (2018-12-02)
 
