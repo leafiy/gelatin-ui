@@ -5,9 +5,6 @@ const BackdropConstructor = Vue.extend(Backdrop);
 
 
 const Render = function({ el, options = {} }) {
-
-
-
   if (options.global) {
     this.backdrop = new BackdropConstructor({
       el: document.createElement('div'),

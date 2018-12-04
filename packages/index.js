@@ -25,6 +25,7 @@ import { Backdrop, Cover } from "./backdrop/index.js";
 import Autocomplete from "./autocomplete/index.js";
 import Loading from "./loading/index.js";
 import Mask from "./mask/index.js";
+import {Modal,$Modal} from './modal/index.js'
 import V from "./v/index.js";
 const components = [
   Avatar,
@@ -51,7 +52,8 @@ const components = [
   Tag,
   Hr,
   Backdrop,
-  Textarea
+  Textarea,
+  Modal
 ];
 
 
@@ -61,6 +63,7 @@ const install = function(Vue) {
   Vue.prototype.$Popover = Popover;
   Vue.prototype.$Toast = Toast;
   Vue.prototype.$Cover = Cover;
+  Vue.prototype.$Modal = $Modal;
   Vue.directive(Tooltip.name, Tooltip);
   Vue.directive(Hightlight.name, Hightlight);
   Vue.directive(Loading.name, Loading);

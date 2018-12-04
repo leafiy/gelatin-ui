@@ -47,7 +47,12 @@
 .ui-btn-size {
   &-sm {
     height: 28px;
-    line-height: 28px
+    line-height: 28px;
+    font-size: 13px;
+
+    &.ui-btn-shadow {
+      box-shadow: $shadow-light;
+    }
   }
 
   &-md {
@@ -81,7 +86,15 @@
   // }
 }
 
+.ui-btn-normal {
+  color: $black;
+  background: #fff;
 
+  &:hover {
+    color: $primary-color;
+    background: lighten($lighter, 6%);
+  }
+}
 
 
 .ui-btn-ghost {
@@ -147,12 +160,14 @@
   flex-direction: row;
   flex-wrap: wrap;
   flex: 0 1 auto;
-  background:none;
+  background: none;
+
   .ui-btn {
     margin: 0;
     border-radius: 0;
     flex: 1;
     box-shadow: none;
+
     &:last-child {
       border-radius: 0 $radius/1.4 $radius/1.4 0;
     }
@@ -160,9 +175,20 @@
     &:first-child {
       border-radius: $radius/1.4 0 0 $radius/1.4;
     }
+
+    &:last-child:not(.ui-btn-border) {
+      border-right: none;
+    }
+
+    // normal ghost border
+    &-primary,
+    &-warning,
+    &-error {
+      border-right: 1px solid rgba(255, 255, 255, .5);
+    }
   }
 
-  &-shadow{
+  &-shadow {
     box-shadow: $shadow;
   }
 

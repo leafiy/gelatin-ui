@@ -24,6 +24,7 @@ module.exports = {
       ['/popover/', 'Popover 弹出'],
       ['/checkbox/', 'Checkbox'],
       ['/radio/', 'Radio'],
+      ['/modal/', 'Modal'],
     ]
   },
   lastUpdated: 'Last Updated',

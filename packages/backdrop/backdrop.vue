@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="ui-backdrop" v-if="isMounted" :style="styles" :class="classes" @click="click">
+    <div class="ui-backdrop" v-if="show" :style="styles" :class="classes" @click="click">
       <slot></slot>
       <ui-spinner v-if="showSpinner"></ui-spinner>
       <span v-if="text">{{text}}</span>
@@ -16,7 +16,7 @@ export default {
   name: 'ui-backdrop',
   data() {
     return {
-      isMounted: false,
+      show: false,
     }
   },
   components: {
@@ -26,10 +26,11 @@ export default {
     type: {
       type: String
     },
+    onClick: Function,
     showSpinner: Boolean,
     zIndex: Number,
     global: Boolean,
-    text:String,
+    text: String,
     closeOnClick: Boolean,
     radius: [Number, String],
     color: {
@@ -56,13 +57,16 @@ export default {
       if (this.closeOnClick) {
         this.close()
       }
+      if (this.onClick && typeof this.onClick == 'function') {
+        this.onClick()
+      }
     },
     close() {
-      this.isMounted = false
+      this.show = false
     }
   },
   mounted() {
-    this.isMounted = true
+    this.show = true
     if (this.global) {
       events.$on('close-backdrop', this.close)
     }

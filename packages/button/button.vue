@@ -29,7 +29,8 @@ export default {
           "border",
           "warning",
           "error",
-          "ghost"
+          "ghost",
+          "normal"
         ].includes(value);
       },
       default: 'primary'

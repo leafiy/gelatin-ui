@@ -6,8 +6,9 @@ Backdrop.install = function(Vue) {
   Vue.component(Backdrop.name, Backdrop);
 };
 
-const Cover = () => {
-  let cover = new RenderCover({ options: { global: true } })
+const Cover = (options = {}) => {
+  options = Object.assign(options, { global: true })
+  let cover = new RenderCover({options})
   return cover.backdrop
 }
 

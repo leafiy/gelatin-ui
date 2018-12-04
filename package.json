@@ -38,7 +38,7 @@
     "sass-loader": "^7.0.1",
     "standard-version": "^4.4.0",
     "vue-template-compiler": "^2.5.17",
-    "vuepress": "^1.0.0-alpha.25",
+    "vuepress": "^1.0.0-alpha.27",
     "webpack-bundle-analyzer": "^3.0.3"
   },
   "lint-staged": {
