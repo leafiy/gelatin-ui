@@ -10,7 +10,8 @@
     "publish-dev": "lint-staged && npm run build && git add . && git cz && git push",
     "publish-master": "standard-version && git push",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "autosize": "^4.0.2",
