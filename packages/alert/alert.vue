@@ -1,87 +1,55 @@
 <template>
   <transition name="fade">
     <div v-if="!closed" :class="wrapClasses">
-      <span class="alert-icon" v-if="showIcon">
-                <slot name="icon">
-                    <ui-icon :name="iconType"></ui-icon>
-                </slot>
+      <span class="ui-alert-icon" v-if="showIcon">
+               <slot name="icon"></slot>
             </span>
-      <div class="alert-title" v-if="$slots.title">
+      <div class="ui-alert-title" v-if="$slots.title">
         <slot name="title"></slot>
       </div>
-      <div class="alert-message" v-if="$slots.message">
-        <slot name="message"></slot>
+      <div class="ui-alert-message" v-if="$slots.default">
+        <slot></slot>
       </div>
-      <a class="alert-close" v-if="closable" @click="close">
-        <slot name="close">
-          <ui-icon name="icon-close-circle-fill"></ui-icon>
-        </slot>
-      </a>
-      <slot></slot>
+      <ui-icon class="ui-alert-close-icon" name="icon-close-circle-fill" v-if="closeable" @click.native="close"></ui-icon>
     </div>
   </transition>
 </template>
 <script>
 import '../assets/scss/alert.scss'
-import UiCard from '../card/card.vue'
+
 export default {
-  name: "ui-lert",
+  name: "ui-alert",
   props: {
     type: {
       validator(value) {
-        return ["success", "warning", "error"].includes(value);
+        return ["success", "warning", "error", "normal"].includes(value);
       },
       default: "success"
     },
-    closable: {
-      type: Boolean,
-      default: false
-    },
-    showIcon: {
-      type: Boolean,
-      default: false
-    }
+    closeable: Boolean,
+    showIcon: Boolean,
+    fill: Boolean
   },
   data() {
     return {
       closed: false
     };
   },
-  components: {
-    UiCard
-  },
   computed: {
     wrapClasses() {
       return [
         `ui-alert`,
         `ui-alert-${this.type}`,
-        {
-          [`ui-alert-with-icon`]: this.showIcon
-        }
+        this.showIcon && `ui-alert-with-icon`,
+        this.$slots.title && `ui-alert-with-title`,
+        this.fill && `ui-alert-fill`
       ];
-    },
-    iconType() {
-      let type = "";
-
-      switch (this.type) {
-        case "success":
-          type = "icon-check-circle-fill";
-          break;
-        case "warning":
-          type = "icon-info-circle-fill";
-          break;
-        case "error":
-          type = "icon-minus-circle-fill";
-          break;
-      }
-
-      return type;
     }
   },
   methods: {
     close(e) {
       this.closed = true;
-      this.$emit("on-close", e);
+      this.$emit("close", e);
     }
   }
 };

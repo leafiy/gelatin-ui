@@ -2,69 +2,98 @@
 
 .ui-alert {
   position: relative;
-  padding: 12px 38px 12px 16px;
-  line-height: 16px;
-  margin-bottom: 20px;
+  padding: 16px 43px 16px 28px;
+  line-height: 18px;
+  margin: 20px 0;
   background-color: #fff;
   box-shadow: $shadow;
-}
-
-.ui-alert.ui-alert-with-icon {
-  padding: 12px 38px 12px 66px;
-}
-
-.ui-alert-icon {
-  font-size: 22px;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 16px;
-  position: absolute
-}
-
-.ui-alert-title {
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-.ui-alert-success {
-  border-left: 3px solid $primary-color;
-
-  .ui-alert-icon {
-    color: $primary-color
-  }
-}
-
-
-
-.ui-alert-warning {
-  border-left: 3px solid $warning-color;
-
-  .ui-alert-icon {
-    color: $warning-color;
-  }
-}
-
-
-.ui-alert-error {
-  border-left: 3px solid $error-color;
-
-  .ui-alert-icon {
-    color: $error-color;
-  }
-}
-
-
-.ui-alert-close {
-  font-size: 12px;
-  position: absolute;
-  right: 16px;
-  top: 8px;
   overflow: hidden;
-  cursor: pointer
-}
+  border-radius: $radius/1.4;
 
-.ui-alert-action {
-  position: absolute;
-  right: 32px;
-  top: 16px;
+  &-title {
+    * {
+      margin: 0;
+    }
+
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  &:before {
+    content: ' ';
+    left: 0;
+    top: 0;
+    height: 100%;
+    position: absolute;
+    width: 14px;
+  }
+
+  &-success {
+    &:before {
+      background: $primary-color;
+    }
+  }
+
+  &-error {
+    &:before {
+      background: $error-color;
+    }
+  }
+
+  &-warning {
+    &:before {
+      background: $warning-color;
+    }
+  }
+
+  &-fill {
+    color: #fff;
+
+    .ui-alert-close-icon {
+      &:hover {
+        color: #fff;
+        transform: rotate(-90deg);
+      }
+    }
+
+    &.ui-alert-success {
+      background: $primary-color;
+    }
+    &.ui-alert-warning {
+      background: $warning-color;
+    }
+    &.ui-alert-error {
+      background: $error-color;
+    }
+    &.ui-alert-normal {
+      background: #fff;
+      color:$black;
+    }
+  }
+
+
+  &-with-title {
+    .ui-alert-close-icon {
+      top: 16px;
+      transform: translateY(0);
+    }
+  }
+
+  &-close-icon {
+    color: $lighter;
+    font-size: 20px;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    position: absolute;
+
+    &:hover {
+      color: $primary-color;
+      transform: rotate(-90deg);
+    }
+  }
+
 }

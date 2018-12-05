@@ -25,6 +25,7 @@ const Toast = function(options) {
   }
   const id = nanoid();
 
+  options.position = position
   options.closeToast = function() {
     Toast.closeToast(id);
   };
@@ -32,8 +33,9 @@ const Toast = function(options) {
     // el: document.createElement("div"),
     data: options
   });
-  instance.show = true;
+
   instance.$mount();
+  instance.show = true;
   instance.$id = id;
   toastContainer[p].appendChild(instance.$el);
   instances.push(instance);

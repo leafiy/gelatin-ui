@@ -1,10 +1,13 @@
 @import './var.scss';
 
 .ui-confirm {
+  text-align: center;
+
   .ui-modal-content {
     padding: 0;
   }
-  .ui-confirm-content{
-   padding:20px 0;
+
+  .ui-confirm-content {
+    padding: 20px 0;
   }
 }

@@ -29,6 +29,7 @@ import { Confirm, $Confirm } from './confirm/index.js'
 import { Modal, $Modal } from './modal/index.js'
 import V from "./v/index.js";
 import Progress from './progress/index.js'
+import Marquee from './marquee/index.js'
 const components = [
   Avatar,
   Icon,
@@ -57,7 +58,8 @@ const components = [
   Textarea,
   Modal,
   Confirm,
-  Progress
+  Progress,
+  Marquee
 ];
 
 
@@ -110,5 +112,6 @@ export default {
   Textarea,
   V,
   Confirm,
-  Progress
+  Progress,
+  Marquee
 };

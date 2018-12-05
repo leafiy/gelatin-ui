@@ -1,5 +1,5 @@
 # gelatin-ui
-vue 2.0 ui toolkit
+vue 2.0 ui toolkit [Document](https://leafiy.github.io/gelatin-ui/)
 
 ## git commit message
 

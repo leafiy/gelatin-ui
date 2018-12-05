@@ -3,7 +3,7 @@ import Backdrop from '../backdrop/backdrop.vue'
 const BackdropConstructor = Vue.extend(Backdrop);
 import RenderBackdrop from '../backdrop/render.js'
 
-const render = function({ el, options }) {
+const render = function({ el, options = {} }) {
   options.showSpinner = true
   el.loading = new RenderBackdrop({ el, options })
 }
@@ -12,8 +12,10 @@ export default {
   name: "ui-loading",
   inserted(el, binding, vnode) {
     if (typeof binding.value == 'object' || binding.value) {
-      let options = typeof binding.value == 'object' ? binding.value : {}
-      render({ el, options })
+      let options = typeof binding.value == 'object' != null ? binding.value : {}
+      if (binding.value) {
+        render({ el, options })
+      }
     }
 
   },

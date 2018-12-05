@@ -55,7 +55,7 @@ $lg:75;
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .2s ease-in-out;
+  transition: opacity .3s ease-in-out;
 }
 
 .fade-enter,
@@ -65,3 +65,9 @@ $lg:75;
 
 
 
+.show-toast-content-enter-active,.show-toast-content-leave-active{
+
+}
+.show-toast-content-enter,.show-toast-content-leave-to{
+
+}

@@ -6,6 +6,7 @@ module.exports = {
   description: '🎨 A vuejs ui toolkit from unicapsule.com',
   port: 8108,
   host: "localhost",
+  base:"/gelatin-ui/",
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
@@ -26,7 +27,9 @@ module.exports = {
       ['/radio/', 'Radio'],
       ['/modal/', 'Modal'],
       ['/confirm/', 'Confirm'],
-      ['/progress/', 'Progress']
+      ['/progress/', 'Progress'],
+      ['/alert/', 'Alert'],
+      ['/toast/', 'Toast']
     ]
   },
   lastUpdated: 'Last Updated',
