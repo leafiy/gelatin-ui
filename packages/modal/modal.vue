@@ -3,15 +3,15 @@
     <div class="ui-modal" :class="classes" v-if="isShow" :style="styles">
       <div class="ui-modal-inner">
         <ui-icon @click.native="closeModal" name="close" class="ui-modal-close-icon"></ui-icon>
-        <div class="ui-modal-header">
+        <div class="ui-modal-header" v-if="header || $slots.header">
           <div v-if="header" v-html="header"></div>
           <slot name="header"></slot>
         </div>
-        <div class="ui-modal-content">
+        <div class="ui-modal-content" v-if="content || $slots.default">
           <div v-if="content" v-html="content"></div>
           <slot></slot>
         </div>
-        <div class="ui-modal-footer">
+        <div class="ui-modal-footer" v-if="footer || $slots.footer">
           <div v-if="footer" v-html="footer"></div>
           <ui-button-group class="ui-modal-btn" size="sm" v-if="buttons.length">
             <ui-button v-for="btn of buttons" :type="btn.type" :key="btn.text" @click.native="()=>{btn.action && btn.action()}">{{btn.text}}</ui-button>
@@ -52,7 +52,8 @@ export default {
   computed: {
     classes() {
       return [
-        this.isShow && 'ui-modal-active'
+        this.isShow && 'ui-modal-active',
+        this.confirm && 'ui-confirm'
       ]
     },
     modalTransition() {
@@ -65,6 +66,7 @@ export default {
     }
   },
   props: {
+    confirm: Boolean,
     zIndex: Number,
     showBackdrop: {
       type: Boolean,
@@ -113,7 +115,10 @@ export default {
         import('../../src/utils/scrollbar.js').then(module => {
           let scrollbarWidth = module.default()
           document.body.style.overflow = 'hidden'
-          document.body.style.paddingRight = scrollbarWidth + 'px'
+          if (scrollbarWidth > 0) {
+            document.body.style.paddingRight = scrollbarWidth + 'px'
+
+          }
         })
 
       }

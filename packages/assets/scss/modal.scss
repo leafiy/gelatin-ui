@@ -7,7 +7,10 @@
   transform: translate3d(-50%, -50%, 0);
   min-width: 360px;
   z-index: 1200;
-
+  max-width: 99%;
+  @include sm{
+    max-width: 95%;
+  }
   &-inner {
     position: relative;
     border-radius: $radius;

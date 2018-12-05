@@ -25,6 +25,7 @@ module.exports = {
       ['/checkbox/', 'Checkbox'],
       ['/radio/', 'Radio'],
       ['/modal/', 'Modal'],
+      ['/confirm/', 'Confirm']
     ]
   },
   lastUpdated: 'Last Updated',

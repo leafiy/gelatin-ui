@@ -25,6 +25,7 @@ import { Backdrop, Cover } from "./backdrop/index.js";
 import Autocomplete from "./autocomplete/index.js";
 import Loading from "./loading/index.js";
 import Mask from "./mask/index.js";
+import {Confirm,$Confirm} from './confirm/index.js'
 import {Modal,$Modal} from './modal/index.js'
 import V from "./v/index.js";
 const components = [
@@ -53,7 +54,8 @@ const components = [
   Hr,
   Backdrop,
   Textarea,
-  Modal
+  Modal,
+  Confirm
 ];
 
 
@@ -64,6 +66,7 @@ const install = function(Vue) {
   Vue.prototype.$Toast = Toast;
   Vue.prototype.$Cover = Cover;
   Vue.prototype.$Modal = $Modal;
+  Vue.prototype.$Confirm = $Confirm;
   Vue.directive(Tooltip.name, Tooltip);
   Vue.directive(Hightlight.name, Hightlight);
   Vue.directive(Loading.name, Loading);
@@ -103,5 +106,6 @@ export default {
   Hr,
   Backdrop,
   Textarea,
-  V
+  V,
+  Confirm
 };

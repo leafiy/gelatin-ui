@@ -154,7 +154,6 @@
 }
 
 
-
 .ui-btn-group {
   display: flex;
   flex-direction: row;
@@ -162,12 +161,16 @@
   flex: 0 1 auto;
   background: none;
 
+
+
   .ui-btn {
     margin: 0;
     border-radius: 0;
     flex: 1;
-    box-shadow: none;
 
+    &-shadow{
+      box-shadow:$shadow-light;
+    }
     &:last-child {
       border-radius: 0 $radius/1.4 $radius/1.4 0;
     }
@@ -188,9 +191,21 @@
     }
   }
 
-  &-shadow {
-    box-shadow: $shadow;
+  &-gutter {
+    .ui-btn {
+      margin-right: 10px;
+
+      &:last-child {
+        border-radius: $radius/1.4;
+        margin-right: 0;
+      }
+
+      &:first-child {
+        border-radius: $radius/1.4;
+      }
+    }
   }
+
 
   &-vertical {
     flex-direction: column;

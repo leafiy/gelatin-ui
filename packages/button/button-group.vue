@@ -12,19 +12,20 @@ export default {
       validator(value) {
         return ["sm", "lg", 'md'].includes(value);
       },
-      default: "md"
+      default: "md",
+
     },
     vertical: Boolean,
-    shadow: Boolean
+    gutter: Boolean
   },
   computed: {
     classes() {
       return [
         `ui-btn-group`,
+        this.gutter && `ui-btn-group-gutter`,
         {
           [`ui-btn-group-size-${this.size}`]: !!this.size,
           [`ui-btn-group-vertical`]: this.vertical,
-          [`ui-btn-group-shadow`]: this.shadow
         }
       ];
     }
