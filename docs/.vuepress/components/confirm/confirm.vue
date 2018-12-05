@@ -1,12 +1,14 @@
 <template>
   <div class="container">
-    <ui-button @click.native="openConfirm">组件调用</ui-button>
-    <ui-button @click.native="openConfirmJS">JS调用</ui-button>
-    <ui-hr></ui-hr>
-    <ui-confirm v-model="showConfirm" @confirm="confirm" @cancel="cancel">
-      <b slot="header">Header</b>
-      Content
-    </ui-confirm>
+    <ClientOnly>
+      <ui-button @click.native="openConfirm">组件调用</ui-button>
+      <ui-button @click.native="openConfirmJS">JS调用</ui-button>
+      <ui-hr></ui-hr>
+      <ui-confirm v-model="showConfirm" @confirm="confirm" @cancel="cancel">
+        <b slot="header">Header</b>
+        Content
+      </ui-confirm>
+    </ClientOnly>
   </div>
 </template>
 <script>

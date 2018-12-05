@@ -1,7 +1,6 @@
 import Pop from '../popover/popover.js'
 import nanoid from 'nanoid'
 import '../assets/scss/tooltip.scss'
-import mousePosition from '../../src/utils/mousePosition.js'
 
 const options = {
   closeOnMouseleave: true,
@@ -36,21 +35,24 @@ const Tooltip = (el, value) => {
 
     }
   })
+  import('../../src/utils/mousePosition.js').then(module => {
+    el.addEventListener('mouseleave', (e) => {
+      setTimeout(() => {
+        let mousePosition = module.default
+        let target = mousePosition().target
+        if (!el.tooltip.$el.contains(target)) {
+          setTimeout(() => {
+            el.tooltip.show = false
+          }, options.closeDelay)
+        }
+        el.tooltip.$el.addEventListener('mouseleave', () => {
+          setTimeout(() => {
+            el.tooltip.show = false
+          }, options.closeDelay)
+        })
 
-  el.addEventListener('mouseleave', (e) => {
-    setTimeout(() => {
-      let target = mousePosition().target
-      if (!el.tooltip.$el.contains(target)) {
-        setTimeout(() => {
-          el.tooltip.show = false
-        }, options.closeDelay)
-      }
-      el.tooltip.$el.addEventListener('mouseleave', () => {
-        setTimeout(() => {
-          el.tooltip.show = false
-        }, options.closeDelay)
-      })
-    }, 200)
+      }, 200)
+    })
   })
 
 
@@ -63,7 +65,9 @@ const Tooltip = (el, value) => {
 export default {
   name: "ui-tooltip",
   inserted(el, binding, vnode) {
+    let value = binding.value
 
+    new Tooltip(el, value)
   },
   update(el, binding, vnode) {
     if (!binding.value) {

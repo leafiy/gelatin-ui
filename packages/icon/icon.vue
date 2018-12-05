@@ -6,20 +6,25 @@
 <script>
 import "../assets/scss/icon.scss";
 import "../assets/image/iconfont.svg";
-import "./iconfont.js";
+
 export default {
   name: "ui-icon",
   props: {
     name: String
   },
+  mounted() {
+    import("./iconfont.js").then(module => {
+    })
+  },
   computed: {
     iconId() {
-      return this.name
-        ? this.name.startsWith("icon-")
-          ? `#${this.name}`
-          : `#icon-${this.name}`
-        : "";
+      return this.name ?
+        this.name.startsWith("icon-") ?
+        `#${this.name}` :
+        `#icon-${this.name}` :
+        "";
     }
   }
 };
+
 </script>

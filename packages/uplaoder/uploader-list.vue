@@ -1,12 +1,6 @@
 <template>
   <div class="ui-upload-list">
-    <div
-      v-for="(file, index) of fileList"
-      :key="file.id || file.uid"
-      :class="'ui-upload-file-' + file.status"
-      class="ui-upload-file-item"
-      :style="listItemStyles"
-    >
+    <div v-for="(file, index) of fileList" :key="file.id || file.uid" :class="'ui-upload-file-' + file.status" class="ui-upload-file-item" :style="listItemStyles">
       <img
         class="ui-upload-thumb"
         :src="file.url"
@@ -35,15 +29,14 @@
           @click.prevent="del(file, index);"
         ></span>
       </div>
-      <circle-progress
-        v-if="file.status == 'uploading'"
-        :percentage="file.percentage"
-      ></circle-progress>
+      <transition name="fade">
+        <ui-progress type="ring" v-if="file.status == 'uploading'" :percentage="file.percentage"></ui-progress>
+      </transition>
     </div>
   </div>
 </template>
 <script>
-import CircleProgress from "vue-svg-circle-progress";
+import UiProgress from "../progress/progress.vue";
 export default {
   name: "ui-uploader-list",
 
@@ -53,7 +46,7 @@ export default {
   props: {
     fileList: {
       type: Array,
-      default() {
+      default () {
         return [];
       }
     },
@@ -67,22 +60,19 @@ export default {
     listItemStyles() {
       if (this.listStyle == "card") {
         return {
-          width:
-            typeof this.height === "string" ? this.height : `${this.height}px`,
-          height:
-            typeof this.height === "string" ? this.height : `${this.height}px`
+          width: typeof this.height === "string" ? this.height : `${this.height}px`,
+          height: typeof this.height === "string" ? this.height : `${this.height}px`
         };
       } else {
         return {
-          height:
-            typeof this.height === "string" ? this.height : `${this.height}px`,
+          height: typeof this.height === "string" ? this.height : `${this.height}px`,
           width: typeof this.width === "string" ? this.width : `${this.width}px`
         };
       }
     }
   },
   components: {
-    CircleProgress
+    UiProgress
   },
   methods: {
     cancel(file, index) {
@@ -99,4 +89,5 @@ export default {
     }
   }
 };
+
 </script>

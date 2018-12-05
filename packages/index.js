@@ -25,9 +25,10 @@ import { Backdrop, Cover } from "./backdrop/index.js";
 import Autocomplete from "./autocomplete/index.js";
 import Loading from "./loading/index.js";
 import Mask from "./mask/index.js";
-import {Confirm,$Confirm} from './confirm/index.js'
-import {Modal,$Modal} from './modal/index.js'
+import { Confirm, $Confirm } from './confirm/index.js'
+import { Modal, $Modal } from './modal/index.js'
 import V from "./v/index.js";
+import Progress from './progress/index.js'
 const components = [
   Avatar,
   Icon,
@@ -55,7 +56,8 @@ const components = [
   Backdrop,
   Textarea,
   Modal,
-  Confirm
+  Confirm,
+  Progress
 ];
 
 
@@ -107,5 +109,6 @@ export default {
   Backdrop,
   Textarea,
   V,
-  Confirm
+  Confirm,
+  Progress
 };

@@ -46,7 +46,8 @@ export default {
       default: true
     },
     closeOnMouseleave: Boolean,
-    onClose: Function
+    onClose: Function,
+    content:String
 
   },
   components: {
@@ -72,7 +73,7 @@ export default {
       }
     },
     close(e) {
-      this.show = false;
+      // this.show = false;
 
       if (!this.key) {
         this.trigger.removeAttribute('data-popover')
@@ -83,6 +84,7 @@ export default {
     if (!isElement(this.trigger)) {
       throw new Error("trigger must be a element");
     }
+    console.log(this)
   },
   directives: {
     ClickOutside

@@ -1,0 +1,26 @@
+@import './var.scss';
+
+
+.ui-progress-type-ring {
+  position: relative;
+  text-align: center;
+
+  .ui-progress-ring-inner {
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s linear;
+  }
+
+  &::after {
+    content: attr(data-pct);
+    font-size: 10px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  svg {
+    transform: rotate(-90deg);
+  }
+}

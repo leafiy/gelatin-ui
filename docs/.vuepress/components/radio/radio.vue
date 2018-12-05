@@ -1,4 +1,5 @@
 <template>
+ <ClientOnly></ClientOnly>
 </template>
 
 <script>

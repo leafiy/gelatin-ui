@@ -115,7 +115,7 @@
   height: 100%;
   position: relative;
 
-  .circle-progress {
+  .ui-progress {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -167,9 +167,13 @@
 
   >span {
     cursor: pointer;
-    background: rgba(0, 0, 0, .7);
+    background: rgba(0, 0, 0, .5);
     color: #fff;
-    padding: 2px 4px;
+    padding: 3px 8px;
     margin-left: 4px;
+    border-radius:$radius;
+    &:hover{
+      background: rgba(0, 0, 0, .8)
+    }
   }
 }
