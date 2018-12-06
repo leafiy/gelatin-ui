@@ -13,7 +13,7 @@ export default {
     name: String
   },
   mounted() {
-    import("./iconfont.js").then(module => {
+    import(/* webpackChunkName: "vendor" */"./iconfont.js").then(module => {
     })
   },
   computed: {

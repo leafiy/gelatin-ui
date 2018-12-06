@@ -1,2 +1,0 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpgelatin_ui"]=("undefined"!==typeof self?self:this)["webpackJsonpgelatin_ui"]||[]).push([[2],{fbea:function(e,t,n){"use strict";n.r(t);var s,u,f,i=n("0f32"),a=n.n(i);function o(e){f=e.target,s=e.pageX,u=e.pageY}document.addEventListener("mousemove",a()(o,100),!1),document.addEventListener("mouseenter",a()(o,100),!1),t["default"]=function(){return{x:s,y:u,target:f}}}}]);
-//# sourceMappingURL=gelatin-ui.umd.min.2.js.map

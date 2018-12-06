@@ -35,7 +35,7 @@ const Tooltip = (el, value) => {
 
     }
   })
-  import('../../src/utils/mousePosition.js').then(module => {
+  import(/* webpackChunkName: "vendor" */'../../src/utils/mousePosition.js').then(module => {
     el.addEventListener('mouseleave', (e) => {
       setTimeout(() => {
         let mousePosition = module.default

@@ -112,7 +112,7 @@ export default {
       document.body.appendChild(this.$el)
       this.$emit('modal-open')
       if (this.disableScroll) {
-        import('../../src/utils/scrollbar.js').then(module => {
+        import(/* webpackChunkName: "vendor" */'../../src/utils/scrollbar.js').then(module => {
           let scrollbarWidth = module.default()
           document.body.style.overflow = 'hidden'
           if (scrollbarWidth > 0) {
