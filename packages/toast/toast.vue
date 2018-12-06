@@ -71,7 +71,7 @@ export default {
   computed: {
     iconName() {
       if (this.type == 'info') {
-        return this.icon ? this.icon : ''
+        return this.icon ? this.icon : 'bell'
       }
       if (this.type == 'warning') {
         return this.icon ? this.icon : 'warning-circle'

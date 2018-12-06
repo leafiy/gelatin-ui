@@ -25,3 +25,9 @@ export default {
 }
 
 </script>
+<style>
+.ui-v-error-list {
+  margin-bottom: 10px;
+}
+
+</style>

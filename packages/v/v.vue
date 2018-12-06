@@ -1,14 +1,9 @@
-<!-- <template>
-  <div class="ui-v">
-    <slot></slot>
-  </div>
-</template> -->
 <script>
 import validators from '../../src/mixins/v/validators.js'
 import Vue from 'vue'
 import Error from './error.vue'
 import isObjectEqual from '../../src/utils/isObjectEqual.js'
-Promise.almost = r => Promise.all(r.map(p => p.catch ? p.catch(e => e) : p));
+
 export default {
   name: "ui-v",
 
@@ -55,9 +50,9 @@ export default {
               let value = instance.$el.querySelector('input').value
               this.$nextTick(() => {
                 this.trigger({ name, value, rule }).then(({ name, message }) => {
-                  this.removeErros({ name, message })
+                  this.removeErro({ name, message })
                 }).catch(({ name, message }) => {
-                  this.parseErrors({ name, message })
+                  this.parseError({ name, message })
                 })
               })
             })
@@ -99,9 +94,9 @@ export default {
           v.forEach(item => {
             if (item.status == 'rejected') {
               errors.push(item.e)
-              this.parseErrors(item.e)
+              this.parseError(item.e)
             } else {
-              this.removeErros(item.v)
+              this.removeErro(item.v)
             }
           })
           if (errors.length) {
@@ -113,7 +108,7 @@ export default {
       })
     },
 
-    parseErrors({ name, message }) {
+    parseError({ name, message }) {
       let instance = this.fields[name]
       if (instance) {
         instance.errors = true
@@ -130,7 +125,7 @@ export default {
       }
       this.$emit('add-error', newError)
     },
-    removeErros({ name, message }) {
+    removeErro({ name, message }) {
       let newError = { name, message }
       let instance = this.fields[name]
       this.errors.forEach((error, index) => {
