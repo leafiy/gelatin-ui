@@ -29,7 +29,8 @@ module.exports = {
       ['/confirm/', 'Confirm'],
       ['/progress/', 'Progress'],
       ['/alert/', 'Alert'],
-      ['/toast/', 'Toast']
+      ['/toast/', 'Toast'],
+      ['/message/','Message']
     ]
   },
   lastUpdated: 'Last Updated',

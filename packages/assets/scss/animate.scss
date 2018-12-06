@@ -1,0 +1,169 @@
+
+@keyframes bounceIn {
+
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3) translateY(-50%);
+  }
+
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1) translateY(-50%);
+  }
+
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9) translateY(-50%);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03) translateY(-50%);
+  }
+
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97) translateY(-50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1) translateY(-50%);
+  }
+}
+
+.bounceIn {
+  animation-duration: 0.6s;
+  animation-name: bounceIn;
+}
+
+
+@keyframes slideOutLeft {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0;
+  }
+}
+
+.slideOutLeft {
+  animation-name: slideOutLeft;
+}
+
+@keyframes slideOutRight {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0;
+  }
+}
+
+.slideOutRight {
+  animation-name: slideOutRight;
+}
+
+@keyframes slideInRight {
+  from {
+    // transform: translate3d(100%, 0, 0);
+    visibility: visible;
+    width: 0;
+    // opacity: 0;
+  }
+
+  to {
+    // transform: translate3d(0, 0, 0);
+    width: 100%;
+    // opacity: 1;
+  }
+}
+
+.slideInRight {
+  animation-name: slideInRight;
+}
+
+@keyframes slideInLeft {
+  from {
+    // transform: translate3d(-100%, 0, 0);
+    // visibility: visible;
+    width: 0;
+  }
+
+  to {
+    // transform: translate3d(0, 0, 0);
+    width: 100%;
+  }
+}
+
+.slideInLeft {
+  animation-name: slideInLeft;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInDown {
+  animation-name: slideInDown;
+}
+
+@keyframes slideOutUp {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+.slideOutUp {
+  animation-name: slideOutUp;
+}
+
+
+
+
+
+
+
+
+
+
+.animated {
+  animation-duration: .3s;
+  animation-fill-mode: both;
+}
+
+

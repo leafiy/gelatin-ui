@@ -1,14 +1,13 @@
 <template>
   <div class="container">
-    <ui-button-group size="sm">
-      <ui-button @click.native="toast1">Normal</ui-button>
-      <ui-button @click.native="">Toast</ui-button>
-      <ui-button @click.native="">Toast</ui-button>
-      <ui-button @click.native="">Toast</ui-button>
-      <ui-button @click.native="">Toast</ui-button>
-      <ui-button @click.native="">Toast</ui-button>
-      <ui-button @click.native="">Toast</ui-button>
-    </ui-button-group>
+    <ui-button @click.native="toast1">Normal</ui-button>
+    <ui-button @click.native="toast2">close event</ui-button>
+    <ui-button @click.native="toast3">click icon event</ui-button>
+    <ui-button @click.native="toast4">warning</ui-button>
+    <ui-button @click.native="toast5">error</ui-button>
+    <ui-button @click.native="toast6">position:{x:right,y:bottom}</ui-button>
+    <ui-button @click.native="toast7">position:{x:center,y:top}</ui-button>
+    <ui-button @click.native="toast8">position:{x:center,y:center}</ui-button>
   </div>
 </template>
 <script>
@@ -24,12 +23,70 @@ export default {
   methods: {
     toast1() {
       this.$Toast({
-        title: 'Normal Toast',
+        message: 'Normal Toast',
         duration: 2000,
-        icon:"user",
-        onClose:()=>{
-          alert('close')
+        icon: "user"
+      })
+    },
+    toast2() {
+      this.$Toast({
+        message: 'Normal Toast',
+        duration: 2000,
+        icon: "user",
+        onClose: () => {
+          this.$Toast('toast closed')
         }
+      })
+    },
+    toast3() {
+      this.$Toast({
+        message: 'click icon event',
+        duration: 2000,
+        icon: "user",
+        onClick: () => {
+          alert('你点了图标')
+        },
+      })
+    },
+    toast4() {
+      this.$Toast({
+        type: 'warning',
+        message: 'warning message',
+        duration: 2000,
+        icon: "stop"
+      })
+    },
+    toast5() {
+      this.$Toast({
+        type: 'error',
+        message: 'error message',
+        icon: "stop"
+      })
+    },
+    toast6() {
+      this.$Toast({
+        type: 'warning',
+        message: 'warning message on left bottom warning message on left bottom',
+        icon: "stop",
+        position: { x: 'left', y: "bottom" }
+      })
+    },
+    toast7() {
+      this.$Toast({
+        type: 'warning',
+        message: 'warning message on center top',
+        icon: "stop",
+        duration: 5000,
+        position: { x: 'center', y: "top" }
+      })
+    }
+    ,
+    toast8() {
+      this.$Toast({
+        type: 'error',
+        message: 'warning message on center of window',
+        icon: "stop",
+        position: { x: 'center', y: "center" }
       })
     }
   }

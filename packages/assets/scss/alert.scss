@@ -86,13 +86,11 @@
     top: 50%;
     right: 16px;
     transform: translateY(-50%);
-    transition: all .2s ease-in-out;
     cursor: pointer;
     position: absolute;
-
+    @extend .close-icon;
     &:hover {
       color: $primary-color;
-      transform: rotate(-90deg);
     }
   }
 

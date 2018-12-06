@@ -25,11 +25,10 @@
     right: 22px;
     cursor: pointer;
     font-size:16px;
-    transition:transform .2s ease-in-out;
     &:hover{
      color: $primary-color;
-     transform: rotate(-90deg);
     }
+    @extend .close-icon;
   }
   &-header{
    font-size:18px;

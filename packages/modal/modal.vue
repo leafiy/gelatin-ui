@@ -28,7 +28,7 @@ import UiIcon from '../icon/icon.vue'
 import UiButtonGroup from '../button/button-group.vue'
 import UiButton from '../button/button.vue'
 import '../assets/scss/modal.scss'
-import { Cover } from '../backdrop/index.js'
+import { $Cover } from '../backdrop/index.js'
 export default {
 
   name: 'ui-modal',
@@ -125,7 +125,7 @@ export default {
     },
     openCover() {
       if (!this.cover) {
-        this.cover = new Cover({
+        this.cover = new $Cover({
           closeOnClick: this.closeOnClick,
           color: this.backdropColor,
           onClick: () => {

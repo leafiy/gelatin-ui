@@ -63,11 +63,10 @@ $lg:75;
   opacity: 0;
 }
 
-
-
-.show-toast-content-enter-active,.show-toast-content-leave-active{
-
-}
-.show-toast-content-enter,.show-toast-content-leave-to{
-
+.close-icon {
+  cursor: pointer;
+  transition: transform .2s ease-in-out;
+  &:hover {
+    transform: rotate(-90deg);
+  }
 }

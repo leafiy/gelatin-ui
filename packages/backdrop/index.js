@@ -6,16 +6,16 @@ Backdrop.install = function(Vue) {
   Vue.component(Backdrop.name, Backdrop);
 };
 
-const Cover = (options = {}) => {
+const $Cover = (options = {}) => {
   options = Object.assign(options, { global: true })
   let cover = new RenderCover({options})
   return cover.backdrop
 }
 
 
-Cover.close = function() {
+$Cover.close = function() {
   events.$emit('close-backdrop')
 
 }
 
-export { Backdrop, Cover };
+export { Backdrop, $Cover };

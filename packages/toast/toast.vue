@@ -1,31 +1,39 @@
 <template>
-  <div class="ui-toast" :class="[type && 'ui-toast-' + type, icon && 'ui-toast-with-icon']" @mouseenter="pause" @mouseleave="resume">
-    <transition name="ui-toast" enter-active-class="bounceIn" leave-active-class=" bounceOut" @after-enter="entered" @after-leave="destroy" @before-leave="isEntered = false">
-      <div class="ui-toast-icon" @click="clickIcon" v-if="show" :style="{zIndex:zIndex && zIndex+2}">
-        <ui-icon :name="icon" v-if="icon"></ui-icon>
+  <div :class="classes" @mouseenter="pause" @mouseleave="resume">
+    <transition enter-active-class="bounceIn" leave-active-class="fadeOut" @after-enter="entered" @after-leave="destroy" @before-leave="isEntered = false">
+      <div class="ui-toast-icon" @click="clickIcon" v-if="!isMessage && show" :style="{zIndex:zIndex && zIndex+2}">
+        <ui-icon :name="iconName" v-if="iconName"></ui-icon>
       </div>
     </transition>
-    <transition enter-active-class="slideInRight" leave-active-class="slideOutRight" @after-enter="showContent = true">
-      <div class="ui-toast-background" v-if="isEntered" :style="{zIndex:zIndex && zIndex+1}">
+    <transition :enter-active-class="toastInTransition" :leave-active-class="toastOutTransition" @after-enter="showContent = true" @before-leave="showContent = false">
+      <div class="ui-toast-background" v-if="!isMessage && isEntered" :style="{zIndex:zIndex && zIndex+1}">
       </div>
     </transition>
-    <div class="ui-toast-content" :style="contentStyles">
-      <div class="ui-toast-title" v-if="title">{{title}}</div>
-      <!-- <div class="ui-toast-message" v-html="message"></div> -->
-      <!-- <div class="ui-toast-action" v-if="actions.length">
-        <span
-            class="ui-toast-action-item"
+    <div class="ui-toast-content" :style="contentStyles" v-if="!isMessage && message">
+      {{message}}
+    </div>
+    <transition enter-active-class="slideInDown" leave-active-class="slideOutUp" @after-leave="destroy">
+      <div class="ui-message-content" :class="[iconName && 'ui-message-content-with-icon',showClose && 'ui-message-content-with-close']" v-if="isMessage && show">
+        <div class="ui-message-title" v-if="title">{{title}}</div>
+        <div class="ui-message-message" v-if="message">{{message}}</div>
+        <div class="ui-message-icon" v-if="iconName">
+          <ui-icon :name="iconName"></ui-icon>
+        </div>
+        <div class="ui-message-close" @click="stop" v-if="showClose">
+          <ui-icon name="icon-close-circle-fill"></ui-icon>
+        </div>
+        <div class="ui-message-actions" v-if="actions.length">
+          <span
+            class="ui-message-action-item"
             v-for="action of actions"
             :key="action.text"
-            @click="click(action);"
+            @click="clickOnMessageIcon(action);"
           >
-            <icon v-if="action.icon" :name="action.icon"></icon>
+            <ui-icon v-if="action.icon" :name="action.icon"></ui-icon>
             {{ action.text }}</span>
-      </div> -->
-    </div>
-    <!--     <div class="ui-toast-close" @click="stop" v-if="showClose">
-      <ui-icon name="icon-close-circle-fill"></ui-icon>
-    </div> -->
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 <script>
@@ -37,7 +45,6 @@ export default {
   name: "ui-toast",
   data() {
     return {
-      animation: true,
       showContent: false,
       show: false,
       type: "info",
@@ -48,18 +55,40 @@ export default {
       timer: null,
       closed: false,
       id: "",
-      icon: " ",
+      icon: "",
       title: "",
       actions: [],
       zIndex: "",
       isEntered: false,
-      closeOnClick: true
+      closeOnClick: true,
+      onClick: null,
+      isMessage: false
     };
   },
   components: {
     UiIcon,
   },
   computed: {
+    iconName() {
+      if (this.type == 'info') {
+        return this.icon ? this.icon : ''
+      }
+      if (this.type == 'warning') {
+        return this.icon ? this.icon : 'warning-circle'
+      }
+      if (this.type == 'error') {
+        return this.icon ? this.icon : 'close'
+      }
+    },
+    classes() {
+      return [
+        'ui-toast',
+        this.type && `ui-${this.isMessage ? 'message' :'toast'}-${this.type}`,
+        {
+          'ui-message': this.isMessage,
+        }
+      ]
+    },
     toastTransition() {
       return `ui-toast-transition-x-${this.position.x}`
     },
@@ -69,7 +98,13 @@ export default {
         // visibility: this.showContent ? 'visible' : 'hidden',
         opacity: this.showContent ? 1 : 0,
       }
-    }
+    },
+    toastInTransition() {
+      return this.position.x == 'right' ? 'slideInRight' : 'slideInLeft'
+    },
+    toastOutTransition() {
+      return this.position.x == 'right' ? 'slideOutRight' : 'slideOutLeft'
+    },
   },
   methods: {
     entered() {
@@ -88,6 +123,9 @@ export default {
     clickIcon() {
       if (this.closeOnClick) {
         this.stop()
+      }
+      if (this.onClick && typeof this.onClick == 'function') {
+        this.onClick()
       }
     },
     start() {
@@ -113,11 +151,19 @@ export default {
         this.closeToast();
       }
     },
-    click(action) {
-      if (action.action && typeof action.action == "function") {
-        action.action();
+    clickOnMessageIcon(action) {
+      if (action.onClick && typeof action.onClick == "function") {
+        action.onClick()
+      }
+      if (action.closeAfter) {
+        this.stop()
       }
     }
+    // click(action) {
+    //   if (action.action && typeof action.action == "function") {
+    //     action.action();
+    //   }
+    // }
   },
   mounted() {
     this.start();
