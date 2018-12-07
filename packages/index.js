@@ -32,6 +32,8 @@ import V from "./v/index.js";
 import Progress from './progress/index.js'
 import Marquee from './marquee/index.js'
 import Share from './share/index.js'
+import Typer from './typer/index.js'
+import Carousel from './carousel/index.js'
 const components = [
   Avatar,
   Icon,
@@ -62,7 +64,9 @@ const components = [
   Confirm,
   Progress,
   Marquee,
-  Share
+  Share,
+  Typer,
+  Carousel
 ];
 
 
@@ -116,6 +120,8 @@ export default {
   Progress,
   Marquee,
   Share,
+  Typer,
+  Carousel,
   $Popover,
   $Toast,
   $Cover,

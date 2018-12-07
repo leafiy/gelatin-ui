@@ -1,7 +1,3 @@
-const isWechat = /MicroMessenger/i.test(navigator.userAgent);
-
-
-
 const templates = {
   weibo: 'https://service.weibo.com/share/share.php?url={{URL}}&title={{TITLE}}&pic={{IMAGE}}&appkey={{WEIBOKEY}}',
   wechat: 'javascript:',
@@ -26,4 +22,4 @@ const makeUrl = function({site, data}) {
 }
 
 
-export { isWechat, templates, makeUrl }
+export { templates, makeUrl }

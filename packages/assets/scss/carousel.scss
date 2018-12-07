@@ -1,0 +1,63 @@
+@import './var.scss';
+
+.ui-carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 40px;
+  color: $light;
+  width: 100%;
+}
+
+.ui-carousel {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+
+
+  &-nav-left,
+  &-nav-right {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-top: 2px solid $error-color;
+    border-right: 2px solid $error-color;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: transform 150ms linear;
+
+    &[disabled] {
+      opacity: 0.2;
+      border-color: black;
+    }
+  }
+
+  &-nav__left {
+    transform: rotate(-135deg);
+
+    &:active {
+      transform: rotate(-135deg) scale(0.9);
+    }
+  }
+
+  &-nav__right {
+    transform: rotate(45deg);
+
+    &:active {
+      transform: rotate(45deg) scale(0.9);
+    }
+  }
+}
+
+.ui-carousel-item {
+  display: flex;
+  transition: transform 150ms ease-out;
+  transform: translatex(0px);
+
+  >div {
+    display: block;
+  }
+}

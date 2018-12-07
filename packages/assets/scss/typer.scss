@@ -1,0 +1,31 @@
+@import './var.scss';
+@import './animate.scss';
+
+.ui-typer-selected {
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.ui-typer-cursor {
+  opacity: 1;
+  animation: blink 1s infinite;
+  position: relative;
+  top: -1px;
+  left: -2px;
+}
+
+// .ui-typer-item{
+//  @extend .animated;
+// }
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

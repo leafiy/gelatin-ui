@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import { isWechat, makeUrl } from './share.js'
+import { makeUrl } from './share.js'
 export default {
 
   name: 'ui-share',

@@ -31,7 +31,9 @@ module.exports = {
       ['/alert/', 'Alert'],
       ['/toast/', 'Toast'],
       ['/message/','Message'],
-      ['/share/','Share']
+      ['/share/','Share'],
+      ['/typer/','Typer 打字机'],
+      ['/carousel/','Carousel 卡片轮播']
     ]
   },
   lastUpdated: 'Last Updated',
