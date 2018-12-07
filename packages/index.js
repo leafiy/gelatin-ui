@@ -31,6 +31,7 @@ import { Modal, $Modal } from './modal/index.js'
 import V from "./v/index.js";
 import Progress from './progress/index.js'
 import Marquee from './marquee/index.js'
+import Share from './share/index.js'
 const components = [
   Avatar,
   Icon,
@@ -60,7 +61,8 @@ const components = [
   Modal,
   Confirm,
   Progress,
-  Marquee
+  Marquee,
+  Share
 ];
 
 
@@ -113,6 +115,7 @@ export default {
   V,
   Progress,
   Marquee,
+  Share,
   $Popover,
   $Toast,
   $Cover,

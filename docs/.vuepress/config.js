@@ -30,7 +30,8 @@ module.exports = {
       ['/progress/', 'Progress'],
       ['/alert/', 'Alert'],
       ['/toast/', 'Toast'],
-      ['/message/','Message']
+      ['/message/','Message'],
+      ['/share/','Share']
     ]
   },
   lastUpdated: 'Last Updated',

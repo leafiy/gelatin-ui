@@ -9,7 +9,6 @@ const Popover = function(options) {
   if (!trigger || trigger.dataset.popover) {
     return;
   }
-
   let instance
 
   if (instances.map(instance => instance.key).includes(options.key)) {
@@ -18,17 +17,16 @@ const Popover = function(options) {
   } else {
 
     instance = new PopoverConstructor({
-      // el: document.createElement("div"),
       data: {
         key: options.key
       },
       propsData: options
     });
-    instance.show = true
     instance.$mount();
+    instance.show = true
     let el = instance.$el;
     if (options.insertAfter) {
-      trigger.parentNode.insertBefore(el,trigger.nextSibling)
+      trigger.parentNode.insertBefore(el, trigger.nextSibling)
     } else {
       document.body.appendChild(el);
     }
@@ -45,8 +43,8 @@ const Popover = function(options) {
 
 };
 
-// Popover.closePopover = function(id) {
-//   instances.splice(instances.findIndex(pop => pop.key == id), 1);
-// }
+Popover.closePopover = function(key) {
+  instances.splice(instances.findIndex(pop => pop.key == key), 1);
+}
 
 export default Popover;

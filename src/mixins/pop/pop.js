@@ -85,7 +85,8 @@ export default {
     menuStyles() {
       return {
         borderRadius: `${this.radius}px`,
-        transform: `translateX(${this.translateX})`
+        transform: `translateX(${this.translateX})`,
+        textAlign: this.textAlign
       };
     },
     tooltipStyles() {
