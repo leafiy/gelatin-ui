@@ -1,63 +1,77 @@
 @import './var.scss';
 
 .ui-carousel-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px 0 40px;
-  color: $light;
+  margin: 20px 0;
   width: 100%;
+  position: relative;
+}
+
+.ui-carousel-overflow {
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .ui-carousel {
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
   width: 100%;
+}
 
+.ui-carousel-items {
+  display: flex;
+  transition: transform .3s ease-out;
+  transform: translatex(0px);
 
-  &-nav-left,
-  &-nav-right {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    padding: 10px;
-    box-sizing: border-box;
-    border-top: 2px solid $error-color;
-    border-right: 2px solid $error-color;
-    cursor: pointer;
-    margin: 0 10px;
-    transition: transform 150ms linear;
-
-    &[disabled] {
-      opacity: 0.2;
-      border-color: black;
-    }
-  }
-
-  &-nav__left {
-    transform: rotate(-135deg);
-
-    &:active {
-      transform: rotate(-135deg) scale(0.9);
-    }
-  }
-
-  &-nav__right {
-    transform: rotate(45deg);
-
-    &:active {
-      transform: rotate(45deg) scale(0.9);
-    }
+  >* {
+    display: block;
   }
 }
 
-.ui-carousel-item {
-  display: flex;
-  transition: transform 150ms ease-out;
-  transform: translatex(0px);
+.ui-carousel-nav-item {
+  &[disabled] {
+    opacity: 0.2;
+  }
+}
 
-  >div {
-    display: block;
+.ui-carousel-arrow-left,
+.ui-carousel-arrow-right {
+  position: absolute;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform .3s linear;
+
+  .ui-icon {
+    font-size: 26px;
+  }
+}
+
+.ui-carousel-arrow-left {
+  left: -50px;
+}
+
+.ui-carousel-arrow-right {
+  right: -50px;
+}
+
+.ui-carousel-navbar {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  bottom: -16px;
+  left:0;
+  height: 4px;
+  &-bar {
+    display: inline-block;
+    background: $lighter;
+    width: 22px;
+    margin:0 2px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    &-active{
+     background: $light;
+    }
   }
 }

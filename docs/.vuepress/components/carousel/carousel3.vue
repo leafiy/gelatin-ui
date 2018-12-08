@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <ui-carousel nav-style="bar">
+    <ui-carousel :scroll-count="3" nav-style="arrow" auto loop :expand="12" :delay="1000">
       <div class="item"><img src="https://placehold.it/200x200"></div>
         <div class="item"><img src="https://placehold.it/230x200"></div>
           <div class="item"><img src="https://placehold.it/220x200"></div>
             <div class="item"><img src="https://placehold.it/240x200"></div>
-                <div class="item"><img src="https://placehold.it/320x200"></div>
-                  <div class="item"><img src="https://placehold.it/190x200"></div>
-                    <div class="item"><img src="https://placehold.it/10x200"></div>
-                      <div class="item"><img src="https://placehold.it/230x200"></div>
-                        <div class="item"><img src="https://placehold.it/140x200"></div>
-                          <div class="item"><img src="https://placehold.it/320x200"></div>
+              <div class="item"><img src="https://placehold.it/320x200"></div>
+                <div class="item"><img src="https://placehold.it/190x200"></div>
+                  <div class="item"><img src="https://placehold.it/10x200"></div>
+                    <div class="item"><img src="https://placehold.it/230x200"></div>
+                      <div class="item"><img src="https://placehold.it/140x200"></div>
+                        <div class="item"><img src="https://placehold.it/320x200"></div>
     </ui-carousel>
   </div>
 </template>
@@ -33,9 +33,9 @@ img {
 }
 
 .item {
-  border:1px solid #9B9B9B;
+  border: 1px solid #9B9B9B;
   border-radius: 14px;
-  padding:10px;
+  padding: 10px;
   box-shadow: 0 2px 13px rgba(0, 0, 0, 0.1);
   margin-right: 20px;
 }

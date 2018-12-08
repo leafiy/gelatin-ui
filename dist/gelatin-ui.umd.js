@@ -7391,7 +7391,7 @@ exports = module.exports = __webpack_require__("2350")(false);
 
 
 // module
-exports.push([module.i, ".fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.ui-carousel-wrapper{-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin:20px 0 40px;color:#9b9b9b}.ui-carousel,.ui-carousel-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;width:100%}.ui-carousel{overflow:hidden}.ui-carousel-nav-left,.ui-carousel-nav-right{display:inline-block;width:15px;height:15px;padding:10px;-webkit-box-sizing:border-box;box-sizing:border-box;border-top:2px solid #ea4335;border-right:2px solid #ea4335;cursor:pointer;margin:0 10px;-webkit-transition:-webkit-transform .15s linear;transition:-webkit-transform .15s linear;transition:transform .15s linear;transition:transform .15s linear,-webkit-transform .15s linear}.ui-carousel-nav-left[disabled],.ui-carousel-nav-right[disabled]{opacity:.2;border-color:#000}.ui-carousel-nav__left{-webkit-transform:rotate(-135deg);transform:rotate(-135deg)}.ui-carousel-nav__left:active{-webkit-transform:rotate(-135deg) scale(.9);transform:rotate(-135deg) scale(.9)}.ui-carousel-nav__right{-webkit-transform:rotate(45deg);transform:rotate(45deg)}.ui-carousel-nav__right:active{-webkit-transform:rotate(45deg) scale(.9);transform:rotate(45deg) scale(.9)}.ui-carousel-item{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-transition:-webkit-transform .15s ease-out;transition:-webkit-transform .15s ease-out;transition:transform .15s ease-out;transition:transform .15s ease-out,-webkit-transform .15s ease-out;-webkit-transform:translatex(0);transform:translatex(0)}.ui-carousel-item>div{display:block}", ""]);
+exports.push([module.i, ".fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.ui-carousel-wrapper{margin:20px 0;width:100%;position:relative}.ui-carousel-overflow{overflow:hidden;-webkit-box-sizing:border-box;box-sizing:border-box}.ui-carousel{width:100%}.ui-carousel-items{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-transition:-webkit-transform .3s ease-out;transition:-webkit-transform .3s ease-out;transition:transform .3s ease-out;transition:transform .3s ease-out,-webkit-transform .3s ease-out;-webkit-transform:translatex(0);transform:translatex(0)}.ui-carousel-items>*{display:block}.ui-carousel-nav-item[disabled]{opacity:.2}.ui-carousel-arrow-left,.ui-carousel-arrow-right{position:absolute;padding:10px;cursor:pointer;margin:0 10px;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);-webkit-transition:-webkit-transform .3s linear;transition:-webkit-transform .3s linear;transition:transform .3s linear;transition:transform .3s linear,-webkit-transform .3s linear}.ui-carousel-arrow-left .ui-icon,.ui-carousel-arrow-right .ui-icon{font-size:26px}.ui-carousel-arrow-left{left:-50px}.ui-carousel-arrow-right{right:-50px}.ui-carousel-navbar{position:absolute;width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;bottom:-16px;left:0;height:4px}.ui-carousel-navbar-bar{display:inline-block;background:#e9ebee;width:22px;margin:0 2px;border-radius:10px;cursor:pointer;-webkit-transition:all .3s ease-in-out;transition:all .3s ease-in-out}.ui-carousel-navbar-bar-active{background:#9b9b9b}", ""]);
 
 // exports
 
@@ -15822,16 +15822,122 @@ typer_typer.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_typer = (typer_typer);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/carousel/carousel.vue?vue&type=template&id=0f2b9b8f&
-var carouselvue_type_template_id_0f2b9b8f_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-carousel-wrapper"},[_c('div',{staticClass:"ui-carousel-nav-left",attrs:{"disabled":_vm.atHead},on:{"click":function($event){_vm.moveCarousel(-1)}}}),_c('div',{staticClass:"ui-carousel"},[_c('div',{staticClass:"ui-carousel-item",style:({ transform: 'translateX' + '(' + _vm.currentOffset + 'px' + ')'})},[_vm._t("default")],2)]),_c('div',{staticClass:"ui-carousel-nav-right",attrs:{"disabled":_vm.atEnd},on:{"click":function($event){_vm.moveCarousel(1)}}})])}
-var carouselvue_type_template_id_0f2b9b8f_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/carousel/carousel.vue?vue&type=template&id=74a4244b&
+var carouselvue_type_template_id_74a4244b_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.items.length)?_c('div',{ref:"container",staticClass:"ui-carousel-wrapper"},[_c('div',{staticClass:"ui-carousel"},[_c('div',{staticClass:"ui-carousel-overflow",style:(_vm.expandStyles)},[_c('div',{staticClass:"ui-carousel-items",style:(_vm.listStyles)},_vm._l((_vm.items),function(item,idx){return _c('ui-carousel-item',{key:idx,class:{'ui-carousel-item-active':_vm.index == idx},style:(_vm.itemStyles),attrs:{"index":idx,"item":item},on:{"mounted":_vm.itemMounted}})}))])]),(_vm.navStyle == 'arrow')?_c('div',{staticClass:"ui-carousel-nav-item ui-carousel-arrow-left",attrs:{"disabled":_vm.atHead},on:{"click":function($event){_vm.moveCarousel(-1)}}},[_c('ui-icon',{attrs:{"name":"left"}})],1):_vm._e(),(_vm.navStyle == 'arrow')?_c('div',{staticClass:"ui-carousel-nav-item ui-carousel-arrow-right",attrs:{"disabled":_vm.atEnd},on:{"click":function($event){_vm.moveCarousel(1)}}},[_c('ui-icon',{attrs:{"name":"right"}})],1):_vm._e(),(_vm.navStyle == 'bar')?_c('div',{staticClass:"ui-carousel-navbar"},_vm._l((_vm.items),function(item,idx){return _c('span',{key:idx,staticClass:"ui-carousel-navbar-bar",class:{'ui-carousel-navbar-bar-active':_vm.index == idx},on:{"click":function($event){_vm.barClick(idx)}}})})):_vm._e()]):_vm._e()}
+var carouselvue_type_template_id_74a4244b_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/carousel/carousel.vue?vue&type=template&id=0f2b9b8f&
+// CONCATENATED MODULE: ./packages/carousel/carousel.vue?vue&type=template&id=74a4244b&
 
 // EXTERNAL MODULE: ./packages/assets/scss/carousel.scss
 var carousel = __webpack_require__("d6c2");
 
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/carousel/carousel-item.vue?vue&type=script&lang=js&
+
+/* harmony default export */ var carousel_itemvue_type_script_lang_js_ = ({
+  name: 'ui-carousel-item',
+  data: function data() {
+    return {
+      width: ''
+    };
+  },
+  props: {
+    item: Object,
+    index: Number
+  },
+  mounted: function mounted() {
+    this.$emit('mounted', {
+      index: this.index,
+      width: this.$el.getBoundingClientRect().width
+    });
+    this.width = this.$el.clientWidth;
+  },
+  render: function render(h) {
+    return this.item.tag ? h("div", {
+      ref: "item",
+      "class": "ui-carousel-item"
+    }, [this.item]) : "";
+  }
+});
+// CONCATENATED MODULE: ./packages/carousel/carousel-item.vue?vue&type=script&lang=js&
+ /* harmony default export */ var carousel_carousel_itemvue_type_script_lang_js_ = (carousel_itemvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./packages/carousel/carousel-item.vue
+var carousel_item_render, carousel_item_staticRenderFns
+
+
+
+
+/* normalize component */
+
+var carousel_item_component = Object(componentNormalizer["a" /* default */])(
+  carousel_carousel_itemvue_type_script_lang_js_,
+  carousel_item_render,
+  carousel_item_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+carousel_item_component.options.__file = "carousel-item.vue"
+/* harmony default export */ var carousel_item = (carousel_item_component.exports);
+// CONCATENATED MODULE: ./src/utils/touchHandler.js
+var touches = {
+  "touchstart": {
+    "x": -1,
+    "y": -1
+  },
+  "touchmove": {
+    "x": -1,
+    "y": -1
+  },
+  "touchend": false,
+  "direction": "undetermined"
+};
+
+var touchHandler = function touchHandler(_ref) {
+  var event = _ref.event,
+      _ref$axis = _ref.axis,
+      axis = _ref$axis === void 0 ? 'x' : _ref$axis;
+  var touch;
+
+  if (typeof event !== 'undefined') {
+    event.preventDefault();
+
+    if (typeof event.touches !== 'undefined') {
+      touch = event.touches[0];
+
+      switch (event.type) {
+        case 'touchstart':
+        case 'touchmove':
+          touches[event.type].x = touch.pageX;
+          touches[event.type].y = touch.pageY;
+          break;
+
+        case 'touchend':
+          touches[event.type] = true;
+
+          if (axis == 'x') {
+            if (touches.touchstart.x > -1 && touches.touchmove.x > -1) {
+              touches.direction = touches.touchstart.x < touches.touchmove.x ? "right" : "left";
+              return touches.direction;
+            }
+          } else {
+            if (touches.touchstart.y > -1 && touches.touchmove.y > -1) {
+              touches.direction = touches.touchstart.y < touches.touchmove.y ? "down" : "up";
+              return touches.direction;
+            }
+          }
+
+        default:
+          break;
+      }
+    }
+  }
+};
+
+/* harmony default export */ var utils_touchHandler = (touchHandler);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/carousel/carousel.vue?vue&type=script&lang=js&
 
 //
@@ -15845,43 +15951,226 @@ var carousel = __webpack_require__("d6c2");
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 /* harmony default export */ var carouselvue_type_script_lang_js_ = ({
   name: 'ui-carousel',
   data: function data() {
     return {
+      inited: false,
       currentOffset: 0,
-      items: '',
-      index: 0
+      items: [],
+      index: 0,
+      timer: null,
+      list: [],
+      pull: {
+        from: -1,
+        to: -1,
+        distance: 0,
+        type: null,
+        available: false
+      }
     };
   },
+  components: {
+    UiCarouselItem: carousel_item,
+    UiIcon: icon_icon["a" /* default */]
+  },
   props: {
-    windowSize: {
+    scrollCount: {
       type: Number,
-      default: 2
+      default: 1
     },
-    paginationGutter: Number
+    navStyle: String,
+    touch: {
+      type: Boolean,
+      default: true
+    },
+    auto: Boolean,
+    delay: {
+      type: Number,
+      default: 2000
+    },
+    loop: Boolean,
+    expand: Number // 解决overflow可能盖住元素阴影或其他效果的可能
+
   },
   computed: {
-    paginationFactor: function paginationFactor() {},
+    expandStyles: function expandStyles() {
+      return {
+        padding: this.expand + 'px',
+        width: "calc(100% + ".concat(this.expand, "px)"),
+        margin: -this.expand + 'px'
+      };
+    },
+    listStyles: function listStyles() {
+      return {
+        transform: 'translateX' + '(' + this.currentOffset + 'px' + ')'
+      };
+    },
+    itemStyles: function itemStyles() {
+      return {
+        marginRight: this.gutter + 'px'
+      };
+    },
     atEnd: function atEnd() {
-      return this.currentOffset <= this.paginationFactor * -1 * (this.items.length - this.windowSize);
+      return this.index == this.items.length - 1;
     },
     atHead: function atHead() {
-      return this.currentOffset === 0;
+      return this.index == 0;
+    }
+  },
+  watch: {
+    index: function index(val) {
+      this.currentOffset = -this.getOffset(this.index);
     }
   },
   methods: {
+    itemMounted: function itemMounted(_ref) {
+      var width = _ref.width,
+          index = _ref.index;
+      this.list.push({
+        index: index,
+        width: width
+      });
+    },
+    getOffset: function getOffset(index) {
+      var list = this.list.slice(0, index);
+      list = list.map(function (item) {
+        return item.width;
+      });
+      return list.reduce(function (a, b) {
+        return a + b;
+      }, 0);
+    },
     moveCarousel: function moveCarousel(direction) {
+      var count = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.scrollCount;
+
       if (direction === 1 && !this.atEnd) {
-        this.currentOffset -= this.paginationFactor;
+        this.index += count;
+
+        if (this.index > this.items.length - 1) {
+          this.index = this.items.length - 1;
+        }
       } else if (direction === -1 && !this.atHead) {
-        this.currentOffset += this.paginationFactor;
+        this.index -= count;
+
+        if (this.index < 0) {
+          this.index = 0;
+        }
       }
+    },
+    renderItems: function renderItems() {
+      this.items = this.$slots.default.filter(function (item) {
+        return item.tag;
+      });
+    },
+    barClick: function barClick(index) {
+      this.index = index;
+    },
+    startAuto: function startAuto() {
+      var _this = this;
+
+      this.timer = setInterval(function () {
+        if (_this.index <= _this.items.length - _this.scrollCount) {
+          _this.moveCarousel(1);
+        } else {
+          clearInterval(_this.timer);
+
+          if (_this.loop) {
+            _this.back();
+          }
+        }
+      }, this.delay);
+    },
+    back: function back() {
+      var _this2 = this;
+
+      this.timer = setInterval(function () {
+        if (_this2.index <= _this2.scrollCount) {
+          clearInterval(_this2.timer);
+
+          _this2.startAuto();
+        }
+
+        _this2.moveCarousel(-1);
+      }, this.delay);
+    },
+    handleTouchStart: function handleTouchStart(event) {
+      utils_touchHandler({
+        event: event
+      });
+    },
+    handleTouchMove: function handleTouchMove(event) {
+      utils_touchHandler({
+        event: event
+      });
+    },
+    handleTouchEnd: function handleTouchEnd(event) {
+      if (utils_touchHandler({
+        event: event
+      }) == 'left') {
+        this.moveCarousel(1);
+      }
+
+      if (utils_touchHandler({
+        event: event
+      }) == 'right') {
+        this.moveCarousel(-1);
+      }
+    },
+    bindTouchEvents: function bindTouchEvents() {
+      this.$refs['container'].addEventListener("touchstart", this.handleTouchStart);
+      this.$refs['container'].addEventListener("touchmove", this.handleTouchMove);
+      this.$refs['container'].addEventListener("touchend", this.handleTouchEnd);
+    },
+    unBindTouchEvents: function unBindTouchEvents() {
+      this.$refs['container'].removeEventListener("touchstart", this.handleTouchStart);
+      this.$refs['container'].removeEventListener("touchmove", this.handleTouchMove);
+      this.$refs['container'].removeEventListener("touchend", this.handleTouchEnd);
     }
   },
   mounted: function mounted() {
-    this.items = this.$slots.default;
+    var _this3 = this;
+
+    this.renderItems();
+    this.$nextTick(function () {
+      if (_this3.touch) {
+        _this3.bindTouchEvents();
+
+        _this3.inited = true;
+      }
+
+      if (_this3.auto) {
+        _this3.startAuto();
+      }
+    });
+  },
+  activated: function activated() {
+    if (this.touch && this.inited) {
+      this.bindTouchEvents();
+    }
+  },
+  deactivated: function deactivated() {
+    if (this.touch) {
+      this.unBindTouchEvents();
+    }
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (this.touch) {
+      this.unBindTouchEvents();
+    }
   }
 });
 // CONCATENATED MODULE: ./packages/carousel/carousel.vue?vue&type=script&lang=js&
@@ -15896,8 +16185,8 @@ var carousel = __webpack_require__("d6c2");
 
 var carousel_component = Object(componentNormalizer["a" /* default */])(
   carousel_carouselvue_type_script_lang_js_,
-  carouselvue_type_template_id_0f2b9b8f_render,
-  carouselvue_type_template_id_0f2b9b8f_staticRenderFns,
+  carouselvue_type_template_id_74a4244b_render,
+  carouselvue_type_template_id_74a4244b_staticRenderFns,
   false,
   null,
   null,
