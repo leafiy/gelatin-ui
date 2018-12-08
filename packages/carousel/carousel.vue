@@ -101,8 +101,9 @@ export default {
       this.list.push({ index, width })
     },
     getOffset(index) {
-      let list = this.list.slice(0, index)
-      list = list.map(item => item.width)
+
+      let list = Array.prototype.slice.call(this.$el.querySelectorAll('.ui-carousel-item'), 0, index)
+      list = list.map((item,index) =>item.clientWidth)
       return list.reduce((a, b) => a + b, 0)
 
     },
@@ -122,7 +123,6 @@ export default {
     },
     renderItems() {
       this.items = this.$slots.default.filter(item => item.tag)
-
     },
     barClick(index) {
       this.index = index
@@ -130,7 +130,7 @@ export default {
     startAuto() {
       this.timer = setInterval(() => {
         if (this.index <= this.items.length - this.scrollCount) {
-         this.moveCarousel(1)
+          this.moveCarousel(1)
         } else {
           clearInterval(this.timer)
           if (this.loop) {

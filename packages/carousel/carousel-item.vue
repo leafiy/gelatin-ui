@@ -14,8 +14,8 @@ export default {
   },
 
   mounted() {
-    this.$emit('mounted', { index: this.index, width: this.$el.getBoundingClientRect().width })
-    this.width = this.$el.clientWidth
+    // this.$emit('mounted', { index: this.index, width: this.$el.getBoundingClientRect().width })
+    // this.width = this.$el.clientWidth
   },
   render(h) {
     return (
