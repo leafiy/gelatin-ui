@@ -35,7 +35,8 @@ module.exports = {
       ['/share/','Share'],
       ['/typer/','Typer 打字机'],
       ['/carousel/','Carousel 卡片轮播'],
-      ['/countdown/','Countdown 倒计时']
+      ['/countdown/','Countdown 倒计时'],
+      ['/tooltip/','Tooltip']
     ]
   },
   lastUpdated: 'Last Updated',

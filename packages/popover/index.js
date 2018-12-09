@@ -1,2 +1,2 @@
-import Popover from "./popover.js";
+import Popover from "./pop.js";
 export default Popover;

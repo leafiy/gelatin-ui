@@ -1,83 +1,99 @@
-import Pop from '../popover/popover.js'
+import Pop from '../popover/pop.js'
 import nanoid from 'nanoid'
 import '../assets/scss/tooltip.scss'
 
-const options = {
+const defaultOptions = {
   closeOnMouseleave: true,
   insertAfter: true,
-  key: nanoid(),
-  textCetner: false,
+  textCetner: true,
   openDelay: 0,
-  closeDelay: 50
+  closeDelay: 50,
+  content: '',
+  showCloseIcon: false
 }
-const Tooltip = (el, value) => {
-  if (typeof value == 'object') {
-    Object.keys(value).forEach(v => {
-      options[v] = value[v]
-    })
-    options.tooltip = options.content
-  }
 
-  if (typeof value == 'string') {
-    options.tooltip = value
-  }
-  options.trigger = el
-  el.tooltip = null
-  el.addEventListener('mouseover', (e) => {
-    if (!el.tooltip) {
-      setTimeout(() => {
-        el.tooltip = new Pop(options)
-      }, options.openDelay)
-    } else {
-      setTimeout(() => {
-        el.tooltip.show = true
-      }, options.openDelay)
+const Tooltip = function(options) {
+  let el = options.trigger
+  let instance = new Pop(options)
 
-    }
-  })
-  import(/* webpackChunkName: "vendor" */'../../src/utils/mousePosition.js').then(module => {
+  setTimeout(() => {
+    instance.show = true
+  }, options.openDelay)
+  // make tooltip el selectable
+  import( /* webpackChunkName: "vendor" */ '../../src/utils/mousePosition.js').then(module => {
     el.addEventListener('mouseleave', (e) => {
       setTimeout(() => {
         let mousePosition = module.default
         let target = mousePosition().target
-        if (!el.tooltip.$el.contains(target)) {
+        if (!instance.$el.contains(target)) {
           setTimeout(() => {
-            el.tooltip.show = false
+            if (options.closeOnMouseleave) {
+              instance.show = false
+            }
+
           }, options.closeDelay)
         }
-        el.tooltip.$el.addEventListener('mouseleave', () => {
+        instance.$el.addEventListener('mouseleave', () => {
           setTimeout(() => {
-            el.tooltip.show = false
+            if (options.closeOnMouseleave) {
+              instance.show = false
+            }
+
           }, options.closeDelay)
         })
 
       }, 200)
     })
   })
-
-
+  return instance
 }
 
 
+const renderOptions = function(el, options) {
+  if (typeof options == 'object') {
+    options.tooltip = options.content
+    delete options.content
+  }
+  if (typeof options == 'string') {
+    options = {
+      tooltip: options
+    }
+  }
+  Object.keys(defaultOptions).forEach(key => {
+    if (!options.hasOwnProperty(key)) {
+      options[key] = defaultOptions[key]
+    }
+  })
+  options.trigger = el
+  return options
+}
 
-
+const makeInstance = function(binding, options) {
+  if (!binding.instance) {
+    binding.instance = new Tooltip(options)
+    binding.instance.$on('close', () => {
+      delete binding.instance
+    })
+  } else {
+    binding.instance.show = true
+  }
+}
 
 export default {
   name: "ui-tooltip",
   inserted(el, binding, vnode) {
-    let value = binding.value
-
-    new Tooltip(el, value)
+    if (!binding.value) {
+      throw new Error('at least add some content')
+    }
+    let options = renderOptions(el, binding.value)
+    el.addEventListener('mouseover', (e) => {
+      makeInstance(binding, options)
+    })
   },
   update(el, binding, vnode) {
-    if (!binding.value) {
-      throw new Error('at least add some text')
-    }
-    let value = binding.value
-
-    new Tooltip(el, value)
-  },
-  unbind(el) {
-    delete el.tooltip
+    let options = renderOptions(el, binding.value)
+    el.addEventListener('mouseover', (e) => {
+      makeInstance(binding, options)
+    })
   }
 };

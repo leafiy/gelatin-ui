@@ -1,17 +1,24 @@
 <template>
-  <div class="ui-popover" :class="{'ui-tooltip' : !!tooltip}" v-click-outside="close" v-if="show" :style="stlyes">
-    <span
+  <transition name="fade">
+    <div class="ui-popover" :class="{'ui-tooltip' : !!tooltip}" v-click-outside="close" v-if="show" :style="stlyes">
+      <span
       class="ui-popover-triangle"
       v-if="arrow"
       :style="triangleStyles"
       ref="triangle"
     ></span>
-    <ul v-if="menu.length" class="ui-popover-menu" :class="[`ui-popover-menu-${menuType}`]" :style="menuStyles">
-      <ui-popover-item :params="params" :close-on-click="closeOnClick" :close-on-mouseleave="closeOnMouseleave" @close="close" v-for="item of menu" :key="item.content" :item="item"></ui-popover-item>
-    </ul>
-    <div class="ui-popover-menu" v-if="content" v-html="handleContent(content)" :style="menuStyles"></div>
-    <div class="ui-popover-menu ui-tooltip-content" v-if="tooltip" v-html="tooltip" :style="[menuStyles,tooltipStyles] "></div>
-  </div>
+      <ul v-if="menu.length" class="ui-popover-menu" :class="[`ui-popover-menu-${menuType}`]" :style="menuStyles">
+        <ui-popover-item :params="params" :close-on-click="closeOnClick" :close-on-mouseleave="closeOnMouseleave" @close="close" v-for="item of menu" :key="item.content" :item="item"></ui-popover-item>
+      </ul>
+      <div class="ui-popover-menu" v-if="content" v-html="handleContent(content)" :style="menuStyles"></div>
+      <div class="ui-popover-menu" :class="{'ui-tooltip-with-close':showCloseIcon}" v-if="tooltip" :style="[menuStyles,tooltipStyles] ">
+        <div class="ui-tooltip-content" v-html="tooltip"></div>
+        <div class="ui-tooltip-close-icon" v-if="tooltip && showCloseIcon" @click="show=false">
+          <ui-icon name="close"></ui-icon>
+        </div>
+      </div>
+    </div>
+  </transition>
 </template>
 <script>
 import ClickOutside from "vue-click-outside";
@@ -19,6 +26,7 @@ import UiPopoverItem from "./popover-item.vue";
 import "../assets/scss/popover.scss";
 import isElement from "iselement";
 import pop from "../../src/mixins/pop/pop.js";
+import UiIcon from '../icon/icon.vue'
 export default {
   name: "ui-popover",
   data() {
@@ -49,11 +57,13 @@ export default {
     closeOnMouseleave: Boolean,
     onClose: Function,
     content: String,
-    textAlign: String
+    textAlign: String,
+    showCloseIcon: Boolean
 
   },
   components: {
-    UiPopoverItem
+    UiPopoverItem,
+    UiIcon
   },
   methods: {
     handleContent() {
@@ -104,8 +114,8 @@ export default {
         if (this.onClose) {
           this.onClose()
         }
+        this.$emit('close')
         this.unbindEvents()
-
       } else {
         this.$nextTick(() => {
           this.bindEvents()
