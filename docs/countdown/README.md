@@ -52,3 +52,18 @@
 <ui-countdown :date="new Date('2020-2-20 11:22:33:000')"  :show-ms="false" theme="card"></ui-countdown>
  ```
 </code-code>
+
+
+#### props
+
+|prop|type|defalut|despcription|
+|--|--|--|--|
+|second|Number|||
+|date|Date,String||可以传入date对象或任意格式时间字符串|
+|delay|Number|1000|更新频率|
+|showDays|Boolean|true|控制显示|
+|showHours|Boolean|true|控制显示|
+|showMinutes|Boolean|true|控制显示|
+|showSeconds|Boolean|true|控制显示|
+|showMs|Boolean|true|控制显示|
+|theme|String||目前只有card|

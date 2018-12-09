@@ -32,6 +32,10 @@ export default {
     },
     costumFnValidate({ name, fn, value }) {
       return new Promise((resolve, reject) => {
+        if (!value) {
+          resolve()
+          return
+        }
         let f = fn(value)
         if (f.then) {
           f.then(() => {
@@ -50,6 +54,10 @@ export default {
     },
     costumReValidate({ name, re, value }) {
       return new Promise((resolve, reject) => {
+        if (!value) {
+          resolve()
+          return
+        }
         if (re.test(value)) {
           resolve()
         } else {
@@ -68,6 +76,10 @@ export default {
     },
     numberValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
+        if (!value) {
+          resolve()
+          return
+        }
         if (!Number(value)) {
           reject()
         } else {
@@ -77,6 +89,10 @@ export default {
     },
     emailValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
+        if (!value) {
+          resolve()
+          return
+        }
         if (validators['email'].test(value)) {
           resolve()
         } else {
@@ -86,6 +102,10 @@ export default {
     },
     minLengthValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
+        if (!value) {
+          resolve()
+          return
+        }
         if (value.length < rule.length) {
           reject()
         } else {
@@ -95,6 +115,10 @@ export default {
     },
     maxLengthValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
+        if (!value) {
+          resolve()
+          return
+        }
         if (value.length > rule.length) {
           reject()
         } else {
@@ -104,6 +128,10 @@ export default {
     },
     linkValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
+        if (!value) {
+          resolve()
+          return
+        }
         if (validators['link'].test(value)) {
           resolve()
         } else {
@@ -113,6 +141,10 @@ export default {
     },
     arrayValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
+        if (!value) {
+          resolve()
+          return
+        }
         if (Array.isArray(value)) {
           resolve()
         } else {
@@ -122,6 +154,10 @@ export default {
     },
     dateValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
+        if (!value) {
+          resolve()
+          return
+        }
         if (isValidDate(value)) {
           resolve()
         } else {
