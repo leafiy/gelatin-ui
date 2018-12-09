@@ -34,6 +34,7 @@ import Marquee from './marquee/index.js'
 import Share from './share/index.js'
 import Typer from './typer/index.js'
 import Carousel from './carousel/index.js'
+import Countdown from './countdown/index.js'
 const components = [
   Avatar,
   Icon,
@@ -66,7 +67,8 @@ const components = [
   Marquee,
   Share,
   Typer,
-  Carousel
+  Carousel,
+  Countdown
 ];
 
 
@@ -122,6 +124,7 @@ export default {
   Share,
   Typer,
   Carousel,
+  Countdown,
   $Popover,
   $Toast,
   $Cover,

@@ -533,6 +533,21 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "09fc":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("2350")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.ui-countdown{display:inline-block}.ui-countdown-theme-card{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.ui-countdown-theme-card [class*=ui-countdown-date-]{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;text-align:center;padding:20px;font-size:22px}.ui-countdown-theme-card [class*=ui-countdown-date-] .ui-countdown-date-unit{font-size:12px}.ui-countdown-date{display:-webkit-box;display:-ms-flexbox;display:flex}.ui-countdown-date>div{margin-right:5px}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "0a06":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5902,6 +5917,21 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "ab8a":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("09fc");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__("499e").default
+var update = add("caaadd08", content, true, {"sourceMap":false,"shadowMode":false});
+
+/***/ }),
+
 /***/ "ac6a":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6478,7 +6508,7 @@ exports = module.exports = __webpack_require__("2350")(false);
 
 
 // module
-exports.push([module.i, ".fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}@-webkit-keyframes spinner-dot{0%,40%,to{opacity:1}20%{opacity:.4}}@keyframes spinner-dot{0%,40%,to{opacity:1}20%{opacity:.4}}.ui-spinner{margin-top:10px;margin-bottom:10px}.ui-spinner-center{margin:0;position:absolute;top:50%;left:50%;-webkit-transform:translate3d(-50%,-50%,0);transform:translate3d(-50%,-50%,0)}.ui-spinner-dot{width:24px;height:6px;text-align:center;font-size:10px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.ui-spinner-dot>div{background-color:#9b9b9b;height:100%;width:6px;border-radius:50%}.ui-spinner-dot.ui-spinner-light>div{background-color:hsla(0,0%,100%,.9)}.ui-spinner-dot>div{-webkit-animation:a 1.3s cubic-bezier(.645,.045,.355,1) infinite;animation:a 1.3s cubic-bezier(.645,.045,.355,1) infinite}.ui-spinner-dot .rect2{-webkit-animation-delay:-1.2s;animation-delay:-1.2s}.ui-spinner-dot .rect3{-webkit-animation-delay:-1s;animation-delay:-1s}.ui-backdrop-dark .ui-spinner-dot>div,.ui-backdrop-darker .ui-spinner-dot>div{background-color:#e9ebee}", ""]);
+exports.push([module.i, ".fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}@-webkit-keyframes spinner-dot{0%,40%,to{opacity:1}20%{opacity:.4}}@keyframes spinner-dot{0%,40%,to{opacity:1}20%{opacity:.4}}.ui-spinner{margin-top:10px;margin-bottom:10px}.ui-spinner-center{margin:0;position:absolute;top:50%;left:50%;-webkit-transform:translate3d(-50%,-50%,0);transform:translate3d(-50%,-50%,0)}.ui-spinner-dot{width:24px;height:6px;text-align:center;font-size:10px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.ui-spinner-dot>div{background-color:#9b9b9b;height:100%;width:6px;border-radius:50%}.ui-spinner-dot.ui-spinner-light>div{background-color:hsla(0,0%,100%,.9)}.ui-spinner-dot>div{-webkit-animation:spinner-dot 1.3s cubic-bezier(.645,.045,.355,1) infinite;animation:spinner-dot 1.3s cubic-bezier(.645,.045,.355,1) infinite}.ui-spinner-dot .rect2{-webkit-animation-delay:-1.2s;animation-delay:-1.2s}.ui-spinner-dot .rect3{-webkit-animation-delay:-1s;animation-delay:-1s}.ui-backdrop-dark .ui-spinner-dot>div{background:#e9ebee}", ""]);
 
 // exports
 
@@ -14409,7 +14439,7 @@ var loading_render = function render(_ref) {
   name: "ui-loading",
   inserted: function inserted(el, binding, vnode) {
     if (_typeof(binding.value) == 'object' || binding.value) {
-      var options = _typeof(binding.value) == 'object' != null ? binding.value : {};
+      var options = _typeof(binding.value) == 'object' ? binding.value : {};
 
       if (binding.value) {
         loading_render({
@@ -16192,6 +16222,189 @@ carousel_carousel.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_carousel = (carousel_carousel);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5de4ab9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/countdown/countdown.vue?vue&type=template&id=2c798dac&
+var countdownvue_type_template_id_2c798dac_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-countdown",class:[("ui-countdown-theme-" + _vm.theme)]},[(_vm.second)?_c('span',{staticClass:"ui-countdown-second"},[_vm._v(_vm._s(_vm.sec))]):_vm._e(),(_vm.date)?_c('div',{staticClass:"ui-countdown-date"},[(_vm.showDays)?_c('div',{staticClass:"ui-countdown-date-d"},[_vm._v(_vm._s(_vm.days)),_vm._t("day",[_c('span',{staticClass:"ui-countdown-date-unit"},[_vm._v("天")])])],2):_vm._e(),(_vm.showHours)?_c('div',{staticClass:"ui-countdown-date-h"},[_vm._v(_vm._s(_vm.hours)),_vm._t("hour",[_c('span',{staticClass:"ui-countdown-date-unit"},[_vm._v("小时")])])],2):_vm._e(),(_vm.showMinutes)?_c('div',{staticClass:"ui-countdown-date-m"},[_vm._v(_vm._s(_vm.minutes)),_vm._t("minute",[_c('span',{staticClass:"ui-countdown-date-unit"},[_vm._v("分")])])],2):_vm._e(),(_vm.showSeconds)?_c('div',{staticClass:"ui-countdown-date-s"},[_vm._v(_vm._s(_vm.seconds)),_vm._t("second",[_c('span',{staticClass:"ui-countdown-date-unit"},[_vm._v("秒")])])],2):_vm._e(),(_vm.showMs)?_c('div',{staticClass:"ui-countdown-date-ms"},[_vm._v(_vm._s(_vm.ms)),_vm._t("ms",[_c('span',{staticClass:"ui-countdown-date-unit"})])],2):_vm._e()]):_vm._e(),_vm._t("default")],2)}
+var countdownvue_type_template_id_2c798dac_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./packages/countdown/countdown.vue?vue&type=template&id=2c798dac&
+
+// EXTERNAL MODULE: ./packages/assets/scss/coutdown.scss
+var coutdown = __webpack_require__("ab8a");
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/countdown/countdown.vue?vue&type=script&lang=js&
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var countdownvue_type_script_lang_js_ = ({
+  name: 'ui-countdown',
+  data: function data() {
+    return {
+      sec: '',
+      timer: null,
+      days: '00',
+      hours: '00',
+      minutes: '00',
+      seconds: '00',
+      ms: '00',
+      endDate: '',
+      startDate: ''
+    };
+  },
+  props: {
+    second: Number,
+    date: [Date, String],
+    delay: {
+      type: Number,
+      default: 1000
+    },
+    showDays: {
+      type: Boolean,
+      default: true
+    },
+    showHours: {
+      type: Boolean,
+      default: true
+    },
+    showMinutes: {
+      type: Boolean,
+      default: true
+    },
+    showSeconds: {
+      type: Boolean,
+      default: true
+    },
+    showMs: {
+      type: Boolean,
+      default: true
+    },
+    theme: {
+      type: String,
+      validator: function validator(val) {
+        return ['card', 'flip'].includes(val);
+      }
+    }
+  },
+  computed: {},
+  methods: {
+    start: function start() {
+      if (this.second) {
+        this.startSecond();
+      }
+
+      if (this.date) {
+        this.endDate = new Date(this.date).getTime();
+
+        if (isNaN(this.endDate)) {
+          return;
+        }
+
+        if (typeof this.date == 'string') {
+          this.startCountDate();
+        } else {
+          this.startCountDate();
+        }
+      }
+
+      this.$emit('start');
+    },
+    stop: function stop() {
+      clearInterval(this.timer);
+      this.timer = null;
+      this.$emit('stop');
+    },
+    startSecond: function startSecond() {
+      var _this = this;
+
+      this.sec = this.second;
+      clearInterval(this.timer);
+      this.timer = setInterval(function () {
+        _this.sec--;
+
+        if (_this.sec <= 0) {
+          _this.stop();
+        }
+      }, this.delay);
+    },
+    parseFormat: function parseFormat() {},
+    startCountDate: function startCountDate() {
+      setInterval(this.calculate, this.delay);
+    },
+    calculate: function calculate() {
+      var start = new Date();
+      this.startDate = start.getTime();
+      var timeRemaining = parseInt((this.endDate - this.startDate) / 10);
+
+      if (timeRemaining >= 0) {
+        this.days = parseInt(timeRemaining / 8640000);
+        timeRemaining = timeRemaining % 8640000;
+        this.hours = parseInt(timeRemaining / 360000);
+        timeRemaining = timeRemaining % 360000;
+        this.minutes = parseInt(timeRemaining / 6000);
+        timeRemaining = timeRemaining % 6000;
+        this.seconds = parseInt(timeRemaining / 100);
+        timeRemaining = timeRemaining % 100;
+        this.ms = parseInt(timeRemaining);
+      } else {
+        this.$emit('stop');
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.start();
+  }
+});
+// CONCATENATED MODULE: ./packages/countdown/countdown.vue?vue&type=script&lang=js&
+ /* harmony default export */ var countdown_countdownvue_type_script_lang_js_ = (countdownvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./packages/countdown/countdown.vue
+
+
+
+
+
+/* normalize component */
+
+var countdown_component = Object(componentNormalizer["a" /* default */])(
+  countdown_countdownvue_type_script_lang_js_,
+  countdownvue_type_template_id_2c798dac_render,
+  countdownvue_type_template_id_2c798dac_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+countdown_component.options.__file = "countdown.vue"
+/* harmony default export */ var countdown = (countdown_component.exports);
+// CONCATENATED MODULE: ./packages/countdown/index.js
+
+
+
+countdown.install = function (Vue) {
+  Vue.component(countdown.name, countdown);
+};
+
+/* harmony default export */ var packages_countdown = (countdown);
 // CONCATENATED MODULE: ./packages/index.js
 
 
@@ -16231,7 +16444,8 @@ carousel_carousel.install = function (Vue) {
 
 
 
-var packages_components = [packages_avatar, icon["a" /* default */], packages_v, packages_loader, packages_spinner, uplaoder, packages_dropdown, packages_alert, row, col, packages_card, packages_input, packages_image, packages_heading, button_button, button_group, packages_checkbox, packages_radio, accordion, accordion_item, packages_autocomplete, packages_tag, packages_hr, backdrop_backdrop, packages_textarea, modal_modal, confirm_confirm, packages_progress, packages_marquee, packages_share, packages_typer, packages_carousel];
+
+var packages_components = [packages_avatar, icon["a" /* default */], packages_v, packages_loader, packages_spinner, uplaoder, packages_dropdown, packages_alert, row, col, packages_card, packages_input, packages_image, packages_heading, button_button, button_group, packages_checkbox, packages_radio, accordion, accordion_item, packages_autocomplete, packages_tag, packages_hr, backdrop_backdrop, packages_textarea, modal_modal, confirm_confirm, packages_progress, packages_marquee, packages_share, packages_typer, packages_carousel, packages_countdown];
 
 var packages_install = function install(Vue) {
   if (install.installed) return;
@@ -16287,6 +16501,7 @@ if (typeof window !== "undefined" && window.Vue) {
   Share: packages_share,
   Typer: packages_typer,
   Carousel: packages_carousel,
+  Countdown: packages_countdown,
   $Popover: packages_popover,
   $Toast: packages_toast,
   $Cover: backdrop_$Cover,

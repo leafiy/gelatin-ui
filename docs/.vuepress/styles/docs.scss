@@ -12,7 +12,8 @@ $lighter:#E9EBEE;
 
 .container {
   margin: 1rem 0;
-  .ui-btn{
+
+  .ui-btn {
     margin-bottom: 1em;
   }
 }
@@ -25,4 +26,9 @@ $lighter:#E9EBEE;
   text-align: center;
   color: #fff;
   line-height: 2rem;
+}
+
+div[class*="language-"] pre,
+div[class*="language-"] pre[class*="language-"] {
+  white-space: pre-wrap;
 }

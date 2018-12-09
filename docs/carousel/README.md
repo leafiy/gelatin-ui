@@ -25,7 +25,7 @@
 
 #### 自动滚动
 
-<!-- <carousel-carousel2></carousel-carousel2> -->
+<carousel-carousel2></carousel-carousel2>
 
 <code-code title="usage">
  ```html
@@ -38,7 +38,7 @@
 
 如果卡片的阴影被`overflow:hidden`覆盖，可以根据阴影的尺寸设置expand
 
-<!-- <carousel-carousel3></carousel-carousel3> -->
+<carousel-carousel3></carousel-carousel3>
 
 <code-code title="usage">
  ```html

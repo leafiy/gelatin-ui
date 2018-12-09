@@ -10,6 +10,7 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
+      { text: 'github', link: 'https://github.com/leafiy/gelatin-ui' },
       { text: 'unicapsule', link: 'https://unicapsule.com' },
       // {
       //   text: 'Languages',
@@ -33,7 +34,8 @@ module.exports = {
       ['/message/','Message'],
       ['/share/','Share'],
       ['/typer/','Typer 打字机'],
-      ['/carousel/','Carousel 卡片轮播']
+      ['/carousel/','Carousel 卡片轮播'],
+      ['/countdown/','Countdown 倒计时']
     ]
   },
   lastUpdated: 'Last Updated',

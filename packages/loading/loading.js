@@ -12,7 +12,7 @@ export default {
   name: "ui-loading",
   inserted(el, binding, vnode) {
     if (typeof binding.value == 'object' || binding.value) {
-      let options = typeof binding.value == 'object' != null ? binding.value : {}
+      let options = typeof binding.value == 'object' ? binding.value : {}
       if (binding.value) {
         render({ el, options })
       }

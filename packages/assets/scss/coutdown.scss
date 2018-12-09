@@ -1,0 +1,30 @@
+@import './var.scss';
+
+.ui-countdown {
+  display: inline-block;
+
+  &-theme-card {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    [class*='ui-countdown-date-'] {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      padding:20px;
+      font-size: 22px;
+      .ui-countdown-date-unit{
+       font-size:12px;
+      }
+    }
+  }
+
+}
+
+.ui-countdown-date {
+  display: flex;
+
+  >div {
+    margin-right: 5px
+  }
+}

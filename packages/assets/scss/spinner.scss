@@ -56,8 +56,8 @@
 
 
 .ui-spinner-dot>div {
-  -webkit-animation: a 1.3s infinite cubic-bezier(.645, .045, .355, 1);
-  animation: a 1.3s infinite cubic-bezier(.645, .045, .355, 1)
+  -webkit-animation: spinner-dot 1.3s infinite cubic-bezier(.645, .045, .355, 1);
+  animation: spinner-dot 1.3s infinite cubic-bezier(.645, .045, .355, 1)
 }
 
 .ui-spinner-dot .rect2 {
@@ -70,13 +70,10 @@
   animation-delay: -1s
 }
 
-.ui-backdrop-dark,
-.ui-backdrop-darker {
-  .ui-spinner-dot {
-    >div {
-      background-color: $lighter;
-
-    }
+.ui-backdrop-dark{
+  .ui-spinner-dot>div{
+    background: $lighter;
   }
-
 }
+
+
