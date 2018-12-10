@@ -1,7 +1,7 @@
 <template>
   <div :class="classes" @mouseenter="pause" @mouseleave="resume">
     <transition enter-active-class="bounceIn" leave-active-class="fadeOut" @after-enter="entered" @after-leave="destroy" @before-leave="isEntered = false">
-      <div class="ui-toast-icon" @click="clickIcon" v-if="!isMessage && show" :style="{zIndex:zIndex && zIndex+2}">
+      <div class="ui-toast-icon" @click="clickIcon" v-if="!isMessage && show" :style="{zIndex:zIndex && zIndex+4}">
         <ui-icon :name="iconName" v-if="iconName"></ui-icon>
       </div>
     </transition>
@@ -60,7 +60,7 @@ export default {
       actions: [],
       zIndex: "",
       isEntered: false,
-      closeOnClick: true,
+      closeOnClick: false,
       onClick: null,
       isMessage: false
     };

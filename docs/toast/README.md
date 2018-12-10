@@ -11,11 +11,12 @@
 |--|--|--|--|
 |type|String|info|["info", "error", "warning"]|
 |message|String||yes|
-|duration|Number|3000||
+|duration|Number|3000|为0不会自动关闭|
 |icon|String|||
 |onClose|Function|||
 |onClick|Function|||
 |position|Object|{x:'right',y:'top'}|
+|closeOnClick|Boolean|false|点击图标关闭toast|
 
 type 是 `info` 时默认是没有图标的
 

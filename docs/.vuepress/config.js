@@ -6,7 +6,7 @@ module.exports = {
   description: '🎨 A vuejs ui toolkit from unicapsule.com',
   port: 8108,
   host: "localhost",
-  base:"/gelatin-ui/",
+  base: "/gelatin-ui/",
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
@@ -22,21 +22,53 @@ module.exports = {
     ],
     sidebar: [
       '/',
-      ['/layout/', 'Layout 布局'],
-      ['/popover/', 'Popover 弹出'],
-      ['/checkbox/', 'Checkbox'],
-      ['/radio/', 'Radio'],
-      ['/modal/', 'Modal'],
-      ['/confirm/', 'Confirm'],
-      ['/progress/', 'Progress'],
-      ['/alert/', 'Alert'],
-      ['/toast/', 'Toast'],
-      ['/message/','Message'],
-      ['/share/','Share'],
-      ['/typer/','Typer 打字机'],
-      ['/carousel/','Carousel 卡片轮播'],
-      ['/countdown/','Countdown 倒计时'],
-      ['/tooltip/','Tooltip']
+      {
+        title: 'config',
+        children: [
+          ['/install/', '全局引用'],
+          ['/depend/', '按需引用'],
+        ]
+      },
+      {
+        title: 'basic',
+        collapsable: false,
+        children: [
+          ['/layout/', 'Layout 布局'],
+          ['/progress/', 'Progress'],
+          ['/alert/', 'Alert'],
+        ]
+      },
+      {
+        title: 'form',
+        collapsable: false,
+        children: [
+          ['/checkbox/', 'Checkbox'],
+          ['/radio/', 'Radio'],
+        ]
+      },
+      {
+        title: 'notice',
+        collapsable: false,
+        children: [
+          ['/modal/', 'Modal'],
+          ['/confirm/', 'Confirm'],
+          ['/toast/', 'Toast'],
+          ['/message/', 'Message'],
+          ['/tooltip/', 'Tooltip'],
+          ['/dropdown/', 'Dropdown'],
+          ['/popover/', 'Popover'],
+        ]
+      },
+      {
+        title: 'utils',
+        collapsable: false,
+        children: [
+          ['/share/', 'Share'],
+          ['/typer/', 'Typer 打字机'],
+          ['/carousel/', 'Carousel 卡片轮播'],
+          ['/countdown/', 'Countdown 倒计时'],
+        ]
+      }
     ]
   },
   lastUpdated: 'Last Updated',

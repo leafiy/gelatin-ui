@@ -24,15 +24,15 @@ export default {
     toast1() {
       this.$Toast({
         message: 'Normal Toast',
-        duration: 2000,
         icon: "user"
       })
     },
     toast2() {
       this.$Toast({
-        message: 'Normal Toast',
-        duration: 2000,
-        icon: "user",
+        message: '我不会消失，除非点icon一下',
+        icon: "close",
+        duration:0,
+        closeOnClick:true,
         onClose: () => {
           this.$Toast('toast closed')
         }
@@ -41,7 +41,6 @@ export default {
     toast3() {
       this.$Toast({
         message: 'click icon event',
-        duration: 2000,
         icon: "user",
         onClick: () => {
           alert('你点了图标')
@@ -52,7 +51,6 @@ export default {
       this.$Toast({
         type: 'warning',
         message: 'warning message',
-        duration: 2000,
         icon: "stop"
       })
     },
