@@ -1,8 +1,10 @@
 <template>
   <div class="ui-accordion-item" :class="classes">
-    <p class="ui-accordion-title" @click="click" @mouseover="mouseover">
-      <span v-html="title"></span>
-      <span class="ui-accordion-close-icon"><ui-icon name="plus"></ui-icon></span>
+    <p class="ui-accordion-title" @mouseover="mouseover">
+      <span v-html="title" @click="clickTitle"></span>
+      <slot name="close">
+        <span class="ui-accordion-close-icon" @click="click"><ui-icon name="plus"></ui-icon></span>
+      </slot>
     </p>
     <collapse-transition>
       <div class="ui-accordion-content" v-show="show">
@@ -28,6 +30,10 @@ export default {
   props: {
     title: String,
     openOnMouseOver: Boolean,
+    openOnClickTitle: {
+      type: Boolean,
+      default: true
+    },
     active: Boolean,
     accordion: {
       type: Boolean,
@@ -60,6 +66,11 @@ export default {
     }
   },
   methods: {
+    clickTitle() {
+      if (this.openOnClickTitle) {
+        this.click()
+      }
+    },
     click() {
       this.show = !this.show
     },
@@ -69,8 +80,10 @@ export default {
       }
     }
   },
-  mounted() {
-    if (this.active) this.show = true
+  watch: {
+    active() {
+      this.show = this.active
+    }
   }
 }
 

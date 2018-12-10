@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-accordion-container">
+  <div class="ui-accordion-container" :class="[size && `ui-accordion-size-${size}`]">
     <slot></slot>
   </div>
 </template>
@@ -28,6 +28,9 @@ export default {
         }
       })
     }
+  },
+  props: {
+    size: String
   },
   mounted() {
     events.$on(`${this.id}`, this.handler)

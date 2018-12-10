@@ -92,3 +92,6 @@ click(e) {
 |textCetner|Boolean|true|文字是否居中|
 |arrow|Boolean|true|是否显示小箭头|
 |menu|Array|||
+
+
+[更多配置](/common/popover.md)

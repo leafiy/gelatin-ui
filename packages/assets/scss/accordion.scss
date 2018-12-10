@@ -43,9 +43,16 @@
   transition: all .2s ease-in-out;
   display: flex;
   justify-content: space-between;
-
 }
 
 .ui-accordion-close-icon {
   transition: transform .2s ease-in-out;
+  white-space: nowrap;
+}
+
+
+.ui-accordion-size{
+  &-sm{
+    font-size: 12px;
+  }
 }

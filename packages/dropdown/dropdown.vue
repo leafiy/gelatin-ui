@@ -3,21 +3,24 @@
     <div class="ui-dropdown-trigger" ref="trigger" @click="open">
       <slot name="trigger"></slot>
     </div>
-    <div class="ui-dropdown-menu" v-if="show" :style="stlyes" ref="dropdown-menu" v-click-outside="close">
-      <span
+    <transition name="fade" @enter="enter">
+      <div class="ui-dropdown-menu" v-if="show" :style="stlyes" ref="dropdown-menu" v-click-outside="close">
+        <span
         class="ui-dropdown-triangle"
         :style="triangleStyles"
         ref="triangle"
       ></span>
-      <div class="ui-dropdown-content" :style="menuStyles">
-        <slot name="dropdown-content"></slot>
+        <div class="ui-dropdown-content" :style="menuStyles">
+          <slot></slot>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 <script>
 import ClickOutside from "vue-click-outside";
 import pop from "../../src/mixins/pop/pop.js";
+
 import "../assets/scss/dropdown.scss";
 export default {
   name: "ui-dropdown",
@@ -28,19 +31,36 @@ export default {
       axis: ""
     };
   },
+  props: {
+    closeOnMouseleave: Boolean
+  },
+  mounted() {
+    this.trigger = this.$refs['trigger']
+  },
+  watch: {
+    show() {
+      if (this.show) {
+        this.$emit('open')
+        this.bindEvents()
+      } else {
+        this.$emit('close')
+        this.unbindEvents()
+      }
+    }
+  },
   methods: {
+    enter() {
+      this.el = this.$refs["dropdown-menu"];
+      this.getAxis();
+      this.calculatePopoverPosition();
+
+    },
     open() {
-      this.trigger = this.$refs["trigger"];
       this.show = true;
-      this.$nextTick(() => {
-        this.el = this.$refs["dropdown-menu"];
-        this.getAxis();
-        this.calculatePopoverPosition();
-      });
     },
     close() {
       this.show = false;
-      this.unbindEvents()
+
     },
     unbindEvents() {
       window.removeEventListener("resize", this.calculatePopoverPosition);

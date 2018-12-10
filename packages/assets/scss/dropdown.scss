@@ -3,6 +3,7 @@
 
 .ui-dropdown {
   position: relative;
+  display: inline-block;
 }
 
 .ui-dropdown-triangle {
@@ -16,7 +17,7 @@
 
   .ui-dropdown-content {
     @extend .ui-popover-menu;
-    min-height: 32px;
-    min-width: 400px;
+    min-height: 22px;
+    min-width: 60px;
   }
 }

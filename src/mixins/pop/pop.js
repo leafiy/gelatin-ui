@@ -61,7 +61,7 @@ export default {
       type: Number,
       default: 200
     },
-    textCetner:Boolean
+    textCetner: Boolean
   },
   computed: {
     stlyes() {
@@ -122,12 +122,12 @@ export default {
           this.popoverOffset.width / 2;
       }
 
-      if (this.align == 'left') {
+      if (this.align == 'right') {
         this.left =
           this.triggerOffset.left + this.triggerOffset.width - this.popoverOffset.width
       }
 
-      if (this.align == 'right') {
+      if (this.align == 'left') {
         this.left = this.triggerOffset.left
       }
 
@@ -165,11 +165,24 @@ export default {
     setTrianglePosition() {
       let popoverOffset = this.el.getBoundingClientRect();
 
-      this.triangleLeft =
-        this.triggerOffset.left +
-        this.triggerOffset.width / 2 -
-        this.left -
-        this.arrowSize;
+      if (this.align == 'center') {
+        this.triangleLeft =
+          this.triggerOffset.left +
+          this.triggerOffset.width / 2 -
+          this.left -
+          this.arrowSize;
+      }
+      if (this.align == 'right') {
+
+        this.triangleLeft = this.popoverOffset.width / 2 + this.arrowSize
+      }
+
+      if (this.align == 'left') {
+        this.triangleLeft = this.popoverOffset.width / 4 - this.arrowSize
+      }
+
+
+
       if (this.axis.y > this.targetTop) {
         this.borderTopColor = "transparent";
         this.borderBottomColor = "#fff";

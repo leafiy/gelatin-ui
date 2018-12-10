@@ -20,3 +20,5 @@
 |openDelay|Number|0|显示延迟|
 |closeDelay|Number|50|关闭延迟|
 |content|String||内容|
+
+[更多配置](/common/popover.md)
