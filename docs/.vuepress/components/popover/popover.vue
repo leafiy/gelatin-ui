@@ -1,10 +1,24 @@
-# popover
+<template>
+  <div class="container">
+    <ui-button size="sm" @click.native="click" ref="btn1">open a popover</ui-button>
+    <ui-button size="sm" @click.native="click2">打开其他元素上的popover</ui-button>
+    <ui-button size="sm" @click.native="click3">也可以是一个菜单</ui-button>
+    <ui-button size="sm" @click.native="click4">绑定事件到菜单</ui-button>
+    <ui-button size="sm" @click.native="click5">菜单横向排列</ui-button>
+  </div>
+</template>
+<script>
+export default {
 
-<popover-popover></popover-popover>
+  name: 'popover',
 
-<code-code>
-```js
-click(e) {
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+    click(e) {
       this.$Popover({
         trigger: e.target,
         content: '一个简单的 popover',
@@ -74,21 +88,15 @@ click(e) {
         ]
       })
     }
-```
+  }
+}
 
-</code-code>
+</script>
+<style lang="scss">
+.ui-popover-menu {
+  ul {
+    padding: 0;
+  }
+}
 
-
-#### options
-|option|type|default|description|
-|--|--|--|--|
-|trigger|element||必须|
-|closeOnMouseleave|Boolean|false|鼠标离开时隐藏|
-|insertAfter|Boolean|false|false时插入到body中，true时插入到trigger next|
-|openDelay|Number|0|打开延迟|
-|closeOnClick|Boolean|true|点击popover是否关闭|
-|closeDelay|Number|0|关闭延迟|
-|content|String|''|文字内容|
-|textCetner|Boolean|true|文字是否居中|
-|arrow|Boolean|true|是否显示小箭头|
-|menu|Array|||
+</style>

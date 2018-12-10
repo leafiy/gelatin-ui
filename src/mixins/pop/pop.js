@@ -86,7 +86,7 @@ export default {
       return {
         borderRadius: `${this.radius}px`,
         transform: `translateX(${this.translateX})`,
-        textAlign: this.textAlign
+        textAlign: this.textCetner ? 'center' : ''
       };
     },
     tooltipStyles() {

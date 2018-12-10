@@ -1,4 +1,4 @@
-((typeof self !== 'undefined' ? self : this)["webpackJsonpgelatin_ui"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpgelatin_ui"] || []).push([[2],{
+((typeof self !== 'undefined' ? self : this)["webpackJsonpgelatin_ui"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpgelatin_ui"] || []).push([[1],{
 
 /***/ "ee47":
 /***/ (function(module, exports) {

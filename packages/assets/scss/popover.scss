@@ -26,7 +26,7 @@
 
   overflow: hidden;
 
-  li {
+  .ui-popover-item {
     user-select: none;
     padding: 8px 12px;
     border-bottom: 1px solid $lighter;
@@ -45,14 +45,14 @@
   }
 }
 
-.ui-popover-menu-vertical{
-
-}
+.ui-popover-menu-vertical {}
 
 .ui-popover-menu-horizon {
-  display: flex;
+  ul {
+    display: flex;
+  }
 
-  li {
+  .ui-popover-item {
     text-align: center;
     flex: 1;
     border-right: 1px solid $lighter;
@@ -64,9 +64,6 @@
   }
 }
 
-// .ui-popover-content{
-//   background:#fff;
-//   box-shadow:$shadow;
-//   border-radius:$radius;
-//   padding:6px 12px;
-// }
+.ui-popover-content {
+  padding: 6px 12px;
+}

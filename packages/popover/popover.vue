@@ -7,10 +7,12 @@
       :style="triangleStyles"
       ref="triangle"
     ></span>
-      <ul v-if="menu.length" class="ui-popover-menu" :class="[`ui-popover-menu-${menuType}`]" :style="menuStyles">
-        <ui-popover-item :params="params" :close-on-click="closeOnClick" :close-on-mouseleave="closeOnMouseleave" @close="close" v-for="item of menu" :key="item.content" :item="item"></ui-popover-item>
-      </ul>
-      <div class="ui-popover-menu" v-if="content" v-html="handleContent(content)" :style="menuStyles"></div>
+      <div v-if="!tooltip" class="ui-popover-menu" :class="[`ui-popover-menu-${menuType}`]" :style="menuStyles">
+        <ul v-if="menu.length">
+          <ui-popover-item :params="params" :close-on-click="closeOnClick" :close-on-mouseleave="closeOnMouseleave" @close="show=false" v-for="item of menu" :key="item.content" :item="item"></ui-popover-item>
+        </ul>
+        <div class="ui-popover-content" v-if="content" @click="closeOnClick? show=false:''" v-html="handleContent(content)"></div>
+      </div>
       <div class="ui-popover-menu" :class="{'ui-tooltip-with-close':showCloseIcon}" v-if="tooltip" :style="[menuStyles,tooltipStyles] ">
         <div class="ui-tooltip-content" v-html="tooltip"></div>
         <div class="ui-tooltip-close-icon" v-if="tooltip && showCloseIcon" @click="show=false">
@@ -57,8 +59,8 @@ export default {
     closeOnMouseleave: Boolean,
     onClose: Function,
     content: String,
-    textAlign: String,
-    showCloseIcon: Boolean
+    showCloseIcon: Boolean,
+    textCetner: Boolean
 
   },
   components: {
@@ -66,13 +68,13 @@ export default {
     UiIcon
   },
   methods: {
-    handleContent() {
-      if (this.content.startsWith('data:image/')) {
+    handleContent(content) {
+      if (content.startsWith('data:image/')) {
         let img = document.createElement('img')
-        img.src = this.content
+        img.src = content
         return img.outerHTML
       } else {
-        return this.content
+        return content
       }
     },
     unbindEvents() {

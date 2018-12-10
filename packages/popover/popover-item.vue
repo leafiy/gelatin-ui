@@ -1,20 +1,14 @@
 <template>
-  <li
-    @click="action"
-    v-if="item"
-    @mouseleave="mouseleave"
-    :class="[item.class, { pointer: item.action }]"
-    :title="item.content"
-  >
-    <icon v-if="item.icon" :name="item.icon"></icon>{{ item.content }}
+  <li @click="click" v-if="item" @mouseleave="mouseleave" :class="[item.class, { pointer: item.action }]" :title="item.content" class="ui-popover-item">
+    <ui-icon v-if="item.icon" :name="item.icon"></ui-icon>{{ item.content }}
   </li>
 </template>
 <script>
-import Icon from "../icon";
+import UiIcon from "../icon";
 export default {
   name: "ui-popover-item",
   components: {
-    Icon
+    UiIcon
   },
   data() {
     return {};
@@ -23,7 +17,7 @@ export default {
     item: Object,
     params: {
       type: Object,
-      default() {
+      default () {
         return {};
       }
     },
@@ -36,14 +30,16 @@ export default {
         this.$emit("close");
       }
     },
-    action() {
+    click() {
       if (this.item.action && typeof this.item.action === "function") {
         this.item.action(this.params || "");
-        if (this.closeOnClick) {
-          this.$emit("close");
-        }
+
+      }
+      if (this.closeOnClick) {
+        this.$emit("close");
       }
     }
   }
 };
+
 </script>
