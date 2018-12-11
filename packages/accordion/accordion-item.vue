@@ -3,7 +3,7 @@
     <p class="ui-accordion-title" @mouseover="mouseover" @click="clickTitle">
       <span v-html="title" class="ui-accordion-title-content"></span>
       <slot name="close">
-        <span class="ui-accordion-close-icon" @click="click"><ui-icon name="plus"></ui-icon></span>
+        <span class="ui-accordion-close-icon" @click.self="click"><ui-icon name="plus"></ui-icon></span>
       </slot>
     </p>
     <collapse-transition>
