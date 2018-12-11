@@ -33,8 +33,9 @@ export default {
     //   default: "image"
     // },
     size: {
+      type: String,
       validator(value) {
-        return ["small", "large", "default"].includes(value);
+        return ["sm", "lg", "default"].includes(value);
       },
       default: "default"
     },
@@ -61,4 +62,5 @@ export default {
     }
   }
 };
+
 </script>
