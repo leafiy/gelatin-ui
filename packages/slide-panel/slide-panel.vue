@@ -1,6 +1,6 @@
 <template>
-  <transition :enter-active-class="enterClass" :leave-active-class="leaveClass">
-    <div class="ui-slide-panel" v-if="_show">
+  <transition :enter-active-class="enterClass" :leave-active-class="leaveClass" @before-enter="animating=true" @after-enter="enter" @before-leave="animating = true" @after-leave="leave">
+    <div class="ui-slide-panel" :class="[isolate && 'ui-slide-panel-isolate']" v-if="_show" :style="{'animation-duration':speed+'ms'}">
       <slot></slot>
     </div>
   </transition>
@@ -14,12 +14,7 @@ export default {
 
   data() {
     return {
-
-    }
-  },
-  watch: {
-    _show() {
-      console.log(this._show)
+      animating: false
     }
   },
   computed: {
@@ -27,28 +22,29 @@ export default {
       get: function() {
         return this.show
       },
-      // setter
       set: function(newValue) {
-        return newValue
+        if (!this.animating) {
+          return newValue
+        }
       }
-    },
-    transitionName() {
-      return `slide-panel-${this.direction}`
     },
     enterClass() {
       return `slideIn${upperCase(this.direction)}`
     },
     leaveClass() {
-     return `slideOut${upperCase(this.direction)}`
-    },
+      return `slideOut${upperCase(this.direction)}`
+    }
   },
   props: {
     show: Boolean,
+    speed: Number,
+    isolate:Boolean,
+    zIndex:Number,
     direction: {
       type: String,
       default: 'right',
       validator(val) {
-        return ['top', 'bottom', 'right', 'left', 'center'].includes(val)
+        return ['down', 'up', 'right', 'left'].includes(val)
       }
     }
   },
@@ -58,8 +54,23 @@ export default {
     },
     close() {
       this._show = false
+    },
+    enter() {
+      this.animating = true
+      this.$emit('open')
+    },
+    leave() {
+      this.animating = false
+      this.$emit('close')
+    },
+  },
+  watch:{
+   _show(){
+    if(this._show && this.isolate){
+       document.body.appendChild(this.$el)
     }
-  }
+   }
+  },
 }
 
 </script>

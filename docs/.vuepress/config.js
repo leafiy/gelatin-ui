@@ -27,6 +27,7 @@ module.exports = {
         children: [
           ['/install/', '全局引用'],
           ['/depend/', '按需引用'],
+          ['/animate/', '内置动画']
         ]
       },
       {

@@ -1,6 +1,12 @@
 @import './var.scss';
 @import './animate.scss';
-.ui-slide-panel{
- @extend .animated;
-}
 
+.ui-slide-panel {
+  @extend .animated;
+  width: 100%;
+  height: 100%;
+
+  &-isolate {
+    position: fixed;
+  }
+}
