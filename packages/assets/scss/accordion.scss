@@ -11,7 +11,8 @@
       border: none;
       border-radius: 0 0 $radius/2 $radius/2;
     }
-    &:first-child{
+
+    &:first-child {
       border-radius: $radius/2 $radius/2 0 0;
     }
   }
@@ -39,20 +40,24 @@
 
 .ui-accordion-title {
   font-size: 1.2em;
-  cursor: pointer;
   transition: all .2s ease-in-out;
   display: flex;
   justify-content: space-between;
+  &-content{
+    cursor: pointer;
+  }
 }
 
 .ui-accordion-close-icon {
   transition: transform .2s ease-in-out;
   white-space: nowrap;
+  cursor: pointer;
+
 }
 
 
-.ui-accordion-size{
-  &-sm{
+.ui-accordion-size {
+  &-sm {
     font-size: 12px;
   }
 }
