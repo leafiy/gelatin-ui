@@ -35,6 +35,7 @@ import Share from './share/index.js'
 import Typer from './typer/index.js'
 import Carousel from './carousel/index.js'
 import Countdown from './countdown/index.js'
+import SlidePanel from './slide-panel/index.js'
 const components = [
   Avatar,
   Icon,
@@ -68,7 +69,8 @@ const components = [
   Share,
   Typer,
   Carousel,
-  Countdown
+  Countdown,
+  SlidePanel
 ];
 
 
@@ -125,6 +127,7 @@ export default {
   Typer,
   Carousel,
   Countdown,
+  SlidePanel,
   $Popover,
   $Toast,
   $Cover,

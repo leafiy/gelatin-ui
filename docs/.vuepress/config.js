@@ -36,6 +36,7 @@ module.exports = {
           ['/layout/', 'Layout 布局'],
           ['/progress/', 'Progress'],
           ['/alert/', 'Alert'],
+          ['/slide-panel/', 'Slide-Panel'],
         ]
       },
       {

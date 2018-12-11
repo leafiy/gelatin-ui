@@ -33,6 +33,7 @@ export default {
         icon: "close",
         duration:0,
         closeOnClick:true,
+        position: { x: 'left', y: "top" },
         onClose: () => {
           this.$Toast('toast closed')
         }

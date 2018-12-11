@@ -98,7 +98,6 @@
   min-height: 44px;
   flex: 1;
   pointer-events: all;
-
   &-icon {
     width: 44px;
     height: 44px;
@@ -315,19 +314,22 @@
       @extend .close-icon;
     }
   }
-  .ui-message-actions{
-    padding:12px 0;
-    >span{
-      font-size:12px;
+
+  .ui-message-actions {
+    padding: 12px 0;
+
+    >span {
+      font-size: 12px;
       margin-right: 10px;
       cursor: pointer;
       background: $lighter;
-      padding:2px 8px;
+      padding: 2px 8px;
       border-radius: $radius;
       transition: all .2s ease-in-out;
-      &:hover{
+
+      &:hover {
         background: $light;
-        color:#fff;
+        color: #fff;
       }
     }
   }

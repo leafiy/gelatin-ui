@@ -100,10 +100,10 @@ export default {
       }
     },
     toastInTransition() {
-      return this.position.x == 'right' ? 'slideInRight' : 'slideInLeft'
+      return this.position.x == 'right' ? 'toastInRight' : 'toastInLeft'
     },
     toastOutTransition() {
-      return this.position.x == 'right' ? 'slideOutRight' : 'slideOutLeft'
+      return this.position.x == 'right' ? 'toastOutRight' : 'toastOutLeft'
     },
   },
   methods: {

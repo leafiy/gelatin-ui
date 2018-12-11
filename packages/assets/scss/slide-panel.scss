@@ -1,0 +1,6 @@
+@import './var.scss';
+@import './animate.scss';
+.ui-slide-panel{
+ @extend .animated;
+}
+
