@@ -1,4 +1,4 @@
-# :pill: Gelatin-Ui - a simple VueJS ui toolkit
+# :pill: Gelatin-Ui - 简单好看的VueJs UI
 
 `Gelatin 明胶，食用后无任何反应`
 

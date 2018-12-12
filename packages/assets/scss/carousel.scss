@@ -22,15 +22,7 @@
   transition: transform .3s ease-out;
   transform: translatex(0px);
   height: 100%;
-  >* {
-    display: block;
-  }
 }
-
-.ui-carousel-item{
-
-}
-
 .ui-carousel-nav-item {
   &[disabled] {
     opacity: 0.2;
@@ -65,7 +57,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  bottom: -16px;
+  top: calc(100% );
   left:0;
   height: 4px;
   &-bar {

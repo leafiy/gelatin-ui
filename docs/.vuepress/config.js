@@ -3,7 +3,7 @@ const path = require('path')
 
 module.exports = {
   title: 'Gelatin-Ui',
-  description: '🎨 A vuejs ui toolkit from unicapsule.com',
+  description: '🎨 简单好看的VueJs UI from unicapsule.com',
   port: 8108,
   host: "localhost",
   base: "/gelatin-ui/",

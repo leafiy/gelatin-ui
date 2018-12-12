@@ -2,6 +2,11 @@
 
 每个卡片的样式、尺寸，都由项目控制，gelatin-ui只负责滚动部分，可以随意插入你想要的元素，甚至是span，text，image
 
+> carousel容器为flex容器,宽度是由每个item的宽度决定,具体项目中不可直接嵌套responsive或宽度为百分比元素
+
+> 如果发生堆叠,只需用css为每个item增加固定的宽度值,gelatin可以做到每次滚动前自动判断item的宽度,即使是宽度发生变化也无需担心
+
+
 #### 默认配置
 
 <carousel-carousel></carousel-carousel>

@@ -34,14 +34,14 @@ export default {
       items: [],
       index: 0,
       timer: null,
-      list: [],
-      pull: {
-        from: -1,
-        to: -1,
-        distance: 0,
-        type: null,
-        available: false
-      },
+      // list: [],
+      // pull: {
+      //   from: -1,
+      //   to: -1,
+      //   distance: 0,
+      //   type: null,
+      //   available: false
+      // },
     }
   },
   components: {
@@ -120,7 +120,12 @@ export default {
     },
     renderItems() {
       this.items = this.$slots.default.filter(item => item.tag)
+      // this.renderContainer()
     },
+    renderContainer() {
+    },
+    bindEvents() {},
+    unBindEvents() {},
     barClick(index) {
       this.index = index
     },
@@ -181,22 +186,29 @@ export default {
       if (this.auto) {
         this.startAuto()
       }
+      this.bindEvents()
     })
   },
   activated() {
     if (this.touch && this.inited) {
       this.bindTouchEvents()
     }
+    if (this.inited) {
+      this.bindEvents()
+    }
   },
   deactivated() {
     if (this.touch) {
       this.unBindTouchEvents();
     }
+
+    this.unBindEvents()
   },
   beforeDestroy() {
     if (this.touch) {
       this.unBindTouchEvents();
     }
+    this.unBindEvents()
   }
 }
 
