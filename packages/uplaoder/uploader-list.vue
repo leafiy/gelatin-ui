@@ -1,6 +1,6 @@
 <template>
   <div class="ui-upload-list">
-    <div v-for="(file, index) of fileList" :key="file.id || file.uid" :class="'ui-upload-file-' + file.status" class="ui-upload-file-item" :style="listItemStyles">
+    <div v-for="(file, index) of fileList" :key="file.id || file.uid" :class="'ui-upload-file-' + file.status" class="ui-upload-file-item">
       <img
         class="ui-upload-thumb"
         :src="file.url"
@@ -57,19 +57,19 @@ export default {
     autoUpload: Boolean
   },
   computed: {
-    listItemStyles() {
-      if (this.listStyle == "card") {
-        return {
-          width: typeof this.height === "string" ? this.height : `${this.height}px`,
-          height: typeof this.height === "string" ? this.height : `${this.height}px`
-        };
-      } else {
-        return {
-          height: typeof this.height === "string" ? this.height : `${this.height}px`,
-          width: typeof this.width === "string" ? this.width : `${this.width}px`
-        };
-      }
-    }
+    // listItemStyles() {
+    //   if (this.listStyle == "card") {
+    //     return {
+    //       width: typeof this.height === "string" ? this.height : `${this.height}px`,
+    //       height: typeof this.height === "string" ? this.height : `${this.height}px`
+    //     };
+    //   } else {
+    //     return {
+    //       height: typeof this.height === "string" ? this.height : `${this.height}px`,
+    //       width: typeof this.width === "string" ? this.width : `${this.width}px`
+    //     };
+    //   }
+    // }
   },
   components: {
     UiProgress

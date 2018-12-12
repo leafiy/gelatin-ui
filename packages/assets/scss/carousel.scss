@@ -1,28 +1,34 @@
 @import './var.scss';
 
 .ui-carousel-wrapper {
-  margin: 20px 0;
   width: 100%;
+  height:100%;
   position: relative;
 }
 
 .ui-carousel-overflow {
   overflow: hidden;
   box-sizing: border-box;
+  height:100%;
 }
 
 .ui-carousel {
   width: 100%;
+  height:100%;
 }
 
 .ui-carousel-items {
   display: flex;
   transition: transform .3s ease-out;
   transform: translatex(0px);
-
+  height: 100%;
   >* {
     display: block;
   }
+}
+
+.ui-carousel-item{
+
 }
 
 .ui-carousel-nav-item {

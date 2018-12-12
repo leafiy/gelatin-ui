@@ -18,21 +18,21 @@ export default {
       ];
     },
     triggerStyles() {
-      if (this.type == "drag") {
-        return {
-          height:
-            typeof this.height === "string" ? this.height : `${this.height}px`,
-          width: typeof this.width === "string" ? this.width : `${this.width}px`
-        };
-      }
-      if (this.type == "circle") {
-        return {
-          height:
-            typeof this.height === "string" ? this.height : `${this.height}px`,
-          width:
-            typeof this.height === "string" ? this.height : `${this.height}px`
-        };
-      }
+      // if (this.type == "drag") {
+      //   return {
+      //     height:
+      //       typeof this.height === "string" ? this.height : `${this.height}px`,
+      //     width: typeof this.width === "string" ? this.width : `${this.width}px`
+      //   };
+      // }
+      // if (this.type == "circle") {
+      //   return {
+      //     height:
+      //       typeof this.height === "string" ? this.height : `${this.height}px`,
+      //     width:
+      //       typeof this.height === "string" ? this.height : `${this.height}px`
+      //   };
+      // }
     },
     showInput() {
       return this.uploadFiles.length ? this.showInputAfterSuccess : true;

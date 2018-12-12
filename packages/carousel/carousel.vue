@@ -3,7 +3,7 @@
     <div class="ui-carousel">
       <div class="ui-carousel-overflow" :style="expandStyles">
         <div class="ui-carousel-items" :style="listStyles">
-          <ui-carousel-item :class="{'ui-carousel-item-active':index == idx}" :style="itemStyles" @mounted="itemMounted" v-for="(item,idx) of items" :index="idx" :item="item" :key="idx"></ui-carousel-item>
+          <ui-carousel-item :class="{'ui-carousel-item-active':index == idx}" :style="itemStyles" v-for="(item,idx) of items" :index="idx" :item="item" :key="idx"></ui-carousel-item>
         </div>
       </div>
     </div>
@@ -97,13 +97,10 @@ export default {
     }
   },
   methods: {
-    itemMounted({ width, index }) {
-      this.list.push({ index, width })
-    },
     getOffset(index) {
 
       let list = Array.prototype.slice.call(this.$el.querySelectorAll('.ui-carousel-item'), 0, index)
-      list = list.map((item,index) =>item.clientWidth)
+      list = list.map((item, index) => item.clientWidth)
       return list.reduce((a, b) => a + b, 0)
 
     },
@@ -129,10 +126,11 @@ export default {
     },
     startAuto() {
       this.timer = setInterval(() => {
-        if (this.index <= this.items.length - this.scrollCount) {
+        if (this.index < this.items.length - this.scrollCount) {
           this.moveCarousel(1)
         } else {
           clearInterval(this.timer)
+          this.timer = null
           if (this.loop) {
             this.back()
           }

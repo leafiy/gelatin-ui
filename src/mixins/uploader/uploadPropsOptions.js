@@ -29,13 +29,13 @@ export default {
     },
     supportFormat: {
       type: Array,
-      default() {
+      default () {
         return ["gif", "jpg", "jpeg", "png", "webp"];
       }
     },
     lang: {
       type: Object,
-      default() {
+      default () {
         return {
           cancel: "cancel",
           del: "delete",
@@ -52,7 +52,7 @@ export default {
     withCredentials: Boolean,
     data: {
       type: Object,
-      default() {
+      default () {
         return {};
       }
     },
@@ -81,21 +81,17 @@ export default {
       type: String,
       default: "list",
       validator: function(value) {
-        return ["list", "card", "custom"].indexOf(value) !== -1;
+        return ["list", "card", "custom", ''].indexOf(value) !== -1;
       }
     },
     autoUpload: {
       type: Boolean,
       default: true
     },
-    showTip: {
-      type: Boolean,
-      default: true
-    },
     autoOrient: Boolean,
     fileList: {
       type: Array,
-      default() {
+      default () {
         return [];
       }
     }

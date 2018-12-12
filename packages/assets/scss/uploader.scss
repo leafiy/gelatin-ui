@@ -8,10 +8,10 @@
   margin:20px 0;
 
   .ui-upload-thumb {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
     transition: all .2s linear;
+    width: 100%;
+    height: 100%;
   }
 
 }
@@ -38,34 +38,50 @@
   }
 }
 
+.ui-upload-inner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px;
+}
+
 .ui-upload-drag {
   .ui-upload-inner {
     background: lighten($lighter, 5%);
     position: relative;
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
+    height: 160px;
     cursor: pointer;
     overflow: hidden;
     text-align: center;
   }
 }
 
+.ui-upload-list{
+  .ui-upload-file-item{
+    height: 160px;
+  }
+}
+
 .ui-upload-list-card {
-  &.ui-upload-drag {
-    .ui-upload-inner {
-      vertical-align: top;
-      float: left
-    }
+
+
+  .ui-upload-inner {
+    float:left;
+    width: 160px;
+    margin-bottom: 1em;
   }
 
   .ui-upload-list {
-    margin: 0;
-    display: inline;
-    vertical-align: top;
+   display: inline;
 
     .ui-upload-file-item {
+      width: 160px;
+      height:160px;
       float: left;
+      margin-bottom: 1em;
+
     }
   }
 }
@@ -102,14 +118,6 @@
 
 
 
-
-.ui-upload-text {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate3d(-50%, -50%, 0);
-}
-
 .ui-upload-file-item {
   width: 100%;
   height: 100%;
@@ -124,29 +132,28 @@
 }
 
 
-.ui-upload-file-finished {
-  .ui-upload-thumb {
-    border: 1px solid $lighter;
-  }
-}
 
 .ui-upload-file-aborted {
-  .ui-upload-thumb {
-    border-color: $warning-color;
+  border: 1px solid $warning-color;
+
+  img {
+    filter: grayscale(100%) opacity(50%);
   }
 }
 
 .ui-upload-file-error {
-  .ui-upload-thumb {
-    border: 1px solid $error-color;
+  border: 1px solid $error-color;
+
+  img {
     filter: grayscale(100%) opacity(50%);
   }
 }
 
 
 .ui-upload-file-uploading {
-  .ui-upload-thumb {
-    border: 1px solid $lighter;
+  border: 1px solid $lighter;
+
+  img {
     filter: grayscale(50%) opacity(30%);
   }
 }
@@ -166,14 +173,16 @@
   z-index: 100;
   display: flex;
   justify-content: center;
+
   >span {
     cursor: pointer;
     background: rgba(0, 0, 0, .5);
     color: #fff;
     padding: 3px 8px;
-    margin:0 4px;
-    border-radius:$radius;
-    &:hover{
+    margin: 0 4px;
+    border-radius: $radius;
+
+    &:hover {
       background: rgba(0, 0, 0, .8)
     }
   }
