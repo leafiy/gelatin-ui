@@ -41,7 +41,7 @@ export default {
     handleFiles(files) {
       let postFiles = Array.prototype.slice.call(files);
       if (postFiles.length === 0) return;
-      if (postFiles.length > this.maxNumber) {
+      if (postFiles.length + this.uploadFiles.length > this.maxNumber) {
         this.onNumberExceed && this.onNumberExceed({ files });
         return;
       }

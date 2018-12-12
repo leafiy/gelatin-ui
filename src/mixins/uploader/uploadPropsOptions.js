@@ -88,7 +88,6 @@ export default {
       type: Boolean,
       default: true
     },
-    multiple: Boolean,
     showTip: {
       type: Boolean,
       default: true

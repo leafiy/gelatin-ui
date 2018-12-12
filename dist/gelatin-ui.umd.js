@@ -10499,7 +10499,6 @@ var uploadervue_type_template_id_d54d7b4c_staticRenderFns = []
       type: Boolean,
       default: true
     },
-    multiple: Boolean,
     showTip: {
       type: Boolean,
       default: true
@@ -10748,7 +10747,7 @@ var b64toBlob = function b64toBlob(base64) {
       var postFiles = Array.prototype.slice.call(files);
       if (postFiles.length === 0) return;
 
-      if (postFiles.length > this.maxNumber) {
+      if (postFiles.length + this.uploadFiles.length > this.maxNumber) {
         this.onNumberExceed && this.onNumberExceed({
           files: files
         });
@@ -10934,6 +10933,9 @@ var b64toBlob = function b64toBlob(base64) {
     },
     showInput: function showInput() {
       return this.uploadFiles.length ? this.showInputAfterSuccess : true;
+    },
+    multiple: function multiple() {
+      return this.maxNumber > 1;
     }
   }
 });
