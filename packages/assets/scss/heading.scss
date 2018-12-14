@@ -1,33 +1,34 @@
 @import './var.scss';
 
-h1 {
-  font-size: 2.4em;
+h1.ui-heading {
+  font-size: 2.5rem;
 }
 
-h2 {
-  font-size: 2em;
+h2.ui-heading {
+  font-size: 2rem;
 }
 
-h3 {
-  font-size: 1.4em;
+h3.ui-heading {
+  font-size: 1.75rem;
 }
 
-h4 {
-  font-size: 1.2em;
+h4.ui-heading {
+  font-size: 1.5rem;
 }
 
-h5 {
-  font-size: 1em;
+h5.ui-heading {
+  font-size: 1.25rem;
 }
 
-h6 {
-  font-size: .85em;
+h6.ui-heading {
+  font-size: 1rem;
 }
 
 .ui-heading {
   word-wrap: break-word;
   word-break: break-all;
   position: relative;
+  line-height: 1.2;
 
   small {
     font-size: 12px;
@@ -42,9 +43,6 @@ h6 {
   font-weight: 400;
 }
 
-.ui-heading-primary {
-  line-height: 1.1;
-}
 
 .ui-heading-divider {
   padding-bottom: 10px;

@@ -97,6 +97,7 @@ export default {
   watch: {
     index(val) {
       this.currentOffset = -this.getOffset(this.index);
+      this.$emit('change', val)
     }
   },
   methods: {
@@ -131,9 +132,9 @@ export default {
     },
     setWidth() {
       this.$nextTick(() => {
-        let width = this.$el.offsetWidth + 'px';
-        Array.prototype.forEach.call(this.$el.querySelectorAll('.ui-carousel-item > *'),item=>{
-          item.style.width = width
+        let width = this.$el.offsetWidth
+        Array.prototype.forEach.call(this.$el.querySelectorAll('.ui-carousel-item > *'), item => {
+          item.style.width = width + 'px';
         })
 
       })
