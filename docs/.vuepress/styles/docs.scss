@@ -13,19 +13,24 @@ body {
   font-family: -apple-system, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Arial, sans-serif;
   font-size: 12px;
 }
-.sidebar{
+
+.sidebar {
   font-size: 12px;
 }
-.sidebar-heading{
-  font-size:13px;
+
+.sidebar-heading {
+  font-size: 13px;
 }
-a.sidebar-link.active{
-  color:$primary-color;
+
+a.sidebar-link.active {
+  color: $primary-color;
   border-left-color: $primary-color;
 }
-.content code{
+
+.content code {
   background: $lighter;
 }
+
 .container {
   margin: 1rem 0;
 
@@ -74,7 +79,7 @@ div[class*="language-"] pre[class*="language-"] {
   }
 
   tr:nth-child(2n) {
-    background-color: lighten($lighter,5%)
+    background-color: lighten($lighter, 5%)
   }
 
   td,
@@ -96,6 +101,18 @@ div[class*="language-"] pre[class*="language-"] {
 
     p {
       margin: 0;
+    }
+  }
+
+  .ui-accordion-title {
+    margin: 4px 0;
+  }
+
+  .ui-accordion {
+
+    .content pre,
+    .content pre[class*="language-"] {
+      padding: 12px;
     }
   }
 }

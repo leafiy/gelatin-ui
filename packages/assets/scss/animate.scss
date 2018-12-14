@@ -633,9 +633,78 @@
   animation-name: zoomOutUp;
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
 
+  to {
+    transform: rotate(360deg);
+  }
+}
 
+.spin {
+  animation-name: spin;
+  animation-timing-function: linear;
+}
 
+@keyframes stripes {
+  to {
+    background-position: 1rem 0;
+  }
+
+  from {
+    background-position: 0 0;
+  }
+}
+
+.stripes {
+  animation-name: stripes;
+  animation-timing-function: linear;
+}
+
+@keyframes indeterminate {
+  0% {
+    left: -35%;
+    right: 100%;
+  }
+
+  60% {
+    left: 100%;
+    right: -90%;
+  }
+
+  100% {
+    left: 100%;
+    right: -90%;
+  }
+}
+
+.indeterminate {
+  animation-name: indeterminate;
+  animation-timing-function: linear;
+}
+
+@keyframes indeterminate-short {
+  0% {
+    left: -200%;
+    right: 100%
+  }
+
+  60% {
+    left: 107%;
+    right: -8%
+  }
+
+  100% {
+    left: 107%;
+    right: -8%
+  }
+}
+.indeterminate-short {
+  animation-name: indeterminate-short;
+  animation-timing-function: linear;
+}
 .animated {
   animation-duration: .3s;
   animation-fill-mode: both;

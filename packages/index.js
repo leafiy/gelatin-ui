@@ -5,6 +5,7 @@ import $Popover from "./popover/index.js";
 import Spinner from "./spinner/index.js";
 import $Toast from "./toast/index.js";
 import $Message from "./message/index.js";
+import $LoadingBar from "./loading-bar/index.js";
 import Upload from "./uplaoder/index.js";
 import Dropdown from "./dropdown/index.js";
 import Tooltip from "./tooltip/index.js";
@@ -83,6 +84,7 @@ const install = function(Vue) {
   Vue.prototype.$Modal = $Modal;
   Vue.prototype.$Confirm = $Confirm;
   Vue.prototype.$Message = $Message;
+  Vue.prototype.$LoadingBar = $LoadingBar;
   Vue.directive(Tooltip.name, Tooltip);
   Vue.directive(Hightlight.name, Hightlight);
   Vue.directive(Loading.name, Loading);
@@ -134,4 +136,5 @@ export default {
   $Modal,
   $Confirm,
   $Message,
+  $LoadingBar
 };

@@ -36,6 +36,7 @@ module.exports = {
         children: [
           ['/layout/', 'Layout 布局'],
           ['/progress/', 'Progress'],
+          ['/loading-bar/', 'Loading Bar'],
           ['/alert/', 'Alert'],
           ['/slide-panel/', 'Slide-Panel'],
         ]

@@ -1,20 +1,20 @@
 <template>
-  <div class="ui-progress">
-    <div class="ui-progress-type-ring" v-if="type=='ring'" :style="{width:size+'px',height:size+'px'}" :data-pct="progressNumber">
-      <svg :width="size" :height="size" :viewPort="'0 0 '+ size + ' ' + size" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <circle class="ui-progress-ring" :stroke="ringColor" :r="r" :cx="size/2" :cy="size/2" :stroke-width="strokeWidth" fill="none">
-        </circle>
-        <circle class="ui-progress-ring-inner" :stroke="progressColor" :r="r" :cx="size/2" :cy="size/2" :stroke-width="strokeWidth" fill="none" :stroke-dasharray="dasharray" :stroke-dashoffset="dashoffset"></circle>
-      </svg>
-    </div>
+  <div class="ui-progress" :class="[animate && `ui-progress-animate`]">
+    <component :is="type" :size="size" :percentage="percentage" :stroke-width="strokeWidth" :back-color="backColor" :fore-color="foreColor" :show-number="showNumber" :progress-number="progressNumber" :show="show"></component>
   </div>
 </template>
 <script>
 import '../assets/scss/progress.scss'
+import Ring from './types/ring.vue'
+import Bar from './types/bar.vue'
 export default {
   name: "ui-progress",
   data() {
     return {};
+  },
+  components: {
+    Ring,
+    Bar
   },
   props: {
     type: {
@@ -36,29 +36,26 @@ export default {
       type: Number,
       default: 4
     },
-    ringColor: {
+    backColor: {
       type: String,
       default: "#E9EBEE"
     },
-    progressColor: {
+    foreColor: {
       type: String,
       default: "#08D7B8"
     },
     showNumber: {
       type: Boolean,
       default: true
+    },
+    animate: Boolean,
+    show: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
-    r() {
-      return this.size / 2 - this.strokeWidth / 2;
-    },
-    dasharray() {
-      return 2 * Math.PI * this.r;
-    },
-    dashoffset() {
-      return this.dasharray * (1 - this.percentage / 100);
-    },
+
     progressNumber() {
       return this.showNumber && parseInt(this.percentage);
     }

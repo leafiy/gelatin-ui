@@ -1,5 +1,5 @@
 @import './var.scss';
-
+@import './animate.scss';
 
 .ui-progress-type-ring {
   position: relative;
@@ -22,5 +22,75 @@
 
   svg {
     transform: rotate(-90deg);
+  }
+}
+
+.ui-progress-type-bar {
+  border-radius: $radius/2;
+  overflow: hidden;
+
+  .ui-progress-bar {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease-in-out;
+    color: #fff;
+  }
+}
+
+.ui-progress {
+  &-animate {
+    .ui-progress-ring-inner {
+      transform-origin: 50% 50%;
+      animation-duration: 1s;
+      @extend .animated;
+      @extend .animated.infinite;
+      @extend .spin;
+    }
+
+    .ui-progress-bar {
+      background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      background-size: 1rem 1rem;
+      @extend .animated;
+      @extend .animated.infinite;
+      @extend .stripes;
+    }
+  }
+}
+
+
+.ui-loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  pointer-events: none;
+  user-select: none;
+
+  &-indeterminate {
+    .ui-loading-bar-indeterminate-bg1 {
+      content: '';
+      position: absolute;
+      background-color: inherit;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      will-change: left, right;
+      animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+    }
+
+    .ui-loading-bar-indeterminate-bg2 {
+      content: '';
+      position: absolute;
+      background-color: inherit;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      will-change: left, right;
+      animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+      animation-delay: 1.15s;
+    }
   }
 }
