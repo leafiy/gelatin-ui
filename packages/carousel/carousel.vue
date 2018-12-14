@@ -23,6 +23,8 @@ import '../assets/scss/carousel.scss';
 import UiCarouselItem from './carousel-item.vue'
 import UiIcon from '../icon/icon.vue'
 import touchHandler from '../../src/utils/touchHandler.js'
+import { debounce } from 'lodash'
+
 export default {
 
   name: 'ui-carousel',
@@ -64,7 +66,8 @@ export default {
       default: 2000
     },
     loop: Boolean,
-    expand: Number // 解决overflow可能盖住元素阴影或其他效果的可能
+    expand: Number, // 解决overflow可能盖住元素阴影或其他效果的可能
+    fullWidth: Boolean
   },
   computed: {
     expandStyles() {
@@ -120,12 +123,28 @@ export default {
     },
     renderItems() {
       this.items = this.$slots.default.filter(item => item.tag)
+      if (this.fullWidth) {
+        this.setWidth()
+      }
+
       // this.renderContainer()
     },
-    renderContainer() {
+    setWidth() {
+      this.$nextTick(() => {
+        let width = this.$el.offsetWidth + 'px';
+        Array.prototype.forEach.call(this.$el.querySelectorAll('.ui-carousel-item > *'),item=>{
+          item.style.width = width
+        })
+
+      })
     },
-    bindEvents() {},
-    unBindEvents() {},
+    renderContainer() {},
+    bindEvents() {
+      window.addEventListener('resize', this.setWidth)
+    },
+    unBindEvents() {
+      window.removeEventListener('resize', this.setWidth)
+    },
     barClick(index) {
       this.index = index
     },
@@ -188,6 +207,7 @@ export default {
       }
       this.bindEvents()
     })
+
   },
   activated() {
     if (this.touch && this.inited) {
@@ -209,6 +229,9 @@ export default {
       this.unBindTouchEvents();
     }
     this.unBindEvents()
+  },
+  beforeMount() {
+    this.setWidth = debounce(this.setWidth, 100)
   }
 }
 
