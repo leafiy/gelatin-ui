@@ -15346,12 +15346,12 @@ mask.install = function (Vue, opt) {
 };
 
 /* harmony default export */ var packages_mask = (mask);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6ce399b1-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/confirm/confirm.vue?vue&type=template&id=9d2dc9a0&
-var confirmvue_type_template_id_9d2dc9a0_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ui-modal',{attrs:{"confirm":""},on:{"modal-open":_vm.ModalOpen,"modal-close":_vm.ModalClose},model:{value:(_vm.isOpen),callback:function ($$v) {_vm.isOpen=$$v},expression:"isOpen"}},[(_vm.header || _vm.$slots.header)?_c('div',{staticClass:"ui-confirm-header"},[(_vm.header)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.header)}}):_vm._e(),_vm._t("header")],2):_vm._e(),(_vm.content || _vm.$slots.default)?_c('div',{staticClass:"ui-confirm-content"},[(_vm.content)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.content)}}):_vm._e(),_vm._t("default")],2):_vm._e(),_c('ui-button-group',{staticClass:"ui-confirm-buttons",attrs:{"size":"sm","gutter":""}},[_c('ui-button',{attrs:{"shadow":""},nativeOn:{"click":function($event){return _vm.onConfirm($event)}}},[_vm._v(_vm._s(_vm.confirm))]),_c('ui-button',{attrs:{"shadow":"","type":"border"},nativeOn:{"click":function($event){return _vm.onCancel($event)}}},[_vm._v(_vm._s(_vm.cancel))])],1)],1)}
-var confirmvue_type_template_id_9d2dc9a0_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6ce399b1-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/confirm/confirm.vue?vue&type=template&id=662c6fae&
+var confirmvue_type_template_id_662c6fae_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ui-modal',{attrs:{"confirm":""},on:{"modal-open":_vm.ConfirmOpen,"modal-close":_vm.ConfirmClose},model:{value:(_vm.isOpen),callback:function ($$v) {_vm.isOpen=$$v},expression:"isOpen"}},[(_vm.header || _vm.$slots.header)?_c('div',{staticClass:"ui-confirm-header"},[(_vm.header)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.header)}}):_vm._e(),_vm._t("header")],2):_vm._e(),(_vm.content || _vm.$slots.default)?_c('div',{staticClass:"ui-confirm-content"},[(_vm.content)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.content)}}):_vm._e(),_vm._t("default")],2):_vm._e(),_c('ui-button-group',{staticClass:"ui-confirm-buttons",attrs:{"size":"sm","gutter":""}},[_c('ui-button',{attrs:{"shadow":""},nativeOn:{"click":function($event){return _vm.clickConfirm($event)}}},[_vm._v(_vm._s(_vm.confirm))]),_c('ui-button',{attrs:{"shadow":"","type":"border"},nativeOn:{"click":function($event){return _vm.clickCancel($event)}}},[_vm._v(_vm._s(_vm.cancel))])],1)],1)}
+var confirmvue_type_template_id_662c6fae_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/confirm/confirm.vue?vue&type=template&id=9d2dc9a0&
+// CONCATENATED MODULE: ./packages/confirm/confirm.vue?vue&type=template&id=662c6fae&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6ce399b1-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/modal/modal.vue?vue&type=template&id=3e8b3e6d&scoped=true&
 var modalvue_type_template_id_3e8b3e6d_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":_vm.modalTransition}},[(_vm.isShow)?_c('div',{staticClass:"ui-modal",class:_vm.classes,style:(_vm.styles)},[_c('div',{staticClass:"ui-modal-inner"},[_c('ui-icon',{staticClass:"ui-modal-close-icon",attrs:{"name":"close"},nativeOn:{"click":function($event){return _vm.closeModal($event)}}}),(_vm.header || _vm.$slots.header)?_c('div',{staticClass:"ui-modal-header"},[(_vm.header)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.header)}}):_vm._e(),_vm._t("header")],2):_vm._e(),(_vm.content || _vm.$slots.default)?_c('div',{staticClass:"ui-modal-content"},[(_vm.content)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.content)}}):_vm._e(),_vm._t("default")],2):_vm._e(),(_vm.footer || _vm.$slots.footer)?_c('div',{staticClass:"ui-modal-footer"},[(_vm.footer)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.footer)}}):_vm._e(),(_vm.buttons.length)?_c('ui-button-group',{staticClass:"ui-modal-btn",attrs:{"size":"sm"}},_vm._l((_vm.buttons),function(btn){return _c('ui-button',{key:btn.text,attrs:{"type":btn.type},nativeOn:{"click":function($event){return (function (){btn.action && btn.action()})($event)}}},[_vm._v(_vm._s(btn.text))])}),1):_vm._e(),_vm._t("footer")],2):_vm._e()],1)]):_vm._e()])}
@@ -15576,13 +15576,14 @@ var scss_confirm = __webpack_require__("3279");
 
 
 /* harmony default export */ var confirmvue_type_script_lang_js_ = ({
-  name: 'ui-confirm',
+  name: "ui-confirm",
   data: function data() {
     return {
       isOpen: this.value
     };
   },
   components: {
+    UiModal: modal_modal,
     UiButton: button_button,
     UiButtonGroup: button_group
   },
@@ -15590,11 +15591,11 @@ var scss_confirm = __webpack_require__("3279");
     value: Boolean,
     confirm: {
       type: String,
-      default: '确认'
+      default: "确认"
     },
     cancel: {
       type: String,
-      default: '取消'
+      default: "取消"
     },
     header: String,
     content: String,
@@ -15602,13 +15603,29 @@ var scss_confirm = __webpack_require__("3279");
     onCancel: Function
   },
   methods: {
-    ModalOpen: function ModalOpen() {
-      this.$emit('input', true);
-      this.$emit('confirm-open');
+    ConfirmOpen: function ConfirmOpen() {
+      this.$emit("input", true);
+      this.$emit("confirm-open");
     },
-    ModalClose: function ModalClose() {
-      this.$emit('input', false);
-      this.$emit('confirm-close');
+    ConfirmClose: function ConfirmClose() {
+      this.$emit("input", false);
+      this.$emit("confirm-close");
+    },
+    clickConfirm: function clickConfirm() {
+      if (this.onConfirm && typeof this.onConfirm == "function") {
+        this.onConfirm();
+      }
+
+      this.$emit("confirm");
+      this.isOpen = !this.isOpen;
+    },
+    clickCancel: function clickCancel() {
+      if (this.onCancel && typeof this.onCancel == "function") {
+        this.onCancel();
+      }
+
+      this.$emit("cancel");
+      this.isOpen = !this.isOpen;
     }
   },
   watch: {
@@ -15629,8 +15646,8 @@ var scss_confirm = __webpack_require__("3279");
 
 var confirm_component = Object(componentNormalizer["a" /* default */])(
   confirm_confirmvue_type_script_lang_js_,
-  confirmvue_type_template_id_9d2dc9a0_render,
-  confirmvue_type_template_id_9d2dc9a0_staticRenderFns,
+  confirmvue_type_template_id_662c6fae_render,
+  confirmvue_type_template_id_662c6fae_staticRenderFns,
   false,
   null,
   null,

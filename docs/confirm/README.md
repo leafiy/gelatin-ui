@@ -2,6 +2,24 @@
 
 <confirm-confirm></confirm-confirm>
 
+<code-code>
+```html
+<ui-button @click.native="openConfirm">组件调用</ui-button>
+<ui-button @click.native="openConfirmJS">JS调用</ui-button>
+openConfirmJS() {
+      this.$Confirm({
+        header: 'header',
+        content: 'content',
+        onConfirm: () => {
+          this.$Toast('点了JS调用确认')
+        },
+        onCancel: () => {
+          this.$Toast('点了JS调用取消')
+        }
+      })
+    }
+```
+</code-code>
 
 #### options与modal相同
 
