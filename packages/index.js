@@ -37,6 +37,7 @@ import Typer from './typer/index.js'
 import Carousel from './carousel/index.js'
 import Countdown from './countdown/index.js'
 import SlidePanel from './slide-panel/index.js'
+import Sticky from './sticky/index.js'
 const components = [
   Avatar,
   Icon,
@@ -89,6 +90,7 @@ const install = function(Vue) {
   Vue.directive(Hightlight.name, Hightlight);
   Vue.directive(Loading.name, Loading);
   Vue.directive(Mask.name, Mask);
+  Vue.directive(Sticky.name, Sticky)
 };
 
 if (typeof window !== "undefined" && window.Vue) {
@@ -130,6 +132,7 @@ export default {
   Carousel,
   Countdown,
   SlidePanel,
+  Sticky,
   $Popover,
   $Toast,
   $Cover,

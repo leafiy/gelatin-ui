@@ -1,4 +1,4 @@
-# :pill: Gelatin-Ui - 简单好看的VueJs UI
+# :pill: Gelatin-Ui - 简单好看的VueJs UI Toolkit
 
 `Gelatin 明胶，食用后无任何反应`
 

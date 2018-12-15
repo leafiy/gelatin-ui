@@ -17383,7 +17383,148 @@ slide_panel_slide_panel.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_slide_panel = (slide_panel_slide_panel);
+// EXTERNAL MODULE: ./node_modules/lodash/throttle.js
+var throttle = __webpack_require__("0f32");
+var throttle_default = /*#__PURE__*/__webpack_require__.n(throttle);
+
+// CONCATENATED MODULE: ./packages/sticky/sticky.js
+
+var listenAction;
+var supportCSSSticky;
+
+var getBindingConfig = function getBindingConfig(binding) {
+  var params = binding.value || {};
+  var top = params.top || 0;
+  var zIndex = params.zIndex || 1000;
+  var disabled = params.disabled;
+  return {
+    top: top,
+    zIndex: zIndex,
+    disabled: disabled
+  };
+};
+
+var getInitialiConfig = function getInitialiConfig(el) {
+  return {
+    zIndex: el.style.zIndex
+  };
+};
+
+var unwatch = function unwatch() {
+  window.removeEventListener('scroll', listenAction);
+};
+
+var watch = function watch() {
+  window.addEventListener('scroll', listenAction);
+};
+
+var bindingConfig = {};
+var initialConfig = {};
+/* harmony default export */ var sticky_sticky = ({
+  name: 'ui-sticky',
+  bind: function bind(el, binding) {
+    bindingConfig = getBindingConfig(binding);
+    initialConfig = getInitialiConfig(el);
+    var _bindingConfig = bindingConfig,
+        disabled = _bindingConfig.disabled,
+        top = _bindingConfig.top,
+        zIndex = _bindingConfig.zIndex;
+    if (disabled) return;
+    var elStyle = el.style;
+    elStyle.position = '-webkit-sticky';
+    elStyle.position = 'sticky';
+    var childStyle = el.firstElementChild.style; // test if the browser support css sticky
+
+    supportCSSSticky = ~elStyle.position.indexOf('sticky');
+
+    if (supportCSSSticky) {
+      elStyle.top = "".concat(top, "px");
+      elStyle.zIndex = zIndex;
+    } else {
+      elStyle.position = '';
+      childStyle.cssText = "left: 0; right: 0; top: ".concat(top, "px; z-index: ").concat(zIndex, "; ").concat(childStyle.cssText);
+    }
+
+    var active = false;
+
+    var sticky = function sticky() {
+      if (supportCSSSticky || active) return;
+
+      if (!elStyle.height) {
+        elStyle.height = "".concat(el.offsetHeight, "px");
+      }
+
+      if (childStyle) {
+        childStyle.position = 'fixed';
+      }
+
+      active = true;
+    };
+
+    var reset = function reset() {
+      if (supportCSSSticky || !active) return;
+      childStyle.position = 'static';
+      active = false;
+    };
+
+    listenAction = throttle_default()(function () {
+      var offsetTop = el.getBoundingClientRect().top;
+
+      if (offsetTop <= top) {
+        return sticky();
+      }
+
+      reset();
+    });
+    watch();
+  },
+  unbind: unwatch,
+  update: function update(el, binding) {
+    bindingConfig = getBindingConfig(binding);
+    var _bindingConfig2 = bindingConfig,
+        top = _bindingConfig2.top,
+        zIndex = _bindingConfig2.zIndex;
+    var childStyle = el.firstElementChild.style;
+
+    if (supportCSSSticky) {
+      el.style.top = "".concat(top, "px");
+      el.style.zIndex = zIndex;
+    } else {
+      childStyle.top = "".concat(top, "px");
+      childStyle.zIndex = zIndex;
+    }
+
+    if (bindingConfig.disabled) {
+      if (supportCSSSticky) {
+        el.style.position = '';
+      } else {
+        childStyle.position = '';
+        childStyle.top = '';
+        childStyle.zIndex = initialConfig.zIndex;
+        unwatch();
+      }
+
+      return;
+    }
+
+    if (supportCSSSticky) {
+      el.style.position = '-webkit-sticky';
+      el.style.position = 'sticky';
+    } else {
+      watch();
+    }
+  }
+});
+// CONCATENATED MODULE: ./packages/sticky/index.js
+
+
+sticky_sticky.install = function (Vue, opt) {
+  Vue.directive("ui-sticky", sticky_sticky);
+};
+
+/* harmony default export */ var packages_sticky = (sticky_sticky);
 // CONCATENATED MODULE: ./packages/index.js
+
 
 
 
@@ -17444,6 +17585,7 @@ var packages_install = function install(Vue) {
   Vue.directive(packages_highlight.name, packages_highlight);
   Vue.directive(packages_loading.name, packages_loading);
   Vue.directive(packages_mask.name, packages_mask);
+  Vue.directive(packages_sticky.name, packages_sticky);
 };
 
 if (typeof window !== "undefined" && window.Vue) {
@@ -17485,6 +17627,7 @@ if (typeof window !== "undefined" && window.Vue) {
   Carousel: packages_carousel,
   Countdown: packages_countdown,
   SlidePanel: packages_slide_panel,
+  Sticky: packages_sticky,
   $Popover: packages_popover,
   $Toast: packages_toast,
   $Cover: backdrop_$Cover,

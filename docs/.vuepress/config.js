@@ -70,6 +70,7 @@ module.exports = {
           ['/typer/', 'Typer 打字机'],
           ['/carousel/', 'Carousel 卡片轮播'],
           ['/countdown/', 'Countdown 倒计时'],
+          ['/sticky/', 'Sticky 滚动固定'],
         ]
       }
     ]
