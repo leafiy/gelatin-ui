@@ -47,7 +47,7 @@ export default {
             instance.$on(rule.trigger, (val) => {
               let name = instance.name
               this.validateStart({ name })
-              let value = instance.$el.querySelector('input').value
+              let value = instance.$el.querySelector('input').value || instance.$el.querySelector('textarea').value
               this.$nextTick(() => {
                 this.trigger({ name, value, rule }).then(({ name, message }) => {
                   this.removeErro({ name, message })
@@ -78,7 +78,14 @@ export default {
           let instance = this.fields[name]
           if (this.fields[name]) {
             this.rules[name].forEach(rule => {
-              let value = instance.$el.querySelector('input').value || instance.value
+              let value
+              if (instance.$el.querySelector('input')) {
+                value = instance.$el.querySelector('input').value
+              } else if (instance.$el.querySelector('textarea')) {
+                value = instance.$el.querySelector('textarea').value
+              } else {
+                value = instance.value
+              }
               promises.push(this.trigger({ name, rule, value }))
             })
           } else {
