@@ -6,7 +6,7 @@
         <li v-if="loading">
           <ui-spinner></ui-spinner>
         </li>
-        <li class="ui-autocomplete-list-item" v-if="isInclude(item)" :key="index" v-for="(item, index) in items" @click.prevent="selectItem(index)" v-ui-highlight="{text:value,type:'primary'}" :class="{ 'ui-autocomplete-list-item-active': index === activeItemIndex }">
+        <li class="ui-autocomplete-list-item" v-if="isInclude(item)" :key="index" v-for="(item, index) in items" @click="selectItem(index)" v-ui-highlight="{text:value,type:'primary'}" :class="{ 'ui-autocomplete-list-item-active': index === activeItemIndex }">
           <slot name="item" :item="item">
             <div v-html="itemHandler(item)">
             </div>

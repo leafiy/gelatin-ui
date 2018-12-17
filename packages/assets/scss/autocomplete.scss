@@ -3,7 +3,7 @@
 
 .ui-autocomplete {
   position: relative;
-
+  margin:1rem 0;
   .ui-autocomplete-list {
     position: absolute;
     width: 100%;
@@ -12,6 +12,9 @@
   }
   .ui-spinner{
    margin:1em auto;
+  }
+  .ui-input{
+    margin:0;
   }
 }
 

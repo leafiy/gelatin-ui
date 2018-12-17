@@ -27,9 +27,7 @@
 
   &-active {
     >.ui-accordion-title {
-      margin-bottom: 1em;
       color: $primary-color;
-
       .ui-accordion-close-icon {
         transform: rotate(-45deg);
       }
