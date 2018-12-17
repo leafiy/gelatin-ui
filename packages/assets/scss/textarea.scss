@@ -21,6 +21,8 @@
     color: $black;
     width: 100%;
     padding: 0 12px;
+    margin-left: 1px;
+    margin-right: 2px;
 
     &::-webkit-input-placeholder {
       color: $light;
@@ -66,12 +68,13 @@
       margin-top: 2px;
     }
   }
-  &-counter{
+
+  &-counter {
     position: absolute;
-    bottom:-18px;
-    right:2px;
-    font-size:10px;
-    color:$light;
+    bottom: -18px;
+    right: 2px;
+    font-size: 10px;
+    color: $light;
 
   }
 }

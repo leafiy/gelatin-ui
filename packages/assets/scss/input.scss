@@ -23,9 +23,10 @@
     line-height: 46px;
     color: $black;
     width: 100%;
+    margin-left: 1px;
+    margin-right: 2px;
     padding: 0 12px;
     background: #fff;
-
     &::-webkit-input-placeholder {
       color: $light;
 
