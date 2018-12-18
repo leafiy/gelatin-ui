@@ -67,7 +67,7 @@ $lg:75;
 .close-icon {
   cursor: pointer;
   transition: transform .2s ease-in-out;
-
+  // transform-origin: center center;
   &:hover {
     transform: rotate(-90deg);
   }

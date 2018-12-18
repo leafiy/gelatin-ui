@@ -4,27 +4,40 @@ const BackdropConstructor = Vue.extend(Backdrop);
 import RenderBackdrop from '../backdrop/render.js'
 
 const render = function({ el, options }) {
-  el.loading = new RenderBackdrop({ el, options })
+  el.mask = new RenderBackdrop({ el, options })
+}
+
+const makeOptions = function(val) {
+  if (typeof val == 'string') {
+    return { text: val }
+  }
+  if (typeof val == 'object') {
+    return val
+  }
+  if (typeof val == 'boolean') {
+    return val ? {} : null
+  }
 }
 
 export default {
   name: "ui-mask",
   inserted(el, binding, vnode) {
-    if (typeof binding.value == 'object' || binding.value) {
-      let options = typeof binding.value == 'object' ? binding.value : {}
-      render({ el, options })
+    if (binding.value) {
+      render({ el, options: makeOptions(binding.value) })
+
     }
 
   },
   update(el, binding, vnode) {
-    if (!binding.value && el.loading) {
-      el.loading.backdrop.close()
-      delete el.loading
+    if (!binding.value && el.mask) {
+      el.mask.backdrop.close()
+      delete el.mask
     }
-    if (binding.value && !el.loading) {
-      let options = typeof binding.value == 'object' ? binding.value : {}
-      render({ el, options })
+    if (binding.value) {
+      render({ el, options: makeOptions(binding.value) })
+
     }
+
   },
   unbind(el) {}
 };

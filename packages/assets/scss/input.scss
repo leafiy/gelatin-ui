@@ -13,9 +13,11 @@
   border: 1px solid $lighter;
   padding: 11px 0;
   transition: all .2s ease-in-out;
-  >.ui-spinner{
+
+  >.ui-spinner {
     margin-right: 10px;
   }
+
   .ui-input-inner {
     border: none;
     font-size: 16px;
@@ -27,6 +29,7 @@
     margin-right: 2px;
     padding: 0 12px;
     background: #fff;
+
     &::-webkit-input-placeholder {
       color: $light;
 
@@ -122,7 +125,7 @@ input:-webkit-autofill {
 .ui-input-prefix,
 .ui-input-suffix,
 .ui-input-clear {
-  padding: 0 8px;
+  margin: 0 8px;
   color: $light;
   white-space: nowrap;
   // position: absolute;
@@ -134,6 +137,10 @@ input:-webkit-autofill {
 .ui-input-clear {
   cursor: pointer;
   color: $lighter;
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 
