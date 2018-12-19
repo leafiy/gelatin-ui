@@ -5,11 +5,12 @@
   display: inline-block;
   user-select: none;
   position: relative;
-
+  height: 24px;
+  line-height: 23px;
 
   ~.ui-checkbox,
   ~.ui-radio {
-    margin-left: 20px;
+    margin-left: 24px;
   }
 
   .ui-checkbox-box,
@@ -24,7 +25,7 @@
     position: relative;
     cursor: pointer;
     display: inline-block;
-    padding-left: 28px;
+    padding-left: 32px;
   }
 
   input[type="radio"],
@@ -59,8 +60,8 @@
     color: $primary-color;
     background: #fff;
     border: 1px solid $lighter;
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     position: absolute;
     left: 0;
     top: 0;
@@ -71,9 +72,9 @@
       fill: currentColor;
       opacity: 0;
       transition: all .2s ease-in-out;
-      transform: scale(.2);
+      transform: scale(.4);
       position: absolute;
-      top: 3px;
+      top: 4px;
       left: 4px;
     }
 
@@ -127,8 +128,8 @@
 
 
   .ui-radio-box {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     border: 1px solid $lighter;
     border-radius: 50%;
     position: absolute;
@@ -138,8 +139,8 @@
     &:before {
       content: ' ';
       position: absolute;
-      width: 12px;
-      height: 12px;
+      width: 16px;
+      height: 16px;
       opacity: 0;
       border-radius: 50%;
       transition: all .2s ease-in;
@@ -169,13 +170,15 @@
 
 .ui-radio-toggle.ui-radio,
 .ui-checkbox-toggle.ui-checkbox {
+
   label {
-    padding-left: 2.9em;
+    padding-left: 58px;
   }
 
   .ui-checkbox-box {
     position: absolute;
-
+    height: 24px;
+    box-sizing:border-box;
     &:before {
       content: ' ';
       position: absolute;
@@ -187,13 +190,13 @@
 
   .ui-radio-box,
   .ui-checkbox-box {
-    width: 33px;
+    width: 48px;
     border-radius: 24px;
 
     &:before {
       top: 1px;
-      width: 15px;
-      height: 15px;
+      width: 20px;
+      height: 20px;
       opacity: 1;
       background: $lighter;
       transform: scale(1);
@@ -210,7 +213,7 @@
 
       &:before {
         background: #fff;
-        transform: translateX(15px);
+        transform: translateX(23px);
       }
     }
   }
