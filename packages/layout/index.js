@@ -1,4 +1,4 @@
-import Row from './row.vue';
-import Col from './col.vue';
+import UiRow from './row.vue';
+import UiCol from './col.vue';
 
-export { Row, Col };
+export { UiRow, UiCol };

@@ -1,7 +1,7 @@
-import Hr from "./hr.vue";
+import UiHr from "./hr.vue";
 
-Hr.install = function(Vue) {
-  Vue.component(Hr.name, Hr);
+UiHr.install = function(Vue) {
+  Vue.component(UiHr.name, UiHr);
 };
 
-export default Hr;
+export default UiHr;

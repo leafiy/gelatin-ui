@@ -1,7 +1,7 @@
-import Textarea from "./textarea.vue";
+import UiTextarea from "./textarea.vue";
 
-Textarea.install = function(Vue) {
-  Vue.component(Textarea.name, Textarea);
+UiTextarea.install = function(Vue) {
+  Vue.component(UiTextarea.name, UiTextarea);
 };
 
-export default Textarea;
+export default UiTextarea;

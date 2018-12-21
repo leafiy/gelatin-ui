@@ -1,7 +1,7 @@
-import Dropdown from "./dropdown.vue";
+import UiDropdown from "./dropdown.vue";
 
-Dropdown.install = function(Vue) {
-  Vue.component(Dropdown.naem, Dropdown);
+UiDropdown.install = function(Vue) {
+  Vue.component(UiDropdown.naem, UiDropdown);
 };
 
-export default Dropdown;
+export default UiDropdown;

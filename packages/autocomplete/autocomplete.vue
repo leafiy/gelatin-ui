@@ -20,7 +20,7 @@
 import UiHighlight from '../highlight/index.js'
 import UiInput from '../input/index.js'
 import UiSpinner from '../spinner/index.js'
-import { debounce } from 'lodash'
+import {debounce} from 'lodash'
 import { CollapseTransition } from 'vue2-transitions'
 import validators from '../../src/utils/validator.js'
 import '../assets/scss/autocomplete.scss'

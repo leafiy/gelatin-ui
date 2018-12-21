@@ -11,10 +11,10 @@ openConfirmJS() {
         header: 'header',
         content: 'content',
         onConfirm: () => {
-          this.$Toast('点了JS调用确认')
+          this.$UiToast('点了JS调用确认')
         },
         onCancel: () => {
-          this.$Toast('点了JS调用取消')
+          this.$UiToast('点了JS调用取消')
         }
       })
     }

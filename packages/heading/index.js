@@ -1,7 +1,7 @@
-import Heading from "./heading.vue";
+import UiHeading from "./heading.vue";
 
-Heading.install = function(Vue) {
-  Vue.component(Heading.name, Heading);
+UiHeading.install = function(Vue) {
+  Vue.component(UiHeading.name, UiHeading);
 };
 
-export default Heading;
+export default UiHeading;

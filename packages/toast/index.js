@@ -1,2 +1,3 @@
-import Toast from "./toast.js";
-export default Toast;
+import UiToast from "./toast.js";
+
+export default UiToast;

@@ -1,5 +1,5 @@
-import Accordion from "./accordion.vue";
-import AccordionItem from './accordion-item.vue'
+import UiAccordion from "./accordion.vue";
+import UiAccordionItem from './accordion-item.vue'
 
 
-export { Accordion, AccordionItem };
+export { UiAccordion, UiAccordionItem };

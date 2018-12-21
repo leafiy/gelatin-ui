@@ -1,11 +1,11 @@
-import loadingBar from '../progress/types/bar.vue'
+import LoadingBar from '../progress/types/bar.vue'
 import Vue from 'vue'
-const LoadingBar = Vue.extend(loadingBar)
+const UiLoadingBar = Vue.extend(LoadingBar)
 let instance = null
 
+import '../assets/scss/progress.scss'
 
-
-const $LoadingBar = function(options) {
+const $UiLoadingBar = function(options) {
 
   const defaultOptions = {
     size: 3,
@@ -23,7 +23,7 @@ const $LoadingBar = function(options) {
     clearInterval(instance.timer)
     instance = null
   }
-  instance = new LoadingBar({
+  instance = new UiLoadingBar({
     propsData: options
   })
   instance.$mount()
@@ -44,7 +44,7 @@ const $LoadingBar = function(options) {
   }
   return instance
 }
-$LoadingBar.finish = function() {
+$UiLoadingBar.finish = function() {
   if (!instance) {
     return
   }
@@ -54,7 +54,7 @@ $LoadingBar.finish = function() {
     instance.show = false
   }, 500)
 }
-$LoadingBar.increase = function(percent = 1) {
+$UiLoadingBar.increase = function(percent = 1) {
   if (!instance) {
     return
   }
@@ -63,7 +63,7 @@ $LoadingBar.increase = function(percent = 1) {
     instance.percentage = 100
   }
 }
-$LoadingBar.decrease = function(percent = 1) {
+$UiLoadingBar.decrease = function(percent = 1) {
   if (!instance) {
     return
   }
@@ -72,7 +72,7 @@ $LoadingBar.decrease = function(percent = 1) {
     instance.percentage = 0
   }
 }
-$LoadingBar.fail = function() {
+$UiLoadingBar.fail = function() {
   if (!instance) {
     return
   }
@@ -84,4 +84,4 @@ $LoadingBar.fail = function() {
   clearInterval(instance.timer)
   instance.time = null
 }
-export default $LoadingBar
+export default $UiLoadingBar

@@ -1,7 +1,7 @@
-import Checkbox from "./checkbox.vue";
+import UiCheckbox from "./checkbox.vue";
 
-Checkbox.install = function(Vue) {
-  Vue.component(Checkbox.name, Checkbox);
+UiCheckbox.install = function(Vue) {
+  Vue.component(UiCheckbox.name, UiCheckbox);
 };
 
-export default Checkbox;
+export default UiCheckbox;

@@ -4,7 +4,7 @@
       <ui-button @click.native="openModal">组件调用</ui-button>
       <ui-button @click.native="openModal2">JS调用</ui-button>
       <ui-hr></ui-hr>
-      <ui-modal v-model="open" backdrop-color="light">
+      <ui-modal v-model="open" backdrop-color="darker" :close-on-click="false" >
         <div slot="header">Modal Header</div>
         <p>modal content</p>
         <div slot="footer">Modal Footer</div>
@@ -27,7 +27,7 @@ export default {
       this.open = !this.open
     },
     openModal2() {
-      this.$Modal({
+      this.$UiModal({
         header: 'I am Header',
         content: 'I am Content',
         buttons: [{
@@ -35,10 +35,6 @@ export default {
             action: () => {
               alert('clicked ok')
             }
-          },
-          {
-            text: 'no no no',
-            type: 'border'
           },
           {
             text: 'no no no',

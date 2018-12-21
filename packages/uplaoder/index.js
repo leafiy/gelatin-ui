@@ -1,7 +1,7 @@
-import Uploader from "./uploader.vue";
+import UiUploader from "./uploader.vue";
 
-Uploader.install = function(Vue) {
-  Vue.component(Uploader.name, Uploader);
+UiUploader.install = function(Vue) {
+  Vue.component(UiUploader.name, UiUploader);
 };
 
-export default Uploader;
+export default UiUploader;

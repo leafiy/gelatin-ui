@@ -3515,4 +3515,4 @@ module.exports = Array.isArray || function (arr) {
 /***/ })
 
 }]);
-//# sourceMappingURL=gelatin-ui.common.vendors~qrcode.js.map
+//# sourceMappingURL=gelatin-ui.umd.vendors~vendor.js.map

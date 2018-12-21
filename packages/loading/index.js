@@ -1,6 +1,6 @@
-import Loading from "./loading.js";
+import UiLoading from "./loading.js";
 
-Loading.install = (Vue, opt) => {
-  Vue.directive("ui-loading", Loading);
+UiLoading.install = (Vue, opt) => {
+  Vue.directive("ui-loading", UiLoading);
 };
-export default Loading;
+export default UiLoading;

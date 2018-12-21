@@ -1,7 +1,7 @@
-import Tag from "./tag.vue";
+import UiTag from "./tag.vue";
 
-Tag.install = function(Vue) {
-  Vue.component(Tag.name, Tag);
+UiTag.install = function(Vue) {
+  Vue.component(UiTag.name, UiTag);
 };
 
-export default Tag;
+export default UiTag;

@@ -1,6 +1,6 @@
-import Mask from "./mask.js";
+import UiMask from "./mask.js";
 
-Mask.install = (Vue, opt) => {
-  Vue.directive("ui-mask", Mask);
+UiMask.install = (Vue, opt) => {
+  Vue.directive("ui-mask", UiMask);
 };
-export default Mask;
+export default UiMask;

@@ -1,7 +1,7 @@
 <template>
   <div class="ui-typer">
     <transition-group appear name="fade">
-      <span  v-for="(letter,index) of words" :key="index + letter" class="ui-typer-item">{{letter}}</span>
+      <span  v-for="(letter,index) of words" :key="index +'-'+ letter" class="ui-typer-item">{{letter}}</span>
     </transition-group>
     <span class="ui-typer-cursor" v-if="cursor">{{cursor}}</span>
   </div>

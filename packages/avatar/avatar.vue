@@ -5,7 +5,7 @@
       <div class="ui-avatar-string" v-if="!url && displayName">
         {{ displayName }}
       </div>
-      <icon :name="icon" v-if="!url && !displayName"></icon>
+      <ui-icon :name="icon" v-if="!url && !displayName"></ui-icon>
     </div>
     <span class="ui-avatar-name" v-if="showName">{{ username }}</span>
     <span class="ui-avatar-slot"><slot></slot></span>
@@ -13,11 +13,11 @@
 </template>
 <script>
 import "../assets/scss/avatar.scss";
-import Icon from "../icon/index.js";
+import UiIcon from "../icon/icon.vue";
 export default {
   name: "ui-avatar",
   components: {
-    Icon
+    UiIcon
   },
   props: {
     shape: {

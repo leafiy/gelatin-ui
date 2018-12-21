@@ -9,35 +9,61 @@ $shadow:0 3px 26px rgba(0, 0, 0, 0.1);
 $shadow-hover:4px 4px 32px rgba(0, 0, 0, 0.2);
 $shadow-light:0 0px 10px rgba(0, 0, 0, 0.1);
 $radius:14px;
-$gutter:1rem;
-$margin:2rem;
+$gutter:2rem;
+$margin:4rem;
 $xs:30;
 $sm:48;
 $md:64;
 $lg:75;
 
-@import './reset.css';
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.4rem;
+}
+
+li{
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
 
 @mixin xs {
-  @media (min-width: $sx+0rem) {
+  @media (min-width: $sx+0em) {
     @content
   }
 }
 
 @mixin sm {
-  @media (min-width: $sm+0rem) {
+  @media (min-width: $sm+0em) {
     @content
   }
 }
 
 @mixin md {
-  @media (min-width: $md+0rem) {
+  @media (min-width: $md+0em) {
     @content
   }
 }
 
 @mixin lg {
-  @media (min-width: $lg+0rem) {
+  @media (min-width: $lg+0em) {
     @content
   }
 }
@@ -67,6 +93,7 @@ $lg:75;
 .close-icon {
   cursor: pointer;
   transition: transform .2s ease-in-out;
+
   // transform-origin: center center;
   &:hover {
     transform: rotate(-90deg);

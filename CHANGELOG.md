@@ -22,7 +22,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **增加dropdown和tooltip:** 使用popover统一构建dropdown和 ([0114c29](https://github.com/leafiy/gelatin-ui/commit/0114c29))
-* **add $Message:** update $Toast ([e6bb5bf](https://github.com/leafiy/gelatin-ui/commit/e6bb5bf))
+* **add $Message:** update $UiToast ([e6bb5bf](https://github.com/leafiy/gelatin-ui/commit/e6bb5bf))
 * **add dropdown component:** 增加dropdown组件 ([0abe4ef](https://github.com/leafiy/gelatin-ui/commit/0abe4ef))
 
 
@@ -37,7 +37,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* **add $Message:** update $Toast ([e6bb5bf](https://github.com/leafiy/gelatin-ui/commit/e6bb5bf))
+* **add $Message:** update $UiToast ([e6bb5bf](https://github.com/leafiy/gelatin-ui/commit/e6bb5bf))
 
 
 

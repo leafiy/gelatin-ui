@@ -1,7 +1,7 @@
-import Avatar from "./avatar.vue";
+import UiAvatar from "./avatar.vue";
 
-Avatar.install = function(Vue) {
-  Vue.component(Avatar.name, Avatar);
+UiAvatar.install = function(Vue) {
+  Vue.component(UiAvatar.name, UiAvatar);
 };
 
-export default Avatar;
+export default UiAvatar;

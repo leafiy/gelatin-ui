@@ -6,9 +6,9 @@ const ToastConstructor = Vue.extend(ToastTemplate);
 const instances = [];
 let toastContainer = {};
 
-const $Toast = function(options) {
+const $UiToast = function(options) {
   options = typeof options === "string" ? { message: options } : options;
-  if(!options.message){
+  if (!options.message) {
     throw new Error('message is required')
   }
   let { position = { x: "right", y: "top" }, zIndex } = options;
@@ -30,10 +30,10 @@ const $Toast = function(options) {
 
   options.position = position
   options.closeToast = function() {
-    $Toast.closeToast(id);
+    $UiToast.closeToast(id);
   };
   const instance = new ToastConstructor({
-    // el: document.createElement("div"),
+    el: document.createElement("div"),
     data: options
   });
 
@@ -45,11 +45,11 @@ const $Toast = function(options) {
   return instance;
 };
 
-$Toast.closeToast = function(id) {
+$UiToast.closeToast = function(id) {
   instances.splice(instances.findIndex(toast => toast.$id == id), 1);
 };
 
-$Toast.closeAll = function() {
+$UiToast.closeAll = function() {
   for (let i = instances.length - 1; i >= 0; i--) {
     instances[i].stop();
   }
@@ -58,10 +58,11 @@ $Toast.closeAll = function() {
 const types = ["info", "error", "warning"];
 
 types.forEach(type => {
-  $Toast[type] = options => {
+  $UiToast[type] = options => {
     options = typeof options === "string" ? { message: options } : options;
-    return $Toast({ ...options, type });
+    return new $UiToast({ ...options, type });
   };
 });
 
-export default $Toast;
+export default $UiToast;
+export { $UiToast }

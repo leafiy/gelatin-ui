@@ -37,12 +37,14 @@
   </div>
 </template>
 <script>
+import Vue from 'vue'
 import Timer from "../../src/utils/timer.js";
-import UiIcon from "../icon";
+import UiIcon from "../icon/icon.vue";
 import "../assets/scss/toast.scss";
 
 export default {
   name: "ui-toast",
+
   data() {
     return {
       showContent: false,
@@ -66,7 +68,7 @@ export default {
     };
   },
   components: {
-    UiIcon,
+   UiIcon
   },
   computed: {
     iconName() {

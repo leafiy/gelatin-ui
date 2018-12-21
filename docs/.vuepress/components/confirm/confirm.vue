@@ -26,22 +26,22 @@ export default {
       this.showConfirm = !this.showConfirm
     },
     confirm() {
-      this.$Toast('点了确认')
+      this.$UiToast('点了确认')
       this.showConfirm = false
     },
     cancel() {
-      this.$Toast('点了取消')
+      this.$UiToast('点了取消')
       this.showConfirm = false
     },
     openConfirmJS() {
-      this.$Confirm({
+      this.$UiConfirm({
         header: 'header',
         content: 'content',
         onConfirm: () => {
-          this.$Toast('点了JS调用确认')
+          this.$UiToast('点了JS调用确认')
         },
         onCancel: () => {
-          this.$Toast('点了JS调用取消')
+          this.$UiToast('点了JS调用取消')
         }
       })
     }

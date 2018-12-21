@@ -4,19 +4,19 @@
 
 #### Methods
 
-挂载在`Vue.prototype`,调用`$LoadingBar`使用
+挂载在`Vue.prototype`,调用`$UiLoadingBar`使用
 
-在Vue app中使用,永远只有一个实例,调用 `finish()` 或 `fail()` 后需要重新调用`$LoadingBar()`创建新实例使用
+在Vue app中使用,永远只有一个实例,调用 `finish()` 或 `fail()` 后需要重新调用`$UiLoadingBar()`创建新实例使用
 
-`this.$LoadingBar(options)` 创建LoadingBar实例
+`this.$UiLoadingBar(options)` 创建LoadingBar实例
 
-`this.$LoadingBar.finish()` 手动完成
+`this.$UiLoadingBar.finish()` 手动完成
 
-`this.$LoadingBar.increase(percent)` 增加百分比
+`this.$UiLoadingBar.increase(percent)` 增加百分比
 
-`this.$LoadingBar.decrease(percent)` 减少半分比
+`this.$UiLoadingBar.decrease(percent)` 减少半分比
 
-`this.$LoadingBar.fail()` 手动失败
+`this.$UiLoadingBar.fail()` 手动失败
 
 
 #### Options

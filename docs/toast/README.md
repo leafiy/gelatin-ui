@@ -22,6 +22,6 @@ type 是 `info` 时默认是没有图标的
 
 简单调用方式
 
-`Vue.prototype.$Toast('string') == $Toast({type:'info',message:'string'})`
-`Vue.prototype.$Toast.error('string') == $Toast({type:'error',message:'string'})`
-`Vue.prototype.$Toast.warning('string') == $Toast({type:'warning',message:'string'})`
+`Vue.prototype.$UiToast('string') == $UiToast({type:'info',message:'string'})`
+`Vue.prototype.$UiToast.error('string') == $UiToast({type:'error',message:'string'})`
+`Vue.prototype.$UiToast.warning('string') == $UiToast({type:'warning',message:'string'})`

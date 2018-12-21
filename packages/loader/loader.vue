@@ -60,7 +60,7 @@
 </template>
 <script>
 import "../assets/scss/loader.scss";
-import Spinner from "../spinner";
+import Spinner from "../spinner/spinner.vue";
 
 export default {
   name: "ui-loader",

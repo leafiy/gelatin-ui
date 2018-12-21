@@ -27,26 +27,26 @@ export default {
   },
   methods: {
     start1() {
-      this.$LoadingBar()
+      this.$UiLoadingBar()
     },
     finish1() {
-      this.$LoadingBar.finish()
+      this.$UiLoadingBar.finish()
 
     },
     set1() {
-      this.$LoadingBar.increase(10)
+      this.$UiLoadingBar.increase(10)
     },
     set2() {
-      this.$LoadingBar.decrease(10)
+      this.$UiLoadingBar.decrease(10)
     },
     fail1() {
-      this.$LoadingBar.fail()
+      this.$UiLoadingBar.fail()
     },
     start2() {
-      this.$LoadingBar({ duration: 0 })
+      this.$UiLoadingBar({ duration: 0 })
     },
     indeterminate() {
-      this.$LoadingBar({ indeterminate: true })
+      this.$UiLoadingBar({ indeterminate: true })
     }
   }
 }

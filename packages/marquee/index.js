@@ -1,7 +1,7 @@
-import Marquee from "./marquee.vue";
+import UiMarquee from "./marquee.vue";
 
-Marquee.install = function(Vue) {
-  Vue.component(Marquee.name, Marquee);
+UiMarquee.install = function(Vue) {
+  Vue.component(UiMarquee.name, UiMarquee);
 };
 
-export default Marquee;
+export default UiMarquee;

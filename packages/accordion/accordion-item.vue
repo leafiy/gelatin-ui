@@ -6,7 +6,7 @@
         <span class="ui-accordion-close-icon" @click.self="click"><ui-icon name="plus"></ui-icon></span>
       </slot>
     </p>
-    <collapse-transition @after-enter="contentEntered">
+    <collapse-transition>
       <div class="ui-accordion-content" v-show="show">
         <slot></slot>
       </div>
@@ -78,9 +78,6 @@ export default {
       if (this.openOnMouseOver) {
         this.show = !this.show
       }
-    },
-    contentEntered(){
-      console.log('contentEntered')
     }
   },
   watch: {
@@ -89,7 +86,4 @@ export default {
     }
   }
 }
-
 </script>
-<style lang="css" scoped>
-</style>

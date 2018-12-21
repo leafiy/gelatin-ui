@@ -38,7 +38,7 @@ export default {
         window.open(shareLink)
       } else {
         if (!this.data.qrcode && this.data.url) {
-          import( /* webpackChunkName: "qrcode" */ 'qrcode').then(module => {
+          import( /* webpackChunkName: "vendor" */ 'qrcode').then(module => {
             return module.default.toDataURL(this.data.url)
 
           }).then(base64 => {

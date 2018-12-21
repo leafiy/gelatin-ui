@@ -1,6 +1,6 @@
-import Tooltip from "./tooltip.js";
+import UiTooltip from "./tooltip.js";
 
-Tooltip.install = (Vue, opt) => {
-  Vue.directive("ui-tooltip", Tooltip);
+UiTooltip.install = (Vue, opt) => {
+  Vue.directive("ui-tooltip", UiTooltip);
 };
-export default Tooltip;
+export default UiTooltip;

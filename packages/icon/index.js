@@ -1,7 +1,7 @@
-import Icon from "./icon.vue";
+import UiIcon from "./icon.vue";
 
-Icon.install = function(Vue) {
-  Vue.component(Icon.name, Icon);
+UiIcon.install = function(Vue) {
+  Vue.component(UiIcon.name, UiIcon);
 };
 
-export default Icon;
+export default UiIcon;

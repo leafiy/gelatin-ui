@@ -22,25 +22,25 @@ export default {
   },
   methods: {
     toast1() {
-      this.$Toast({
+      this.$UiToast({
         message: 'Normal Toast',
         icon: "user"
       })
     },
     toast2() {
-      this.$Toast({
+      this.$UiToast({
         message: '我不会消失，除非点icon一下',
         icon: "close",
         duration:0,
         closeOnClick:true,
         position: { x: 'left', y: "top" },
         onClose: () => {
-          this.$Toast('toast closed')
+          this.$UiToast('toast closed')
         }
       })
     },
     toast3() {
-      this.$Toast({
+      this.$UiToast({
         message: 'click icon event',
         icon: "user",
         onClick: () => {
@@ -49,21 +49,21 @@ export default {
       })
     },
     toast4() {
-      this.$Toast({
+      this.$UiToast({
         type: 'warning',
         message: 'warning message',
         icon: "stop"
       })
     },
     toast5() {
-      this.$Toast({
+      this.$UiToast({
         type: 'error',
         message: 'error message',
         icon: "stop"
       })
     },
     toast6() {
-      this.$Toast({
+      this.$UiToast({
         type: 'warning',
         message: 'warning message on left bottom warning message on left bottom',
         icon: "stop",
@@ -71,7 +71,7 @@ export default {
       })
     },
     toast7() {
-      this.$Toast({
+      this.$UiToast({
         type: 'warning',
         message: 'warning message on center top',
         icon: "stop",
@@ -81,7 +81,7 @@ export default {
     }
     ,
     toast8() {
-      this.$Toast({
+      this.$UiToast({
         type: 'error',
         message: 'warning message on center of window',
         icon: "stop",

@@ -90,7 +90,7 @@
     position: absolute;
     &:hover {
       color: $primary-color;
-      transform:translateY(-50%) rotate(-90deg);
+      transform:rotate(-90deg);
     }
   }
 

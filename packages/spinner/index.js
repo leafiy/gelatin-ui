@@ -1,7 +1,7 @@
-import Spinner from "./spinner.vue";
+import UiSpinner from "./spinner.vue";
 
-Spinner.install = function(Vue) {
-  Vue.component(Spinner.name, Spinner);
+UiSpinner.install = function(Vue) {
+  Vue.component(UiSpinner.name, UiSpinner);
 };
 
-export default Spinner;
+export default UiSpinner;

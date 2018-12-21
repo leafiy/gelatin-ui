@@ -1,7 +1,7 @@
-import Share from "./share.vue";
+import UiShare from "./share.vue";
 
-Share.install = function(Vue) {
-  Vue.component(Share.name, Share);
+UiShare.install = function(Vue) {
+  Vue.component(UiShare.name, UiShare);
 };
 
-export default Share;
+export default UiShare;

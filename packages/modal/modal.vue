@@ -1,6 +1,6 @@
 <template>
   <transition :name="modalTransition">
-    <div class="ui-modal" :class="classes" v-if="isShow" :style="styles">
+    <div class="ui-modal" :class="classes" v-if="isOpen" :style="styles">
       <div class="ui-modal-inner">
         <ui-icon @click.native="closeModal" name="close" class="ui-modal-close-icon"></ui-icon>
         <div class="ui-modal-header" v-if="header || $slots.header">
@@ -11,8 +11,8 @@
           <div v-if="content" v-html="content"></div>
           <slot></slot>
         </div>
-        <div class="ui-modal-footer" v-if="footer || $slots.footer">
-          <div v-if="footer" v-html="footer"></div>
+        <div class="ui-modal-footer">
+          <div v-if="footer || $slots.footer" v-html="footer"></div>
           <ui-button-group class="ui-modal-btn" size="sm" v-if="buttons.length">
             <ui-button v-for="btn of buttons" :type="btn.type" :key="btn.text" @click.native="()=>{btn.action && btn.action()}">{{btn.text}}</ui-button>
           </ui-button-group>
@@ -23,12 +23,14 @@
   </transition>
 </template>
 <script>
+import Vue from 'vue'
 import UiBackdrop from '../backdrop/backdrop.vue'
 import UiIcon from '../icon/icon.vue'
 import UiButtonGroup from '../button/button-group.vue'
 import UiButton from '../button/button.vue'
 import '../assets/scss/modal.scss'
-import { $Cover } from '../backdrop/index.js'
+import { $UiCover } from '../backdrop/index.js'
+
 export default {
 
   name: 'ui-modal',
@@ -36,11 +38,11 @@ export default {
   data() {
     return {
       cover: null,
-      isShow: this.value,
       header: '',
       content: '',
       footer: '',
-      buttons: []
+      buttons: [],
+      isOpen: !!this.value
     }
   },
   components: {
@@ -52,7 +54,7 @@ export default {
   computed: {
     classes() {
       return [
-        this.isShow && 'ui-modal-active',
+        this.value && 'ui-modal-active',
         this.confirm && 'ui-confirm'
       ]
     },
@@ -63,6 +65,17 @@ export default {
       return [{
         'zIndex': this.zIndex
       }]
+    }
+  },
+  watch: {
+    value() {
+      if (this.value) {
+        this.openModal()
+        this.isOpen = true
+      } else {
+        this.closeModal()
+        this.isOpen = false
+      }
     }
   },
   props: {
@@ -76,10 +89,7 @@ export default {
       type: Boolean,
       default: true
     },
-    value: {
-      type: Boolean,
-      default: false
-    },
+    value: Boolean,
     showCloseIcon: {
       type: Boolean,
       default: true
@@ -93,26 +103,26 @@ export default {
   },
   methods: {
     closeModal() {
-      this.isShow = false
       if (this.showBackdrop) {
         this.closeCover()
       }
-      this.$emit('modal-close')
-      this.$emit('input', false);
       if (this.disableScroll) {
         document.body.style.overflow = ''
         document.body.style.paddingRight = ''
       }
+      this.isOpen = false
+      this.$emit('input', false);
+      this.$emit('modal-close')
+
     },
     openModal() {
       if (this.showBackdrop) {
         this.openCover()
       }
-      this.isShow = true
-      document.body.appendChild(this.$el)
       this.$emit('modal-open')
+      document.body.appendChild(this.$el)
       if (this.disableScroll) {
-        import(/* webpackChunkName: "vendor" */'../../src/utils/scrollbar.js').then(module => {
+        import( /* webpackChunkName: "vendor" */ '../../src/utils/scrollbar.js').then(module => {
           let scrollbarWidth = module.default()
           document.body.style.overflow = 'hidden'
           if (scrollbarWidth > 0) {
@@ -125,11 +135,13 @@ export default {
     },
     openCover() {
       if (!this.cover) {
-        this.cover = new $Cover({
+        this.cover = new $UiCover({
           closeOnClick: this.closeOnClick,
           color: this.backdropColor,
           onClick: () => {
-            this.closeModal()
+            if (this.closeOnClick) {
+              this.closeModal()
+            }
           }
         })
       } else {
@@ -141,27 +153,7 @@ export default {
         this.cover.show = false
       }
     }
-  },
-  watch: {
-    value(val) {
-      if (val) {
-        this.openModal()
-      } else {
-        this.closeModal()
-      }
-    }
-  },
-  mounted() {
-    this.$nextTick(() => {
-
-    })
-
-  },
-  beforeDestroy() {
-
   }
 }
 
 </script>
-<style lang="css" scoped>
-</style>

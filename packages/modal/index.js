@@ -1,8 +1,8 @@
-import Modal from "./modal.vue";
-import $Modal from './modal.js'
+import UiModal from "./modal.vue";
+import $UiModal from './modal.js'
 
-Modal.install = function(Vue) {
-  Vue.component(Modal.name, Modal);
+UiModal.install = function(Vue) {
+  Vue.component(UiModal.name, UiModal);
 };
 
-export {Modal,$Modal};
+export { UiModal, $UiModal };

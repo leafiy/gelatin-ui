@@ -29,7 +29,9 @@
     margin-right: 2px;
     padding: 0 12px;
     background: #fff;
-
+    &:focus{
+      outline: none;
+    }
     &::-webkit-input-placeholder {
       color: $light;
 

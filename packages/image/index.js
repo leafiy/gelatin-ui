@@ -1,7 +1,7 @@
-import Image from "./image.vue";
+import UiImage from "./image.vue";
 
-Image.install = function(Vue) {
-  Vue.component(Image.name, Image);
+UiImage.install = function(Vue) {
+  Vue.component(UiImage.name, UiImage);
 };
 
-export default Image;
+export default UiImage;

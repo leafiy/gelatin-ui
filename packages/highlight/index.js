@@ -1,6 +1,6 @@
-import Highlight from "./highlight.js";
+import UiHighlight from "./highlight.js";
 
-Highlight.install = (Vue, opt) => {
-  Vue.directive("ui-highlight", Highlight);
+UiHighlight.install = (Vue, opt) => {
+  Vue.directive("ui-highlight", UiHighlight);
 };
-export default Highlight;
+export default UiHighlight;

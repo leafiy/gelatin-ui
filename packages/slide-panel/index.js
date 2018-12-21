@@ -1,7 +1,7 @@
-import SlidePanel from "./slide-panel.vue";
+import UiSlidePanel from "./slide-panel.vue";
 
-SlidePanel.install = function(Vue) {
-  Vue.component(SlidePanel.name, SlidePanel);
+UiSlidePanel.install = function(Vue) {
+  Vue.component(UiSlidePanel.name, UiSlidePanel);
 };
 
-export default SlidePanel;
+export default UiSlidePanel;

@@ -1,7 +1,7 @@
-import Autocomplete from "./autocomplete.vue";
+import UiAutocomplete from "./autocomplete.vue";
 
-Autocomplete.install = function(Vue) {
-  Vue.component(Autocomplete.name, Autocomplete);
+UiAutocomplete.install = function(Vue) {
+  Vue.component(UiAutocomplete.name, UiAutocomplete);
 };
 
-export default Autocomplete;
+export default UiAutocomplete;

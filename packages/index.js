@@ -1,96 +1,100 @@
-import Avatar from "./avatar/index.js";
-import Icon from "./icon/index.js";
-import Loader from "./loader/index.js";
-import $Popover from "./popover/index.js";
-import Spinner from "./spinner/index.js";
-import $Toast from "./toast/index.js";
-import $Message from "./message/index.js";
-import $LoadingBar from "./loading-bar/index.js";
-import Upload from "./uplaoder/index.js";
-import Dropdown from "./dropdown/index.js";
-import Tooltip from "./tooltip/index.js";
-import Card from "./card/index.js";
-import Alert from "./alert/index.js";
-import Input from "./input/index.js";
-import Textarea from "./textarea/index.js";
-import Image from "./image/index.js";
-import Heading from "./heading/index.js";
-import { Row, Col } from "./layout/index.js";
-import { Button, ButtonGroup } from "./button/index.js";
-import { Accordion, AccordionItem } from "./accordion/index.js";
-import Checkbox from "./checkbox/index.js";
-import Radio from "./radio/index.js";
-import Tag from "./tag/index.js";
-import Hightlight from "./highlight/index.js";
-import Hr from "./hr/index.js";
-import { Backdrop, $Cover } from "./backdrop/index.js";
-import Autocomplete from "./autocomplete/index.js";
-import Loading from "./loading/index.js";
-import Mask from "./mask/index.js";
-import { Confirm, $Confirm } from './confirm/index.js'
-import { Modal, $Modal } from './modal/index.js'
-import V from "./v/index.js";
-import Progress from './progress/index.js'
-import Marquee from './marquee/index.js'
-import Share from './share/index.js'
-import Typer from './typer/index.js'
-import Carousel from './carousel/index.js'
-import Countdown from './countdown/index.js'
-import SlidePanel from './slide-panel/index.js'
-import Sticky from './sticky/index.js'
+import UiAvatar from "./avatar/index.js";
+import UiIcon from "./icon/index.js";
+import UiLoader from "./loader/index.js";
+import UiSpinner from "./spinner/index.js";
+import UiUpload from "./uplaoder/index.js";
+import UiDropdown from "./dropdown/index.js";
+import UiTooltip from "./tooltip/index.js";
+import UiCard from "./card/index.js";
+import UiAlert from "./alert/index.js";
+import UiInput from "./input/index.js";
+import UiTextarea from "./textarea/index.js";
+import UiImage from "./image/index.js";
+import UiHeading from "./heading/index.js";
+import { UiRow, UiCol } from "./layout/index.js";
+import { UiButton, UiButtonGroup } from "./button/index.js";
+import { UiAccordion, UiAccordionItem } from "./accordion/index.js";
+import UiCheckbox from "./checkbox/index.js";
+import UiRadio from "./radio/index.js";
+import UiTag from "./tag/index.js";
+import UiHightlight from "./highlight/index.js";
+import UiHr from "./hr/index.js";
+import { UiBackdrop, } from "./backdrop/index.js";
+import UiAutocomplete from "./autocomplete/index.js";
+import UiLoading from "./loading/index.js";
+import UiMask from "./mask/index.js";
+import { UiConfirm } from './confirm/index.js'
+import { UiModal } from './modal/index.js'
+import UiV from "./v/index.js";
+import UiProgress from './progress/index.js'
+import UiMarquee from './marquee/index.js'
+import UiShare from './share/index.js'
+import UiTyper from './typer/index.js'
+import UiCarousel from './carousel/index.js'
+import UiCountdown from './countdown/index.js'
+import UiSlidePanel from './slide-panel/index.js'
+import UiSticky from './sticky/index.js'
+import $UiPopover from "./popover/index.js";
+import $UiToast from "./toast/index.js";
+import $UiMessage from "./message/index.js";
+import $UiLoadingBar from "./loading-bar/index.js";
+import { $UiCover } from "./backdrop/index.js";
+import { $UiConfirm } from './confirm/index.js'
+import { $UiModal } from './modal/index.js'
 const components = [
-  Avatar,
-  Icon,
-  V,
-  Loader,
-  Spinner,
-  Upload,
-  Dropdown,
-  Alert,
-  Row,
-  Col,
-  Card,
-  Input,
-  Image,
-  Heading,
-  Button,
-  ButtonGroup,
-  Checkbox,
-  Radio,
-  Accordion,
-  AccordionItem,
-  Autocomplete,
-  Tag,
-  Hr,
-  Backdrop,
-  Textarea,
-  Modal,
-  Confirm,
-  Progress,
-  Marquee,
-  Share,
-  Typer,
-  Carousel,
-  Countdown,
-  SlidePanel
+  UiAvatar,
+  UiIcon,
+  UiV,
+  UiLoader,
+  UiSpinner,
+  UiUpload,
+  UiDropdown,
+  UiAlert,
+  UiRow,
+  UiCol,
+  UiCard,
+  UiInput,
+  UiImage,
+  UiHeading,
+  UiButton,
+  UiButtonGroup,
+  UiCheckbox,
+  UiRadio,
+  UiAccordion,
+  UiAccordionItem,
+  UiAutocomplete,
+  UiTag,
+  UiHr,
+  UiBackdrop,
+  UiTextarea,
+  UiModal,
+  UiConfirm,
+  UiProgress,
+  UiMarquee,
+  UiShare,
+  UiTyper,
+  UiCarousel,
+  UiCountdown,
+  UiSlidePanel
 ];
 
 
+
+
 const install = function(Vue) {
-  if (install.installed) return;
   components.forEach(component => Vue.component(component.name, component));
-  Vue.prototype.$Popover = $Popover;
-  Vue.prototype.$Toast = $Toast;
-  Vue.prototype.$Cover = $Cover;
-  Vue.prototype.$Modal = $Modal;
-  Vue.prototype.$Confirm = $Confirm;
-  Vue.prototype.$Message = $Message;
-  Vue.prototype.$LoadingBar = $LoadingBar;
-  Vue.directive(Tooltip.name, Tooltip);
-  Vue.directive(Hightlight.name, Hightlight);
-  Vue.directive(Loading.name, Loading);
-  Vue.directive(Mask.name, Mask);
-  Vue.directive(Sticky.name, Sticky)
+  Vue.prototype.$UiPopover = $UiPopover;
+  Vue.prototype.$UiToast = $UiToast;
+  Vue.prototype.$UiCover = $UiCover;
+  Vue.prototype.$UiModal = $UiModal;
+  Vue.prototype.$UiConfirm = $UiConfirm;
+  Vue.prototype.$UiMessage = $UiMessage;
+  Vue.prototype.$UiLoadingBar = $UiLoadingBar;
+  Vue.directive(UiTooltip.name, UiTooltip);
+  Vue.directive(UiHightlight.name, UiHightlight);
+  Vue.directive(UiLoading.name, UiLoading);
+  Vue.directive(UiMask.name, UiMask);
+  Vue.directive(UiSticky.name, UiSticky)
 };
 
 if (typeof window !== "undefined" && window.Vue) {
@@ -99,45 +103,46 @@ if (typeof window !== "undefined" && window.Vue) {
 
 export default {
   install,
-  Avatar,
-  Icon,
-  Loader,
-  Spinner,
-  Upload,
-  Dropdown,
-  Tooltip,
-  Row,
-  Col,
-  Card,
-  Alert,
-  Input,
-  Image,
-  Heading,
-  Button,
-  ButtonGroup,
-  Checkbox,
-  Radio,
-  Accordion,
-  AccordionItem,
-  Autocomplete,
-  Tag,
-  Hr,
-  Backdrop,
-  Textarea,
-  V,
-  Progress,
-  Marquee,
-  Share,
-  Typer,
-  Carousel,
-  Countdown,
-  SlidePanel,
-  Sticky,
-  $Popover,
-  $Toast,
-  $Cover,
-  $Modal,
-  $Confirm,
-  $Message,
-  $LoadingBar
+  UiAvatar,
+  UiIcon,
+  UiLoader,
+  UiSpinner,
+  UiUpload,
+  UiDropdown,
+  UiTooltip,
+  UiRow,
+  UiCol,
+  UiCard,
+  UiAlert,
+  UiInput,
+  UiImage,
+  UiHeading,
+  UiButton,
+  UiButtonGroup,
+  UiCheckbox,
+  UiRadio,
+  UiAccordion,
+  UiAccordionItem,
+  UiAutocomplete,
+  UiTag,
+  UiHr,
+  UiBackdrop,
+  UiTextarea,
+  UiV,
+  UiProgress,
+  UiMarquee,
+  UiShare,
+  UiTyper,
+  UiCarousel,
+  UiCountdown,
+  UiSlidePanel,
+  UiSticky,
+  UiModal,
+  $UiPopover,
+  $UiToast,
+  $UiCover,
+  $UiModal,
+  $UiConfirm,
+  $UiMessage,
+  $UiLoadingBar
 };

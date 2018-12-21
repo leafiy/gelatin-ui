@@ -1,7 +1,7 @@
-import V from "./v.vue";
+import UiV from "./v.vue";
 
-V.install = function(Vue) {
-  Vue.component(V.name, V);
+UiV.install = function(Vue) {
+  Vue.component(UiV.name, UiV);
 };
 
-export default V;
+export default UiV;

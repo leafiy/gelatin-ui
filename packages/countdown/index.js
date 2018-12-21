@@ -1,7 +1,7 @@
-import Countdown from "./countdown.vue";
+import UiCountdown from "./countdown.vue";
 
-Countdown.install = function(Vue) {
-  Vue.component(Countdown.name, Countdown);
+UiCountdown.install = function(Vue) {
+  Vue.component(UiCountdown.name, UiCountdown);
 };
 
-export default Countdown;
+export default UiCountdown;

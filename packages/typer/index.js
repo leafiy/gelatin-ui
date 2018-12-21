@@ -1,7 +1,7 @@
-import Typer from "./typer.vue";
+import UiTyper from "./typer.vue";
 
-Typer.install = function(Vue) {
-  Vue.component(Typer.name, Typer);
+UiTyper.install = function(Vue) {
+  Vue.component(UiTyper.name, UiTyper);
 };
 
-export default Typer;
+export default UiTyper;

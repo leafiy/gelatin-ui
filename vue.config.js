@@ -8,6 +8,7 @@ function resolve(dir) {
 module.exports = {
   lintOnSave: false,
   css: { extract: false },
+
   configureWebpack: () => {
     if (process.env.analyzer == "enable") {
       return {
@@ -15,10 +16,10 @@ module.exports = {
       };
     }
   },
+
   chainWebpack: config => {
     // config.resolve.alias
-    //   .set("gelatin-ui", resolve("./packages/"))
-    //   .set("utils", resolve("./src/utils/"))
-    //   .set("mixins", resolve("./src/mixins/"))
-  }
+      // .set("gelatin-ui", resolve("../gelatin-ui/packages/"))
+      // .set('vue', 'vue/dist/vue.js')
+  },
 };

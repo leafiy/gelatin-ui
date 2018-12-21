@@ -1,8 +1,8 @@
-import Confirm from "./confirm.vue";
-import $Confirm from './confirm.js'
+import UiConfirm from "./confirm.vue";
+import $UiConfirm from './confirm.js'
 
-Confirm.install = function(Vue) {
-  Vue.component(Confirm.name, Confirm);
+UiConfirm.install = function(Vue) {
+  Vue.component(UiConfirm.name, UiConfirm);
 };
 
-export { Confirm, $Confirm };
+export { UiConfirm, $UiConfirm };

@@ -1,21 +1,20 @@
-import Backdrop from "./backdrop.vue";
-import Vue from "vue";
+import UiBackdrop from "./backdrop.vue";
 import RenderCover from './render.js'
 import events from '../../src/utils/events.js'
-Backdrop.install = function(Vue) {
-  Vue.component(Backdrop.name, Backdrop);
+UiBackdrop.install = function(Vue) {
+  Vue.component(UiBackdrop.name, UiBackdrop);
 };
 
-const $Cover = (options = {}) => {
-  options = Object.assign(options, { global: true })
-  let cover = new RenderCover({options})
+const $UiCover = function(options = {}) {
+  options.global = true
+  let cover = new RenderCover({ options })
   return cover.backdrop
 }
 
 
-$Cover.close = function() {
+$UiCover.close = function() {
   events.$emit('close-backdrop')
 
 }
 
-export { Backdrop, $Cover };
+export { UiBackdrop, $UiCover };

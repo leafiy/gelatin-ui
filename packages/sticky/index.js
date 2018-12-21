@@ -1,6 +1,6 @@
-import Sticky from "./sticky.js";
+import UiSticky from "./sticky.js";
 
-Sticky.install = (Vue, opt) => {
-  Vue.directive("ui-sticky", Sticky);
+UiSticky.install = (Vue, opt) => {
+  Vue.directive("ui-sticky", UiSticky);
 };
-export default Sticky;
+export default UiSticky;

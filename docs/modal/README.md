@@ -2,6 +2,39 @@
 
 <modal-modal></modal-modal>
 
+
+<code-code>
+  ```html
+  <ui-modal v-model="open" backdrop-color="light">
+        <div slot="header">Modal Header</div>
+        <p>modal content</p>
+        <div slot="footer">Modal Footer</div>
+      </ui-modal>
+  ```
+
+  ```js
+this.$UiModal({
+        header: 'I am Header',
+        content: 'I am Content',
+        buttons: [{
+            text: 'ok',
+            action: () => {
+              alert('clicked ok')
+            }
+          },
+          {
+            text: 'no no no',
+            type: 'border'
+          },
+          {
+            text: 'no no no',
+            type: 'warning'
+          }
+        ]
+      })
+```
+</code-code>
+
 #### 通用options
 
 |options|type|description|defalut|optional|
@@ -35,24 +68,4 @@
 |-|-|-|
 |buttons|Array|嵌入按钮|
 
-```js
-this.$Modal({
-        header: 'I am Header',
-        content: 'I am Content',
-        buttons: [{
-            text: 'ok',
-            action: () => {
-              alert('clicked ok')
-            }
-          },
-          {
-            text: 'no no no',
-            type: 'border'
-          },
-          {
-            text: 'no no no',
-            type: 'warning'
-          }
-        ]
-      })
-```
+

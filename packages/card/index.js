@@ -1,7 +1,7 @@
-import Card from "./card.vue";
+import UiCard from "./card.vue";
 
-Card.install = function(Vue) {
-  Vue.component(Card.name, Card);
+UiCard.install = function(Vue) {
+  Vue.component(UiCard.name, UiCard);
 };
 
-export default Card;
+export default UiCard;
