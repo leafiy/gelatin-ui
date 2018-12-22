@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file. See [standa
 
 <a name="0.1.12"></a>
 ## [0.1.12](https://github.com/leafiy/gelatin-ui/compare/v0.2.0...v0.1.12) (2018-12-22)
+=======
+<a name="0.1.12"></a>
+## [0.1.12](https://github.com/leafiy/gelatin-ui/compare/v0.1.11...v0.1.12) (2018-12-22)
+>>>>>>> 54fc86a41cddad8041f314e6dbb9f93c45a98588
 
 
 
