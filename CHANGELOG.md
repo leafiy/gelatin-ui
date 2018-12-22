@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/leafiy/gelatin-ui/compare/v0.0.5...v0.2.0) (2018-12-22)
+
+
+### Bug Fixes
+
+* **fix validation bugs:** validation增加状态事件，简化使用方法 ([41863ad](https://github.com/leafiy/gelatin-ui/commit/41863ad))
+* **ui bugs fix:** add some component ([a4b9ae6](https://github.com/leafiy/gelatin-ui/commit/a4b9ae6))
+* **update button style:** use div instead of button for ui-button ([6fb2631](https://github.com/leafiy/gelatin-ui/commit/6fb2631))
+
+
+### Features
+
+* **add $Message:** update $Toast ([e6bb5bf](https://github.com/leafiy/gelatin-ui/commit/e6bb5bf))
+
+
+
 <a name="0.1.11"></a>
 ## [0.1.11](https://github.com/leafiy/gelatin-ui/compare/v0.1.9...v0.1.11) (2018-12-21)
 
