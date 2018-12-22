@@ -1,53 +1,52 @@
-import Pop from './pop.js'
+import Pop from "./pop.js";
 
-let instances = []
+let instances = [];
 const defaultOptions = {
   closeOnMouseleave: false,
   insertAfter: false,
   openDelay: 0,
   closeOnClick: true,
   closeDelay: 0,
-  content: '',
-  textCetner:true,
+  content: "",
+  textCetner: true,
   arrow: true,
   menu: []
-}
+};
 
 const Popover = function(options) {
   if (!options.trigger) {
-    throw new Error('missing triggle element')
+    throw new Error("missing triggle element");
   }
-  let el = options.trigger
+  let el = options.trigger;
   if (el.dataset.popover) {
-    return
+    return;
   }
-  el.dataset.popover = true
-  options = renderOptions(el, options)
-  let instance = new Pop(options)
+  el.dataset.popover = true;
+  options = renderOptions(el, options);
+  let instance = new Pop(options);
   setTimeout(() => {
-    instance.show = true
-  }, options.openDelay)
+    instance.show = true;
+  }, options.openDelay);
 
-  instance.$on('close', () => {
-    el.removeAttribute('data-popover')
-  })
+  instance.$on("close", () => {
+    el.removeAttribute("data-popover");
+  });
 
-  return instance
-}
-
+  return instance;
+};
 
 const renderOptions = function(el, options) {
-  if (typeof options == 'string') {
+  if (typeof options == "string") {
     options = {
       tooltip: options
-    }
+    };
   }
   Object.keys(defaultOptions).forEach(key => {
     if (!options.hasOwnProperty(key)) {
-      options[key] = defaultOptions[key]
+      options[key] = defaultOptions[key];
     }
-  })
-  return options
-}
+  });
+  return options;
+};
 
 export default Popover;

@@ -1,7 +1,5 @@
 <template>
-  <div :class="classes">
-    <slot></slot>
-  </div>
+  <div :class="classes"><slot></slot></div>
 </template>
 <script>
 export default {
@@ -10,10 +8,9 @@ export default {
     size: {
       type: String,
       validator(value) {
-        return ["sm", "lg", 'md'].includes(value);
+        return ["sm", "lg", "md"].includes(value);
       },
-      default: "md",
-
+      default: "md"
     },
     vertical: Boolean,
     gutter: Boolean
@@ -25,11 +22,10 @@ export default {
         this.gutter && `ui-btn-group-gutter`,
         {
           [`ui-btn-group-size-${this.size}`]: !!this.size,
-          [`ui-btn-group-vertical`]: this.vertical,
+          [`ui-btn-group-vertical`]: this.vertical
         }
       ];
     }
   }
 };
-
 </script>

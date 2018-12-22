@@ -1,16 +1,21 @@
 <template>
   <div class="ui-upload-list">
-    <div v-for="(file, index) of fileList" :key="file.id || file.uid" :class="'ui-upload-file-' + file.status" class="ui-upload-file-item">
+    <div
+      v-for="(file, index) of fileList"
+      :key="file.id || file.uid"
+      :class="'ui-upload-file-' + file.status"
+      class="ui-upload-file-item"
+    >
       <img
         class="ui-upload-thumb"
         :src="file.url"
-        @click="handlePreview(file, index);"
+        @click="handlePreview(file, index)"
       />
       <div class="ui-upload-actions" v-if="file">
         <span
           v-if="file.status == 'uploading'"
           v-html="lang.cancel"
-          @click.prevent="cancel(file, index);"
+          @click.prevent="cancel(file, index)"
         ></span>
         <span
           v-if="file.status == 'ready' && !autoUpload"
@@ -19,18 +24,22 @@
         <span
           v-if="file.status == 'error' || file.status == 'canceled'"
           v-html="lang.retry"
-          @click.prevent="retry(file, index);"
+          @click.prevent="retry(file, index)"
         ></span>
         <span
           v-if="
             file.status == 'finished' || file.status == 'error' || !file.status
           "
           v-html="lang.del"
-          @click.prevent="del(file, index);"
+          @click.prevent="del(file, index)"
         ></span>
       </div>
       <transition name="fade">
-        <ui-progress type="ring" v-if="file.status == 'uploading'" :percentage="file.percentage"></ui-progress>
+        <ui-progress
+          type="ring"
+          v-if="file.status == 'uploading'"
+          :percentage="file.percentage"
+        ></ui-progress>
       </transition>
     </div>
   </div>
@@ -46,7 +55,7 @@ export default {
   props: {
     fileList: {
       type: Array,
-      default () {
+      default() {
         return [];
       }
     },
@@ -89,5 +98,4 @@ export default {
     }
   }
 };
-
 </script>

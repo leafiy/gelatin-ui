@@ -1,26 +1,31 @@
 <template>
-  <ui-modal confirm v-model="isOpen" @modal-open="ConfirmOpen" @modal-close="ConfirmClose">
+  <ui-modal
+    confirm
+    v-model="isOpen"
+    @modal-open="ConfirmOpen"
+    @modal-close="ConfirmClose"
+  >
     <div class="ui-confirm-header" v-if="header || $slots.header">
       <div v-if="header" v-html="header"></div>
-      <slot name="header">
-      </slot>
+      <slot name="header"> </slot>
     </div>
     <div class="ui-confirm-content" v-if="content || $slots.default">
       <div v-if="content" v-html="content"></div>
-      <slot>
-      </slot>
+      <slot> </slot>
     </div>
     <ui-button-group size="sm" gutter class="ui-confirm-buttons">
-      <ui-button shadow @click.native="clickConfirm">{{confirm}}</ui-button>
-      <ui-button shadow type="border" @click.native="clickCancel">{{cancel}}</ui-button>
+      <ui-button shadow @click.native="clickConfirm">{{ confirm }}</ui-button>
+      <ui-button shadow type="border" @click.native="clickCancel">{{
+        cancel
+      }}</ui-button>
     </ui-button-group>
   </ui-modal>
 </template>
 <script>
-import UiModal from '../modal/modal.vue'
-import '../assets/scss/confirm.scss'
-import UiButtonGroup from '../button/button-group.vue'
-import UiButton from '../button/button.vue'
+import UiModal from "../modal/modal.vue";
+import "../assets/scss/confirm.scss";
+import UiButtonGroup from "../button/button-group.vue";
+import UiButton from "../button/button.vue";
 export default {
   name: "ui-confirm",
 

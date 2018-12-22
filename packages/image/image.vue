@@ -1,25 +1,27 @@
 <template>
   <div class="ui-image" :class="[keepSize && 'ui-image-keep-size']">
     <transition name="fade">
-      <div class="ui-image-image" v-if="!loading" :style="backgroundStyle"></div>
+      <div
+        class="ui-image-image"
+        v-if="!loading"
+        :style="backgroundStyle"
+      ></div>
     </transition>
     <div class="ui-image-cover" v-if="cover"></div>
     <ui-spinner v-if="loading" center></ui-spinner>
-    <div class="ui-image-slot" v-if="$slots.default">
-      <slot></slot>
-    </div>
+    <div class="ui-image-slot" v-if="$slots.default"><slot></slot></div>
   </div>
 </template>
 <script>
-import UiSpinner from '../spinner/spinner.vue'
+import UiSpinner from "../spinner/spinner.vue";
 import imgLoader from "../../src/utils/imgLoader.js";
-import '../assets/scss/image.scss';
+import "../assets/scss/image.scss";
 export default {
   name: "ui-image",
   props: {
     src: String,
     cover: Boolean,
-    keepSize: Boolean,
+    keepSize: Boolean
   },
   components: {
     UiSpinner
@@ -50,5 +52,4 @@ export default {
     }
   }
 };
-
 </script>

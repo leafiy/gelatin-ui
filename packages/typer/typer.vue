@@ -1,22 +1,26 @@
 <template>
   <div class="ui-typer">
     <transition-group appear name="fade">
-      <span  v-for="(letter,index) of words" :key="index +'-'+ letter" class="ui-typer-item">{{letter}}</span>
+      <span
+        v-for="(letter, index) of words"
+        :key="index + '-' + letter"
+        class="ui-typer-item"
+        >{{ letter }}</span
+      >
     </transition-group>
-    <span class="ui-typer-cursor" v-if="cursor">{{cursor}}</span>
+    <span class="ui-typer-cursor" v-if="cursor">{{ cursor }}</span>
   </div>
 </template>
 <script>
-import '../assets/scss/typer.scss'
+import "../assets/scss/typer.scss";
 export default {
-
-  name: 'ui-typer',
+  name: "ui-typer",
 
   data() {
     return {
       timer: null,
-      index: 0,
-    }
+      index: 0
+    };
   },
   props: {
     content: {
@@ -28,7 +32,7 @@ export default {
       type: Number,
       default: 4,
       validator(value) {
-        return value > 1 && value < 5
+        return value > 1 && value < 5;
       }
     },
     loop: Boolean,
@@ -41,59 +45,53 @@ export default {
     }
   },
   computed: {
-    currentWord() {
-
-    },
     words() {
-      return this.content.slice(0, this.index + 1)
+      return this.content.slice(0, this.index + 1);
     },
     isTyping() {
-      return !!this.timer
+      return !!this.timer;
     }
   },
   methods: {
     start() {
       this.timer = setInterval(() => {
-        this.index++
-      }, 1000 / this.speed)
+        this.index++;
+      }, 1000 / this.speed);
     },
     stop() {
-      clearInterval(this.timer)
-      this.timer = null
+      clearInterval(this.timer);
+      this.timer = null;
     },
     back() {
       this.timer = setInterval(() => {
         if (this.index == 0) {
-          this.stop()
-          this.start()
-          return
+          this.stop();
+          this.start();
+          return;
         }
-        this.index--
-      }, 1000 / this.speed)
+        this.index--;
+      }, 1000 / this.speed);
     }
   },
   watch: {
     index(val) {
       if (val == this.content.length) {
         if (this.loop) {
-          this.stop()
+          this.stop();
           setTimeout(() => {
-            this.back()
-            this.$emit('back')
-          }, this.loopDelay)
+            this.back();
+            this.$emit("back");
+          }, this.loopDelay);
         } else {
-          this.stop()
-          this.$emit('stop')
+          this.stop();
+          this.$emit("stop");
         }
       }
     }
   },
   mounted() {
-    this.start()
+    this.start();
   }
-
-}
-
+};
 </script>
-<style lang="css" scoped>
-</style>
+<style lang="css" scoped></style>

@@ -1,9 +1,36 @@
 <template>
   <div :class="wrapClasses" class="ui-input">
-    <div class="ui-input-prefix" @click="focus" v-if="$slots.prefix" ref="prefix">
+    <div
+      class="ui-input-prefix"
+      @click="focus"
+      v-if="$slots.prefix"
+      ref="prefix"
+    >
       <slot name="prefix"></slot>
     </div>
-    <input :tabindex="tabindex" :name="name" :autofocus="autofocus" :readonly="readonly" :disabled="disabled" class="ui-input-inner" :value="inputVal" :type="type" :maxlength="maxLength" :minLength="minLength" :placeholder="placeholder" :autocomplete="autoComplete ? 'on' : 'off'" ref="input" @input="handleInput" @focus="handleFocus" @blur="handleBlur" @keyup="handleKeyup" @keydown="handleKeydown" @keyup.enter="handleEnter" @keyup.esc="handleEsc" @change="handleChange" />
+    <input
+      :tabindex="tabindex"
+      :name="name"
+      :autofocus="autofocus"
+      :readonly="readonly"
+      :disabled="disabled"
+      class="ui-input-inner"
+      :value="inputVal"
+      :type="type"
+      :maxlength="maxLength"
+      :minLength="minLength"
+      :placeholder="placeholder"
+      :autocomplete="autoComplete ? 'on' : 'off'"
+      ref="input"
+      @input.exact="handleInput"
+      @focus.exact="handleFocus"
+      @blur.exact="handleBlur"
+      @keyup.exact="handleKeyup"
+      @keydown.exact="handleKeydown"
+      @keyup.enter.exact="handleEnter"
+      @keyup.esc.exact="handleEsc"
+      @change.exact="handleChange"
+    />
     <fade-transition>
       <div class="ui-input-clear" v-if="inputVal && showClear" @click="clear">
         <ui-icon name="close-circle-fill"></ui-icon>
@@ -12,7 +39,12 @@
     <fade-transition>
       <ui-spinner v-if="loading"></ui-spinner>
     </fade-transition>
-    <div class="ui-input-suffix" @click="focus" v-if="$slots.suffix" ref="suffix">
+    <div
+      class="ui-input-suffix"
+      @click="focus"
+      v-if="$slots.suffix"
+      ref="suffix"
+    >
       <slot name="suffix"></slot>
     </div>
     <!-- <transition name="fade">
@@ -23,15 +55,15 @@
 <script>
 import "../assets/scss/input.scss";
 import UiIcon from "../icon/icon.vue";
-import UiSpinner from '../spinner/spinner.vue'
+import UiSpinner from "../spinner/spinner.vue";
 import { FadeTransition } from "vue2-transitions";
 export default {
   name: "ui-input",
   data() {
     return {
       focusIn: false,
-      inputVal: this.value === undefined || this.value === null ?
-        '' : this.value,
+      inputVal:
+        this.value === undefined || this.value === null ? "" : this.value,
       errors: false
     };
   },
@@ -64,7 +96,7 @@ export default {
       default: false
     },
     autofocus: Boolean,
-    theme: String, // flat/ghost
+    theme: String // flat/ghost
   },
   components: {
     UiIcon,
@@ -105,7 +137,7 @@ export default {
       this.$emit("keydown", this.inputVal);
     },
     handleInput(e) {
-      this.inputVal = e.target.value
+      this.inputVal = e.target.value;
       this.$emit("input", this.inputVal);
     },
     handleFocus(e) {
@@ -120,23 +152,20 @@ export default {
       this.$emit("change", this.inputVal);
     },
     clear() {
-
-
-      this.$emit('input', '')
-      this.$emit('change', '');
-      this.$emit('clear')
+      this.$emit("input", "");
+      this.$emit("change", "");
+      this.$emit("clear");
       this.$nextTick(() => {
         this.inputVal = "";
-        this.errors = false
+        this.errors = false;
         this.focus();
-      })
+      });
     }
   },
   watch: {
     value(val) {
-      this.inputVal = val
+      this.inputVal = val;
     }
   }
 };
-
 </script>

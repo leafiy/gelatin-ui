@@ -1,16 +1,12 @@
 <template>
-  <div class="ui-card" :class="classes">
-    <slot></slot>
-  </div>
+  <div class="ui-card" :class="classes"><slot></slot></div>
 </template>
 <script>
-import '../assets/scss/card.scss';
+import "../assets/scss/card.scss";
 export default {
-  name: 'ui-card',
+  name: "ui-card",
   data() {
-    return {
-
-    }
+    return {};
   },
   props: {
     shadow: {
@@ -22,16 +18,16 @@ export default {
       default: false
     },
     cardStyle: String
-
   },
   computed: {
     classes() {
-      return [{
-        "ui-card-shadow": this.shadow,
-        "ui-card-shadow-hover": this.shadowHover
-      }]
+      return [
+        {
+          "ui-card-shadow": this.shadow,
+          "ui-card-shadow-hover": this.shadowHover
+        }
+      ];
     }
   }
-}
-
+};
 </script>

@@ -13,9 +13,7 @@ const regexSort = (list, patterns) => {
     index: presetIndex(c)
   }));
 
-  indexes.sort(
-    (a, b) => a.index < b.index ? -1 : 1
-  );
+  indexes.sort((a, b) => (a.index < b.index ? -1 : 1));
 
   return indexes.map(c => c.input);
 };

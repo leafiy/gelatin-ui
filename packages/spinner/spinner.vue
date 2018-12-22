@@ -28,12 +28,16 @@ export default {
   },
   computed: {
     classes() {
-      return [`ui-spinner-${this.type}`, { "ui-spinner-center": this.center }, { "ui-spinner-light": this.light }, { "ui-spinner-dark": this.dark }];
+      return [
+        `ui-spinner-${this.type}`,
+        { "ui-spinner-center": this.center },
+        { "ui-spinner-light": this.light },
+        { "ui-spinner-dark": this.dark }
+      ];
     }
   },
   mounted() {
-    this.isMounted = true
+    this.isMounted = true;
   }
 };
-
 </script>

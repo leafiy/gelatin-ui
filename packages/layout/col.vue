@@ -1,18 +1,15 @@
 <script>
-import camelToDash from '../../src/utils/camelToDash.js'
+import camelToDash from "../../src/utils/camelToDash.js";
 export default {
-
-  name: 'ui-col',
+  name: "ui-col",
 
   data() {
-    return {
-
-    }
+    return {};
   },
   props: {
     tag: {
       type: String,
-      default: 'div'
+      default: "div"
     },
     autoWidth: Boolean,
     xs: {
@@ -44,73 +41,65 @@ export default {
     alignSelf: {
       type: String,
       validator: function(value) {
-        return ["start", "center", "end", "baseline", "stretch"].includes(value)
+        return ["start", "center", "end", "baseline", "stretch"].includes(
+          value
+        );
       }
     }
-
-
-
-
   },
   computed: {
     styles() {
       return {
-
-        'flex-grow': this.grow,
-        'flex-shrink': this.shrink,
-        'flex-basis': `${this.basis}%`,
-        'align-self': this.alignSelf,
-        'order': this.order
-      }
+        "flex-grow": this.grow,
+        "flex-shrink": this.shrink,
+        "flex-basis": `${this.basis}%`,
+        "align-self": this.alignSelf,
+        order: this.order
+      };
     },
     classes() {
       return [
-        'ui-col',
-        this.getSizeProps().join(' '),
-        this.autoWidth && 'ui-col-auto-width',
+        "ui-col",
+        this.getSizeProps().join(" "),
+        this.autoWidth && "ui-col-auto-width",
         {
-
-          'ui-col-first': this.first,
-          'ui-col-last': this.last,
-          'ui-col-reverse': this.reverse
+          "ui-col-first": this.first,
+          "ui-col-last": this.last,
+          "ui-col-reverse": this.reverse
         }
-
-      ]
+      ];
     }
   },
   methods: {
     getSizeProps() {
-      let cols = ['xs', 'sm', 'md', 'lg']
-      let classes = []
+      let cols = ["xs", "sm", "md", "lg"];
+      let classes = [];
       Object.keys(this.$props).forEach(s => {
         if (this.$props[s]) {
           if (cols.includes(s)) {
-            classes.push(`ui-col-${s}-${this.$props[s]}`)
+            classes.push(`ui-col-${s}-${this.$props[s]}`);
           }
-          if (s.includes('Offset')) {
-            classes.push(`ui-col-${camelToDash(s)}-${this.$props[s]}`)
+          if (s.includes("Offset")) {
+            classes.push(`ui-col-${camelToDash(s)}-${this.$props[s]}`);
           }
-
         }
-
-      })
-      return classes
+      });
+      return classes;
     }
   },
   mounted() {
-    this.getSizeProps()
+    this.getSizeProps();
   },
   render(h) {
     return h(
-      this.tag, {
+      this.tag,
+      {
         class: this.classes,
         style: this.styles
       },
       this.$slots.default
     );
   }
-}
-
+};
 </script>
-<style lang="css" scoped>
-</style>
+<style lang="css" scoped></style>

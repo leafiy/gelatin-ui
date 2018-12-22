@@ -1,29 +1,54 @@
 <template>
-  <div class="ui-progress-type-ring" :style="{width:size+'px',height:size+'px'}" :data-pct="progressNumber">
-    <svg :width="size" :height="size" :viewPort="'0 0 '+ size + ' ' + size" version="1.1" xmlns="http://www.w3.org/2000/svg">
-      <circle class="ui-progress-ring" :stroke="backColor" :r="r" :cx="size/2" :cy="size/2" :stroke-width="strokeWidth" fill="none">
-      </circle>
-      <circle class="ui-progress-ring-inner" :stroke="foreColor" :r="r" :cx="size/2" :cy="size/2" :stroke-width="strokeWidth" fill="none" :stroke-dasharray="dasharray" :stroke-dashoffset="dashoffset"></circle>
+  <div
+    class="ui-progress-type-ring"
+    :style="{ width: size + 'px', height: size + 'px' }"
+    :data-pct="progressNumber"
+  >
+    <svg
+      :width="size"
+      :height="size"
+      :viewPort="'0 0 ' + size + ' ' + size"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        class="ui-progress-ring"
+        :stroke="backColor"
+        :r="r"
+        :cx="size / 2"
+        :cy="size / 2"
+        :stroke-width="strokeWidth"
+        fill="none"
+      ></circle>
+      <circle
+        class="ui-progress-ring-inner"
+        :stroke="foreColor"
+        :r="r"
+        :cx="size / 2"
+        :cy="size / 2"
+        :stroke-width="strokeWidth"
+        fill="none"
+        :stroke-dasharray="dasharray"
+        :stroke-dashoffset="dashoffset"
+      ></circle>
     </svg>
   </div>
 </template>
 <script>
 export default {
-
-  name: 'ring',
+  name: "ring",
 
   data() {
-    return {
-
-    }
+    return {};
   },
-  props: ['size',
-    'percentage',
-    'strokeWidth',
-    'backColor',
-    'foreColor',
-    'showNumber',
-    'progressNumber'
+  props: [
+    "size",
+    "percentage",
+    "strokeWidth",
+    "backColor",
+    "foreColor",
+    "showNumber",
+    "progressNumber"
   ],
   computed: {
     r() {
@@ -34,10 +59,8 @@ export default {
     },
     dashoffset() {
       return this.dasharray * (1 - this.percentage / 100);
-    },
+    }
   }
-}
-
+};
 </script>
-<style lang="css" scoped>
-</style>
+<style lang="css" scoped></style>

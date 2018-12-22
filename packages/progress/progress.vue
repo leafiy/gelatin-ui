@@ -1,12 +1,22 @@
 <template>
   <div class="ui-progress" :class="[animate && `ui-progress-animate`]">
-    <component :is="type" :size="size" :percentage="percentage" :stroke-width="strokeWidth" :back-color="backColor" :fore-color="foreColor" :show-number="showNumber" :progress-number="progressNumber" :show="show"></component>
+    <component
+      :is="type"
+      :size="size"
+      :percentage="percentage"
+      :stroke-width="strokeWidth"
+      :back-color="backColor"
+      :fore-color="foreColor"
+      :show-number="showNumber"
+      :progress-number="progressNumber"
+      :show="show"
+    ></component>
   </div>
 </template>
 <script>
-import '../assets/scss/progress.scss'
-import Ring from './types/ring.vue'
-import Bar from './types/bar.vue'
+import "../assets/scss/progress.scss";
+import Ring from "./types/ring.vue";
+import Bar from "./types/bar.vue";
 export default {
   name: "ui-progress",
   data() {
@@ -19,7 +29,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'ring'
+      default: "ring"
     },
     size: {
       type: Number,
@@ -55,12 +65,10 @@ export default {
     }
   },
   computed: {
-
     progressNumber() {
       return this.showNumber && parseInt(this.percentage);
     }
   },
   mounted() {}
 };
-
 </script>

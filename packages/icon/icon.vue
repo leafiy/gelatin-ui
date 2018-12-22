@@ -13,18 +13,16 @@ export default {
     name: String
   },
   mounted() {
-    import(/* webpackChunkName: "vendor" */"./iconfont.js").then(module => {
-    })
+    import(/* webpackChunkName: "vendor" */ "./iconfont.js").then(module => {});
   },
   computed: {
     iconId() {
-      return this.name ?
-        this.name.startsWith("icon-") ?
-        `#${this.name}` :
-        `#icon-${this.name}` :
-        "";
+      return this.name
+        ? this.name.startsWith("icon-")
+          ? `#${this.name}`
+          : `#icon-${this.name}`
+        : "";
     }
   }
 };
-
 </script>

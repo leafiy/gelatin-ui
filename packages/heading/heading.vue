@@ -1,5 +1,5 @@
 <script>
-import '../assets/scss/heading.scss'
+import "../assets/scss/heading.scss";
 export default {
   name: "ui-heading",
   components: {
@@ -40,12 +40,12 @@ export default {
   },
   render(h) {
     return h(
-      this.tag, {
+      this.tag,
+      {
         class: this.classes
       },
       this.$slots.default
     );
   }
 };
-
 </script>

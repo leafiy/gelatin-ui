@@ -1,169 +1,180 @@
-import validators from '../../utils/validator.js'
-import isValidDate from '../../utils/isValidDate.js'
+import validators from "../../utils/validator.js";
+import isValidDate from "../../utils/isValidDate.js";
 export default {
   methods: {
     trigger({ name, value, rule }) {
       return new Promise((resolve, reject) => {
-        let type = rule.type
+        let type = rule.type;
         if (this.builtinValidator.includes(type)) {
-          this[`${type}Validate`]({ name, rule, value }).then(() => {
-            resolve({ name, message: rule.message })
-          }).catch(() => {
-            reject({ name, message: rule.message })
-          })
-        } else if (typeof type == 'function') {
-          this.costumFnValidate({ name, fn: type, value }).then(() => {
-            resolve({ name, message: rule.message })
-          }).catch((msg) => {
-            reject({ name, message: msg || rule.message })
-          })
-
-        } else if (typeof type == 'string' || (type instanceof RegExp && type.constructor == RegExp)) {
-          let re = type instanceof RegExp && type.constructor == RegExp ? type : new RegExp(type)
-          this.costumReValidate({ name, re, value }).then(() => {
-            resolve({ name, message: rule.message })
-          }).catch(() => {
-            reject({ name, message: rule.message })
-          })
+          this[`${type}Validate`]({ name, rule, value })
+            .then(() => {
+              resolve({ name, message: rule.message });
+            })
+            .catch(() => {
+              reject({ name, message: rule.message });
+            });
+        } else if (typeof type == "function") {
+          this.costumFnValidate({ name, fn: type, value })
+            .then(() => {
+              resolve({ name, message: rule.message });
+            })
+            .catch(msg => {
+              reject({ name, message: msg || rule.message });
+            });
+        } else if (
+          typeof type == "string" ||
+          (type instanceof RegExp && type.constructor == RegExp)
+        ) {
+          let re =
+            type instanceof RegExp && type.constructor == RegExp
+              ? type
+              : new RegExp(type);
+          this.costumReValidate({ name, re, value })
+            .then(() => {
+              resolve({ name, message: rule.message });
+            })
+            .catch(() => {
+              reject({ name, message: rule.message });
+            });
         } else {
-          throw new Error('unsupported validate type')
+          throw new Error("unsupported validate type");
         }
-      })
+      });
     },
     costumFnValidate({ name, fn, value }) {
       return new Promise((resolve, reject) => {
         if (!value) {
-          resolve()
-          return
+          resolve();
+          return;
         }
-        let f = fn(value)
+        let f = fn(value);
         if (f.then) {
           f.then(() => {
-            resolve()
-          }).catch((msg) => {
-            reject(msg)
-          })
+            resolve();
+          }).catch(msg => {
+            reject(msg);
+          });
         } else {
           if (f) {
-            resolve()
+            resolve();
           } else {
-            reject()
+            reject();
           }
         }
-      })
+      });
     },
     costumReValidate({ name, re, value }) {
       return new Promise((resolve, reject) => {
         if (!value) {
-          resolve()
-          return
+          resolve();
+          return;
         }
         if (re.test(value)) {
-          resolve()
+          resolve();
         } else {
-          reject()
+          reject();
         }
-      })
+      });
     },
     requiredValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (!value) {
-          reject()
+          reject();
         } else {
-          resolve()
+          resolve();
         }
-      })
+      });
     },
     numberValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (!value) {
-          resolve()
-          return
+          resolve();
+          return;
         }
         if (!Number(value)) {
-          reject()
+          reject();
         } else {
-          resolve()
+          resolve();
         }
-      })
+      });
     },
     emailValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (!value) {
-          resolve()
-          return
+          resolve();
+          return;
         }
-        if (validators['email'].test(value)) {
-          resolve()
+        if (validators["email"].test(value)) {
+          resolve();
         } else {
-          reject()
+          reject();
         }
-      })
+      });
     },
     minLengthValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (!value) {
-          resolve()
-          return
+          resolve();
+          return;
         }
         if (value.length < rule.length) {
-          reject()
+          reject();
         } else {
-          resolve()
+          resolve();
         }
-      })
+      });
     },
     maxLengthValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (!value) {
-          resolve()
-          return
+          resolve();
+          return;
         }
         if (value.length > rule.length) {
-          reject()
+          reject();
         } else {
-          resolve()
+          resolve();
         }
-      })
+      });
     },
     linkValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (!value) {
-          resolve()
-          return
+          resolve();
+          return;
         }
-        if (validators['link'].test(value)) {
-          resolve()
+        if (validators["link"].test(value)) {
+          resolve();
         } else {
-          reject()
+          reject();
         }
-      })
+      });
     },
     arrayValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (!value) {
-          resolve()
-          return
+          resolve();
+          return;
         }
         if (Array.isArray(value)) {
-          resolve()
+          resolve();
         } else {
-          reject()
+          reject();
         }
-      })
+      });
     },
     dateValidate({ name, rule, value }) {
       return new Promise((resolve, reject) => {
         if (!value) {
-          resolve()
-          return
+          resolve();
+          return;
         }
         if (isValidDate(value)) {
-          resolve()
+          resolve();
         } else {
-          reject()
+          reject();
         }
-      })
+      });
     }
   }
-}
+};

@@ -37,8 +37,8 @@ export default {
     showInput() {
       return this.uploadFiles.length ? this.showInputAfterSuccess : true;
     },
-    multiple(){
-       return this.maxNumber > 1
+    multiple() {
+      return this.maxNumber > 1;
     }
   }
 };

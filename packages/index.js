@@ -19,28 +19,28 @@ import UiRadio from "./radio/index.js";
 import UiTag from "./tag/index.js";
 import UiHightlight from "./highlight/index.js";
 import UiHr from "./hr/index.js";
-import { UiBackdrop, } from "./backdrop/index.js";
+import { UiBackdrop } from "./backdrop/index.js";
 import UiAutocomplete from "./autocomplete/index.js";
 import UiLoading from "./loading/index.js";
 import UiMask from "./mask/index.js";
-import { UiConfirm } from './confirm/index.js'
-import { UiModal } from './modal/index.js'
+import { UiConfirm } from "./confirm/index.js";
+import { UiModal } from "./modal/index.js";
 import UiV from "./v/index.js";
-import UiProgress from './progress/index.js'
-import UiMarquee from './marquee/index.js'
-import UiShare from './share/index.js'
-import UiTyper from './typer/index.js'
-import UiCarousel from './carousel/index.js'
-import UiCountdown from './countdown/index.js'
-import UiSlidePanel from './slide-panel/index.js'
-import UiSticky from './sticky/index.js'
+import UiProgress from "./progress/index.js";
+import UiMarquee from "./marquee/index.js";
+import UiShare from "./share/index.js";
+import UiTyper from "./typer/index.js";
+import UiCarousel from "./carousel/index.js";
+import UiCountdown from "./countdown/index.js";
+import UiSlidePanel from "./slide-panel/index.js";
+import UiSticky from "./sticky/index.js";
 import $UiPopover from "./popover/index.js";
 import $UiToast from "./toast/index.js";
 import $UiMessage from "./message/index.js";
 import $UiLoadingBar from "./loading-bar/index.js";
 import { $UiCover } from "./backdrop/index.js";
-import { $UiConfirm } from './confirm/index.js'
-import { $UiModal } from './modal/index.js'
+import { $UiConfirm } from "./confirm/index.js";
+import { $UiModal } from "./modal/index.js";
 const components = [
   UiAvatar,
   UiIcon,
@@ -78,9 +78,6 @@ const components = [
   UiSlidePanel
 ];
 
-
-
-
 const install = function(Vue) {
   components.forEach(component => Vue.component(component.name, component));
   Vue.prototype.$UiPopover = $UiPopover;
@@ -94,7 +91,7 @@ const install = function(Vue) {
   Vue.directive(UiHightlight.name, UiHightlight);
   Vue.directive(UiLoading.name, UiLoading);
   Vue.directive(UiMask.name, UiMask);
-  Vue.directive(UiSticky.name, UiSticky)
+  Vue.directive(UiSticky.name, UiSticky);
 };
 
 if (typeof window !== "undefined" && window.Vue) {

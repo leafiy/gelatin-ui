@@ -1,8 +1,8 @@
-import hasScroll from './hasScroll.js'
+import hasScroll from "./hasScroll.js";
 
 export default function() {
   if (!hasScroll()) {
-    return 0
+    return 0;
   }
   var outer = document.createElement("div");
   outer.style.visibility = "hidden";

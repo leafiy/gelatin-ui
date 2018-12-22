@@ -2,20 +2,23 @@
   <transition name="fade">
     <div v-if="!closed" :class="wrapClasses">
       <span class="ui-alert-icon" v-if="showIcon">
-               <slot name="icon"></slot>
-            </span>
+        <slot name="icon"></slot>
+      </span>
       <div class="ui-alert-title" v-if="$slots.title">
         <slot name="title"></slot>
       </div>
-      <div class="ui-alert-message" v-if="$slots.default">
-        <slot></slot>
-      </div>
-      <ui-icon class="ui-alert-close-icon" name="icon-close-circle-fill" v-if="closeable" @click.native="close"></ui-icon>
+      <div class="ui-alert-message" v-if="$slots.default"><slot></slot></div>
+      <ui-icon
+        class="ui-alert-close-icon"
+        name="icon-close-circle-fill"
+        v-if="closeable"
+        @click.native="close"
+      ></ui-icon>
     </div>
   </transition>
 </template>
 <script>
-import '../assets/scss/alert.scss'
+import "../assets/scss/alert.scss";
 
 export default {
   name: "ui-alert",
@@ -53,5 +56,4 @@ export default {
     }
   }
 };
-
 </script>

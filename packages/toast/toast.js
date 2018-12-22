@@ -9,7 +9,7 @@ let toastContainer = {};
 const $UiToast = function(options) {
   options = typeof options === "string" ? { message: options } : options;
   if (!options.message) {
-    throw new Error('message is required')
+    throw new Error("message is required");
   }
   let { position = { x: "right", y: "top" }, zIndex } = options;
   if (typeof position !== "object" || !position.x || !position.y) {
@@ -28,7 +28,7 @@ const $UiToast = function(options) {
   }
   const id = nanoid();
 
-  options.position = position
+  options.position = position;
   options.closeToast = function() {
     $UiToast.closeToast(id);
   };
@@ -65,4 +65,4 @@ types.forEach(type => {
 });
 
 export default $UiToast;
-export { $UiToast }
+export { $UiToast };

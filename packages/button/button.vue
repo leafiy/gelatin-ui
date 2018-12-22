@@ -1,5 +1,13 @@
 <template>
-  <div role="button" :class="classes" :disabled="disabled" :loading="loading" @click="handleClick" @mousedown="mouseDown" @mouseup="mouseUp">
+  <div
+    role="button"
+    :class="classes"
+    :disabled="disabled"
+    :loading="loading"
+    @click="handleClick"
+    @mousedown="mouseDown"
+    @mouseup="mouseUp"
+  >
     <div class="ui-btn-inner">
       <span><slot></slot></span>
       <transition name="fade">
@@ -9,15 +17,15 @@
   </div>
 </template>
 <script>
-import UiSpinner from '../spinner/spinner.vue'
-import '../assets/scss/button.scss'
+import UiSpinner from "../spinner/spinner.vue";
+import "../assets/scss/button.scss";
 
 export default {
   name: "ui-button",
   data() {
     return {
       isActive: false
-    }
+    };
   },
   components: { UiSpinner },
   props: {
@@ -33,7 +41,7 @@ export default {
           "normal"
         ].includes(value);
       },
-      default: 'primary'
+      default: "primary"
     },
     // shape: {
     //   type: String,
@@ -44,9 +52,9 @@ export default {
     // },
     size: {
       type: String,
-      default: 'md',
+      default: "md",
       validator(value) {
-        return ["sm", "lg", 'md'].includes(value);
+        return ["sm", "lg", "md"].includes(value);
       }
     },
     loading: Boolean,
@@ -59,15 +67,15 @@ export default {
     classes() {
       return [
         `ui-btn`,
-        this.disabled && 'ui-btn-disabled',
-        this.shadow && 'ui-btn-shadow',
+        this.disabled && "ui-btn-disabled",
+        this.shadow && "ui-btn-shadow",
         this.type && `ui-btn-${this.type}`,
-        this.full && 'ui-btn-full',
-        this.center && 'ui-btn-center',
+        this.full && "ui-btn-full",
+        this.center && "ui-btn-center",
         // this.shape && `ui-btn-shape-${this.shape}`,
         this.size && `ui-btn-size-${this.size}`,
-        this.loading && 'ui-btn-loading',
-        this.isActive && 'ui-btn-active'
+        this.loading && "ui-btn-loading",
+        this.isActive && "ui-btn-active"
       ];
     }
   },
@@ -79,15 +87,14 @@ export default {
     },
     mouseDown() {
       if (!this.loading && !this.disabled) {
-        this.isActive = true
+        this.isActive = true;
       }
     },
     mouseUp() {
       if (!this.loading && !this.disabled) {
-        this.isActive = false
+        this.isActive = false;
       }
-    },
+    }
   }
 };
-
 </script>

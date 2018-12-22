@@ -1,15 +1,44 @@
 <template>
   <div :class="wrapperClass" class="ui-upload-container">
-    <div class="ui-upload-inner" :class="triggerClass" @click="handleClick" @drop.prevent="onDrop" @dragover.prevent="onDragover" @dragleave.prevent="onDragleave" v-if="showInput && !$slots.trigger">
-      <div class="ui-upload-text">
-        <slot name="text"></slot>
-      </div>
-      <button class="ui-upload-button" v-if="type == 'select'" v-html="text"></button>
-      <input ref="input" type="file" class="ui-uploader-input" :multiple="multiple" @change="handleChange" :accept="accept" />
-      <slot></slot>
-      <slot name="trigger"></slot>
+    <div
+      class="ui-upload-inner"
+      :class="triggerClass"
+      @click="handleClick"
+      @drop.prevent="onDrop"
+      @dragover.prevent="onDragover"
+      @dragleave.prevent="onDragleave"
+      v-if="showInput && !$slots.trigger"
+    >
+      <div class="ui-upload-text"><slot name="text"></slot></div>
+      <button
+        class="ui-upload-button"
+        v-if="type == 'select'"
+        v-html="text"
+      ></button>
+      <input
+        ref="input"
+        type="file"
+        class="ui-uploader-input"
+        :multiple="multiple"
+        @change="handleChange"
+        :accept="accept"
+      />
+      <slot></slot> <slot name="trigger"></slot>
     </div>
-    <upload-list ref="upload-list" v-if="uploadFiles.length && showList" @del-file="handleDelFile" @cancel-file="handleCancelFile" @retry-file="handleRetryFile" :file-list="uploadFiles" :lang="lang" :width="width" :height="height" @click-file="clickFile" :list-style="listStyle" :auto-upload="autoUpload"></upload-list>
+    <upload-list
+      ref="upload-list"
+      v-if="uploadFiles.length && showList"
+      @del-file="handleDelFile"
+      @cancel-file="handleCancelFile"
+      @retry-file="handleRetryFile"
+      :file-list="uploadFiles"
+      :lang="lang"
+      :width="width"
+      :height="height"
+      @click-file="clickFile"
+      :list-style="listStyle"
+      :auto-upload="autoUpload"
+    ></upload-list>
     <div class="clearfix"></div>
   </div>
 </template>
@@ -47,5 +76,4 @@ export default {
     this.uploadFiles = this.fileList;
   }
 };
-
 </script>

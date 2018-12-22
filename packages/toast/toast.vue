@@ -1,21 +1,55 @@
 <template>
   <div :class="classes" @mouseenter="pause" @mouseleave="resume">
-    <transition enter-active-class="bounceIn" leave-active-class="fadeOut" @after-enter="entered" @after-leave="destroy" @before-leave="isEntered = false">
-      <div class="ui-toast-icon" @click="clickIcon" v-if="!isMessage && show" :style="{zIndex:zIndex && zIndex+4}">
+    <transition
+      enter-active-class="bounceIn"
+      leave-active-class="fadeOut"
+      @after-enter="entered"
+      @after-leave="destroy"
+      @before-leave="isEntered = false"
+    >
+      <div
+        class="ui-toast-icon"
+        @click="clickIcon"
+        v-if="!isMessage && show"
+        :style="{ zIndex: zIndex && zIndex + 4 }"
+      >
         <ui-icon :name="iconName" v-if="iconName"></ui-icon>
       </div>
     </transition>
-    <transition :enter-active-class="toastInTransition" :leave-active-class="toastOutTransition" @after-enter="showContent = true" @before-leave="showContent = false">
-      <div class="ui-toast-background" v-if="!isMessage && isEntered" :style="{zIndex:zIndex && zIndex+1}">
-      </div>
+    <transition
+      :enter-active-class="toastInTransition"
+      :leave-active-class="toastOutTransition"
+      @after-enter="showContent = true"
+      @before-leave="showContent = false"
+    >
+      <div
+        class="ui-toast-background"
+        v-if="!isMessage && isEntered"
+        :style="{ zIndex: zIndex && zIndex + 1 }"
+      ></div>
     </transition>
-    <div class="ui-toast-content" :style="contentStyles" v-if="!isMessage && message">
-      {{message}}
+    <div
+      class="ui-toast-content"
+      :style="contentStyles"
+      v-if="!isMessage && message"
+    >
+      {{ message }}
     </div>
-    <transition enter-active-class="slideInDown" leave-active-class="slideOutUp" @after-leave="destroy">
-      <div class="ui-message-content" :class="[iconName && 'ui-message-content-with-icon',showClose && 'ui-message-content-with-close']" v-if="isMessage && show">
-        <div class="ui-message-title" v-if="title">{{title}}</div>
-        <div class="ui-message-message" v-if="message">{{message}}</div>
+    <transition
+      enter-active-class="slideInDown"
+      leave-active-class="slideOutUp"
+      @after-leave="destroy"
+    >
+      <div
+        class="ui-message-content"
+        :class="[
+          iconName && 'ui-message-content-with-icon',
+          showClose && 'ui-message-content-with-close'
+        ]"
+        v-if="isMessage && show"
+      >
+        <div class="ui-message-title" v-if="title">{{ title }}</div>
+        <div class="ui-message-message" v-if="message">{{ message }}</div>
         <div class="ui-message-icon" v-if="iconName">
           <ui-icon :name="iconName"></ui-icon>
         </div>
@@ -27,17 +61,18 @@
             class="ui-message-action-item"
             v-for="action of actions"
             :key="action.text"
-            @click="clickOnMessageIcon(action);"
+            @click="clickOnMessageIcon(action)"
           >
             <ui-icon v-if="action.icon" :name="action.icon"></ui-icon>
-            {{ action.text }}</span>
+            {{ action.text }}</span
+          >
         </div>
       </div>
     </transition>
   </div>
 </template>
 <script>
-import Vue from 'vue'
+import Vue from "vue";
 import Timer from "../../src/utils/timer.js";
 import UiIcon from "../icon/icon.vue";
 import "../assets/scss/toast.scss";
@@ -68,49 +103,49 @@ export default {
     };
   },
   components: {
-   UiIcon
+    UiIcon
   },
   computed: {
     iconName() {
-      if (this.type == 'info') {
-        return this.icon ? this.icon : 'bell'
-      }
-      if (this.type == 'warning') {
-        return this.icon ? this.icon : 'warning-circle'
-      }
-      if (this.type == 'error') {
-        return this.icon ? this.icon : 'close'
+      if (this.type == "info") {
+        return this.icon ? this.icon : "bell";
+      } else if (this.type == "warning") {
+        return this.icon ? this.icon : "warning-circle";
+      } else if (this.type == "error") {
+        return this.icon ? this.icon : "close";
+      } else {
+        return "";
       }
     },
     classes() {
       return [
-        'ui-toast',
-        this.type && `ui-${this.isMessage ? 'message' :'toast'}-${this.type}`,
+        "ui-toast",
+        this.type && `ui-${this.isMessage ? "message" : "toast"}-${this.type}`,
         {
-          'ui-message': this.isMessage,
+          "ui-message": this.isMessage
         }
-      ]
+      ];
     },
     toastTransition() {
-      return `ui-toast-transition-x-${this.position.x}`
+      return `ui-toast-transition-x-${this.position.x}`;
     },
     contentStyles() {
       return {
         zIndex: this.zIndex && this.zIndex + 3,
         // visibility: this.showContent ? 'visible' : 'hidden',
-        opacity: this.showContent ? 1 : 0,
-      }
+        opacity: this.showContent ? 1 : 0
+      };
     },
     toastInTransition() {
-      return this.position.x == 'right' ? 'toastInRight' : 'toastInLeft'
+      return this.position.x == "right" ? "toastInRight" : "toastInLeft";
     },
     toastOutTransition() {
-      return this.position.x == 'right' ? 'toastOutRight' : 'toastOutLeft'
-    },
+      return this.position.x == "right" ? "toastOutRight" : "toastOutLeft";
+    }
   },
   methods: {
     entered() {
-      this.isEntered = true
+      this.isEntered = true;
     },
     resume() {
       if (this.duration > 0) {
@@ -124,10 +159,10 @@ export default {
     },
     clickIcon() {
       if (this.closeOnClick) {
-        this.stop()
+        this.stop();
       }
-      if (this.onClick && typeof this.onClick == 'function') {
-        this.onClick()
+      if (this.onClick && typeof this.onClick == "function") {
+        this.onClick();
       }
     },
     start() {
@@ -143,7 +178,7 @@ export default {
       this.show = false;
       if (this.onClose && typeof this.onClose == "function") {
         this.onClose(this);
-        this.closeToast()
+        this.closeToast();
       }
     },
     destroy() {
@@ -155,10 +190,10 @@ export default {
     },
     clickOnMessageIcon(action) {
       if (action.onClick && typeof action.onClick == "function") {
-        action.onClick()
+        action.onClick();
       }
       if (action.closeAfter) {
-        this.stop()
+        this.stop();
       }
     }
     // click(action) {
@@ -171,5 +206,4 @@ export default {
     this.start();
   }
 };
-
 </script>

@@ -1,5 +1,12 @@
 <template>
-  <li @click="click" v-if="item" @mouseleave="mouseleave" :class="[item.class, { pointer: item.action }]" :title="item.content" class="ui-popover-item">
+  <li
+    @click="click"
+    v-if="item"
+    @mouseleave="mouseleave"
+    :class="[item.class, { pointer: item.action }]"
+    :title="item.content"
+    class="ui-popover-item"
+  >
     <ui-icon v-if="item.icon" :name="item.icon"></ui-icon>{{ item.content }}
   </li>
 </template>
@@ -17,7 +24,7 @@ export default {
     item: Object,
     params: {
       type: Object,
-      default () {
+      default() {
         return {};
       }
     },
@@ -33,7 +40,6 @@ export default {
     click() {
       if (this.item.action && typeof this.item.action === "function") {
         this.item.action(this.params || "");
-
       }
       if (this.closeOnClick) {
         this.$emit("close");
@@ -41,5 +47,4 @@ export default {
     }
   }
 };
-
 </script>

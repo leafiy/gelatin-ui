@@ -1,6 +1,7 @@
 module.exports = {
-  presets: ["@vue/app"],
-  plugins: ["lodash"
-  ],
-
+    presets: [
+        ['poi/babel', {
+            jsx: 'vue'
+        }]
+    ]
 }

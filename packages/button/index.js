@@ -1,5 +1,5 @@
-import UiButton from './button.vue';
-import UiButtonGroup from './button-group.vue';
+import UiButton from "./button.vue";
+import UiButtonGroup from "./button-group.vue";
 UiButton.install = function(Vue) {
   Vue.component(UiButton.name, UiButton);
 };

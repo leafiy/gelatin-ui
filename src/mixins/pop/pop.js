@@ -1,6 +1,6 @@
 import getAxis from "../../utils/getAxis.js";
 import scrollbarWidth from "../../utils/scrollbar.js";
-import { debounce, throttle } from 'lodash'
+import { debounce, throttle } from "lodash";
 export default {
   data() {
     return {
@@ -86,14 +86,14 @@ export default {
       return {
         borderRadius: `${this.radius}px`,
         transform: `translateX(${this.translateX})`,
-        textAlign: this.textCetner ? 'center' : ''
+        textAlign: this.textCetner ? "center" : ""
       };
     },
     tooltipStyles() {
       if (this.tooltip) {
         return {
-          textAlign: this.textCetner ? 'center' : ''
-        }
+          textAlign: this.textCetner ? "center" : ""
+        };
       }
     }
   },
@@ -114,30 +114,29 @@ export default {
       this.placeOnBottom = this.targetTop + this.triggerOffset.height;
       this.placeOnLeft = this.triggerOffset.left;
 
-
-      if (this.align == 'center') {
+      if (this.align == "center") {
         this.left =
           this.triggerOffset.left +
           this.triggerOffset.width / 2 -
           this.popoverOffset.width / 2;
       }
 
-      if (this.align == 'right') {
+      if (this.align == "right") {
         this.left =
-          this.triggerOffset.left + this.triggerOffset.width - this.popoverOffset.width
+          this.triggerOffset.left +
+          this.triggerOffset.width -
+          this.popoverOffset.width;
       }
 
-      if (this.align == 'left') {
-        this.left = this.triggerOffset.left
+      if (this.align == "left") {
+        this.left = this.triggerOffset.left;
       }
-
-
 
       if (this.left <= this.offset) {
         this.left = this.offset;
       }
       if (this.left >= this.axis.x * 2 - this.offset) {
-        this.left = this.axis.x * 2 - this.popoverOffset.width - this.offset
+        this.left = this.axis.x * 2 - this.popoverOffset.width - this.offset;
       }
 
       if (this.left + this.popoverOffset.width > this.axis.x * 2) {
@@ -148,13 +147,13 @@ export default {
           this.offset;
       }
       if (this.axis.y > this.targetTop) {
-        this.top = this.offset ?
-          this.placeOnBottom + this.offset :
-          this.placeOnBottom;
+        this.top = this.offset
+          ? this.placeOnBottom + this.offset
+          : this.placeOnBottom;
       } else {
-        this.top = this.offset ?
-          this.placeOnTop - this.offset :
-          this.placeOnTop;
+        this.top = this.offset
+          ? this.placeOnTop - this.offset
+          : this.placeOnTop;
       }
       if (this.arrow) {
         this.$nextTick(() => {
@@ -165,23 +164,20 @@ export default {
     setTrianglePosition() {
       let popoverOffset = this.el.getBoundingClientRect();
 
-      if (this.align == 'center') {
+      if (this.align == "center") {
         this.triangleLeft =
           this.triggerOffset.left +
           this.triggerOffset.width / 2 -
           this.left -
           this.arrowSize;
       }
-      if (this.align == 'right') {
-
-        this.triangleLeft = this.popoverOffset.width / 2 + this.arrowSize
+      if (this.align == "right") {
+        this.triangleLeft = this.popoverOffset.width / 2 + this.arrowSize;
       }
 
-      if (this.align == 'left') {
-        this.triangleLeft = this.popoverOffset.width / 4 - this.arrowSize
+      if (this.align == "left") {
+        this.triangleLeft = this.popoverOffset.width / 4 - this.arrowSize;
       }
-
-
 
       if (this.axis.y > this.targetTop) {
         this.borderTopColor = "transparent";
@@ -194,17 +190,17 @@ export default {
       }
 
       this.$nextTick(() => {
-        let triangleOffset = this.$refs['triangle'].getBoundingClientRect()
+        let triangleOffset = this.$refs["triangle"].getBoundingClientRect();
         if (triangleOffset.right + this.offset >= popoverOffset.right) {
-          this.translateX = `${this.arrowSize}px`
+          this.translateX = `${this.arrowSize}px`;
         }
         if (triangleOffset.left - this.offset <= popoverOffset.left) {
-          this.translateX = `-${this.arrowSize}px`
+          this.translateX = `-${this.arrowSize}px`;
         }
-      })
+      });
     }
   },
   mounted() {
-    this.getAxis()
+    this.getAxis();
   }
 };

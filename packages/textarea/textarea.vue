@@ -1,26 +1,55 @@
 <template>
   <div :class="wrapClasses" class="ui-textarea">
-    <div class="ui-textarea-prefix" @click="focus" v-if="$slots.prefix" ref="prefix">
+    <div
+      class="ui-textarea-prefix"
+      @click="focus"
+      v-if="$slots.prefix"
+      ref="prefix"
+    >
       <slot name="prefix"></slot>
     </div>
-    <textarea :name="name" class="ui-textarea-inner" :rows="rows" :tabindex="tabindex" :readonly="readonly" :disabled="disabled" v-model="inputVal" :maxlength="maxLength" :minLength="minLength" :placeholder="placeholder" ref="textarea" @input="handleInput" @focus="handleFocus" @blur="handleBlur" @keyup="handleKeyup" @keydown="handleKeydown" @keyup.enter="handleEnter" @keyup.esc="handleEsc" @change="handleChange"></textarea>
+    <textarea
+      :name="name"
+      class="ui-textarea-inner"
+      :rows="rows"
+      :tabindex="tabindex"
+      :readonly="readonly"
+      :disabled="disabled"
+      v-model="inputVal"
+      :maxlength="maxLength"
+      :minLength="minLength"
+      :placeholder="placeholder"
+      ref="textarea"
+      @input.exact="handleInput"
+      @focus.exact="handleFocus"
+      @blur.exact="handleBlur"
+      @keyup.exact="handleKeyup"
+      @keydown.exact="handleKeydown"
+      @keyup.enter.exact="handleEnter"
+      @keyup.esc.exact="handleEsc"
+      @change.exact="handleChange"
+    ></textarea>
     <fade-transition>
-      <div class="ui-textarea-counter" v-if="counter && inputVal && inputVal.length">{{inputVal.length}}/{{maxLength}}</div>
+      <div
+        class="ui-textarea-counter"
+        v-if="counter && inputVal && inputVal.length"
+      >
+        {{ inputVal.length }}/{{ maxLength }}
+      </div>
     </fade-transition>
   </div>
 </template>
 <script>
-import '../assets/scss/textarea.scss'
-import UiIcon from '../icon/icon.vue'
-import { FadeTransition } from 'vue2-transitions'
-import Autosize from 'autosize'
+import "../assets/scss/textarea.scss";
+import { FadeTransition } from "vue2-transitions";
+import Autosize from "autosize";
 export default {
   name: "ui-textarea",
   data() {
     return {
       focusIn: false,
-      inputVal: this.value === undefined || this.value === null ?
-        '' : this.value,
+      inputVal:
+        this.value === undefined || this.value === null ? "" : this.value,
       errors: false,
       autosizeIns: null
     };
@@ -55,10 +84,9 @@ export default {
       default: false
     },
     autofocus: Boolean,
-    theme: String, // flat/ghost
+    theme: String // flat/ghost
   },
   components: {
-    UiIcon,
     FadeTransition
   },
   computed: {
@@ -69,24 +97,24 @@ export default {
         this.errors && `ui-textarea-with-error`,
         this.$slots.prefix && `ui-textarea-with-prefix`,
         this.theme && `ui-textarea-theme-${this.theme}`,
-        this.readonly && `ui-textarea-readonly`,
+        this.readonly && `ui-textarea-readonly`
         // this.resize && `ui-textarea-resize`
       ];
     }
   },
   methods: {
     select() {
-      this.$refs['textarea'].select();
+      this.$refs["textarea"].select();
     },
     focus() {
-      this.$refs['textarea'].focus();
+      this.$refs["textarea"].focus();
     },
     handleEnter(e) {
       this.$emit("submit", this.inputVal);
     },
     handleEsc(e) {
       this.$emit("esc", this.inputVal);
-      this.$refs['textarea'].blur();
+      this.$refs["textarea"].blur();
     },
     handleKeyup(e) {
       this.$emit("keyup", this.inputVal);
@@ -95,7 +123,7 @@ export default {
       this.$emit("keydown", this.inputVal);
     },
     handleInput(e) {
-      this.inputVal = e.target.value
+      this.inputVal = e.target.value;
       this.$emit("input", this.inputVal);
     },
     handleFocus(e) {
@@ -107,35 +135,40 @@ export default {
       this.$emit("blur", this.inputVal);
     },
     handleChange(e) {
-      this.$emit('change', this.inputVal)
+      this.$emit("change", this.inputVal);
     },
     clear() {
-      this.inputVal = ''
-      this.focus()
+      this.inputVal = "";
+      this.focus();
     },
     resetSize() {
-      Autosize.update(this.$refs['textarea'])
+      Autosize.update(this.$refs["textarea"]);
     },
     sizeChanged() {
-      this.$emit('size-changed')
+      this.$emit("size-changed");
     }
   },
   watch: {
     value(val) {
-      this.inputVal = val
+      this.inputVal = val;
     }
   },
   mounted() {
     if (this.autosize) {
-      this.autosizeIns = Autosize(this.$refs['textarea'])
-      this.$refs['textarea'].addEventListener('autosize:resized', this.sizeChanged);
+      this.autosizeIns = Autosize(this.$refs["textarea"]);
+      this.$refs["textarea"].addEventListener(
+        "autosize:resized",
+        this.sizeChanged
+      );
     }
   },
   beforeDestroy() {
     if (this.autosize) {
-      this.$refs['textarea'].removeEventListener('autosize:resized', this.sizeChanged);
+      this.$refs["textarea"].removeEventListener(
+        "autosize:resized",
+        this.sizeChanged
+      );
     }
   }
 };
-
 </script>

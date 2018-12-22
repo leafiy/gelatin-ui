@@ -3,29 +3,29 @@
     <p class="ui-accordion-title" @mouseover="mouseover" @click="clickTitle">
       <span v-html="title" class="ui-accordion-title-content"></span>
       <slot name="close">
-        <span class="ui-accordion-close-icon" @click.self="click"><ui-icon name="plus"></ui-icon></span>
+        <span class="ui-accordion-close-icon" @click.self="click"
+          ><ui-icon name="plus"></ui-icon
+        ></span>
       </slot>
     </p>
     <collapse-transition>
-      <div class="ui-accordion-content" v-show="show">
-        <slot></slot>
-      </div>
+      <div class="ui-accordion-content" v-show="show"><slot></slot></div>
     </collapse-transition>
   </div>
 </template>
 <script>
-import UiIcon from '../icon/index.js'
-import '../assets/scss/accordion.scss'
-import { CollapseTransition } from 'vue2-transitions'
-import nanoid from 'nanoid'
-import events from '../../src/utils/events.js'
+import UiIcon from "../icon/index.js";
+import "../assets/scss/accordion.scss";
+import { CollapseTransition } from "vue2-transitions";
+import nanoid from "nanoid";
+import events from "../../src/utils/events.js";
 export default {
-  name: 'ui-accordion-item',
+  name: "ui-accordion-item",
   data() {
     return {
       show: false,
       id: `ui-accordion-item-${nanoid()}`
-    }
+    };
   },
   props: {
     title: String,
@@ -47,43 +47,40 @@ export default {
   computed: {
     classes() {
       return {
-        'ui-accordion-item-active': this.show
-      }
+        "ui-accordion-item-active": this.show
+      };
     }
   },
-  inject: ['accordionId'],
+  inject: ["accordionId"],
   watch: {
     show(val) {
       if (this.accordion) {
-        events.$emit(`${this.accordionId}`, { id: this.id, show: this.show })
-
+        events.$emit(`${this.accordionId}`, { id: this.id, show: this.show });
       }
       if (val) {
-        this.$emit('open')
+        this.$emit("open");
       } else {
-        this.$emit('close')
+        this.$emit("close");
       }
+    },
+    active() {
+      this.show = this.active;
     }
   },
   methods: {
     clickTitle() {
       if (this.openOnClickTitle) {
-        this.click()
+        this.click();
       }
     },
     click() {
-      this.show = !this.show
+      this.show = !this.show;
     },
     mouseover() {
       if (this.openOnMouseOver) {
-        this.show = !this.show
+        this.show = !this.show;
       }
     }
-  },
-  watch: {
-    active() {
-      this.show = this.active
-    }
   }
-}
+};
 </script>

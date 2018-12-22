@@ -1,10 +1,9 @@
 export default function isObjectEqual(a, b) {
   if (!a || !b) {
-    return false
+    return false;
   }
   let aKeys = Object.keys(a);
   let bKeys = Object.keys(b);
-
 
   if (aKeys.length != bKeys.length) {
     return false;

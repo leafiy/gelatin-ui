@@ -13,12 +13,11 @@ const Popover = function(options) {
   instance.$mount();
   let el = instance.$el;
   if (options.insertAfter) {
-    trigger.parentNode.insertBefore(el, trigger.nextSibling)
+    trigger.parentNode.insertBefore(el, trigger.nextSibling);
   } else {
     document.body.appendChild(el);
   }
-  return instance
-
+  return instance;
 };
 
 export default Popover;
