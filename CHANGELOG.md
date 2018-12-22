@@ -2,9 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-<a name="0.2.0"></a>
-# [0.2.0](https://github.com/leafiy/gelatin-ui/compare/v0.0.5...v0.2.0) (2018-12-22)
+<a name="0.1.12"></a>
+## [0.1.12](https://github.com/leafiy/gelatin-ui/compare/v0.2.0...v0.1.12) (2018-12-22)
 
+
+
+<a name="0.1.11"></a>
+## [0.1.11](https://github.com/leafiy/gelatin-ui/compare/v0.1.9...v0.1.11) (2018-12-21)
 
 ### Bug Fixes
 
@@ -16,13 +20,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **add $Message:** update $Toast ([e6bb5bf](https://github.com/leafiy/gelatin-ui/commit/e6bb5bf))
-
-
-
-<a name="0.1.11"></a>
-## [0.1.11](https://github.com/leafiy/gelatin-ui/compare/v0.1.9...v0.1.11) (2018-12-21)
-
-
 
 <a name="0.1.10"></a>
 ## [0.1.10](https://github.com/leafiy/gelatin-ui/compare/v1.0.1...v0.1.10) (2018-12-15)
