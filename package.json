@@ -2,7 +2,7 @@
   "name": "gelatin-ui",
   "version": "0.1.14",
   "private": false,
-  "main": "./dist/gelatin-ui-index.js",
+  "main": "./dist/gelatin-ui.index.js",
   "scripts": {
     "lint": "eslint --ext .js,.vue src packages --fix",
     "build": "poi --prod",
@@ -58,8 +58,9 @@
     "npm": ">= 6.0.0"
   },
   "browserslist": [
-    "ie > 10",
-    "last 1 versions",
-    "> 5%"
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+
   ]
 }
