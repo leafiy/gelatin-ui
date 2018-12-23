@@ -2,8 +2,7 @@ module.exports = {
   entry: ["packages/index.js"],
   output: {
     format: "cjs",
-    // moduleName:"GelatinUi",
-    // publicUrl:'/dist',
+    publicUrl: "/",
     fileNames: {
       js: "gelatin-ui.[name].js",
       css: "gelatin-ui.[name].css",
