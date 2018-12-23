@@ -1,7 +1,10 @@
 module.exports = {
-    presets: [
-        ['poi/babel', {
-            jsx: 'vue'
-        }]
+  presets: [
+    [
+      "poi/babel",
+      {
+        jsx: "vue"
+      }
     ]
-}
+  ]
+};

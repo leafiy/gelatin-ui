@@ -19,7 +19,7 @@ module.exports = {
 
   chainWebpack: config => {
     // config.resolve.alias
-      // .set("gelatin-ui", resolve("../gelatin-ui/packages/"))
-      // .set('vue', 'vue/dist/vue.js')
-  },
+    // .set("gelatin-ui", resolve("../gelatin-ui/packages/"))
+    // .set('vue', 'vue/dist/vue.js')
+  }
 };
