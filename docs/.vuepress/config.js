@@ -67,6 +67,7 @@ module.exports = {
         title: 'utils',
         collapsable: false,
         children: [
+          ['/avatar/', 'Avatar'],
           ['/share/', 'Share'],
           ['/typer/', 'Typer 打字机'],
           ['/carousel/', 'Carousel 卡片轮播'],

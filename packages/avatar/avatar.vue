@@ -1,6 +1,6 @@
 <template>
-  <div class="ui-avatar" :class="sizeClasses">
-    <div class="ui-avatar-container" :class="classes">
+  <div class="ui-avatar" :class="classes">
+    <div class="ui-avatar-container">
       <img :src="url" v-if="url" class="ui-avatar-image" />
       <div class="ui-avatar-string" v-if="!url && displayName">
         {{ displayName }}
@@ -26,12 +26,6 @@ export default {
       },
       default: "circle"
     },
-    // type: {
-    //   validator(value) {
-    //     return ["image", "username", "icon"].includes(value);
-    //   },
-    //   default: "image"
-    // },
     size: {
       type: String,
       validator(value) {
@@ -55,10 +49,7 @@ export default {
       return this.username ? this.username[0].toUpperCase() : false;
     },
     classes() {
-      return [`ui-avatar-${this.shape}`];
-    },
-    sizeClasses() {
-      return [`ui-avatar-size-${this.size}`];
+      return [`ui-avatar-size-${this.size}`, `ui-avatar-${this.shape}`];
     }
   }
 };
