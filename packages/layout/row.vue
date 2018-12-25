@@ -1,7 +1,9 @@
+<template>
+  <div :class="classes" :style="styles"><slot></slot></div>
+</template>
 <script>
 import "../assets/scss/layout.scss";
 import camelToDash from "../../src/utils/camelToDash.js";
-
 export default {
   name: "ui-row",
 
@@ -9,12 +11,9 @@ export default {
     return {};
   },
   props: {
-    tag: {
-      type: String,
-      default: "div"
-    },
     // around: Boolean,
     // between: Boolean,
+    gutter: Number,
     reverse: Boolean,
     xsAround: Boolean,
     smAround: Boolean,
@@ -104,6 +103,14 @@ export default {
         this.noGutter && "ui-row-no-gutter",
         this.gutterV && "ui-row-gutter-vertical"
       ];
+    },
+    styles() {
+      return [
+        {
+          marginLeft: -this.gutter + "rem",
+          marginBottom: -this.gutter + "rem"
+        }
+      ];
     }
   },
   methods: {
@@ -133,16 +140,18 @@ export default {
   },
   mounted() {
     this.getSizeProps();
-  },
-  render(h) {
-    return h(
-      this.tag,
-      {
-        class: this.classes
-      },
-      this.$slots.default
-    );
   }
+  // render(h) {
+  //   return h(
+  //     this.tag, {
+  //       class: this.classes,
+  //       style: this.styles,
+  //     },
+  //     this.$scopedSlots.default({
+  //       gutter: this.gutter
+  //     })
+  //     // this.$slots.default
+  //   );
+  // }
 };
 </script>
-<style lang="css" scoped></style>

@@ -34,6 +34,7 @@ module.exports = {
         title: 'basic',
         collapsable: false,
         children: [
+          ['/rem/', 'Rem responsive'],
           ['/layout/', 'Layout 布局'],
           ['/progress/', 'Progress'],
           ['/loading-bar/', 'Loading Bar'],

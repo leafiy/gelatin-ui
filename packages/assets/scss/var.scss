@@ -9,29 +9,19 @@ $shadow:0 3px 26px rgba(0, 0, 0, 0.1);
 $shadow-hover:4px 4px 32px rgba(0, 0, 0, 0.2);
 $shadow-light:0 0px 10px rgba(0, 0, 0, 0.1);
 $radius:14px;
-$gutter:2rem;
-$margin:4rem;
+$gutter:1rem;
+$margin:2rem;
 $xs:30;
 $sm:48;
 $md:64;
 $lg:75;
-
-
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 62.5%;
-}
-
-body {
-  font-size: 1.4rem;
-}
-
-li{
+$xlg:96;
+$screen-xs:$xs+0em;
+$screen-sm:$sm+0em;
+$screen-md:$md+0em;
+$screen-lg:$lg+0em;
+$screen-xlg:$xlg+0em;
+li {
   list-style: none;
 }
 
@@ -44,30 +34,35 @@ h6 {
   margin: 0;
 }
 
+
 @mixin xs {
-  @media (min-width: $sx+0em) {
+  @media (min-width: $xs+0rem) {
     @content
   }
 }
 
 @mixin sm {
-  @media (min-width: $sm+0em) {
+  @media (min-width: $sm+0rem) {
     @content
   }
 }
 
 @mixin md {
-  @media (min-width: $md+0em) {
+  @media (min-width: $md+0rem) {
     @content
   }
 }
 
 @mixin lg {
-  @media (min-width: $lg+0em) {
+  @media (min-width: $lg+0rem) {
     @content
   }
 }
-
+@mixin xlg {
+  @media (min-width: $xlg+0rem) {
+    @content
+  }
+}
 @mixin overflowText($fontSize, $lineHeight, $line) {
   font-size: $fontSize+px;
   overflow: hidden;

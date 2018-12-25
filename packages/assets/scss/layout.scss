@@ -1,6 +1,15 @@
 @import './var.scss';
 
+.ui-container,
+.ui-container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+}
 
+.ui-container-fluid {
+  padding-right: $margin;
+  padding-left: $margin;
+}
 
 .ui-row {
   margin-right: auto;
@@ -254,7 +263,10 @@
   justify-content: space-between;
 }
 
-@media (min-width:$sm+0rem) {
+@media (min-width:$screen-sm) {
+  .ui-container {
+    width: $sm+$gutter;
+  }
 
   .ui-col-sm,
   .ui-col-sm-1,
@@ -446,10 +458,10 @@
   }
 }
 
-@media (min-width:$md+0rem) {
-  // .container {
-  //   width: var(--container-md, 61rem);
-  // }
+@media (min-width:$screen-md) {
+  .ui-container {
+    width: $md+$gutter;
+  }
 
   .ui-col-md,
   .ui-col-md-1,
@@ -641,7 +653,10 @@
   }
 }
 
-@media (min-width:$lg+0rem) {
+@media (min-width:$screen-lg) {
+  .ui-container {
+    width: $lg+$gutter;
+  }
 
   .ui-col-lg,
   .ui-col-lg-1,
@@ -832,7 +847,200 @@
     order: 1;
   }
 }
+@media (min-width:$screen-xlg) {
+  .ui-container {
+    width: $xlg+$gutter;
+  }
 
+  .ui-col-xlg,
+  .ui-col-xlg-1,
+  .ui-col-xlg-2,
+  .ui-col-xlg-3,
+  .ui-col-xlg-4,
+  .ui-col-xlg-5,
+  .ui-col-xlg-6,
+  .ui-col-xlg-7,
+  .ui-col-xlg-8,
+  .ui-col-xlg-9,
+  .ui-col-xlg-10,
+  .ui-col-xlg-11,
+  .ui-col-xlg-12,
+  .ui-col-xlg-offset-0,
+  .ui-col-xlg-offset-1,
+  .ui-col-xlg-offset-2,
+  .ui-col-xlg-offset-3,
+  .ui-col-xlg-offset-4,
+  .ui-col-xlg-offset-5,
+  .ui-col-xlg-offset-6,
+  .ui-col-xlg-offset-7,
+  .ui-col-xlg-offset-8,
+  .ui-col-xlg-offset-9,
+  .ui-col-xlg-offset-10,
+  .ui-col-xlg-offset-11,
+  .ui-col-xlg-offset-12 {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+  }
+
+  .ui-col-xlg {
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+  }
+
+  .ui-col-xlg-1 {
+    flex-basis: 8.33333333%;
+    max-width: 8.33333333%;
+  }
+
+  .ui-col-xlg-2 {
+    flex-basis: 16.66666667%;
+    max-width: 16.66666667%;
+  }
+
+  .ui-col-xlg-3 {
+    flex-basis: 25%;
+    max-width: 25%;
+  }
+
+  .ui-col-xlg-4 {
+    flex-basis: 33.33333333%;
+    max-width: 33.33333333%;
+  }
+
+  .ui-col-xlg-5 {
+    flex-basis: 41.66666667%;
+    max-width: 41.66666667%;
+  }
+
+  .ui-col-xlg-6 {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  .ui-col-xlg-7 {
+    flex-basis: 58.33333333%;
+    max-width: 58.33333333%;
+  }
+
+  .ui-col-xlg-8 {
+    flex-basis: 66.66666667%;
+    max-width: 66.66666667%;
+  }
+
+  .ui-col-xlg-9 {
+    flex-basis: 75%;
+    max-width: 75%;
+  }
+
+  .ui-col-xlg-10 {
+    flex-basis: 83.33333333%;
+    max-width: 83.33333333%;
+  }
+
+  .ui-col-xlg-11 {
+    flex-basis: 91.66666667%;
+    max-width: 91.66666667%;
+  }
+
+  .ui-col-xlg-12 {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
+  .ui-col-xlg-offset-0 {
+    margin-left: 0;
+  }
+
+  .ui-col-xlg-offset-1 {
+    margin-left: 8.33333333%;
+  }
+
+  .ui-col-xlg-offset-2 {
+    margin-left: 16.66666667%;
+  }
+
+  .ui-col-xlg-offset-3 {
+    margin-left: 25%;
+  }
+
+  .ui-col-xlg-offset-4 {
+    margin-left: 33.33333333%;
+  }
+
+  .ui-col-xlg-offset-5 {
+    margin-left: 41.66666667%;
+  }
+
+  .ui-col-xlg-offset-6 {
+    margin-left: 50%;
+  }
+
+  .ui-col-xlg-offset-7 {
+    margin-left: 58.33333333%;
+  }
+
+  .ui-col-xlg-offset-8 {
+    margin-left: 66.66666667%;
+  }
+
+  .ui-col-xlg-offset-9 {
+    margin-left: 75%;
+  }
+
+  .ui-col-xlg-offset-10 {
+    margin-left: 83.33333333%;
+  }
+
+  .ui-col-xlg-offset-11 {
+    margin-left: 91.66666667%;
+  }
+
+  .ui-row-xlg-start {
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  .ui-row-xlg-center {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .ui-row-xlg-end {
+    justify-content: flex-end;
+    text-align: end;
+  }
+
+  .ui-row-xlg-top {
+    align-items: flex-start;
+  }
+
+  .ui-row-xlg-middle {
+    align-items: center;
+  }
+
+  .ui-row-xlg-bottom {
+    align-items: flex-end;
+  }
+
+  .ui-row-xlg-around {
+    justify-content: space-around;
+  }
+
+  .ui-row-xlg-between {
+    justify-content: space-between;
+  }
+
+  .ui-col-xlg-first {
+    order: -1;
+  }
+
+  .ui-col-xlg-last {
+    order: 1;
+  }
+}
 
 .ui-row-justify-content-start {
   justify-content: flex-start;

@@ -1,16 +1,17 @@
+<template>
+  <div :class="classes" :style="styles"><slot></slot></div>
+</template>
 <script>
 import camelToDash from "../../src/utils/camelToDash.js";
 export default {
   name: "ui-col",
 
   data() {
-    return {};
+    return {
+      gutter: ""
+    };
   },
   props: {
-    tag: {
-      type: String,
-      default: "div"
-    },
     autoWidth: Boolean,
     xs: {
       type: Number,
@@ -19,6 +20,7 @@ export default {
     sm: Number,
     md: Number,
     lg: Number,
+    xlg: Number,
     xsOffset: Number,
     smOffset: Number,
     mdOffset: Number,
@@ -54,6 +56,8 @@ export default {
         "flex-shrink": this.shrink,
         "flex-basis": `${this.basis}%`,
         "align-self": this.alignSelf,
+        paddingLeft: this.gutter + "rem",
+        paddingBottom: this.gutter + "rem",
         order: this.order
       };
     },
@@ -72,7 +76,7 @@ export default {
   },
   methods: {
     getSizeProps() {
-      let cols = ["xs", "sm", "md", "lg"];
+      let cols = ["xs", "sm", "md", "lg", "xlg"];
       let classes = [];
       Object.keys(this.$props).forEach(s => {
         if (this.$props[s]) {
@@ -89,17 +93,18 @@ export default {
   },
   mounted() {
     this.getSizeProps();
-  },
-  render(h) {
-    return h(
-      this.tag,
-      {
-        class: this.classes,
-        style: this.styles
-      },
-      this.$slots.default
-    );
+    if (this.$parent.gutter) {
+      this.gutter = this.$parent.gutter;
+    }
   }
+  // render(h) {
+  //   return h(
+  //     this.tag, {
+  //       class: this.classes,
+  //       style: this.styles
+  //     },
+  //     this.$slots.default
+  //   );
+  // }
 };
 </script>
-<style lang="css" scoped></style>

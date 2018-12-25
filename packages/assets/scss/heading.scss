@@ -24,6 +24,33 @@ h6.ui-heading {
   font-size: 1rem;
 }
 
+.gelatin-rem-layout {
+  h1.ui-heading {
+    font-size: 25px;
+  }
+
+  h2.ui-heading {
+    font-size: 20px;
+  }
+
+  h3.ui-heading {
+    font-size: 18px;
+  }
+
+  h4.ui-heading {
+    font-size: 16px;
+  }
+
+  h5.ui-heading {
+    font-size: 14px;
+  }
+
+  h6.ui-heading {
+    font-size: 12px;
+  }
+}
+
+
 .ui-heading {
   word-wrap: break-word;
   word-break: break-all;

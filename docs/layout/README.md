@@ -39,11 +39,11 @@
 
 |breakpoint|size|
 |---------|---|
-|xs|30rem|
-|sm|48rem|
-|md|64rem|
-|lg|75rem|
-
+|xs|30em|
+|sm|48em|
+|md|64em|
+|lg|75em|
+|xlg|96em|
 
 ### Responsive by percertage
 
@@ -81,6 +81,44 @@
     </ui-row>
     <ui-row>
       <ui-col :xs-offset="6" :xs="6">
+        <div class="box"></div>
+      </ui-col>
+    </ui-row>
+```
+
+### Gutter
+
+<layout-gutter></layout-gutter>
+
+gutter unit is **rem**
+
+
+```html
+<ui-row :gutter="2">
+      <ui-col :xs="3" :sm="2" :md="3" :lg="2">
+        <div class="box"></div>
+      </ui-col>
+      <ui-col :xs="3" :sm="2" :md="3" :lg="3">
+        <div class="box"></div>
+      </ui-col>
+      <ui-col :xs="3" :sm="2" :md="3" :lg="4">
+        <div class="box"></div>
+      </ui-col>
+      <ui-col :xs="3" :sm="6" :md="3" :lg="3">
+        <div class="box"></div>
+      </ui-col>
+    </ui-row>
+    <ui-row :gutter="1">
+      <ui-col :xs="3" :sm="2" :md="3" :lg="2">
+        <div class="box"></div>
+      </ui-col>
+      <ui-col :xs="3" :sm="2" :md="3" :lg="3">
+        <div class="box"></div>
+      </ui-col>
+      <ui-col :xs="3" :sm="2" :md="3" :lg="4">
+        <div class="box"></div>
+      </ui-col>
+      <ui-col :xs="3" :sm="6" :md="3" :lg="3">
         <div class="box"></div>
       </ui-col>
     </ui-row>

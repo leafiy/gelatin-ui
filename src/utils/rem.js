@@ -1,43 +1,65 @@
-function rrem(designWidth = 750, remSize = 10) {
-  let percent = remSize / designWidth;
+import { debounce } from "lodash";
+import "../../packages/assets/scss/rem.scss";
 
-  let doc = window.document;
-  let docEl = doc.documentElement;
-  let metaEl = doc.querySelector('meta[name="viewport"]');
-  if (!metaEl) {
-    metaEl = doc.createElement("meta");
-    metaEl.setAttribute("name", "viewport");
-  }
+// from https://github.com/imwtr/rem-vw-layout
 
-  let dpr = Math.min(window.devicePixelRatio, 2);
-
-  let scale = 1 / dpr;
-
-  metaEl.setAttribute(
+const docElem = document.documentElement;
+let metaElem = document.querySelector('meta[name="viewport"]');
+let deviceDpr = window.devicePixelRatio;
+if (!metaElem) {
+  const meta = document.createElement("meta");
+  meta.setAttribute("name", "viewport");
+  meta.setAttribute(
     "content",
-    [
-      "initial-scale=",
-      scale,
-      ", maximum-scale=",
-      scale,
-      ", minimum-scale=",
-      scale,
-      ", user-scalable=yes" // setUseWideViewport(true)和user-scalable=no 冲突？待验证
-    ].join("")
+    "width=device-width,initial-scale=1,user-scalable=no"
   );
-
-  if (docEl.firstElementChild) {
-    docEl.firstElementChild.appendChild(metaEl);
-  } else {
-    let wrap = doc.createElement("div");
-    wrap.appendChild(metaEl);
-    doc.write(wrap.innerHTML);
-  }
-
-  function setRootSize() {
-    let width = docEl.getBoundingClientRect().width;
-    docEl.style.fontSize = width * percent + "px";
-  }
-  setRootSize();
-  window.addEventListener("resize", setRootSize);
+  document.head.appendChild(meta);
 }
+
+const setScale = function(dpr) {
+  metaElem.setAttribute(
+    "content",
+    `initial-scale=${1 / dpr},maximum-scale=${1 / dpr},minimum-scale=${1 /
+      dpr},user-scalable=no`
+  );
+};
+
+const rem = function({
+  dpr = window.devicePixelRatio,
+  blocks = 12,
+  minWidth = 320,
+  maxWidth = 560,
+  calcMaxWidth = 999999,
+  debounceDelay = 100
+} = {}) {
+  document.body.classList.add("gelatin-rem-layout");
+  if (metaElem.getAttribute("data-content-max") !== null) {
+    calcMaxWidth = maxWidth;
+  }
+  // disable scale if dpr < 2, for some old android phones
+  if (
+    (navigator.appVersion.match(/android/gi) && dpr <= 2) ||
+    (navigator.appVersion.match(/qq\//gi) && docElem.clientWidth <= 360)
+  ) {
+    dpr = 1;
+  }
+  setScale(dpr);
+  docElem.setAttribute("data-dpr", dpr);
+
+  const setFontSize = function() {
+    let clientWidth = docElem.clientWidth;
+    clientWidth = Math.max(clientWidth, minWidth * dpr);
+    if (calcMaxWidth >= maxWidth) {
+      clientWidth = Math.min(clientWidth, maxWidth * dpr);
+    }
+    docElem.style.fontSize = clientWidth / blocks + "px";
+  };
+  setFontSize();
+  window.addEventListener(
+    window.orientationchange ? "orientationchange" : "resize",
+    debounce(setFontSize, debounceDelay),
+    false
+  );
+};
+
+export default rem;

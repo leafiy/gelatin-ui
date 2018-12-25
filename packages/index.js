@@ -41,6 +41,7 @@ import $UiLoadingBar from "./loading-bar/index.js";
 import { $UiCover } from "./backdrop/index.js";
 import { $UiConfirm } from "./confirm/index.js";
 import { $UiModal } from "./modal/index.js";
+// import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
   UiIcon,
@@ -77,8 +78,8 @@ const components = [
   UiCountdown,
   UiSlidePanel
 ];
-
-const install = function(Vue) {
+const docElem = document.documentElement;
+const install = function(Vue, options = {}) {
   components.forEach(component => Vue.component(component.name, component));
   Vue.prototype.$UiPopover = $UiPopover;
   Vue.prototype.$UiToast = $UiToast;
@@ -92,6 +93,10 @@ const install = function(Vue) {
   Vue.directive(UiLoading.name, UiLoading);
   Vue.directive(UiMask.name, UiMask);
   Vue.directive(UiSticky.name, UiSticky);
+  Vue.prototype.$GelatinUi = {
+    zIndex: options.zIndex || "200"
+  };
+  // Vue.prototype.$Rem = Rem
 };
 
 if (typeof window !== "undefined" && window.Vue) {
@@ -142,4 +147,5 @@ export default {
   $UiConfirm,
   $UiMessage,
   $UiLoadingBar
+  // Rem
 };
