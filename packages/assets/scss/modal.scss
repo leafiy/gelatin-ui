@@ -5,18 +5,33 @@
   top: 40%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-  min-width: 360px;
   z-index: 1200;
-  max-width: 99%;
-  @include sm{
-    max-width: 95%;
+
+
+  &-size {
+    &-lg {
+      width: 90%;
+      @include md {
+        max-width: 860px;
+      }
+    }
+
+    &-sm {
+      width: 85%;
+
+      @include sm {
+        max-width: 380px;
+      }
+    }
   }
+
+
   &-inner {
     position: relative;
     border-radius: $radius;
     background: #fff;
     box-shadow: $shadow;
-    padding:16px 22px;
+    padding: 16px 22px;
   }
 
   &-close-icon {
@@ -24,21 +39,24 @@
     top: 18px;
     right: 22px;
     cursor: pointer;
-    font-size:16px;
-    &:hover{
-     color: $primary-color;
+    font-size: 16px;
+
+    &:hover {
+      color: $primary-color;
     }
+
     @extend .close-icon;
   }
-  &-header{
-   font-size:18px;
-  }
-  &-content{
-   padding:20px 0;
-  }
-  &-footer{
 
+  &-header {
+    font-size: 18px;
   }
+
+  &-content {
+    padding: 20px 0;
+  }
+
+  &-footer {}
 }
 
 

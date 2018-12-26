@@ -64,7 +64,11 @@ export default {
   },
   computed: {
     classes() {
-      return [this.value && "ui-modal-active", this.confirm && "ui-confirm"];
+      return [
+        this.value && "ui-modal-active",
+        this.confirm && "ui-confirm",
+        this.size && `ui-modal-size-${this.size}`
+      ];
     },
     modalTransition() {
       return "modal";
@@ -108,6 +112,10 @@ export default {
     disableScroll: {
       type: Boolean,
       default: true
+    },
+    size: {
+      type: String,
+      default: "sm"
     }
   },
   methods: {

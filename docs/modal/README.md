@@ -67,5 +67,6 @@ this.$UiModal({
 |options|type||
 |-|-|-|
 |buttons|Array|嵌入按钮|
+|size|String|['lg','sm']|
 
 

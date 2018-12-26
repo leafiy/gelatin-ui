@@ -70,6 +70,7 @@ module.exports = {
         children: [
           ['/image/', 'Image 图片懒加载'],
           ['/avatar/', 'Avatar'],
+          ['/tag/', 'Tag'],
           ['/share/', 'Share'],
           ['/typer/', 'Typer 打字机'],
           ['/hr/', 'Hr 分割线'],
