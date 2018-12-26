@@ -1,4 +1,4 @@
-# :pill: Gelatin-Ui - 简单好看的VueJs UI [Document](https://leafiy.github.io/gelatin-ui/)
+# :pill: Gelatin-Ui - 简单好看的VueJs UI [Document](https://gelatin-ui.leafiy.com/tag/)
 
 `Gelatin 明胶，食用后无任何反应`
 
@@ -22,11 +22,15 @@ Gelatin简单在哪，几个例子：
 
 ### 更简单的构建方式
 
-更容易学习，因为一切基于[vue-cli3](https://cli.vuejs.org/)
+~~更容易学习，因为一切基于[vue-cli3](https://cli.vuejs.org/)~~
 
-需要自己构建vue插件? 一条命令，就可以像开发vue app一样写vue组件
+~~需要自己构建vue插件? 一条命令，就可以像开发vue app一样写vue组件~~
 
-`vue-cli-service build --target lib --name gelatin-ui ./packages/index.js`
+~~`vue-cli-service build --target lib --name gelatin-ui ./packages/index.js`~~
+
+🥂Say Hi to [POI.js-Delightful web development.](https://poi.js.org/)🥂
+
+super!
 
 
 完成度
@@ -75,12 +79,12 @@ Gelatin简单在哪，几个例子：
 - [ ] lightbox
 - [ ] geo
 - [ ] scroll-spy
-- [ ] loading-bar
+- [x] loading-bar
 - [ ] back-to-top
 - [ ] read-more
 - [ ] photo-editor
 - [ ] integration wangeditor
 - [ ] panel
-- [ ] slide-layer
+- [x] slide-layer
 - [ ] select / options
 - [ ] unit test
