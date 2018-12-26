@@ -6,7 +6,7 @@ module.exports = {
   description: '🎨 简单好看的VueJs UI from unicapsule.com',
   port: 8108,
   host: "localhost",
-  base: "/gelatin-ui/",
+  base: "/",
   themeConfig: {
     displayAllHeaders: true,
     nav: [
