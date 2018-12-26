@@ -1,4 +1,4 @@
-const highlight = ({ el, className, type = "default", text, tag = "em" }) => {
+const highlight = ({ el, className, type = "default", text, tag = "b" }) => {
   if (!el) {
     return;
   }
@@ -11,15 +11,22 @@ const highlight = ({ el, className, type = "default", text, tag = "em" }) => {
   //   replaceWith = '$1<span class="' + classes + '">$2</span>$3',
   //   highlighted = content.replace(pattern, replaceWith);
   // return (el.innerHTML = highlighted) !== content;
-
-  let re = new RegExp(text, "gi");
-  el.querySelectorAll("span").forEach(item => {
-    let content = item.textContent;
-    content = content.replace(
-      re,
-      `<${tag} class="${classes}">${text}</${tag}>`
-    );
-    item.innerHTML = content;
-  });
+  if (text) {
+    let re = new RegExp(text, "gi");
+    el.querySelectorAll("span").forEach(item => {
+      let content = item.textContent;
+      content = content.replace(
+        re,
+        `<${tag} class="${classes}">${text}</${tag}>`
+      );
+      item.innerHTML = content;
+    });
+  } else {
+    el.querySelectorAll(tag).forEach(item => {
+      if (item.classList.contains("ui-highlight-text")) {
+        item.outerHTML = item.textContent;
+      }
+    });
+  }
 };
 export default highlight;

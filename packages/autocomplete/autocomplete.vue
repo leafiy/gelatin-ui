@@ -1,7 +1,6 @@
 <template>
   <div class="ui-autocomplete">
     <ui-input
-      :icon="icon"
       :placeholder="placeholder"
       @keydown.native="onKeyDown"
       @focus="show"
@@ -9,57 +8,64 @@
       v-model="query"
       @keyup.native.enter="enterHandler"
     >
-      <slot></slot>
+      <ui-icon slot="prefix" :name="icon"></ui-icon>
     </ui-input>
-    <collapse-transition>
-      <ul class="ui-autocomplete-list" ref="list" v-if="showItems === true">
-        <li v-if="loading"><ui-spinner></ui-spinner></li>
+    <ui-height-transition>
+      <ul class="ui-autocomplete-list" ref="list" v-if="showList && listLength">
+        <ui-spinner center v-if="loading && showSpinner"></ui-spinner>
         <li
           class="ui-autocomplete-list-item"
-          :key="index"
-          v-for="(item, index) in items"
+          :key="index + Date.now()"
+          v-for="(item, index) of showItems"
           @click="selectItem(index)"
-          v-ui-highlight="{ text: value, type: 'primary' }"
           :class="{
             'ui-autocomplete-list-item-active': index === activeItemIndex
           }"
+          v-show="item.show"
         >
-          <slot name="item" :item="item" v-if="isInclude(item)">
-            <div v-html="itemHandler(item)"></div>
-          </slot>
+          <div v-ui-highlight="{ text: query, type: 'primary' }">
+            <span v-html="item.item"></span>
+          </div>
         </li>
       </ul>
-    </collapse-transition>
+    </ui-height-transition>
   </div>
 </template>
 <script>
+import UiIcon from "../icon/icon.vue";
 import UiHighlight from "../highlight/index.js";
 import UiInput from "../input/index.js";
 import UiSpinner from "../spinner/index.js";
 import { debounce } from "lodash";
-import { CollapseTransition } from "vue2-transitions";
 import validators from "../../src/utils/validator.js";
+import isElement from "iselement";
 import "../assets/scss/autocomplete.scss";
+import mixins from "./mixins.js";
+import UiHeightTransition from "../height-transition/height-transition.vue";
 export default {
   name: "ui-autocomplete",
   data() {
     return {
       activeItemIndex: -1,
-      query: this.value,
+      query: this.value === undefined || this.value === null ? "" : this.value,
       lastSetQuery: null,
-      items: [],
-      showItems: false,
+      showList: false,
       loading: false,
-      itemHeight: ""
+      showItems: []
     };
   },
-  model: {
-    prop: "value",
-    event: "input"
-  },
+  mixins: [mixins],
   props: {
-    filterData: Boolean,
-    //是否过滤数据，只显示match的
+    items: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    showSpinner: {
+      type: Boolean,
+      default: true
+    },
     debounce: {
       type: Number,
       default: 100
@@ -76,26 +82,24 @@ export default {
       type: String,
       default: ""
     },
-    onInputChange: {
-      type: Function,
-      required: true
-    },
+    onInputChange: Function,
     onItemSelected: Function,
-    value: String,
-    // todo 根据maxnumber自动调整list高度
-    maxNumber: {
-      type: Number,
-      default: 5
-    }
+    value: String
   },
   components: {
     UiInput,
-    CollapseTransition,
-    UiSpinner
+    UiHeightTransition,
+    UiSpinner,
+    UiIcon
+  },
+  computed: {
+    listLength() {
+      return this.showItems.filter(item => item.show).length;
+    }
   },
   methods: {
     show() {
-      this.showItems = true;
+      this.showList = true;
       this.loading = true;
       if (this.showOnFocus) {
         this.onQueryChanged();
@@ -103,52 +107,25 @@ export default {
       this.$emit("open");
     },
     hide() {
-      this.showItems = false;
+      this.showList = false;
       this.$emit("close");
     },
     itemHandler(item) {
       if (typeof item == "string") {
+        return item; //????
+      } else if (isElement(item)) {
         return item;
-      }
-      // item.content must be html string / string
-      if (typeof item == "object" && item.content) {
-        return item.content;
+      } else {
+        throw new Error("each item should be a string or an element");
       }
     },
-    setInputQuery(value) {
-      this.lastSetQuery = value;
-      this.query = value;
-    },
-    onItemSelectedDefault({ item, index }) {
-      if (typeof item === "string") {
-        if (validators.htmlStrict.test(item)) {
-          let div = document.createElement("div");
-          div.innerHTML = item;
-          //html约定，只取span中的textcontent
-          item = div.querySelector("span").textContent;
-        }
-        this.$emit("input", item);
-        this.setInputQuery(item);
-        this.showItems = false;
+    onItemSelectedDefault(index) {
+      this.$emit("select", index);
+      if (typeof this.items[index] == "string") {
+        this.$emit("input", this.items[index]);
       }
-    },
-    onKeyDown(e) {
-      switch (e.keyCode) {
-        case 40:
-          this.highlightItem("down");
-          e.preventDefault();
-          break;
-        case 38:
-          this.highlightItem("up");
-          e.preventDefault();
-          break;
-        case 13:
-          this.selectItem();
-          e.preventDefault();
-          break;
-        default:
-          return true;
-      }
+      this.activeItemIndex = -1;
+      // this.showList = false;
     },
     enterHandler() {
       this.$emit("enter", this.query);
@@ -168,96 +145,84 @@ export default {
       }
 
       if (this.onItemSelected) {
-        this.onItemSelected({ item, index });
+        this.onItemSelected(index);
       } else {
-        this.onItemSelectedDefault({ item, index });
+        this.onItemSelectedDefault(index);
       }
       this.hide();
     },
-    highlightItem(direction) {
-      if (this.items.length === 0) {
-        return;
-      }
-      let selectedIndex = this.items.findIndex((item, index) => {
-        return index === this.activeItemIndex;
-      });
-      if (selectedIndex === -1) {
-        if (direction === "down") {
-          selectedIndex = 0;
-        } else {
-          selectedIndex = this.items.length - 1;
-        }
-      } else {
-        this.activeIndexItem = 0;
-        if (direction === "down") {
-          selectedIndex++;
-          if (selectedIndex === this.items.length) {
-            selectedIndex = 0;
-          }
-        } else {
-          selectedIndex--;
-          if (selectedIndex < 0) {
-            selectedIndex = this.items.length - 1;
-          }
-        }
-      }
-      this.activeItemIndex = selectedIndex;
-    },
+
     setItems(items) {
-      this.items = items;
+      this.showItems = this.items.map(item => {
+        return { item: this.itemHandler(item), show: true };
+      });
       this.activeItemIndex = -1;
-      this.showItems = true;
     },
+
     onQueryChanged(value) {
-      //接受直接返回数组或promise
-      const result = this.onInputChange(value);
-      this.items = [];
-      if (
-        typeof result === "undefined" ||
-        typeof result === "boolean" ||
-        result === null
-      ) {
-        this.loading = false;
-        return;
-      }
-      if (Array.isArray(result)) {
-        this.setItems(result);
-        this.loading = false;
-      } else if (typeof result.then === "function") {
-        result.then(items => {
-          this.setItems(items);
+      if (this.onInputChange) {
+        const result = this.onInputChange && this.onInputChange(value);
+        if (
+          typeof result === "undefined" ||
+          typeof result === "boolean" ||
+          result === null
+        ) {
           this.loading = false;
-        });
-      }
-    },
-    isInclude(item) {
-      if (this.filterData) {
-        return item.includes(this.query);
+          return;
+        }
+        if (Array.isArray(result)) {
+          this.setItems(result);
+          this.loading = false;
+        }
+        if (typeof result.then === "function") {
+          this.loading = true;
+          result.then(items => {
+            this.setItems(items);
+            this.loading = false;
+          });
+        }
       } else {
-        return true;
+        this.showItems.forEach((item, index) => {
+          if (value) {
+            if (typeof item.item == "string") {
+              if (!item.item.includes(this.query)) {
+                item.show = false;
+              } else {
+                item.show = true;
+              }
+            }
+          } else {
+            item.show = true;
+          }
+        });
+        this.loading = false;
       }
     }
+    // isInclude(item) {
+    //   if (this.filterData) {
+    //     return item.includes(this.query);
+    //   } else {
+    //     return true;
+    //   }
+    // }
   },
   watch: {
-    query(newValue, oldValue) {
-      if (newValue === this.lastSetQuery) {
-        this.lastSetQuery = null;
-        return;
-      }
+    query(newValue) {
       this.loading = true;
       this.onQueryChanged(newValue);
-      this.$emit("input", newValue);
     },
-    value(newValue, oldValue) {
-      this.setInputQuery(newValue);
+    value(val) {
+      this.query = val;
     }
   },
   beforeMount() {
     this.onQueryChanged = debounce(this.onQueryChanged, this.debounce);
+  },
+  mounted() {
+    this.setItems();
   },
   directives: {
     UiHighlight
   }
 };
 </script>
-<style lang="css" scoped></style>

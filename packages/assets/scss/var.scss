@@ -21,9 +21,11 @@ $screen-sm:$sm+0em;
 $screen-md:$md+0em;
 $screen-lg:$lg+0em;
 $screen-xlg:$xlg+0em;
+
 li {
   list-style: none;
 }
+
 
 h1,
 h2,
@@ -58,11 +60,13 @@ h6 {
     @content
   }
 }
+
 @mixin xlg {
   @media (min-width: $xlg+0rem) {
     @content
   }
 }
+
 @mixin overflowText($fontSize, $lineHeight, $line) {
   font-size: $fontSize+px;
   overflow: hidden;

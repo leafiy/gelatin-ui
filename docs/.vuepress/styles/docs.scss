@@ -4,6 +4,7 @@ $warning-color:#FFF73F;
 $error-color:#FF8787;
 $light:#9B9B9B;
 $lighter:#E9EBEE;
+$shadow-light:0 0px 10px rgba(0, 0, 0, 0.1);
 
 * {
   box-sizing: border-box;
@@ -13,7 +14,10 @@ body {
   font-family: -apple-system, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Arial, sans-serif;
   font-size: 12px;
 }
-
+.navbar{
+  border-bottom: none !important;
+  box-shadow: $shadow-light;
+}
 .sidebar {
   font-size: 12px;
 }

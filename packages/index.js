@@ -34,6 +34,7 @@ import UiCarousel from "./carousel/index.js";
 import UiCountdown from "./countdown/index.js";
 import UiSlidePanel from "./slide-panel/index.js";
 import UiSticky from "./sticky/index.js";
+import UiHeightTransition from "./height-transition/index.js";
 import $UiPopover from "./popover/index.js";
 import $UiToast from "./toast/index.js";
 import $UiMessage from "./message/index.js";
@@ -76,7 +77,8 @@ const components = [
   UiTyper,
   UiCarousel,
   UiCountdown,
-  UiSlidePanel
+  UiSlidePanel,
+  UiHeightTransition
 ];
 
 const install = function(Vue, options = {}) {
@@ -140,6 +142,7 @@ export default {
   UiSlidePanel,
   UiSticky,
   UiModal,
+  UiHeightTransition,
   $UiPopover,
   $UiToast,
   $UiCover,

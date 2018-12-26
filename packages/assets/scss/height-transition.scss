@@ -1,0 +1,17 @@
+.height-enter-active,
+.height-leave-active {
+  transition: height .3s ease-in-out;
+  overflow: hidden;
+}
+
+.height-enter,
+.height-leave-to {
+  height: 0;
+}
+
+.ui-height-transition {
+  will-change: height;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

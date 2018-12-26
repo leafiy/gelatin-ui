@@ -40,6 +40,7 @@ module.exports = {
           ['/progress/', 'Progress'],
           ['/loading-bar/', 'Loading Bar'],
           ['/alert/', 'Alert'],
+          ['/accordion/', 'Accordion 折叠'],
           ['/slide-panel/', 'Slide-Panel'],
         ]
       },
@@ -47,6 +48,7 @@ module.exports = {
         title: 'form',
         collapsable: false,
         children: [
+          ['/autocomplete/', 'Autocomplete 输入框建议'],
           ['/checkbox/', 'Checkbox'],
           ['/radio/', 'Radio'],
         ]

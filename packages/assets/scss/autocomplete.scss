@@ -7,11 +7,8 @@
   .ui-autocomplete-list {
     position: absolute;
     width: 100%;
-    top: 46px;
+    top: 47px;
     z-index: 100;
-  }
-  .ui-spinner{
-   margin:1em auto;
   }
   .ui-input{
     margin:0;
@@ -25,11 +22,15 @@
   border: 1px solid $lighter;
   overflow-y: scroll;
   max-height: 220px;
-
+  min-height: 46px;
+  height:auto;
+  margin:0;
+  padding:0;
   &-item {
-    padding: .6em 1em;
+    padding: .4em 1em;
     border-bottom: 1px solid $lighter;
-
+    user-select: none;
+    transition: background .1s ease-in-out;
     &:last-child {
       border: none;
     }
