@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container"> <ClientOnly>
     <ui-row>
       <ui-col :xs-offset="10" :xs="2">
         <div class="box"></div>
@@ -14,7 +14,7 @@
       <ui-col :xs-offset="6" :xs="6">
         <div class="box"></div>
       </ui-col>
-    </ui-row>
+    </ui-row></ClientOnly>
   </div>
 </template>
 <script>

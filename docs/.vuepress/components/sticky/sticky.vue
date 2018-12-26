@@ -1,7 +1,7 @@
 <template>
  <div class="container">
-
-  <ui-button v-ui-sticky="{top:57}" type="border">Scroll down this page</ui-button>
+ <ClientOnly>
+  <ui-button v-ui-sticky="{top:57}" type="border">Scroll down this page</ui-button></ClientOnly>
  </div>
 </template>
 

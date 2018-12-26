@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container"> <ClientOnly>
     <div class="box">
       <span class="trigger1" @click="openPanel1">open a panel from right</span>
       <span class="trigger2" @click="openPanel2">open a panel from bottom</span>
@@ -16,7 +16,7 @@
           <ui-button @click.native="show2 = false">close panel</ui-button>
         </div>
       </ui-slide-panel>
-    </div>
+    </div></ClientOnly>
   </div>
 </template>
 <script>

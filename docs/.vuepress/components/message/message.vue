@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container"> <ClientOnly>
     <ui-button @click.native="click">Message</ui-button>
     <ui-button @click.native="click2">message with title and icon</ui-button>
     <ui-button @click.native="click3">message with close icon</ui-button>
@@ -8,7 +8,7 @@
     <ui-button @click.native="click5" type="warning">warning</ui-button>
     <ui-button @click.native="$UiMessage.error('error message')" type="error">error</ui-button>
     <ui-hr>message with actions</ui-hr>
-    <ui-button @click.native="click6" type="warning">with actions</ui-button>
+    <ui-button @click.native="click6" type="warning">with actions</ui-button></ClientOnly>
   </div>
 </template>
 <script>

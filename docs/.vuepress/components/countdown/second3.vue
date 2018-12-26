@@ -1,5 +1,5 @@
 <template>
- <div class="container">
+ <div class="container"> <ClientOnly>
   还有
   <ui-countdown :date="new Date('2020-2-20 11:22:33:000')" :delay="10"></ui-countdown>
   被消灭
@@ -9,7 +9,7 @@
   <ui-hr>时间格式</ui-hr>
   <ui-countdown date="2020-2-20 11:22:33:000" :show-ms="false" :show-hours="false"></ui-countdown>
   <ui-hr>加点样式</ui-hr>
-  <ui-countdown :date="new Date('2020-2-20 11:22:33:000')"  :show-ms="false" theme="card"></ui-countdown>
+  <ui-countdown :date="new Date('2020-2-20 11:22:33:000')"  :show-ms="false" theme="card"></ui-countdown></ClientOnly>
  </div>
 </template>
 

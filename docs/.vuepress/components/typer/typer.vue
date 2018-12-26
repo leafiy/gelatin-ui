@@ -1,6 +1,6 @@
 <template>
- <div class="container">
-  <ui-typer content="Typer 模拟打字机效果" loop cursor="🦛"></ui-typer>
+ <div class="container"> <ClientOnly>
+  <ui-typer content="Typer 模拟打字机效果" loop cursor="🦛"></ui-typer></ClientOnly>
  </div>
 </template>
 

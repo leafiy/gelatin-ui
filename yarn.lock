@@ -1928,10 +1928,15 @@ bytes@3.0.0:
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
   integrity sha1-0ygVQE1olpn4Wk6k+odV3ROpYEg=
 
-cac@^6.3.6, cac@^6.3.9:
+cac@^6.3.6:
   version "6.3.11"
   resolved "https://registry.yarnpkg.com/cac/-/cac-6.3.11.tgz#492ee9256776630b10a29acc0f22c5db9d729718"
   integrity sha512-WfCHMe7XR5sJ9kjt3aQmTr84J3hEKihALAyiLodjHnZKkoskDym3AEzhH9WRvUXj4F2f3TSq4HP7q4Px2KFaCQ==
+
+cac@^6.3.9:
+  version "6.3.12"
+  resolved "https://registry.yarnpkg.com/cac/-/cac-6.3.12.tgz#eb45205c7d09ac7c141104e8b8d1859bd9a09d39"
+  integrity sha512-0tJOuYFAfQc8s3G6BHSPCvSTCkcVm9etd3nSeLW55Prz3uv3I6cMli9bfkEGbVUZQ39t750rAY6nCFp3dLboxw==
 
 cacache@^10.0.4:
   version "10.0.4"

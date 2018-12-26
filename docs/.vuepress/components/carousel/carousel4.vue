@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container"><ClientOnly>
     <ui-carousel :scroll-count="1" full-width auto loop :delay="2000">
       <div class="item">1</div>
       <div class="item">2</div>
@@ -7,7 +7,7 @@
       <div class="item">4</div>
       <div class="item">5</div>
       <div class="item">6</div>
-    </ui-carousel>
+    </ui-carousel></ClientOnly>
   </div>
 </template>
 <script>

@@ -1,9 +1,13 @@
 <template>
-  <ui-accordion>
-    <ui-accordion-item :title="title">
-      <pre><slot></slot></pre>
-    </ui-accordion-item>
-  </ui-accordion>
+  <div class="container">
+    <ClientOnly>
+      <ui-accordion>
+        <ui-accordion-item :title="title">
+          <pre><slot></slot></pre>
+        </ui-accordion-item>
+      </ui-accordion>
+    </ClientOnly>
+  </div>
 </template>
 <script>
 export default {

@@ -78,7 +78,7 @@ const components = [
   UiCountdown,
   UiSlidePanel
 ];
-const docElem = document.documentElement;
+
 const install = function(Vue, options = {}) {
   components.forEach(component => Vue.component(component.name, component));
   Vue.prototype.$UiPopover = $UiPopover;

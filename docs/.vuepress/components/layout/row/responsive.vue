@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container"> <ClientOnly>
     <ui-row>
       <ui-col :xs="6" :sm="10" :md="8" :lg="4">
         <div class="box"></div>
@@ -21,7 +21,7 @@
       <ui-col :xs="3" :sm="6" :md="3" :lg="3">
         <div class="box"></div>
       </ui-col>
-    </ui-row>
+    </ui-row></ClientOnly>
   </div>
 </template>
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container"> <ClientOnly>
     <ui-button @click.native="toast1">Normal</ui-button>
     <ui-button @click.native="toast2">close event</ui-button>
     <ui-button @click.native="toast3">click icon event</ui-button>
@@ -7,7 +7,7 @@
     <ui-button @click.native="toast5">error</ui-button>
     <ui-button @click.native="toast6">position:{x:right,y:bottom}</ui-button>
     <ui-button @click.native="toast7">position:{x:center,y:top}</ui-button>
-    <ui-button @click.native="toast8">position:{x:center,y:center}</ui-button>
+    <ui-button @click.native="toast8">position:{x:center,y:center}</ui-button></ClientOnly>
   </div>
 </template>
 <script>

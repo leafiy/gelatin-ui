@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container"><ClientOnly>
     <ui-carousel auto loop :delay="1000" nav-style="bar">
       <div class="item"><img src="https://placehold.it/200x200"></div>
         <div class="item"><img src="https://placehold.it/230x200"></div>
@@ -11,7 +11,7 @@
                       <div class="item"><img src="https://placehold.it/230x200"></div>
                         <div class="item"><img src="https://placehold.it/140x200"></div>
                           <div class="item"><img src="https://placehold.it/320x200"></div>
-    </ui-carousel>
+    </ui-carousel></ClientOnly>
   </div>
 </template>
 <script>

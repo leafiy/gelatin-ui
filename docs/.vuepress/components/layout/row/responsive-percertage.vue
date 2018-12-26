@@ -1,5 +1,5 @@
 <template>
- <div class="container">
+ <div class="container"> <ClientOnly>
     <ui-row>
       <ui-col :basis="50">
         <div class="box">50</div>
@@ -11,7 +11,7 @@
         <div class="box">10</div>
       </ui-col>
     </ui-row>
-
+</ClientOnly>
   </div>
 </template>
 

@@ -8,6 +8,7 @@ module.exports = {
   host: "localhost",
   base: "/gelatin-ui/",
   themeConfig: {
+    displayAllHeaders: true,
     nav: [
       { text: '主页', link: '/' },
       { text: 'github', link: 'https://github.com/leafiy/gelatin-ui' },
@@ -34,7 +35,7 @@ module.exports = {
         title: 'basic',
         collapsable: false,
         children: [
-          ['/rem/', 'Rem responsive'],
+          // ['/rem/', 'Rem responsive'],
           ['/layout/', 'Layout 布局'],
           ['/progress/', 'Progress'],
           ['/loading-bar/', 'Loading Bar'],
@@ -67,9 +68,11 @@ module.exports = {
         title: 'utils',
         collapsable: false,
         children: [
+          ['/image/', 'Image 图片懒加载'],
           ['/avatar/', 'Avatar'],
           ['/share/', 'Share'],
           ['/typer/', 'Typer 打字机'],
+          ['/hr/', 'Hr 分割线'],
           ['/carousel/', 'Carousel 卡片轮播'],
           ['/countdown/', 'Countdown 倒计时'],
           ['/sticky/', 'Sticky 滚动固定'],

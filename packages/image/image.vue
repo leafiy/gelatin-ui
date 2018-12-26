@@ -8,7 +8,9 @@
       ></div>
     </transition>
     <div class="ui-image-cover" v-if="cover"></div>
-    <ui-spinner v-if="loading" center></ui-spinner>
+    <slot name="loader" v-if="loading">
+      <div class="ui-image-loader"><ui-spinner center></ui-spinner></div>
+    </slot>
     <div class="ui-image-slot" v-if="$slots.default"><slot></slot></div>
   </div>
 </template>
@@ -21,7 +23,8 @@ export default {
   props: {
     src: String,
     cover: Boolean,
-    keepSize: Boolean
+    keepSize: Boolean,
+    fallback: String
   },
   components: {
     UiSpinner
@@ -41,13 +44,15 @@ export default {
       .catch(err => {
         this.loading = false;
         this.failed = true;
-        this.$emit("load-finished");
+        this.$emit("load-failed");
       });
   },
   computed: {
     backgroundStyle() {
       return {
-        backgroundImage: `url(${this.src})`
+        backgroundImage: this.failed
+          ? `url(${this.fallback})`
+          : `url(${this.src})`
       };
     }
   }

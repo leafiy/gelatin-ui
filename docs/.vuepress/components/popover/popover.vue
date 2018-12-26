@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
+  <div class="container"> <ClientOnly>
     <ui-button size="sm" @click.native="click" ref="btn1">open a popover</ui-button>
     <ui-button size="sm" @click.native="click2">打开其他元素上的popover</ui-button>
     <ui-button size="sm" @click.native="click3">也可以是一个菜单</ui-button>
     <ui-button size="sm" @click.native="click4">绑定事件到菜单</ui-button>
-    <ui-button size="sm" @click.native="click5">菜单横向排列</ui-button>
+    <ui-button size="sm" @click.native="click5">菜单横向排列</ui-button></ClientOnly>
   </div>
 </template>
 <script>

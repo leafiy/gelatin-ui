@@ -17,13 +17,14 @@
   background: $lighter;
   margin-right: 8px;
 
+  .ui-avatar-image {
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    border: 1px solid #fff;
+  }
+
 }
 
-.ui-avatar-image {
-  width: calc(100% - 2px);
-  height: calc(100% - 2px);
-  border: 1px solid #fff;
-}
 
 .ui-avatar-name {
   padding-right: 8px;
@@ -53,6 +54,12 @@
     width: 66px;
     height: 66px;
   }
+
+  .ui-avatar-image {
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+    border: 2px solid #fff;
+  }
 }
 
 
@@ -67,10 +74,6 @@
   }
 
   .ui-avatar-image {
-    content: ' ';
     border-radius: 50%;
-    // position: absolute;
-    // top: 0;
-    // left: 0;
   }
 }

@@ -13,7 +13,9 @@
   height: 160px;
   width: 100%;
   overflow: hidden;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &-keep-size {
     .ui-image-image {
       background-size: initial;

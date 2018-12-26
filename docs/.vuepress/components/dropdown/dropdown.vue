@@ -1,9 +1,9 @@
 <template>
- <div class="container">
+ <div class="container"> <ClientOnly>
   <ui-dropdown>
    <ui-button size="sm" slot="trigger">dropdown</ui-button>
    <p>asdfasdf</p>
-  </ui-dropdown>
+  </ui-dropdown></ClientOnly>
  </div>
 </template>
 

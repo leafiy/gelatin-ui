@@ -1,7 +1,12 @@
 <template>
   <div class="ui-avatar" :class="classes">
     <div class="ui-avatar-container">
-      <img :src="url" v-if="url" class="ui-avatar-image" />
+      <ui-image
+        :fallback="fallback"
+        :src="url"
+        v-if="url"
+        class="ui-avatar-image"
+      ></ui-image>
       <div class="ui-avatar-string" v-if="!url && displayName">
         {{ displayName }}
       </div>
@@ -14,10 +19,12 @@
 <script>
 import "../assets/scss/avatar.scss";
 import UiIcon from "../icon/icon.vue";
+import UiImage from "../image/image.vue";
 export default {
   name: "ui-avatar",
   components: {
-    UiIcon
+    UiIcon,
+    UiImage
   },
   props: {
     shape: {
@@ -42,7 +49,8 @@ export default {
     showName: {
       type: Boolean,
       default: true
-    }
+    },
+    fallback: String
   },
   computed: {
     displayName() {

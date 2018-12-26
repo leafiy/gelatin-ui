@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container"> <ClientOnly>
     <ui-share site="weibo" :data="weiboData">
       <ui-button size="sm">微博</ui-button>
     </ui-share>
@@ -17,7 +17,7 @@
     </ui-share>
     <ui-share site="google" :data="googleData">
       <ui-button size="sm">google</ui-button>
-    </ui-share>
+    </ui-share></ClientOnly>
   </div>
 </template>
 <script>

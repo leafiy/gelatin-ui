@@ -15,12 +15,9 @@ https://leafiy.oss-cn-beijing.aliyuncs.com/leafiyanthony-tuil-512016-unsplash.jp
 https://leafiy.oss-cn-beijing.aliyuncs.com/leafiyanthony-tuil-512016-unsplash.jpg" username="leafiy"></ui-avatar>
     <ui-avatar size="lg" url="
 https://leafiy.oss-cn-beijing.aliyuncs.com/leafiyanthony-tuil-512016-unsplash.jpg" username="size-lg"></ui-avatar>
+<ui-avatar size="lg" fallback="https://leafiy.oss-cn-beijing.aliyuncs.com/Snipaste_2018-12-26_14-10-06.png" url="
+https://leafiy.oss-cn-beijing.aliyuncs.com/leafiyanthony-tuil-512016-splash.jpg" username="size-lg"></ui-avatar>
  ```
-
-
-
-
-
 </code-code>
 
 |prop|type|default|

@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <ui-countdown ref="c" :second="10" @start="start" @stop="stop">s</ui-countdown>
+  <div class="container"> <ClientOnly>
+    <ui-countdown ref="c" :second="10" @start="start" @stop="stop">s</ui-countdown></ClientOnly>
   </div>
 </template>
 <script>
