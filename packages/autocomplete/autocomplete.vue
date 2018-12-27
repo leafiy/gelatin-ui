@@ -3,31 +3,31 @@
     <ui-input
       :placeholder="placeholder"
       @keydown.native="onKeyDown"
-      @focus="show"
-      @blur="hide"
+      @focus="focus"
+      @blur="blur"
       v-model="query"
       @keyup.native.enter="enterHandler"
     >
       <ui-icon slot="prefix" :name="icon"></ui-icon>
     </ui-input>
-    <ui-height-transition>
-      <ul class="ui-autocomplete-list" ref="list" v-if="showList && listLength">
+    <ui-height-transition :duration="100">
+      <div
+        class="ui-autocomplete-list"
+        v-if="showList && listLength"
+        ref="list"
+      >
         <ui-spinner center v-if="loading && showSpinner"></ui-spinner>
-        <li
-          class="ui-autocomplete-list-item"
-          :key="index + Date.now()"
+        <div
           v-for="(item, index) of showItems"
+          class="ui-autocomplete-list-item"
+          v-if="item.show"
+          :key="index + Date.now()"
           @click="selectItem(index)"
-          :class="{
-            'ui-autocomplete-list-item-active': index === activeItemIndex
-          }"
-          v-show="item.show"
+          v-ui-highlight="highlightOptions"
         >
-          <div v-ui-highlight="{ text: query, type: 'primary' }">
-            <span v-html="item.item"></span>
-          </div>
-        </li>
-      </ul>
+          <span v-html="item.item"></span>
+        </div>
+      </div>
     </ui-height-transition>
   </div>
 </template>
@@ -47,11 +47,13 @@ export default {
   data() {
     return {
       activeItemIndex: -1,
+      selectedIndex: -1,
       query: this.value === undefined || this.value === null ? "" : this.value,
-      lastSetQuery: null,
       showList: false,
       loading: false,
-      showItems: []
+      showItems: [],
+      list: "",
+      lastQuery: ""
     };
   },
   mixins: [mixins],
@@ -62,6 +64,12 @@ export default {
         return [];
       }
     },
+    loose: Boolean,
+    highlight: {
+      type: Boolean,
+      default: true
+    },
+    highlightColor: String,
     showSpinner: {
       type: Boolean,
       default: true
@@ -69,10 +77,6 @@ export default {
     debounce: {
       type: Number,
       default: 100
-    },
-    showOnFocus: {
-      type: Boolean,
-      default: true
     },
     icon: {
       type: String,
@@ -84,7 +88,9 @@ export default {
     },
     onInputChange: Function,
     onItemSelected: Function,
-    value: String
+    showOnFocus: Boolean,
+    filterData: Boolean,
+    value: [String]
   },
   components: {
     UiInput,
@@ -95,15 +101,32 @@ export default {
   computed: {
     listLength() {
       return this.showItems.filter(item => item.show).length;
+    },
+    highlightOptions() {
+      if (!this.highlight) {
+        return null;
+      } else {
+        return {
+          text: this.query,
+          loose: this.loose,
+          color: this.highlightColor
+        };
+      }
     }
   },
   methods: {
+    focus() {
+      if (this.showOnFocus) {
+        this.show();
+      }
+    },
+    blur() {
+      setTimeout(() => {
+        this.showList = false;
+      }, this.debounce);
+    },
     show() {
       this.showList = true;
-      this.loading = true;
-      if (this.showOnFocus) {
-        this.onQueryChanged();
-      }
       this.$emit("open");
     },
     hide() {
@@ -120,11 +143,13 @@ export default {
       }
     },
     onItemSelectedDefault(index) {
-      this.$emit("select", index);
       if (typeof this.items[index] == "string") {
         this.$emit("input", this.items[index]);
+      } else {
+        this.$emit("select", index);
       }
       this.activeItemIndex = -1;
+      this.hide();
       // this.showList = false;
     },
     enterHandler() {
@@ -140,6 +165,8 @@ export default {
       } else {
         item = this.items[index];
       }
+      this.hide();
+
       if (!item) {
         return;
       }
@@ -149,7 +176,6 @@ export default {
       } else {
         this.onItemSelectedDefault(index);
       }
-      this.hide();
     },
 
     setItems(items) {
@@ -160,6 +186,7 @@ export default {
     },
 
     onQueryChanged(value) {
+      this.show();
       if (this.onInputChange) {
         const result = this.onInputChange && this.onInputChange(value);
         if (
@@ -182,37 +209,38 @@ export default {
           });
         }
       } else {
-        this.showItems.forEach((item, index) => {
-          if (value) {
-            if (typeof item.item == "string") {
-              if (!item.item.includes(this.query)) {
-                item.show = false;
-              } else {
-                item.show = true;
+        if (this.filterData) {
+          this.showItems.forEach((item, index) => {
+            if (value) {
+              if (typeof item.item == "string") {
+                if (!item.item.includes(this.query)) {
+                  item.show = false;
+                } else {
+                  item.show = true;
+                }
               }
+            } else {
+              item.show = true;
             }
-          } else {
-            item.show = true;
-          }
-        });
+          });
+        }
+
         this.loading = false;
       }
     }
-    // isInclude(item) {
-    //   if (this.filterData) {
-    //     return item.includes(this.query);
-    //   } else {
-    //     return true;
-    //   }
-    // }
   },
   watch: {
-    query(newValue) {
-      this.loading = true;
+    query(newValue, oldValue) {
+      if (newValue === this.lastQuery) {
+        this.lastQuery = null;
+        return;
+      }
       this.onQueryChanged(newValue);
+      this.$emit("input", newValue);
     },
     value(val) {
       this.query = val;
+      this.lastQuery = val;
     }
   },
   beforeMount() {

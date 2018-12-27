@@ -1,22 +1,34 @@
 <template>
   <div class="ui-accordion-item" :class="classes">
-    <p class="ui-accordion-title" @mouseover="mouseover" @click="clickTitle">
+    <div
+      class="ui-accordion-title"
+      @mouseenter="mouseenter"
+      @click="clickTitle"
+    >
       <span v-html="title" class="ui-accordion-title-content"></span>
       <slot name="close">
         <span class="ui-accordion-close-icon" @click.self="click"
           ><ui-icon name="plus"></ui-icon
         ></span>
       </slot>
-    </p>
-    <collapse-transition>
-      <div class="ui-accordion-content" v-show="show"><slot></slot></div>
-    </collapse-transition>
+    </div>
+    <ui-height-transition
+      :duration="duration"
+      @before-enter="animating = true"
+      @after-enter="animating = false"
+      @before-leave="animating = true"
+      @after-leave="animating = false"
+    >
+      <div class="ui-accordion-content" v-show="show">
+        <div class="ui-accordion-content-inner"><slot></slot></div>
+      </div>
+    </ui-height-transition>
   </div>
 </template>
 <script>
 import UiIcon from "../icon/index.js";
 import "../assets/scss/accordion.scss";
-import { CollapseTransition } from "vue2-transitions";
+import UiHeightTransition from "../height-transition/height-transition.vue";
 import nanoid from "nanoid";
 import events from "../../src/utils/events.js";
 export default {
@@ -24,6 +36,7 @@ export default {
   data() {
     return {
       show: false,
+      animating: false,
       id: `ui-accordion-item-${nanoid()}`
     };
   },
@@ -35,14 +48,11 @@ export default {
       default: true
     },
     active: Boolean,
-    accordion: {
-      type: Boolean,
-      default: true
-    }
+    duration: Number
   },
   components: {
     UiIcon,
-    CollapseTransition
+    UiHeightTransition
   },
   computed: {
     classes() {
@@ -54,17 +64,12 @@ export default {
   inject: ["accordionId"],
   watch: {
     show(val) {
-      if (this.accordion) {
-        events.$emit(`${this.accordionId}`, { id: this.id, show: this.show });
-      }
+      events.$emit(`${this.accordionId}`, { id: this.id, show: this.show });
       if (val) {
         this.$emit("open");
       } else {
         this.$emit("close");
       }
-    },
-    active() {
-      this.show = this.active;
     }
   },
   methods: {
@@ -76,11 +81,14 @@ export default {
     click() {
       this.show = !this.show;
     },
-    mouseover() {
-      if (this.openOnMouseOver) {
+    mouseenter() {
+      if (this.openOnMouseOver && !this.animating) {
         this.show = !this.show;
       }
     }
+  },
+  mounted() {
+    if (this.active) this.show = true;
   }
 };
 </script>

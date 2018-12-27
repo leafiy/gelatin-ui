@@ -1,8 +1,16 @@
-const highlight = ({ el, className, type = "default", text, tag = "b" }) => {
+import setCharAt from "./setCharAt.js";
+const highlight = ({
+  el,
+  className,
+  color = "primary",
+  text,
+  tag = "b",
+  loose = false
+}) => {
   if (!el) {
     return;
   }
-  let classes = `ui-highlight-text ui-highlight-${type} ${
+  let classes = `ui-highlight-text ui-highlight-${color} ${
     className ? "ui-highlight-" + className : ""
   }`;
 
@@ -12,13 +20,32 @@ const highlight = ({ el, className, type = "default", text, tag = "b" }) => {
   //   highlighted = content.replace(pattern, replaceWith);
   // return (el.innerHTML = highlighted) !== content;
   if (text) {
-    let re = new RegExp(text, "gi");
+    text = text.replace(/[|\\{}()[\]^$+*?.]/g, "");
+    let re = loose
+      ? new RegExp(text.split("").join("|"), "i")
+      : new RegExp(text, "gi");
     el.querySelectorAll("span").forEach(item => {
       let content = item.textContent;
-      content = content.replace(
-        re,
-        `<${tag} class="${classes}">${text}</${tag}>`
-      );
+      if (!loose) {
+        content = content.replace(
+          re,
+          `<${tag} class="${classes}">${text}</${tag}>`
+        );
+      } else {
+        let match = [];
+        let searchPosition = 0;
+        for (let number = 0; number < content.length; number++) {
+          let recordChar = content[number];
+
+          if (re.test(recordChar)) {
+            recordChar = `<${tag} class="${classes}">${recordChar}</${tag}>`;
+            searchPosition++;
+          }
+          match.push(recordChar);
+        }
+        content = match.join("");
+      }
+
       item.innerHTML = content;
     });
   } else {

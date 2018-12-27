@@ -2,23 +2,22 @@
   <div>
     <slot></slot>
     <!-- <transition name="fade"> -->
-    <collapse-transition>
+    <ui-height-transition>
       <p class="ui-v-error-list" v-if="errorArr && errorArr.length">
         <span v-for="(index, item) of errorArr" :key="index + item"
           >{{ item.message }} <em>, </em>
         </span>
       </p>
-    </collapse-transition>
+    </ui-height-transition>
     <!-- </transition> -->
   </div>
 </template>
 <script>
-import { CollapseTransition } from "vue2-transitions";
-
+import UiHeightTransition from "../height-transition/height-transition.vue";
 export default {
   name: "ui-v-error",
   components: {
-    CollapseTransition
+    UiHeightTransition
   },
   props: {
     errors: Array,

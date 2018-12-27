@@ -1,10 +1,14 @@
 <template>
   <transition
-    class="ui-height-transition"
     name="height"
-    @after-enter="handleAfterEnter"
-    @enter="handleEnter"
-    @leave="handleLeave"
+    @enter="enterHandler"
+    @after-enter="afterEnterHandler"
+    @leave="leaveHandler"
+    @before-enter="$emit('before-enter')"
+    @enter-cancelled="$emit('enter-cancelled')"
+    @before-leave="$emit('before-leave')"
+    @after-leave="$emit('after-leave')"
+    @leave-cancelled="$emit('leave-cancelled')"
   >
     <slot></slot>
   </transition>
@@ -13,38 +17,53 @@
 import "../assets/scss/height-transition.scss";
 export default {
   name: "ui-height-transition",
-  data() {
-    return {};
+  props: {
+    duration: {
+      type: Number,
+      default: 300
+    }
   },
   methods: {
-    handleAfterEnter(el) {
-      el.style.height = `auto`;
-      this.$emit("after-enter");
-    },
-    handleEnter(el) {
-      const { width } = getComputedStyle(el);
+    enterHandler(el) {
+      const width = getComputedStyle(el).width;
+      el.style.position = "absolute";
+      el.style.visibility = "hidden";
+      el.style.height = "auto";
       el.style.width = width;
-      el.style.position = `absolute`;
-      el.style.visibility = `hidden`;
-      el.style.height = `auto`;
-      const { height } = getComputedStyle(el);
-      el.style.width = null;
-      el.style.position = null;
-      el.style.visibility = null;
+      const height = getComputedStyle(el).height;
+      el.style.position = "";
+      el.style.visibility = "";
+      el.style.width = "";
       el.style.height = 0;
-      setTimeout(() => {
+      getComputedStyle(el).height;
+      el.style.transitionDuration = this.duration + "ms";
+      requestAnimationFrame(() => {
         el.style.height = height;
       });
       this.$emit("enter");
     },
-    handleLeave(el) {
-      const { height } = getComputedStyle(el);
+    afterEnterHandler(el) {
+      el.style.height = "auto";
+      this.$emit("after-enter");
+    },
+    leaveHandler(el) {
+      const height = getComputedStyle(el).height;
       el.style.height = height;
-      setTimeout(() => {
-        el.style.height = 0;
+      getComputedStyle(el).height;
+      el.style.transitionDuration = this.duration + "ms";
+      requestAnimationFrame(() => {
+        el.style.height = "0";
       });
       this.$emit("leave");
     }
   }
 };
 </script>
+<style scoped>
+* {
+  will-change: height;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+</style>

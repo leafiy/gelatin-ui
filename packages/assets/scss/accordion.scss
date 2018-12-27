@@ -4,7 +4,6 @@
 .ui-accordion-container {
   border: 1px solid $lighter;
   border-radius: $radius/2;
-  margin: 1rem 0;
 
   >.ui-accordion-item {
     &:last-child {
@@ -21,7 +20,6 @@
 .ui-accordion-item {
   position: relative;
   border-bottom: 1px solid $lighter;
-  padding: .5em 1em;
   user-select: none;
 
 
@@ -41,9 +39,7 @@
   transition: all .2s ease-in-out;
   display: flex;
   justify-content: space-between;
-  &-content{
-    cursor: pointer;
-  }
+  padding: .5em 1em;
 }
 
 .ui-accordion-close-icon {
@@ -52,7 +48,9 @@
   cursor: pointer;
 
 }
-
+.ui-accordion-content-inner{
+  padding: 0 1em .5em 1em;
+}
 
 .ui-accordion-size {
   &-sm {

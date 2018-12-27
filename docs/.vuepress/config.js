@@ -5,7 +5,7 @@ module.exports = {
   title: 'Gelatin-Ui',
   description: '🎨 简单好看的VueJs UI from unicapsule.com',
   port: 8108,
-  host: "localhost",
+  host: "192.168.145.128",
   base: "/",
   themeConfig: {
     displayAllHeaders: true,
@@ -42,6 +42,10 @@ module.exports = {
           ['/alert/', 'Alert'],
           ['/accordion/', 'Accordion 折叠'],
           ['/slide-panel/', 'Slide-Panel'],
+          ['/hr/', 'Hr 分割线'],
+          ['/avatar/', 'Avatar'],
+          ['/tag/', 'Tag'],
+
         ]
       },
       {
@@ -71,11 +75,10 @@ module.exports = {
         collapsable: false,
         children: [
           ['/image/', 'Image 图片懒加载'],
-          ['/avatar/', 'Avatar'],
-          ['/tag/', 'Tag'],
+          ['/height-transition/', 'Height transition'],
           ['/share/', 'Share'],
+          ['/high-light/', 'High Light 文字高亮'],
           ['/typer/', 'Typer 打字机'],
-          ['/hr/', 'Hr 分割线'],
           ['/carousel/', 'Carousel 卡片轮播'],
           ['/countdown/', 'Countdown 倒计时'],
           ['/sticky/', 'Sticky 滚动固定'],

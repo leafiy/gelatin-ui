@@ -29,19 +29,18 @@
       @keyup.esc.exact="handleEsc"
       @change.exact="handleChange"
     ></textarea>
-    <fade-transition>
+    <transition name="fade">
       <div
         class="ui-textarea-counter"
         v-if="counter && inputVal && inputVal.length"
       >
         {{ inputVal.length }}/{{ maxLength }}
       </div>
-    </fade-transition>
+    </transition>
   </div>
 </template>
 <script>
 import "../assets/scss/textarea.scss";
-import { FadeTransition } from "vue2-transitions";
 import Autosize from "autosize";
 export default {
   name: "ui-textarea",
@@ -85,9 +84,6 @@ export default {
     },
     autofocus: Boolean,
     theme: String // flat/ghost
-  },
-  components: {
-    FadeTransition
   },
   computed: {
     wrapClasses() {

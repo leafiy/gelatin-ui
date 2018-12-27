@@ -24,15 +24,22 @@ export default {
   },
   methods: {
     handler({ id, show }) {
-      this.$slots.default.forEach(item => {
-        if (show && item.componentInstance.id !== id) {
-          item.componentInstance.show = false;
-        }
-      });
+      if (!this.keepOpen) {
+        this.$slots.default.forEach(item => {
+          if (
+            show &&
+            item.componentInstance &&
+            item.componentInstance.id !== id
+          ) {
+            item.componentInstance.show = false;
+          }
+        });
+      }
     }
   },
   props: {
-    size: String
+    size: String,
+    keepOpen: Boolean
   },
   mounted() {
     events.$on(`${this.id}`, this.handler);

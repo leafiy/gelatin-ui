@@ -31,14 +31,14 @@
       @keyup.esc.exact="handleEsc"
       @change.exact="handleChange"
     />
-    <fade-transition>
+    <transition name="fade">
       <div class="ui-input-clear" v-if="inputVal && showClear" @click="clear">
         <ui-icon name="close-circle-fill"></ui-icon>
       </div>
-    </fade-transition>
-    <fade-transition>
+    </transition>
+    <transition name="fade">
       <ui-spinner v-if="loading"></ui-spinner>
-    </fade-transition>
+    </transition>
     <div
       class="ui-input-suffix"
       @click="focus"
@@ -56,7 +56,6 @@
 import "../assets/scss/input.scss";
 import UiIcon from "../icon/icon.vue";
 import UiSpinner from "../spinner/spinner.vue";
-import { FadeTransition } from "vue2-transitions";
 export default {
   name: "ui-input",
   data() {
@@ -100,7 +99,6 @@ export default {
   },
   components: {
     UiIcon,
-    FadeTransition,
     UiSpinner
   },
   computed: {
