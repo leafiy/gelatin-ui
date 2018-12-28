@@ -52,7 +52,8 @@ module.exports = {
         title: 'form',
         collapsable: false,
         children: [
-          ['/autocomplete/', 'Autocomplete 输入框建议'],
+          // ['/autocomplete/'],
+          ['/autocomplete/', 'Autocomplete'],
           ['/checkbox/', 'Checkbox'],
           ['/radio/', 'Radio'],
         ]

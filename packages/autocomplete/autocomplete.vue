@@ -179,7 +179,8 @@ export default {
     },
 
     setItems(items) {
-      this.showItems = this.items.map(item => {
+      items = items ? items : this.items;
+      this.showItems = items.map(item => {
         return { item: this.itemHandler(item), show: true };
       });
       this.activeItemIndex = -1;

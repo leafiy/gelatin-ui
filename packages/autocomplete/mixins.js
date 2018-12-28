@@ -43,10 +43,10 @@ export default {
       let offsetTop = item.offsetTop;
 
       if (offsetTop + item.scrollHeight > scrollTop + list.clientHeight) {
-        list.scrollTop += item.scrollHeight;
+        list.scrollTop += item.scrollHeight * 2;
       }
       if (offsetTop < scrollTop) {
-        list.scrollTop -= item.scrollHeight;
+        list.scrollTop -= item.scrollHeight * 2;
       }
     },
     onKeyDown(e) {
