@@ -147,7 +147,6 @@ export default {
       if (instance) {
         instance.errors = true;
       }
-      // let newError = { name, message };
       let exist = this.errors.some(error => {
         return isObjectEqual(error, { name, message });
       });
@@ -157,23 +156,23 @@ export default {
       this.$emit("add-error", { name, message });
     },
     removeError({ name, message }) {
-      let newError = { name, message };
       let instance = this.fields[name];
       this.errors.forEach((error, index) => {
-        if (isObjectEqual(error, newError)) {
+        if (isObjectEqual(error, { name, message })) {
           this.errors.splice(index, 1);
         }
       });
       let exist = this.errors.some(error => {
-        return isObjectEqual(error, newError);
+        return isObjectEqual(error, { name, message });
       });
       if (!exist) {
         instance.errors = false;
       }
-      this.$emit("remove-error", newError);
+      this.$emit("remove-error", { name, message });
     },
     clearErrors(name) {
       this.errors = this.errors.filter(item => item.name !== name);
+      this.$emit("clear-errors");
     },
     validateStart({ name }) {
       this.$emit("validate-start", name);

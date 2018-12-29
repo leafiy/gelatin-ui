@@ -184,3 +184,27 @@ data() {
   }
 ```
 </code-code>
+
+
+#### 内置方法和事件
+
+向某个input/textarea手动添加错误
+
+```
+this.$refs['form'].parseError({name,message})
+```
+
+手动清除input/textarea的错误
+
+```
+this.$refs['form'].clearErrors({name}) //清除所有
+this.$refs['form'].removeError({name,message}) //删除单项错误
+
+```
+
+
+`add-error` 增加了错误
+`remove-error` 单项错误被移除
+`clear-errors` 错误被清除
+`validate-start` 验证开始
+`validate-finish` 验证结束
