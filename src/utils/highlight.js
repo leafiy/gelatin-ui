@@ -14,11 +14,6 @@ const highlight = ({
     className ? "ui-highlight-" + className : ""
   }`;
 
-  // let content = el.innerHTML,
-  //   pattern = new RegExp('(>[^<.]*)(' + text + ')([^<.]*)', 'g'),
-  //   replaceWith = '$1<span class="' + classes + '">$2</span>$3',
-  //   highlighted = content.replace(pattern, replaceWith);
-  // return (el.innerHTML = highlighted) !== content;
   if (text) {
     text = text.replace(/[|\\{}()[\]^$+*?.]/g, "");
     let re = loose
@@ -45,7 +40,6 @@ const highlight = ({
         }
         content = match.join("");
       }
-
       item.innerHTML = content;
     });
   } else {

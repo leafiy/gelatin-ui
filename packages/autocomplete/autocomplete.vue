@@ -23,9 +23,8 @@
           v-if="item.show"
           :key="index + Date.now()"
           @click="selectItem(index)"
-          v-ui-highlight="highlightOptions"
         >
-          <span v-html="item.item"></span>
+          <div v-html="item.item" v-ui-highlight="highlightOptions"></div>
         </div>
       </div>
     </ui-height-transition>
@@ -135,9 +134,10 @@ export default {
     },
     itemHandler(item) {
       if (typeof item == "string") {
-        return item; //????
+        return validators.htmlStrict.test(item) ? item : `<span>${item}</span>`;
       } else if (isElement(item)) {
-        return item;
+        // todo: make element react
+        return item.innerHTML;
       } else {
         throw new Error("each item should be a string or an element");
       }
