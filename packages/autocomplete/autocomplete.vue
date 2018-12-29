@@ -6,11 +6,15 @@
       @focus="focus"
       @blur="blur"
       v-model="query"
-      @keyup.native.enter="enterHandler"
+      @keydown.native.enter="enterHandler"
     >
       <ui-icon slot="prefix" :name="icon"></ui-icon>
     </ui-input>
-    <ui-height-transition :duration="100">
+    <ui-height-transition
+      :duration="100"
+      @after-enter="$emit('open')"
+      @after-leave="$emit('close')"
+    >
       <div
         class="ui-autocomplete-list"
         v-if="showList && listLength"
@@ -126,11 +130,9 @@ export default {
     },
     show() {
       this.showList = true;
-      this.$emit("open");
     },
     hide() {
       this.showList = false;
-      this.$emit("close");
     },
     itemHandler(item) {
       if (typeof item == "string") {
@@ -153,7 +155,9 @@ export default {
       // this.showList = false;
     },
     enterHandler() {
-      this.$emit("enter", this.query);
+      setTimeout(() => {
+        this.$emit("enter", this.query);
+      }, this.debounce);
     },
     selectItem(index) {
       let item = null;

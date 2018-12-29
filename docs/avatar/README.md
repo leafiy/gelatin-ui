@@ -20,13 +20,13 @@ https://leafiy.oss-cn-beijing.aliyuncs.com/leafiyanthony-tuil-512016-splash.jpg"
  ```
 </code-code>
 
-|prop|type|default|
+|prop|type|default|description|
 |--|--|--|--|
 |shape|String|circle||
 |size|String|||
 |url|String|||
 |username|String|||
-|icon|String|icon-user||
+|icon|String|user||
 |showName|Boolean|true||
-|lazy|Boolean|true||
+|lazy|Boolean|true|启用图片懒加载|
 |fallback|String||图片加载失败时显示的图片,只在`lazy`为`true`时生效|
