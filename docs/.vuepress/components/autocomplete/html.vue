@@ -23,7 +23,7 @@ export default {
     items2() {
       let arr = []
       for (let item of this.items) {
-        let div = document.createElement('div')
+        let div = typeof document === 'object' ? document.createElement('div') : {}
         div.innerHTML = item
         arr.push(div)
       }

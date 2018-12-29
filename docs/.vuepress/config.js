@@ -54,7 +54,10 @@ module.exports = {
         children: [
           // ['/autocomplete/'],
           ['/autocomplete/', 'Autocomplete'],
+          ['/input/', 'Input'],
+          ['/textarea/', 'Textarea'],
           ['/checkbox/', 'Checkbox'],
+          ['/v/', 'V Validation'],
           ['/radio/', 'Radio'],
         ]
       },

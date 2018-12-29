@@ -123,4 +123,7 @@ div[class*="language-"] pre[class*="language-"] {
       padding: 12px;
     }
   }
+  .content pre, .content pre[class*="language-"]{
+    padding:.5em;
+  }
 }

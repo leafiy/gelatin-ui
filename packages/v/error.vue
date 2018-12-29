@@ -3,11 +3,11 @@
     <slot></slot>
     <!-- <transition name="fade"> -->
     <ui-height-transition>
-      <p class="ui-v-error-list" v-if="errorArr && errorArr.length">
-        <span v-for="(index, item) of errorArr" :key="index + item"
-          >{{ item.message }} <em>, </em>
+      <div class="ui-v-error-list" v-if="errorArr && errorArr.length">
+        <span v-for="error of errorArr" :key="error.message"
+          >{{ error.message }} <em>, </em>
         </span>
-      </p>
+      </div>
     </ui-height-transition>
     <!-- </transition> -->
   </div>

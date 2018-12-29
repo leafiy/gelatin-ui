@@ -70,13 +70,11 @@ export default {
             instance.$on(rule.trigger, val => {
               let name = instance.name;
               this.validateStart({ name });
-              let value =
-                instance.$el.querySelector("input").value ||
-                instance.$el.querySelector("textarea").value;
+              let value = instance.$el.querySelector(`[name="${name}"]`).value;
               this.$nextTick(() => {
                 this.trigger({ name, value, rule })
                   .then(({ name, message }) => {
-                    this.removeErro({ name, message });
+                    this.removeError({ name, message });
                   })
                   .catch(({ name, message }) => {
                     this.parseError({ name, message });
@@ -132,7 +130,7 @@ export default {
               errors.push(item.e);
               this.parseError(item.e);
             } else {
-              this.removeErro(item.v);
+              this.removeError(item.v);
             }
           });
           if (errors.length) {
@@ -149,19 +147,16 @@ export default {
       if (instance) {
         instance.errors = true;
       }
-      let newError = {
-        name: name,
-        message: message
-      };
+      // let newError = { name, message };
       let exist = this.errors.some(error => {
-        return isObjectEqual(error, newError);
+        return isObjectEqual(error, { name, message });
       });
       if (!exist) {
-        this.errors.push(newError);
+        this.errors.push({ name, message });
       }
-      this.$emit("add-error", newError);
+      this.$emit("add-error", { name, message });
     },
-    removeErro({ name, message }) {
+    removeError({ name, message }) {
       let newError = { name, message };
       let instance = this.fields[name];
       this.errors.forEach((error, index) => {

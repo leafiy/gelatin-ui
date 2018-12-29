@@ -48,7 +48,7 @@ export default {
           return;
         }
         let f = fn(value);
-        if (f.then) {
+        if (f.then && typeof f.then == "function") {
           f.then(() => {
             resolve();
           }).catch(msg => {

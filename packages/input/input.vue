@@ -32,7 +32,11 @@
       @change.exact="handleChange"
     />
     <transition name="fade">
-      <div class="ui-input-clear" v-if="inputVal && showClear" @click="clear">
+      <div
+        class="ui-input-clear"
+        v-if="inputVal && showClear && !readonly"
+        @click="clear"
+      >
         <ui-icon name="close-circle-fill"></ui-icon>
       </div>
     </transition>
