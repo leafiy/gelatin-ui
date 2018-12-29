@@ -242,6 +242,9 @@ export default {
     value(val) {
       this.query = val;
       this.lastQuery = val;
+    },
+    items() {
+      this.setItems(this.items);
     }
   },
   beforeMount() {

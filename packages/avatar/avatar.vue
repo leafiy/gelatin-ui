@@ -4,16 +4,19 @@
       <ui-image
         :fallback="fallback"
         :src="url"
-        v-if="url"
+        v-if="lazy && url"
         class="ui-avatar-image"
+        @load-finished="loadFinished"
+        @load-failed="loadFailed"
       ></ui-image>
+      <img :src="url" v-if="!lazy && url" alt="" class="ui-avatar-image" />
       <div class="ui-avatar-string" v-if="!url && displayName">
         {{ displayName }}
       </div>
       <ui-icon :name="icon" v-if="!url && !displayName"></ui-icon>
     </div>
     <span class="ui-avatar-name" v-if="showName">{{ username }}</span>
-    <span class="ui-avatar-slot"><slot></slot></span>
+    <span class="ui-avatar-slot" v-if="$slots.default"><slot></slot></span>
   </div>
 </template>
 <script>
@@ -50,7 +53,11 @@ export default {
       type: Boolean,
       default: true
     },
-    fallback: String
+    fallback: String,
+    lazy: {
+      type: Boolean,
+      default: true
+    }
   },
   computed: {
     displayName() {
@@ -58,6 +65,14 @@ export default {
     },
     classes() {
       return [`ui-avatar-size-${this.size}`, `ui-avatar-${this.shape}`];
+    }
+  },
+  methods: {
+    loadFinished() {
+      this.$emit("load-finished");
+    },
+    loadFailed() {
+      this.$emit("load-failed");
     }
   }
 };
