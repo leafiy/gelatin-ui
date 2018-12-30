@@ -58,7 +58,7 @@ module.exports = {
           ['/textarea/', 'Textarea'],
           ['/checkbox/', 'Checkbox'],
           ['/v/', 'V Validation'],
-          ['/radio/', 'Radio'],
+          // ['/radio/', 'Radio'],
         ]
       },
       {
@@ -69,8 +69,8 @@ module.exports = {
           ['/confirm/', 'Confirm'],
           ['/toast/', 'Toast'],
           ['/message/', 'Message'],
-          ['/tooltip/', 'Tooltip'],
-          ['/dropdown/', 'Dropdown'],
+          // ['/tooltip/', 'Tooltip'],
+          // ['/dropdown/', 'Dropdown'],
           ['/popover/', 'Popover'],
         ]
       },

@@ -1,5 +1,5 @@
 import Pop from "./pop.js";
-
+import nanoid from "nanoid";
 let instances = [];
 const defaultOptions = {
   closeOnMouseleave: false,
@@ -21,7 +21,7 @@ const Popover = function(options) {
   if (el.dataset.popover) {
     return;
   }
-  el.dataset.popover = true;
+  el.dataset.popover = "popover-" + nanoid();
   options = renderOptions(el, options);
   let instance = new Pop(options);
   setTimeout(() => {
@@ -36,6 +36,7 @@ const Popover = function(options) {
 };
 
 const renderOptions = function(el, options) {
+  options.triggerId = el.dataset.popover;
   if (typeof options == "string") {
     options = {
       tooltip: options

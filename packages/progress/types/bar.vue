@@ -36,6 +36,12 @@
   </transition>
 </template>
 <script>
+import Vue from "vue";
+if (!Vue.prototype.$zIndex) {
+  import("../../../src/utils/zHandler.js").then(res => {
+    Vue.prototype.$zIndex = new res.default();
+  });
+}
 export default {
   name: "bar",
 
@@ -61,7 +67,8 @@ export default {
     barStyles() {
       return {
         height: this.size + "px",
-        backgroundColor: this.backColor
+        backgroundColor: this.backColor,
+        zIndex: this.zIndex
       };
     },
     styles() {

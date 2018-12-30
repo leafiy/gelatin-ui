@@ -11,11 +11,7 @@
         ref="dropdown-menu"
         v-click-outside="close"
       >
-        <span
-          class="ui-dropdown-triangle"
-          :style="triangleStyles"
-          ref="triangle"
-        ></span>
+        <span class="ui-dropdown-arrow" :style="arrowStyles" ref="arrow"></span>
         <div class="ui-dropdown-content" :style="menuStyles"><slot></slot></div>
       </div>
     </transition>
@@ -23,12 +19,12 @@
 </template>
 <script>
 import ClickOutside from "vue-click-outside";
-import pop from "../../src/mixins/pop/pop.js";
+import popPosition from "../../src/mixins/pop/position.js";
 
 import "../assets/scss/dropdown.scss";
 export default {
   name: "ui-dropdown",
-  mixins: [pop],
+  mixins: [popPosition],
   data() {
     return {
       show: false,

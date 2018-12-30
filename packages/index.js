@@ -81,6 +81,8 @@ const components = [
   UiHeightTransition
 ];
 
+import zHandler from "../src/utils/zHandler.js";
+
 const install = function(Vue, options = {}) {
   components.forEach(component => Vue.component(component.name, component));
   Vue.prototype.$UiPopover = $UiPopover;
@@ -95,9 +97,7 @@ const install = function(Vue, options = {}) {
   Vue.directive(UiLoading.name, UiLoading);
   Vue.directive(UiMask.name, UiMask);
   Vue.directive(UiSticky.name, UiSticky);
-  Vue.prototype.$GelatinUi = {
-    zIndex: options.zIndex || "200"
-  };
+  Vue.prototype.$zIndex = new zHandler(options.zIndex);
   // Vue.prototype.$Rem = Rem
 };
 

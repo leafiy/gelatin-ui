@@ -14,12 +14,15 @@ const $UiLoadingBar = function(options) {
     showNumber: false,
     foreColor: "#08D7B8",
     backColor: "#ffffff",
-    duration: 4000
+    duration: 4000,
+    zIndex: Vue.prototype.$zIndex.add()
   };
   options = Object.assign(defaultOptions, options);
 
   if (instance) {
     clearInterval(instance.timer);
+    document.body.removeChild(instance.$el);
+    Vue.prototype.$zIndex.remove();
     instance = null;
   }
   instance = new UiLoadingBar({
@@ -51,6 +54,7 @@ $UiLoadingBar.finish = function() {
   clearInterval(instance.timer);
   setTimeout(() => {
     instance.show = false;
+    Vue.prototype.$zIndex.remove();
   }, 500);
 };
 $UiLoadingBar.increase = function(percent = 1) {

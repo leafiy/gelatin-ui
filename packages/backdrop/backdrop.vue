@@ -17,6 +17,12 @@
 import UiSpinner from "../spinner/spinner.vue";
 import "../assets/scss/backdrop.scss";
 import events from "../../src/utils/events.js";
+import Vue from "vue";
+if (!Vue.prototype.$zIndex) {
+  import("../../src/utils/zHandler.js").then(res => {
+    Vue.prototype.$zIndex = new res.default();
+  });
+}
 export default {
   name: "ui-backdrop",
   data() {
@@ -33,7 +39,7 @@ export default {
     },
     onClick: Function,
     showSpinner: Boolean,
-    zIndex: Number,
+    // zIndex: Number,
     global: Boolean,
     text: String,
     closeOnClick: Boolean,
@@ -50,7 +56,7 @@ export default {
     styles() {
       return [
         {
-          zIndex: this.zIndex,
+          zIndex: this.$zIndex.add(),
           borderRadius:
             typeof this.radius == "number" ? this.radius + "px" : this.radius
         }
@@ -71,10 +77,12 @@ export default {
     },
     close() {
       this.show = false;
+      this.$zIndex.remove();
     }
   },
   mounted() {
     this.show = true;
+    this.$zIndex.add();
     if (this.global) {
       events.$on("close-backdrop", this.close);
     }

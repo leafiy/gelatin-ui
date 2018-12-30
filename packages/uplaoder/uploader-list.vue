@@ -11,7 +11,11 @@
         :src="file.url"
         @click="handlePreview(file, index)"
       />
-      <div class="ui-upload-actions" v-if="file">
+      <div
+        class="ui-upload-actions"
+        :style="{ zIndex: $zIndex.get() }"
+        v-if="file"
+      >
         <span
           v-if="file.status == 'uploading'"
           v-html="lang.cancel"

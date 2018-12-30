@@ -19,6 +19,7 @@
         class="ui-autocomplete-list"
         v-if="showList && listLength"
         ref="list"
+        :style="{ zIndex: zIndex }"
       >
         <ui-spinner center v-if="loading && showSpinner"></ui-spinner>
         <div
@@ -56,7 +57,8 @@ export default {
       loading: false,
       showItems: [],
       list: "",
-      lastQuery: ""
+      lastQuery: "",
+      zIndex: this.$zIndex.get()
     };
   },
   mixins: [mixins],
@@ -130,9 +132,11 @@ export default {
     },
     show() {
       this.showList = true;
+      this.$zIndex.add();
     },
     hide() {
       this.showList = false;
+      this.$zIndex.remove();
     },
     itemHandler(item) {
       if (typeof item == "string") {

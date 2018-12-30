@@ -43,7 +43,11 @@ import UiButtonGroup from "../button/button-group.vue";
 import UiButton from "../button/button.vue";
 import "../assets/scss/modal.scss";
 import { $UiCover } from "../backdrop/index.js";
-
+if (!Vue.prototype.$zIndex) {
+  import("../../src/utils/zHandler.js").then(res => {
+    Vue.prototype.$zIndex = new res.default();
+  });
+}
 export default {
   name: "ui-modal",
 
@@ -76,7 +80,7 @@ export default {
     styles() {
       return [
         {
-          zIndex: this.zIndex
+          zIndex: this.$zIndex.get()
         }
       ];
     }
@@ -86,9 +90,11 @@ export default {
       if (this.value) {
         this.openModal();
         this.isOpen = true;
+        this.$zIndex.add();
       } else {
         this.closeModal();
         this.isOpen = false;
+        this.$zIndex.remove();
       }
     }
   },

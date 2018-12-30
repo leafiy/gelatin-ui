@@ -11,7 +11,9 @@
     <slot name="loader" v-if="loading">
       <div class="ui-image-loader"><ui-spinner center></ui-spinner></div>
     </slot>
-    <div class="ui-image-slot" v-if="$slots.default"><slot></slot></div>
+    <div class="ui-image-slot" :style="slotStyles" v-if="$slots.default">
+      <slot></slot>
+    </div>
   </div>
 </template>
 <script>
@@ -48,6 +50,11 @@ export default {
       });
   },
   computed: {
+    slotStyles() {
+      return {
+        zIndex: this.$zIndex.add()
+      };
+    },
     backgroundStyle() {
       return {
         backgroundImage: this.failed

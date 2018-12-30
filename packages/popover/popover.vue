@@ -2,21 +2,25 @@
   <transition name="fade">
     <div
       class="ui-popover"
-      :class="{ 'ui-tooltip': !!tooltip }"
+      :class="{ 'ui-tooltip': tooltip }"
+      @mouseenter="mouseenter"
+      @mouseleave="mouseleave"
       v-click-outside="close"
       v-if="show"
       :style="stlyes"
     >
       <span
-        class="ui-popover-triangle"
+        class="ui-popover-arrow"
         v-if="arrow"
-        :style="triangleStyles"
-        ref="triangle"
+        :style="arrowStyles"
+        ref="arrow"
       ></span>
       <div
-        v-if="!tooltip"
         class="ui-popover-menu"
-        :class="[`ui-popover-menu-${menuType}`]"
+        :class="[
+          `ui-popover-menu-${menuType}`,
+          { 'ui-popover-with-close': showCloseIcon }
+        ]"
         :style="menuStyles"
       >
         <ul v-if="menu.length">
@@ -36,17 +40,9 @@
           @click="closeOnClick ? (show = false) : ''"
           v-html="handleContent(content)"
         ></div>
-      </div>
-      <div
-        class="ui-popover-menu"
-        :class="{ 'ui-tooltip-with-close': showCloseIcon }"
-        v-if="tooltip"
-        :style="[menuStyles, tooltipStyles]"
-      >
-        <div class="ui-tooltip-content" v-html="tooltip"></div>
         <div
-          class="ui-tooltip-close-icon"
-          v-if="tooltip && showCloseIcon"
+          class="ui-popover-close-icon"
+          v-if="showCloseIcon && !menu.length"
           @click="show = false"
         >
           <ui-icon name="close"></ui-icon>
@@ -59,18 +55,17 @@
 import ClickOutside from "vue-click-outside";
 import UiPopoverItem from "./popover-item.vue";
 import "../assets/scss/popover.scss";
-import isElement from "iselement";
-import pop from "../../src/mixins/pop/pop.js";
+import popPosition from "../../src/mixins/pop/position.js";
 import UiIcon from "../icon/icon.vue";
 export default {
   name: "ui-popover",
   data() {
     return {};
   },
-  mixins: [pop],
+  mixins: [popPosition],
   props: {
-    trigger: String,
-    tooltip: String,
+    triggerId: String,
+    tooltip: Boolean,
     params: Object,
     menu: {
       type: Array,
@@ -89,17 +84,48 @@ export default {
       type: Boolean,
       default: true
     },
+    openOnMouseover: Boolean,
     closeOnMouseleave: Boolean,
     onClose: Function,
     content: String,
     showCloseIcon: Boolean,
-    textCetner: Boolean
+    textCetner: Boolean,
+    width: Number,
+    arrow: {
+      type: Boolean,
+      default: true
+    },
+    offset: {
+      type: Number,
+      default: 10
+    },
+    arrowSize: {
+      type: Number,
+      default: 6
+    },
+    arrowOffset: {
+      type: Number,
+      default: 10
+    },
+    align: {
+      type: String,
+      default: "center",
+      validator: function(value) {
+        return ["center", "left", "right"].indexOf(value) !== -1;
+      }
+    },
+    radius: {
+      type: Number,
+      default: 8
+    }
   },
   components: {
     UiPopoverItem,
     UiIcon
   },
   methods: {
+    mouseenter() {},
+    mouseleave() {},
     handleContent(content) {
       if (content.startsWith("data:image/")) {
         let img = document.createElement("img");
@@ -135,9 +161,7 @@ export default {
     }
   },
   mounted() {
-    if (!isElement(this.trigger)) {
-      throw new Error("trigger must be a element");
-    }
+    this.trigger = document.querySelector(`[data-popover="${this.triggerId}"]`);
   },
   directives: {
     ClickOutside

@@ -15,7 +15,7 @@ const defaultOptions = {
 const Tooltip = function(options) {
   let el = options.trigger;
   let instance = new Pop(options);
-
+  el.dataset["popover"] = "popover-" + nanoid();
   setTimeout(() => {
     instance.show = true;
   }, options.openDelay);
@@ -48,6 +48,7 @@ const Tooltip = function(options) {
 };
 
 const renderOptions = function(el, options) {
+  options.triggerId = el.dataset.popover;
   if (typeof options == "object") {
     options.tooltip = options.content;
     delete options.content;
@@ -62,7 +63,6 @@ const renderOptions = function(el, options) {
       options[key] = defaultOptions[key];
     }
   });
-  options.trigger = el;
   return options;
 };
 
@@ -80,6 +80,7 @@ const makeInstance = function(binding, options) {
 export default {
   name: "ui-tooltip",
   inserted(el, binding, vnode) {
+    console.log(el);
     if (!binding.value) {
       throw new Error("at least add some content");
     }

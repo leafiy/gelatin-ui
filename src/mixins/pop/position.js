@@ -1,11 +1,17 @@
 import getAxis from "../../utils/getAxis.js";
 import scrollbarWidth from "../../utils/scrollbar.js";
 import { debounce, throttle } from "lodash";
+import Vue from "vue";
+if (!Vue.prototype.$zIndex) {
+  import("../../utils/zHandler.js").then(res => {
+    Vue.prototype.$zIndex = new res.default();
+  });
+}
 export default {
   data() {
     return {
       axis: {},
-      triangleLeft: "",
+      arrowLeft: "",
       el: "",
       key: "",
       // content: "",
@@ -24,44 +30,9 @@ export default {
       triggerOffset: "",
       popoverOffset: "",
       userOnClose: "",
-      translateX: ""
+      translateX: "",
+      zIndex: this.$zIndex.get()
     };
-  },
-  props: {
-    width: Number,
-    arrow: {
-      type: Boolean,
-      default: true
-    },
-    offset: {
-      type: Number,
-      default: 14
-    },
-    arrowSize: {
-      type: Number,
-      default: 10
-    },
-    triangleOffset: {
-      type: Number,
-      default: 15
-    },
-    align: {
-      type: String,
-      default: "center",
-      validator: function(value) {
-        return ["center", "left", "right"].indexOf(value) !== -1;
-      }
-    },
-    radius: {
-      type: Number,
-      default: 10
-    },
-
-    zIndex: {
-      type: Number,
-      default: 200
-    },
-    textCetner: Boolean
   },
   computed: {
     stlyes() {
@@ -72,13 +43,13 @@ export default {
         zIndex: this.zIndex
       };
     },
-    triangleStyles() {
+    arrowStyles() {
       return {
         borderWidth: `${this.arrowSize}px`,
         borderTopColor: this.borderTopColor,
         borderBottomColor: this.borderBottomColor,
         top: `${this.arrowTop}px`,
-        left: `${this.triangleLeft}px`,
+        left: `${this.arrowLeft}px`,
         zIndex: this.zIndex + 1
       };
     },
@@ -157,26 +128,26 @@ export default {
       }
       if (this.arrow) {
         this.$nextTick(() => {
-          this.setTrianglePosition();
+          this.setarrowPosition();
         });
       }
     }, 20),
-    setTrianglePosition() {
+    setarrowPosition() {
       let popoverOffset = this.el.getBoundingClientRect();
 
       if (this.align == "center") {
-        this.triangleLeft =
+        this.arrowLeft =
           this.triggerOffset.left +
           this.triggerOffset.width / 2 -
           this.left -
           this.arrowSize;
       }
       if (this.align == "right") {
-        this.triangleLeft = this.popoverOffset.width / 2 + this.arrowSize;
+        this.arrowLeft = this.popoverOffset.width / 2 + this.arrowSize;
       }
 
       if (this.align == "left") {
-        this.triangleLeft = this.popoverOffset.width / 4 - this.arrowSize;
+        this.arrowLeft = this.popoverOffset.width / 4 - this.arrowSize;
       }
 
       if (this.axis.y > this.targetTop) {
@@ -190,11 +161,11 @@ export default {
       }
 
       this.$nextTick(() => {
-        let triangleOffset = this.$refs["triangle"].getBoundingClientRect();
-        if (triangleOffset.right + this.offset >= popoverOffset.right) {
+        let arrowOffset = this.$refs["arrow"].getBoundingClientRect();
+        if (arrowOffset.right + this.offset >= popoverOffset.right) {
           this.translateX = `${this.arrowSize}px`;
         }
-        if (triangleOffset.left - this.offset <= popoverOffset.left) {
+        if (arrowOffset.left - this.offset <= popoverOffset.left) {
           this.translateX = `-${this.arrowSize}px`;
         }
       });
@@ -202,5 +173,9 @@ export default {
   },
   mounted() {
     this.getAxis();
+    this.$zIndex.add();
+  },
+  beforeDestory() {
+    this.$zIndex.remove();
   }
 };

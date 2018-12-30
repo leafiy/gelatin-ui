@@ -1,12 +1,16 @@
 import { throttle } from "lodash";
-
+import Vue from "vue";
 let listenAction;
 let supportCSSSticky;
-
+if (!Vue.prototype.$zIndex) {
+  import("../../src/utils/zHandler.js").then(res => {
+    Vue.prototype.$zIndex = new res.default();
+  });
+}
 const getBindingConfig = binding => {
   const params = binding.value || {};
   let top = params.top || 0;
-  let zIndex = params.zIndex || 1000;
+  let zIndex = Vue.prototype.$zIndex.get();
   let disabled = params.disabled;
   return { top, zIndex, disabled };
 };

@@ -11,7 +11,7 @@
         class="ui-toast-icon"
         @click="clickIcon"
         v-if="!isMessage && show"
-        :style="{ zIndex: zIndex && zIndex + 4 }"
+        :style="iconStyles"
       >
         <ui-icon :name="iconName" v-if="iconName"></ui-icon>
       </div>
@@ -25,7 +25,7 @@
       <div
         class="ui-toast-background"
         v-if="!isMessage && isEntered"
-        :style="{ zIndex: zIndex && zIndex + 1 }"
+        :style="backgroundStyles"
       ></div>
     </transition>
     <div
@@ -95,7 +95,7 @@ export default {
       icon: "",
       title: "",
       actions: [],
-      zIndex: "",
+      zIndex: this.$zIndex.get(),
       isEntered: false,
       closeOnClick: false,
       onClick: null,
@@ -129,9 +129,19 @@ export default {
     toastTransition() {
       return `ui-toast-transition-x-${this.position.x}`;
     },
+    iconStyles() {
+      return {
+        zIndex: this.zIndex + 2
+      };
+    },
+    backgroundStyles() {
+      return {
+        zIndex: this.zIndex + 1
+      };
+    },
     contentStyles() {
       return {
-        zIndex: this.zIndex && this.zIndex + 3,
+        zIndex: this.zIndex + 1,
         // visibility: this.showContent ? 'visible' : 'hidden',
         opacity: this.showContent ? 1 : 0
       };
@@ -176,6 +186,7 @@ export default {
     },
     stop() {
       this.show = false;
+
       if (this.onClose && typeof this.onClose == "function") {
         this.onClose(this);
         this.closeToast();
@@ -184,6 +195,7 @@ export default {
     destroy() {
       if (!this.closed) {
         this.$el.parentNode.removeChild(this.$el);
+        this.$zIndex.remove();
         this.closed = true;
         this.closeToast();
       }
