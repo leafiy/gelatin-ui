@@ -3,6 +3,7 @@
     <div
       class="ui-popover"
       :class="{ 'ui-tooltip': tooltip, 'ui-dropdown': dropdown }"
+      @mouseleave="mouseleave"
       v-click-outside="close"
       v-if="isShow"
       :style="stlyes"
@@ -15,8 +16,9 @@
       ></span>
       <div
         class="ui-popover-menu"
+        ref="menu"
         :class="[
-          `ui-popover-menu-${menuType}`,
+          menuType && `ui-popover-menu-${menuType}`,
           { 'ui-popover-with-close': showCloseIcon }
         ]"
         :style="menuStyles"
@@ -58,6 +60,8 @@ import UiPopoverItem from "./popover-item.vue";
 import "../assets/scss/popover.scss";
 import popPosition from "../../src/mixins/pop/position.js";
 import UiIcon from "../icon/icon.vue";
+import mousePosition from "../../src/utils/mousePosition.js";
+
 export default {
   name: "ui-popover",
   data() {
@@ -82,7 +86,6 @@ export default {
     },
     menuType: {
       type: String,
-      default: "vertical",
       validator: function(value) {
         return ["horizon", "vertical"].includes(value);
       }
@@ -178,6 +181,15 @@ export default {
       setTimeout(() => {
         this.isShow = false;
       }, this.closeDelay);
+    },
+    mouseleave(e) {
+      setTimeout(() => {
+        let target = mousePosition().target;
+        if (this.trigger.contains(target) || this.trigger == target) {
+        } else {
+          this.close();
+        }
+      }, 200);
     }
   },
   mounted() {

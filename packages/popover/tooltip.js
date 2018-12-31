@@ -1,5 +1,5 @@
 import Popover from "./popover.js";
-
+import mousePosition from "../../src/utils/mousePosition.js";
 const tooltipOptins = function(el, options) {
   if (typeof options == "string") {
     options = { content: options };
@@ -30,34 +30,21 @@ const tooltip = function(el, binding) {
   });
   el.addEventListener("mouseleave", e => {
     let target = e.target;
-    if (!el.contains(target)) {
-      return;
-    }
-    if (options.interactive) {
-      import(/* webpackChunkName: "vendor" */ "../../src/utils/mousePosition.js").then(
-        module => {
-          setTimeout(() => {
-            let mousePosition = module.default;
-            let target = mousePosition().target;
-            if (!instance.$el.contains(target)) {
-              setTimeout(() => {
-                instance.isShow = false;
-              }, options.closeDelay);
-            }
-            target.addEventListener("mouseleave", () => {
-              setTimeout(() => {
-                instance.isShow = false;
-              }, options.closeDelay);
-            });
-          }, 200);
-        }
-      );
-    } else {
-      setTimeout(() => {
-        instance.isShow = false;
-        delete el.instance;
-      }, options.closeDelay);
-    }
+
+    setTimeout(() => {
+      let target = mousePosition().target;
+      if (
+        options.interactive &&
+        instance.$refs.menu &&
+        instance.$refs.menu.contains(target)
+      ) {
+      } else {
+        setTimeout(() => {
+          instance.isShow = false;
+          delete el.instance;
+        }, options.closeDelay);
+      }
+    }, 300);
   });
   return instance;
 };
