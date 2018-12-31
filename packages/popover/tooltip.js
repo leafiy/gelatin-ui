@@ -1,5 +1,5 @@
 import Popover from "./popover.js";
-import mousePosition from "../../src/utils/mousePosition.js";
+
 const tooltipOptins = function(el, options) {
   if (typeof options == "string") {
     options = { content: options };
@@ -8,7 +8,9 @@ const tooltipOptins = function(el, options) {
     insertAfter: false,
     closeDelay: 50,
     interactive: true,
-    tooltip: true
+    tooltip: true,
+    openOnMouseover: true,
+    closeOnMouseleave: true
   };
   options.trigger = el;
   options = Object.assign(defaultOptions, options);
@@ -30,15 +32,8 @@ const tooltip = function(el, binding) {
   });
   el.addEventListener("mouseleave", e => {
     let target = e.target;
-
     setTimeout(() => {
-      let target = mousePosition().target;
-      if (
-        options.interactive &&
-        instance.$refs.menu &&
-        instance.$refs.menu.contains(target)
-      ) {
-      } else {
+      if (!instance.isMouseIn) {
         setTimeout(() => {
           instance.isShow = false;
           delete el.instance;

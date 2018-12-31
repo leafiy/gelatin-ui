@@ -3,7 +3,6 @@
     <div
       class="ui-popover"
       :class="{ 'ui-tooltip': tooltip, 'ui-dropdown': dropdown }"
-      @mouseleave="mouseleave"
       v-click-outside="close"
       v-if="isShow"
       :style="stlyes"
@@ -16,6 +15,8 @@
       ></span>
       <div
         class="ui-popover-menu"
+        @mouseover="mouseover"
+        @mouseleave="mouseleave"
         ref="menu"
         :class="[
           menuType && `ui-popover-menu-${menuType}`,
@@ -60,13 +61,13 @@ import UiPopoverItem from "./popover-item.vue";
 import "../assets/scss/popover.scss";
 import popPosition from "../../src/mixins/pop/position.js";
 import UiIcon from "../icon/icon.vue";
-import mousePosition from "../../src/utils/mousePosition.js";
 
 export default {
   name: "ui-popover",
   data() {
     return {
-      isShow: false
+      isShow: false,
+      isMouseIn: false
     };
   },
   mixins: [popPosition],
@@ -95,6 +96,7 @@ export default {
       default: true
     },
     closeOnMouseleave: Boolean,
+    openOnMouseover: Boolean,
     onClose: Function,
     content: String,
     showCloseIcon: Boolean,
@@ -132,6 +134,10 @@ export default {
     throttle: {
       type: Number,
       default: 20
+    },
+    interactive: {
+      type: Boolean,
+      default: true
     }
   },
   components: {
@@ -167,6 +173,10 @@ export default {
       if (this.closeOnMouseleave && !this.tooltip) {
         this.trigger.removeEventListener("mouseout", this.close);
       }
+      if (this.tooltip) {
+        this.trigger.removeEventListener("mouseover", this.mouseover);
+        this.trigger.removeEventListener("mouseleave", this.mouseleave);
+      }
     },
     bindEvents() {
       window.addEventListener("resize", this.calculatePopoverPosition);
@@ -176,6 +186,10 @@ export default {
       if (this.closeOnMouseleave && !this.tooltip) {
         this.trigger.addEventListener("mouseout", this.close);
       }
+      if (this.tooltip) {
+        this.trigger.addEventListener("mouseover", this.mouseover);
+        this.trigger.addEventListener("mouseleave", this.mouseleave);
+      }
     },
     close(e) {
       setTimeout(() => {
@@ -183,13 +197,15 @@ export default {
       }, this.closeDelay);
     },
     mouseleave(e) {
+      this.isMouseIn = false;
       setTimeout(() => {
-        let target = mousePosition().target;
-        if (this.trigger.contains(target) || this.trigger == target) {
-        } else {
+        if (!this.isMouseIn && this.closeOnMouseleave) {
           this.close();
         }
-      }, 200);
+      }, 300);
+    },
+    mouseover(e) {
+      this.isMouseIn = true;
     }
   },
   mounted() {

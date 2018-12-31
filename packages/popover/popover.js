@@ -39,8 +39,7 @@ const popoverOptions = function(triggerId, options) {
   const defaultOptions = {
     insertAfter: false,
     closeOnClick: true,
-    arrow: true,
-    menu: []
+    arrow: true
   };
   options = Object.assign(defaultOptions, options);
   return options;
