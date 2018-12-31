@@ -116,8 +116,6 @@ options
 |menu|Array|||
 |menuType|String|horizon|menu排列方向['horizon','vertical']|
 |params|||当使用menu时,向action传递的参数|
-|openOnMouseover|Boolean|false||
-|closeOnMouseleave|Boolean|false||
 |onClose|Function||关闭回调|
 |showCloseIcon|Boolean|false|显示关闭按钮,dropdown不可用|
 |width|Number||popover宽度|

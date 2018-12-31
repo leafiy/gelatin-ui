@@ -13,8 +13,9 @@ const Popover = function(options) {
   }
   el.dataset.popover = "popover-" + nanoid();
   options = options.tooltip
-    ? tooltipOptins(el.dataset.popover, options)
+    ? options
     : popoverOptions(el.dataset.popover, options);
+  options.triggerId = el.dataset.popover;
   let instance = new PopoverConstructor({
     propsData: options
   });
@@ -33,30 +34,14 @@ const Popover = function(options) {
   }
   return instance;
 };
-const tooltipOptins = function(triggerId, options) {
-  const defaultOptions = {
-    openOnMouseover: true,
-    closeOnMouseleave: true,
-    insertAfter: false,
-    closeOnClick: true,
-    closeDelay: 50,
-    arrow: true
-  };
 
-  options.triggerId = triggerId;
-  options = Object.assign(defaultOptions, options);
-  return options;
-};
 const popoverOptions = function(triggerId, options) {
   const defaultOptions = {
-    closeOnMouseleave: false,
     insertAfter: false,
     closeOnClick: true,
     arrow: true,
     menu: []
   };
-
-  options.triggerId = triggerId;
   options = Object.assign(defaultOptions, options);
   return options;
 };

@@ -91,7 +91,6 @@ export default {
       type: Boolean,
       default: true
     },
-    openOnMouseover: Boolean,
     closeOnMouseleave: Boolean,
     onClose: Function,
     content: String,

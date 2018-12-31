@@ -1,24 +1,38 @@
 import Popover from "./popover.js";
 
-const tooltip = function(el, binding) {
-  let options =
-    typeof binding.value == "string"
-      ? { content: binding.value }
-      : binding.value;
-  options.tooltip = true;
+const tooltipOptins = function(el, options) {
+  if (typeof options == "string") {
+    options = { content: options };
+  }
+  const defaultOptions = {
+    insertAfter: false,
+    closeDelay: 50,
+    interactive: true,
+    tooltip: true
+  };
   options.trigger = el;
+  options = Object.assign(defaultOptions, options);
+  return options;
+};
+
+const tooltip = function(el, binding) {
+  let options = tooltipOptins(el, binding.value);
   let instance;
   if (el.instance) {
     instance = el.instance;
   } else {
     instance = new Popover(options);
   }
-  el.addEventListener("mouseover", () => {
+  el.addEventListener("mouseover", e => {
     setTimeout(() => {
       instance.isShow = true;
     }, options.openDelay);
   });
   el.addEventListener("mouseleave", e => {
+    let target = e.target;
+    if (!el.contains(target)) {
+      return;
+    }
     if (options.interactive) {
       import(/* webpackChunkName: "vendor" */ "../../src/utils/mousePosition.js").then(
         module => {
@@ -52,13 +66,13 @@ export default {
   name: "ui-tooltip",
   inserted(el, binding, vnode) {
     if (!binding.value) {
-      throw new Error("at least add some content");
+      return;
     }
     tooltip(el, binding);
   },
   update(el, binding, vnode) {
     if (!binding.value) {
-      throw new Error("at least add some content");
+      return;
     }
     tooltip(el, binding);
   }
