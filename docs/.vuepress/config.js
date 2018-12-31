@@ -5,7 +5,7 @@ module.exports = {
   title: 'Gelatin-Ui',
   description: '🎨 简单好看的VueJs UI from unicapsule.com',
   port: 8108,
-  host: "192.168.145.128",
+  host: "192.168.145.132",
   base: "/",
   themeConfig: {
     displayAllHeaders: true,
@@ -69,9 +69,8 @@ module.exports = {
           ['/confirm/', 'Confirm'],
           ['/toast/', 'Toast'],
           ['/message/', 'Message'],
-          // ['/tooltip/', 'Tooltip'],
-          // ['/dropdown/', 'Dropdown'],
-          ['/popover/', 'Popover'],
+          ['/popover/', 'Popover/Tooltip/Dropdown 弹出框']
+
         ]
       },
       {

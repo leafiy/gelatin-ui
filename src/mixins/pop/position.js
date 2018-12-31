@@ -1,6 +1,6 @@
 import getAxis from "../../utils/getAxis.js";
 import scrollbarWidth from "../../utils/scrollbar.js";
-import { debounce, throttle } from "lodash";
+import { throttle } from "lodash";
 import Vue from "vue";
 if (!Vue.prototype.$zIndex) {
   import("../../utils/zHandler.js").then(res => {
@@ -15,7 +15,6 @@ export default {
       el: "",
       key: "",
       // content: "",
-      show: false,
       //not for options
       targetTop: "",
       placeOnTop: "",
@@ -35,14 +34,6 @@ export default {
     };
   },
   computed: {
-    stlyes() {
-      return {
-        top: `${this.top}px`,
-        left: `${this.left}px`,
-        width: this.width ? `${this.width}px` : "",
-        zIndex: this.zIndex
-      };
-    },
     arrowStyles() {
       return {
         borderWidth: `${this.arrowSize}px`,
@@ -59,20 +50,13 @@ export default {
         transform: `translateX(${this.translateX})`,
         textAlign: this.textCetner ? "center" : ""
       };
-    },
-    tooltipStyles() {
-      if (this.tooltip) {
-        return {
-          textAlign: this.textCetner ? "center" : ""
-        };
-      }
     }
   },
   methods: {
     getAxis() {
       this.axis = getAxis();
     },
-    calculatePopoverPosition: throttle(function(e) {
+    calculatePopoverPosition(e) {
       this.triggerOffset = this.trigger.getBoundingClientRect();
       this.popoverOffset = this.el.getBoundingClientRect();
       this.targetTop = this.triggerOffset.top;
@@ -81,7 +65,6 @@ export default {
         this.triggerOffset.left +
         this.triggerOffset.width -
         this.popoverOffset.width;
-      // + this.offset;
       this.placeOnBottom = this.targetTop + this.triggerOffset.height;
       this.placeOnLeft = this.triggerOffset.left;
 
@@ -131,7 +114,7 @@ export default {
           this.setarrowPosition();
         });
       }
-    }, 20),
+    },
     setarrowPosition() {
       let popoverOffset = this.el.getBoundingClientRect();
 
@@ -177,5 +160,11 @@ export default {
   },
   beforeDestory() {
     this.$zIndex.remove();
+  },
+  beforeMount() {
+    this.calculatePopoverPosition = throttle(
+      this.calculatePopoverPosition,
+      this.throttle
+    );
   }
 };

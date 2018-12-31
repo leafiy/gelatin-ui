@@ -4,11 +4,12 @@
     :class="classes"
     :disabled="disabled"
     :loading="loading"
-    @click="handleClick"
+    @click.self="handleClick"
     @mousedown="mouseDown"
     @mouseup="mouseUp"
+    ref="button"
   >
-    <div class="ui-btn-inner">
+    <div class="ui-btn-inner" @click="clickInner">
       <span><slot></slot></span>
       <transition name="fade">
         <ui-spinner :light="type !== 'border'" v-if="loading"></ui-spinner>
@@ -94,6 +95,10 @@ export default {
       if (!this.loading && !this.disabled) {
         this.isActive = false;
       }
+    },
+    clickInner(e) {
+      e.stopPropagation();
+      this.$refs["button"].click();
     }
   }
 };

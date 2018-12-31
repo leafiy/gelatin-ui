@@ -27,7 +27,7 @@
 
   .ui-popover-item {
     user-select: none;
-    padding: 8px 12px;
+    padding: 4px 10px;
     border-bottom: 1px solid $lighter;
 
     .icon {
@@ -63,6 +63,32 @@
   }
 }
 
-.ui-popover-content {
+.ui-popover-content,.ui-dropdown-content {
   padding: 6px 12px;
+}
+
+.ui-popover-with-close{
+  display: flex;
+  align-items: center;
+  padding-right: 6px;
+  .ui-popover-content{
+    padding-right:16px;
+  }
+  .ui-popover-close-icon{
+    font-size:small;
+    .ui-icon{
+      cursor: pointer;
+      transition: all .3s ease-in-out;
+    }
+    &:hover{
+      .ui-icon{
+        transform: rotate(-90deg);
+        color:$primary-color;
+      }
+    }
+  }
+}
+
+.ui-dropdown-trigger{
+  display: inline-block;
 }

@@ -2,11 +2,9 @@
   <transition name="fade">
     <div
       class="ui-popover"
-      :class="{ 'ui-tooltip': tooltip }"
-      @mouseenter="mouseenter"
-      @mouseleave="mouseleave"
+      :class="{ 'ui-tooltip': tooltip, 'ui-dropdown': dropdown }"
       v-click-outside="close"
-      v-if="show"
+      v-if="isShow"
       :style="stlyes"
     >
       <span
@@ -28,7 +26,7 @@
             :params="params"
             :close-on-click="closeOnClick"
             :close-on-mouseleave="closeOnMouseleave"
-            @close="show = false"
+            @close="isShow = false"
             v-for="item of menu"
             :key="item.content"
             :item="item"
@@ -37,15 +35,18 @@
         <div
           class="ui-popover-content"
           v-if="content"
-          @click="closeOnClick ? (show = false) : ''"
+          @click="closeOnClick ? close : ''"
           v-html="handleContent(content)"
         ></div>
         <div
           class="ui-popover-close-icon"
           v-if="showCloseIcon && !menu.length"
-          @click="show = false"
+          @click="close"
         >
-          <ui-icon name="close"></ui-icon>
+          <ui-icon name="icon-close-circle-fill"></ui-icon>
+        </div>
+        <div class="ui-dropdown-content" v-if="$slots.default && dropdown">
+          <slot></slot>
         </div>
       </div>
     </div>
@@ -60,12 +61,18 @@ import UiIcon from "../icon/icon.vue";
 export default {
   name: "ui-popover",
   data() {
-    return {};
+    return {
+      isShow: false
+    };
   },
   mixins: [popPosition],
   props: {
-    triggerId: String,
+    triggerId: {
+      type: String,
+      required: true
+    },
     tooltip: Boolean,
+    dropdown: Boolean,
     params: Object,
     menu: {
       type: Array,
@@ -91,6 +98,8 @@ export default {
     showCloseIcon: Boolean,
     textCetner: Boolean,
     width: Number,
+    openDelay: Number,
+    closeDelay: Number,
     arrow: {
       type: Boolean,
       default: true
@@ -101,7 +110,7 @@ export default {
     },
     arrowSize: {
       type: Number,
-      default: 6
+      default: 10
     },
     arrowOffset: {
       type: Number,
@@ -117,15 +126,28 @@ export default {
     radius: {
       type: Number,
       default: 8
+    },
+    throttle: {
+      type: Number,
+      default: 20
     }
   },
   components: {
     UiPopoverItem,
     UiIcon
   },
+  computed: {
+    stlyes() {
+      return {
+        top: `${this.top}px`,
+        left: `${this.left}px`,
+        width: this.width ? `${this.width}px` : "",
+        zIndex: this.zIndex,
+        maxWidth: `calc(100% - ${this.offset * 2}px)`
+      };
+    }
+  },
   methods: {
-    mouseenter() {},
-    mouseleave() {},
     handleContent(content) {
       if (content.startsWith("data:image/")) {
         let img = document.createElement("img");
@@ -154,10 +176,9 @@ export default {
       }
     },
     close(e) {
-      this.show = false;
-      if (!this.key) {
-        this.trigger.removeAttribute("data-popover");
-      }
+      setTimeout(() => {
+        this.isShow = false;
+      }, this.closeDelay);
     }
   },
   mounted() {
@@ -167,15 +188,17 @@ export default {
     ClickOutside
   },
   watch: {
-    show(show) {
-      if (!show) {
+    isShow(newValue) {
+      if (!newValue) {
         if (this.onClose) {
           this.onClose();
         }
         this.$emit("close");
         this.unbindEvents();
+        this.trigger.removeAttribute("data-popover");
       } else {
         this.$nextTick(() => {
+          this.$emit("open");
           this.bindEvents();
           this.el = this.$el;
           this.calculatePopoverPosition();

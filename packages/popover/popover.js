@@ -1,17 +1,7 @@
-import Pop from "./pop.js";
+import Vue from "vue";
 import nanoid from "nanoid";
-let instances = [];
-const defaultOptions = {
-  closeOnMouseleave: false,
-  insertAfter: false,
-  openDelay: 0,
-  closeOnClick: true,
-  closeDelay: 0,
-  content: "",
-  textCetner: true,
-  arrow: true,
-  menu: []
-};
+import popoverTemplate from "./popover.vue";
+const PopoverConstructor = Vue.extend(popoverTemplate);
 
 const Popover = function(options) {
   if (!options.trigger) {
@@ -22,31 +12,52 @@ const Popover = function(options) {
     return;
   }
   el.dataset.popover = "popover-" + nanoid();
-  options = renderOptions(el, options);
-  let instance = new Pop(options);
-  setTimeout(() => {
-    instance.show = true;
-  }, options.openDelay);
-
-  instance.$on("close", () => {
-    el.removeAttribute("data-popover");
+  options = options.tooltip
+    ? tooltipOptins(el.dataset.popover, options)
+    : popoverOptions(el.dataset.popover, options);
+  let instance = new PopoverConstructor({
+    propsData: options
   });
+  instance.$mount();
+  if (!options.tooltip) {
+    setTimeout(() => {
+      instance.isShow = true;
+    }, options.openDelay);
+  }
 
+  let $el = instance.$el;
+  if (options.insertAfter) {
+    el.parentNode.insertBefore($el, el.nextSibling);
+  } else {
+    document.body.appendChild($el);
+  }
   return instance;
 };
+const tooltipOptins = function(triggerId, options) {
+  const defaultOptions = {
+    openOnMouseover: true,
+    closeOnMouseleave: true,
+    insertAfter: false,
+    closeOnClick: true,
+    closeDelay: 50,
+    arrow: true
+  };
 
-const renderOptions = function(el, options) {
-  options.triggerId = el.dataset.popover;
-  if (typeof options == "string") {
-    options = {
-      tooltip: options
-    };
-  }
-  Object.keys(defaultOptions).forEach(key => {
-    if (!options.hasOwnProperty(key)) {
-      options[key] = defaultOptions[key];
-    }
-  });
+  options.triggerId = triggerId;
+  options = Object.assign(defaultOptions, options);
+  return options;
+};
+const popoverOptions = function(triggerId, options) {
+  const defaultOptions = {
+    closeOnMouseleave: false,
+    insertAfter: false,
+    closeOnClick: true,
+    arrow: true,
+    menu: []
+  };
+
+  options.triggerId = triggerId;
+  options = Object.assign(defaultOptions, options);
   return options;
 };
 
