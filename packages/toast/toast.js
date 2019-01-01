@@ -2,11 +2,6 @@ import ToastTemplate from "./toast.vue";
 import Vue from "vue";
 import nanoid from "nanoid";
 const ToastConstructor = Vue.extend(ToastTemplate);
-if (!Vue.prototype.$zIndex) {
-  import("../../src/utils/zHandler.js").then(res => {
-    Vue.prototype.$zIndex = new res.default();
-  });
-}
 const instances = [];
 let toastContainer = {};
 
@@ -26,7 +21,11 @@ const $UiToast = function(options) {
       position.x
     } ui-toast-wrapper-y-${position.y}`;
     document.body.appendChild(toastContainer[p]);
-    toastContainer[p].style.zIndex = Vue.prototype.$zIndex.add();
+    toastContainer[p].style.zIndex = options.zIndex
+      ? options.zIndex
+      : Vue.prototype.$zIndex
+      ? Vue.prototype.$zIndex.add()
+      : 1000;
   }
   const id = nanoid();
 

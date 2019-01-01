@@ -13,7 +13,7 @@
       />
       <div
         class="ui-upload-actions"
-        :style="{ zIndex: $zIndex.get() }"
+        :style="{ zIndex: $zIndex ? $zIndex.get() : 100 }"
         v-if="file"
       >
         <span

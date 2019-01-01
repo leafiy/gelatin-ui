@@ -18,11 +18,7 @@ import UiSpinner from "../spinner/spinner.vue";
 import "../assets/scss/backdrop.scss";
 import events from "../../src/utils/events.js";
 import Vue from "vue";
-if (!Vue.prototype.$zIndex) {
-  import("../../src/utils/zHandler.js").then(res => {
-    Vue.prototype.$zIndex = new res.default();
-  });
-}
+
 export default {
   name: "ui-backdrop",
   data() {

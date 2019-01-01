@@ -56,7 +56,7 @@
   </transition>
 </template>
 <script>
-import ClickOutside from "vue-click-outside";
+import vClickOutside from "v-click-outside";
 import UiPopoverItem from "./popover-item.vue";
 import "../assets/scss/popover.scss";
 import popPosition from "../../src/mixins/pop/position.js";
@@ -212,7 +212,7 @@ export default {
     this.trigger = document.querySelector(`[data-popover="${this.triggerId}"]`);
   },
   directives: {
-    ClickOutside
+    clickOutside: vClickOutside.directive
   },
   watch: {
     isShow(newValue) {

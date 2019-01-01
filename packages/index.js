@@ -79,24 +79,29 @@ const components = [
   UiHeightTransition
 ];
 
-import zHandler from "../src/utils/zHandler.js";
+const plugins = {
+  $UiPopover,
+  $UiToast,
+  $UiCover,
+  $UiModal,
+  $UiConfirm,
+  $UiMessage,
+  $UiLoadingBar
+};
+
+const directives = [UiTooltip, UiHightlight, UiLoading, UiMask, UiSticky];
+
+import ZHandler from "../src/utils/zHandler.js";
 
 const install = function(Vue, options = {}) {
+  Vue.prototype.$zIndex = new ZHandler(options.zIndex);
   components.forEach(component => Vue.component(component.name, component));
-  Vue.prototype.$UiPopover = $UiPopover;
-  Vue.prototype.$UiToast = $UiToast;
-  Vue.prototype.$UiCover = $UiCover;
-  Vue.prototype.$UiModal = $UiModal;
-  Vue.prototype.$UiConfirm = $UiConfirm;
-  Vue.prototype.$UiMessage = $UiMessage;
-  Vue.prototype.$UiLoadingBar = $UiLoadingBar;
-  Vue.directive(UiTooltip.name, UiTooltip);
-  Vue.directive(UiHightlight.name, UiHightlight);
-  Vue.directive(UiLoading.name, UiLoading);
-  Vue.directive(UiMask.name, UiMask);
-  Vue.directive(UiSticky.name, UiSticky);
-  Vue.prototype.$zIndex = new zHandler(options.zIndex);
-  // Vue.prototype.$Rem = Rem
+  Object.keys(plugins).forEach(key => {
+    Vue.prototype[key] = plugins[key];
+  });
+  directives.forEach(directive => {
+    Vue.directive(directive.name, directive);
+  });
 };
 
 if (typeof window !== "undefined" && window.Vue) {

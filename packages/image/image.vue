@@ -37,22 +37,27 @@ export default {
       failed: false
     };
   },
+  methods: {
+    load() {
+      imgLoader(this.src)
+        .then(url => {
+          this.loading = false;
+          this.$emit("load-finished");
+        })
+        .catch(err => {
+          this.loading = false;
+          this.failed = true;
+          this.$emit("load-failed");
+        });
+    }
+  },
   mounted() {
-    imgLoader(this.src)
-      .then(url => {
-        this.loading = false;
-        this.$emit("load-finished");
-      })
-      .catch(err => {
-        this.loading = false;
-        this.failed = true;
-        this.$emit("load-failed");
-      });
+    this.load();
   },
   computed: {
     slotStyles() {
       return {
-        zIndex: this.$zIndex.add()
+        zIndex: this.$zIndex ? this.$zIndex.add() : 100
       };
     },
     backgroundStyle() {

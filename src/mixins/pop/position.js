@@ -1,12 +1,7 @@
 import getAxis from "../../utils/getAxis.js";
 import scrollbarWidth from "../../utils/scrollbar.js";
 import { throttle } from "lodash";
-import Vue from "vue";
-if (!Vue.prototype.$zIndex) {
-  import("../../utils/zHandler.js").then(res => {
-    Vue.prototype.$zIndex = new res.default();
-  });
-}
+
 export default {
   data() {
     return {
@@ -30,7 +25,7 @@ export default {
       popoverOffset: "",
       userOnClose: "",
       translateX: "",
-      zIndex: this.$zIndex.get()
+      zIndex: this.$zIndex ? this.$zIndex.add() : 1000
     };
   },
   computed: {
@@ -156,15 +151,17 @@ export default {
   },
   mounted() {
     this.getAxis();
-    this.$zIndex.add();
   },
   beforeDestory() {
-    this.$zIndex.remove();
+    if (this.$zIndex) {
+      this.$zIndex.remove();
+    }
   },
   beforeMount() {
     this.calculatePopoverPosition = throttle(
       this.calculatePopoverPosition,
       this.throttle
     );
+    this.getAxis = throttle(this.getAxis, this.throttle);
   }
 };

@@ -95,7 +95,7 @@ export default {
       icon: "",
       title: "",
       actions: [],
-      zIndex: this.$zIndex.get(),
+      zIndex: this.$zIndex ? this.$zIndex.get() : 1000,
       isEntered: false,
       closeOnClick: false,
       onClick: null,
@@ -195,7 +195,9 @@ export default {
     destroy() {
       if (!this.closed) {
         this.$el.parentNode.removeChild(this.$el);
-        this.$zIndex.remove();
+        if (this.$zIndex) {
+          this.$zIndex.remove();
+        }
         this.closed = true;
         this.closeToast();
       }

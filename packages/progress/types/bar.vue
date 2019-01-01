@@ -17,6 +17,7 @@
         :aria-valuenow="percentage"
         aria-valuemin="0"
         aria-valuemax="100"
+        ref="bar"
       >
         <span class="ui-progress-bar-number" v-if="showNumber"
           >{{ percentage }}%</span
@@ -37,11 +38,6 @@
 </template>
 <script>
 import Vue from "vue";
-if (!Vue.prototype.$zIndex) {
-  import("../../../src/utils/zHandler.js").then(res => {
-    Vue.prototype.$zIndex = new res.default();
-  });
-}
 export default {
   name: "bar",
 
@@ -75,7 +71,8 @@ export default {
       return {
         width: this.percentage + "%",
         backgroundColor: this.foreColor,
-        zIndex: this.zIndex
+        zIndex: this.zIndex,
+        transition: this.loadingBar ? "all 1s ease-in-out" : ""
       };
     }
   },

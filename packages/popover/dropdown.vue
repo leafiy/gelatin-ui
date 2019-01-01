@@ -85,8 +85,12 @@ export default {
       this.id = "popover-" + nanoid();
       this.$refs["popover"].isShow = true;
     },
-    onPopOpen() {},
-    onPopClose() {}
+    onPopOpen() {
+      this.$emit("open");
+    },
+    onPopClose() {
+      this.$emit("close");
+    }
   }
 };
 </script>

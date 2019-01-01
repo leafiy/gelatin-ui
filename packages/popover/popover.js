@@ -11,6 +11,7 @@ const Popover = function(options) {
   if (el.dataset.popover) {
     return;
   }
+
   el.dataset.popover = "popover-" + nanoid();
   options = options.tooltip
     ? options
@@ -32,6 +33,9 @@ const Popover = function(options) {
   } else {
     document.body.appendChild($el);
   }
+  el.addEventListener("click", () => {
+    instance.close();
+  });
   return instance;
 };
 

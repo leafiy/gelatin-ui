@@ -2,15 +2,13 @@ import { throttle } from "lodash";
 import Vue from "vue";
 let listenAction;
 let supportCSSSticky;
-if (!Vue.prototype.$zIndex) {
-  import("../../src/utils/zHandler.js").then(res => {
-    Vue.prototype.$zIndex = new res.default();
-  });
-}
+
 const getBindingConfig = binding => {
   const params = binding.value || {};
   let top = params.top || 0;
-  let zIndex = Vue.prototype.$zIndex.get();
+  let zIndex = binding.value.zIndex
+    ? binding.value.zIndex
+    : Vue.prototype.$zIndex.get();
   let disabled = params.disabled;
   return { top, zIndex, disabled };
 };
@@ -45,8 +43,6 @@ export default {
     elStyle.position = "sticky";
 
     let childStyle = el.firstElementChild.style;
-
-    // test if the browser support css sticky
     supportCSSSticky = ~elStyle.position.indexOf("sticky");
 
     if (supportCSSSticky) {

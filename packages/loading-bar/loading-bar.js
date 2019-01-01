@@ -5,6 +5,17 @@ let instance = null;
 
 import "../assets/scss/progress.scss";
 
+const timer = function(instance, duration) {
+  instance.percentage = 0;
+  clearInterval(instance.timer);
+  instance.timer = setInterval(() => {
+    instance.percentage += 100 / (10 * (duration / 1000));
+    if (instance.percentage >= 100) {
+      clearInterval(instance.timer);
+    }
+  }, 100);
+};
+
 const $UiLoadingBar = function(options) {
   const defaultOptions = {
     size: 3,
@@ -13,37 +24,28 @@ const $UiLoadingBar = function(options) {
     loadingBar: true,
     showNumber: false,
     foreColor: "#08D7B8",
-    backColor: "#ffffff",
+    backColor: "transparent",
     duration: 4000,
-    zIndex: Vue.prototype.$zIndex.add()
+    zIndex: Vue.prototype.$zIndex.add() || 4000
   };
   options = Object.assign(defaultOptions, options);
-
   if (instance) {
-    clearInterval(instance.timer);
-    document.body.removeChild(instance.$el);
-    Vue.prototype.$zIndex.remove();
-    instance = null;
+    instance.propsData = options;
+    instance.show = true;
+    timer(instance, options.duration);
+    return;
   }
   instance = new UiLoadingBar({
     propsData: options
   });
   instance.$mount();
+
   document.body.appendChild(instance.$el);
   instance.show = true;
-  clearInterval(instance.timer);
-  if (options.indeterminate) {
-    return instance;
+  if (!options.indeterminate) {
+    timer(instance, options.duration);
   }
-  if (options.duration) {
-    instance.timer = setInterval(() => {
-      instance.percentage += 100 / (10 * (options.duration / 1000));
-      if (instance.percentage >= 100) {
-        clearInterval(instance.timer);
-        instance.timer = null;
-      }
-    }, 100);
-  }
+
   return instance;
 };
 $UiLoadingBar.finish = function() {
