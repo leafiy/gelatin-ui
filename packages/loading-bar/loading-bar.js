@@ -26,7 +26,7 @@ const $UiLoadingBar = function(options) {
     foreColor: "#08D7B8",
     backColor: "transparent",
     duration: 4000,
-    zIndex: Vue.prototype.$zIndex.add() || 4000
+    zIndex: Vue.prototype.$zIndex ? Vue.prototype.$zIndex.add() : 4000
   };
   options = Object.assign(defaultOptions, options);
   if (instance) {

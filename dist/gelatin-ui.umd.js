@@ -21639,7 +21639,7 @@ var loading_bar_$UiLoadingBar = function $UiLoadingBar(options) {
     foreColor: "#08D7B8",
     backColor: "transparent",
     duration: 4000,
-    zIndex: external_commonjs_vue_commonjs2_vue_root_Vue_default.a.prototype.$zIndex.add() || 4000
+    zIndex: external_commonjs_vue_commonjs2_vue_root_Vue_default.a.prototype.$zIndex ? external_commonjs_vue_commonjs2_vue_root_Vue_default.a.prototype.$zIndex.add() : 4000
   };
   options = assign_default()(defaultOptions, options);
 
