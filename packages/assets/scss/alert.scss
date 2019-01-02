@@ -76,6 +76,9 @@
     .ui-alert-close-icon {
       top: 16px;
       transform: translateY(0);
+      &:hover{
+        transform:rotate(-90deg);
+      }
     }
   }
 
@@ -90,7 +93,7 @@
     position: absolute;
     &:hover {
       color: $primary-color;
-      transform:rotate(-90deg);
+      transform:translateY(-50%) rotate(-90deg);
     }
   }
 
