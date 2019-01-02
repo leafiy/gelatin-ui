@@ -43,6 +43,14 @@ const $UiToast = function(options) {
   instance.$id = id;
   toastContainer[p].appendChild(instance.$el);
   instances.push(instance);
+  if (Vue.prototype.$zIndex) {
+    instance.$on("open", () => {
+      toastContainer[p].style.zIndex = Vue.prototype.$zIndex.add();
+    });
+    instance.$on("close", () => {
+      toastContainer[p].style.zIndex = Vue.prototype.$zIndex.remove();
+    });
+  }
   return instance;
 };
 

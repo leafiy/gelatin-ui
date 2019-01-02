@@ -210,14 +210,18 @@ export default {
         this.stop();
       }
     }
-    // click(action) {
-    //   if (action.action && typeof action.action == "function") {
-    //     action.action();
-    //   }
-    // }
   },
   mounted() {
     this.start();
+  },
+  watch: {
+    show(newValue) {
+      if (newValue) {
+        this.$emit("open");
+      } else {
+        this.$emit("close");
+      }
+    }
   }
 };
 </script>
