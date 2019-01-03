@@ -98,6 +98,7 @@ const install = function(Vue, options = {}) {
   components.forEach(component => Vue.component(component.name, component));
   Object.keys(plugins).forEach(key => {
     Vue.prototype[key] = plugins[key];
+    plugins.$zIndex = Vue.prototype.$zIndex;
   });
   directives.forEach(directive => {
     Vue.directive(directive.name, directive);
