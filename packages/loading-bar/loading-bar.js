@@ -42,6 +42,11 @@ const $UiLoadingBar = function(options) {
   instance.$zIndex = this.$zIndex;
   document.body.appendChild(instance.$el);
   instance.show = true;
+  if (instance.$zIndex) {
+    instance.$on("finish", () => {
+      instance.$zIndex.remove();
+    });
+  }
   if (!options.indeterminate) {
     timer(instance, options.duration);
   }
@@ -56,9 +61,6 @@ $UiLoadingBar.finish = function() {
   clearInterval(instance.timer);
   setTimeout(() => {
     instance.show = false;
-    if (instance.$zIndex) {
-      instance.$zIndex.remove();
-    }
   }, 500);
 };
 $UiLoadingBar.increase = function(percent = 1) {

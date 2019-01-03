@@ -22931,6 +22931,12 @@ var loading_bar_$UiLoadingBar = function $UiLoadingBar(options) {
   document.body.appendChild(loading_bar_instance.$el);
   loading_bar_instance.show = true;
 
+  if (loading_bar_instance.$zIndex) {
+    loading_bar_instance.$on("finish", function () {
+      loading_bar_instance.$zIndex.remove();
+    });
+  }
+
   if (!options.indeterminate) {
     loading_bar_timer(loading_bar_instance, options.duration);
   }
@@ -22947,10 +22953,6 @@ loading_bar_$UiLoadingBar.finish = function () {
   clearInterval(loading_bar_instance.timer);
   setTimeout(function () {
     loading_bar_instance.show = false;
-
-    if (loading_bar_instance.$zIndex) {
-      loading_bar_instance.$zIndex.remove();
-    }
   }, 500);
 };
 
