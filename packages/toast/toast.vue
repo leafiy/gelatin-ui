@@ -195,9 +195,6 @@ export default {
     destroy() {
       if (!this.closed) {
         this.$el.parentNode.removeChild(this.$el);
-        if (this.$zIndex) {
-          this.$zIndex.remove();
-        }
         this.closed = true;
         this.closeToast();
       }

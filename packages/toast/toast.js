@@ -23,9 +23,7 @@ const $UiToast = function(options) {
     document.body.appendChild(toastContainer[p]);
     toastContainer[p].style.zIndex = options.zIndex
       ? options.zIndex
-      : Vue.prototype.$zIndex
-      ? Vue.prototype.$zIndex.add()
-      : 1000;
+      : this.$zIndex.add();
   }
   const id = nanoid();
 
@@ -37,18 +35,18 @@ const $UiToast = function(options) {
     el: document.createElement("div"),
     data: options
   });
-
+  instance.$zIndex = this.$zIndex;
   instance.$mount();
   instance.show = true;
   instance.$id = id;
   toastContainer[p].appendChild(instance.$el);
   instances.push(instance);
-  if (Vue.prototype.$zIndex) {
+  if (instance.$zIndex) {
     instance.$on("open", () => {
-      toastContainer[p].style.zIndex = Vue.prototype.$zIndex.add();
+      toastContainer[p].style.zIndex = instance.$zIndex.add();
     });
     instance.$on("close", () => {
-      toastContainer[p].style.zIndex = Vue.prototype.$zIndex.remove();
+      toastContainer[p].style.zIndex = instance.$zIndex.remove();
     });
   }
   return instance;
