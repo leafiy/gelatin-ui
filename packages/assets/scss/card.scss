@@ -5,9 +5,30 @@
   position: relative;
   // overflow: hidden;
   display: inline-block;
-  border-radius:$radius;
-  padding:22px;
+  border-radius: $radius;
+  padding: 22px;
   width: 100%;
+
+  &:hover {
+    &:before{
+      opacity: 1;
+    }
+  }
+
+  &:before {
+    content: ' ';
+    position: absolute;
+    width:90%;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: blur(12px);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+    height: 14px;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    z-index: 1;
+  }
 }
 
 
