@@ -33,6 +33,7 @@
         class="ui-loading-bar-indeterminate-bg2"
         :style="{ backgroundColor: foreColor }"
       ></div>
+      <slot></slot>
     </div>
   </transition>
 </template>

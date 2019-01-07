@@ -5,6 +5,7 @@ $error-color:#FF8787;
 $light:#9B9B9B;
 $lighter:#E9EBEE;
 $shadow-light:0 0px 10px rgba(0, 0, 0, 0.1);
+$black:#2E3238;
 
 * {
   box-sizing: border-box;
@@ -103,7 +104,7 @@ div[class*="language-"] pre[class*="language-"] {
     padding: 12px;
     border-left: 3px solid $primary-color;
     background: $lighter;
-    color: #333;
+    color: $black;
 
 
     p {
