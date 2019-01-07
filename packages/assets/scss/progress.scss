@@ -28,14 +28,16 @@
 .ui-progress-type-bar {
   border-radius: $radius/2;
   overflow: hidden;
-
+  background: $lighter;
   .ui-progress-bar {
     height: 100%;
     display: flex;
+    border-radius: $radius/2;
     justify-content: center;
     align-items: center;
     transition: all .3s ease-in-out;
     color: #fff;
+    background: $primary-color;
   }
 }
 

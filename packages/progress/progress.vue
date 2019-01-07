@@ -47,12 +47,10 @@ export default {
       default: 4
     },
     backColor: {
-      type: String,
-      default: "#E9EBEE"
+      type: String
     },
     foreColor: {
-      type: String,
-      default: "#08D7B8"
+      type: String
     },
     showNumber: {
       type: Boolean,
