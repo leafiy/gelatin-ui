@@ -1,5 +1,5 @@
 <template>
-  <div :class="wrapClasses" class="ui-input">
+  <div :class="wrapClasses" class="ui-input" @click="focus">
     <div
       class="ui-input-prefix"
       @click="focus"
@@ -30,6 +30,7 @@
       @keyup.enter.exact="handleEnter"
       @keyup.esc.exact="handleEsc"
       @change.exact="handleChange"
+      @keyup.delete.exact="handleDelete"
     />
     <transition name="fade">
       <div
@@ -43,6 +44,7 @@
     <transition name="fade">
       <ui-spinner v-if="loading"></ui-spinner>
     </transition>
+    <slot></slot>
     <div
       class="ui-input-suffix"
       @click="focus"
@@ -126,32 +128,35 @@ export default {
       this.$refs["input"].focus();
     },
     handleEnter(e) {
-      this.$emit("submit", this.inputVal);
+      this.$emit("submit", { value: this.inputVal, event: e });
     },
     handleEsc(e) {
-      this.$emit("esc", this.inputVal);
+      this.$emit("esc", { value: this.inputVal, event: e });
       this.$refs["input"].blur();
     },
     handleKeyup(e) {
-      this.$emit("keyup", this.inputVal);
+      this.$emit("keyup", { value: this.inputVal, event: e });
     },
     handleKeydown(e) {
-      this.$emit("keydown", this.inputVal);
+      this.$emit("keydown", { value: this.inputVal, event: e });
     },
     handleInput(e) {
       this.inputVal = e.target.value;
-      this.$emit("input", this.inputVal);
+      this.$emit("input", { value: this.inputVal, event: e });
     },
     handleFocus(e) {
       this.focusIn = true;
-      this.$emit("focus", this.inputVal);
+      this.$emit("focus", { value: this.inputVal, event: e });
     },
     handleBlur(e) {
       this.focusIn = false;
-      this.$emit("blur", this.inputVal);
+      this.$emit("blur", { value: this.inputVal, event: e });
     },
     handleChange(e) {
-      this.$emit("change", this.inputVal);
+      this.$emit("change", { value: this.inputVal, event: e });
+    },
+    handleDelete(e) {
+      this.$emit("delete", { value: this.inputVal, event: e });
     },
     clear() {
       this.$emit("input", "");

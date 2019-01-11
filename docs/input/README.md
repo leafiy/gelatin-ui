@@ -1,5 +1,8 @@
 # Input
 
+
+## Usages
+
 <input-index></input-index>
 
 <code-code>
@@ -29,7 +32,7 @@
 |autofocus|Boolean|false||
 
 
-#### suffix / prefix
+## suffix / prefix
 
 <input-slot></input-slot>
 
@@ -42,13 +45,54 @@
 </ui-input>
 <ui-input>
  <div slot="prefix">http://</div>
- <div slot="suffix">scelerisque</div>
+ <div slot="suffix">.com</div>
 </ui-input>
 ```
 </code-code>
 
 
-#### events
+
+
+
+## themes
+
+<input-theme></input-theme>
+
+
+## group
+
+<input-group></input-group>
+
+props
+
+|prop|type|default|description|
+|--|--|--|--|
+|placeholder|String|''|for each splited input|
+|skip|Boolean|true|skip to next input when value length = maxLength|
+|width|Number||each input width|
+|maxLength|Number|1| default `abcd` will be 4 `input` / `maxLength=2` will be 2 `input`|
+|theme|String||the same with input|
+|value|String,Number||v-model|
+|type|String|text|the same with input|
+|autoSelect|Boolean|true|selcet input when focus|
+
+<code-code>
+ ```html
+<ui-input-group v-model="model1" :max-length="2">
+    </ui-input-group>
+    <ui-input-group theme="ghost" v-model="model1">
+    </ui-input-group>
+    <ui-input-group :width="46" v-model="model1">
+
+    </ui-input-group>
+    <ui-input-group :width="46" v-model="model1" theme="inline">
+
+    </ui-input-group>
+ ```
+
+</code-code>
+
+### events
 
 submit
 input
@@ -59,3 +103,4 @@ focus
 blur
 change
 clear
+delete
