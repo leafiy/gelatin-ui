@@ -6,7 +6,7 @@
   </ui-input>
   <ui-input>
    <div slot="prefix">http://</div>
-   <div slot="suffix">scelerisque</div>
+   <div slot="suffix">.com</div>
   </ui-input>
  </div>
 </template>

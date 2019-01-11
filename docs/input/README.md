@@ -1,5 +1,8 @@
 # Input
 
+
+## Usages
+
 <input-index></input-index>
 
 <code-code>
@@ -29,7 +32,7 @@
 |autofocus|Boolean|false||
 
 
-#### suffix / prefix
+## suffix / prefix
 
 <input-slot></input-slot>
 
@@ -42,13 +45,25 @@
 </ui-input>
 <ui-input>
  <div slot="prefix">http://</div>
- <div slot="suffix">scelerisque</div>
+ <div slot="suffix">.com</div>
 </ui-input>
 ```
 </code-code>
 
 
-#### events
+
+
+
+## themes
+
+<input-theme></input-theme>
+
+
+## group
+
+<input-group></input-group>
+
+### events
 
 submit
 input
@@ -59,3 +74,4 @@ focus
 blur
 change
 clear
+delete

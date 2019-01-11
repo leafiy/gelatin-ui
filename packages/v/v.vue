@@ -3,7 +3,7 @@ import validators from "../../src/mixins/v/validators.js";
 import Vue from "vue";
 import Error from "./error.vue";
 import isObjectEqual from "../../src/utils/isObjectEqual.js";
-
+import isInstance from "../../src/utils/isInstance.js";
 export default {
   name: "ui-v",
 
@@ -179,15 +179,15 @@ export default {
     },
     validateFinish({ name, message, errors }) {
       this.$emit("validate-finish", { name, message, errors });
-    },
-    isInstance(item) {
-      return (
-        item &&
-        item.componentOptions &&
-        item.componentOptions.propsData &&
-        item.componentOptions.propsData.name
-      );
     }
+    // isInstance(item) {
+    //   return (
+    //     item &&
+    //     item.componentOptions &&
+    //     item.componentOptions.propsData &&
+    //     item.componentOptions.propsData.name
+    //   );
+    // }
   },
   mounted() {
     if (this.$slots.default.length) {
@@ -200,8 +200,8 @@ export default {
     return (
       <div class="ui-v">
         {this.$slots.default.map(item => {
-          return this.isInstance(item) ? (
-            <Error errors={this.errors} name={this.isInstance(item)}>
+          return isInstance(item) ? (
+            <Error errors={this.errors} name={isInstance(item)}>
               {item}
             </Error>
           ) : (

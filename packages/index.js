@@ -5,7 +5,7 @@ import UiSpinner from "./spinner/index.js";
 import UiUpload from "./uplaoder/index.js";
 import UiCard from "./card/index.js";
 import UiAlert from "./alert/index.js";
-import UiInput from "./input/index.js";
+import { UiInput, UiInputGroup } from "./input/index.js";
 import UiTextarea from "./textarea/index.js";
 import UiImage from "./image/index.js";
 import UiHeading from "./heading/index.js";
@@ -54,6 +54,7 @@ const components = [
   UiCol,
   UiCard,
   UiInput,
+  UiInputGroup,
   UiImage,
   UiHeading,
   UiButton,
@@ -123,6 +124,7 @@ export default {
   UiCard,
   UiAlert,
   UiInput,
+  UiInputGroup,
   UiImage,
   UiHeading,
   UiButton,

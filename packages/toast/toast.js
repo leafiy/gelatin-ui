@@ -23,7 +23,9 @@ const $UiToast = function(options) {
     document.body.appendChild(toastContainer[p]);
     toastContainer[p].style.zIndex = options.zIndex
       ? options.zIndex
-      : this.$zIndex.add();
+      : Vue.prototype.$zIndex
+      ? Vue.prototype.$zIndex.add()
+      : 1000;
   }
   const id = nanoid();
 
