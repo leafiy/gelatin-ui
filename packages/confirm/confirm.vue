@@ -24,7 +24,7 @@
 <script>
 import UiModal from "../modal/modal.vue";
 import "../assets/scss/confirm.scss";
-import UiButtonGroup from "../button/button-group.vue";
+import UiButtonGroup from "../button-group/button-group.vue";
 import UiButton from "../button/button.vue";
 export default {
   name: "ui-confirm",

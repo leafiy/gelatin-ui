@@ -39,7 +39,7 @@
 <script>
 import Vue from "vue";
 import UiIcon from "../icon/icon.vue";
-import UiButtonGroup from "../button/button-group.vue";
+import UiButtonGroup from "../button-group/button-group.vue";
 import UiButton from "../button/button.vue";
 import "../assets/scss/modal.scss";
 import { $UiCover } from "../backdrop/index.js";

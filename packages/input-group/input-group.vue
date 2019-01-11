@@ -23,7 +23,7 @@
 <script>
 import arrayChunk from "../../src/utils/arrayChunks.js";
 import flatten from "../../src/utils/flattenArray.js";
-import UiInput from "./input.vue";
+import UiInput from "../input/input.vue";
 export default {
   name: "ui-input-group",
 
