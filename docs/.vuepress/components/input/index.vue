@@ -4,6 +4,7 @@
     <ui-input disabled v-model="disabled"></ui-input>
     <ui-input readonly v-model="readonly"></ui-input>
     <ui-input loading></ui-input>
+    <ui-input :width="200" value="width=200"></ui-input>
   </div>
 </template>
 <script>

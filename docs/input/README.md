@@ -30,6 +30,7 @@
 |showClear|Boolean|true||
 |readonly|Boolean|false||
 |autofocus|Boolean|false||
+|width|Number|||
 
 
 ## suffix / prefix

@@ -17149,12 +17149,12 @@ alert_alert.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_alert = (alert_alert);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/input/input.vue?vue&type=template&id=4820bb41&
-var inputvue_type_template_id_4820bb41_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-input",class:_vm.wrapClasses,on:{"click":_vm.focus}},[(_vm.$slots.prefix)?_c('div',{ref:"prefix",staticClass:"ui-input-prefix",on:{"click":_vm.focus}},[_vm._t("prefix")],2):_vm._e(),_c('input',{ref:"input",staticClass:"ui-input-inner",attrs:{"tabindex":_vm.tabindex,"name":_vm.name,"autofocus":_vm.autofocus,"readonly":_vm.readonly,"disabled":_vm.disabled,"type":_vm.type,"maxlength":_vm.maxLength,"minLength":_vm.minLength,"placeholder":_vm.placeholder,"autocomplete":_vm.autoComplete ? 'on' : 'off'},domProps:{"value":_vm.inputVal},on:{"input":function($event){if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleInput($event)},"focus":function($event){if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleFocus($event)},"blur":function($event){if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleBlur($event)},"keyup":[function($event){if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleKeyup($event)},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleEnter($event)},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"esc",27,$event.key,["Esc","Escape"])){ return null; }if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleEsc($event)},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"delete",[8,46],$event.key,["Backspace","Delete","Del"])){ return null; }if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleDelete($event)}],"keydown":function($event){if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleKeydown($event)},"change":function($event){if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleChange($event)}}}),_c('transition',{attrs:{"name":"fade"}},[(_vm.inputVal && _vm.showClear && !_vm.readonly)?_c('div',{staticClass:"ui-input-clear",on:{"click":_vm.clear}},[_c('ui-icon',{attrs:{"name":"close-circle-fill"}})],1):_vm._e()]),_c('transition',{attrs:{"name":"fade"}},[(_vm.loading)?_c('ui-spinner'):_vm._e()],1),_vm._t("default"),(_vm.$slots.suffix)?_c('div',{ref:"suffix",staticClass:"ui-input-suffix",on:{"click":_vm.focus}},[_vm._t("suffix")],2):_vm._e()],2)}
-var inputvue_type_template_id_4820bb41_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/input/input.vue?vue&type=template&id=3da77e9d&
+var inputvue_type_template_id_3da77e9d_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-input",class:_vm.wrapClasses,style:(_vm.styles),on:{"click":_vm.focus}},[(_vm.$slots.prefix)?_c('div',{ref:"prefix",staticClass:"ui-input-prefix",on:{"click":_vm.focus}},[_vm._t("prefix")],2):_vm._e(),_c('input',{ref:"input",staticClass:"ui-input-inner",attrs:{"tabindex":_vm.tabindex,"name":_vm.name,"autofocus":_vm.autofocus,"readonly":_vm.readonly,"disabled":_vm.disabled,"type":_vm.type,"maxlength":_vm.maxLength,"minLength":_vm.minLength,"placeholder":_vm.placeholder,"autocomplete":_vm.autoComplete ? 'on' : 'off'},domProps:{"value":_vm.inputVal},on:{"input":function($event){if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleInput($event)},"focus":function($event){if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleFocus($event)},"blur":function($event){if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleBlur($event)},"keyup":[function($event){if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleKeyup($event)},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleEnter($event)},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"esc",27,$event.key,["Esc","Escape"])){ return null; }if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleEsc($event)},function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"delete",[8,46],$event.key,["Backspace","Delete","Del"])){ return null; }if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleDelete($event)}],"keydown":function($event){if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleKeydown($event)},"change":function($event){if($event.ctrlKey||$event.shiftKey||$event.altKey||$event.metaKey){ return null; }return _vm.handleChange($event)}}}),_c('transition',{attrs:{"name":"fade"}},[(_vm.inputVal && _vm.showClear && !_vm.readonly)?_c('div',{staticClass:"ui-input-clear",on:{"click":_vm.clear}},[_c('ui-icon',{attrs:{"name":"close-circle-fill"}})],1):_vm._e()]),_c('transition',{attrs:{"name":"fade"}},[(_vm.loading)?_c('ui-spinner'):_vm._e()],1),_vm._t("default"),(_vm.$slots.suffix)?_c('div',{ref:"suffix",staticClass:"ui-input-suffix",on:{"click":_vm.focus}},[_vm._t("suffix")],2):_vm._e()],2)}
+var inputvue_type_template_id_3da77e9d_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/input/input.vue?vue&type=template&id=4820bb41&
+// CONCATENATED MODULE: ./packages/input/input.vue?vue&type=template&id=3da77e9d&
 
 // EXTERNAL MODULE: ./packages/assets/scss/input.scss
 var input = __webpack_require__("babd");
@@ -17262,8 +17262,9 @@ var input = __webpack_require__("babd");
       default: false
     },
     autofocus: Boolean,
-    theme: String // flat/ghost
-
+    theme: String,
+    // flat/ghost
+    width: Number
   },
   components: {
     UiIcon: icon["a" /* default */],
@@ -17272,6 +17273,11 @@ var input = __webpack_require__("babd");
   computed: {
     wrapClasses: function wrapClasses() {
       return [this.focusIn && "ui-input-focusin", this.disabled && "ui-input-disabled", this.errors && "ui-input-with-error", this.$slots.suffix && "ui-input-with-suffix", this.$slots.prefix && "ui-input-with-prefix", this.theme && "ui-input-theme-".concat(this.theme), this.readonly && "ui-input-readonly"];
+    },
+    styles: function styles() {
+      return {
+        width: this.width && this.width + "px"
+      };
     }
   },
   methods: {
@@ -17371,8 +17377,8 @@ var input = __webpack_require__("babd");
 
 var input_component = Object(componentNormalizer["a" /* default */])(
   input_inputvue_type_script_lang_js_,
-  inputvue_type_template_id_4820bb41_render,
-  inputvue_type_template_id_4820bb41_staticRenderFns,
+  inputvue_type_template_id_3da77e9d_render,
+  inputvue_type_template_id_3da77e9d_staticRenderFns,
   false,
   null,
   null,

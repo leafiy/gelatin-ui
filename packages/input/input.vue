@@ -1,5 +1,5 @@
 <template>
-  <div :class="wrapClasses" class="ui-input" @click="focus">
+  <div :class="wrapClasses" class="ui-input" @click="focus" :style="styles">
     <div
       class="ui-input-prefix"
       @click="focus"
@@ -101,7 +101,8 @@ export default {
       default: false
     },
     autofocus: Boolean,
-    theme: String // flat/ghost
+    theme: String, // flat/ghost
+    width: Number
   },
   components: {
     UiIcon,
@@ -118,6 +119,11 @@ export default {
         this.theme && `ui-input-theme-${this.theme}`,
         this.readonly && `ui-input-readonly`
       ];
+    },
+    styles() {
+      return {
+        width: this.width && this.width + "px"
+      };
     }
   },
   methods: {
