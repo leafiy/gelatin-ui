@@ -44,6 +44,7 @@ import $UiLoadingBar from "./loading-bar/index.js";
 import { $UiCover } from "./backdrop/index.js";
 import { $UiConfirm } from "./confirm/index.js";
 import { $UiModal } from "./modal/index.js";
+import UiRouterTransition from "./router-transition/index.js";
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
@@ -81,7 +82,8 @@ const components = [
   UiCarousel,
   UiCountdown,
   UiSlidePanel,
-  UiHeightTransition
+  UiHeightTransition,
+  UiRouterTransition
 ];
 
 const plugins = {
@@ -153,6 +155,7 @@ export default {
   UiSticky,
   UiModal,
   UiHeightTransition,
+  UiRouterTransition,
   $UiPopover,
   $UiToast,
   $UiCover,

@@ -79,6 +79,7 @@ module.exports = {
         children: [
           ['/image/', 'Image 图片懒加载'],
           ['/height-transition/', 'Height transition'],
+          ['/router-transition/', 'Router transition'],
           ['/share/', 'Share'],
           ['/high-light/', 'High Light 文字高亮'],
           ['/typer/', 'Typer 打字机'],
