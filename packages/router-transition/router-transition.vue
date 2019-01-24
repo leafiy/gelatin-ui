@@ -1,45 +1,60 @@
 <template>
-  <transition
-    :name="transitionName"
-    :mode="mode"
-    :enter-active-class="enterActiveClass"
-    @before-leave="beforeLeave"
-    @enter="enter"
-    @after-enter="afterEnter"
-  >
+  <transition :appear="appear" :name="transitionName" :mode="mode" :enter-active-class="enterActiveClass" @before-enter="beforeEnter" @before-leave="beforeLeave" @enter="enter" @after-enter="afterEnter">
     <slot></slot>
   </transition>
 </template>
 <script>
+import "../assets/scss/router-transition.scss";
 export default {
   name: "ui-router-transition",
-
   data() {
     return {
       prevHeight: 0,
       transitionName: "fade",
-      enterActiveClass: ``,
+      enterActiveClass: "",
       to: "",
       from: "",
-      mode: "out-in"
+      mode: "out-in",
+      prevPath: ''
     };
   },
   props: {
-    isBack: Boolean
+    isBack: Boolean,
+    appear: Boolean
   },
   computed: {
     back() {
-      return this.isBack ? true : this.depth();
+      return this.isBack ? this.isBack : this.depth();
     }
   },
   watch: {
     $route(to, from, next) {
+     console.log(this.isBack)
       this.to = to;
       this.from = from;
+      this.prevPath = from.path
+
       let transitionName =
         to.meta.transitionName ||
         from.meta.transitionName ||
         this.transitionName;
+      if (transitionName === `slide`) {
+        transitionName = this.back ? `slide-right` : `slide-left`;
+      }
+      if (transitionName === `slide-vertical`) {
+        transitionName = this.back ? `slide-up` : `slide-down`;
+      }
+      this.enterActiveClass = `${transitionName}-enter-active`;
+      if (to.meta.transitionName === `zoom`) {
+        this.mode = `in-out`;
+        this.enterActiveClass = `zoom-enter-active`;
+      }
+      if (from.meta.transitionName === `zoom`) {
+        this.mode = null;
+        this.enterActiveClass = null;
+      }
+      this.transitionName = "router-" + transitionName;
+      console.log(this.transitionName)
     }
   },
   methods: {
@@ -48,10 +63,26 @@ export default {
       const fromDepth = this.from.path.split(`/`).length;
       return toDepth < fromDepth ? true : false;
     },
-    beforeLeave() {},
-    enter() {},
-    afterEnter() {}
+    beforeLeave(el) {
+      this.prevHeight = getComputedStyle(el).height;
+    },
+    enter(el) {
+      const { height } = getComputedStyle(el);
+      el.style.height = this.prevHeight;
+      setTimeout(() => {
+        el.style.height = height;
+      });
+    },
+    afterEnter(el) {
+      document.body.style.overflow = null;
+    },
+    beforeEnter(el) {
+      document.body.style.overflow = "hidden";
+    }
+  },
+  mounted() {
+    this.prevPath = this.$route.path
   }
 };
+
 </script>
-<style lang="css" scoped></style>

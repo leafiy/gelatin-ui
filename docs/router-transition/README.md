@@ -14,7 +14,7 @@
 
 在路由设置里增加`{meta:{transitionName:'fade'}}`来指定过渡方式
 
-支持 `fade` `slide` `zoom` 三种过渡模式
+支持 `fade` `slide` `slide-vertical` `zoom` 三种过渡模式
 
 
 
