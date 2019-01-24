@@ -23,19 +23,18 @@
 .router-slide-up-leave-active,
 .router-slide-down-enter-active,
 .router-slide-down-leave-active {
-  transition-duration: 0.3s;
+  transition-duration: .3s;
   transition-property: height, opacity, transform;
   transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
-  overflow: hidden;
 }
 
 .router-slide-left-enter,
-.router-slide-right-leave-active {
+.router-slide-right-leave-to {
   opacity: 0;
   transform: translate3d(50%, 0, 0);
 }
 
-.router-slide-left-leave-active,
+.router-slide-left-leave-to,
 .router-slide-right-enter {
   opacity: 0;
   transform: translate3d(-50%, 0, 0);
@@ -44,12 +43,12 @@
 
 
 .router-slide-up-enter,
-.router-slide-down-leave-active {
+.router-slide-down-leave-to {
   opacity: 0;
   transform: translate3d(0, 50%, 0);
 }
 
-.router-slide-up-leave-active,
+.router-slide-up-leave-to,
 .router-slide-down-enter {
   opacity: 0;
   transform: translate3d(0, -50%, 0);

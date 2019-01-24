@@ -29,7 +29,6 @@ export default {
   },
   watch: {
     $route(to, from, next) {
-     console.log(this.isBack)
       this.to = to;
       this.from = from;
       this.prevPath = from.path
@@ -44,7 +43,7 @@ export default {
       if (transitionName === `slide-vertical`) {
         transitionName = this.back ? `slide-up` : `slide-down`;
       }
-      this.enterActiveClass = `${transitionName}-enter-active`;
+      this.enterActiveClass = `router-${transitionName}-enter-active`;
       if (to.meta.transitionName === `zoom`) {
         this.mode = `in-out`;
         this.enterActiveClass = `zoom-enter-active`;
