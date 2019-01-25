@@ -23,7 +23,7 @@
 .router-slide-up-leave-active,
 .router-slide-down-enter-active,
 .router-slide-down-leave-active {
-  transition-duration: .3s;
+  transition-duration: .6s;
   transition-property: height, opacity, transform;
   transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
 }
@@ -44,14 +44,14 @@
 
 .router-slide-up-enter,
 .router-slide-down-leave-to {
-  opacity: 0;
-  transform: translate3d(0, 50%, 0);
+  // opacity: 0;
+  transform: translate3d(0, 100%, 0);
 }
 
 .router-slide-up-leave-to,
 .router-slide-down-enter {
-  opacity: 0;
-  transform: translate3d(0, -50%, 0);
+  // opacity: 0;
+  transform: translate3d(0, -100%, 0);
 }
 
 
