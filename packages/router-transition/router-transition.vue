@@ -20,7 +20,15 @@ export default {
   },
   props: {
     isBack: Boolean,
-    appear: Boolean
+    appear: Boolean,
+    enterTransition: {
+      type: Boolean,
+      default: true
+    },
+    leaveTransition: {
+      type: Boolean,
+      default: true
+    }
   },
   computed: {
     back() {
@@ -38,12 +46,12 @@ export default {
         from.meta.transitionName ||
         this.transitionName;
       if (transitionName === `slide`) {
-        transitionName = this.back ? `slide-right` : `slide-left`;
+        transitionName = this.back ? `slide-left` : `slide-right`;
       }
       if (transitionName === `slide-vertical`) {
-        transitionName = this.back ? `slide-up` : `slide-down`;
+        transitionName = this.back ? `slide-down` : `slide-up`;
       }
-      this.enterActiveClass = `router-${transitionName}-enter-active`;
+      this.enterActiveClass = this.leaveTransition ? `router-${transitionName}-enter-active` :'';
       if (to.meta.transitionName === `zoom`) {
         this.mode = `in-out`;
         this.enterActiveClass = `zoom-enter-active`;
@@ -53,7 +61,6 @@ export default {
         this.enterActiveClass = null;
       }
       this.transitionName = "router-" + transitionName;
-      console.log(this.transitionName)
     }
   },
   methods: {
@@ -64,6 +71,7 @@ export default {
     },
     beforeLeave(el) {
       this.prevHeight = getComputedStyle(el).height;
+      this.$emit('before-leave')
     },
     enter(el) {
       const { height } = getComputedStyle(el);
@@ -71,12 +79,16 @@ export default {
       setTimeout(() => {
         el.style.height = height;
       });
+      this.$emit('enter')
     },
     afterEnter(el) {
       document.body.style.overflow = null;
+      el.style.height = null;
+      this.$emit('after-enter')
     },
     beforeEnter(el) {
       document.body.style.overflow = "hidden";
+      this.$emit('before-enter')
     }
   },
   mounted() {
