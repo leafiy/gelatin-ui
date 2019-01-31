@@ -1,11 +1,43 @@
 <template>
   <div :class="wrapClasses" class="ui-input" @click="focus" :style="styles">
-    <div class="ui-input-prefix" @click="focus" v-if="$slots.prefix" ref="prefix">
+    <div
+      class="ui-input-prefix"
+      @click="focus"
+      v-if="$slots.prefix"
+      ref="prefix"
+    >
       <slot name="prefix"></slot>
     </div>
-    <input :tabindex="tabindex" :name="name" :autofocus="autofocus" :readonly="readonly" :disabled="disabled" class="ui-input-inner" :value="inputVal" :type="type" :maxlength="maxLength" :minLength="minLength" :placeholder="placeholder" :autocomplete="autoComplete ? 'on' : 'off'" ref="input" @input.exact="handleInput" @focus.exact="handleFocus" @blur.exact="handleBlur" @keyup.exact="handleKeyup" @keydown.exact="handleKeydown" @keyup.enter.exact="handleEnter" @keyup.esc.exact="handleEsc" @change.exact="handleChange" @keyup.delete.exact="handleDelete" />
+    <input
+      :tabindex="tabindex"
+      :name="name"
+      :autofocus="autofocus"
+      :readonly="readonly"
+      :disabled="disabled"
+      class="ui-input-inner"
+      :value="inputVal"
+      :type="type"
+      :maxlength="maxLength"
+      :minLength="minLength"
+      :placeholder="placeholder"
+      :autocomplete="autoComplete ? 'on' : 'off'"
+      ref="input"
+      @input.exact="handleInput"
+      @focus.exact="handleFocus"
+      @blur.exact="handleBlur"
+      @keyup.exact="handleKeyup"
+      @keydown.exact="handleKeydown"
+      @keyup.enter.exact="handleEnter"
+      @keyup.esc.exact="handleEsc"
+      @change.exact="handleChange"
+      @keyup.delete.exact="handleDelete"
+    />
     <transition name="fade">
-      <div class="ui-input-clear" v-if="inputVal && showClear && !readonly" @click="clear">
+      <div
+        class="ui-input-clear"
+        v-if="inputVal && showClear && !readonly"
+        @click="clear"
+      >
         <ui-icon name="close-circle-fill"></ui-icon>
       </div>
     </transition>
@@ -13,7 +45,12 @@
       <ui-spinner v-if="loading"></ui-spinner>
     </transition>
     <slot></slot>
-    <div class="ui-input-suffix" @click="focus" v-if="$slots.suffix" ref="suffix">
+    <div
+      class="ui-input-suffix"
+      @click="focus"
+      v-if="$slots.suffix"
+      ref="suffix"
+    >
       <slot name="suffix"></slot>
     </div>
     <!-- <transition name="fade">
@@ -30,7 +67,8 @@ export default {
   data() {
     return {
       focusIn: false,
-      inputVal: this.value === undefined || this.value === null ? "" : this.value,
+      inputVal:
+        this.value === undefined || this.value === null ? "" : this.value,
       errors: false
     };
   },
@@ -143,5 +181,4 @@ export default {
     }
   }
 };
-
 </script>

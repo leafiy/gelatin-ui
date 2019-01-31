@@ -6,12 +6,13 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue src packages --fix",
     "build": "vue-cli-service build --target lib --name gelatin-ui packages/index.js",
-    "publish-dev": "yarn run lint && yarn run build && git add . && git push",
+    "publish-dev": "yarn run lint && yarn run build && git add . && git cz",
     "publish-master": "standard-version && git cz && git push",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "deploy": "sh deploy.sh",
     "report": "vue-cli-service build packages/index.js --report"
+
   },
   "dependencies": {
     "autosize": "^4.0.2",

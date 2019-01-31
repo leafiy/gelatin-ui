@@ -1,5 +1,14 @@
 <template>
-  <transition :appear="appear" :name="transitionName" :mode="mode" :enter-active-class="enterActiveClass" @before-enter="beforeEnter" @before-leave="beforeLeave" @enter="enter" @after-enter="afterEnter">
+  <transition
+    :appear="appear"
+    :name="transitionName"
+    :mode="mode"
+    :enter-active-class="enterActiveClass"
+    @before-enter="beforeEnter"
+    @before-leave="beforeLeave"
+    @enter="enter"
+    @after-enter="afterEnter"
+  >
     <slot></slot>
   </transition>
 </template>
@@ -15,7 +24,7 @@ export default {
       to: "",
       from: "",
       mode: "out-in",
-      prevPath: ''
+      prevPath: ""
     };
   },
   props: {
@@ -39,7 +48,7 @@ export default {
     $route(to, from, next) {
       this.to = to;
       this.from = from;
-      this.prevPath = from.path
+      this.prevPath = from.path;
 
       let transitionName =
         to.meta.transitionName ||
@@ -51,7 +60,9 @@ export default {
       if (transitionName === `slide-vertical`) {
         transitionName = this.back ? `slide-down` : `slide-up`;
       }
-      this.enterActiveClass = this.leaveTransition ? `router-${transitionName}-enter-active` :'';
+      this.enterActiveClass = this.leaveTransition
+        ? `router-${transitionName}-enter-active`
+        : "";
       if (to.meta.transitionName === `zoom`) {
         this.mode = `in-out`;
         this.enterActiveClass = `zoom-enter-active`;
@@ -71,7 +82,7 @@ export default {
     },
     beforeLeave(el) {
       this.prevHeight = getComputedStyle(el).height;
-      this.$emit('before-leave')
+      this.$emit("before-leave");
     },
     enter(el) {
       const { height } = getComputedStyle(el);
@@ -79,21 +90,20 @@ export default {
       setTimeout(() => {
         el.style.height = height;
       });
-      this.$emit('enter')
+      this.$emit("enter");
     },
     afterEnter(el) {
       document.body.style.overflow = null;
       el.style.height = null;
-      this.$emit('after-enter')
+      this.$emit("after-enter");
     },
     beforeEnter(el) {
       document.body.style.overflow = "hidden";
-      this.$emit('before-enter')
+      this.$emit("before-enter");
     }
   },
   mounted() {
-    this.prevPath = this.$route.path
+    this.prevPath = this.$route.path;
   }
 };
-
 </script>
