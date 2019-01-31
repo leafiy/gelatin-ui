@@ -1,13 +1,13 @@
 {
   "name": "gelatin-ui",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": false,
   "main": "./dist/gelatin-ui.umd.min.js",
   "scripts": {
     "lint": "eslint --ext .js,.vue src packages --fix",
     "build": "vue-cli-service build --target lib --name gelatin-ui packages/index.js",
     "publish-dev": "yarn run lint && yarn run build && git add . && git cz",
-    "publish-master": "standard-version && git cz && git push",
+    "release": "standard-version -r minor",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "deploy": "sh deploy.sh",
