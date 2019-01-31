@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+# 1.0.0 (2019-01-31)
+
+
+### Bug Fixes
+
+* **fix validation bugs:** validation增加状态事件，简化使用方法 ([41863ad](https://github.com/leafiy/gelatin-ui/commit/41863ad))
+* **remove toast intances on close:** n ([831df9e](https://github.com/leafiy/gelatin-ui/commit/831df9e))
+* **ui bugs fix:** add some component ([a4b9ae6](https://github.com/leafiy/gelatin-ui/commit/a4b9ae6))
+* **update button style:** use div instead of button for ui-button ([6fb2631](https://github.com/leafiy/gelatin-ui/commit/6fb2631))
+
+
+### Features
+
+* **增加dropdown和tooltip:** 使用popover统一构建dropdown和 ([0114c29](https://github.com/leafiy/gelatin-ui/commit/0114c29))
+* **add $Message:** update $Toast ([e6bb5bf](https://github.com/leafiy/gelatin-ui/commit/e6bb5bf))
+* **add dropdown component:** 增加dropdown组件 ([0abe4ef](https://github.com/leafiy/gelatin-ui/commit/0abe4ef))
+* **update change log:** new commit rule ([08f94fd](https://github.com/leafiy/gelatin-ui/commit/08f94fd))
+
+
+### BREAKING CHANGES
+
+* **增加dropdown和tooltip:** popover定位方式
+* **add dropdown component:** 优化弹出框定位
+
+
+
 <a name="0.1.29"></a>
 ## [0.1.29](https://github.com/leafiy/gelatin-ui/compare/v0.1.28...v0.1.29) (2019-01-20)
 
