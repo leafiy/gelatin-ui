@@ -5,7 +5,7 @@ module.exports = {
   title: 'Gelatin-Ui',
   description: '🎨 简单好看的VueJs UI from unicapsule.com',
   port: 8108,
-  host: "192.168.228.128",
+  host: "127.0.0.1",
   base: "/",
   themeConfig: {
     displayAllHeaders: true,
