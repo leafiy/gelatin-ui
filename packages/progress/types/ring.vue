@@ -41,15 +41,23 @@ export default {
   data() {
     return {};
   },
-  props: [
-    "size",
-    "percentage",
-    "strokeWidth",
-    "backColor",
-    "foreColor",
-    "showNumber",
-    "progressNumber"
-  ],
+  props: {
+    size: {
+      type: Number
+    },
+    percentage: Number,
+    strokeWidth: Number,
+    backColor: {
+      type: String,
+      default: "#E9EBEE"
+    },
+    foreColor: {
+      type: String,
+      default: "#08D7B8"
+    },
+    showNumber: Boolean,
+    progressNumber: Boolean
+  },
   computed: {
     r() {
       return this.size / 2 - this.strokeWidth / 2;
