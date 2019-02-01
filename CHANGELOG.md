@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.32"></a>
+## [0.1.32](https://github.com/leafiy/gelatin-ui/compare/v0.1.31...v0.1.32) (2019-02-01)
+
+
+### Bug Fixes
+
+* **loading bar:** remove progress ([5369c9d](https://github.com/leafiy/gelatin-ui/commit/5369c9d))
+* **modal:** backdrop bug ([037013a](https://github.com/leafiy/gelatin-ui/commit/037013a))
+* **progess:** props validate ([9f1e64f](https://github.com/leafiy/gelatin-ui/commit/9f1e64f))
+* **progress ring:** fix color ([52c62ed](https://github.com/leafiy/gelatin-ui/commit/52c62ed))
+
+
+
 <a name="0.1.31"></a>
 ## 0.1.31 (2019-01-31)
 
