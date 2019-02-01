@@ -21,7 +21,7 @@ import UiRadio from "./radio/index.js";
 import UiTag from "./tag/index.js";
 import UiHightlight from "./highlight/index.js";
 import UiHr from "./hr/index.js";
-import { UiBackdrop } from "./backdrop/index.js";
+import UiBackdrop from "./backdrop/index.js";
 import UiAutocomplete from "./autocomplete/index.js";
 import UiLoading from "./loading/index.js";
 import UiMask from "./mask/index.js";
@@ -41,7 +41,6 @@ import { $UiPopover, UiTooltip, UiDropdown } from "./popover/index.js";
 import $UiToast from "./toast/index.js";
 import $UiMessage from "./message/index.js";
 import $UiLoadingBar from "./loading-bar/index.js";
-import { $UiCover } from "./backdrop/index.js";
 import { $UiConfirm } from "./confirm/index.js";
 import { $UiModal } from "./modal/index.js";
 import UiRouterTransition from "./router-transition/index.js";
@@ -89,7 +88,6 @@ const components = [
 const plugins = {
   $UiPopover,
   $UiToast,
-  $UiCover,
   $UiModal,
   $UiConfirm,
   $UiMessage,
@@ -158,7 +156,6 @@ export default {
   UiRouterTransition,
   $UiPopover,
   $UiToast,
-  $UiCover,
   $UiModal,
   $UiConfirm,
   $UiMessage,

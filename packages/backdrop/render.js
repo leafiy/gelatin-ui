@@ -1,5 +1,7 @@
 import Vue from "vue";
 import Backdrop from "./backdrop.vue";
+import events from "../../src/utils/events.js";
+
 const BackdropConstructor = Vue.extend(Backdrop);
 
 const Render = function({ el, options = {} }) {
@@ -9,6 +11,9 @@ const Render = function({ el, options = {} }) {
       propsData: options
     });
     this.backdrop.$mount();
+    this.backdrop.close = function() {
+      events.$emit("close-backdrop");
+    };
     document.body.appendChild(this.backdrop.$el);
   } else {
     el.style.position =

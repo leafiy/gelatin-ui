@@ -20,14 +20,14 @@ actions option
 
 ```js
 actions: [{
-  text: '按钮1，还带一个icon',
+  content: '按钮1，还带一个icon',
   onClick: () => {
     this.$UiToast('点了按钮1，并且关闭此message')
   },
   icon:'small-dash',
   closeAfter: true
 }, {
-  text: '按钮2',
+  content: '按钮2',
   onClick: () => {
     this.$UiToast.error('点了按钮2，但是不关闭该message')
   },

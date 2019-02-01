@@ -9,7 +9,7 @@ const render = function({ el, options }) {
 
 const makeOptions = function(val) {
   if (typeof val == "string") {
-    return { text: val };
+    return { content: val };
   }
   if (typeof val == "object") {
     return val;

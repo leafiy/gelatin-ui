@@ -15,7 +15,7 @@
 |loose|Boolean|false||
 |highlight|Boolean|true||
 |highlightColor|String|primary|see `highlight` document|
-|showSpinner|Boolean|true||
+|loading|Boolean|true||
 |debounce|Number|100||
 |icon|String|team||
 |placeholder|String|||

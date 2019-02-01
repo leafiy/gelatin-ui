@@ -60,11 +60,11 @@
           <span
             class="ui-message-action-item"
             v-for="action of actions"
-            :key="action.text"
+            :key="action.content"
             @click="clickOnMessageIcon(action)"
           >
             <ui-icon v-if="action.icon" :name="action.icon"></ui-icon>
-            {{ action.text }}</span
+            {{ action.content }}</span
           >
         </div>
       </div>

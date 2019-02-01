@@ -4,7 +4,7 @@ const BackdropConstructor = Vue.extend(Backdrop);
 import RenderBackdrop from "../backdrop/render.js";
 
 const render = function({ el, options = {} }) {
-  options.showSpinner = true;
+  options.loading = true;
   el.loading = new RenderBackdrop({ el, options });
 };
 

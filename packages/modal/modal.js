@@ -9,6 +9,9 @@ const $Modal = function(options = {}) {
   let modal = new ModalContrustor(options);
   modal.$mount();
   modal.$props.value = true;
+  modal.$on("modal-close", () => {
+    modal.$props.value = false;
+  });
   document.body.appendChild(modal.$el);
 };
 

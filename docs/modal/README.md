@@ -17,17 +17,17 @@ this.$UiModal({
         header: 'I am Header',
         content: 'I am Content',
         buttons: [{
-            text: 'ok',
+            content: 'ok',
             action: () => {
               alert('clicked ok')
             }
           },
           {
-            text: 'no no no',
+            content: 'no no no',
             type: 'border'
           },
           {
-            text: 'no no no',
+            content: 'no no no',
             type: 'warning'
           }
         ]

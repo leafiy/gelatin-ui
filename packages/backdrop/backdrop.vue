@@ -8,8 +8,8 @@
       @click="click"
     >
       <slot></slot>
-      <ui-spinner v-if="showSpinner"></ui-spinner>
-      <span v-if="text">{{ text }}</span>
+      <ui-spinner v-if="loading"></ui-spinner>
+      <span v-if="content">{{ content }}</span>
     </div>
   </transition>
 </template>
@@ -34,10 +34,10 @@ export default {
       type: String
     },
     onClick: Function,
-    showSpinner: Boolean,
-    // zIndex: Number,
-    global: Boolean,
-    text: String,
+    loading: Boolean,
+    zIndex: Number,
+    fullscreen: Boolean,
+    content: String,
     closeOnClick: Boolean,
     radius: [Number, String],
     color: {
@@ -52,14 +52,17 @@ export default {
     styles() {
       return [
         {
-          zIndex: this.$zIndex.add(),
+          zIndex: this.zIndex,
           borderRadius:
             typeof this.radius == "number" ? this.radius + "px" : this.radius
         }
       ];
     },
     classes() {
-      return [`ui-backdrop-${this.color}`, this.global && "ui-backdrop-global"];
+      return [
+        `ui-backdrop-${this.color}`,
+        this.fullscreen && "ui-backdrop-fullscreen"
+      ];
     }
   },
   methods: {
@@ -73,14 +76,11 @@ export default {
     },
     close() {
       this.show = false;
-      this.$zIndex.remove();
-    }
-  },
-  mounted() {
-    this.show = true;
-    this.$zIndex.add();
-    if (this.global) {
-      events.$on("close-backdrop", this.close);
+      this.$emit("close");
+    },
+    open() {
+      this.show = true;
+      this.$emit("open");
     }
   }
 };

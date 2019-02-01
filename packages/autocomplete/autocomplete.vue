@@ -21,7 +21,7 @@
         ref="list"
         :style="{ zIndex: zIndex }"
       >
-        <ui-spinner center v-if="loading && showSpinner"></ui-spinner>
+        <ui-spinner center v-if="loading"></ui-spinner>
         <div
           v-for="(item, index) of showItems"
           class="ui-autocomplete-list-item"
@@ -75,10 +75,6 @@ export default {
       default: true
     },
     highlightColor: String,
-    showSpinner: {
-      type: Boolean,
-      default: true
-    },
     debounce: {
       type: Number,
       default: 100

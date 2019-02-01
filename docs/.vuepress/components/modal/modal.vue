@@ -31,14 +31,17 @@ export default {
         header: 'I am Header',
         content: 'I am Content',
         buttons: [{
-            text: 'ok',
+            content: 'ok',
             action: () => {
               alert('clicked ok')
             }
           },
           {
-            text: 'no no no',
-            type: 'warning'
+            content: 'no no no',
+            type: 'warning',
+            action: () => {
+              alert('clicked no')
+            }
           }
         ]
       })
