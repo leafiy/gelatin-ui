@@ -1,41 +1,20 @@
 <template>
-  <transition :name="loadingBar ? 'fade' : ''">
+  <div class="ui-progress-type-bar" :style="barStyles">
     <div
-      class="ui-progress-type-bar"
-      v-if="show"
-      :style="barStyles"
-      :class="[
-        indeterminate && 'ui-loading-bar-indeterminate',
-        loadingBar && 'ui-loading-bar'
-      ]"
+      class="ui-progress-bar"
+      role="progressbar"
+      :style="styles"
+      :aria-valuenow="percentage"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      ref="bar"
     >
-      <div
-        v-if="!indeterminate"
-        class="ui-progress-bar"
-        role="progressbar"
-        :style="styles"
-        :aria-valuenow="percentage"
-        aria-valuemin="0"
-        aria-valuemax="100"
-        ref="bar"
+      <span class="ui-progress-bar-number" v-if="showNumber"
+        >{{ parseInt(percentage) }}%</span
       >
-        <span class="ui-progress-bar-number" v-if="showNumber"
-          >{{ percentage }}%</span
-        >
-      </div>
-      <div
-        v-if="indeterminate"
-        class="ui-loading-bar-indeterminate-bg1"
-        :style="{ backgroundColor: foreColor }"
-      ></div>
-      <div
-        v-if="indeterminate"
-        class="ui-loading-bar-indeterminate-bg2"
-        :style="{ backgroundColor: foreColor }"
-      ></div>
-      <slot></slot>
     </div>
-  </transition>
+    <slot></slot>
+  </div>
 </template>
 <script>
 import Vue from "vue";
@@ -53,12 +32,7 @@ export default {
     "backColor",
     "foreColor",
     "showNumber",
-    "progressNumber",
-    "indeterminate",
-    "loadingBar",
-    "zIndex",
-    "show",
-    "duration"
+    "zIndex"
   ],
   computed: {
     barStyles() {
@@ -72,8 +46,7 @@ export default {
       return {
         width: this.percentage + "%",
         backgroundColor: this.foreColor,
-        zIndex: this.zIndex,
-        transition: this.loadingBar ? "all 1s ease-in-out" : ""
+        zIndex: this.zIndex
       };
     }
   },

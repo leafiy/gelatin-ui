@@ -2,7 +2,7 @@
   <div
     class="ui-progress-type-ring"
     :style="{ width: size + 'px', height: size + 'px' }"
-    :data-pct="progressNumber"
+    :data-pct="parseInt(percentage)"
   >
     <svg
       :width="size"
@@ -55,8 +55,7 @@ export default {
       type: String,
       default: "#08D7B8"
     },
-    showNumber: Boolean,
-    progressNumber: Number
+    showNumber: Boolean
   },
   computed: {
     r() {
@@ -71,4 +70,3 @@ export default {
   }
 };
 </script>
-<style lang="css" scoped></style>

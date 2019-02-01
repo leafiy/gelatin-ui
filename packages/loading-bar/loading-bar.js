@@ -1,56 +1,36 @@
-import LoadingBar from "../progress/types/bar.vue";
+import LoadingBar from "./loading-bar.vue";
 import Vue from "vue";
 const UiLoadingBar = Vue.extend(LoadingBar);
 let instance = null;
 
 import "../assets/scss/progress.scss";
 
-const timer = function(instance, duration) {
+const timer = function(duration) {
   instance.percentage = 0;
   clearInterval(instance.timer);
   instance.timer = setInterval(() => {
-    instance.percentage += 100 / (10 * (duration / 1000));
+    instance.percentage += 10 / (10 * (duration / 1000));
     if (instance.percentage >= 100) {
       clearInterval(instance.timer);
+      instance.close();
     }
-  }, 100);
+  }, 10);
 };
 
-const $UiLoadingBar = function(options) {
-  const defaultOptions = {
-    size: 3,
-    percentage: 0,
-    indeterminate: false,
-    loadingBar: true,
-    showNumber: false,
-    foreColor: "#08D7B8",
-    backColor: "transparent",
-    duration: 4000,
-    zIndex: options.zIndex ? options.zIndex : this.$zIndex.add()
-  };
-  options = Object.assign(defaultOptions, options);
-  if (instance) {
-    instance.propsData = options;
-    instance.show = true;
-    timer(instance, options.duration);
+const $UiLoadingBar = function(options = {}) {
+  if (instance && !options.instance) {
+    timer(instance.duration);
     return;
   }
   instance = new UiLoadingBar({
-    propsData: options
+    data: options
   });
   instance.$mount();
-  instance.$zIndex = this.$zIndex;
+  console.log(instance);
   document.body.appendChild(instance.$el);
-  instance.show = true;
-  if (instance.$zIndex) {
-    instance.$on("finish", () => {
-      instance.$zIndex.remove();
-    });
-  }
   if (!options.indeterminate) {
-    timer(instance, options.duration);
+    timer(instance.duration);
   }
-
   return instance;
 };
 $UiLoadingBar.finish = function() {
@@ -81,15 +61,13 @@ $UiLoadingBar.decrease = function(percent = 1) {
     instance.percentage = 0;
   }
 };
-$UiLoadingBar.fail = function() {
+$UiLoadingBar.fail = function(delay = 1000) {
   if (!instance) {
     return;
   }
   instance.percentage = 100;
   instance.foreColor = "#ea4335";
-  setTimeout(() => {
-    instance.show = false;
-  }, 1000);
+  instance.close(delay);
   clearInterval(instance.timer);
   instance.time = null;
 };

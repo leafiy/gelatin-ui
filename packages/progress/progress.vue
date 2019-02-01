@@ -8,8 +8,6 @@
       :back-color="backColor"
       :fore-color="foreColor"
       :show-number="showNumber"
-      :progress-number="progressNumber"
-      :show="show"
     ></component>
   </div>
 </template>

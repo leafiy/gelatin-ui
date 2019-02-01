@@ -16,7 +16,7 @@
 
 `this.$UiLoadingBar.decrease(percent)` 减少半分比
 
-`this.$UiLoadingBar.fail()` 手动失败
+`this.$UiLoadingBar.fail(delay = 1000)` 手动失败
 
 
 #### Options
