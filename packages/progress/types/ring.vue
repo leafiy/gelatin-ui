@@ -56,7 +56,7 @@ export default {
       default: "#08D7B8"
     },
     showNumber: Boolean,
-    progressNumber: Boolean
+    progressNumber: Number
   },
   computed: {
     r() {

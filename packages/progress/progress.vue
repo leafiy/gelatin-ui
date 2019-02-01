@@ -64,7 +64,7 @@ export default {
   },
   computed: {
     progressNumber() {
-      return this.showNumber && parseInt(this.percentage);
+      return parseInt(this.percentage);
     }
   },
   mounted() {}
