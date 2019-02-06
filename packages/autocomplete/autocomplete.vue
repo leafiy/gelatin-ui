@@ -10,6 +10,7 @@
     >
       <ui-icon slot="prefix" :name="icon"></ui-icon>
     </ui-input>
+    <slot name="tags"></slot>
     <ui-height-transition
       :duration="100"
       @after-enter="$emit('open')"
@@ -135,7 +136,7 @@ export default {
       this.$zIndex.remove();
     },
     itemHandler(item) {
-      if (typeof item == "string") {
+      if (typeof item == "string" || typeof item == "number") {
         return validators.htmlStrict.test(item) ? item : `<span>${item}</span>`;
       } else if (isElement(item)) {
         // todo: make element react
