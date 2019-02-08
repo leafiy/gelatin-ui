@@ -11,11 +11,7 @@
 <template>
   <div class="container">
     <ui-hr>只在输入过程中打开</ui-hr>
-    <ui-autocomplete :items="items" v-model="value1" :filter-data="true"></ui-autocomplete>
-    <ui-hr>focus时打开</ui-hr>
-    <ui-autocomplete :items="items" v-model="value2" :show-on-focus="true" :filter-data="true"></ui-autocomplete>
-    <ui-hr>不过滤输入结果</ui-hr>
-    <ui-autocomplete :items="items" v-model="value3" :show-on-focus="true" :filter-data="false"></ui-autocomplete>
+    <ui-autocomplete :items="items" v-model="value1"></ui-autocomplete>
     <ui-hr>不对结果进行highlight处理</ui-hr>
     <ui-autocomplete :items="items" :highlight="false" v-model="value4" :show-on-focus="true" :filter-data="false"></ui-autocomplete>
     <ui-hr>对结果采用loose匹配</ui-hr>
@@ -59,11 +55,11 @@ export default {
 |debounce|Number|100||
 |icon|String|team||
 |placeholder|String|||
-|onInputChange|Function|||
 |onItemSelected|Function|||
-|showOnFocus|Boolean|false||
-|filterData|Booean|false||
-|value|string|||
+|showOnFocus|Boolean|true||
+|value|String/Number|||
+|disableSelectedItem|Boolean|false|对选择过的item进行disabled处理|
+|multiple|Boolean/Number|false|允许多选|
 
 ## onInputChange & onItemSelected
 

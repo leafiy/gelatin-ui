@@ -61,7 +61,6 @@ import UiPopoverItem from "./popover-item.vue";
 import "../assets/scss/popover.scss";
 import popPosition from "../../src/mixins/pop/position.js";
 import UiIcon from "../icon/icon.vue";
-
 export default {
   name: "ui-popover",
   data() {
@@ -168,8 +167,7 @@ export default {
     unbindEvents() {
       window.removeEventListener("resize", this.calculatePopoverPosition);
       window.removeEventListener("scroll", this.calculatePopoverPosition);
-      window.removeEventListener("scroll", this.getAxis);
-      window.removeEventListener("resize", this.getAxis);
+
       if (this.closeOnMouseleave && !this.tooltip) {
         this.trigger.removeEventListener("mouseout", this.close);
       }
@@ -181,8 +179,7 @@ export default {
     bindEvents() {
       window.addEventListener("resize", this.calculatePopoverPosition);
       window.addEventListener("scroll", this.calculatePopoverPosition);
-      window.addEventListener("scroll", this.getAxis);
-      window.addEventListener("resize", this.getAxis);
+
       if (this.closeOnMouseleave && !this.tooltip) {
         this.trigger.addEventListener("mouseout", this.close);
       }
