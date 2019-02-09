@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue src packages --fix",
     "build": "vue-cli-service build --target lib --name gelatin-ui packages/index.js",
-    "publish-dev": "yarn run lint && yarn run build && git add . && git cz",
+    "publish-dev": "yarn run lint && git add . && git cz",
     "sync": "git add . && git commit -m 'dev in progress' && git push",
     "release": "standard-version -r patch && git push --follow-tags origin master",
     "docs:dev": "vuepress dev docs",
@@ -17,13 +17,16 @@
   "dependencies": {
     "autosize": "^4.0.2",
     "axios": "^0.18.0",
+    "buxton": "^0.2.2",
     "iselement": "^1.1.4",
     "lodash": "^4.17.11",
     "nanoid": "^2.0.0",
     "normalize.css": "^8.0.1",
+    "popper.js": "^1.14.7",
     "qrcode": "^1.3.2",
     "v-click-outside": "^2.0.2",
-    "vue": "^2.5.21"
+    "vue": "^2.5.21",
+    "vue-resize": "^0.4.5"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",

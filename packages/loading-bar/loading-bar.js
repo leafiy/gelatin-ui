@@ -26,7 +26,6 @@ const $UiLoadingBar = function(options = {}) {
     data: options
   });
   instance.$mount();
-  console.log(instance);
   document.body.appendChild(instance.$el);
   if (!options.indeterminate) {
     timer(instance.duration);
