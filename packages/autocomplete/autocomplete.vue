@@ -15,19 +15,14 @@
       @after-enter="$emit('open')"
       @after-leave="$emit('close')"
     >
-      <div
-        class="ui-autocomplete-list"
-        v-if="showList && listLength"
-        ref="list"
-        :style="{ zIndex: zIndex }"
-      >
+      <div class="ui-autocomplete-list" ref="list" :style="listStyles">
         <ui-spinner center v-if="loading"></ui-spinner>
         <div
-          v-for="(item, index) of showItems"
+          v-for="(item, index) of items_"
           class="ui-autocomplete-list-item"
-          v-if="item.show"
+          :class="{ 'ui-autocomplete-list-item-disabled': item.disabled }"
           :key="index + Date.now()"
-          @click="selectItem(index)"
+          @click="item.disabled ? '' : selectItem(index)"
         >
           <div v-html="item.item" v-ui-highlight="highlightOptions"></div>
         </div>
@@ -44,8 +39,9 @@ import { debounce } from "lodash";
 import validators from "../../src/utils/validator.js";
 import isElement from "iselement";
 import "../assets/scss/autocomplete.scss";
-import mixins from "./mixins.js";
+import keyNavi from "./key-navi.js";
 import UiHeightTransition from "../height-transition/height-transition.vue";
+import axis from "../../src/utils/getAxis.js";
 export default {
   name: "ui-autocomplete",
   data() {
@@ -55,13 +51,13 @@ export default {
       query: this.value === undefined || this.value === null ? "" : this.value,
       showList: false,
       loading: false,
-      showItems: [],
+      items_: [],
       list: "",
       lastQuery: "",
-      zIndex: this.$zIndex.get()
+      axis: {}
     };
   },
-  mixins: [mixins],
+  mixins: [keyNavi],
   props: {
     items: {
       type: Array,
@@ -89,9 +85,15 @@ export default {
     },
     onInputChange: Function,
     onItemSelected: Function,
-    showOnFocus: Boolean,
+    showOnFocus: {
+      type: Boolean,
+      default: true
+    },
     filterData: Boolean,
-    value: [String]
+    value: [String, Number],
+    disabelSelectedItem: Boolean,
+    multiple: [Boolean, Number],
+    showCheckIcon: Boolean
   },
   components: {
     UiInput,
@@ -100,9 +102,6 @@ export default {
     UiIcon
   },
   computed: {
-    listLength() {
-      return this.showItems.filter(item => item.show).length;
-    },
     highlightOptions() {
       if (!this.highlight) {
         return null;
@@ -113,6 +112,11 @@ export default {
           color: this.highlightColor
         };
       }
+    },
+    listStyles() {
+      return {
+        zIndex: this.$zIndex.get()
+      };
     }
   },
   methods: {
@@ -135,7 +139,7 @@ export default {
       this.$zIndex.remove();
     },
     itemHandler(item) {
-      if (typeof item == "string") {
+      if (typeof item == "string" || typeof item == "number") {
         return validators.htmlStrict.test(item) ? item : `<span>${item}</span>`;
       } else if (isElement(item)) {
         // todo: make element react
@@ -152,7 +156,6 @@ export default {
       }
       this.activeItemIndex = -1;
       this.hide();
-      // this.showList = false;
     },
     enterHandler() {
       setTimeout(() => {
@@ -174,64 +177,22 @@ export default {
       if (!item) {
         return;
       }
-
+      if (this.disabelSelectedItem) {
+        this.items_[index].disabled = true;
+      }
+      this.items_[index].selected = true;
       if (this.onItemSelected) {
         this.onItemSelected(index);
       } else {
         this.onItemSelectedDefault(index);
       }
     },
-
-    setItems(items) {
+    itemsHandler(items) {
       items = items ? items : this.items;
-      this.showItems = items.map(item => {
-        return { item: this.itemHandler(item), show: true };
+      this.items_ = items.map(item => {
+        return { item: this.itemHandler(item) };
       });
       this.activeItemIndex = -1;
-    },
-
-    onQueryChanged(value) {
-      this.show();
-      if (this.onInputChange) {
-        const result = this.onInputChange && this.onInputChange(value);
-        if (
-          typeof result === "undefined" ||
-          typeof result === "boolean" ||
-          result === null
-        ) {
-          this.loading = false;
-          return;
-        }
-        if (Array.isArray(result)) {
-          this.setItems(result);
-          this.loading = false;
-        }
-        if (typeof result.then === "function") {
-          this.loading = true;
-          result.then(items => {
-            this.setItems(items);
-            this.loading = false;
-          });
-        }
-      } else {
-        if (this.filterData) {
-          this.showItems.forEach((item, index) => {
-            if (value) {
-              if (typeof item.item == "string") {
-                if (!item.item.includes(this.query)) {
-                  item.show = false;
-                } else {
-                  item.show = true;
-                }
-              }
-            } else {
-              item.show = true;
-            }
-          });
-        }
-
-        this.loading = false;
-      }
     }
   },
   watch: {
@@ -240,7 +201,6 @@ export default {
         this.lastQuery = null;
         return;
       }
-      this.onQueryChanged(newValue);
       this.$emit("input", newValue);
     },
     value(val) {
@@ -248,14 +208,22 @@ export default {
       this.lastQuery = val;
     },
     items() {
-      this.setItems(this.items);
+      this.itemsHandler(this.items);
+    },
+    getAxis() {
+      // this.axis = getAxis();
+    },
+    unbindEvents() {
+      // window.removeEventListener("scroll", this.getAxis);
+      // window.removeEventListener("resize", this.getAxis);
+    },
+    bindEvents() {
+      // window.addEventListener("scroll", this.getAxis);
+      // window.addEventListener("resize", this.getAxis);
     }
   },
-  beforeMount() {
-    this.onQueryChanged = debounce(this.onQueryChanged, this.debounce);
-  },
   mounted() {
-    this.setItems();
+    this.itemsHandler();
   },
   directives: {
     UiHighlight

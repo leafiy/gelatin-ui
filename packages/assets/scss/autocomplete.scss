@@ -43,4 +43,7 @@
     background: $lighter;
     cursor: pointer;
   }
+  &-disabled{
+    background: $lighter;
+  }
 }

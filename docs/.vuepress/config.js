@@ -58,6 +58,7 @@ module.exports = {
           ['/textarea/', 'Textarea'],
           ['/checkbox/', 'Checkbox'],
           ['/v/', 'V Validation'],
+          ['/select/', 'Select'],
           // ['/radio/', 'Radio'],
         ]
       },
@@ -69,7 +70,7 @@ module.exports = {
           ['/confirm/', 'Confirm'],
           ['/toast/', 'Toast'],
           ['/message/', 'Message'],
-          ['/popover/', 'Popover/Tooltip/Dropdown 弹出框']
+          // ['/popover/', 'Popover/Tooltip/Dropdown 弹出框']
 
         ]
       },

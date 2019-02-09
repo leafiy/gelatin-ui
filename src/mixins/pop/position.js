@@ -6,11 +6,11 @@ export default {
   data() {
     return {
       axis: {},
-      arrowLeft: "",
       el: "",
       key: "",
       // content: "",
       //not for options
+      mounted: false,
       targetTop: "",
       placeOnTop: "",
       placeOnRight: "",
@@ -20,10 +20,10 @@ export default {
       top: "",
       borderTopColor: "",
       borderBottomColor: "",
+      arrowLeft: "",
       arrowTop: "",
       triggerOffset: "",
       popoverOffset: "",
-      userOnClose: "",
       translateX: "",
       zIndex: this.$zIndex ? this.$zIndex.add() : 1000
     };

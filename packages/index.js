@@ -37,13 +37,16 @@ import UiCountdown from "./countdown/index.js";
 import UiSlidePanel from "./slide-panel/index.js";
 import UiSticky from "./sticky/index.js";
 import UiHeightTransition from "./height-transition/index.js";
-import { $UiPopover, UiTooltip, UiDropdown } from "./popover/index.js";
+// import { $UiPopover, UiTooltip, UiDropdown } from "./popover/index.js";
+import UiPopover from "./popover/index.js";
+import { UiTooltip, UiClosePopover } from "./popover/index.js";
 import $UiToast from "./toast/index.js";
 import $UiMessage from "./message/index.js";
 import $UiLoadingBar from "./loading-bar/index.js";
 import { $UiConfirm } from "./confirm/index.js";
 import { $UiModal } from "./modal/index.js";
 import UiRouterTransition from "./router-transition/index.js";
+import UiSelect from "./select/index.js";
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
@@ -52,7 +55,7 @@ const components = [
   UiLoader,
   UiSpinner,
   UiUpload,
-  UiDropdown,
+  // UiDropdown,
   UiAlert,
   UiRow,
   UiCol,
@@ -82,11 +85,13 @@ const components = [
   UiCountdown,
   UiSlidePanel,
   UiHeightTransition,
-  UiRouterTransition
+  UiRouterTransition,
+  UiSelect,
+  UiPopover
 ];
 
 const plugins = {
-  $UiPopover,
+  // $UiPopover,
   $UiToast,
   $UiModal,
   $UiConfirm,
@@ -94,7 +99,15 @@ const plugins = {
   $UiLoadingBar
 };
 
-const directives = [UiTooltip, UiHightlight, UiLoading, UiMask, UiSticky];
+console.log(UiTooltip, UiClosePopover);
+const directives = [
+  UiTooltip,
+  UiClosePopover,
+  UiHightlight,
+  UiLoading,
+  UiMask,
+  UiSticky
+];
 
 import ZHandler from "../src/utils/zHandler.js";
 
@@ -121,8 +134,8 @@ export default {
   UiLoader,
   UiSpinner,
   UiUpload,
-  UiDropdown,
-  UiTooltip,
+  // UiDropdown,
+  // UiTooltip,
   UiRow,
   UiCol,
   UiCard,
@@ -154,11 +167,12 @@ export default {
   UiModal,
   UiHeightTransition,
   UiRouterTransition,
-  $UiPopover,
+  // $UiPopover,
   $UiToast,
   $UiModal,
   $UiConfirm,
   $UiMessage,
-  $UiLoadingBar
+  $UiLoadingBar,
+  UiSelect
   // Rem
 };
