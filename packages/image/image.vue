@@ -1,5 +1,9 @@
 <template>
-  <div class="ui-image" :class="[keepSize && 'ui-image-keep-size']">
+  <div
+    class="ui-image"
+    :class="[keepSize && 'ui-image-keep-size']"
+    :style="{ height: imageHeight + 'px', width: imageWidth + 'px' }"
+  >
     <transition name="fade">
       <div
         class="ui-image-image"
@@ -34,7 +38,9 @@ export default {
   data() {
     return {
       loading: true,
-      failed: false
+      failed: false,
+      imageHeight: "",
+      imageWidth: ""
     };
   },
   methods: {
@@ -43,6 +49,14 @@ export default {
         .then(url => {
           this.loading = false;
           this.$emit("load-finished");
+          if (this.keepSize) {
+            import("buxton/browser/imageSize").then(module => {
+              module.default(this.src).then(({ width, height }) => {
+                let aspect = this.$el.offsetWidth / width;
+                this.imageHeight = height * aspect;
+              });
+            });
+          }
         })
         .catch(err => {
           this.loading = false;

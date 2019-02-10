@@ -391,40 +391,6 @@ setToStringTag(global.JSON, 'JSON', true);
 
 /***/ }),
 
-/***/ "0196":
-/***/ (function(module, exports, __webpack_require__) {
-
-var Buffer = __webpack_require__("5a88")
-var Mode = __webpack_require__("bbf0")
-
-function ByteData (data) {
-  this.mode = Mode.BYTE
-  this.data = new Buffer(data)
-}
-
-ByteData.getBitsLength = function getBitsLength (length) {
-  return length * 8
-}
-
-ByteData.prototype.getLength = function getLength () {
-  return this.data.length
-}
-
-ByteData.prototype.getBitsLength = function getBitsLength () {
-  return ByteData.getBitsLength(this.data.length)
-}
-
-ByteData.prototype.write = function (bitBuffer) {
-  for (var i = 0, l = this.data.length; i < l; i++) {
-    bitBuffer.put(this.data[i], 8)
-  }
-}
-
-module.exports = ByteData
-
-
-/***/ }),
-
 /***/ "01e0":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -613,44 +579,6 @@ module.exports.f = function getOwnPropertyNames(it) {
 
 /***/ }),
 
-/***/ "0425":
-/***/ (function(module, exports) {
-
-var numeric = '[0-9]+'
-var alphanumeric = '[A-Z $%*+\\-./:]+'
-var kanji = '(?:[u3000-u303F]|[u3040-u309F]|[u30A0-u30FF]|' +
-  '[uFF00-uFFEF]|[u4E00-u9FAF]|[u2605-u2606]|[u2190-u2195]|u203B|' +
-  '[u2010u2015u2018u2019u2025u2026u201Cu201Du2225u2260]|' +
-  '[u0391-u0451]|[u00A7u00A8u00B1u00B4u00D7u00F7])+'
-kanji = kanji.replace(/u/g, '\\u')
-
-var byte = '(?:(?![A-Z0-9 $%*+\\-./:]|' + kanji + ')(?:.|[\r\n]))+'
-
-exports.KANJI = new RegExp(kanji, 'g')
-exports.BYTE_KANJI = new RegExp('[^A-Z0-9 $%*+\\-./:]+', 'g')
-exports.BYTE = new RegExp(byte, 'g')
-exports.NUMERIC = new RegExp(numeric, 'g')
-exports.ALPHANUMERIC = new RegExp(alphanumeric, 'g')
-
-var TEST_KANJI = new RegExp('^' + kanji + '$')
-var TEST_NUMERIC = new RegExp('^' + numeric + '$')
-var TEST_ALPHANUMERIC = new RegExp('^[A-Z0-9 $%*+\\-./:]+$')
-
-exports.testKanji = function testKanji (str) {
-  return TEST_KANJI.test(str)
-}
-
-exports.testNumeric = function testNumeric (str) {
-  return TEST_NUMERIC.test(str)
-}
-
-exports.testAlphanumeric = function testAlphanumeric (str) {
-  return TEST_ALPHANUMERIC.test(str)
-}
-
-
-/***/ }),
-
 /***/ "044b":
 /***/ (function(module, exports) {
 
@@ -694,6 +622,31 @@ var update = add("c51ddacc", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
+/***/ "07c7":
+/***/ (function(module, exports) {
+
+/**
+ * This method returns `false`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {boolean} Returns `false`.
+ * @example
+ *
+ * _.times(2, _.stubFalse);
+ * // => [false, false]
+ */
+function stubFalse() {
+  return false;
+}
+
+module.exports = stubFalse;
+
+
+/***/ }),
+
 /***/ "07e3":
 /***/ (function(module, exports) {
 
@@ -702,24 +655,6 @@ module.exports = function (it, key) {
   return hasOwnProperty.call(it, key);
 };
 
-
-/***/ }),
-
-/***/ "07fc":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("7f7f");
-/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _icon_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("383c");
-
-
-
-_icon_vue__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].install = function (Vue) {
-  Vue.component(_icon_vue__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].name, _icon_vue__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"]);
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (_icon_vue__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"]);
 
 /***/ }),
 
@@ -893,6 +828,30 @@ module.exports = function (TYPE, $create) {
 
 /***/ }),
 
+/***/ "0b07":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsNative = __webpack_require__("34ac"),
+    getValue = __webpack_require__("3698");
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+
+module.exports = getNative;
+
+
+/***/ }),
+
 /***/ "0bfb":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -911,6 +870,52 @@ module.exports = function () {
   return result;
 };
 
+
+/***/ }),
+
+/***/ "0d24":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__("2b3e"),
+    stubFalse = __webpack_require__("07c7");
+
+/** Detect free variable `exports`. */
+var freeExports =  true && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/** Built-in value references. */
+var Buffer = moduleExports ? root.Buffer : undefined;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
+
+/**
+ * Checks if `value` is a buffer.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.3.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
+ * @example
+ *
+ * _.isBuffer(new Buffer(2));
+ * // => true
+ *
+ * _.isBuffer(new Uint8Array(2));
+ * // => false
+ */
+var isBuffer = nativeIsBuffer || stubFalse;
+
+module.exports = isBuffer;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("62e4")(module)))
 
 /***/ }),
 
@@ -1103,176 +1108,38 @@ module.exports = function (index, length) {
 
 /***/ }),
 
-/***/ "10b0":
+/***/ "100e":
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+var identity = __webpack_require__("cd9d"),
+    overRest = __webpack_require__("2286"),
+    setToString = __webpack_require__("c1c9");
 
-
-/******************************************************************************
- * Created 2008-08-19.
+/**
+ * The base implementation of `_.rest` which doesn't validate or coerce arguments.
  *
- * Dijkstra path-finding functions. Adapted from the Dijkstar Python project.
- *
- * Copyright (C) 2008
- *   Wyatt Baldwin <self@wyattbaldwin.com>
- *   All rights reserved
- *
- * Licensed under the MIT license.
- *
- *   http://www.opensource.org/licenses/mit-license.php
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *****************************************************************************/
-var dijkstra = {
-  single_source_shortest_paths: function(graph, s, d) {
-    // Predecessor map for each node that has been encountered.
-    // node ID => predecessor node ID
-    var predecessors = {};
-
-    // Costs of shortest paths from s to all nodes encountered.
-    // node ID => cost
-    var costs = {};
-    costs[s] = 0;
-
-    // Costs of shortest paths from s to all nodes encountered; differs from
-    // `costs` in that it provides easy access to the node that currently has
-    // the known shortest path from s.
-    // XXX: Do we actually need both `costs` and `open`?
-    var open = dijkstra.PriorityQueue.make();
-    open.push(s, 0);
-
-    var closest,
-        u, v,
-        cost_of_s_to_u,
-        adjacent_nodes,
-        cost_of_e,
-        cost_of_s_to_u_plus_cost_of_e,
-        cost_of_s_to_v,
-        first_visit;
-    while (!open.empty()) {
-      // In the nodes remaining in graph that have a known cost from s,
-      // find the node, u, that currently has the shortest path from s.
-      closest = open.pop();
-      u = closest.value;
-      cost_of_s_to_u = closest.cost;
-
-      // Get nodes adjacent to u...
-      adjacent_nodes = graph[u] || {};
-
-      // ...and explore the edges that connect u to those nodes, updating
-      // the cost of the shortest paths to any or all of those nodes as
-      // necessary. v is the node across the current edge from u.
-      for (v in adjacent_nodes) {
-        if (adjacent_nodes.hasOwnProperty(v)) {
-          // Get the cost of the edge running from u to v.
-          cost_of_e = adjacent_nodes[v];
-
-          // Cost of s to u plus the cost of u to v across e--this is *a*
-          // cost from s to v that may or may not be less than the current
-          // known cost to v.
-          cost_of_s_to_u_plus_cost_of_e = cost_of_s_to_u + cost_of_e;
-
-          // If we haven't visited v yet OR if the current known cost from s to
-          // v is greater than the new cost we just found (cost of s to u plus
-          // cost of u to v across e), update v's cost in the cost list and
-          // update v's predecessor in the predecessor list (it's now u).
-          cost_of_s_to_v = costs[v];
-          first_visit = (typeof costs[v] === 'undefined');
-          if (first_visit || cost_of_s_to_v > cost_of_s_to_u_plus_cost_of_e) {
-            costs[v] = cost_of_s_to_u_plus_cost_of_e;
-            open.push(v, cost_of_s_to_u_plus_cost_of_e);
-            predecessors[v] = u;
-          }
-        }
-      }
-    }
-
-    if (typeof d !== 'undefined' && typeof costs[d] === 'undefined') {
-      var msg = ['Could not find a path from ', s, ' to ', d, '.'].join('');
-      throw new Error(msg);
-    }
-
-    return predecessors;
-  },
-
-  extract_shortest_path_from_predecessor_list: function(predecessors, d) {
-    var nodes = [];
-    var u = d;
-    var predecessor;
-    while (u) {
-      nodes.push(u);
-      predecessor = predecessors[u];
-      u = predecessors[u];
-    }
-    nodes.reverse();
-    return nodes;
-  },
-
-  find_path: function(graph, s, d) {
-    var predecessors = dijkstra.single_source_shortest_paths(graph, s, d);
-    return dijkstra.extract_shortest_path_from_predecessor_list(
-      predecessors, d);
-  },
-
-  /**
-   * A very naive priority queue implementation.
-   */
-  PriorityQueue: {
-    make: function (opts) {
-      var T = dijkstra.PriorityQueue,
-          t = {},
-          key;
-      opts = opts || {};
-      for (key in T) {
-        if (T.hasOwnProperty(key)) {
-          t[key] = T[key];
-        }
-      }
-      t.queue = [];
-      t.sorter = opts.sorter || T.default_sorter;
-      return t;
-    },
-
-    default_sorter: function (a, b) {
-      return a.cost - b.cost;
-    },
-
-    /**
-     * Add a new item to the queue and ensure the highest priority element
-     * is at the front of the queue.
-     */
-    push: function (value, cost) {
-      var item = {value: value, cost: cost};
-      this.queue.push(item);
-      this.queue.sort(this.sorter);
-    },
-
-    /**
-     * Return the highest priority element in the queue.
-     */
-    pop: function () {
-      return this.queue.shift();
-    },
-
-    empty: function () {
-      return this.queue.length === 0;
-    }
-  }
-};
-
-
-// node.js module exports
-if (true) {
-  module.exports = dijkstra;
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @returns {Function} Returns the new function.
+ */
+function baseRest(func, start) {
+  return setToString(overRest(func, start, identity), func + '');
 }
 
+module.exports = baseRest;
+
+
+/***/ }),
+
+/***/ "10d2":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_share_vue_vue_type_style_index_0_id_3f2cfcf3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("b4c1");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_share_vue_vue_type_style_index_0_id_3f2cfcf3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_share_vue_vue_type_style_index_0_id_3f2cfcf3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_share_vue_vue_type_style_index_0_id_3f2cfcf3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -1338,6 +1205,28 @@ exports.f = __webpack_require__("9e1e") ? gOPD : function getOwnPropertyDescript
 
 /***/ }),
 
+/***/ "1290":
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is suitable for use as unique object key.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+ */
+function isKeyable(value) {
+  var type = typeof value;
+  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
+    ? (value !== '__proto__')
+    : (value === null);
+}
+
+module.exports = isKeyable;
+
+
+/***/ }),
+
 /***/ "1310":
 /***/ (function(module, exports) {
 
@@ -1370,6 +1259,33 @@ function isObjectLike(value) {
 }
 
 module.exports = isObjectLike;
+
+
+/***/ }),
+
+/***/ "1368":
+/***/ (function(module, exports, __webpack_require__) {
+
+var coreJsData = __webpack_require__("da03");
+
+/** Used to detect methods masquerading as native. */
+var maskSrcKey = (function() {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? ('Symbol(src)_1.' + uid) : '';
+}());
+
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+function isMasked(func) {
+  return !!maskSrcKey && (maskSrcKey in func);
+}
+
+module.exports = isMasked;
 
 
 /***/ }),
@@ -1908,6 +1824,59 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "1efc":
+/***/ (function(module, exports) {
+
+/**
+ * Removes `key` and its value from the hash.
+ *
+ * @private
+ * @name delete
+ * @memberOf Hash
+ * @param {Object} hash The hash to modify.
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function hashDelete(key) {
+  var result = this.has(key) && delete this.__data__[key];
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+module.exports = hashDelete;
+
+
+/***/ }),
+
+/***/ "1fc8":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getMapData = __webpack_require__("4245");
+
+/**
+ * Sets the map `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf MapCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the map cache instance.
+ */
+function mapCacheSet(key, value) {
+  var data = getMapData(this, key),
+      size = data.size;
+
+  data.set(key, value);
+  this.size += data.size == size ? 0 : 1;
+  return this;
+}
+
+module.exports = mapCacheSet;
+
+
+/***/ }),
+
 /***/ "20d6":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2046,6 +2015,49 @@ module.exports = function (KEY, length, exec) {
     );
   }
 };
+
+
+/***/ }),
+
+/***/ "2286":
+/***/ (function(module, exports, __webpack_require__) {
+
+var apply = __webpack_require__("85e3");
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * A specialized version of `baseRest` which transforms the rest array.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @param {Function} transform The rest array transform.
+ * @returns {Function} Returns the new function.
+ */
+function overRest(func, start, transform) {
+  start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
+  return function() {
+    var args = arguments,
+        index = -1,
+        length = nativeMax(args.length - start, 0),
+        array = Array(length);
+
+    while (++index < length) {
+      array[index] = args[start + index];
+    }
+    index = -1;
+    var otherArgs = Array(start + 1);
+    while (++index < start) {
+      otherArgs[index] = args[index];
+    }
+    otherArgs[start] = transform(array);
+    return apply(func, this, otherArgs);
+  };
+}
+
+module.exports = overRest;
 
 
 /***/ }),
@@ -2291,6 +2303,42 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("4362")))
+
+/***/ }),
+
+/***/ "2474":
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__("2b3e");
+
+/** Built-in value references. */
+var Uint8Array = root.Uint8Array;
+
+module.exports = Uint8Array;
+
+
+/***/ }),
+
+/***/ "2478":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getMapData = __webpack_require__("4245");
+
+/**
+ * Gets the map value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf MapCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function mapCacheGet(key) {
+  return getMapData(this, key).get(key);
+}
+
+module.exports = mapCacheGet;
+
 
 /***/ }),
 
@@ -2588,6 +2636,187 @@ $export($export.S + $export.F * !(USE_NATIVE && __webpack_require__("4ee1")(func
 
 /***/ }),
 
+/***/ "2524":
+/***/ (function(module, exports, __webpack_require__) {
+
+var nativeCreate = __webpack_require__("6044");
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/**
+ * Sets the hash `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Hash
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the hash instance.
+ */
+function hashSet(key, value) {
+  var data = this.__data__;
+  this.size += this.has(key) ? 0 : 1;
+  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
+  return this;
+}
+
+module.exports = hashSet;
+
+
+/***/ }),
+
+/***/ "252c":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/* unused harmony export install */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResizeObserver; });
+function getInternetExplorerVersion() {
+	var ua = window.navigator.userAgent;
+
+	var msie = ua.indexOf('MSIE ');
+	if (msie > 0) {
+		// IE 10 or older => return version number
+		return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+	}
+
+	var trident = ua.indexOf('Trident/');
+	if (trident > 0) {
+		// IE 11 => return version number
+		var rv = ua.indexOf('rv:');
+		return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+	}
+
+	var edge = ua.indexOf('Edge/');
+	if (edge > 0) {
+		// Edge (IE 12+) => return version number
+		return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+	}
+
+	// other browser
+	return -1;
+}
+
+var isIE = void 0;
+
+function initCompat() {
+	if (!initCompat.init) {
+		initCompat.init = true;
+		isIE = getInternetExplorerVersion() !== -1;
+	}
+}
+
+var ResizeObserver = { render: function render() {
+		var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "resize-observer", attrs: { "tabindex": "-1" } });
+	}, staticRenderFns: [], _scopeId: 'data-v-b329ee4c',
+	name: 'resize-observer',
+
+	methods: {
+		compareAndNotify: function compareAndNotify() {
+			if (this._w !== this.$el.offsetWidth || this._h !== this.$el.offsetHeight) {
+				this._w = this.$el.offsetWidth;
+				this._h = this.$el.offsetHeight;
+				this.$emit('notify');
+			}
+		},
+		addResizeHandlers: function addResizeHandlers() {
+			this._resizeObject.contentDocument.defaultView.addEventListener('resize', this.compareAndNotify);
+			this.compareAndNotify();
+		},
+		removeResizeHandlers: function removeResizeHandlers() {
+			if (this._resizeObject && this._resizeObject.onload) {
+				if (!isIE && this._resizeObject.contentDocument) {
+					this._resizeObject.contentDocument.defaultView.removeEventListener('resize', this.compareAndNotify);
+				}
+				delete this._resizeObject.onload;
+			}
+		}
+	},
+
+	mounted: function mounted() {
+		var _this = this;
+
+		initCompat();
+		this.$nextTick(function () {
+			_this._w = _this.$el.offsetWidth;
+			_this._h = _this.$el.offsetHeight;
+		});
+		var object = document.createElement('object');
+		this._resizeObject = object;
+		object.setAttribute('aria-hidden', 'true');
+		object.setAttribute('tabindex', -1);
+		object.onload = this.addResizeHandlers;
+		object.type = 'text/html';
+		if (isIE) {
+			this.$el.appendChild(object);
+		}
+		object.data = 'about:blank';
+		if (!isIE) {
+			this.$el.appendChild(object);
+		}
+	},
+	beforeDestroy: function beforeDestroy() {
+		this.removeResizeHandlers();
+	}
+};
+
+// Install the components
+function install(Vue) {
+	Vue.component('resize-observer', ResizeObserver);
+	Vue.component('ResizeObserver', ResizeObserver);
+}
+
+// Plugin
+var plugin = {
+	// eslint-disable-next-line no-undef
+	version: "0.4.5",
+	install: install
+};
+
+// Auto-install
+var GlobalVue = null;
+if (typeof window !== 'undefined') {
+	GlobalVue = window.Vue;
+} else if (typeof global !== 'undefined') {
+	GlobalVue = global.Vue;
+}
+if (GlobalVue) {
+	GlobalVue.use(plugin);
+}
+
+
+/* unused harmony default export */ var _unused_webpack_default_export = (plugin);
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("c8ba")))
+
+/***/ }),
+
+/***/ "253c":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__("3729"),
+    isObjectLike = __webpack_require__("1310");
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]';
+
+/**
+ * The base implementation of `_.isArguments`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ */
+function baseIsArguments(value) {
+  return isObjectLike(value) && baseGetTag(value) == argsTag;
+}
+
+module.exports = baseIsArguments;
+
+
+/***/ }),
+
 /***/ "25eb":
 /***/ (function(module, exports) {
 
@@ -2604,93 +2833,6 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("fde4");
-
-/***/ }),
-
-/***/ "2732":
-/***/ (function(module, exports, __webpack_require__) {
-
-var Buffer = __webpack_require__("5a88")
-var GF = __webpack_require__("699e")
-
-/**
- * Multiplies two polynomials inside Galois Field
- *
- * @param  {Buffer} p1 Polynomial
- * @param  {Buffer} p2 Polynomial
- * @return {Buffer}    Product of p1 and p2
- */
-exports.mul = function mul (p1, p2) {
-  var coeff = new Buffer(p1.length + p2.length - 1)
-  coeff.fill(0)
-
-  for (var i = 0; i < p1.length; i++) {
-    for (var j = 0; j < p2.length; j++) {
-      coeff[i + j] ^= GF.mul(p1[i], p2[j])
-    }
-  }
-
-  return coeff
-}
-
-/**
- * Calculate the remainder of polynomials division
- *
- * @param  {Buffer} divident Polynomial
- * @param  {Buffer} divisor  Polynomial
- * @return {Buffer}          Remainder
- */
-exports.mod = function mod (divident, divisor) {
-  var result = new Buffer(divident)
-
-  while ((result.length - divisor.length) >= 0) {
-    var coeff = result[0]
-
-    for (var i = 0; i < divisor.length; i++) {
-      result[i] ^= GF.mul(divisor[i], coeff)
-    }
-
-    // remove all zeros from buffer head
-    var offset = 0
-    while (offset < result.length && result[offset] === 0) offset++
-    result = result.slice(offset)
-  }
-
-  return result
-}
-
-/**
- * Generate an irreducible generator polynomial of specified degree
- * (used by Reed-Solomon encoder)
- *
- * @param  {Number} degree Degree of the generator polynomial
- * @return {Buffer}        Buffer containing polynomial coefficients
- */
-exports.generateECPolynomial = function generateECPolynomial (degree) {
-  var poly = new Buffer([1])
-  for (var i = 0; i < degree; i++) {
-    poly = exports.mul(poly, [1, GF.exp(i)])
-  }
-
-  return poly
-}
-
-
-/***/ }),
-
-/***/ "27a3":
-/***/ (function(module, exports) {
-
-/**
- * Check if QR Code version is valid
- *
- * @param  {Number}  version QR Code version
- * @return {Boolean}         true if valid version, false otherwise
- */
-exports.isValid = function isValid (version) {
-  return !isNaN(version) && version >= 1 && version <= 40
-}
-
 
 /***/ }),
 
@@ -2717,108 +2859,6 @@ module.exports = __webpack_require__("8378").getIteratorMethod = function (it) {
 /* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tag_vue_vue_type_style_index_0_id_36e0a100_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tag_vue_vue_type_style_index_0_id_36e0a100_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
  /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_tag_vue_vue_type_style_index_0_id_36e0a100_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "2877":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode /* vue-cli only */
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
 
 /***/ }),
 
@@ -2973,6 +3013,26 @@ __webpack_require__("214f")('split', 2, function (defined, SPLIT, $split, maybeC
     }
   ];
 });
+
+
+/***/ }),
+
+/***/ "28c9":
+/***/ (function(module, exports) {
+
+/**
+ * Removes all key-value entries from the list cache.
+ *
+ * @private
+ * @name clear
+ * @memberOf ListCache
+ */
+function listCacheClear() {
+  this.__data__ = [];
+  this.size = 0;
+}
+
+module.exports = listCacheClear;
 
 
 /***/ }),
@@ -3140,21 +3200,6 @@ $exports.store = store;
 
 /***/ }),
 
-/***/ "2ba2":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("2350")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".ui-share[data-v-d3fa0e4e]{cursor:pointer;display:inline-block}", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ "2d00":
 /***/ (function(module, exports) {
 
@@ -3201,6 +3246,19 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "2dcb":
+/***/ (function(module, exports, __webpack_require__) {
+
+var overArg = __webpack_require__("91e9");
+
+/** Built-in value references. */
+var getPrototype = overArg(Object.getPrototypeOf, Object);
+
+module.exports = getPrototype;
+
+
+/***/ }),
+
 /***/ "2e67":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3214,63 +3272,71 @@ module.exports = function isCancel(value) {
 
 /***/ }),
 
-/***/ "2f3a":
+/***/ "2ec1":
 /***/ (function(module, exports, __webpack_require__) {
 
-var Mode = __webpack_require__("bbf0")
-var Utils = __webpack_require__("7bf0")
+var baseRest = __webpack_require__("100e"),
+    isIterateeCall = __webpack_require__("9aff");
 
-function KanjiData (data) {
-  this.mode = Mode.KANJI
-  this.data = data
-}
+/**
+ * Creates a function like `_.assign`.
+ *
+ * @private
+ * @param {Function} assigner The function to assign values.
+ * @returns {Function} Returns the new assigner function.
+ */
+function createAssigner(assigner) {
+  return baseRest(function(object, sources) {
+    var index = -1,
+        length = sources.length,
+        customizer = length > 1 ? sources[length - 1] : undefined,
+        guard = length > 2 ? sources[2] : undefined;
 
-KanjiData.getBitsLength = function getBitsLength (length) {
-  return length * 13
-}
+    customizer = (assigner.length > 3 && typeof customizer == 'function')
+      ? (length--, customizer)
+      : undefined;
 
-KanjiData.prototype.getLength = function getLength () {
-  return this.data.length
-}
-
-KanjiData.prototype.getBitsLength = function getBitsLength () {
-  return KanjiData.getBitsLength(this.data.length)
-}
-
-KanjiData.prototype.write = function (bitBuffer) {
-  var i
-
-  // In the Shift JIS system, Kanji characters are represented by a two byte combination.
-  // These byte values are shifted from the JIS X 0208 values.
-  // JIS X 0208 gives details of the shift coded representation.
-  for (i = 0; i < this.data.length; i++) {
-    var value = Utils.toSJIS(this.data[i])
-
-    // For characters with Shift JIS values from 0x8140 to 0x9FFC:
-    if (value >= 0x8140 && value <= 0x9FFC) {
-      // Subtract 0x8140 from Shift JIS value
-      value -= 0x8140
-
-    // For characters with Shift JIS values from 0xE040 to 0xEBBF
-    } else if (value >= 0xE040 && value <= 0xEBBF) {
-      // Subtract 0xC140 from Shift JIS value
-      value -= 0xC140
-    } else {
-      throw new Error(
-        'Invalid SJIS character: ' + this.data[i] + '\n' +
-        'Make sure your charset is UTF-8')
+    if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+      customizer = length < 3 ? undefined : customizer;
+      length = 1;
     }
-
-    // Multiply most significant byte of result by 0xC0
-    // and add least significant byte to product
-    value = (((value >>> 8) & 0xff) * 0xC0) + (value & 0xff)
-
-    // Convert result to a 13-bit binary string
-    bitBuffer.put(value, 13)
-  }
+    object = Object(object);
+    while (++index < length) {
+      var source = sources[index];
+      if (source) {
+        assigner(object, source, index, customizer);
+      }
+    }
+    return object;
+  });
 }
 
-module.exports = KanjiData
+module.exports = createAssigner;
+
+
+/***/ }),
+
+/***/ "2fcc":
+/***/ (function(module, exports) {
+
+/**
+ * Removes `key` and its value from the stack.
+ *
+ * @private
+ * @name delete
+ * @memberOf Stack
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function stackDelete(key) {
+  var data = this.__data__,
+      result = data['delete'](key);
+
+  this.size = data.size;
+  return result;
+}
+
+module.exports = stackDelete;
 
 
 /***/ }),
@@ -3407,6 +3473,46 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 /***/ }),
 
+/***/ "30c9":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isFunction = __webpack_require__("9520"),
+    isLength = __webpack_require__("b218");
+
+/**
+ * Checks if `value` is array-like. A value is considered array-like if it's
+ * not a function and has a `value.length` that's an integer greater than or
+ * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ * @example
+ *
+ * _.isArrayLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLike(document.body.children);
+ * // => true
+ *
+ * _.isArrayLike('abc');
+ * // => true
+ *
+ * _.isArrayLike(_.noop);
+ * // => false
+ */
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
+}
+
+module.exports = isArrayLike;
+
+
+/***/ }),
+
 /***/ "30f1":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3526,6 +3632,41 @@ __webpack_require__("ce7e")('keys', function () {
 
 /***/ }),
 
+/***/ "32b3":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseAssignValue = __webpack_require__("872a"),
+    eq = __webpack_require__("9638");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Assigns `value` to `key` of `object` if the existing value is not equivalent
+ * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * for equality comparisons.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {string} key The key of the property to assign.
+ * @param {*} value The value to assign.
+ */
+function assignValue(object, key, value) {
+  var objValue = object[key];
+  if (!(hasOwnProperty.call(object, key) && eq(objValue, value)) ||
+      (value === undefined && !(key in object))) {
+    baseAssignValue(object, key, value);
+  }
+}
+
+module.exports = assignValue;
+
+
+/***/ }),
+
 /***/ "32e9":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3593,6 +3734,60 @@ var update = add("4aff5f72", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
+/***/ "34ac":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isFunction = __webpack_require__("9520"),
+    isMasked = __webpack_require__("1368"),
+    isObject = __webpack_require__("1a8c"),
+    toSource = __webpack_require__("dc57");
+
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
+/** Used to detect host constructors (Safari). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' +
+  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+  var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+
+module.exports = baseIsNative;
+
+
+/***/ }),
+
 /***/ "34ef":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3601,148 +3796,6 @@ __webpack_require__("ec30")('Uint8', 1, function (init) {
     return init(this, data, byteOffset, length);
   };
 });
-
-
-/***/ }),
-
-/***/ "34fc":
-/***/ (function(module, exports, __webpack_require__) {
-
-var ECLevel = __webpack_require__("7a43")
-
-var EC_BLOCKS_TABLE = [
-// L  M  Q  H
-  1, 1, 1, 1,
-  1, 1, 1, 1,
-  1, 1, 2, 2,
-  1, 2, 2, 4,
-  1, 2, 4, 4,
-  2, 4, 4, 4,
-  2, 4, 6, 5,
-  2, 4, 6, 6,
-  2, 5, 8, 8,
-  4, 5, 8, 8,
-  4, 5, 8, 11,
-  4, 8, 10, 11,
-  4, 9, 12, 16,
-  4, 9, 16, 16,
-  6, 10, 12, 18,
-  6, 10, 17, 16,
-  6, 11, 16, 19,
-  6, 13, 18, 21,
-  7, 14, 21, 25,
-  8, 16, 20, 25,
-  8, 17, 23, 25,
-  9, 17, 23, 34,
-  9, 18, 25, 30,
-  10, 20, 27, 32,
-  12, 21, 29, 35,
-  12, 23, 34, 37,
-  12, 25, 34, 40,
-  13, 26, 35, 42,
-  14, 28, 38, 45,
-  15, 29, 40, 48,
-  16, 31, 43, 51,
-  17, 33, 45, 54,
-  18, 35, 48, 57,
-  19, 37, 51, 60,
-  19, 38, 53, 63,
-  20, 40, 56, 66,
-  21, 43, 59, 70,
-  22, 45, 62, 74,
-  24, 47, 65, 77,
-  25, 49, 68, 81
-]
-
-var EC_CODEWORDS_TABLE = [
-// L  M  Q  H
-  7, 10, 13, 17,
-  10, 16, 22, 28,
-  15, 26, 36, 44,
-  20, 36, 52, 64,
-  26, 48, 72, 88,
-  36, 64, 96, 112,
-  40, 72, 108, 130,
-  48, 88, 132, 156,
-  60, 110, 160, 192,
-  72, 130, 192, 224,
-  80, 150, 224, 264,
-  96, 176, 260, 308,
-  104, 198, 288, 352,
-  120, 216, 320, 384,
-  132, 240, 360, 432,
-  144, 280, 408, 480,
-  168, 308, 448, 532,
-  180, 338, 504, 588,
-  196, 364, 546, 650,
-  224, 416, 600, 700,
-  224, 442, 644, 750,
-  252, 476, 690, 816,
-  270, 504, 750, 900,
-  300, 560, 810, 960,
-  312, 588, 870, 1050,
-  336, 644, 952, 1110,
-  360, 700, 1020, 1200,
-  390, 728, 1050, 1260,
-  420, 784, 1140, 1350,
-  450, 812, 1200, 1440,
-  480, 868, 1290, 1530,
-  510, 924, 1350, 1620,
-  540, 980, 1440, 1710,
-  570, 1036, 1530, 1800,
-  570, 1064, 1590, 1890,
-  600, 1120, 1680, 1980,
-  630, 1204, 1770, 2100,
-  660, 1260, 1860, 2220,
-  720, 1316, 1950, 2310,
-  750, 1372, 2040, 2430
-]
-
-/**
- * Returns the number of error correction block that the QR Code should contain
- * for the specified version and error correction level.
- *
- * @param  {Number} version              QR Code version
- * @param  {Number} errorCorrectionLevel Error correction level
- * @return {Number}                      Number of error correction blocks
- */
-exports.getBlocksCount = function getBlocksCount (version, errorCorrectionLevel) {
-  switch (errorCorrectionLevel) {
-    case ECLevel.L:
-      return EC_BLOCKS_TABLE[(version - 1) * 4 + 0]
-    case ECLevel.M:
-      return EC_BLOCKS_TABLE[(version - 1) * 4 + 1]
-    case ECLevel.Q:
-      return EC_BLOCKS_TABLE[(version - 1) * 4 + 2]
-    case ECLevel.H:
-      return EC_BLOCKS_TABLE[(version - 1) * 4 + 3]
-    default:
-      return undefined
-  }
-}
-
-/**
- * Returns the number of error correction codewords to use for the specified
- * version and error correction level.
- *
- * @param  {Number} version              QR Code version
- * @param  {Number} errorCorrectionLevel Error correction level
- * @return {Number}                      Number of error correction codewords
- */
-exports.getTotalCodewordsCount = function getTotalCodewordsCount (version, errorCorrectionLevel) {
-  switch (errorCorrectionLevel) {
-    case ECLevel.L:
-      return EC_CODEWORDS_TABLE[(version - 1) * 4 + 0]
-    case ECLevel.M:
-      return EC_CODEWORDS_TABLE[(version - 1) * 4 + 1]
-    case ECLevel.Q:
-      return EC_CODEWORDS_TABLE[(version - 1) * 4 + 2]
-    case ECLevel.H:
-      return EC_CODEWORDS_TABLE[(version - 1) * 4 + 3]
-    default:
-      return undefined
-  }
-}
 
 
 /***/ }),
@@ -3766,6 +3819,26 @@ module.exports = __webpack_require__("8e60") ? function (object, key, value) {
   object[key] = value;
   return object;
 };
+
+
+/***/ }),
+
+/***/ "3698":
+/***/ (function(module, exports) {
+
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+
+module.exports = getValue;
 
 
 /***/ }),
@@ -3853,94 +3926,6 @@ function baseGetTag(value) {
 
 module.exports = baseGetTag;
 
-
-/***/ }),
-
-/***/ "383c":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/icon/icon.vue?vue&type=template&id=551a70ba&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.iconId)?_c('svg',{staticClass:"ui-icon",attrs:{"aria-hidden":"true"}},[_c('use',{attrs:{"xlink:href":_vm.iconId}})]):_vm._e()}
-var staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./packages/icon/icon.vue?vue&type=template&id=551a70ba&
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.starts-with.js
-var es6_string_starts_with = __webpack_require__("f559");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
-var es6_function_name = __webpack_require__("7f7f");
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/promise.js
-var promise = __webpack_require__("795b");
-var promise_default = /*#__PURE__*/__webpack_require__.n(promise);
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/interopRequireWildcard.js
-var interopRequireWildcard = __webpack_require__("8793");
-
-// EXTERNAL MODULE: ./packages/assets/scss/icon.scss
-var icon = __webpack_require__("4cc0");
-
-// EXTERNAL MODULE: ./packages/assets/image/iconfont.svg
-var iconfont = __webpack_require__("fb97");
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/icon/icon.vue?vue&type=script&lang=js&
-
-
-
-
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ var iconvue_type_script_lang_js_ = ({
-  name: "ui-icon",
-  props: {
-    name: String
-  },
-  mounted: function mounted() {
-    promise_default.a.resolve().then(function () {
-      return Object(interopRequireWildcard["a" /* default */])(__webpack_require__("ee47"));
-    }).then(function (module) {});
-  },
-  computed: {
-    iconId: function iconId() {
-      return this.name ? this.name.startsWith("icon-") ? "#".concat(this.name) : "#icon-".concat(this.name) : "";
-    }
-  }
-});
-// CONCATENATED MODULE: ./packages/icon/icon.vue?vue&type=script&lang=js&
- /* harmony default export */ var icon_iconvue_type_script_lang_js_ = (iconvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
-var componentNormalizer = __webpack_require__("2877");
-
-// CONCATENATED MODULE: ./packages/icon/icon.vue
-
-
-
-
-
-/* normalize component */
-
-var component = Object(componentNormalizer["a" /* default */])(
-  icon_iconvue_type_script_lang_js_,
-  render,
-  staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-component.options.__file = "icon.vue"
-/* harmony default export */ var icon_icon = __webpack_exports__["a"] = (component.exports);
 
 /***/ }),
 
@@ -4170,6 +4155,24 @@ __webpack_require__("7a56")('RegExp');
 
 /***/ }),
 
+/***/ "3b4a":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__("0b07");
+
+var defineProperty = (function() {
+  try {
+    var func = getNative(Object, 'defineProperty');
+    func({}, '', {});
+    return func;
+  } catch (e) {}
+}());
+
+module.exports = defineProperty;
+
+
+/***/ }),
+
 /***/ "3b89":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4224,94 +4227,6 @@ exports = module.exports = __webpack_require__("2350")(false);
 exports.push([module.i, ".ui-v-error-list{margin-bottom:10px}", ""]);
 
 // exports
-
-
-/***/ }),
-
-/***/ "4006":
-/***/ (function(module, exports, __webpack_require__) {
-
-var Utils = __webpack_require__("45be")
-
-function getColorAttrib (color, attrib) {
-  var alpha = color.a / 255
-  var str = attrib + '="' + color.hex + '"'
-
-  return alpha < 1
-    ? str + ' ' + attrib + '-opacity="' + alpha.toFixed(2).slice(1) + '"'
-    : str
-}
-
-function svgCmd (cmd, x, y) {
-  var str = cmd + x
-  if (typeof y !== 'undefined') str += ' ' + y
-
-  return str
-}
-
-function qrToPath (data, size, margin) {
-  var path = ''
-  var moveBy = 0
-  var newRow = false
-  var lineLength = 0
-
-  for (var i = 0; i < data.length; i++) {
-    var col = Math.floor(i % size)
-    var row = Math.floor(i / size)
-
-    if (!col && !newRow) newRow = true
-
-    if (data[i]) {
-      lineLength++
-
-      if (!(i > 0 && col > 0 && data[i - 1])) {
-        path += newRow
-          ? svgCmd('M', col + margin, 0.5 + row + margin)
-          : svgCmd('m', moveBy, 0)
-
-        moveBy = 0
-        newRow = false
-      }
-
-      if (!(col + 1 < size && data[i + 1])) {
-        path += svgCmd('h', lineLength)
-        lineLength = 0
-      }
-    } else {
-      moveBy++
-    }
-  }
-
-  return path
-}
-
-exports.render = function render (qrData, options, cb) {
-  var opts = Utils.getOptions(options)
-  var size = qrData.modules.size
-  var data = qrData.modules.data
-  var qrcodesize = size + opts.margin * 2
-
-  var bg = !opts.color.light.a
-    ? ''
-    : '<path ' + getColorAttrib(opts.color.light, 'fill') +
-      ' d="M0 0h' + qrcodesize + 'v' + qrcodesize + 'H0z"/>'
-
-  var path =
-    '<path ' + getColorAttrib(opts.color.dark, 'stroke') +
-    ' d="' + qrToPath(data, size, opts.margin) + '"/>'
-
-  var viewBox = 'viewBox="' + '0 0 ' + qrcodesize + ' ' + qrcodesize + '"'
-
-  var width = !opts.width ? '' : 'width="' + opts.width + '" height="' + opts.width + '" '
-
-  var svgTag = '<svg xmlns="http://www.w3.org/2000/svg" ' + width + viewBox + ' shape-rendering="crispEdges">' + bg + path + '</svg>\n'
-
-  if (typeof cb === 'function') {
-    cb(null, svgTag)
-  }
-
-  return svgTag
-}
 
 
 /***/ }),
@@ -4387,76 +4302,6 @@ module.exports = function (it) {
     // ES3 arguments fallback
     : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
 };
-
-
-/***/ }),
-
-/***/ "4146":
-/***/ (function(module, exports, __webpack_require__) {
-
-var Utils = __webpack_require__("45be")
-
-function clearCanvas (ctx, canvas, size) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-  if (!canvas.style) canvas.style = {}
-  canvas.height = size
-  canvas.width = size
-  canvas.style.height = size + 'px'
-  canvas.style.width = size + 'px'
-}
-
-function getCanvasElement () {
-  try {
-    return document.createElement('canvas')
-  } catch (e) {
-    throw new Error('You need to specify a canvas element')
-  }
-}
-
-exports.render = function render (qrData, canvas, options) {
-  var opts = options
-  var canvasEl = canvas
-
-  if (typeof opts === 'undefined' && (!canvas || !canvas.getContext)) {
-    opts = canvas
-    canvas = undefined
-  }
-
-  if (!canvas) {
-    canvasEl = getCanvasElement()
-  }
-
-  opts = Utils.getOptions(opts)
-  var size = Utils.getImageWidth(qrData.modules.size, opts)
-
-  var ctx = canvasEl.getContext('2d')
-  var image = ctx.createImageData(size, size)
-  Utils.qrToImageData(image.data, qrData, opts)
-
-  clearCanvas(ctx, canvasEl, size)
-  ctx.putImageData(image, 0, 0)
-
-  return canvasEl
-}
-
-exports.renderToDataURL = function renderToDataURL (qrData, canvas, options) {
-  var opts = options
-
-  if (typeof opts === 'undefined' && (!canvas || !canvas.getContext)) {
-    opts = canvas
-    canvas = undefined
-  }
-
-  if (!opts) opts = {}
-
-  var canvasEl = exports.render(qrData, canvas, opts)
-
-  var type = opts.type || 'image/png'
-  var rendererOpts = opts.rendererOpts || {}
-
-  return canvasEl.toDataURL(type, rendererOpts.quality)
-}
 
 
 /***/ }),
@@ -4573,6 +4418,144 @@ module.exports = function (Constructor, NAME, next) {
 
 /***/ }),
 
+/***/ "41c3":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("1a8c"),
+    isPrototype = __webpack_require__("eac5"),
+    nativeKeysIn = __webpack_require__("ec8c");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * The base implementation of `_.keysIn` which doesn't treat sparse arrays as dense.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function baseKeysIn(object) {
+  if (!isObject(object)) {
+    return nativeKeysIn(object);
+  }
+  var isProto = isPrototype(object),
+      result = [];
+
+  for (var key in object) {
+    if (!(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = baseKeysIn;
+
+
+/***/ }),
+
+/***/ "4245":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isKeyable = __webpack_require__("1290");
+
+/**
+ * Gets the data for `map`.
+ *
+ * @private
+ * @param {Object} map The map to query.
+ * @param {string} key The reference key.
+ * @returns {*} Returns the map data.
+ */
+function getMapData(map, key) {
+  var data = map.__data__;
+  return isKeyable(key)
+    ? data[typeof key == 'string' ? 'string' : 'hash']
+    : data.map;
+}
+
+module.exports = getMapData;
+
+
+/***/ }),
+
+/***/ "42454":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseMerge = __webpack_require__("f909"),
+    createAssigner = __webpack_require__("2ec1");
+
+/**
+ * This method is like `_.assign` except that it recursively merges own and
+ * inherited enumerable string keyed properties of source objects into the
+ * destination object. Source properties that resolve to `undefined` are
+ * skipped if a destination value exists. Array and plain object properties
+ * are merged recursively. Other objects and value types are overridden by
+ * assignment. Source objects are applied from left to right. Subsequent
+ * sources overwrite property assignments of previous sources.
+ *
+ * **Note:** This method mutates `object`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.5.0
+ * @category Object
+ * @param {Object} object The destination object.
+ * @param {...Object} [sources] The source objects.
+ * @returns {Object} Returns `object`.
+ * @example
+ *
+ * var object = {
+ *   'a': [{ 'b': 2 }, { 'd': 4 }]
+ * };
+ *
+ * var other = {
+ *   'a': [{ 'c': 3 }, { 'e': 5 }]
+ * };
+ *
+ * _.merge(object, other);
+ * // => { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
+ */
+var merge = createAssigner(function(object, source, srcIndex) {
+  baseMerge(object, source, srcIndex);
+});
+
+module.exports = merge;
+
+
+/***/ }),
+
+/***/ "4359":
+/***/ (function(module, exports) {
+
+/**
+ * Copies the values of `source` to `array`.
+ *
+ * @private
+ * @param {Array} source The array to copy values from.
+ * @param {Array} [array=[]] The array to copy values to.
+ * @returns {Array} Returns `array`.
+ */
+function copyArray(source, array) {
+  var index = -1,
+      length = source.length;
+
+  array || (array = Array(length));
+  while (++index < length) {
+    array[index] = source[index];
+  }
+  return array;
+}
+
+module.exports = copyArray;
+
+
+/***/ }),
+
 /***/ "4362":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4680,106 +4663,6 @@ var floor = Math.floor;
 module.exports = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
-
-
-/***/ }),
-
-/***/ "45be":
-/***/ (function(module, exports) {
-
-function hex2rgba (hex) {
-  if (typeof hex !== 'string') {
-    throw new Error('Color should be defined as hex string')
-  }
-
-  var hexCode = hex.slice().replace('#', '').split('')
-  if (hexCode.length < 3 || hexCode.length === 5 || hexCode.length > 8) {
-    throw new Error('Invalid hex color: ' + hex)
-  }
-
-  // Convert from short to long form (fff -> ffffff)
-  if (hexCode.length === 3 || hexCode.length === 4) {
-    hexCode = Array.prototype.concat.apply([], hexCode.map(function (c) {
-      return [c, c]
-    }))
-  }
-
-  // Add default alpha value
-  if (hexCode.length === 6) hexCode.push('F', 'F')
-
-  var hexValue = parseInt(hexCode.join(''), 16)
-
-  return {
-    r: (hexValue >> 24) & 255,
-    g: (hexValue >> 16) & 255,
-    b: (hexValue >> 8) & 255,
-    a: hexValue & 255,
-    hex: '#' + hexCode.slice(0, 6).join('')
-  }
-}
-
-exports.getOptions = function getOptions (options) {
-  if (!options) options = {}
-  if (!options.color) options.color = {}
-
-  var margin = typeof options.margin === 'undefined' ||
-    options.margin === null ||
-    options.margin < 0 ? 4 : options.margin
-
-  var width = options.width && options.width >= 21 ? options.width : undefined
-  var scale = options.scale || 4
-
-  return {
-    width: width,
-    scale: width ? 4 : scale,
-    margin: margin,
-    color: {
-      dark: hex2rgba(options.color.dark || '#000000ff'),
-      light: hex2rgba(options.color.light || '#ffffffff')
-    },
-    type: options.type,
-    rendererOpts: options.rendererOpts || {}
-  }
-}
-
-exports.getScale = function getScale (qrSize, opts) {
-  return opts.width && opts.width >= qrSize + opts.margin * 2
-    ? opts.width / (qrSize + opts.margin * 2)
-    : opts.scale
-}
-
-exports.getImageWidth = function getImageWidth (qrSize, opts) {
-  var scale = exports.getScale(qrSize, opts)
-  return Math.floor((qrSize + opts.margin * 2) * scale)
-}
-
-exports.qrToImageData = function qrToImageData (imgData, qr, opts) {
-  var size = qr.modules.size
-  var data = qr.modules.data
-  var scale = exports.getScale(size, opts)
-  var symbolSize = Math.floor((size + opts.margin * 2) * scale)
-  var scaledMargin = opts.margin * scale
-  var palette = [opts.color.light, opts.color.dark]
-
-  for (var i = 0; i < symbolSize; i++) {
-    for (var j = 0; j < symbolSize; j++) {
-      var posDst = (i * symbolSize + j) * 4
-      var pxColor = opts.color.light
-
-      if (i >= scaledMargin && j >= scaledMargin &&
-        i < symbolSize - scaledMargin && j < symbolSize - scaledMargin) {
-        var iSrc = Math.floor((i - scaledMargin) / scale)
-        var jSrc = Math.floor((j - scaledMargin) / scale)
-        pxColor = palette[data[iSrc * size + jSrc] ? 1 : 0]
-      }
-
-      imgData[posDst++] = pxColor.r
-      imgData[posDst++] = pxColor.g
-      imgData[posDst++] = pxColor.b
-      imgData[posDst] = pxColor.a
-    }
-  }
-}
 
 
 /***/ }),
@@ -5175,6 +5058,28 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
+/***/ "49f4":
+/***/ (function(module, exports, __webpack_require__) {
+
+var nativeCreate = __webpack_require__("6044");
+
+/**
+ * Removes all key-value entries from the hash.
+ *
+ * @private
+ * @name clear
+ * @memberOf Hash
+ */
+function hashClear() {
+  this.__data__ = nativeCreate ? nativeCreate(null) : {};
+  this.size = 0;
+}
+
+module.exports = hashClear;
+
+
+/***/ }),
+
 /***/ "4aa0":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5298,6 +5203,107 @@ module.exports = function (exec, skipClosing) {
 
 /***/ }),
 
+/***/ "4f50":
+/***/ (function(module, exports, __webpack_require__) {
+
+var assignMergeValue = __webpack_require__("b760"),
+    cloneBuffer = __webpack_require__("e538"),
+    cloneTypedArray = __webpack_require__("c8fe"),
+    copyArray = __webpack_require__("4359"),
+    initCloneObject = __webpack_require__("fa21"),
+    isArguments = __webpack_require__("d370"),
+    isArray = __webpack_require__("6747"),
+    isArrayLikeObject = __webpack_require__("dcbe"),
+    isBuffer = __webpack_require__("0d24"),
+    isFunction = __webpack_require__("9520"),
+    isObject = __webpack_require__("1a8c"),
+    isPlainObject = __webpack_require__("60ed"),
+    isTypedArray = __webpack_require__("73ac"),
+    safeGet = __webpack_require__("8adb"),
+    toPlainObject = __webpack_require__("8de2");
+
+/**
+ * A specialized version of `baseMerge` for arrays and objects which performs
+ * deep merges and tracks traversed objects enabling objects with circular
+ * references to be merged.
+ *
+ * @private
+ * @param {Object} object The destination object.
+ * @param {Object} source The source object.
+ * @param {string} key The key of the value to merge.
+ * @param {number} srcIndex The index of `source`.
+ * @param {Function} mergeFunc The function to merge values.
+ * @param {Function} [customizer] The function to customize assigned values.
+ * @param {Object} [stack] Tracks traversed source values and their merged
+ *  counterparts.
+ */
+function baseMergeDeep(object, source, key, srcIndex, mergeFunc, customizer, stack) {
+  var objValue = safeGet(object, key),
+      srcValue = safeGet(source, key),
+      stacked = stack.get(srcValue);
+
+  if (stacked) {
+    assignMergeValue(object, key, stacked);
+    return;
+  }
+  var newValue = customizer
+    ? customizer(objValue, srcValue, (key + ''), object, source, stack)
+    : undefined;
+
+  var isCommon = newValue === undefined;
+
+  if (isCommon) {
+    var isArr = isArray(srcValue),
+        isBuff = !isArr && isBuffer(srcValue),
+        isTyped = !isArr && !isBuff && isTypedArray(srcValue);
+
+    newValue = srcValue;
+    if (isArr || isBuff || isTyped) {
+      if (isArray(objValue)) {
+        newValue = objValue;
+      }
+      else if (isArrayLikeObject(objValue)) {
+        newValue = copyArray(objValue);
+      }
+      else if (isBuff) {
+        isCommon = false;
+        newValue = cloneBuffer(srcValue, true);
+      }
+      else if (isTyped) {
+        isCommon = false;
+        newValue = cloneTypedArray(srcValue, true);
+      }
+      else {
+        newValue = [];
+      }
+    }
+    else if (isPlainObject(srcValue) || isArguments(srcValue)) {
+      newValue = objValue;
+      if (isArguments(objValue)) {
+        newValue = toPlainObject(objValue);
+      }
+      else if (!isObject(objValue) || isFunction(objValue)) {
+        newValue = initCloneObject(srcValue);
+      }
+    }
+    else {
+      isCommon = false;
+    }
+  }
+  if (isCommon) {
+    // Recursively merge objects and arrays (susceptible to call stack limits).
+    stack.set(srcValue, newValue);
+    mergeFunc(newValue, srcValue, srcIndex, customizer, stack);
+    stack['delete'](srcValue);
+  }
+  assignMergeValue(object, key, newValue);
+}
+
+module.exports = baseMergeDeep;
+
+
+/***/ }),
+
 /***/ "505f":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5306,7 +5312,7 @@ exports = module.exports = __webpack_require__("2350")(false);
 
 
 // module
-exports.push([module.i, "li{list-style:none}h1,h2,h3,h4,h5,h6{margin:0}.fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.ui-popover{position:fixed;min-height:26px;min-width:100px}.ui-popover-arrow{position:absolute;-webkit-box-sizing:border-box;box-sizing:border-box;height:0;width:0;border-style:solid;border-right-color:transparent;border-left-color:transparent}.ui-popover-menu{-webkit-box-shadow:0 3px 32px rgba(0,0,0,.05);box-shadow:0 3px 32px rgba(0,0,0,.05);background:#fff;overflow:hidden}.ui-popover-menu .ui-popover-item{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;padding:6px 14px;border-bottom:1px solid #e9ebee}.ui-popover-menu .ui-popover-item .ui-icon{margin-right:8px}.ui-popover-menu .ui-popover-item:last-child{border:none}.ui-popover-menu .ui-popover-item:hover{background:#e9ebee}.ui-popover-menu-horizon ul{display:-webkit-box;display:-ms-flexbox;display:flex}.ui-popover-menu-horizon .ui-popover-item{text-align:center;-webkit-box-flex:1;-ms-flex:1;flex:1;border-right:1px solid #e9ebee;border-bottom:none}.ui-popover-menu-horizon .ui-popover-item .icon{margin-right:0}.ui-dropdown-content,.ui-popover-content{padding:6px 12px}.ui-popover-with-close{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding-right:6px}.ui-popover-with-close .ui-popover-content{padding-right:16px}.ui-popover-with-close .ui-popover-close-icon{font-size:small}.ui-popover-with-close .ui-popover-close-icon .ui-icon{cursor:pointer;-webkit-transition:all .3s ease-in-out;transition:all .3s ease-in-out}.ui-popover-with-close .ui-popover-close-icon:hover .ui-icon{-webkit-transform:rotate(-90deg);transform:rotate(-90deg);color:#08d7b8}.ui-dropdown-trigger{display:inline-block}", ""]);
+exports.push([module.i, "li{list-style:none}h1,h2,h3,h4,h5,h6{margin:0}.fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.ui-popover{display:block!important;z-index:10000}.ui-popover-inner{background:#fff;border-radius:7px;padding:4px 11px;-webkit-box-shadow:0 3px 32px rgba(0,0,0,.05);box-shadow:0 3px 32px rgba(0,0,0,.05)}.ui-popover-arrow{position:absolute;-webkit-box-sizing:border-box;box-sizing:border-box;height:0;width:0;border-style:solid;border-color:#fff}.ui-popover[x-placement^=top]{margin-bottom:8px}.ui-popover[x-placement^=top] .ui-popover-arrow{border-width:8px 8px 0;border-left-color:transparent!important;border-right-color:transparent!important;border-bottom-color:transparent!important;bottom:-8px;-webkit-transform:translateX(-8px);transform:translateX(-8px);margin-top:0;margin-bottom:0}.ui-popover[x-placement^=bottom]{margin-top:8px}.ui-popover[x-placement^=bottom] .ui-popover-arrow{border-width:0 8px 8px;border-left-color:transparent!important;border-right-color:transparent!important;border-top-color:transparent!important;top:-8px;margin-top:0;margin-bottom:0}.ui-popover[x-placement^=right]{margin-left:8px}.ui-popover[x-placement^=right] .ui-popover-arrow{border-width:8px 8px 8px 0;border-left-color:transparent!important;border-top-color:transparent!important;border-bottom-color:transparent!important;left:-8px;top:calc(50% - 8px);margin-left:0;margin-right:0}.ui-popover[x-placement^=left]{margin-right:8px}.ui-popover[x-placement^=left] .ui-popover-arrow{border-width:8px 0 8px 8px;border-top-color:transparent!important;border-right-color:transparent!important;border-bottom-color:transparent!important;right:-8px;top:calc(50% - 8px);margin-left:0;margin-right:0}.ui-popover[aria-hidden=true]{visibility:hidden;opacity:0;-webkit-transition:opacity .15s,visibility .15s;transition:opacity .15s,visibility .15s}.ui-popover[aria-hidden=false]{visibility:visible;opacity:1;-webkit-transition:opacity .15s;transition:opacity .15s}.ui-popover .trigger,.ui-popover .trigger>*{cursor:pointer}.ui-popover .trigger:focus,.ui-popover .trigger>:focus{outline:none}.ui-dropdown .ui-popover-inner{padding:0}", ""]);
 
 // exports
 
@@ -5324,6 +5330,33 @@ exports = module.exports = __webpack_require__("2350")(false);
 exports.push([module.i, "li{list-style:none}h1,h2,h3,h4,h5,h6{margin:0}.fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.ui-autocomplete{position:relative;margin:1rem 0}.ui-autocomplete .ui-autocomplete-list{position:absolute;width:100%;top:47px}.ui-autocomplete .ui-input{margin:0}.ui-autocomplete-list{border-radius:7px;background:#fff;-webkit-box-shadow:0 0 10px rgba(0,0,0,.1);box-shadow:0 0 10px rgba(0,0,0,.1);border:1px solid #e9ebee;overflow-y:scroll;max-height:220px;height:auto;margin:0;padding:0}.ui-autocomplete-list-item{padding:.4em 1em;border-bottom:1px solid #e9ebee;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-transition:background .1s ease-in-out;transition:background .1s ease-in-out}.ui-autocomplete-list-item:last-child{border:none}.ui-autocomplete-list-item-active,.ui-autocomplete-list-item:hover{background:#e9ebee;cursor:pointer}.ui-autocomplete-list-item-disabled{background:#e9ebee}", ""]);
 
 // exports
+
+
+/***/ }),
+
+/***/ "50d8":
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.times` without support for iteratee shorthands
+ * or max array length checks.
+ *
+ * @private
+ * @param {number} n The number of times to invoke `iteratee`.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the array of results.
+ */
+function baseTimes(n, iteratee) {
+  var index = -1,
+      result = Array(n);
+
+  while (++index < n) {
+    result[index] = iteratee(index);
+  }
+  return result;
+}
+
+module.exports = baseTimes;
 
 
 /***/ }),
@@ -5379,77 +5412,6 @@ $exports.store = store;
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("51b6");
-
-/***/ }),
-
-/***/ "51a1":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _home_leafiy_code_gelatin_ui_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("5176");
-/* harmony import */ var _home_leafiy_code_gelatin_ui_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_home_leafiy_code_gelatin_ui_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("8bbf");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var nanoid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("e1bd");
-/* harmony import */ var nanoid__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nanoid__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _popover_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("d4da");
-
-
-
-
-var PopoverConstructor = vue__WEBPACK_IMPORTED_MODULE_1___default.a.extend(_popover_vue__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]);
-
-var Popover = function Popover(options) {
-  if (!options.trigger) {
-    throw new Error("missing triggle element");
-  }
-
-  var el = options.trigger;
-
-  if (el.dataset.popover) {
-    return;
-  }
-
-  el.dataset.popover = "popover-" + nanoid__WEBPACK_IMPORTED_MODULE_2___default()();
-  options = options.tooltip ? options : popoverOptions(el.dataset.popover, options);
-  options.triggerId = el.dataset.popover;
-  var instance = new PopoverConstructor({
-    propsData: options
-  });
-  instance.$mount();
-
-  if (!options.tooltip) {
-    setTimeout(function () {
-      instance.isShow = true;
-    }, options.openDelay);
-  }
-
-  var $el = instance.$el;
-
-  if (options.insertAfter) {
-    el.parentNode.insertBefore($el, el.nextSibling);
-  } else {
-    document.body.appendChild($el);
-  }
-
-  el.addEventListener("click", function () {
-    instance.close();
-  });
-  return instance;
-};
-
-var popoverOptions = function popoverOptions(triggerId, options) {
-  var defaultOptions = {
-    insertAfter: false,
-    closeOnClick: true,
-    arrow: true
-  };
-  options = _home_leafiy_code_gelatin_ui_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()(defaultOptions, options);
-  return options;
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Popover);
 
 /***/ }),
 
@@ -5781,6 +5743,27 @@ module.exports = function (key) {
 
 /***/ }),
 
+/***/ "55a3":
+/***/ (function(module, exports) {
+
+/**
+ * Checks if a stack value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Stack
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function stackHas(key) {
+  return this.__data__.has(key);
+}
+
+module.exports = stackHas;
+
+
+/***/ }),
+
 /***/ "571b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5793,82 +5776,6 @@ if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__("499e").default
 var update = add("7ef0c1b4", content, true, {"sourceMap":false,"shadowMode":false});
-
-/***/ }),
-
-/***/ "577e":
-/***/ (function(module, exports, __webpack_require__) {
-
-var Buffer = __webpack_require__("5a88")
-
-/**
- * Helper class to handle QR Code symbol modules
- *
- * @param {Number} size Symbol size
- */
-function BitMatrix (size) {
-  if (!size || size < 1) {
-    throw new Error('BitMatrix size must be defined and greater than 0')
-  }
-
-  this.size = size
-  this.data = new Buffer(size * size)
-  this.data.fill(0)
-  this.reservedBit = new Buffer(size * size)
-  this.reservedBit.fill(0)
-}
-
-/**
- * Set bit value at specified location
- * If reserved flag is set, this bit will be ignored during masking process
- *
- * @param {Number}  row
- * @param {Number}  col
- * @param {Boolean} value
- * @param {Boolean} reserved
- */
-BitMatrix.prototype.set = function (row, col, value, reserved) {
-  var index = row * this.size + col
-  this.data[index] = value
-  if (reserved) this.reservedBit[index] = true
-}
-
-/**
- * Returns bit value at specified location
- *
- * @param  {Number}  row
- * @param  {Number}  col
- * @return {Boolean}
- */
-BitMatrix.prototype.get = function (row, col) {
-  return this.data[row * this.size + col]
-}
-
-/**
- * Applies xor operator at specified location
- * (used during masking process)
- *
- * @param {Number}  row
- * @param {Number}  col
- * @param {Boolean} value
- */
-BitMatrix.prototype.xor = function (row, col, value) {
-  this.data[row * this.size + col] ^= value
-}
-
-/**
- * Check if bit at specified location is reserved
- *
- * @param {Number}   row
- * @param {Number}   col
- * @return {Boolean}
- */
-BitMatrix.prototype.isReserved = function (row, col) {
-  return this.reservedBit[row * this.size + col]
-}
-
-module.exports = BitMatrix
-
 
 /***/ }),
 
@@ -5890,526 +5797,6 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 module.exports = freeGlobal;
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("c8ba")))
-
-/***/ }),
-
-/***/ "5a88":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Implementation of a subset of node.js Buffer methods for the browser.
- * Based on https://github.com/feross/buffer
- */
-
-/* eslint-disable no-proto */
-
-
-
-var isArray = __webpack_require__("eee5")
-
-function typedArraySupport () {
-  // Can typed array instances be augmented?
-  try {
-    var arr = new Uint8Array(1)
-    arr.__proto__ = {__proto__: Uint8Array.prototype, foo: function () { return 42 }}
-    return arr.foo() === 42
-  } catch (e) {
-    return false
-  }
-}
-
-Buffer.TYPED_ARRAY_SUPPORT = typedArraySupport()
-
-var K_MAX_LENGTH = Buffer.TYPED_ARRAY_SUPPORT
-    ? 0x7fffffff
-    : 0x3fffffff
-
-function Buffer (arg, offset, length) {
-  if (!Buffer.TYPED_ARRAY_SUPPORT && !(this instanceof Buffer)) {
-    return new Buffer(arg, offset, length)
-  }
-
-  if (typeof arg === 'number') {
-    return allocUnsafe(this, arg)
-  }
-
-  return from(this, arg, offset, length)
-}
-
-if (Buffer.TYPED_ARRAY_SUPPORT) {
-  Buffer.prototype.__proto__ = Uint8Array.prototype
-  Buffer.__proto__ = Uint8Array
-
-  // Fix subarray() in ES2016. See: https://github.com/feross/buffer/pull/97
-  if (typeof Symbol !== 'undefined' && Symbol.species &&
-      Buffer[Symbol.species] === Buffer) {
-    Object.defineProperty(Buffer, Symbol.species, {
-      value: null,
-      configurable: true,
-      enumerable: false,
-      writable: false
-    })
-  }
-}
-
-function checked (length) {
-  // Note: cannot use `length < K_MAX_LENGTH` here because that fails when
-  // length is NaN (which is otherwise coerced to zero.)
-  if (length >= K_MAX_LENGTH) {
-    throw new RangeError('Attempt to allocate Buffer larger than maximum ' +
-                         'size: 0x' + K_MAX_LENGTH.toString(16) + ' bytes')
-  }
-  return length | 0
-}
-
-function isnan (val) {
-  return val !== val // eslint-disable-line no-self-compare
-}
-
-function createBuffer (that, length) {
-  var buf
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    buf = new Uint8Array(length)
-    buf.__proto__ = Buffer.prototype
-  } else {
-    // Fallback: Return an object instance of the Buffer class
-    buf = that
-    if (buf === null) {
-      buf = new Buffer(length)
-    }
-    buf.length = length
-  }
-
-  return buf
-}
-
-function allocUnsafe (that, size) {
-  var buf = createBuffer(that, size < 0 ? 0 : checked(size) | 0)
-
-  if (!Buffer.TYPED_ARRAY_SUPPORT) {
-    for (var i = 0; i < size; ++i) {
-      buf[i] = 0
-    }
-  }
-
-  return buf
-}
-
-function fromString (that, string) {
-  var length = byteLength(string) | 0
-  var buf = createBuffer(that, length)
-
-  var actual = buf.write(string)
-
-  if (actual !== length) {
-    // Writing a hex string, for example, that contains invalid characters will
-    // cause everything after the first invalid character to be ignored. (e.g.
-    // 'abxxcd' will be treated as 'ab')
-    buf = buf.slice(0, actual)
-  }
-
-  return buf
-}
-
-function fromArrayLike (that, array) {
-  var length = array.length < 0 ? 0 : checked(array.length) | 0
-  var buf = createBuffer(that, length)
-  for (var i = 0; i < length; i += 1) {
-    buf[i] = array[i] & 255
-  }
-  return buf
-}
-
-function fromArrayBuffer (that, array, byteOffset, length) {
-  if (byteOffset < 0 || array.byteLength < byteOffset) {
-    throw new RangeError('\'offset\' is out of bounds')
-  }
-
-  if (array.byteLength < byteOffset + (length || 0)) {
-    throw new RangeError('\'length\' is out of bounds')
-  }
-
-  var buf
-  if (byteOffset === undefined && length === undefined) {
-    buf = new Uint8Array(array)
-  } else if (length === undefined) {
-    buf = new Uint8Array(array, byteOffset)
-  } else {
-    buf = new Uint8Array(array, byteOffset, length)
-  }
-
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    // Return an augmented `Uint8Array` instance, for best performance
-    buf.__proto__ = Buffer.prototype
-  } else {
-    // Fallback: Return an object instance of the Buffer class
-    buf = fromArrayLike(that, buf)
-  }
-
-  return buf
-}
-
-function fromObject (that, obj) {
-  if (Buffer.isBuffer(obj)) {
-    var len = checked(obj.length) | 0
-    var buf = createBuffer(that, len)
-
-    if (buf.length === 0) {
-      return buf
-    }
-
-    obj.copy(buf, 0, 0, len)
-    return buf
-  }
-
-  if (obj) {
-    if ((typeof ArrayBuffer !== 'undefined' &&
-        obj.buffer instanceof ArrayBuffer) || 'length' in obj) {
-      if (typeof obj.length !== 'number' || isnan(obj.length)) {
-        return createBuffer(that, 0)
-      }
-      return fromArrayLike(that, obj)
-    }
-
-    if (obj.type === 'Buffer' && Array.isArray(obj.data)) {
-      return fromArrayLike(that, obj.data)
-    }
-  }
-
-  throw new TypeError('First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.')
-}
-
-function utf8ToBytes (string, units) {
-  units = units || Infinity
-  var codePoint
-  var length = string.length
-  var leadSurrogate = null
-  var bytes = []
-
-  for (var i = 0; i < length; ++i) {
-    codePoint = string.charCodeAt(i)
-
-    // is surrogate component
-    if (codePoint > 0xD7FF && codePoint < 0xE000) {
-      // last char was a lead
-      if (!leadSurrogate) {
-        // no lead yet
-        if (codePoint > 0xDBFF) {
-          // unexpected trail
-          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
-          continue
-        } else if (i + 1 === length) {
-          // unpaired lead
-          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
-          continue
-        }
-
-        // valid lead
-        leadSurrogate = codePoint
-
-        continue
-      }
-
-      // 2 leads in a row
-      if (codePoint < 0xDC00) {
-        if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
-        leadSurrogate = codePoint
-        continue
-      }
-
-      // valid surrogate pair
-      codePoint = (leadSurrogate - 0xD800 << 10 | codePoint - 0xDC00) + 0x10000
-    } else if (leadSurrogate) {
-      // valid bmp char, but last char was a lead
-      if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
-    }
-
-    leadSurrogate = null
-
-    // encode utf8
-    if (codePoint < 0x80) {
-      if ((units -= 1) < 0) break
-      bytes.push(codePoint)
-    } else if (codePoint < 0x800) {
-      if ((units -= 2) < 0) break
-      bytes.push(
-        codePoint >> 0x6 | 0xC0,
-        codePoint & 0x3F | 0x80
-      )
-    } else if (codePoint < 0x10000) {
-      if ((units -= 3) < 0) break
-      bytes.push(
-        codePoint >> 0xC | 0xE0,
-        codePoint >> 0x6 & 0x3F | 0x80,
-        codePoint & 0x3F | 0x80
-      )
-    } else if (codePoint < 0x110000) {
-      if ((units -= 4) < 0) break
-      bytes.push(
-        codePoint >> 0x12 | 0xF0,
-        codePoint >> 0xC & 0x3F | 0x80,
-        codePoint >> 0x6 & 0x3F | 0x80,
-        codePoint & 0x3F | 0x80
-      )
-    } else {
-      throw new Error('Invalid code point')
-    }
-  }
-
-  return bytes
-}
-
-function byteLength (string) {
-  if (Buffer.isBuffer(string)) {
-    return string.length
-  }
-  if (typeof ArrayBuffer !== 'undefined' && typeof ArrayBuffer.isView === 'function' &&
-      (ArrayBuffer.isView(string) || string instanceof ArrayBuffer)) {
-    return string.byteLength
-  }
-  if (typeof string !== 'string') {
-    string = '' + string
-  }
-
-  var len = string.length
-  if (len === 0) return 0
-
-  return utf8ToBytes(string).length
-}
-
-function blitBuffer (src, dst, offset, length) {
-  for (var i = 0; i < length; ++i) {
-    if ((i + offset >= dst.length) || (i >= src.length)) break
-    dst[i + offset] = src[i]
-  }
-  return i
-}
-
-function utf8Write (buf, string, offset, length) {
-  return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length)
-}
-
-function from (that, value, offset, length) {
-  if (typeof value === 'number') {
-    throw new TypeError('"value" argument must not be a number')
-  }
-
-  if (typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer) {
-    return fromArrayBuffer(that, value, offset, length)
-  }
-
-  if (typeof value === 'string') {
-    return fromString(that, value, offset)
-  }
-
-  return fromObject(that, value)
-}
-
-Buffer.prototype.write = function write (string, offset, length) {
-  // Buffer#write(string)
-  if (offset === undefined) {
-    length = this.length
-    offset = 0
-  // Buffer#write(string, encoding)
-  } else if (length === undefined && typeof offset === 'string') {
-    length = this.length
-    offset = 0
-  // Buffer#write(string, offset[, length])
-  } else if (isFinite(offset)) {
-    offset = offset | 0
-    if (isFinite(length)) {
-      length = length | 0
-    } else {
-      length = undefined
-    }
-  }
-
-  var remaining = this.length - offset
-  if (length === undefined || length > remaining) length = remaining
-
-  if ((string.length > 0 && (length < 0 || offset < 0)) || offset > this.length) {
-    throw new RangeError('Attempt to write outside buffer bounds')
-  }
-
-  return utf8Write(this, string, offset, length)
-}
-
-Buffer.prototype.slice = function slice (start, end) {
-  var len = this.length
-  start = ~~start
-  end = end === undefined ? len : ~~end
-
-  if (start < 0) {
-    start += len
-    if (start < 0) start = 0
-  } else if (start > len) {
-    start = len
-  }
-
-  if (end < 0) {
-    end += len
-    if (end < 0) end = 0
-  } else if (end > len) {
-    end = len
-  }
-
-  if (end < start) end = start
-
-  var newBuf
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    newBuf = this.subarray(start, end)
-    // Return an augmented `Uint8Array` instance
-    newBuf.__proto__ = Buffer.prototype
-  } else {
-    var sliceLen = end - start
-    newBuf = new Buffer(sliceLen, undefined)
-    for (var i = 0; i < sliceLen; ++i) {
-      newBuf[i] = this[i + start]
-    }
-  }
-
-  return newBuf
-}
-
-Buffer.prototype.copy = function copy (target, targetStart, start, end) {
-  if (!start) start = 0
-  if (!end && end !== 0) end = this.length
-  if (targetStart >= target.length) targetStart = target.length
-  if (!targetStart) targetStart = 0
-  if (end > 0 && end < start) end = start
-
-  // Copy 0 bytes; we're done
-  if (end === start) return 0
-  if (target.length === 0 || this.length === 0) return 0
-
-  // Fatal error conditions
-  if (targetStart < 0) {
-    throw new RangeError('targetStart out of bounds')
-  }
-  if (start < 0 || start >= this.length) throw new RangeError('sourceStart out of bounds')
-  if (end < 0) throw new RangeError('sourceEnd out of bounds')
-
-  // Are we oob?
-  if (end > this.length) end = this.length
-  if (target.length - targetStart < end - start) {
-    end = target.length - targetStart + start
-  }
-
-  var len = end - start
-  var i
-
-  if (this === target && start < targetStart && targetStart < end) {
-    // descending copy from end
-    for (i = len - 1; i >= 0; --i) {
-      target[i + targetStart] = this[i + start]
-    }
-  } else if (len < 1000 || !Buffer.TYPED_ARRAY_SUPPORT) {
-    // ascending copy from start
-    for (i = 0; i < len; ++i) {
-      target[i + targetStart] = this[i + start]
-    }
-  } else {
-    Uint8Array.prototype.set.call(
-      target,
-      this.subarray(start, start + len),
-      targetStart
-    )
-  }
-
-  return len
-}
-
-Buffer.prototype.fill = function fill (val, start, end) {
-  // Handle string cases:
-  if (typeof val === 'string') {
-    if (typeof start === 'string') {
-      start = 0
-      end = this.length
-    } else if (typeof end === 'string') {
-      end = this.length
-    }
-    if (val.length === 1) {
-      var code = val.charCodeAt(0)
-      if (code < 256) {
-        val = code
-      }
-    }
-  } else if (typeof val === 'number') {
-    val = val & 255
-  }
-
-  // Invalid ranges are not set to a default, so can range check early.
-  if (start < 0 || this.length < start || this.length < end) {
-    throw new RangeError('Out of range index')
-  }
-
-  if (end <= start) {
-    return this
-  }
-
-  start = start >>> 0
-  end = end === undefined ? this.length : end >>> 0
-
-  if (!val) val = 0
-
-  var i
-  if (typeof val === 'number') {
-    for (i = start; i < end; ++i) {
-      this[i] = val
-    }
-  } else {
-    var bytes = Buffer.isBuffer(val)
-      ? val
-      : new Buffer(val)
-    var len = bytes.length
-    for (i = 0; i < end - start; ++i) {
-      this[i + start] = bytes[i % len]
-    }
-  }
-
-  return this
-}
-
-Buffer.concat = function concat (list, length) {
-  if (!isArray(list)) {
-    throw new TypeError('"list" argument must be an Array of Buffers')
-  }
-
-  if (list.length === 0) {
-    return createBuffer(null, 0)
-  }
-
-  var i
-  if (length === undefined) {
-    length = 0
-    for (i = 0; i < list.length; ++i) {
-      length += list[i].length
-    }
-  }
-
-  var buffer = allocUnsafe(null, length)
-  var pos = 0
-  for (i = 0; i < list.length; ++i) {
-    var buf = list[i]
-    if (!Buffer.isBuffer(buf)) {
-      throw new TypeError('"list" argument must be an Array of Buffers')
-    }
-    buf.copy(buffer, pos)
-    pos += buf.length
-  }
-  return buffer
-}
-
-Buffer.byteLength = byteLength
-
-Buffer.prototype._isBuffer = true
-Buffer.isBuffer = function isBuffer (b) {
-  return !!(b != null && b._isBuffer)
-}
-
-module.exports = Buffer
-
 
 /***/ }),
 
@@ -6607,6 +5994,45 @@ __webpack_require__("01f9")(String, 'String', function (iterated) {
 
 /***/ }),
 
+/***/ "5e2e":
+/***/ (function(module, exports, __webpack_require__) {
+
+var listCacheClear = __webpack_require__("28c9"),
+    listCacheDelete = __webpack_require__("69d5"),
+    listCacheGet = __webpack_require__("b4c0"),
+    listCacheHas = __webpack_require__("fba5"),
+    listCacheSet = __webpack_require__("67ca");
+
+/**
+ * Creates an list cache object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function ListCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `ListCache`.
+ListCache.prototype.clear = listCacheClear;
+ListCache.prototype['delete'] = listCacheDelete;
+ListCache.prototype.get = listCacheGet;
+ListCache.prototype.has = listCacheHas;
+ListCache.prototype.set = listCacheSet;
+
+module.exports = ListCache;
+
+
+/***/ }),
+
 /***/ "5f19":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6651,6 +6077,19 @@ module.exports = function (R, S) {
 
 /***/ }),
 
+/***/ "6044":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__("0b07");
+
+/* Built-in method references that are verified to be native. */
+var nativeCreate = getNative(Object, 'create');
+
+module.exports = nativeCreate;
+
+
+/***/ }),
+
 /***/ "6093":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6663,6 +6102,75 @@ if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__("499e").default
 var update = add("0f4ac2f8", content, true, {"sourceMap":false,"shadowMode":false});
+
+/***/ }),
+
+/***/ "60ed":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__("3729"),
+    getPrototype = __webpack_require__("2dcb"),
+    isObjectLike = __webpack_require__("1310");
+
+/** `Object#toString` result references. */
+var objectTag = '[object Object]';
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to infer the `Object` constructor. */
+var objectCtorString = funcToString.call(Object);
+
+/**
+ * Checks if `value` is a plain object, that is, an object created by the
+ * `Object` constructor or one with a `[[Prototype]]` of `null`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.8.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ * }
+ *
+ * _.isPlainObject(new Foo);
+ * // => false
+ *
+ * _.isPlainObject([1, 2, 3]);
+ * // => false
+ *
+ * _.isPlainObject({ 'x': 0, 'y': 0 });
+ * // => true
+ *
+ * _.isPlainObject(Object.create(null));
+ * // => true
+ */
+function isPlainObject(value) {
+  if (!isObjectLike(value) || baseGetTag(value) != objectTag) {
+    return false;
+  }
+  var proto = getPrototype(value);
+  if (proto === null) {
+    return true;
+  }
+  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+  return typeof Ctor == 'function' && Ctor instanceof Ctor &&
+    funcToString.call(Ctor) == objectCtorString;
+}
+
+module.exports = isPlainObject;
+
 
 /***/ }),
 
@@ -6729,6 +6237,35 @@ exports = module.exports = __webpack_require__("2350")(false);
 exports.push([module.i, "li{list-style:none}h1,h2,h3,h4,h5,h6{margin:0}.fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.ui-card{background:#fff;position:relative;display:inline-block;border-radius:14px;padding:22px;width:100%}.ui-card:hover:before{opacity:1}.ui-card:before{content:\" \";position:absolute;width:90%;bottom:-14px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);-webkit-filter:blur(12px);filter:blur(12px);-webkit-box-shadow:0 2px 4px 0 rgba(0,0,0,.4);box-shadow:0 2px 4px 0 rgba(0,0,0,.4);height:14px;opacity:0;-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out;z-index:1}.ui-card-shadow{-webkit-transition:all .2s linear;transition:all .2s linear;-webkit-box-shadow:0 3px 32px rgba(0,0,0,.05);box-shadow:0 3px 32px rgba(0,0,0,.05)}.ui-card-shadow-hover:hover{-webkit-transform:translateY(-6px);transform:translateY(-6px);-webkit-box-shadow:4px 4px 32px rgba(0,0,0,.2);box-shadow:4px 4px 32px rgba(0,0,0,.2)}", ""]);
 
 // exports
+
+
+/***/ }),
+
+/***/ "62e4":
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
 
 
 /***/ }),
@@ -6874,6 +6411,39 @@ module.exports = function (name) {
 
 /***/ }),
 
+/***/ "6747":
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+
+module.exports = isArray;
+
+
+/***/ }),
+
 /***/ "6762":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6901,16 +6471,35 @@ module.exports = __webpack_require__("f921");
 
 /***/ }),
 
-/***/ "67dd":
-/***/ (function(module, exports) {
+/***/ "67ca":
+/***/ (function(module, exports, __webpack_require__) {
 
-// can-promise has a crash in some versions of react native that dont have
-// standard global objects
-// https://github.com/soldair/node-qrcode/issues/157
+var assocIndexOf = __webpack_require__("cb5a");
 
-module.exports = function () {
-  return typeof Promise === 'function' && Promise.prototype && Promise.prototype.then
+/**
+ * Sets the list cache `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf ListCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the list cache instance.
+ */
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    ++this.size;
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+  return this;
 }
+
+module.exports = listCacheSet;
 
 
 /***/ }),
@@ -6942,85 +6531,6 @@ module.exports = __webpack_require__("584a").Promise;
 
 /***/ }),
 
-/***/ "699e":
-/***/ (function(module, exports, __webpack_require__) {
-
-var Buffer = __webpack_require__("5a88")
-
-var EXP_TABLE = new Buffer(512)
-var LOG_TABLE = new Buffer(256)
-
-/**
- * Precompute the log and anti-log tables for faster computation later
- *
- * For each possible value in the galois field 2^8, we will pre-compute
- * the logarithm and anti-logarithm (exponential) of this value
- *
- * ref {@link https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders#Introduction_to_mathematical_fields}
- */
-;(function initTables () {
-  var x = 1
-  for (var i = 0; i < 255; i++) {
-    EXP_TABLE[i] = x
-    LOG_TABLE[x] = i
-
-    x <<= 1 // multiply by 2
-
-    // The QR code specification says to use byte-wise modulo 100011101 arithmetic.
-    // This means that when a number is 256 or larger, it should be XORed with 0x11D.
-    if (x & 0x100) { // similar to x >= 256, but a lot faster (because 0x100 == 256)
-      x ^= 0x11D
-    }
-  }
-
-  // Optimization: double the size of the anti-log table so that we don't need to mod 255 to
-  // stay inside the bounds (because we will mainly use this table for the multiplication of
-  // two GF numbers, no more).
-  // @see {@link mul}
-  for (i = 255; i < 512; i++) {
-    EXP_TABLE[i] = EXP_TABLE[i - 255]
-  }
-}())
-
-/**
- * Returns log value of n inside Galois Field
- *
- * @param  {Number} n
- * @return {Number}
- */
-exports.log = function log (n) {
-  if (n < 1) throw new Error('log(' + n + ')')
-  return LOG_TABLE[n]
-}
-
-/**
- * Returns anti-log value of n inside Galois Field
- *
- * @param  {Number} n
- * @return {Number}
- */
-exports.exp = function exp (n) {
-  return EXP_TABLE[n]
-}
-
-/**
- * Multiplies two number inside Galois Field
- *
- * @param  {Number} x
- * @param  {Number} y
- * @return {Number}
- */
-exports.mul = function mul (x, y) {
-  if (x === 0 || y === 0) return 0
-
-  // should be EXP_TABLE[(LOG_TABLE[x] + LOG_TABLE[y]) % 255] if EXP_TABLE wasn't oversized
-  // @see {@link initTables}
-  return EXP_TABLE[LOG_TABLE[x] + LOG_TABLE[y]]
-}
-
-
-/***/ }),
-
 /***/ "69a8":
 /***/ (function(module, exports) {
 
@@ -7036,6 +6546,48 @@ module.exports = function (it, key) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__("6718")('asyncIterator');
+
+
+/***/ }),
+
+/***/ "69d5":
+/***/ (function(module, exports, __webpack_require__) {
+
+var assocIndexOf = __webpack_require__("cb5a");
+
+/** Used for built-in method references. */
+var arrayProto = Array.prototype;
+
+/** Built-in value references. */
+var splice = arrayProto.splice;
+
+/**
+ * Removes `key` and its value from the list cache.
+ *
+ * @private
+ * @name delete
+ * @memberOf ListCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    return false;
+  }
+  var lastIndex = data.length - 1;
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+  --this.size;
+  return true;
+}
+
+module.exports = listCacheDelete;
 
 
 /***/ }),
@@ -7187,6 +6739,77 @@ var update = add("3d3e33a8", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
+/***/ "6eb0":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("f2dd");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__("499e").default
+var update = add("429b2c3d", content, true, {"sourceMap":false,"shadowMode":false});
+
+/***/ }),
+
+/***/ "6fcd":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseTimes = __webpack_require__("50d8"),
+    isArguments = __webpack_require__("d370"),
+    isArray = __webpack_require__("6747"),
+    isBuffer = __webpack_require__("0d24"),
+    isIndex = __webpack_require__("c098"),
+    isTypedArray = __webpack_require__("73ac");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Creates an array of the enumerable property names of the array-like `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @param {boolean} inherited Specify returning inherited property names.
+ * @returns {Array} Returns the array of property names.
+ */
+function arrayLikeKeys(value, inherited) {
+  var isArr = isArray(value),
+      isArg = !isArr && isArguments(value),
+      isBuff = !isArr && !isArg && isBuffer(value),
+      isType = !isArr && !isArg && !isBuff && isTypedArray(value),
+      skipIndexes = isArr || isArg || isBuff || isType,
+      result = skipIndexes ? baseTimes(value.length, String) : [],
+      length = result.length;
+
+  for (var key in value) {
+    if ((inherited || hasOwnProperty.call(value, key)) &&
+        !(skipIndexes && (
+           // Safari 9 has enumerable `arguments.length` in strict mode.
+           key == 'length' ||
+           // Node.js 0.10 has enumerable non-index properties on buffers.
+           (isBuff && (key == 'offset' || key == 'parent')) ||
+           // PhantomJS 2 has enumerable non-index properties on typed arrays.
+           (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
+           // Skip index properties.
+           isIndex(key, length)
+        ))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = arrayLikeKeys;
+
+
+/***/ }),
+
 /***/ "71c1":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7211,6 +6834,163 @@ module.exports = function (TO_STRING) {
 
 /***/ }),
 
+/***/ "72af":
+/***/ (function(module, exports, __webpack_require__) {
+
+var createBaseFor = __webpack_require__("99cd");
+
+/**
+ * The base implementation of `baseForOwn` which iterates over `object`
+ * properties returned by `keysFunc` and invokes `iteratee` for each property.
+ * Iteratee functions may exit iteration early by explicitly returning `false`.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @param {Function} keysFunc The function to get the keys of `object`.
+ * @returns {Object} Returns `object`.
+ */
+var baseFor = createBaseFor();
+
+module.exports = baseFor;
+
+
+/***/ }),
+
+/***/ "72f0":
+/***/ (function(module, exports) {
+
+/**
+ * Creates a function that returns `value`.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Util
+ * @param {*} value The value to return from the new function.
+ * @returns {Function} Returns the new constant function.
+ * @example
+ *
+ * var objects = _.times(2, _.constant({ 'a': 1 }));
+ *
+ * console.log(objects);
+ * // => [{ 'a': 1 }, { 'a': 1 }]
+ *
+ * console.log(objects[0] === objects[1]);
+ * // => true
+ */
+function constant(value) {
+  return function() {
+    return value;
+  };
+}
+
+module.exports = constant;
+
+
+/***/ }),
+
+/***/ "73ac":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsTypedArray = __webpack_require__("743f"),
+    baseUnary = __webpack_require__("b047f"),
+    nodeUtil = __webpack_require__("99d3");
+
+/* Node.js helper references. */
+var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
+
+/**
+ * Checks if `value` is classified as a typed array.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ * @example
+ *
+ * _.isTypedArray(new Uint8Array);
+ * // => true
+ *
+ * _.isTypedArray([]);
+ * // => false
+ */
+var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
+
+module.exports = isTypedArray;
+
+
+/***/ }),
+
+/***/ "743f":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__("3729"),
+    isLength = __webpack_require__("b218"),
+    isObjectLike = __webpack_require__("1310");
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    objectTag = '[object Object]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    weakMapTag = '[object WeakMap]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+
+/** Used to identify `toStringTag` values of typed arrays. */
+var typedArrayTags = {};
+typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
+typedArrayTags[int8Tag] = typedArrayTags[int16Tag] =
+typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] =
+typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] =
+typedArrayTags[uint32Tag] = true;
+typedArrayTags[argsTag] = typedArrayTags[arrayTag] =
+typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] =
+typedArrayTags[dataViewTag] = typedArrayTags[dateTag] =
+typedArrayTags[errorTag] = typedArrayTags[funcTag] =
+typedArrayTags[mapTag] = typedArrayTags[numberTag] =
+typedArrayTags[objectTag] = typedArrayTags[regexpTag] =
+typedArrayTags[setTag] = typedArrayTags[stringTag] =
+typedArrayTags[weakMapTag] = false;
+
+/**
+ * The base implementation of `_.isTypedArray` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ */
+function baseIsTypedArray(value) {
+  return isObjectLike(value) &&
+    isLength(value.length) && !!typedArrayTags[baseGetTag(value)];
+}
+
+module.exports = baseIsTypedArray;
+
+
+/***/ }),
+
 /***/ "7445":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7218,6 +6998,43 @@ var $export = __webpack_require__("63b6");
 var $parseInt = __webpack_require__("5d6b");
 // 18.2.5 parseInt(string, radix)
 $export($export.G + $export.F * (parseInt != $parseInt), { parseInt: $parseInt });
+
+
+/***/ }),
+
+/***/ "7530":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("1a8c");
+
+/** Built-in value references. */
+var objectCreate = Object.create;
+
+/**
+ * The base implementation of `_.create` without support for assigning
+ * properties to the created object.
+ *
+ * @private
+ * @param {Object} proto The object to inherit from.
+ * @returns {Object} Returns the new object.
+ */
+var baseCreate = (function() {
+  function object() {}
+  return function(proto) {
+    if (!isObject(proto)) {
+      return {};
+    }
+    if (objectCreate) {
+      return objectCreate(proto);
+    }
+    object.prototype = proto;
+    var result = new object;
+    object.prototype = undefined;
+    return result;
+  };
+}());
+
+module.exports = baseCreate;
 
 
 /***/ }),
@@ -7264,247 +7081,6 @@ module.exports = function (index, length) {
 
 /***/ }),
 
-/***/ "7903":
-/***/ (function(module, exports) {
-
-/**
- * Data mask pattern reference
- * @type {Object}
- */
-exports.Patterns = {
-  PATTERN000: 0,
-  PATTERN001: 1,
-  PATTERN010: 2,
-  PATTERN011: 3,
-  PATTERN100: 4,
-  PATTERN101: 5,
-  PATTERN110: 6,
-  PATTERN111: 7
-}
-
-/**
- * Weighted penalty scores for the undesirable features
- * @type {Object}
- */
-var PenaltyScores = {
-  N1: 3,
-  N2: 3,
-  N3: 40,
-  N4: 10
-}
-
-/**
- * Check if mask pattern value is valid
- *
- * @param  {Number}  mask    Mask pattern
- * @return {Boolean}         true if valid, false otherwise
- */
-exports.isValid = function isValid (mask) {
-  return mask != null && mask !== '' && !isNaN(mask) && mask >= 0 && mask <= 7
-}
-
-/**
- * Returns mask pattern from a value.
- * If value is not valid, returns undefined
- *
- * @param  {Number|String} value        Mask pattern value
- * @return {Number}                     Valid mask pattern or undefined
- */
-exports.from = function from (value) {
-  return exports.isValid(value) ? parseInt(value, 10) : undefined
-}
-
-/**
-* Find adjacent modules in row/column with the same color
-* and assign a penalty value.
-*
-* Points: N1 + i
-* i is the amount by which the number of adjacent modules of the same color exceeds 5
-*/
-exports.getPenaltyN1 = function getPenaltyN1 (data) {
-  var size = data.size
-  var points = 0
-  var sameCountCol = 0
-  var sameCountRow = 0
-  var lastCol = null
-  var lastRow = null
-
-  for (var row = 0; row < size; row++) {
-    sameCountCol = sameCountRow = 0
-    lastCol = lastRow = null
-
-    for (var col = 0; col < size; col++) {
-      var module = data.get(row, col)
-      if (module === lastCol) {
-        sameCountCol++
-      } else {
-        if (sameCountCol >= 5) points += PenaltyScores.N1 + (sameCountCol - 5)
-        lastCol = module
-        sameCountCol = 1
-      }
-
-      module = data.get(col, row)
-      if (module === lastRow) {
-        sameCountRow++
-      } else {
-        if (sameCountRow >= 5) points += PenaltyScores.N1 + (sameCountRow - 5)
-        lastRow = module
-        sameCountRow = 1
-      }
-    }
-
-    if (sameCountCol >= 5) points += PenaltyScores.N1 + (sameCountCol - 5)
-    if (sameCountRow >= 5) points += PenaltyScores.N1 + (sameCountRow - 5)
-  }
-
-  return points
-}
-
-/**
- * Find 2x2 blocks with the same color and assign a penalty value
- *
- * Points: N2 * (m - 1) * (n - 1)
- */
-exports.getPenaltyN2 = function getPenaltyN2 (data) {
-  var size = data.size
-  var points = 0
-
-  for (var row = 0; row < size - 1; row++) {
-    for (var col = 0; col < size - 1; col++) {
-      var last = data.get(row, col) +
-        data.get(row, col + 1) +
-        data.get(row + 1, col) +
-        data.get(row + 1, col + 1)
-
-      if (last === 4 || last === 0) points++
-    }
-  }
-
-  return points * PenaltyScores.N2
-}
-
-/**
- * Find 1:1:3:1:1 ratio (dark:light:dark:light:dark) pattern in row/column,
- * preceded or followed by light area 4 modules wide
- *
- * Points: N3 * number of pattern found
- */
-exports.getPenaltyN3 = function getPenaltyN3 (data) {
-  var size = data.size
-  var points = 0
-  var bitsCol = 0
-  var bitsRow = 0
-
-  for (var row = 0; row < size; row++) {
-    bitsCol = bitsRow = 0
-    for (var col = 0; col < size; col++) {
-      bitsCol = ((bitsCol << 1) & 0x7FF) | data.get(row, col)
-      if (col >= 10 && (bitsCol === 0x5D0 || bitsCol === 0x05D)) points++
-
-      bitsRow = ((bitsRow << 1) & 0x7FF) | data.get(col, row)
-      if (col >= 10 && (bitsRow === 0x5D0 || bitsRow === 0x05D)) points++
-    }
-  }
-
-  return points * PenaltyScores.N3
-}
-
-/**
- * Calculate proportion of dark modules in entire symbol
- *
- * Points: N4 * k
- *
- * k is the rating of the deviation of the proportion of dark modules
- * in the symbol from 50% in steps of 5%
- */
-exports.getPenaltyN4 = function getPenaltyN4 (data) {
-  var darkCount = 0
-  var modulesCount = data.data.length
-
-  for (var i = 0; i < modulesCount; i++) darkCount += data.data[i]
-
-  var k = Math.abs(Math.ceil((darkCount * 100 / modulesCount) / 5) - 10)
-
-  return k * PenaltyScores.N4
-}
-
-/**
- * Return mask value at given position
- *
- * @param  {Number} maskPattern Pattern reference value
- * @param  {Number} i           Row
- * @param  {Number} j           Column
- * @return {Boolean}            Mask value
- */
-function getMaskAt (maskPattern, i, j) {
-  switch (maskPattern) {
-    case exports.Patterns.PATTERN000: return (i + j) % 2 === 0
-    case exports.Patterns.PATTERN001: return i % 2 === 0
-    case exports.Patterns.PATTERN010: return j % 3 === 0
-    case exports.Patterns.PATTERN011: return (i + j) % 3 === 0
-    case exports.Patterns.PATTERN100: return (Math.floor(i / 2) + Math.floor(j / 3)) % 2 === 0
-    case exports.Patterns.PATTERN101: return (i * j) % 2 + (i * j) % 3 === 0
-    case exports.Patterns.PATTERN110: return ((i * j) % 2 + (i * j) % 3) % 2 === 0
-    case exports.Patterns.PATTERN111: return ((i * j) % 3 + (i + j) % 2) % 2 === 0
-
-    default: throw new Error('bad maskPattern:' + maskPattern)
-  }
-}
-
-/**
- * Apply a mask pattern to a BitMatrix
- *
- * @param  {Number}    pattern Pattern reference number
- * @param  {BitMatrix} data    BitMatrix data
- */
-exports.applyMask = function applyMask (pattern, data) {
-  var size = data.size
-
-  for (var col = 0; col < size; col++) {
-    for (var row = 0; row < size; row++) {
-      if (data.isReserved(row, col)) continue
-      data.xor(row, col, getMaskAt(pattern, row, col))
-    }
-  }
-}
-
-/**
- * Returns the best mask pattern for data
- *
- * @param  {BitMatrix} data
- * @return {Number} Mask pattern reference number
- */
-exports.getBestMask = function getBestMask (data, setupFormatFunc) {
-  var numPatterns = Object.keys(exports.Patterns).length
-  var bestPattern = 0
-  var lowerPenalty = Infinity
-
-  for (var p = 0; p < numPatterns; p++) {
-    setupFormatFunc(p)
-    exports.applyMask(p, data)
-
-    // Calculate penalty
-    var penalty =
-      exports.getPenaltyN1(data) +
-      exports.getPenaltyN2(data) +
-      exports.getPenaltyN3(data) +
-      exports.getPenaltyN4(data)
-
-    // Undo previously applied mask
-    exports.applyMask(p, data)
-
-    if (penalty < lowerPenalty) {
-      lowerPenalty = penalty
-      bestPattern = p
-    }
-  }
-
-  return bestPattern
-}
-
-
-/***/ }),
-
 /***/ "794b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7533,6 +7109,20 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "79bc":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__("0b07"),
+    root = __webpack_require__("2b3e");
+
+/* Built-in method references that are verified to be native. */
+var Map = getNative(root, 'Map');
+
+module.exports = Map;
+
+
+/***/ }),
+
 /***/ "79e5":
 /***/ (function(module, exports) {
 
@@ -7547,59 +7137,32 @@ module.exports = function (exec) {
 
 /***/ }),
 
-/***/ "7a43":
-/***/ (function(module, exports) {
+/***/ "7a48":
+/***/ (function(module, exports, __webpack_require__) {
 
-exports.L = { bit: 1 }
-exports.M = { bit: 0 }
-exports.Q = { bit: 3 }
-exports.H = { bit: 2 }
+var nativeCreate = __webpack_require__("6044");
 
-function fromString (string) {
-  if (typeof string !== 'string') {
-    throw new Error('Param is not a string')
-  }
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
 
-  var lcStr = string.toLowerCase()
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
 
-  switch (lcStr) {
-    case 'l':
-    case 'low':
-      return exports.L
-
-    case 'm':
-    case 'medium':
-      return exports.M
-
-    case 'q':
-    case 'quartile':
-      return exports.Q
-
-    case 'h':
-    case 'high':
-      return exports.H
-
-    default:
-      throw new Error('Unknown EC Level: ' + string)
-  }
+/**
+ * Checks if a hash value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Hash
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function hashHas(key) {
+  var data = this.__data__;
+  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty.call(data, key);
 }
 
-exports.isValid = function isValid (level) {
-  return level && typeof level.bit !== 'undefined' &&
-    level.bit >= 0 && level.bit < 4
-}
-
-exports.from = function from (value, defaultValue) {
-  if (exports.isValid(value)) {
-    return value
-  }
-
-  try {
-    return fromString(value)
-  } catch (e) {
-    return defaultValue
-  }
-}
+module.exports = hashHas;
 
 
 /***/ }),
@@ -7713,116 +7276,69 @@ module.exports = (
 
 /***/ }),
 
-/***/ "7ba0":
-/***/ (function(module, exports) {
+/***/ "7b83":
+/***/ (function(module, exports, __webpack_require__) {
 
-function BitBuffer () {
-  this.buffer = []
-  this.length = 0
-}
+var mapCacheClear = __webpack_require__("7c64"),
+    mapCacheDelete = __webpack_require__("93ed"),
+    mapCacheGet = __webpack_require__("2478"),
+    mapCacheHas = __webpack_require__("a524"),
+    mapCacheSet = __webpack_require__("1fc8");
 
-BitBuffer.prototype = {
+/**
+ * Creates a map cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function MapCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
 
-  get: function (index) {
-    var bufIndex = Math.floor(index / 8)
-    return ((this.buffer[bufIndex] >>> (7 - index % 8)) & 1) === 1
-  },
-
-  put: function (num, length) {
-    for (var i = 0; i < length; i++) {
-      this.putBit(((num >>> (length - i - 1)) & 1) === 1)
-    }
-  },
-
-  getLengthInBits: function () {
-    return this.length
-  },
-
-  putBit: function (bit) {
-    var bufIndex = Math.floor(this.length / 8)
-    if (this.buffer.length <= bufIndex) {
-      this.buffer.push(0)
-    }
-
-    if (bit) {
-      this.buffer[bufIndex] |= (0x80 >>> (this.length % 8))
-    }
-
-    this.length++
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
   }
 }
 
-module.exports = BitBuffer
+// Add methods to `MapCache`.
+MapCache.prototype.clear = mapCacheClear;
+MapCache.prototype['delete'] = mapCacheDelete;
+MapCache.prototype.get = mapCacheGet;
+MapCache.prototype.has = mapCacheHas;
+MapCache.prototype.set = mapCacheSet;
+
+module.exports = MapCache;
 
 
 /***/ }),
 
-/***/ "7bf0":
-/***/ (function(module, exports) {
+/***/ "7c64":
+/***/ (function(module, exports, __webpack_require__) {
 
-var toSJISFunction
-var CODEWORDS_COUNT = [
-  0, // Not used
-  26, 44, 70, 100, 134, 172, 196, 242, 292, 346,
-  404, 466, 532, 581, 655, 733, 815, 901, 991, 1085,
-  1156, 1258, 1364, 1474, 1588, 1706, 1828, 1921, 2051, 2185,
-  2323, 2465, 2611, 2761, 2876, 3034, 3196, 3362, 3532, 3706
-]
+var Hash = __webpack_require__("e24b"),
+    ListCache = __webpack_require__("5e2e"),
+    Map = __webpack_require__("79bc");
 
 /**
- * Returns the QR Code size for the specified version
+ * Removes all key-value entries from the map.
  *
- * @param  {Number} version QR Code version
- * @return {Number}         size of QR code
+ * @private
+ * @name clear
+ * @memberOf MapCache
  */
-exports.getSymbolSize = function getSymbolSize (version) {
-  if (!version) throw new Error('"version" cannot be null or undefined')
-  if (version < 1 || version > 40) throw new Error('"version" should be in range from 1 to 40')
-  return version * 4 + 17
+function mapCacheClear() {
+  this.size = 0;
+  this.__data__ = {
+    'hash': new Hash,
+    'map': new (Map || ListCache),
+    'string': new Hash
+  };
 }
 
-/**
- * Returns the total number of codewords used to store data and EC information.
- *
- * @param  {Number} version QR Code version
- * @return {Number}         Data length in bits
- */
-exports.getSymbolTotalCodewords = function getSymbolTotalCodewords (version) {
-  return CODEWORDS_COUNT[version]
-}
-
-/**
- * Encode data with Bose-Chaudhuri-Hocquenghem
- *
- * @param  {Number} data Value to encode
- * @return {Number}      Encoded value
- */
-exports.getBCHDigit = function (data) {
-  var digit = 0
-
-  while (data !== 0) {
-    digit++
-    data >>>= 1
-  }
-
-  return digit
-}
-
-exports.setToSJISFunction = function setToSJISFunction (f) {
-  if (typeof f !== 'function') {
-    throw new Error('"toSJISFunc" is not a valid function.')
-  }
-
-  toSJISFunction = f
-}
-
-exports.isKanjiModeEnabled = function () {
-  return typeof toSJISFunction !== 'undefined'
-}
-
-exports.toSJIS = function toSJIS (kanji) {
-  return toSJISFunction(kanji)
-}
+module.exports = mapCacheClear;
 
 
 /***/ }),
@@ -7852,6 +7368,40 @@ module.exports = __webpack_require__("584a").getIterator = function (it) {
   if (typeof iterFn != 'function') throw TypeError(it + ' is not iterable!');
   return anObject(iterFn.call(it));
 };
+
+
+/***/ }),
+
+/***/ "7e64":
+/***/ (function(module, exports, __webpack_require__) {
+
+var ListCache = __webpack_require__("5e2e"),
+    stackClear = __webpack_require__("efb6"),
+    stackDelete = __webpack_require__("2fcc"),
+    stackGet = __webpack_require__("802a"),
+    stackHas = __webpack_require__("55a3"),
+    stackSet = __webpack_require__("d02c");
+
+/**
+ * Creates a stack cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Stack(entries) {
+  var data = this.__data__ = new ListCache(entries);
+  this.size = data.size;
+}
+
+// Add methods to `Stack`.
+Stack.prototype.clear = stackClear;
+Stack.prototype['delete'] = stackDelete;
+Stack.prototype.get = stackGet;
+Stack.prototype.has = stackHas;
+Stack.prototype.set = stackSet;
+
+module.exports = Stack;
 
 
 /***/ }),
@@ -7913,6 +7463,27 @@ NAME in FProto || __webpack_require__("9e1e") && dP(FProto, NAME, {
 
 /***/ }),
 
+/***/ "802a":
+/***/ (function(module, exports) {
+
+/**
+ * Gets the stack value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Stack
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function stackGet(key) {
+  return this.__data__.get(key);
+}
+
+module.exports = stackGet;
+
+
+/***/ }),
+
 /***/ "8378":
 /***/ (function(module, exports) {
 
@@ -7968,6 +7539,34 @@ exports.push([module.i, "li{list-style:none}h1,h2,h3,h4,h5,h6{margin:0}.fade-ent
 
 /***/ }),
 
+/***/ "85e3":
+/***/ (function(module, exports) {
+
+/**
+ * A faster alternative to `Function#apply`, this function invokes `func`
+ * with the `this` binding of `thisArg` and the arguments of `args`.
+ *
+ * @private
+ * @param {Function} func The function to invoke.
+ * @param {*} thisArg The `this` binding of `func`.
+ * @param {Array} args The arguments to invoke `func` with.
+ * @returns {*} Returns the result of `func`.
+ */
+function apply(func, thisArg, args) {
+  switch (args.length) {
+    case 0: return func.call(thisArg);
+    case 1: return func.call(thisArg, args[0]);
+    case 2: return func.call(thisArg, args[0], args[1]);
+    case 3: return func.call(thisArg, args[0], args[1], args[2]);
+  }
+  return func.apply(thisArg, args);
+}
+
+module.exports = apply;
+
+
+/***/ }),
+
 /***/ "85f2":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8013,41 +7612,35 @@ exports.f = __webpack_require__("9e1e") ? Object.defineProperty : function defin
 
 /***/ }),
 
-/***/ "8793":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "872a":
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _interopRequireWildcard; });
-/* harmony import */ var _core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("268f");
-/* harmony import */ var _core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("85f2");
-/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_1__);
+var defineProperty = __webpack_require__("3b4a");
 
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
+/**
+ * The base implementation of `assignValue` and `assignMergeValue` without
+ * value checks.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {string} key The key of the property to assign.
+ * @param {*} value The value to assign.
+ */
+function baseAssignValue(object, key, value) {
+  if (key == '__proto__' && defineProperty) {
+    defineProperty(object, key, {
+      'configurable': true,
+      'enumerable': true,
+      'value': value,
+      'writable': true
+    });
   } else {
-    var newObj = {};
-
-    if (obj != null) {
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-          var desc = _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_1___default.a && _core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_0___default.a ? _core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_0___default()(obj, key) : {};
-
-          if (desc.get || desc.set) {
-            _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_1___default()(newObj, key, desc);
-          } else {
-            newObj[key] = obj[key];
-          }
-        }
-      }
-    }
-
-    newObj.default = obj;
-    return newObj;
+    object[key] = value;
   }
 }
+
+module.exports = baseAssignValue;
+
 
 /***/ }),
 
@@ -8071,6 +7664,30 @@ exports.push([module.i, "li{list-style:none}h1,h2,h3,h4,h5,h6{margin:0}.fade-ent
 
 __webpack_require__("32a6");
 module.exports = __webpack_require__("584a").Object.keys;
+
+
+/***/ }),
+
+/***/ "8adb":
+/***/ (function(module, exports) {
+
+/**
+ * Gets the value at `key`, unless `key` is "__proto__".
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function safeGet(object, key) {
+  if (key == '__proto__') {
+    return;
+  }
+
+  return object[key];
+}
+
+module.exports = safeGet;
 
 
 /***/ }),
@@ -8114,68 +7731,41 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__8bbf__;
 
 /***/ }),
 
-/***/ "8d23":
+/***/ "8de2":
 /***/ (function(module, exports, __webpack_require__) {
 
-var Buffer = __webpack_require__("5a88")
-var Polynomial = __webpack_require__("2732")
-
-function ReedSolomonEncoder (degree) {
-  this.genPoly = undefined
-  this.degree = degree
-
-  if (this.degree) this.initialize(this.degree)
-}
+var copyObject = __webpack_require__("8eeb"),
+    keysIn = __webpack_require__("9934");
 
 /**
- * Initialize the encoder.
- * The input param should correspond to the number of error correction codewords.
+ * Converts `value` to a plain object flattening inherited enumerable string
+ * keyed properties of `value` to own properties of the plain object.
  *
- * @param  {Number} degree
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to convert.
+ * @returns {Object} Returns the converted plain object.
+ * @example
+ *
+ * function Foo() {
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.assign({ 'a': 1 }, new Foo);
+ * // => { 'a': 1, 'b': 2 }
+ *
+ * _.assign({ 'a': 1 }, _.toPlainObject(new Foo));
+ * // => { 'a': 1, 'b': 2, 'c': 3 }
  */
-ReedSolomonEncoder.prototype.initialize = function initialize (degree) {
-  // create an irreducible generator polynomial
-  this.degree = degree
-  this.genPoly = Polynomial.generateECPolynomial(this.degree)
+function toPlainObject(value) {
+  return copyObject(value, keysIn(value));
 }
 
-/**
- * Encodes a chunk of data
- *
- * @param  {Buffer} data Buffer containing input data
- * @return {Buffer}      Buffer containing encoded data
- */
-ReedSolomonEncoder.prototype.encode = function encode (data) {
-  if (!this.genPoly) {
-    throw new Error('Encoder not initialized')
-  }
-
-  // Calculate EC for this data block
-  // extends data size to data+genPoly size
-  var pad = new Buffer(this.degree)
-  pad.fill(0)
-  var paddedData = Buffer.concat([data, pad], data.length + this.degree)
-
-  // The error correction codewords are the remainder after dividing the data codewords
-  // by a generator polynomial
-  var remainder = Polynomial.mod(paddedData, this.genPoly)
-
-  // return EC data blocks (last n byte, where n is the degree of genPoly)
-  // If coefficients number in remainder are less than genPoly degree,
-  // pad with 0s to the left to reach the needed number of coefficients
-  var start = this.degree - remainder.length
-  if (start > 0) {
-    var buff = new Buffer(this.degree)
-    buff.fill(0)
-    remainder.copy(buff, start)
-
-    return buff
-  }
-
-  return remainder
-}
-
-module.exports = ReedSolomonEncoder
+module.exports = toPlainObject;
 
 
 /***/ }),
@@ -8256,6 +7846,53 @@ module.exports = !__webpack_require__("294c")(function () {
 
 /***/ }),
 
+/***/ "8eeb":
+/***/ (function(module, exports, __webpack_require__) {
+
+var assignValue = __webpack_require__("32b3"),
+    baseAssignValue = __webpack_require__("872a");
+
+/**
+ * Copies properties of `source` to `object`.
+ *
+ * @private
+ * @param {Object} source The object to copy properties from.
+ * @param {Array} props The property identifiers to copy.
+ * @param {Object} [object={}] The object to copy properties to.
+ * @param {Function} [customizer] The function to customize copied values.
+ * @returns {Object} Returns `object`.
+ */
+function copyObject(source, props, object, customizer) {
+  var isNew = !object;
+  object || (object = {});
+
+  var index = -1,
+      length = props.length;
+
+  while (++index < length) {
+    var key = props[index];
+
+    var newValue = customizer
+      ? customizer(object[key], source[key], key, object, source)
+      : undefined;
+
+    if (newValue === undefined) {
+      newValue = source[key];
+    }
+    if (isNew) {
+      baseAssignValue(object, key, newValue);
+    } else {
+      assignValue(object, key, newValue);
+    }
+  }
+  return object;
+}
+
+module.exports = copyObject;
+
+
+/***/ }),
+
 /***/ "8f60":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8311,31 +7948,24 @@ module.exports = __webpack_require__("35e8");
 
 /***/ }),
 
-/***/ "924f":
-/***/ (function(module, exports, __webpack_require__) {
-
-var getSymbolSize = __webpack_require__("7bf0").getSymbolSize
-var FINDER_PATTERN_SIZE = 7
+/***/ "91e9":
+/***/ (function(module, exports) {
 
 /**
- * Returns an array containing the positions of each finder pattern.
- * Each array's element represent the top-left point of the pattern as (x, y) coordinates
+ * Creates a unary function that invokes `func` with its argument transformed.
  *
- * @param  {Number} version QR Code version
- * @return {Array}          Array of coordinates
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
  */
-exports.getPositions = function getPositions (version) {
-  var size = getSymbolSize(version)
-
-  return [
-    // top-left
-    [0, 0],
-    // top-right
-    [size - FINDER_PATTERN_SIZE, 0],
-    // bottom-left
-    [0, size - FINDER_PATTERN_SIZE]
-  ]
+function overArg(func, transform) {
+  return function(arg) {
+    return func(transform(arg));
+  };
 }
+
+module.exports = overArg;
 
 
 /***/ }),
@@ -8382,38 +8012,71 @@ module.exports = !$assign || __webpack_require__("294c")(function () {
 
 /***/ }),
 
-/***/ "9582":
+/***/ "93ed":
 /***/ (function(module, exports, __webpack_require__) {
 
-var Utils = __webpack_require__("7bf0")
-
-var G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0)
-var G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1)
-var G15_BCH = Utils.getBCHDigit(G15)
+var getMapData = __webpack_require__("4245");
 
 /**
- * Returns format information with relative error correction bits
+ * Removes `key` and its value from the map.
  *
- * The format information is a 15-bit sequence containing 5 data bits,
- * with 10 error correction bits calculated using the (15, 5) BCH code.
- *
- * @param  {Number} errorCorrectionLevel Error correction level
- * @param  {Number} mask                 Mask pattern
- * @return {Number}                      Encoded format information bits
+ * @private
+ * @name delete
+ * @memberOf MapCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
  */
-exports.getEncodedBits = function getEncodedBits (errorCorrectionLevel, mask) {
-  var data = ((errorCorrectionLevel.bit << 3) | mask)
-  var d = data << 10
-
-  while (Utils.getBCHDigit(d) - G15_BCH >= 0) {
-    d ^= (G15 << (Utils.getBCHDigit(d) - G15_BCH))
-  }
-
-  // xor final data with mask pattern in order to ensure that
-  // no combination of Error Correction Level and data mask pattern
-  // will result in an all-zero data string
-  return ((data << 10) | d) ^ G15_MASK
+function mapCacheDelete(key) {
+  var result = getMapData(this, key)['delete'](key);
+  this.size -= result ? 1 : 0;
+  return result;
 }
+
+module.exports = mapCacheDelete;
+
+
+/***/ }),
+
+/***/ "9520":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__("3729"),
+    isObject = __webpack_require__("1a8c");
+
+/** `Object#toString` result references. */
+var asyncTag = '[object AsyncFunction]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    proxyTag = '[object Proxy]';
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  if (!isObject(value)) {
+    return false;
+  }
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 9 which returns 'object' for typed arrays and other constructors.
+  var tag = baseGetTag(value);
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+}
+
+module.exports = isFunction;
 
 
 /***/ }),
@@ -8431,6 +8094,50 @@ module.exports = __webpack_require__("584a").isIterable = function (it) {
     // eslint-disable-next-line no-prototype-builtins
     || Iterators.hasOwnProperty(classof(O));
 };
+
+
+/***/ }),
+
+/***/ "9638":
+/***/ (function(module, exports) {
+
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+function eq(value, other) {
+  return value === other || (value !== value && other !== other);
+}
+
+module.exports = eq;
 
 
 /***/ }),
@@ -8470,10 +8177,156 @@ var update = add("42a768bc", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
+/***/ "9934":
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeKeys = __webpack_require__("6fcd"),
+    baseKeysIn = __webpack_require__("41c3"),
+    isArrayLike = __webpack_require__("30c9");
+
+/**
+ * Creates an array of the own and inherited enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keysIn(new Foo);
+ * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
+ */
+function keysIn(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object, true) : baseKeysIn(object);
+}
+
+module.exports = keysIn;
+
+
+/***/ }),
+
+/***/ "99cd":
+/***/ (function(module, exports) {
+
+/**
+ * Creates a base function for methods like `_.forIn` and `_.forOwn`.
+ *
+ * @private
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new base function.
+ */
+function createBaseFor(fromRight) {
+  return function(object, iteratee, keysFunc) {
+    var index = -1,
+        iterable = Object(object),
+        props = keysFunc(object),
+        length = props.length;
+
+    while (length--) {
+      var key = props[fromRight ? length : ++index];
+      if (iteratee(iterable[key], key, iterable) === false) {
+        break;
+      }
+    }
+    return object;
+  };
+}
+
+module.exports = createBaseFor;
+
+
+/***/ }),
+
+/***/ "99d3":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__("585a");
+
+/** Detect free variable `exports`. */
+var freeExports =  true && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/** Detect free variable `process` from Node.js. */
+var freeProcess = moduleExports && freeGlobal.process;
+
+/** Used to access faster Node.js helpers. */
+var nodeUtil = (function() {
+  try {
+    // Use `util.types` for Node.js 10+.
+    var types = freeModule && freeModule.require && freeModule.require('util').types;
+
+    if (types) {
+      return types;
+    }
+
+    // Legacy `process.binding('util')` for Node.js < 10.
+    return freeProcess && freeProcess.binding && freeProcess.binding('util');
+  } catch (e) {}
+}());
+
+module.exports = nodeUtil;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("62e4")(module)))
+
+/***/ }),
+
 /***/ "9aa9":
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
+
+
+/***/ }),
+
+/***/ "9aff":
+/***/ (function(module, exports, __webpack_require__) {
+
+var eq = __webpack_require__("9638"),
+    isArrayLike = __webpack_require__("30c9"),
+    isIndex = __webpack_require__("c098"),
+    isObject = __webpack_require__("1a8c");
+
+/**
+ * Checks if the given arguments are from an iteratee call.
+ *
+ * @private
+ * @param {*} value The potential iteratee value argument.
+ * @param {*} index The potential iteratee index or key argument.
+ * @param {*} object The potential iteratee object argument.
+ * @returns {boolean} Returns `true` if the arguments are from an iteratee call,
+ *  else `false`.
+ */
+function isIterateeCall(value, index, object) {
+  if (!isObject(object)) {
+    return false;
+  }
+  var type = typeof index;
+  if (type == 'number'
+        ? (isArrayLike(object) && isIndex(index, object.length))
+        : (type == 'string' && index in object)
+      ) {
+    return eq(object[index], value);
+  }
+  return false;
+}
+
+module.exports = isIterateeCall;
 
 
 /***/ }),
@@ -8515,72 +8368,6 @@ if (ArrayProto[UNSCOPABLES] == undefined) __webpack_require__("32e9")(ArrayProto
 module.exports = function (key) {
   ArrayProto[UNSCOPABLES][key] = true;
 };
-
-
-/***/ }),
-
-/***/ "9d94":
-/***/ (function(module, exports, __webpack_require__) {
-
-var Mode = __webpack_require__("bbf0")
-
-/**
- * Array of characters available in alphanumeric mode
- *
- * As per QR Code specification, to each character
- * is assigned a value from 0 to 44 which in this case coincides
- * with the array index
- *
- * @type {Array}
- */
-var ALPHA_NUM_CHARS = [
-  '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-  'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-  ' ', '$', '%', '*', '+', '-', '.', '/', ':'
-]
-
-function AlphanumericData (data) {
-  this.mode = Mode.ALPHANUMERIC
-  this.data = data
-}
-
-AlphanumericData.getBitsLength = function getBitsLength (length) {
-  return 11 * Math.floor(length / 2) + 6 * (length % 2)
-}
-
-AlphanumericData.prototype.getLength = function getLength () {
-  return this.data.length
-}
-
-AlphanumericData.prototype.getBitsLength = function getBitsLength () {
-  return AlphanumericData.getBitsLength(this.data.length)
-}
-
-AlphanumericData.prototype.write = function write (bitBuffer) {
-  var i
-
-  // Input data characters are divided into groups of two characters
-  // and encoded as 11-bit binary codes.
-  for (i = 0; i + 2 <= this.data.length; i += 2) {
-    // The character value of the first character is multiplied by 45
-    var value = ALPHA_NUM_CHARS.indexOf(this.data[i]) * 45
-
-    // The character value of the second digit is added to the product
-    value += ALPHA_NUM_CHARS.indexOf(this.data[i + 1])
-
-    // The sum is then stored as 11-bit binary number
-    bitBuffer.put(value, 11)
-  }
-
-  // If the number of input data characters is not a multiple of two,
-  // the character value of the final character is encoded as a 6-bit binary number.
-  if (this.data.length % 2) {
-    bitBuffer.put(ALPHA_NUM_CHARS.indexOf(this.data[i]), 6)
-  }
-}
-
-module.exports = AlphanumericData
 
 
 /***/ }),
@@ -8828,15 +8615,6 @@ exports.RETURN = RETURN;
 
 /***/ }),
 
-/***/ "a2df":
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(e,n){ true?module.exports=n():undefined}(this,function(){var e="undefined"!=typeof window&&("ontouchstart"in window||navigator.msMaxTouchPoints>0)?["touchstart","click"]:["click"],n=[];function t(n){var t="function"==typeof n;if(!t&&"object"!=typeof n)throw new Error("v-click-outside: Binding value must be a function or an object");return{handler:t?n:n.handler,middleware:n.middleware||function(e){return e},events:n.events||e}}function r(e){var n=e.el,t=e.event,r=e.handler,i=e.middleware;t.target!==n&&!n.contains(t.target)&&i(t,n)&&r(t,n)}var i={bind:function(e,i){var d=t(i.value),o=d.handler,a=d.middleware,u={el:e,eventHandlers:d.events.map(function(n){return{event:n,handler:function(n){return r({event:n,el:e,handler:o,middleware:a})}}})};u.eventHandlers.forEach(function(e){return document.addEventListener(e.event,e.handler)}),n.push(u)},update:function(e,i){var d=t(i.value),o=d.handler,a=d.middleware,u=d.events,c=n.find(function(n){return n.el===e});c.eventHandlers.forEach(function(e){return document.removeEventListener(e.event,e.handler)}),c.eventHandlers=u.map(function(n){return{event:n,handler:function(n){return r({event:n,el:e,handler:o,middleware:a})}}}),c.eventHandlers.forEach(function(e){return document.addEventListener(e.event,e.handler)})},unbind:function(e){n.find(function(n){return n.el===e}).eventHandlers.forEach(function(e){return document.removeEventListener(e.event,e.handler)})},instances:n};return{install:function(e){e.directive("click-outside",i)},directive:i}});
-//# sourceMappingURL=v-click-outside.min.min.umd.js.map
-
-
-/***/ }),
-
 /***/ "a3c3":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8844,6 +8622,35 @@ exports.RETURN = RETURN;
 var $export = __webpack_require__("63b6");
 
 $export($export.S + $export.F, 'Object', { assign: __webpack_require__("9306") });
+
+
+/***/ }),
+
+/***/ "a454":
+/***/ (function(module, exports, __webpack_require__) {
+
+var constant = __webpack_require__("72f0"),
+    defineProperty = __webpack_require__("3b4a"),
+    identity = __webpack_require__("cd9d");
+
+/**
+ * The base implementation of `setToString` without support for hot loop shorting.
+ *
+ * @private
+ * @param {Function} func The function to modify.
+ * @param {Function} string The `toString` result.
+ * @returns {Function} Returns `func`.
+ */
+var baseSetToString = !defineProperty ? identity : function(func, string) {
+  return defineProperty(func, 'toString', {
+    'configurable': true,
+    'enumerable': false,
+    'value': constant(string),
+    'writable': true
+  });
+};
+
+module.exports = baseSetToString;
 
 
 /***/ }),
@@ -8981,6 +8788,29 @@ module.exports = __webpack_require__("8aae");
 
 /***/ }),
 
+/***/ "a524":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getMapData = __webpack_require__("4245");
+
+/**
+ * Checks if a map value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf MapCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function mapCacheHas(key) {
+  return getMapData(this, key).has(key);
+}
+
+module.exports = mapCacheHas;
+
+
+/***/ }),
+
 /***/ "a589":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9029,512 +8859,6 @@ exports = module.exports = __webpack_require__("2350")(false);
 exports.push([module.i, "li{list-style:none}h1,h2,h3,h4,h5,h6{margin:0}.fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}h1.ui-heading{font-size:2.5rem}h2.ui-heading{font-size:2rem}h3.ui-heading{font-size:1.75rem}h4.ui-heading{font-size:1.5rem}h5.ui-heading{font-size:1.25rem}h6.ui-heading{font-size:1rem}.gelatin-rem-layout h1.ui-heading{font-size:25px}.gelatin-rem-layout h2.ui-heading{font-size:20px}.gelatin-rem-layout h3.ui-heading{font-size:18px}.gelatin-rem-layout h4.ui-heading{font-size:16px}.gelatin-rem-layout h5.ui-heading{font-size:14px}.gelatin-rem-layout h6.ui-heading{font-size:12px}.ui-heading{word-wrap:break-word;word-break:break-all;position:relative;line-height:1.2;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.ui-heading small{font-size:12px}.ui-heading-margin{margin-bottom:20px}.ui-heading-bold{font-weight:400}.ui-heading-divider{padding-bottom:10px;border-bottom:1px solid #e9ebee;line-height:1.5}.ui-heading-bullet{position:relative}.ui-heading-bullet:before{content:\"\";display:inline-block;position:relative;top:-.1em;vertical-align:middle;height:.9em;margin-right:10px;border-left:5px solid #e9ebee}", ""]);
 
 // exports
-
-
-/***/ }),
-
-/***/ "aa63":
-/***/ (function(module, exports, __webpack_require__) {
-
-var Buffer = __webpack_require__("5a88")
-var Utils = __webpack_require__("7bf0")
-var ECLevel = __webpack_require__("7a43")
-var BitBuffer = __webpack_require__("7ba0")
-var BitMatrix = __webpack_require__("577e")
-var AlignmentPattern = __webpack_require__("d6c0")
-var FinderPattern = __webpack_require__("924f")
-var MaskPattern = __webpack_require__("7903")
-var ECCode = __webpack_require__("34fc")
-var ReedSolomonEncoder = __webpack_require__("8d23")
-var Version = __webpack_require__("c8aa")
-var FormatInfo = __webpack_require__("9582")
-var Mode = __webpack_require__("bbf0")
-var Segments = __webpack_require__("befa")
-var isArray = __webpack_require__("eee5")
-
-/**
- * QRCode for JavaScript
- *
- * modified by Ryan Day for nodejs support
- * Copyright (c) 2011 Ryan Day
- *
- * Licensed under the MIT license:
- *   http://www.opensource.org/licenses/mit-license.php
- *
-//---------------------------------------------------------------------
-// QRCode for JavaScript
-//
-// Copyright (c) 2009 Kazuhiko Arase
-//
-// URL: http://www.d-project.com/
-//
-// Licensed under the MIT license:
-//   http://www.opensource.org/licenses/mit-license.php
-//
-// The word "QR Code" is registered trademark of
-// DENSO WAVE INCORPORATED
-//   http://www.denso-wave.com/qrcode/faqpatent-e.html
-//
-//---------------------------------------------------------------------
-*/
-
-/**
- * Add finder patterns bits to matrix
- *
- * @param  {BitMatrix} matrix  Modules matrix
- * @param  {Number}    version QR Code version
- */
-function setupFinderPattern (matrix, version) {
-  var size = matrix.size
-  var pos = FinderPattern.getPositions(version)
-
-  for (var i = 0; i < pos.length; i++) {
-    var row = pos[i][0]
-    var col = pos[i][1]
-
-    for (var r = -1; r <= 7; r++) {
-      if (row + r <= -1 || size <= row + r) continue
-
-      for (var c = -1; c <= 7; c++) {
-        if (col + c <= -1 || size <= col + c) continue
-
-        if ((r >= 0 && r <= 6 && (c === 0 || c === 6)) ||
-          (c >= 0 && c <= 6 && (r === 0 || r === 6)) ||
-          (r >= 2 && r <= 4 && c >= 2 && c <= 4)) {
-          matrix.set(row + r, col + c, true, true)
-        } else {
-          matrix.set(row + r, col + c, false, true)
-        }
-      }
-    }
-  }
-}
-
-/**
- * Add timing pattern bits to matrix
- *
- * Note: this function must be called before {@link setupAlignmentPattern}
- *
- * @param  {BitMatrix} matrix Modules matrix
- */
-function setupTimingPattern (matrix) {
-  var size = matrix.size
-
-  for (var r = 8; r < size - 8; r++) {
-    var value = r % 2 === 0
-    matrix.set(r, 6, value, true)
-    matrix.set(6, r, value, true)
-  }
-}
-
-/**
- * Add alignment patterns bits to matrix
- *
- * Note: this function must be called after {@link setupTimingPattern}
- *
- * @param  {BitMatrix} matrix  Modules matrix
- * @param  {Number}    version QR Code version
- */
-function setupAlignmentPattern (matrix, version) {
-  var pos = AlignmentPattern.getPositions(version)
-
-  for (var i = 0; i < pos.length; i++) {
-    var row = pos[i][0]
-    var col = pos[i][1]
-
-    for (var r = -2; r <= 2; r++) {
-      for (var c = -2; c <= 2; c++) {
-        if (r === -2 || r === 2 || c === -2 || c === 2 ||
-          (r === 0 && c === 0)) {
-          matrix.set(row + r, col + c, true, true)
-        } else {
-          matrix.set(row + r, col + c, false, true)
-        }
-      }
-    }
-  }
-}
-
-/**
- * Add version info bits to matrix
- *
- * @param  {BitMatrix} matrix  Modules matrix
- * @param  {Number}    version QR Code version
- */
-function setupVersionInfo (matrix, version) {
-  var size = matrix.size
-  var bits = Version.getEncodedBits(version)
-  var row, col, mod
-
-  for (var i = 0; i < 18; i++) {
-    row = Math.floor(i / 3)
-    col = i % 3 + size - 8 - 3
-    mod = ((bits >> i) & 1) === 1
-
-    matrix.set(row, col, mod, true)
-    matrix.set(col, row, mod, true)
-  }
-}
-
-/**
- * Add format info bits to matrix
- *
- * @param  {BitMatrix} matrix               Modules matrix
- * @param  {ErrorCorrectionLevel}    errorCorrectionLevel Error correction level
- * @param  {Number}    maskPattern          Mask pattern reference value
- */
-function setupFormatInfo (matrix, errorCorrectionLevel, maskPattern) {
-  var size = matrix.size
-  var bits = FormatInfo.getEncodedBits(errorCorrectionLevel, maskPattern)
-  var i, mod
-
-  for (i = 0; i < 15; i++) {
-    mod = ((bits >> i) & 1) === 1
-
-    // vertical
-    if (i < 6) {
-      matrix.set(i, 8, mod, true)
-    } else if (i < 8) {
-      matrix.set(i + 1, 8, mod, true)
-    } else {
-      matrix.set(size - 15 + i, 8, mod, true)
-    }
-
-    // horizontal
-    if (i < 8) {
-      matrix.set(8, size - i - 1, mod, true)
-    } else if (i < 9) {
-      matrix.set(8, 15 - i - 1 + 1, mod, true)
-    } else {
-      matrix.set(8, 15 - i - 1, mod, true)
-    }
-  }
-
-  // fixed module
-  matrix.set(size - 8, 8, 1, true)
-}
-
-/**
- * Add encoded data bits to matrix
- *
- * @param  {BitMatrix} matrix Modules matrix
- * @param  {Buffer}    data   Data codewords
- */
-function setupData (matrix, data) {
-  var size = matrix.size
-  var inc = -1
-  var row = size - 1
-  var bitIndex = 7
-  var byteIndex = 0
-
-  for (var col = size - 1; col > 0; col -= 2) {
-    if (col === 6) col--
-
-    while (true) {
-      for (var c = 0; c < 2; c++) {
-        if (!matrix.isReserved(row, col - c)) {
-          var dark = false
-
-          if (byteIndex < data.length) {
-            dark = (((data[byteIndex] >>> bitIndex) & 1) === 1)
-          }
-
-          matrix.set(row, col - c, dark)
-          bitIndex--
-
-          if (bitIndex === -1) {
-            byteIndex++
-            bitIndex = 7
-          }
-        }
-      }
-
-      row += inc
-
-      if (row < 0 || size <= row) {
-        row -= inc
-        inc = -inc
-        break
-      }
-    }
-  }
-}
-
-/**
- * Create encoded codewords from data input
- *
- * @param  {Number}   version              QR Code version
- * @param  {ErrorCorrectionLevel}   errorCorrectionLevel Error correction level
- * @param  {ByteData} data                 Data input
- * @return {Buffer}                        Buffer containing encoded codewords
- */
-function createData (version, errorCorrectionLevel, segments) {
-  // Prepare data buffer
-  var buffer = new BitBuffer()
-
-  segments.forEach(function (data) {
-    // prefix data with mode indicator (4 bits)
-    buffer.put(data.mode.bit, 4)
-
-    // Prefix data with character count indicator.
-    // The character count indicator is a string of bits that represents the
-    // number of characters that are being encoded.
-    // The character count indicator must be placed after the mode indicator
-    // and must be a certain number of bits long, depending on the QR version
-    // and data mode
-    // @see {@link Mode.getCharCountIndicator}.
-    buffer.put(data.getLength(), Mode.getCharCountIndicator(data.mode, version))
-
-    // add binary data sequence to buffer
-    data.write(buffer)
-  })
-
-  // Calculate required number of bits
-  var totalCodewords = Utils.getSymbolTotalCodewords(version)
-  var ecTotalCodewords = ECCode.getTotalCodewordsCount(version, errorCorrectionLevel)
-  var dataTotalCodewordsBits = (totalCodewords - ecTotalCodewords) * 8
-
-  // Add a terminator.
-  // If the bit string is shorter than the total number of required bits,
-  // a terminator of up to four 0s must be added to the right side of the string.
-  // If the bit string is more than four bits shorter than the required number of bits,
-  // add four 0s to the end.
-  if (buffer.getLengthInBits() + 4 <= dataTotalCodewordsBits) {
-    buffer.put(0, 4)
-  }
-
-  // If the bit string is fewer than four bits shorter, add only the number of 0s that
-  // are needed to reach the required number of bits.
-
-  // After adding the terminator, if the number of bits in the string is not a multiple of 8,
-  // pad the string on the right with 0s to make the string's length a multiple of 8.
-  while (buffer.getLengthInBits() % 8 !== 0) {
-    buffer.putBit(0)
-  }
-
-  // Add pad bytes if the string is still shorter than the total number of required bits.
-  // Extend the buffer to fill the data capacity of the symbol corresponding to
-  // the Version and Error Correction Level by adding the Pad Codewords 11101100 (0xEC)
-  // and 00010001 (0x11) alternately.
-  var remainingByte = (dataTotalCodewordsBits - buffer.getLengthInBits()) / 8
-  for (var i = 0; i < remainingByte; i++) {
-    buffer.put(i % 2 ? 0x11 : 0xEC, 8)
-  }
-
-  return createCodewords(buffer, version, errorCorrectionLevel)
-}
-
-/**
- * Encode input data with Reed-Solomon and return codewords with
- * relative error correction bits
- *
- * @param  {BitBuffer} bitBuffer            Data to encode
- * @param  {Number}    version              QR Code version
- * @param  {ErrorCorrectionLevel} errorCorrectionLevel Error correction level
- * @return {Buffer}                         Buffer containing encoded codewords
- */
-function createCodewords (bitBuffer, version, errorCorrectionLevel) {
-  // Total codewords for this QR code version (Data + Error correction)
-  var totalCodewords = Utils.getSymbolTotalCodewords(version)
-
-  // Total number of error correction codewords
-  var ecTotalCodewords = ECCode.getTotalCodewordsCount(version, errorCorrectionLevel)
-
-  // Total number of data codewords
-  var dataTotalCodewords = totalCodewords - ecTotalCodewords
-
-  // Total number of blocks
-  var ecTotalBlocks = ECCode.getBlocksCount(version, errorCorrectionLevel)
-
-  // Calculate how many blocks each group should contain
-  var blocksInGroup2 = totalCodewords % ecTotalBlocks
-  var blocksInGroup1 = ecTotalBlocks - blocksInGroup2
-
-  var totalCodewordsInGroup1 = Math.floor(totalCodewords / ecTotalBlocks)
-
-  var dataCodewordsInGroup1 = Math.floor(dataTotalCodewords / ecTotalBlocks)
-  var dataCodewordsInGroup2 = dataCodewordsInGroup1 + 1
-
-  // Number of EC codewords is the same for both groups
-  var ecCount = totalCodewordsInGroup1 - dataCodewordsInGroup1
-
-  // Initialize a Reed-Solomon encoder with a generator polynomial of degree ecCount
-  var rs = new ReedSolomonEncoder(ecCount)
-
-  var offset = 0
-  var dcData = new Array(ecTotalBlocks)
-  var ecData = new Array(ecTotalBlocks)
-  var maxDataSize = 0
-  var buffer = new Buffer(bitBuffer.buffer)
-
-  // Divide the buffer into the required number of blocks
-  for (var b = 0; b < ecTotalBlocks; b++) {
-    var dataSize = b < blocksInGroup1 ? dataCodewordsInGroup1 : dataCodewordsInGroup2
-
-    // extract a block of data from buffer
-    dcData[b] = buffer.slice(offset, offset + dataSize)
-
-    // Calculate EC codewords for this data block
-    ecData[b] = rs.encode(dcData[b])
-
-    offset += dataSize
-    maxDataSize = Math.max(maxDataSize, dataSize)
-  }
-
-  // Create final data
-  // Interleave the data and error correction codewords from each block
-  var data = new Buffer(totalCodewords)
-  var index = 0
-  var i, r
-
-  // Add data codewords
-  for (i = 0; i < maxDataSize; i++) {
-    for (r = 0; r < ecTotalBlocks; r++) {
-      if (i < dcData[r].length) {
-        data[index++] = dcData[r][i]
-      }
-    }
-  }
-
-  // Apped EC codewords
-  for (i = 0; i < ecCount; i++) {
-    for (r = 0; r < ecTotalBlocks; r++) {
-      data[index++] = ecData[r][i]
-    }
-  }
-
-  return data
-}
-
-/**
- * Build QR Code symbol
- *
- * @param  {String} data                 Input string
- * @param  {Number} version              QR Code version
- * @param  {ErrorCorretionLevel} errorCorrectionLevel Error level
- * @param  {MaskPattern} maskPattern     Mask pattern
- * @return {Object}                      Object containing symbol data
- */
-function createSymbol (data, version, errorCorrectionLevel, maskPattern) {
-  var segments
-
-  if (isArray(data)) {
-    segments = Segments.fromArray(data)
-  } else if (typeof data === 'string') {
-    var estimatedVersion = version
-
-    if (!estimatedVersion) {
-      var rawSegments = Segments.rawSplit(data)
-
-      // Estimate best version that can contain raw splitted segments
-      estimatedVersion = Version.getBestVersionForData(rawSegments,
-        errorCorrectionLevel)
-    }
-
-    // Build optimized segments
-    // If estimated version is undefined, try with the highest version
-    segments = Segments.fromString(data, estimatedVersion || 40)
-  } else {
-    throw new Error('Invalid data')
-  }
-
-  // Get the min version that can contain data
-  var bestVersion = Version.getBestVersionForData(segments,
-      errorCorrectionLevel)
-
-  // If no version is found, data cannot be stored
-  if (!bestVersion) {
-    throw new Error('The amount of data is too big to be stored in a QR Code')
-  }
-
-  // If not specified, use min version as default
-  if (!version) {
-    version = bestVersion
-
-  // Check if the specified version can contain the data
-  } else if (version < bestVersion) {
-    throw new Error('\n' +
-      'The chosen QR Code version cannot contain this amount of data.\n' +
-      'Minimum version required to store current data is: ' + bestVersion + '.\n'
-    )
-  }
-
-  var dataBits = createData(version, errorCorrectionLevel, segments)
-
-  // Allocate matrix buffer
-  var moduleCount = Utils.getSymbolSize(version)
-  var modules = new BitMatrix(moduleCount)
-
-  // Add function modules
-  setupFinderPattern(modules, version)
-  setupTimingPattern(modules)
-  setupAlignmentPattern(modules, version)
-
-  // Add temporary dummy bits for format info just to set them as reserved.
-  // This is needed to prevent these bits from being masked by {@link MaskPattern.applyMask}
-  // since the masking operation must be performed only on the encoding region.
-  // These blocks will be replaced with correct values later in code.
-  setupFormatInfo(modules, errorCorrectionLevel, 0)
-
-  if (version >= 7) {
-    setupVersionInfo(modules, version)
-  }
-
-  // Add data codewords
-  setupData(modules, dataBits)
-
-  if (isNaN(maskPattern)) {
-    // Find best mask pattern
-    maskPattern = MaskPattern.getBestMask(modules,
-      setupFormatInfo.bind(null, modules, errorCorrectionLevel))
-  }
-
-  // Apply mask pattern
-  MaskPattern.applyMask(maskPattern, modules)
-
-  // Replace format info bits with correct values
-  setupFormatInfo(modules, errorCorrectionLevel, maskPattern)
-
-  return {
-    modules: modules,
-    version: version,
-    errorCorrectionLevel: errorCorrectionLevel,
-    maskPattern: maskPattern,
-    segments: segments
-  }
-}
-
-/**
- * QR Code
- *
- * @param {String | Array} data                 Input data
- * @param {Object} options                      Optional configurations
- * @param {Number} options.version              QR Code version
- * @param {String} options.errorCorrectionLevel Error correction level
- * @param {Function} options.toSJISFunc         Helper func to convert utf8 to sjis
- */
-exports.create = function create (data, options) {
-  if (typeof data === 'undefined' || data === '') {
-    throw new Error('No input text')
-  }
-
-  var errorCorrectionLevel = ECLevel.M
-  var version
-  var mask
-
-  if (typeof options !== 'undefined') {
-    // Use higher error correction level as default
-    errorCorrectionLevel = ECLevel.from(options.errorCorrectionLevel, ECLevel.M)
-    version = Version.from(options.version)
-    mask = MaskPattern.from(options.maskPattern)
-
-    if (options.toSJISFunc) {
-      Utils.setToSJISFunction(options.toSJISFunc)
-    }
-  }
-
-  return createSymbol(data, version, errorCorrectionLevel, mask)
-}
 
 
 /***/ }),
@@ -9777,6 +9101,21 @@ var update = add("16420a64", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
+/***/ "ad53":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("2350")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".ui-share[data-v-3f2cfcf3]{cursor:pointer;display:inline-block}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "aebd":
 /***/ (function(module, exports) {
 
@@ -10004,6 +9343,27 @@ module.exports = debounce;
 
 /***/ }),
 
+/***/ "b047f":
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.unary` without support for storing metadata.
+ *
+ * @private
+ * @param {Function} func The function to cap arguments for.
+ * @returns {Function} Returns the new capped function.
+ */
+function baseUnary(func) {
+  return function(value) {
+    return func(value);
+  };
+}
+
+module.exports = baseUnary;
+
+
+/***/ }),
+
 /***/ "b0c5":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10040,21 +9400,6 @@ module.exports = function (iterator, fn, value, entries) {
 
 /***/ }),
 
-/***/ "b0fd":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("2ba2");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var add = __webpack_require__("499e").default
-var update = add("34ee9e7c", content, true, {"sourceMap":false,"shadowMode":false});
-
-/***/ }),
-
 /***/ "b159":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10067,6 +9412,48 @@ if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__("499e").default
 var update = add("4542317c", content, true, {"sourceMap":false,"shadowMode":false});
+
+/***/ }),
+
+/***/ "b218":
+/***/ (function(module, exports) {
+
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @example
+ *
+ * _.isLength(3);
+ * // => true
+ *
+ * _.isLength(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isLength(Infinity);
+ * // => false
+ *
+ * _.isLength('3');
+ * // => false
+ */
+function isLength(value) {
+  return typeof value == 'number' &&
+    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+module.exports = isLength;
+
 
 /***/ }),
 
@@ -10153,6 +9540,47 @@ function toNumber(value) {
 
 module.exports = toNumber;
 
+
+/***/ }),
+
+/***/ "b4c0":
+/***/ (function(module, exports, __webpack_require__) {
+
+var assocIndexOf = __webpack_require__("cb5a");
+
+/**
+ * Gets the list cache value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf ListCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  return index < 0 ? undefined : data[index][1];
+}
+
+module.exports = listCacheGet;
+
+
+/***/ }),
+
+/***/ "b4c1":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("ad53");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__("499e").default
+var update = add("009a3f24", content, true, {"sourceMap":false,"shadowMode":false});
 
 /***/ }),
 
@@ -10359,6 +9787,33 @@ __webpack_require__("386b")('link', function (createHTML) {
 
 /***/ }),
 
+/***/ "b760":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseAssignValue = __webpack_require__("872a"),
+    eq = __webpack_require__("9638");
+
+/**
+ * This function is like `assignValue` except that it doesn't assign
+ * `undefined` values.
+ *
+ * @private
+ * @param {Object} object The object to modify.
+ * @param {string} key The key of the property to assign.
+ * @param {*} value The value to assign.
+ */
+function assignMergeValue(object, key, value) {
+  if ((value !== undefined && !eq(object[key], value)) ||
+      (value === undefined && !(key in object))) {
+    baseAssignValue(object, key, value);
+  }
+}
+
+module.exports = assignMergeValue;
+
+
+/***/ }),
+
 /***/ "b790":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10455,176 +9910,39 @@ var update = add("220a5e4a", content, true, {"sourceMap":false,"shadowMode":fals
 
 /***/ }),
 
-/***/ "bbf0":
+/***/ "bbc0":
 /***/ (function(module, exports, __webpack_require__) {
 
-var VersionCheck = __webpack_require__("27a3")
-var Regex = __webpack_require__("0425")
+var nativeCreate = __webpack_require__("6044");
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
 
 /**
- * Numeric mode encodes data from the decimal digit set (0 - 9)
- * (byte values 30HEX to 39HEX).
- * Normally, 3 data characters are represented by 10 bits.
+ * Gets the hash value for `key`.
  *
- * @type {Object}
+ * @private
+ * @name get
+ * @memberOf Hash
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
  */
-exports.NUMERIC = {
-  id: 'Numeric',
-  bit: 1 << 0,
-  ccBits: [10, 12, 14]
-}
-
-/**
- * Alphanumeric mode encodes data from a set of 45 characters,
- * i.e. 10 numeric digits (0 - 9),
- *      26 alphabetic characters (A - Z),
- *   and 9 symbols (SP, $, %, *, +, -, ., /, :).
- * Normally, two input characters are represented by 11 bits.
- *
- * @type {Object}
- */
-exports.ALPHANUMERIC = {
-  id: 'Alphanumeric',
-  bit: 1 << 1,
-  ccBits: [9, 11, 13]
-}
-
-/**
- * In byte mode, data is encoded at 8 bits per character.
- *
- * @type {Object}
- */
-exports.BYTE = {
-  id: 'Byte',
-  bit: 1 << 2,
-  ccBits: [8, 16, 16]
-}
-
-/**
- * The Kanji mode efficiently encodes Kanji characters in accordance with
- * the Shift JIS system based on JIS X 0208.
- * The Shift JIS values are shifted from the JIS X 0208 values.
- * JIS X 0208 gives details of the shift coded representation.
- * Each two-byte character value is compacted to a 13-bit binary codeword.
- *
- * @type {Object}
- */
-exports.KANJI = {
-  id: 'Kanji',
-  bit: 1 << 3,
-  ccBits: [8, 10, 12]
-}
-
-/**
- * Mixed mode will contain a sequences of data in a combination of any of
- * the modes described above
- *
- * @type {Object}
- */
-exports.MIXED = {
-  bit: -1
-}
-
-/**
- * Returns the number of bits needed to store the data length
- * according to QR Code specifications.
- *
- * @param  {Mode}   mode    Data mode
- * @param  {Number} version QR Code version
- * @return {Number}         Number of bits
- */
-exports.getCharCountIndicator = function getCharCountIndicator (mode, version) {
-  if (!mode.ccBits) throw new Error('Invalid mode: ' + mode)
-
-  if (!VersionCheck.isValid(version)) {
-    throw new Error('Invalid version: ' + version)
+function hashGet(key) {
+  var data = this.__data__;
+  if (nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
   }
-
-  if (version >= 1 && version < 10) return mode.ccBits[0]
-  else if (version < 27) return mode.ccBits[1]
-  return mode.ccBits[2]
+  return hasOwnProperty.call(data, key) ? data[key] : undefined;
 }
 
-/**
- * Returns the most efficient mode to store the specified data
- *
- * @param  {String} dataStr Input data string
- * @return {Mode}           Best mode
- */
-exports.getBestModeForData = function getBestModeForData (dataStr) {
-  if (Regex.testNumeric(dataStr)) return exports.NUMERIC
-  else if (Regex.testAlphanumeric(dataStr)) return exports.ALPHANUMERIC
-  else if (Regex.testKanji(dataStr)) return exports.KANJI
-  else return exports.BYTE
-}
-
-/**
- * Return mode name as string
- *
- * @param {Mode} mode Mode object
- * @returns {String}  Mode name
- */
-exports.toString = function toString (mode) {
-  if (mode && mode.id) return mode.id
-  throw new Error('Invalid mode')
-}
-
-/**
- * Check if input param is a valid mode object
- *
- * @param   {Mode}    mode Mode object
- * @returns {Boolean} True if valid mode, false otherwise
- */
-exports.isValid = function isValid (mode) {
-  return mode && mode.bit && mode.ccBits
-}
-
-/**
- * Get mode object from its name
- *
- * @param   {String} string Mode name
- * @returns {Mode}          Mode object
- */
-function fromString (string) {
-  if (typeof string !== 'string') {
-    throw new Error('Param is not a string')
-  }
-
-  var lcStr = string.toLowerCase()
-
-  switch (lcStr) {
-    case 'numeric':
-      return exports.NUMERIC
-    case 'alphanumeric':
-      return exports.ALPHANUMERIC
-    case 'kanji':
-      return exports.KANJI
-    case 'byte':
-      return exports.BYTE
-    default:
-      throw new Error('Unknown mode: ' + string)
-  }
-}
-
-/**
- * Returns mode from a value.
- * If value is not a valid mode, returns defaultValue
- *
- * @param  {Mode|String} value        Encoding mode
- * @param  {Mode}        defaultValue Fallback value
- * @return {Mode}                     Encoding mode
- */
-exports.from = function from (value, defaultValue) {
-  if (exports.isValid(value)) {
-    return value
-  }
-
-  try {
-    return fromString(value)
-  } catch (e) {
-    return defaultValue
-  }
-}
+module.exports = hashGet;
 
 
 /***/ }),
@@ -10637,17 +9955,6 @@ var navigator = global.navigator;
 
 module.exports = navigator && navigator.userAgent || '';
 
-
-/***/ }),
-
-/***/ "bc16":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_share_vue_vue_type_style_index_0_id_d3fa0e4e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("b0fd");
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_share_vue_vue_type_style_index_0_id_d3fa0e4e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_share_vue_vue_type_style_index_0_id_d3fa0e4e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_share_vue_vue_type_style_index_0_id_d3fa0e4e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -10715,343 +10022,6 @@ exports.push([module.i, "", ""]);
 
 /***/ }),
 
-/***/ "befa":
-/***/ (function(module, exports, __webpack_require__) {
-
-var Mode = __webpack_require__("bbf0")
-var NumericData = __webpack_require__("dd7e")
-var AlphanumericData = __webpack_require__("9d94")
-var ByteData = __webpack_require__("0196")
-var KanjiData = __webpack_require__("2f3a")
-var Regex = __webpack_require__("0425")
-var Utils = __webpack_require__("7bf0")
-var dijkstra = __webpack_require__("10b0")
-
-/**
- * Returns UTF8 byte length
- *
- * @param  {String} str Input string
- * @return {Number}     Number of byte
- */
-function getStringByteLength (str) {
-  return unescape(encodeURIComponent(str)).length
-}
-
-/**
- * Get a list of segments of the specified mode
- * from a string
- *
- * @param  {Mode}   mode Segment mode
- * @param  {String} str  String to process
- * @return {Array}       Array of object with segments data
- */
-function getSegments (regex, mode, str) {
-  var segments = []
-  var result
-
-  while ((result = regex.exec(str)) !== null) {
-    segments.push({
-      data: result[0],
-      index: result.index,
-      mode: mode,
-      length: result[0].length
-    })
-  }
-
-  return segments
-}
-
-/**
- * Extracts a series of segments with the appropriate
- * modes from a string
- *
- * @param  {String} dataStr Input string
- * @return {Array}          Array of object with segments data
- */
-function getSegmentsFromString (dataStr) {
-  var numSegs = getSegments(Regex.NUMERIC, Mode.NUMERIC, dataStr)
-  var alphaNumSegs = getSegments(Regex.ALPHANUMERIC, Mode.ALPHANUMERIC, dataStr)
-  var byteSegs
-  var kanjiSegs
-
-  if (Utils.isKanjiModeEnabled()) {
-    byteSegs = getSegments(Regex.BYTE, Mode.BYTE, dataStr)
-    kanjiSegs = getSegments(Regex.KANJI, Mode.KANJI, dataStr)
-  } else {
-    byteSegs = getSegments(Regex.BYTE_KANJI, Mode.BYTE, dataStr)
-    kanjiSegs = []
-  }
-
-  var segs = numSegs.concat(alphaNumSegs, byteSegs, kanjiSegs)
-
-  return segs
-    .sort(function (s1, s2) {
-      return s1.index - s2.index
-    })
-    .map(function (obj) {
-      return {
-        data: obj.data,
-        mode: obj.mode,
-        length: obj.length
-      }
-    })
-}
-
-/**
- * Returns how many bits are needed to encode a string of
- * specified length with the specified mode
- *
- * @param  {Number} length String length
- * @param  {Mode} mode     Segment mode
- * @return {Number}        Bit length
- */
-function getSegmentBitsLength (length, mode) {
-  switch (mode) {
-    case Mode.NUMERIC:
-      return NumericData.getBitsLength(length)
-    case Mode.ALPHANUMERIC:
-      return AlphanumericData.getBitsLength(length)
-    case Mode.KANJI:
-      return KanjiData.getBitsLength(length)
-    case Mode.BYTE:
-      return ByteData.getBitsLength(length)
-  }
-}
-
-/**
- * Merges adjacent segments which have the same mode
- *
- * @param  {Array} segs Array of object with segments data
- * @return {Array}      Array of object with segments data
- */
-function mergeSegments (segs) {
-  return segs.reduce(function (acc, curr) {
-    var prevSeg = acc.length - 1 >= 0 ? acc[acc.length - 1] : null
-    if (prevSeg && prevSeg.mode === curr.mode) {
-      acc[acc.length - 1].data += curr.data
-      return acc
-    }
-
-    acc.push(curr)
-    return acc
-  }, [])
-}
-
-/**
- * Generates a list of all possible nodes combination which
- * will be used to build a segments graph.
- *
- * Nodes are divided by groups. Each group will contain a list of all the modes
- * in which is possible to encode the given text.
- *
- * For example the text '12345' can be encoded as Numeric, Alphanumeric or Byte.
- * The group for '12345' will contain then 3 objects, one for each
- * possible encoding mode.
- *
- * Each node represents a possible segment.
- *
- * @param  {Array} segs Array of object with segments data
- * @return {Array}      Array of object with segments data
- */
-function buildNodes (segs) {
-  var nodes = []
-  for (var i = 0; i < segs.length; i++) {
-    var seg = segs[i]
-
-    switch (seg.mode) {
-      case Mode.NUMERIC:
-        nodes.push([seg,
-          { data: seg.data, mode: Mode.ALPHANUMERIC, length: seg.length },
-          { data: seg.data, mode: Mode.BYTE, length: seg.length }
-        ])
-        break
-      case Mode.ALPHANUMERIC:
-        nodes.push([seg,
-          { data: seg.data, mode: Mode.BYTE, length: seg.length }
-        ])
-        break
-      case Mode.KANJI:
-        nodes.push([seg,
-          { data: seg.data, mode: Mode.BYTE, length: getStringByteLength(seg.data) }
-        ])
-        break
-      case Mode.BYTE:
-        nodes.push([
-          { data: seg.data, mode: Mode.BYTE, length: getStringByteLength(seg.data) }
-        ])
-    }
-  }
-
-  return nodes
-}
-
-/**
- * Builds a graph from a list of nodes.
- * All segments in each node group will be connected with all the segments of
- * the next group and so on.
- *
- * At each connection will be assigned a weight depending on the
- * segment's byte length.
- *
- * @param  {Array} nodes    Array of object with segments data
- * @param  {Number} version QR Code version
- * @return {Object}         Graph of all possible segments
- */
-function buildGraph (nodes, version) {
-  var table = {}
-  var graph = {'start': {}}
-  var prevNodeIds = ['start']
-
-  for (var i = 0; i < nodes.length; i++) {
-    var nodeGroup = nodes[i]
-    var currentNodeIds = []
-
-    for (var j = 0; j < nodeGroup.length; j++) {
-      var node = nodeGroup[j]
-      var key = '' + i + j
-
-      currentNodeIds.push(key)
-      table[key] = { node: node, lastCount: 0 }
-      graph[key] = {}
-
-      for (var n = 0; n < prevNodeIds.length; n++) {
-        var prevNodeId = prevNodeIds[n]
-
-        if (table[prevNodeId] && table[prevNodeId].node.mode === node.mode) {
-          graph[prevNodeId][key] =
-            getSegmentBitsLength(table[prevNodeId].lastCount + node.length, node.mode) -
-            getSegmentBitsLength(table[prevNodeId].lastCount, node.mode)
-
-          table[prevNodeId].lastCount += node.length
-        } else {
-          if (table[prevNodeId]) table[prevNodeId].lastCount = node.length
-
-          graph[prevNodeId][key] = getSegmentBitsLength(node.length, node.mode) +
-            4 + Mode.getCharCountIndicator(node.mode, version) // switch cost
-        }
-      }
-    }
-
-    prevNodeIds = currentNodeIds
-  }
-
-  for (n = 0; n < prevNodeIds.length; n++) {
-    graph[prevNodeIds[n]]['end'] = 0
-  }
-
-  return { map: graph, table: table }
-}
-
-/**
- * Builds a segment from a specified data and mode.
- * If a mode is not specified, the more suitable will be used.
- *
- * @param  {String} data             Input data
- * @param  {Mode | String} modesHint Data mode
- * @return {Segment}                 Segment
- */
-function buildSingleSegment (data, modesHint) {
-  var mode
-  var bestMode = Mode.getBestModeForData(data)
-
-  mode = Mode.from(modesHint, bestMode)
-
-  // Make sure data can be encoded
-  if (mode !== Mode.BYTE && mode.bit < bestMode.bit) {
-    throw new Error('"' + data + '"' +
-      ' cannot be encoded with mode ' + Mode.toString(mode) +
-      '.\n Suggested mode is: ' + Mode.toString(bestMode))
-  }
-
-  // Use Mode.BYTE if Kanji support is disabled
-  if (mode === Mode.KANJI && !Utils.isKanjiModeEnabled()) {
-    mode = Mode.BYTE
-  }
-
-  switch (mode) {
-    case Mode.NUMERIC:
-      return new NumericData(data)
-
-    case Mode.ALPHANUMERIC:
-      return new AlphanumericData(data)
-
-    case Mode.KANJI:
-      return new KanjiData(data)
-
-    case Mode.BYTE:
-      return new ByteData(data)
-  }
-}
-
-/**
- * Builds a list of segments from an array.
- * Array can contain Strings or Objects with segment's info.
- *
- * For each item which is a string, will be generated a segment with the given
- * string and the more appropriate encoding mode.
- *
- * For each item which is an object, will be generated a segment with the given
- * data and mode.
- * Objects must contain at least the property "data".
- * If property "mode" is not present, the more suitable mode will be used.
- *
- * @param  {Array} array Array of objects with segments data
- * @return {Array}       Array of Segments
- */
-exports.fromArray = function fromArray (array) {
-  return array.reduce(function (acc, seg) {
-    if (typeof seg === 'string') {
-      acc.push(buildSingleSegment(seg, null))
-    } else if (seg.data) {
-      acc.push(buildSingleSegment(seg.data, seg.mode))
-    }
-
-    return acc
-  }, [])
-}
-
-/**
- * Builds an optimized sequence of segments from a string,
- * which will produce the shortest possible bitstream.
- *
- * @param  {String} data    Input string
- * @param  {Number} version QR Code version
- * @return {Array}          Array of segments
- */
-exports.fromString = function fromString (data, version) {
-  var segs = getSegmentsFromString(data, Utils.isKanjiModeEnabled())
-
-  var nodes = buildNodes(segs)
-  var graph = buildGraph(nodes, version)
-  var path = dijkstra.find_path(graph.map, 'start', 'end')
-
-  var optimizedSegs = []
-  for (var i = 1; i < path.length - 1; i++) {
-    optimizedSegs.push(graph.table[path[i]].node)
-  }
-
-  return exports.fromArray(mergeSegments(optimizedSegs))
-}
-
-/**
- * Splits a string in various segments with the modes which
- * best represent their content.
- * The produced segments are far from being optimized.
- * The output of this function is only used to estimate a QR Code version
- * which may contain the data.
- *
- * @param  {string} data Input string
- * @return {Array}       Array of segments
- */
-exports.rawSplit = function rawSplit (data) {
-  return exports.fromArray(
-    getSegmentsFromString(data, Utils.isKanjiModeEnabled())
-  )
-}
-
-
-/***/ }),
-
 /***/ "bf0b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11091,6 +10061,38 @@ __webpack_require__("ce7e")('getOwnPropertyDescriptor', function () {
 
 /***/ }),
 
+/***/ "c098":
+/***/ (function(module, exports) {
+
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/** Used to detect unsigned integer values. */
+var reIsUint = /^(?:0|[1-9]\d*)$/;
+
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+function isIndex(value, length) {
+  var type = typeof value;
+  length = length == null ? MAX_SAFE_INTEGER : length;
+
+  return !!length &&
+    (type == 'number' ||
+      (type != 'symbol' && reIsUint.test(value))) &&
+        (value > -1 && value % 1 == 0 && value < length);
+}
+
+module.exports = isIndex;
+
+
+/***/ }),
+
 /***/ "c18e":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -11099,6 +10101,27 @@ __webpack_require__("ce7e")('getOwnPropertyDescriptor', function () {
 /* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_typer_vue_vue_type_style_index_0_id_b82cf0c6_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_typer_vue_vue_type_style_index_0_id_b82cf0c6_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
  /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_typer_vue_vue_type_style_index_0_id_b82cf0c6_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "c1c9":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseSetToString = __webpack_require__("a454"),
+    shortOut = __webpack_require__("f3c1");
+
+/**
+ * Sets the `toString` method of `func` to return `string`.
+ *
+ * @private
+ * @param {Function} func The function to modify.
+ * @param {Function} string The `toString` result.
+ * @returns {Function} Returns `func`.
+ */
+var setToString = shortOut(baseSetToString);
+
+module.exports = setToString;
+
 
 /***/ }),
 
@@ -11712,177 +10735,6 @@ module.exports = !__webpack_require__("9e1e") && !__webpack_require__("79e5")(fu
 
 /***/ }),
 
-/***/ "c8aa":
-/***/ (function(module, exports, __webpack_require__) {
-
-var Utils = __webpack_require__("7bf0")
-var ECCode = __webpack_require__("34fc")
-var ECLevel = __webpack_require__("7a43")
-var Mode = __webpack_require__("bbf0")
-var VersionCheck = __webpack_require__("27a3")
-var isArray = __webpack_require__("eee5")
-
-// Generator polynomial used to encode version information
-var G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0)
-var G18_BCH = Utils.getBCHDigit(G18)
-
-function getBestVersionForDataLength (mode, length, errorCorrectionLevel) {
-  for (var currentVersion = 1; currentVersion <= 40; currentVersion++) {
-    if (length <= exports.getCapacity(currentVersion, errorCorrectionLevel, mode)) {
-      return currentVersion
-    }
-  }
-
-  return undefined
-}
-
-function getReservedBitsCount (mode, version) {
-  // Character count indicator + mode indicator bits
-  return Mode.getCharCountIndicator(mode, version) + 4
-}
-
-function getTotalBitsFromDataArray (segments, version) {
-  var totalBits = 0
-
-  segments.forEach(function (data) {
-    var reservedBits = getReservedBitsCount(data.mode, version)
-    totalBits += reservedBits + data.getBitsLength()
-  })
-
-  return totalBits
-}
-
-function getBestVersionForMixedData (segments, errorCorrectionLevel) {
-  for (var currentVersion = 1; currentVersion <= 40; currentVersion++) {
-    var length = getTotalBitsFromDataArray(segments, currentVersion)
-    if (length <= exports.getCapacity(currentVersion, errorCorrectionLevel, Mode.MIXED)) {
-      return currentVersion
-    }
-  }
-
-  return undefined
-}
-
-/**
- * Returns version number from a value.
- * If value is not a valid version, returns defaultValue
- *
- * @param  {Number|String} value        QR Code version
- * @param  {Number}        defaultValue Fallback value
- * @return {Number}                     QR Code version number
- */
-exports.from = function from (value, defaultValue) {
-  if (VersionCheck.isValid(value)) {
-    return parseInt(value, 10)
-  }
-
-  return defaultValue
-}
-
-/**
- * Returns how much data can be stored with the specified QR code version
- * and error correction level
- *
- * @param  {Number} version              QR Code version (1-40)
- * @param  {Number} errorCorrectionLevel Error correction level
- * @param  {Mode}   mode                 Data mode
- * @return {Number}                      Quantity of storable data
- */
-exports.getCapacity = function getCapacity (version, errorCorrectionLevel, mode) {
-  if (!VersionCheck.isValid(version)) {
-    throw new Error('Invalid QR Code version')
-  }
-
-  // Use Byte mode as default
-  if (typeof mode === 'undefined') mode = Mode.BYTE
-
-  // Total codewords for this QR code version (Data + Error correction)
-  var totalCodewords = Utils.getSymbolTotalCodewords(version)
-
-  // Total number of error correction codewords
-  var ecTotalCodewords = ECCode.getTotalCodewordsCount(version, errorCorrectionLevel)
-
-  // Total number of data codewords
-  var dataTotalCodewordsBits = (totalCodewords - ecTotalCodewords) * 8
-
-  if (mode === Mode.MIXED) return dataTotalCodewordsBits
-
-  var usableBits = dataTotalCodewordsBits - getReservedBitsCount(mode, version)
-
-  // Return max number of storable codewords
-  switch (mode) {
-    case Mode.NUMERIC:
-      return Math.floor((usableBits / 10) * 3)
-
-    case Mode.ALPHANUMERIC:
-      return Math.floor((usableBits / 11) * 2)
-
-    case Mode.KANJI:
-      return Math.floor(usableBits / 13)
-
-    case Mode.BYTE:
-    default:
-      return Math.floor(usableBits / 8)
-  }
-}
-
-/**
- * Returns the minimum version needed to contain the amount of data
- *
- * @param  {Segment} data                    Segment of data
- * @param  {Number} [errorCorrectionLevel=H] Error correction level
- * @param  {Mode} mode                       Data mode
- * @return {Number}                          QR Code version
- */
-exports.getBestVersionForData = function getBestVersionForData (data, errorCorrectionLevel) {
-  var seg
-
-  var ecl = ECLevel.from(errorCorrectionLevel, ECLevel.M)
-
-  if (isArray(data)) {
-    if (data.length > 1) {
-      return getBestVersionForMixedData(data, ecl)
-    }
-
-    if (data.length === 0) {
-      return 1
-    }
-
-    seg = data[0]
-  } else {
-    seg = data
-  }
-
-  return getBestVersionForDataLength(seg.mode, seg.getLength(), ecl)
-}
-
-/**
- * Returns version information with relative error correction bits
- *
- * The version information is included in QR Code symbols of version 7 or larger.
- * It consists of an 18-bit sequence containing 6 data bits,
- * with 12 error correction bits calculated using the (18, 6) Golay code.
- *
- * @param  {Number} version QR Code version
- * @return {Number}         Encoded version info bits
- */
-exports.getEncodedBits = function getEncodedBits (version) {
-  if (!VersionCheck.isValid(version) || version < 7) {
-    throw new Error('Invalid QR Code version')
-  }
-
-  var d = version << 12
-
-  while (Utils.getBCHDigit(d) - G18_BCH >= 0) {
-    d ^= (G18 << (Utils.getBCHDigit(d) - G18_BCH))
-  }
-
-  return (version << 12) | d
-}
-
-
-/***/ }),
-
 /***/ "c8af":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11934,6 +10786,29 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("54a1");
+
+/***/ }),
+
+/***/ "c8fe":
+/***/ (function(module, exports, __webpack_require__) {
+
+var cloneArrayBuffer = __webpack_require__("f8af");
+
+/**
+ * Creates a clone of `typedArray`.
+ *
+ * @private
+ * @param {Object} typedArray The typed array to clone.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Object} Returns the cloned typed array.
+ */
+function cloneTypedArray(typedArray, isDeep) {
+  var buffer = isDeep ? cloneArrayBuffer(typedArray.buffer) : typedArray.buffer;
+  return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
+}
+
+module.exports = cloneTypedArray;
+
 
 /***/ }),
 
@@ -12006,6 +10881,34 @@ addToUnscopables('entries');
 
 /***/ }),
 
+/***/ "cb5a":
+/***/ (function(module, exports, __webpack_require__) {
+
+var eq = __webpack_require__("9638");
+
+/**
+ * Gets the index at which the `key` is found in `array` of key-value pairs.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} key The key to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function assocIndexOf(array, key) {
+  var length = array.length;
+  while (length--) {
+    if (eq(array[length][0], key)) {
+      return length;
+    }
+  }
+  return -1;
+}
+
+module.exports = assocIndexOf;
+
+
+/***/ }),
+
 /***/ "cb7c":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12054,6 +10957,34 @@ module.exports = function (C, x) {
   resolve(x);
   return promiseCapability.promise;
 };
+
+
+/***/ }),
+
+/***/ "cd9d":
+/***/ (function(module, exports) {
+
+/**
+ * This method returns the first argument it receives.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ *
+ * console.log(_.identity(object) === object);
+ * // => true
+ */
+function identity(value) {
+  return value;
+}
+
+module.exports = identity;
 
 
 /***/ }),
@@ -12189,85 +11120,43 @@ exports.push([module.i, ".height-enter-active,.height-leave-active{-webkit-trans
 
 /***/ }),
 
-/***/ "d055":
+/***/ "d02c":
 /***/ (function(module, exports, __webpack_require__) {
 
+var ListCache = __webpack_require__("5e2e"),
+    Map = __webpack_require__("79bc"),
+    MapCache = __webpack_require__("7b83");
 
-var canPromise = __webpack_require__("67dd")
+/** Used as the size to enable large array optimizations. */
+var LARGE_ARRAY_SIZE = 200;
 
-var QRCode = __webpack_require__("aa63")
-var CanvasRenderer = __webpack_require__("4146")
-var SvgRenderer = __webpack_require__("4006")
-
-function renderCanvas (renderFunc, canvas, text, opts, cb) {
-  var args = [].slice.call(arguments, 1)
-  var argsNum = args.length
-  var isLastArgCb = typeof args[argsNum - 1] === 'function'
-
-  if (!isLastArgCb && !canPromise()) {
-    throw new Error('Callback required as last argument')
+/**
+ * Sets the stack `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Stack
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the stack cache instance.
+ */
+function stackSet(key, value) {
+  var data = this.__data__;
+  if (data instanceof ListCache) {
+    var pairs = data.__data__;
+    if (!Map || (pairs.length < LARGE_ARRAY_SIZE - 1)) {
+      pairs.push([key, value]);
+      this.size = ++data.size;
+      return this;
+    }
+    data = this.__data__ = new MapCache(pairs);
   }
-
-  if (isLastArgCb) {
-    if (argsNum < 2) {
-      throw new Error('Too few arguments provided')
-    }
-
-    if (argsNum === 2) {
-      cb = text
-      text = canvas
-      canvas = opts = undefined
-    } else if (argsNum === 3) {
-      if (canvas.getContext && typeof cb === 'undefined') {
-        cb = opts
-        opts = undefined
-      } else {
-        cb = opts
-        opts = text
-        text = canvas
-        canvas = undefined
-      }
-    }
-  } else {
-    if (argsNum < 1) {
-      throw new Error('Too few arguments provided')
-    }
-
-    if (argsNum === 1) {
-      text = canvas
-      canvas = opts = undefined
-    } else if (argsNum === 2 && !canvas.getContext) {
-      opts = text
-      text = canvas
-      canvas = undefined
-    }
-
-    return new Promise(function (resolve, reject) {
-      try {
-        var data = QRCode.create(text, opts)
-        resolve(renderFunc(data, canvas, opts))
-      } catch (e) {
-        reject(e)
-      }
-    })
-  }
-
-  try {
-    var data = QRCode.create(text, opts)
-    cb(null, renderFunc(data, canvas, opts))
-  } catch (e) {
-    cb(e)
-  }
+  data.set(key, value);
+  this.size = data.size;
+  return this;
 }
 
-exports.create = QRCode.create
-exports.toCanvas = renderCanvas.bind(null, CanvasRenderer.render)
-exports.toDataURL = renderCanvas.bind(null, CanvasRenderer.renderToDataURL)
-
-// only svg for now.
-exports.toString = renderCanvas.bind(null, function (data, _, opts) {
-  return SvgRenderer.render(data, opts)
-})
+module.exports = stackSet;
 
 
 /***/ }),
@@ -12308,6 +11197,49 @@ module.exports = __webpack_require__("584a").Array.from;
 
 /***/ }),
 
+/***/ "d370":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsArguments = __webpack_require__("253c"),
+    isObjectLike = __webpack_require__("1310");
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Built-in value references. */
+var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+
+/**
+ * Checks if `value` is likely an `arguments` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArguments(function() { return arguments; }());
+ * // => true
+ *
+ * _.isArguments([1, 2, 3]);
+ * // => false
+ */
+var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsArguments : function(value) {
+  return isObjectLike(value) && hasOwnProperty.call(value, 'callee') &&
+    !propertyIsEnumerable.call(value, 'callee');
+};
+
+module.exports = isArguments;
+
+
+/***/ }),
+
 /***/ "d3f4":
 /***/ (function(module, exports) {
 
@@ -12318,663 +11250,12 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ "d4da":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/popover/popover.vue?vue&type=template&id=de05874e&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"fade"}},[(_vm.isShow)?_c('div',{directives:[{name:"click-outside",rawName:"v-click-outside",value:(_vm.close),expression:"close"}],staticClass:"ui-popover",class:{ 'ui-tooltip': _vm.tooltip, 'ui-dropdown': _vm.dropdown },style:(_vm.stlyes)},[(_vm.arrow)?_c('span',{ref:"arrow",staticClass:"ui-popover-arrow",style:(_vm.arrowStyles)}):_vm._e(),_c('div',{ref:"menu",staticClass:"ui-popover-menu",class:[
-        _vm.menuType && ("ui-popover-menu-" + _vm.menuType),
-        { 'ui-popover-with-close': _vm.showCloseIcon }
-      ],style:(_vm.menuStyles),on:{"mouseover":_vm.mouseover,"mouseleave":_vm.mouseleave}},[(_vm.menu.length)?_c('ul',_vm._l((_vm.menu),function(item){return _c('ui-popover-item',{key:item.content,attrs:{"params":_vm.params,"close-on-click":_vm.closeOnClick,"close-on-mouseleave":_vm.closeOnMouseleave,"item":item},on:{"close":function($event){_vm.isShow = false}}})}),1):_vm._e(),(_vm.content)?_c('div',{staticClass:"ui-popover-content",domProps:{"innerHTML":_vm._s(_vm.handleContent(_vm.content))},on:{"click":function($event){_vm.closeOnClick ? _vm.close : ''}}}):_vm._e(),(_vm.showCloseIcon && !_vm.menu.length)?_c('div',{staticClass:"ui-popover-close-icon",on:{"click":_vm.close}},[_c('ui-icon',{attrs:{"name":"icon-close-circle-fill"}})],1):_vm._e(),(_vm.$slots.default && _vm.dropdown)?_c('div',{staticClass:"ui-dropdown-content"},[_vm._t("default")],2):_vm._e()])]):_vm._e()])}
-var staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./packages/popover/popover.vue?vue&type=template&id=de05874e&
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.starts-with.js
-var es6_string_starts_with = __webpack_require__("f559");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
-var es6_number_constructor = __webpack_require__("c5f6");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.array.includes.js
-var es7_array_includes = __webpack_require__("6762");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.includes.js
-var es6_string_includes = __webpack_require__("2fdb");
-
-// EXTERNAL MODULE: ./node_modules/v-click-outside/dist/v-click-outside.min.min.umd.js
-var v_click_outside_min_min_umd = __webpack_require__("a2df");
-var v_click_outside_min_min_umd_default = /*#__PURE__*/__webpack_require__.n(v_click_outside_min_min_umd);
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/popover/popover-item.vue?vue&type=template&id=5c26d750&
-var popover_itemvue_type_template_id_5c26d750_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.item)?_c('li',{staticClass:"ui-popover-item",class:[_vm.item.class, { pointer: _vm.item.action }],attrs:{"title":_vm.item.content},on:{"click":_vm.click,"mouseleave":_vm.mouseleave}},[(_vm.item.icon)?_c('ui-icon',{attrs:{"name":_vm.item.icon}}):_vm._e(),_vm._v(_vm._s(_vm.item.content)+"\n")],1):_vm._e()}
-var popover_itemvue_type_template_id_5c26d750_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./packages/popover/popover-item.vue?vue&type=template&id=5c26d750&
-
-// EXTERNAL MODULE: ./packages/icon/index.js
-var icon = __webpack_require__("07fc");
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/popover/popover-item.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ var popover_itemvue_type_script_lang_js_ = ({
-  name: "ui-popover-item",
-  components: {
-    UiIcon: icon["a" /* default */]
-  },
-  data: function data() {
-    return {};
-  },
-  props: {
-    item: Object,
-    params: {
-      type: Object,
-      default: function _default() {
-        return {};
-      }
-    },
-    closeOnClick: Boolean,
-    closeOnMouseleave: Boolean
-  },
-  methods: {
-    mouseleave: function mouseleave() {
-      if (this.closeOnMouseleave) {
-        this.$emit("close");
-      }
-    },
-    click: function click() {
-      if (this.item.action && typeof this.item.action === "function") {
-        this.item.action(this.params || "");
-      }
-
-      if (this.closeOnClick) {
-        this.$emit("close");
-      }
-    }
-  }
-});
-// CONCATENATED MODULE: ./packages/popover/popover-item.vue?vue&type=script&lang=js&
- /* harmony default export */ var popover_popover_itemvue_type_script_lang_js_ = (popover_itemvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
-var componentNormalizer = __webpack_require__("2877");
-
-// CONCATENATED MODULE: ./packages/popover/popover-item.vue
-
-
-
-
-
-/* normalize component */
-
-var component = Object(componentNormalizer["a" /* default */])(
-  popover_popover_itemvue_type_script_lang_js_,
-  popover_itemvue_type_template_id_5c26d750_render,
-  popover_itemvue_type_template_id_5c26d750_staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-component.options.__file = "popover-item.vue"
-/* harmony default export */ var popover_item = (component.exports);
-// EXTERNAL MODULE: ./packages/assets/scss/popover.scss
-var popover = __webpack_require__("4055");
-
-// EXTERNAL MODULE: ./node_modules/lodash/throttle.js
-var throttle = __webpack_require__("0f32");
-var throttle_default = /*#__PURE__*/__webpack_require__.n(throttle);
-
-// EXTERNAL MODULE: ./src/utils/getAxis.js
-var utils_getAxis = __webpack_require__("d871");
-
-// EXTERNAL MODULE: ./src/utils/scrollbar.js + 1 modules
-var scrollbar = __webpack_require__("ec82");
-
-// CONCATENATED MODULE: ./src/mixins/pop/position.js
-
-
-
-/* harmony default export */ var position = ({
-  data: function data() {
-    return {
-      axis: {},
-      el: "",
-      key: "",
-      // content: "",
-      //not for options
-      mounted: false,
-      targetTop: "",
-      placeOnTop: "",
-      placeOnRight: "",
-      placeOnBottom: "",
-      placeOnLeft: "",
-      left: "",
-      top: "",
-      borderTopColor: "",
-      borderBottomColor: "",
-      arrowLeft: "",
-      arrowTop: "",
-      triggerOffset: "",
-      popoverOffset: "",
-      translateX: "",
-      zIndex: this.$zIndex ? this.$zIndex.add() : 1000
-    };
-  },
-  computed: {
-    arrowStyles: function arrowStyles() {
-      return {
-        borderWidth: "".concat(this.arrowSize, "px"),
-        borderTopColor: this.borderTopColor,
-        borderBottomColor: this.borderBottomColor,
-        top: "".concat(this.arrowTop, "px"),
-        left: "".concat(this.arrowLeft, "px"),
-        zIndex: this.zIndex + 1
-      };
-    },
-    menuStyles: function menuStyles() {
-      return {
-        borderRadius: "".concat(this.radius, "px"),
-        transform: "translateX(".concat(this.translateX, ")"),
-        textAlign: this.textCetner ? "center" : ""
-      };
-    }
-  },
-  methods: {
-    getAxis: function getAxis() {
-      this.axis = Object(utils_getAxis["a" /* default */])();
-    },
-    calculatePopoverPosition: function calculatePopoverPosition(e) {
-      var _this = this;
-
-      this.triggerOffset = this.trigger.getBoundingClientRect();
-      this.popoverOffset = this.el.getBoundingClientRect();
-      this.targetTop = this.triggerOffset.top;
-      this.placeOnTop = this.targetTop - this.popoverOffset.height;
-      this.placeOnRight = this.triggerOffset.left + this.triggerOffset.width - this.popoverOffset.width;
-      this.placeOnBottom = this.targetTop + this.triggerOffset.height;
-      this.placeOnLeft = this.triggerOffset.left;
-
-      if (this.align == "center") {
-        this.left = this.triggerOffset.left + this.triggerOffset.width / 2 - this.popoverOffset.width / 2;
-      }
-
-      if (this.align == "right") {
-        this.left = this.triggerOffset.left + this.triggerOffset.width - this.popoverOffset.width;
-      }
-
-      if (this.align == "left") {
-        this.left = this.triggerOffset.left;
-      }
-
-      if (this.left <= this.offset) {
-        this.left = this.offset;
-      }
-
-      if (this.left >= this.axis.x * 2 - this.offset) {
-        this.left = this.axis.x * 2 - this.popoverOffset.width - this.offset;
-      }
-
-      if (this.left + this.popoverOffset.width > this.axis.x * 2) {
-        this.left = this.axis.x * 2 - this.popoverOffset.width - Object(scrollbar["default"])() - this.offset;
-      }
-
-      if (this.axis.y > this.targetTop) {
-        this.top = this.offset ? this.placeOnBottom + this.offset : this.placeOnBottom;
-      } else {
-        this.top = this.offset ? this.placeOnTop - this.offset : this.placeOnTop;
-      }
-
-      if (this.arrow) {
-        this.$nextTick(function () {
-          _this.setarrowPosition();
-        });
-      }
-    },
-    setarrowPosition: function setarrowPosition() {
-      var _this2 = this;
-
-      var popoverOffset = this.el.getBoundingClientRect();
-
-      if (this.align == "center") {
-        this.arrowLeft = this.triggerOffset.left + this.triggerOffset.width / 2 - this.left - this.arrowSize;
-      }
-
-      if (this.align == "right") {
-        this.arrowLeft = this.popoverOffset.width / 2 + this.arrowSize;
-      }
-
-      if (this.align == "left") {
-        this.arrowLeft = this.popoverOffset.width / 4 - this.arrowSize;
-      }
-
-      if (this.axis.y > this.targetTop) {
-        this.borderTopColor = "transparent";
-        this.borderBottomColor = "#fff";
-        this.arrowTop = -this.arrowSize * 2;
-      } else {
-        this.borderBottomColor = "transparent";
-        this.borderTopColor = "#fff";
-        this.arrowTop = popoverOffset.height;
-      }
-
-      this.$nextTick(function () {
-        var arrowOffset = _this2.$refs["arrow"].getBoundingClientRect();
-
-        if (arrowOffset.right + _this2.offset >= popoverOffset.right) {
-          _this2.translateX = "".concat(_this2.arrowSize, "px");
-        }
-
-        if (arrowOffset.left - _this2.offset <= popoverOffset.left) {
-          _this2.translateX = "-".concat(_this2.arrowSize, "px");
-        }
-      });
-    }
-  },
-  mounted: function mounted() {
-    this.getAxis();
-  },
-  beforeDestory: function beforeDestory() {
-    if (this.$zIndex) {
-      this.$zIndex.remove();
-    }
-  },
-  beforeMount: function beforeMount() {
-    this.calculatePopoverPosition = throttle_default()(this.calculatePopoverPosition, this.throttle);
-    this.getAxis = throttle_default()(this.getAxis, this.throttle);
-  }
-});
-// EXTERNAL MODULE: ./packages/icon/icon.vue + 4 modules
-var icon_icon = __webpack_require__("383c");
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/popover/popover.vue?vue&type=script&lang=js&
-
-
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-/* harmony default export */ var popovervue_type_script_lang_js_ = ({
-  name: "ui-popover",
-  data: function data() {
-    return {
-      isShow: false,
-      isMouseIn: false
-    };
-  },
-  mixins: [position],
-  props: {
-    triggerId: {
-      type: String,
-      required: true
-    },
-    tooltip: Boolean,
-    dropdown: Boolean,
-    params: Object,
-    menu: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
-    },
-    menuType: {
-      type: String,
-      validator: function validator(value) {
-        return ["horizon", "vertical"].includes(value);
-      }
-    },
-    closeOnClick: {
-      type: Boolean,
-      default: true
-    },
-    closeOnMouseleave: Boolean,
-    openOnMouseover: Boolean,
-    onClose: Function,
-    content: String,
-    showCloseIcon: Boolean,
-    textCetner: Boolean,
-    width: Number,
-    openDelay: Number,
-    closeDelay: Number,
-    arrow: {
-      type: Boolean,
-      default: true
-    },
-    offset: {
-      type: Number,
-      default: 10
-    },
-    arrowSize: {
-      type: Number,
-      default: 10
-    },
-    arrowOffset: {
-      type: Number,
-      default: 10
-    },
-    align: {
-      type: String,
-      default: "center",
-      validator: function validator(value) {
-        return ["center", "left", "right"].indexOf(value) !== -1;
-      }
-    },
-    radius: {
-      type: Number,
-      default: 8
-    },
-    throttle: {
-      type: Number,
-      default: 20
-    },
-    interactive: {
-      type: Boolean,
-      default: true
-    }
-  },
-  components: {
-    UiPopoverItem: popover_item,
-    UiIcon: icon_icon["a" /* default */]
-  },
-  computed: {
-    stlyes: function stlyes() {
-      return {
-        top: "".concat(this.top, "px"),
-        left: "".concat(this.left, "px"),
-        width: this.width ? "".concat(this.width, "px") : "",
-        zIndex: this.zIndex,
-        maxWidth: "calc(100% - ".concat(this.offset * 2, "px)")
-      };
-    }
-  },
-  methods: {
-    handleContent: function handleContent(content) {
-      if (content.startsWith("data:image/")) {
-        var img = document.createElement("img");
-        img.src = content;
-        return img.outerHTML;
-      } else {
-        return content;
-      }
-    },
-    unbindEvents: function unbindEvents() {
-      window.removeEventListener("resize", this.calculatePopoverPosition);
-      window.removeEventListener("scroll", this.calculatePopoverPosition);
-
-      if (this.closeOnMouseleave && !this.tooltip) {
-        this.trigger.removeEventListener("mouseout", this.close);
-      }
-
-      if (this.tooltip) {
-        this.trigger.removeEventListener("mouseover", this.mouseover);
-        this.trigger.removeEventListener("mouseleave", this.mouseleave);
-      }
-    },
-    bindEvents: function bindEvents() {
-      window.addEventListener("resize", this.calculatePopoverPosition);
-      window.addEventListener("scroll", this.calculatePopoverPosition);
-
-      if (this.closeOnMouseleave && !this.tooltip) {
-        this.trigger.addEventListener("mouseout", this.close);
-      }
-
-      if (this.tooltip) {
-        this.trigger.addEventListener("mouseover", this.mouseover);
-        this.trigger.addEventListener("mouseleave", this.mouseleave);
-      }
-    },
-    close: function close(e) {
-      var _this = this;
-
-      setTimeout(function () {
-        _this.isShow = false;
-      }, this.closeDelay);
-    },
-    mouseleave: function mouseleave(e) {
-      var _this2 = this;
-
-      this.isMouseIn = false;
-      setTimeout(function () {
-        if (!_this2.isMouseIn && _this2.closeOnMouseleave) {
-          _this2.close();
-        }
-      }, 300);
-    },
-    mouseover: function mouseover(e) {
-      this.isMouseIn = true;
-    }
-  },
-  mounted: function mounted() {
-    this.trigger = document.querySelector("[data-popover=\"".concat(this.triggerId, "\"]"));
-  },
-  directives: {
-    clickOutside: v_click_outside_min_min_umd_default.a.directive
-  },
-  watch: {
-    isShow: function isShow(newValue) {
-      var _this3 = this;
-
-      if (!newValue) {
-        if (this.onClose) {
-          this.onClose();
-        }
-
-        this.$emit("close");
-        this.unbindEvents();
-        this.trigger.removeAttribute("data-popover");
-      } else {
-        this.$nextTick(function () {
-          _this3.$emit("open");
-
-          _this3.bindEvents();
-
-          _this3.el = _this3.$el;
-
-          _this3.calculatePopoverPosition();
-        });
-      }
-    }
-  }
-});
-// CONCATENATED MODULE: ./packages/popover/popover.vue?vue&type=script&lang=js&
- /* harmony default export */ var popover_popovervue_type_script_lang_js_ = (popovervue_type_script_lang_js_); 
-// CONCATENATED MODULE: ./packages/popover/popover.vue
-
-
-
-
-
-/* normalize component */
-
-var popover_component = Object(componentNormalizer["a" /* default */])(
-  popover_popovervue_type_script_lang_js_,
-  render,
-  staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-popover_component.options.__file = "popover.vue"
-/* harmony default export */ var popover_popover = __webpack_exports__["a"] = (popover_component.exports);
-
-/***/ }),
-
 /***/ "d53b":
 /***/ (function(module, exports) {
 
 module.exports = function (done, value) {
   return { value: value, done: !!done };
 };
-
-
-/***/ }),
-
-/***/ "d6c0":
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Alignment pattern are fixed reference pattern in defined positions
- * in a matrix symbology, which enables the decode software to re-synchronise
- * the coordinate mapping of the image modules in the event of moderate amounts
- * of distortion of the image.
- *
- * Alignment patterns are present only in QR Code symbols of version 2 or larger
- * and their number depends on the symbol version.
- */
-
-var getSymbolSize = __webpack_require__("7bf0").getSymbolSize
-
-/**
- * Calculate the row/column coordinates of the center module of each alignment pattern
- * for the specified QR Code version.
- *
- * The alignment patterns are positioned symmetrically on either side of the diagonal
- * running from the top left corner of the symbol to the bottom right corner.
- *
- * Since positions are simmetrical only half of the coordinates are returned.
- * Each item of the array will represent in turn the x and y coordinate.
- * @see {@link getPositions}
- *
- * @param  {Number} version QR Code version
- * @return {Array}          Array of coordinate
- */
-exports.getRowColCoords = function getRowColCoords (version) {
-  if (version === 1) return []
-
-  var posCount = Math.floor(version / 7) + 2
-  var size = getSymbolSize(version)
-  var intervals = size === 145 ? 26 : Math.ceil((size - 13) / (2 * posCount - 2)) * 2
-  var positions = [size - 7] // Last coord is always (size - 7)
-
-  for (var i = 1; i < posCount - 1; i++) {
-    positions[i] = positions[i - 1] - intervals
-  }
-
-  positions.push(6) // First coord is always 6
-
-  return positions.reverse()
-}
-
-/**
- * Returns an array containing the positions of each alignment pattern.
- * Each array's element represent the center point of the pattern as (x, y) coordinates
- *
- * Coordinates are calculated expanding the row/column coordinates returned by {@link getRowColCoords}
- * and filtering out the items that overlaps with finder pattern
- *
- * @example
- * For a Version 7 symbol {@link getRowColCoords} returns values 6, 22 and 38.
- * The alignment patterns, therefore, are to be centered on (row, column)
- * positions (6,22), (22,6), (22,22), (22,38), (38,22), (38,38).
- * Note that the coordinates (6,6), (6,38), (38,6) are occupied by finder patterns
- * and are not therefore used for alignment patterns.
- *
- * var pos = getPositions(7)
- * // [[6,22], [22,6], [22,22], [22,38], [38,22], [38,38]]
- *
- * @param  {Number} version QR Code version
- * @return {Array}          Array of coordinates
- */
-exports.getPositions = function getPositions (version) {
-  var coords = []
-  var pos = exports.getRowColCoords(version)
-  var posLength = pos.length
-
-  for (var i = 0; i < posLength; i++) {
-    for (var j = 0; j < posLength; j++) {
-      // Skip if position is occupied by finder patterns
-      if ((i === 0 && j === 0) ||             // top-left
-          (i === 0 && j === posLength - 1) || // bottom-left
-          (i === posLength - 1 && j === 0)) { // top-right
-        continue
-      }
-
-      coords.push([pos[i], pos[j]])
-    }
-  }
-
-  return coords
-}
 
 
 /***/ }),
@@ -13018,19 +11299,6 @@ module.exports = function (fn, that, length) {
   };
 };
 
-
-/***/ }),
-
-/***/ "d871":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = (function () {
-  return {
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2
-  };
-});
 
 /***/ }),
 
@@ -13100,6 +11368,19 @@ exports.f = __webpack_require__("8e60") ? Object.defineProperty : function defin
 
 /***/ }),
 
+/***/ "da03":
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__("2b3e");
+
+/** Used to detect overreaching core-js shims. */
+var coreJsData = root['__core-js_shared__'];
+
+module.exports = coreJsData;
+
+
+/***/ }),
+
 /***/ "db0f":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -13144,6 +11425,39 @@ var store = global[SHARED] || (global[SHARED] = {});
 
 /***/ }),
 
+/***/ "dc57":
+/***/ (function(module, exports) {
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to convert.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+
+module.exports = toSource;
+
+
+/***/ }),
+
 /***/ "dcbc":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13152,6 +11466,46 @@ module.exports = function (target, src, safe) {
   for (var key in src) redefine(target, key, src[key], safe);
   return target;
 };
+
+
+/***/ }),
+
+/***/ "dcbe":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isArrayLike = __webpack_require__("30c9"),
+    isObjectLike = __webpack_require__("1310");
+
+/**
+ * This method is like `_.isArrayLike` except that it also checks if `value`
+ * is an object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array-like object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArrayLikeObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLikeObject(document.body.children);
+ * // => true
+ *
+ * _.isArrayLikeObject('abc');
+ * // => false
+ *
+ * _.isArrayLikeObject(_.noop);
+ * // => false
+ */
+function isArrayLikeObject(value) {
+  return isObjectLike(value) && isArrayLike(value);
+}
+
+module.exports = isArrayLikeObject;
 
 
 /***/ }),
@@ -13168,56 +11522,6 @@ if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__("499e").default
 var update = add("8b389148", content, true, {"sourceMap":false,"shadowMode":false});
-
-/***/ }),
-
-/***/ "dd7e":
-/***/ (function(module, exports, __webpack_require__) {
-
-var Mode = __webpack_require__("bbf0")
-
-function NumericData (data) {
-  this.mode = Mode.NUMERIC
-  this.data = data.toString()
-}
-
-NumericData.getBitsLength = function getBitsLength (length) {
-  return 10 * Math.floor(length / 3) + ((length % 3) ? ((length % 3) * 3 + 1) : 0)
-}
-
-NumericData.prototype.getLength = function getLength () {
-  return this.data.length
-}
-
-NumericData.prototype.getBitsLength = function getBitsLength () {
-  return NumericData.getBitsLength(this.data.length)
-}
-
-NumericData.prototype.write = function write (bitBuffer) {
-  var i, group, value
-
-  // The input data string is divided into groups of three digits,
-  // and each group is converted to its 10-bit binary equivalent.
-  for (i = 0; i + 3 <= this.data.length; i += 3) {
-    group = this.data.substr(i, 3)
-    value = parseInt(group, 10)
-
-    bitBuffer.put(value, 10)
-  }
-
-  // If the number of input digits is not an exact multiple of three,
-  // the final one or two digits are converted to 4 or 7 bits respectively.
-  var remainingNum = this.data.length - i
-  if (remainingNum > 0) {
-    group = this.data.substr(i)
-    value = parseInt(group, 10)
-
-    bitBuffer.put(value, remainingNum * 3 + 1)
-  }
-}
-
-module.exports = NumericData
-
 
 /***/ }),
 
@@ -13505,6 +11809,45 @@ module.exports = function (size) {
 
 /***/ }),
 
+/***/ "e24b":
+/***/ (function(module, exports, __webpack_require__) {
+
+var hashClear = __webpack_require__("49f4"),
+    hashDelete = __webpack_require__("1efc"),
+    hashGet = __webpack_require__("bbc0"),
+    hashHas = __webpack_require__("7a48"),
+    hashSet = __webpack_require__("2524");
+
+/**
+ * Creates a hash object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Hash(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `Hash`.
+Hash.prototype.clear = hashClear;
+Hash.prototype['delete'] = hashDelete;
+Hash.prototype.get = hashGet;
+Hash.prototype.has = hashHas;
+Hash.prototype.set = hashSet;
+
+module.exports = Hash;
+
+
+/***/ }),
+
 /***/ "e265":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13542,6 +11885,49 @@ module.exports = function (it) {
   return it;
 };
 
+
+/***/ }),
+
+/***/ "e538":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__("2b3e");
+
+/** Detect free variable `exports`. */
+var freeExports =  true && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/** Built-in value references. */
+var Buffer = moduleExports ? root.Buffer : undefined,
+    allocUnsafe = Buffer ? Buffer.allocUnsafe : undefined;
+
+/**
+ * Creates a clone of  `buffer`.
+ *
+ * @private
+ * @param {Buffer} buffer The buffer to clone.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @returns {Buffer} Returns the cloned buffer.
+ */
+function cloneBuffer(buffer, isDeep) {
+  if (isDeep) {
+    return buffer.slice();
+  }
+  var length = buffer.length,
+      result = allocUnsafe ? allocUnsafe(length) : new buffer.constructor(length);
+
+  buffer.copy(result);
+  return result;
+}
+
+module.exports = cloneBuffer;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("62e4")(module)))
 
 /***/ }),
 
@@ -13669,6 +12055,31 @@ exports = module.exports = __webpack_require__("2350")(false);
 exports.push([module.i, ".ui-loader{width:100%}.ui-loader .ui-loader__footer,.ui-loader .ui-loader__header{position:relative;text-align:center}.ui-loader .ui-loader__footer .ui-loader__footer-text,.ui-loader .ui-loader__footer .ui-loader__header-text,.ui-loader .ui-loader__header .ui-loader__footer-text,.ui-loader .ui-loader__header .ui-loader__header-text{width:100%;position:absolute}.ui-loader .ui-loader__footer .ui-loader__header-text,.ui-loader .ui-loader__header .ui-loader__header-text{bottom:20px}.ui-loader .ui-loader__footer .ui-loader__footer-text,.ui-loader .ui-loader__header .ui-loader__footer-text{top:20px}.ui-loader .ui-spinner{margin:0 auto}", ""]);
 
 // exports
+
+
+/***/ }),
+
+/***/ "eac5":
+/***/ (function(module, exports) {
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Checks if `value` is likely a prototype object.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+ */
+function isPrototype(value) {
+  var Ctor = value && value.constructor,
+      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto;
+
+  return value === proto;
+}
+
+module.exports = isPrototype;
 
 
 /***/ }),
@@ -14300,6 +12711,33 @@ var hasScroll = function hasScroll(el) {
 
 /***/ }),
 
+/***/ "ec8c":
+/***/ (function(module, exports) {
+
+/**
+ * This function is like
+ * [`Object.keys`](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+ * except that it includes inherited enumerable properties.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function nativeKeysIn(object) {
+  var result = [];
+  if (object != null) {
+    for (var key in Object(object)) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = nativeKeysIn;
+
+
+/***/ }),
+
 /***/ "ed0b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14643,15 +13081,2615 @@ module.exports = __webpack_require__("584a").Object.getOwnPropertySymbols;
 
 /***/ }),
 
-/***/ "eee5":
-/***/ (function(module, exports) {
+/***/ "efb6":
+/***/ (function(module, exports, __webpack_require__) {
 
-var toString = {}.toString;
+var ListCache = __webpack_require__("5e2e");
 
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
+/**
+ * Removes all key-value entries from the stack.
+ *
+ * @private
+ * @name clear
+ * @memberOf Stack
+ */
+function stackClear() {
+  this.__data__ = new ListCache;
+  this.size = 0;
+}
+
+module.exports = stackClear;
+
+
+/***/ }),
+
+/***/ "f0bd":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/**!
+ * @fileOverview Kickass library to create and place poppers near their reference elements.
+ * @version 1.14.7
+ * @license
+ * Copyright (c) 2016 Federico Zivolo and contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
+
+var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
+var timeoutDuration = 0;
+for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
+  if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
+    timeoutDuration = 1;
+    break;
+  }
+}
+
+function microtaskDebounce(fn) {
+  var called = false;
+  return function () {
+    if (called) {
+      return;
+    }
+    called = true;
+    window.Promise.resolve().then(function () {
+      called = false;
+      fn();
+    });
+  };
+}
+
+function taskDebounce(fn) {
+  var scheduled = false;
+  return function () {
+    if (!scheduled) {
+      scheduled = true;
+      setTimeout(function () {
+        scheduled = false;
+        fn();
+      }, timeoutDuration);
+    }
+  };
+}
+
+var supportsMicroTasks = isBrowser && window.Promise;
+
+/**
+* Create a debounced version of a method, that's asynchronously deferred
+* but called in the minimum time possible.
+*
+* @method
+* @memberof Popper.Utils
+* @argument {Function} fn
+* @returns {Function}
+*/
+var debounce = supportsMicroTasks ? microtaskDebounce : taskDebounce;
+
+/**
+ * Check if the given variable is a function
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Any} functionToCheck - variable to check
+ * @returns {Boolean} answer to: is a function?
+ */
+function isFunction(functionToCheck) {
+  var getType = {};
+  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+}
+
+/**
+ * Get CSS computed property of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Eement} element
+ * @argument {String} property
+ */
+function getStyleComputedProperty(element, property) {
+  if (element.nodeType !== 1) {
+    return [];
+  }
+  // NOTE: 1 DOM access here
+  var window = element.ownerDocument.defaultView;
+  var css = window.getComputedStyle(element, null);
+  return property ? css[property] : css;
+}
+
+/**
+ * Returns the parentNode or the host of the element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} parent
+ */
+function getParentNode(element) {
+  if (element.nodeName === 'HTML') {
+    return element;
+  }
+  return element.parentNode || element.host;
+}
+
+/**
+ * Returns the scrolling parent of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} scroll parent
+ */
+function getScrollParent(element) {
+  // Return body, `getScroll` will take care to get the correct `scrollTop` from it
+  if (!element) {
+    return document.body;
+  }
+
+  switch (element.nodeName) {
+    case 'HTML':
+    case 'BODY':
+      return element.ownerDocument.body;
+    case '#document':
+      return element.body;
+  }
+
+  // Firefox want us to check `-x` and `-y` variations as well
+
+  var _getStyleComputedProp = getStyleComputedProperty(element),
+      overflow = _getStyleComputedProp.overflow,
+      overflowX = _getStyleComputedProp.overflowX,
+      overflowY = _getStyleComputedProp.overflowY;
+
+  if (/(auto|scroll|overlay)/.test(overflow + overflowY + overflowX)) {
+    return element;
+  }
+
+  return getScrollParent(getParentNode(element));
+}
+
+var isIE11 = isBrowser && !!(window.MSInputMethodContext && document.documentMode);
+var isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
+
+/**
+ * Determines if the browser is Internet Explorer
+ * @method
+ * @memberof Popper.Utils
+ * @param {Number} version to check
+ * @returns {Boolean} isIE
+ */
+function isIE(version) {
+  if (version === 11) {
+    return isIE11;
+  }
+  if (version === 10) {
+    return isIE10;
+  }
+  return isIE11 || isIE10;
+}
+
+/**
+ * Returns the offset parent of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} offset parent
+ */
+function getOffsetParent(element) {
+  if (!element) {
+    return document.documentElement;
+  }
+
+  var noOffsetParent = isIE(10) ? document.body : null;
+
+  // NOTE: 1 DOM access here
+  var offsetParent = element.offsetParent || null;
+  // Skip hidden elements which don't have an offsetParent
+  while (offsetParent === noOffsetParent && element.nextElementSibling) {
+    offsetParent = (element = element.nextElementSibling).offsetParent;
+  }
+
+  var nodeName = offsetParent && offsetParent.nodeName;
+
+  if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
+    return element ? element.ownerDocument.documentElement : document.documentElement;
+  }
+
+  // .offsetParent will return the closest TH, TD or TABLE in case
+  // no offsetParent is present, I hate this job...
+  if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
+    return getOffsetParent(offsetParent);
+  }
+
+  return offsetParent;
+}
+
+function isOffsetContainer(element) {
+  var nodeName = element.nodeName;
+
+  if (nodeName === 'BODY') {
+    return false;
+  }
+  return nodeName === 'HTML' || getOffsetParent(element.firstElementChild) === element;
+}
+
+/**
+ * Finds the root node (document, shadowDOM root) of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} node
+ * @returns {Element} root node
+ */
+function getRoot(node) {
+  if (node.parentNode !== null) {
+    return getRoot(node.parentNode);
+  }
+
+  return node;
+}
+
+/**
+ * Finds the offset parent common to the two provided nodes
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element1
+ * @argument {Element} element2
+ * @returns {Element} common offset parent
+ */
+function findCommonOffsetParent(element1, element2) {
+  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+  if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
+    return document.documentElement;
+  }
+
+  // Here we make sure to give as "start" the element that comes first in the DOM
+  var order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
+  var start = order ? element1 : element2;
+  var end = order ? element2 : element1;
+
+  // Get common ancestor container
+  var range = document.createRange();
+  range.setStart(start, 0);
+  range.setEnd(end, 0);
+  var commonAncestorContainer = range.commonAncestorContainer;
+
+  // Both nodes are inside #document
+
+  if (element1 !== commonAncestorContainer && element2 !== commonAncestorContainer || start.contains(end)) {
+    if (isOffsetContainer(commonAncestorContainer)) {
+      return commonAncestorContainer;
+    }
+
+    return getOffsetParent(commonAncestorContainer);
+  }
+
+  // one of the nodes is inside shadowDOM, find which one
+  var element1root = getRoot(element1);
+  if (element1root.host) {
+    return findCommonOffsetParent(element1root.host, element2);
+  } else {
+    return findCommonOffsetParent(element1, getRoot(element2).host);
+  }
+}
+
+/**
+ * Gets the scroll value of the given element in the given side (top and left)
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @argument {String} side `top` or `left`
+ * @returns {number} amount of scrolled pixels
+ */
+function getScroll(element) {
+  var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
+
+  var upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
+  var nodeName = element.nodeName;
+
+  if (nodeName === 'BODY' || nodeName === 'HTML') {
+    var html = element.ownerDocument.documentElement;
+    var scrollingElement = element.ownerDocument.scrollingElement || html;
+    return scrollingElement[upperSide];
+  }
+
+  return element[upperSide];
+}
+
+/*
+ * Sum or subtract the element scroll values (left and top) from a given rect object
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} rect - Rect object you want to change
+ * @param {HTMLElement} element - The element from the function reads the scroll values
+ * @param {Boolean} subtract - set to true if you want to subtract the scroll values
+ * @return {Object} rect - The modifier rect object
+ */
+function includeScroll(rect, element) {
+  var subtract = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  var scrollTop = getScroll(element, 'top');
+  var scrollLeft = getScroll(element, 'left');
+  var modifier = subtract ? -1 : 1;
+  rect.top += scrollTop * modifier;
+  rect.bottom += scrollTop * modifier;
+  rect.left += scrollLeft * modifier;
+  rect.right += scrollLeft * modifier;
+  return rect;
+}
+
+/*
+ * Helper to detect borders of a given element
+ * @method
+ * @memberof Popper.Utils
+ * @param {CSSStyleDeclaration} styles
+ * Result of `getStyleComputedProperty` on the given element
+ * @param {String} axis - `x` or `y`
+ * @return {number} borders - The borders size of the given axis
+ */
+
+function getBordersSize(styles, axis) {
+  var sideA = axis === 'x' ? 'Left' : 'Top';
+  var sideB = sideA === 'Left' ? 'Right' : 'Bottom';
+
+  return parseFloat(styles['border' + sideA + 'Width'], 10) + parseFloat(styles['border' + sideB + 'Width'], 10);
+}
+
+function getSize(axis, body, html, computedStyle) {
+  return Math.max(body['offset' + axis], body['scroll' + axis], html['client' + axis], html['offset' + axis], html['scroll' + axis], isIE(10) ? parseInt(html['offset' + axis]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Top' : 'Left')]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Bottom' : 'Right')]) : 0);
+}
+
+function getWindowSizes(document) {
+  var body = document.body;
+  var html = document.documentElement;
+  var computedStyle = isIE(10) && getComputedStyle(html);
+
+  return {
+    height: getSize('Height', body, html, computedStyle),
+    width: getSize('Width', body, html, computedStyle)
+  };
+}
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
 };
 
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+
+
+
+
+var defineProperty = function (obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+};
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+/**
+ * Given element offsets, generate an output similar to getBoundingClientRect
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Object} offsets
+ * @returns {Object} ClientRect like output
+ */
+function getClientRect(offsets) {
+  return _extends({}, offsets, {
+    right: offsets.left + offsets.width,
+    bottom: offsets.top + offsets.height
+  });
+}
+
+/**
+ * Get bounding client rect of given element
+ * @method
+ * @memberof Popper.Utils
+ * @param {HTMLElement} element
+ * @return {Object} client rect
+ */
+function getBoundingClientRect(element) {
+  var rect = {};
+
+  // IE10 10 FIX: Please, don't ask, the element isn't
+  // considered in DOM in some circumstances...
+  // This isn't reproducible in IE10 compatibility mode of IE11
+  try {
+    if (isIE(10)) {
+      rect = element.getBoundingClientRect();
+      var scrollTop = getScroll(element, 'top');
+      var scrollLeft = getScroll(element, 'left');
+      rect.top += scrollTop;
+      rect.left += scrollLeft;
+      rect.bottom += scrollTop;
+      rect.right += scrollLeft;
+    } else {
+      rect = element.getBoundingClientRect();
+    }
+  } catch (e) {}
+
+  var result = {
+    left: rect.left,
+    top: rect.top,
+    width: rect.right - rect.left,
+    height: rect.bottom - rect.top
+  };
+
+  // subtract scrollbar size from sizes
+  var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
+  var width = sizes.width || element.clientWidth || result.right - result.left;
+  var height = sizes.height || element.clientHeight || result.bottom - result.top;
+
+  var horizScrollbar = element.offsetWidth - width;
+  var vertScrollbar = element.offsetHeight - height;
+
+  // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
+  // we make this check conditional for performance reasons
+  if (horizScrollbar || vertScrollbar) {
+    var styles = getStyleComputedProperty(element);
+    horizScrollbar -= getBordersSize(styles, 'x');
+    vertScrollbar -= getBordersSize(styles, 'y');
+
+    result.width -= horizScrollbar;
+    result.height -= vertScrollbar;
+  }
+
+  return getClientRect(result);
+}
+
+function getOffsetRectRelativeToArbitraryNode(children, parent) {
+  var fixedPosition = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  var isIE10 = isIE(10);
+  var isHTML = parent.nodeName === 'HTML';
+  var childrenRect = getBoundingClientRect(children);
+  var parentRect = getBoundingClientRect(parent);
+  var scrollParent = getScrollParent(children);
+
+  var styles = getStyleComputedProperty(parent);
+  var borderTopWidth = parseFloat(styles.borderTopWidth, 10);
+  var borderLeftWidth = parseFloat(styles.borderLeftWidth, 10);
+
+  // In cases where the parent is fixed, we must ignore negative scroll in offset calc
+  if (fixedPosition && isHTML) {
+    parentRect.top = Math.max(parentRect.top, 0);
+    parentRect.left = Math.max(parentRect.left, 0);
+  }
+  var offsets = getClientRect({
+    top: childrenRect.top - parentRect.top - borderTopWidth,
+    left: childrenRect.left - parentRect.left - borderLeftWidth,
+    width: childrenRect.width,
+    height: childrenRect.height
+  });
+  offsets.marginTop = 0;
+  offsets.marginLeft = 0;
+
+  // Subtract margins of documentElement in case it's being used as parent
+  // we do this only on HTML because it's the only element that behaves
+  // differently when margins are applied to it. The margins are included in
+  // the box of the documentElement, in the other cases not.
+  if (!isIE10 && isHTML) {
+    var marginTop = parseFloat(styles.marginTop, 10);
+    var marginLeft = parseFloat(styles.marginLeft, 10);
+
+    offsets.top -= borderTopWidth - marginTop;
+    offsets.bottom -= borderTopWidth - marginTop;
+    offsets.left -= borderLeftWidth - marginLeft;
+    offsets.right -= borderLeftWidth - marginLeft;
+
+    // Attach marginTop and marginLeft because in some circumstances we may need them
+    offsets.marginTop = marginTop;
+    offsets.marginLeft = marginLeft;
+  }
+
+  if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodeName !== 'BODY') {
+    offsets = includeScroll(offsets, parent);
+  }
+
+  return offsets;
+}
+
+function getViewportOffsetRectRelativeToArtbitraryNode(element) {
+  var excludeScroll = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  var html = element.ownerDocument.documentElement;
+  var relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
+  var width = Math.max(html.clientWidth, window.innerWidth || 0);
+  var height = Math.max(html.clientHeight, window.innerHeight || 0);
+
+  var scrollTop = !excludeScroll ? getScroll(html) : 0;
+  var scrollLeft = !excludeScroll ? getScroll(html, 'left') : 0;
+
+  var offset = {
+    top: scrollTop - relativeOffset.top + relativeOffset.marginTop,
+    left: scrollLeft - relativeOffset.left + relativeOffset.marginLeft,
+    width: width,
+    height: height
+  };
+
+  return getClientRect(offset);
+}
+
+/**
+ * Check if the given element is fixed or is inside a fixed parent
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @argument {Element} customContainer
+ * @returns {Boolean} answer to "isFixed?"
+ */
+function isFixed(element) {
+  var nodeName = element.nodeName;
+  if (nodeName === 'BODY' || nodeName === 'HTML') {
+    return false;
+  }
+  if (getStyleComputedProperty(element, 'position') === 'fixed') {
+    return true;
+  }
+  var parentNode = getParentNode(element);
+  if (!parentNode) {
+    return false;
+  }
+  return isFixed(parentNode);
+}
+
+/**
+ * Finds the first parent of an element that has a transformed property defined
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} first transformed parent or documentElement
+ */
+
+function getFixedPositionOffsetParent(element) {
+  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+  if (!element || !element.parentElement || isIE()) {
+    return document.documentElement;
+  }
+  var el = element.parentElement;
+  while (el && getStyleComputedProperty(el, 'transform') === 'none') {
+    el = el.parentElement;
+  }
+  return el || document.documentElement;
+}
+
+/**
+ * Computed the boundaries limits and return them
+ * @method
+ * @memberof Popper.Utils
+ * @param {HTMLElement} popper
+ * @param {HTMLElement} reference
+ * @param {number} padding
+ * @param {HTMLElement} boundariesElement - Element used to define the boundaries
+ * @param {Boolean} fixedPosition - Is in fixed position mode
+ * @returns {Object} Coordinates of the boundaries
+ */
+function getBoundaries(popper, reference, padding, boundariesElement) {
+  var fixedPosition = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+
+  // NOTE: 1 DOM access here
+
+  var boundaries = { top: 0, left: 0 };
+  var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+
+  // Handle viewport case
+  if (boundariesElement === 'viewport') {
+    boundaries = getViewportOffsetRectRelativeToArtbitraryNode(offsetParent, fixedPosition);
+  } else {
+    // Handle other cases based on DOM element used as boundaries
+    var boundariesNode = void 0;
+    if (boundariesElement === 'scrollParent') {
+      boundariesNode = getScrollParent(getParentNode(reference));
+      if (boundariesNode.nodeName === 'BODY') {
+        boundariesNode = popper.ownerDocument.documentElement;
+      }
+    } else if (boundariesElement === 'window') {
+      boundariesNode = popper.ownerDocument.documentElement;
+    } else {
+      boundariesNode = boundariesElement;
+    }
+
+    var offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
+
+    // In case of HTML, we need a different computation
+    if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
+      var _getWindowSizes = getWindowSizes(popper.ownerDocument),
+          height = _getWindowSizes.height,
+          width = _getWindowSizes.width;
+
+      boundaries.top += offsets.top - offsets.marginTop;
+      boundaries.bottom = height + offsets.top;
+      boundaries.left += offsets.left - offsets.marginLeft;
+      boundaries.right = width + offsets.left;
+    } else {
+      // for all the other DOM elements, this one is good
+      boundaries = offsets;
+    }
+  }
+
+  // Add paddings
+  padding = padding || 0;
+  var isPaddingNumber = typeof padding === 'number';
+  boundaries.left += isPaddingNumber ? padding : padding.left || 0;
+  boundaries.top += isPaddingNumber ? padding : padding.top || 0;
+  boundaries.right -= isPaddingNumber ? padding : padding.right || 0;
+  boundaries.bottom -= isPaddingNumber ? padding : padding.bottom || 0;
+
+  return boundaries;
+}
+
+function getArea(_ref) {
+  var width = _ref.width,
+      height = _ref.height;
+
+  return width * height;
+}
+
+/**
+ * Utility used to transform the `auto` placement to the placement with more
+ * available space.
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function computeAutoPlacement(placement, refRect, popper, reference, boundariesElement) {
+  var padding = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+
+  if (placement.indexOf('auto') === -1) {
+    return placement;
+  }
+
+  var boundaries = getBoundaries(popper, reference, padding, boundariesElement);
+
+  var rects = {
+    top: {
+      width: boundaries.width,
+      height: refRect.top - boundaries.top
+    },
+    right: {
+      width: boundaries.right - refRect.right,
+      height: boundaries.height
+    },
+    bottom: {
+      width: boundaries.width,
+      height: boundaries.bottom - refRect.bottom
+    },
+    left: {
+      width: refRect.left - boundaries.left,
+      height: boundaries.height
+    }
+  };
+
+  var sortedAreas = Object.keys(rects).map(function (key) {
+    return _extends({
+      key: key
+    }, rects[key], {
+      area: getArea(rects[key])
+    });
+  }).sort(function (a, b) {
+    return b.area - a.area;
+  });
+
+  var filteredAreas = sortedAreas.filter(function (_ref2) {
+    var width = _ref2.width,
+        height = _ref2.height;
+    return width >= popper.clientWidth && height >= popper.clientHeight;
+  });
+
+  var computedPlacement = filteredAreas.length > 0 ? filteredAreas[0].key : sortedAreas[0].key;
+
+  var variation = placement.split('-')[1];
+
+  return computedPlacement + (variation ? '-' + variation : '');
+}
+
+/**
+ * Get offsets to the reference element
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} state
+ * @param {Element} popper - the popper element
+ * @param {Element} reference - the reference element (the popper will be relative to this)
+ * @param {Element} fixedPosition - is in fixed position mode
+ * @returns {Object} An object containing the offsets which will be applied to the popper
+ */
+function getReferenceOffsets(state, popper, reference) {
+  var fixedPosition = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+  var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+  return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
+}
+
+/**
+ * Get the outer sizes of the given element (offset size + margins)
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Object} object containing width and height properties
+ */
+function getOuterSizes(element) {
+  var window = element.ownerDocument.defaultView;
+  var styles = window.getComputedStyle(element);
+  var x = parseFloat(styles.marginTop || 0) + parseFloat(styles.marginBottom || 0);
+  var y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
+  var result = {
+    width: element.offsetWidth + y,
+    height: element.offsetHeight + x
+  };
+  return result;
+}
+
+/**
+ * Get the opposite placement of the given one
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement
+ * @returns {String} flipped placement
+ */
+function getOppositePlacement(placement) {
+  var hash = { left: 'right', right: 'left', bottom: 'top', top: 'bottom' };
+  return placement.replace(/left|right|bottom|top/g, function (matched) {
+    return hash[matched];
+  });
+}
+
+/**
+ * Get offsets to the popper
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} position - CSS position the Popper will get applied
+ * @param {HTMLElement} popper - the popper element
+ * @param {Object} referenceOffsets - the reference offsets (the popper will be relative to this)
+ * @param {String} placement - one of the valid placement options
+ * @returns {Object} popperOffsets - An object containing the offsets which will be applied to the popper
+ */
+function getPopperOffsets(popper, referenceOffsets, placement) {
+  placement = placement.split('-')[0];
+
+  // Get popper node sizes
+  var popperRect = getOuterSizes(popper);
+
+  // Add position, width and height to our offsets object
+  var popperOffsets = {
+    width: popperRect.width,
+    height: popperRect.height
+  };
+
+  // depending by the popper placement we have to compute its offsets slightly differently
+  var isHoriz = ['right', 'left'].indexOf(placement) !== -1;
+  var mainSide = isHoriz ? 'top' : 'left';
+  var secondarySide = isHoriz ? 'left' : 'top';
+  var measurement = isHoriz ? 'height' : 'width';
+  var secondaryMeasurement = !isHoriz ? 'height' : 'width';
+
+  popperOffsets[mainSide] = referenceOffsets[mainSide] + referenceOffsets[measurement] / 2 - popperRect[measurement] / 2;
+  if (placement === secondarySide) {
+    popperOffsets[secondarySide] = referenceOffsets[secondarySide] - popperRect[secondaryMeasurement];
+  } else {
+    popperOffsets[secondarySide] = referenceOffsets[getOppositePlacement(secondarySide)];
+  }
+
+  return popperOffsets;
+}
+
+/**
+ * Mimics the `find` method of Array
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Array} arr
+ * @argument prop
+ * @argument value
+ * @returns index or -1
+ */
+function find(arr, check) {
+  // use native find if supported
+  if (Array.prototype.find) {
+    return arr.find(check);
+  }
+
+  // use `filter` to obtain the same behavior of `find`
+  return arr.filter(check)[0];
+}
+
+/**
+ * Return the index of the matching object
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Array} arr
+ * @argument prop
+ * @argument value
+ * @returns index or -1
+ */
+function findIndex(arr, prop, value) {
+  // use native findIndex if supported
+  if (Array.prototype.findIndex) {
+    return arr.findIndex(function (cur) {
+      return cur[prop] === value;
+    });
+  }
+
+  // use `find` + `indexOf` if `findIndex` isn't supported
+  var match = find(arr, function (obj) {
+    return obj[prop] === value;
+  });
+  return arr.indexOf(match);
+}
+
+/**
+ * Loop trough the list of modifiers and run them in order,
+ * each of them will then edit the data object.
+ * @method
+ * @memberof Popper.Utils
+ * @param {dataObject} data
+ * @param {Array} modifiers
+ * @param {String} ends - Optional modifier name used as stopper
+ * @returns {dataObject}
+ */
+function runModifiers(modifiers, data, ends) {
+  var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'name', ends));
+
+  modifiersToRun.forEach(function (modifier) {
+    if (modifier['function']) {
+      // eslint-disable-line dot-notation
+      console.warn('`modifier.function` is deprecated, use `modifier.fn`!');
+    }
+    var fn = modifier['function'] || modifier.fn; // eslint-disable-line dot-notation
+    if (modifier.enabled && isFunction(fn)) {
+      // Add properties to offsets to make them a complete clientRect object
+      // we do this before each modifier to make sure the previous one doesn't
+      // mess with these values
+      data.offsets.popper = getClientRect(data.offsets.popper);
+      data.offsets.reference = getClientRect(data.offsets.reference);
+
+      data = fn(data, modifier);
+    }
+  });
+
+  return data;
+}
+
+/**
+ * Updates the position of the popper, computing the new offsets and applying
+ * the new style.<br />
+ * Prefer `scheduleUpdate` over `update` because of performance reasons.
+ * @method
+ * @memberof Popper
+ */
+function update() {
+  // if popper is destroyed, don't perform any further update
+  if (this.state.isDestroyed) {
+    return;
+  }
+
+  var data = {
+    instance: this,
+    styles: {},
+    arrowStyles: {},
+    attributes: {},
+    flipped: false,
+    offsets: {}
+  };
+
+  // compute reference element offsets
+  data.offsets.reference = getReferenceOffsets(this.state, this.popper, this.reference, this.options.positionFixed);
+
+  // compute auto placement, store placement inside the data object,
+  // modifiers will be able to edit `placement` if needed
+  // and refer to originalPlacement to know the original value
+  data.placement = computeAutoPlacement(this.options.placement, data.offsets.reference, this.popper, this.reference, this.options.modifiers.flip.boundariesElement, this.options.modifiers.flip.padding);
+
+  // store the computed placement inside `originalPlacement`
+  data.originalPlacement = data.placement;
+
+  data.positionFixed = this.options.positionFixed;
+
+  // compute the popper offsets
+  data.offsets.popper = getPopperOffsets(this.popper, data.offsets.reference, data.placement);
+
+  data.offsets.popper.position = this.options.positionFixed ? 'fixed' : 'absolute';
+
+  // run the modifiers
+  data = runModifiers(this.modifiers, data);
+
+  // the first `update` will call `onCreate` callback
+  // the other ones will call `onUpdate` callback
+  if (!this.state.isCreated) {
+    this.state.isCreated = true;
+    this.options.onCreate(data);
+  } else {
+    this.options.onUpdate(data);
+  }
+}
+
+/**
+ * Helper used to know if the given modifier is enabled.
+ * @method
+ * @memberof Popper.Utils
+ * @returns {Boolean}
+ */
+function isModifierEnabled(modifiers, modifierName) {
+  return modifiers.some(function (_ref) {
+    var name = _ref.name,
+        enabled = _ref.enabled;
+    return enabled && name === modifierName;
+  });
+}
+
+/**
+ * Get the prefixed supported property name
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} property (camelCase)
+ * @returns {String} prefixed property (camelCase or PascalCase, depending on the vendor prefix)
+ */
+function getSupportedPropertyName(property) {
+  var prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
+  var upperProp = property.charAt(0).toUpperCase() + property.slice(1);
+
+  for (var i = 0; i < prefixes.length; i++) {
+    var prefix = prefixes[i];
+    var toCheck = prefix ? '' + prefix + upperProp : property;
+    if (typeof document.body.style[toCheck] !== 'undefined') {
+      return toCheck;
+    }
+  }
+  return null;
+}
+
+/**
+ * Destroys the popper.
+ * @method
+ * @memberof Popper
+ */
+function destroy() {
+  this.state.isDestroyed = true;
+
+  // touch DOM only if `applyStyle` modifier is enabled
+  if (isModifierEnabled(this.modifiers, 'applyStyle')) {
+    this.popper.removeAttribute('x-placement');
+    this.popper.style.position = '';
+    this.popper.style.top = '';
+    this.popper.style.left = '';
+    this.popper.style.right = '';
+    this.popper.style.bottom = '';
+    this.popper.style.willChange = '';
+    this.popper.style[getSupportedPropertyName('transform')] = '';
+  }
+
+  this.disableEventListeners();
+
+  // remove the popper if user explicity asked for the deletion on destroy
+  // do not use `remove` because IE11 doesn't support it
+  if (this.options.removeOnDestroy) {
+    this.popper.parentNode.removeChild(this.popper);
+  }
+  return this;
+}
+
+/**
+ * Get the window associated with the element
+ * @argument {Element} element
+ * @returns {Window}
+ */
+function getWindow(element) {
+  var ownerDocument = element.ownerDocument;
+  return ownerDocument ? ownerDocument.defaultView : window;
+}
+
+function attachToScrollParents(scrollParent, event, callback, scrollParents) {
+  var isBody = scrollParent.nodeName === 'BODY';
+  var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
+  target.addEventListener(event, callback, { passive: true });
+
+  if (!isBody) {
+    attachToScrollParents(getScrollParent(target.parentNode), event, callback, scrollParents);
+  }
+  scrollParents.push(target);
+}
+
+/**
+ * Setup needed event listeners used to update the popper position
+ * @method
+ * @memberof Popper.Utils
+ * @private
+ */
+function setupEventListeners(reference, options, state, updateBound) {
+  // Resize event listener on window
+  state.updateBound = updateBound;
+  getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
+
+  // Scroll event listener on scroll parents
+  var scrollElement = getScrollParent(reference);
+  attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
+  state.scrollElement = scrollElement;
+  state.eventsEnabled = true;
+
+  return state;
+}
+
+/**
+ * It will add resize/scroll events and start recalculating
+ * position of the popper element when they are triggered.
+ * @method
+ * @memberof Popper
+ */
+function enableEventListeners() {
+  if (!this.state.eventsEnabled) {
+    this.state = setupEventListeners(this.reference, this.options, this.state, this.scheduleUpdate);
+  }
+}
+
+/**
+ * Remove event listeners used to update the popper position
+ * @method
+ * @memberof Popper.Utils
+ * @private
+ */
+function removeEventListeners(reference, state) {
+  // Remove resize event listener on window
+  getWindow(reference).removeEventListener('resize', state.updateBound);
+
+  // Remove scroll event listener on scroll parents
+  state.scrollParents.forEach(function (target) {
+    target.removeEventListener('scroll', state.updateBound);
+  });
+
+  // Reset state
+  state.updateBound = null;
+  state.scrollParents = [];
+  state.scrollElement = null;
+  state.eventsEnabled = false;
+  return state;
+}
+
+/**
+ * It will remove resize/scroll events and won't recalculate popper position
+ * when they are triggered. It also won't trigger `onUpdate` callback anymore,
+ * unless you call `update` method manually.
+ * @method
+ * @memberof Popper
+ */
+function disableEventListeners() {
+  if (this.state.eventsEnabled) {
+    cancelAnimationFrame(this.scheduleUpdate);
+    this.state = removeEventListeners(this.reference, this.state);
+  }
+}
+
+/**
+ * Tells if a given input is a number
+ * @method
+ * @memberof Popper.Utils
+ * @param {*} input to check
+ * @return {Boolean}
+ */
+function isNumeric(n) {
+  return n !== '' && !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+/**
+ * Set the style to the given popper
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element - Element to apply the style to
+ * @argument {Object} styles
+ * Object with a list of properties and values which will be applied to the element
+ */
+function setStyles(element, styles) {
+  Object.keys(styles).forEach(function (prop) {
+    var unit = '';
+    // add unit if the value is numeric and is one of the following
+    if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
+      unit = 'px';
+    }
+    element.style[prop] = styles[prop] + unit;
+  });
+}
+
+/**
+ * Set the attributes to the given popper
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element - Element to apply the attributes to
+ * @argument {Object} styles
+ * Object with a list of properties and values which will be applied to the element
+ */
+function setAttributes(element, attributes) {
+  Object.keys(attributes).forEach(function (prop) {
+    var value = attributes[prop];
+    if (value !== false) {
+      element.setAttribute(prop, attributes[prop]);
+    } else {
+      element.removeAttribute(prop);
+    }
+  });
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} data.styles - List of style properties - values to apply to popper element
+ * @argument {Object} data.attributes - List of attribute properties - values to apply to popper element
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The same data object
+ */
+function applyStyle(data) {
+  // any property present in `data.styles` will be applied to the popper,
+  // in this way we can make the 3rd party modifiers add custom styles to it
+  // Be aware, modifiers could override the properties defined in the previous
+  // lines of this modifier!
+  setStyles(data.instance.popper, data.styles);
+
+  // any property present in `data.attributes` will be applied to the popper,
+  // they will be set as HTML attributes of the element
+  setAttributes(data.instance.popper, data.attributes);
+
+  // if arrowElement is defined and arrowStyles has some properties
+  if (data.arrowElement && Object.keys(data.arrowStyles).length) {
+    setStyles(data.arrowElement, data.arrowStyles);
+  }
+
+  return data;
+}
+
+/**
+ * Set the x-placement attribute before everything else because it could be used
+ * to add margins to the popper margins needs to be calculated to get the
+ * correct popper offsets.
+ * @method
+ * @memberof Popper.modifiers
+ * @param {HTMLElement} reference - The reference element used to position the popper
+ * @param {HTMLElement} popper - The HTML element used as popper
+ * @param {Object} options - Popper.js options
+ */
+function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
+  // compute reference element offsets
+  var referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
+
+  // compute auto placement, store placement inside the data object,
+  // modifiers will be able to edit `placement` if needed
+  // and refer to originalPlacement to know the original value
+  var placement = computeAutoPlacement(options.placement, referenceOffsets, popper, reference, options.modifiers.flip.boundariesElement, options.modifiers.flip.padding);
+
+  popper.setAttribute('x-placement', placement);
+
+  // Apply `position` to popper before anything else because
+  // without the position applied we can't guarantee correct computations
+  setStyles(popper, { position: options.positionFixed ? 'fixed' : 'absolute' });
+
+  return options;
+}
+
+/**
+ * @function
+ * @memberof Popper.Utils
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Boolean} shouldRound - If the offsets should be rounded at all
+ * @returns {Object} The popper's position offsets rounded
+ *
+ * The tale of pixel-perfect positioning. It's still not 100% perfect, but as
+ * good as it can be within reason.
+ * Discussion here: https://github.com/FezVrasta/popper.js/pull/715
+ *
+ * Low DPI screens cause a popper to be blurry if not using full pixels (Safari
+ * as well on High DPI screens).
+ *
+ * Firefox prefers no rounding for positioning and does not have blurriness on
+ * high DPI screens.
+ *
+ * Only horizontal placement and left/right values need to be considered.
+ */
+function getRoundedOffsets(data, shouldRound) {
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+  var round = Math.round,
+      floor = Math.floor;
+
+  var noRound = function noRound(v) {
+    return v;
+  };
+
+  var referenceWidth = round(reference.width);
+  var popperWidth = round(popper.width);
+
+  var isVertical = ['left', 'right'].indexOf(data.placement) !== -1;
+  var isVariation = data.placement.indexOf('-') !== -1;
+  var sameWidthParity = referenceWidth % 2 === popperWidth % 2;
+  var bothOddWidth = referenceWidth % 2 === 1 && popperWidth % 2 === 1;
+
+  var horizontalToInteger = !shouldRound ? noRound : isVertical || isVariation || sameWidthParity ? round : floor;
+  var verticalToInteger = !shouldRound ? noRound : round;
+
+  return {
+    left: horizontalToInteger(bothOddWidth && !isVariation && shouldRound ? popper.left - 1 : popper.left),
+    top: verticalToInteger(popper.top),
+    bottom: verticalToInteger(popper.bottom),
+    right: horizontalToInteger(popper.right)
+  };
+}
+
+var isFirefox = isBrowser && /Firefox/i.test(navigator.userAgent);
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function computeStyle(data, options) {
+  var x = options.x,
+      y = options.y;
+  var popper = data.offsets.popper;
+
+  // Remove this legacy support in Popper.js v2
+
+  var legacyGpuAccelerationOption = find(data.instance.modifiers, function (modifier) {
+    return modifier.name === 'applyStyle';
+  }).gpuAcceleration;
+  if (legacyGpuAccelerationOption !== undefined) {
+    console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!');
+  }
+  var gpuAcceleration = legacyGpuAccelerationOption !== undefined ? legacyGpuAccelerationOption : options.gpuAcceleration;
+
+  var offsetParent = getOffsetParent(data.instance.popper);
+  var offsetParentRect = getBoundingClientRect(offsetParent);
+
+  // Styles
+  var styles = {
+    position: popper.position
+  };
+
+  var offsets = getRoundedOffsets(data, window.devicePixelRatio < 2 || !isFirefox);
+
+  var sideA = x === 'bottom' ? 'top' : 'bottom';
+  var sideB = y === 'right' ? 'left' : 'right';
+
+  // if gpuAcceleration is set to `true` and transform is supported,
+  //  we use `translate3d` to apply the position to the popper we
+  // automatically use the supported prefixed version if needed
+  var prefixedProperty = getSupportedPropertyName('transform');
+
+  // now, let's make a step back and look at this code closely (wtf?)
+  // If the content of the popper grows once it's been positioned, it
+  // may happen that the popper gets misplaced because of the new content
+  // overflowing its reference element
+  // To avoid this problem, we provide two options (x and y), which allow
+  // the consumer to define the offset origin.
+  // If we position a popper on top of a reference element, we can set
+  // `x` to `top` to make the popper grow towards its top instead of
+  // its bottom.
+  var left = void 0,
+      top = void 0;
+  if (sideA === 'bottom') {
+    // when offsetParent is <html> the positioning is relative to the bottom of the screen (excluding the scrollbar)
+    // and not the bottom of the html element
+    if (offsetParent.nodeName === 'HTML') {
+      top = -offsetParent.clientHeight + offsets.bottom;
+    } else {
+      top = -offsetParentRect.height + offsets.bottom;
+    }
+  } else {
+    top = offsets.top;
+  }
+  if (sideB === 'right') {
+    if (offsetParent.nodeName === 'HTML') {
+      left = -offsetParent.clientWidth + offsets.right;
+    } else {
+      left = -offsetParentRect.width + offsets.right;
+    }
+  } else {
+    left = offsets.left;
+  }
+  if (gpuAcceleration && prefixedProperty) {
+    styles[prefixedProperty] = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
+    styles[sideA] = 0;
+    styles[sideB] = 0;
+    styles.willChange = 'transform';
+  } else {
+    // othwerise, we use the standard `top`, `left`, `bottom` and `right` properties
+    var invertTop = sideA === 'bottom' ? -1 : 1;
+    var invertLeft = sideB === 'right' ? -1 : 1;
+    styles[sideA] = top * invertTop;
+    styles[sideB] = left * invertLeft;
+    styles.willChange = sideA + ', ' + sideB;
+  }
+
+  // Attributes
+  var attributes = {
+    'x-placement': data.placement
+  };
+
+  // Update `data` attributes, styles and arrowStyles
+  data.attributes = _extends({}, attributes, data.attributes);
+  data.styles = _extends({}, styles, data.styles);
+  data.arrowStyles = _extends({}, data.offsets.arrow, data.arrowStyles);
+
+  return data;
+}
+
+/**
+ * Helper used to know if the given modifier depends from another one.<br />
+ * It checks if the needed modifier is listed and enabled.
+ * @method
+ * @memberof Popper.Utils
+ * @param {Array} modifiers - list of modifiers
+ * @param {String} requestingName - name of requesting modifier
+ * @param {String} requestedName - name of requested modifier
+ * @returns {Boolean}
+ */
+function isModifierRequired(modifiers, requestingName, requestedName) {
+  var requesting = find(modifiers, function (_ref) {
+    var name = _ref.name;
+    return name === requestingName;
+  });
+
+  var isRequired = !!requesting && modifiers.some(function (modifier) {
+    return modifier.name === requestedName && modifier.enabled && modifier.order < requesting.order;
+  });
+
+  if (!isRequired) {
+    var _requesting = '`' + requestingName + '`';
+    var requested = '`' + requestedName + '`';
+    console.warn(requested + ' modifier is required by ' + _requesting + ' modifier in order to work, be sure to include it before ' + _requesting + '!');
+  }
+  return isRequired;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function arrow(data, options) {
+  var _data$offsets$arrow;
+
+  // arrow depends on keepTogether in order to work
+  if (!isModifierRequired(data.instance.modifiers, 'arrow', 'keepTogether')) {
+    return data;
+  }
+
+  var arrowElement = options.element;
+
+  // if arrowElement is a string, suppose it's a CSS selector
+  if (typeof arrowElement === 'string') {
+    arrowElement = data.instance.popper.querySelector(arrowElement);
+
+    // if arrowElement is not found, don't run the modifier
+    if (!arrowElement) {
+      return data;
+    }
+  } else {
+    // if the arrowElement isn't a query selector we must check that the
+    // provided DOM node is child of its popper node
+    if (!data.instance.popper.contains(arrowElement)) {
+      console.warn('WARNING: `arrow.element` must be child of its popper element!');
+      return data;
+    }
+  }
+
+  var placement = data.placement.split('-')[0];
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var isVertical = ['left', 'right'].indexOf(placement) !== -1;
+
+  var len = isVertical ? 'height' : 'width';
+  var sideCapitalized = isVertical ? 'Top' : 'Left';
+  var side = sideCapitalized.toLowerCase();
+  var altSide = isVertical ? 'left' : 'top';
+  var opSide = isVertical ? 'bottom' : 'right';
+  var arrowElementSize = getOuterSizes(arrowElement)[len];
+
+  //
+  // extends keepTogether behavior making sure the popper and its
+  // reference have enough pixels in conjunction
+  //
+
+  // top/left side
+  if (reference[opSide] - arrowElementSize < popper[side]) {
+    data.offsets.popper[side] -= popper[side] - (reference[opSide] - arrowElementSize);
+  }
+  // bottom/right side
+  if (reference[side] + arrowElementSize > popper[opSide]) {
+    data.offsets.popper[side] += reference[side] + arrowElementSize - popper[opSide];
+  }
+  data.offsets.popper = getClientRect(data.offsets.popper);
+
+  // compute center of the popper
+  var center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
+
+  // Compute the sideValue using the updated popper offsets
+  // take popper margin in account because we don't have this info available
+  var css = getStyleComputedProperty(data.instance.popper);
+  var popperMarginSide = parseFloat(css['margin' + sideCapitalized], 10);
+  var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width'], 10);
+  var sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
+
+  // prevent arrowElement from being placed not contiguously to its popper
+  sideValue = Math.max(Math.min(popper[len] - arrowElementSize, sideValue), 0);
+
+  data.arrowElement = arrowElement;
+  data.offsets.arrow = (_data$offsets$arrow = {}, defineProperty(_data$offsets$arrow, side, Math.round(sideValue)), defineProperty(_data$offsets$arrow, altSide, ''), _data$offsets$arrow);
+
+  return data;
+}
+
+/**
+ * Get the opposite placement variation of the given one
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement variation
+ * @returns {String} flipped placement variation
+ */
+function getOppositeVariation(variation) {
+  if (variation === 'end') {
+    return 'start';
+  } else if (variation === 'start') {
+    return 'end';
+  }
+  return variation;
+}
+
+/**
+ * List of accepted placements to use as values of the `placement` option.<br />
+ * Valid placements are:
+ * - `auto`
+ * - `top`
+ * - `right`
+ * - `bottom`
+ * - `left`
+ *
+ * Each placement can have a variation from this list:
+ * - `-start`
+ * - `-end`
+ *
+ * Variations are interpreted easily if you think of them as the left to right
+ * written languages. Horizontally (`top` and `bottom`), `start` is left and `end`
+ * is right.<br />
+ * Vertically (`left` and `right`), `start` is top and `end` is bottom.
+ *
+ * Some valid examples are:
+ * - `top-end` (on top of reference, right aligned)
+ * - `right-start` (on right of reference, top aligned)
+ * - `bottom` (on bottom, centered)
+ * - `auto-end` (on the side with more space available, alignment depends by placement)
+ *
+ * @static
+ * @type {Array}
+ * @enum {String}
+ * @readonly
+ * @method placements
+ * @memberof Popper
+ */
+var placements = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
+
+// Get rid of `auto` `auto-start` and `auto-end`
+var validPlacements = placements.slice(3);
+
+/**
+ * Given an initial placement, returns all the subsequent placements
+ * clockwise (or counter-clockwise).
+ *
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement - A valid placement (it accepts variations)
+ * @argument {Boolean} counter - Set to true to walk the placements counterclockwise
+ * @returns {Array} placements including their variations
+ */
+function clockwise(placement) {
+  var counter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  var index = validPlacements.indexOf(placement);
+  var arr = validPlacements.slice(index + 1).concat(validPlacements.slice(0, index));
+  return counter ? arr.reverse() : arr;
+}
+
+var BEHAVIORS = {
+  FLIP: 'flip',
+  CLOCKWISE: 'clockwise',
+  COUNTERCLOCKWISE: 'counterclockwise'
+};
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function flip(data, options) {
+  // if `inner` modifier is enabled, we can't use the `flip` modifier
+  if (isModifierEnabled(data.instance.modifiers, 'inner')) {
+    return data;
+  }
+
+  if (data.flipped && data.placement === data.originalPlacement) {
+    // seems like flip is trying to loop, probably there's not enough space on any of the flippable sides
+    return data;
+  }
+
+  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, options.boundariesElement, data.positionFixed);
+
+  var placement = data.placement.split('-')[0];
+  var placementOpposite = getOppositePlacement(placement);
+  var variation = data.placement.split('-')[1] || '';
+
+  var flipOrder = [];
+
+  switch (options.behavior) {
+    case BEHAVIORS.FLIP:
+      flipOrder = [placement, placementOpposite];
+      break;
+    case BEHAVIORS.CLOCKWISE:
+      flipOrder = clockwise(placement);
+      break;
+    case BEHAVIORS.COUNTERCLOCKWISE:
+      flipOrder = clockwise(placement, true);
+      break;
+    default:
+      flipOrder = options.behavior;
+  }
+
+  flipOrder.forEach(function (step, index) {
+    if (placement !== step || flipOrder.length === index + 1) {
+      return data;
+    }
+
+    placement = data.placement.split('-')[0];
+    placementOpposite = getOppositePlacement(placement);
+
+    var popperOffsets = data.offsets.popper;
+    var refOffsets = data.offsets.reference;
+
+    // using floor because the reference offsets may contain decimals we are not going to consider here
+    var floor = Math.floor;
+    var overlapsRef = placement === 'left' && floor(popperOffsets.right) > floor(refOffsets.left) || placement === 'right' && floor(popperOffsets.left) < floor(refOffsets.right) || placement === 'top' && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === 'bottom' && floor(popperOffsets.top) < floor(refOffsets.bottom);
+
+    var overflowsLeft = floor(popperOffsets.left) < floor(boundaries.left);
+    var overflowsRight = floor(popperOffsets.right) > floor(boundaries.right);
+    var overflowsTop = floor(popperOffsets.top) < floor(boundaries.top);
+    var overflowsBottom = floor(popperOffsets.bottom) > floor(boundaries.bottom);
+
+    var overflowsBoundaries = placement === 'left' && overflowsLeft || placement === 'right' && overflowsRight || placement === 'top' && overflowsTop || placement === 'bottom' && overflowsBottom;
+
+    // flip the variation if required
+    var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+    var flippedVariation = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
+
+    if (overlapsRef || overflowsBoundaries || flippedVariation) {
+      // this boolean to detect any flip loop
+      data.flipped = true;
+
+      if (overlapsRef || overflowsBoundaries) {
+        placement = flipOrder[index + 1];
+      }
+
+      if (flippedVariation) {
+        variation = getOppositeVariation(variation);
+      }
+
+      data.placement = placement + (variation ? '-' + variation : '');
+
+      // this object contains `position`, we want to preserve it along with
+      // any additional property we may add in the future
+      data.offsets.popper = _extends({}, data.offsets.popper, getPopperOffsets(data.instance.popper, data.offsets.reference, data.placement));
+
+      data = runModifiers(data.instance.modifiers, data, 'flip');
+    }
+  });
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function keepTogether(data) {
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var placement = data.placement.split('-')[0];
+  var floor = Math.floor;
+  var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+  var side = isVertical ? 'right' : 'bottom';
+  var opSide = isVertical ? 'left' : 'top';
+  var measurement = isVertical ? 'width' : 'height';
+
+  if (popper[side] < floor(reference[opSide])) {
+    data.offsets.popper[opSide] = floor(reference[opSide]) - popper[measurement];
+  }
+  if (popper[opSide] > floor(reference[side])) {
+    data.offsets.popper[opSide] = floor(reference[side]);
+  }
+
+  return data;
+}
+
+/**
+ * Converts a string containing value + unit into a px value number
+ * @function
+ * @memberof {modifiers~offset}
+ * @private
+ * @argument {String} str - Value + unit string
+ * @argument {String} measurement - `height` or `width`
+ * @argument {Object} popperOffsets
+ * @argument {Object} referenceOffsets
+ * @returns {Number|String}
+ * Value in pixels, or original string if no values were extracted
+ */
+function toValue(str, measurement, popperOffsets, referenceOffsets) {
+  // separate value from unit
+  var split = str.match(/((?:\-|\+)?\d*\.?\d*)(.*)/);
+  var value = +split[1];
+  var unit = split[2];
+
+  // If it's not a number it's an operator, I guess
+  if (!value) {
+    return str;
+  }
+
+  if (unit.indexOf('%') === 0) {
+    var element = void 0;
+    switch (unit) {
+      case '%p':
+        element = popperOffsets;
+        break;
+      case '%':
+      case '%r':
+      default:
+        element = referenceOffsets;
+    }
+
+    var rect = getClientRect(element);
+    return rect[measurement] / 100 * value;
+  } else if (unit === 'vh' || unit === 'vw') {
+    // if is a vh or vw, we calculate the size based on the viewport
+    var size = void 0;
+    if (unit === 'vh') {
+      size = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    } else {
+      size = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    }
+    return size / 100 * value;
+  } else {
+    // if is an explicit pixel unit, we get rid of the unit and keep the value
+    // if is an implicit unit, it's px, and we return just the value
+    return value;
+  }
+}
+
+/**
+ * Parse an `offset` string to extrapolate `x` and `y` numeric offsets.
+ * @function
+ * @memberof {modifiers~offset}
+ * @private
+ * @argument {String} offset
+ * @argument {Object} popperOffsets
+ * @argument {Object} referenceOffsets
+ * @argument {String} basePlacement
+ * @returns {Array} a two cells array with x and y offsets in numbers
+ */
+function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
+  var offsets = [0, 0];
+
+  // Use height if placement is left or right and index is 0 otherwise use width
+  // in this way the first offset will use an axis and the second one
+  // will use the other one
+  var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
+
+  // Split the offset string to obtain a list of values and operands
+  // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
+  var fragments = offset.split(/(\+|\-)/).map(function (frag) {
+    return frag.trim();
+  });
+
+  // Detect if the offset string contains a pair of values or a single one
+  // they could be separated by comma or space
+  var divider = fragments.indexOf(find(fragments, function (frag) {
+    return frag.search(/,|\s/) !== -1;
+  }));
+
+  if (fragments[divider] && fragments[divider].indexOf(',') === -1) {
+    console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
+  }
+
+  // If divider is found, we divide the list of values and operands to divide
+  // them by ofset X and Y.
+  var splitRegex = /\s*,\s*|\s+/;
+  var ops = divider !== -1 ? [fragments.slice(0, divider).concat([fragments[divider].split(splitRegex)[0]]), [fragments[divider].split(splitRegex)[1]].concat(fragments.slice(divider + 1))] : [fragments];
+
+  // Convert the values with units to absolute pixels to allow our computations
+  ops = ops.map(function (op, index) {
+    // Most of the units rely on the orientation of the popper
+    var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'width';
+    var mergeWithPrevious = false;
+    return op
+    // This aggregates any `+` or `-` sign that aren't considered operators
+    // e.g.: 10 + +5 => [10, +, +5]
+    .reduce(function (a, b) {
+      if (a[a.length - 1] === '' && ['+', '-'].indexOf(b) !== -1) {
+        a[a.length - 1] = b;
+        mergeWithPrevious = true;
+        return a;
+      } else if (mergeWithPrevious) {
+        a[a.length - 1] += b;
+        mergeWithPrevious = false;
+        return a;
+      } else {
+        return a.concat(b);
+      }
+    }, [])
+    // Here we convert the string values into number values (in px)
+    .map(function (str) {
+      return toValue(str, measurement, popperOffsets, referenceOffsets);
+    });
+  });
+
+  // Loop trough the offsets arrays and execute the operations
+  ops.forEach(function (op, index) {
+    op.forEach(function (frag, index2) {
+      if (isNumeric(frag)) {
+        offsets[index] += frag * (op[index2 - 1] === '-' ? -1 : 1);
+      }
+    });
+  });
+  return offsets;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @argument {Number|String} options.offset=0
+ * The offset value as described in the modifier description
+ * @returns {Object} The data object, properly modified
+ */
+function offset(data, _ref) {
+  var offset = _ref.offset;
+  var placement = data.placement,
+      _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var basePlacement = placement.split('-')[0];
+
+  var offsets = void 0;
+  if (isNumeric(+offset)) {
+    offsets = [+offset, 0];
+  } else {
+    offsets = parseOffset(offset, popper, reference, basePlacement);
+  }
+
+  if (basePlacement === 'left') {
+    popper.top += offsets[0];
+    popper.left -= offsets[1];
+  } else if (basePlacement === 'right') {
+    popper.top += offsets[0];
+    popper.left += offsets[1];
+  } else if (basePlacement === 'top') {
+    popper.left += offsets[0];
+    popper.top -= offsets[1];
+  } else if (basePlacement === 'bottom') {
+    popper.left += offsets[0];
+    popper.top += offsets[1];
+  }
+
+  data.popper = popper;
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function preventOverflow(data, options) {
+  var boundariesElement = options.boundariesElement || getOffsetParent(data.instance.popper);
+
+  // If offsetParent is the reference element, we really want to
+  // go one step up and use the next offsetParent as reference to
+  // avoid to make this modifier completely useless and look like broken
+  if (data.instance.reference === boundariesElement) {
+    boundariesElement = getOffsetParent(boundariesElement);
+  }
+
+  // NOTE: DOM access here
+  // resets the popper's position so that the document size can be calculated excluding
+  // the size of the popper element itself
+  var transformProp = getSupportedPropertyName('transform');
+  var popperStyles = data.instance.popper.style; // assignment to help minification
+  var top = popperStyles.top,
+      left = popperStyles.left,
+      transform = popperStyles[transformProp];
+
+  popperStyles.top = '';
+  popperStyles.left = '';
+  popperStyles[transformProp] = '';
+
+  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, boundariesElement, data.positionFixed);
+
+  // NOTE: DOM access here
+  // restores the original style properties after the offsets have been computed
+  popperStyles.top = top;
+  popperStyles.left = left;
+  popperStyles[transformProp] = transform;
+
+  options.boundaries = boundaries;
+
+  var order = options.priority;
+  var popper = data.offsets.popper;
+
+  var check = {
+    primary: function primary(placement) {
+      var value = popper[placement];
+      if (popper[placement] < boundaries[placement] && !options.escapeWithReference) {
+        value = Math.max(popper[placement], boundaries[placement]);
+      }
+      return defineProperty({}, placement, value);
+    },
+    secondary: function secondary(placement) {
+      var mainSide = placement === 'right' ? 'left' : 'top';
+      var value = popper[mainSide];
+      if (popper[placement] > boundaries[placement] && !options.escapeWithReference) {
+        value = Math.min(popper[mainSide], boundaries[placement] - (placement === 'right' ? popper.width : popper.height));
+      }
+      return defineProperty({}, mainSide, value);
+    }
+  };
+
+  order.forEach(function (placement) {
+    var side = ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
+    popper = _extends({}, popper, check[side](placement));
+  });
+
+  data.offsets.popper = popper;
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function shift(data) {
+  var placement = data.placement;
+  var basePlacement = placement.split('-')[0];
+  var shiftvariation = placement.split('-')[1];
+
+  // if shift shiftvariation is specified, run the modifier
+  if (shiftvariation) {
+    var _data$offsets = data.offsets,
+        reference = _data$offsets.reference,
+        popper = _data$offsets.popper;
+
+    var isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
+    var side = isVertical ? 'left' : 'top';
+    var measurement = isVertical ? 'width' : 'height';
+
+    var shiftOffsets = {
+      start: defineProperty({}, side, reference[side]),
+      end: defineProperty({}, side, reference[side] + reference[measurement] - popper[measurement])
+    };
+
+    data.offsets.popper = _extends({}, popper, shiftOffsets[shiftvariation]);
+  }
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function hide(data) {
+  if (!isModifierRequired(data.instance.modifiers, 'hide', 'preventOverflow')) {
+    return data;
+  }
+
+  var refRect = data.offsets.reference;
+  var bound = find(data.instance.modifiers, function (modifier) {
+    return modifier.name === 'preventOverflow';
+  }).boundaries;
+
+  if (refRect.bottom < bound.top || refRect.left > bound.right || refRect.top > bound.bottom || refRect.right < bound.left) {
+    // Avoid unnecessary DOM access if visibility hasn't changed
+    if (data.hide === true) {
+      return data;
+    }
+
+    data.hide = true;
+    data.attributes['x-out-of-boundaries'] = '';
+  } else {
+    // Avoid unnecessary DOM access if visibility hasn't changed
+    if (data.hide === false) {
+      return data;
+    }
+
+    data.hide = false;
+    data.attributes['x-out-of-boundaries'] = false;
+  }
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function inner(data) {
+  var placement = data.placement;
+  var basePlacement = placement.split('-')[0];
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var isHoriz = ['left', 'right'].indexOf(basePlacement) !== -1;
+
+  var subtractLength = ['top', 'left'].indexOf(basePlacement) === -1;
+
+  popper[isHoriz ? 'left' : 'top'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
+
+  data.placement = getOppositePlacement(placement);
+  data.offsets.popper = getClientRect(popper);
+
+  return data;
+}
+
+/**
+ * Modifier function, each modifier can have a function of this type assigned
+ * to its `fn` property.<br />
+ * These functions will be called on each update, this means that you must
+ * make sure they are performant enough to avoid performance bottlenecks.
+ *
+ * @function ModifierFn
+ * @argument {dataObject} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {dataObject} The data object, properly modified
+ */
+
+/**
+ * Modifiers are plugins used to alter the behavior of your poppers.<br />
+ * Popper.js uses a set of 9 modifiers to provide all the basic functionalities
+ * needed by the library.
+ *
+ * Usually you don't want to override the `order`, `fn` and `onLoad` props.
+ * All the other properties are configurations that could be tweaked.
+ * @namespace modifiers
+ */
+var modifiers = {
+  /**
+   * Modifier used to shift the popper on the start or end of its reference
+   * element.<br />
+   * It will read the variation of the `placement` property.<br />
+   * It can be one either `-end` or `-start`.
+   * @memberof modifiers
+   * @inner
+   */
+  shift: {
+    /** @prop {number} order=100 - Index used to define the order of execution */
+    order: 100,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: shift
+  },
+
+  /**
+   * The `offset` modifier can shift your popper on both its axis.
+   *
+   * It accepts the following units:
+   * - `px` or unit-less, interpreted as pixels
+   * - `%` or `%r`, percentage relative to the length of the reference element
+   * - `%p`, percentage relative to the length of the popper element
+   * - `vw`, CSS viewport width unit
+   * - `vh`, CSS viewport height unit
+   *
+   * For length is intended the main axis relative to the placement of the popper.<br />
+   * This means that if the placement is `top` or `bottom`, the length will be the
+   * `width`. In case of `left` or `right`, it will be the `height`.
+   *
+   * You can provide a single value (as `Number` or `String`), or a pair of values
+   * as `String` divided by a comma or one (or more) white spaces.<br />
+   * The latter is a deprecated method because it leads to confusion and will be
+   * removed in v2.<br />
+   * Additionally, it accepts additions and subtractions between different units.
+   * Note that multiplications and divisions aren't supported.
+   *
+   * Valid examples are:
+   * ```
+   * 10
+   * '10%'
+   * '10, 10'
+   * '10%, 10'
+   * '10 + 10%'
+   * '10 - 5vh + 3%'
+   * '-10px + 5vh, 5px - 6%'
+   * ```
+   * > **NB**: If you desire to apply offsets to your poppers in a way that may make them overlap
+   * > with their reference element, unfortunately, you will have to disable the `flip` modifier.
+   * > You can read more on this at this [issue](https://github.com/FezVrasta/popper.js/issues/373).
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  offset: {
+    /** @prop {number} order=200 - Index used to define the order of execution */
+    order: 200,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: offset,
+    /** @prop {Number|String} offset=0
+     * The offset value as described in the modifier description
+     */
+    offset: 0
+  },
+
+  /**
+   * Modifier used to prevent the popper from being positioned outside the boundary.
+   *
+   * A scenario exists where the reference itself is not within the boundaries.<br />
+   * We can say it has "escaped the boundaries" — or just "escaped".<br />
+   * In this case we need to decide whether the popper should either:
+   *
+   * - detach from the reference and remain "trapped" in the boundaries, or
+   * - if it should ignore the boundary and "escape with its reference"
+   *
+   * When `escapeWithReference` is set to`true` and reference is completely
+   * outside its boundaries, the popper will overflow (or completely leave)
+   * the boundaries in order to remain attached to the edge of the reference.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  preventOverflow: {
+    /** @prop {number} order=300 - Index used to define the order of execution */
+    order: 300,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: preventOverflow,
+    /**
+     * @prop {Array} [priority=['left','right','top','bottom']]
+     * Popper will try to prevent overflow following these priorities by default,
+     * then, it could overflow on the left and on top of the `boundariesElement`
+     */
+    priority: ['left', 'right', 'top', 'bottom'],
+    /**
+     * @prop {number} padding=5
+     * Amount of pixel used to define a minimum distance between the boundaries
+     * and the popper. This makes sure the popper always has a little padding
+     * between the edges of its container
+     */
+    padding: 5,
+    /**
+     * @prop {String|HTMLElement} boundariesElement='scrollParent'
+     * Boundaries used by the modifier. Can be `scrollParent`, `window`,
+     * `viewport` or any DOM element.
+     */
+    boundariesElement: 'scrollParent'
+  },
+
+  /**
+   * Modifier used to make sure the reference and its popper stay near each other
+   * without leaving any gap between the two. Especially useful when the arrow is
+   * enabled and you want to ensure that it points to its reference element.
+   * It cares only about the first axis. You can still have poppers with margin
+   * between the popper and its reference element.
+   * @memberof modifiers
+   * @inner
+   */
+  keepTogether: {
+    /** @prop {number} order=400 - Index used to define the order of execution */
+    order: 400,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: keepTogether
+  },
+
+  /**
+   * This modifier is used to move the `arrowElement` of the popper to make
+   * sure it is positioned between the reference element and its popper element.
+   * It will read the outer size of the `arrowElement` node to detect how many
+   * pixels of conjunction are needed.
+   *
+   * It has no effect if no `arrowElement` is provided.
+   * @memberof modifiers
+   * @inner
+   */
+  arrow: {
+    /** @prop {number} order=500 - Index used to define the order of execution */
+    order: 500,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: arrow,
+    /** @prop {String|HTMLElement} element='[x-arrow]' - Selector or node used as arrow */
+    element: '[x-arrow]'
+  },
+
+  /**
+   * Modifier used to flip the popper's placement when it starts to overlap its
+   * reference element.
+   *
+   * Requires the `preventOverflow` modifier before it in order to work.
+   *
+   * **NOTE:** this modifier will interrupt the current update cycle and will
+   * restart it if it detects the need to flip the placement.
+   * @memberof modifiers
+   * @inner
+   */
+  flip: {
+    /** @prop {number} order=600 - Index used to define the order of execution */
+    order: 600,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: flip,
+    /**
+     * @prop {String|Array} behavior='flip'
+     * The behavior used to change the popper's placement. It can be one of
+     * `flip`, `clockwise`, `counterclockwise` or an array with a list of valid
+     * placements (with optional variations)
+     */
+    behavior: 'flip',
+    /**
+     * @prop {number} padding=5
+     * The popper will flip if it hits the edges of the `boundariesElement`
+     */
+    padding: 5,
+    /**
+     * @prop {String|HTMLElement} boundariesElement='viewport'
+     * The element which will define the boundaries of the popper position.
+     * The popper will never be placed outside of the defined boundaries
+     * (except if `keepTogether` is enabled)
+     */
+    boundariesElement: 'viewport'
+  },
+
+  /**
+   * Modifier used to make the popper flow toward the inner of the reference element.
+   * By default, when this modifier is disabled, the popper will be placed outside
+   * the reference element.
+   * @memberof modifiers
+   * @inner
+   */
+  inner: {
+    /** @prop {number} order=700 - Index used to define the order of execution */
+    order: 700,
+    /** @prop {Boolean} enabled=false - Whether the modifier is enabled or not */
+    enabled: false,
+    /** @prop {ModifierFn} */
+    fn: inner
+  },
+
+  /**
+   * Modifier used to hide the popper when its reference element is outside of the
+   * popper boundaries. It will set a `x-out-of-boundaries` attribute which can
+   * be used to hide with a CSS selector the popper when its reference is
+   * out of boundaries.
+   *
+   * Requires the `preventOverflow` modifier before it in order to work.
+   * @memberof modifiers
+   * @inner
+   */
+  hide: {
+    /** @prop {number} order=800 - Index used to define the order of execution */
+    order: 800,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: hide
+  },
+
+  /**
+   * Computes the style that will be applied to the popper element to gets
+   * properly positioned.
+   *
+   * Note that this modifier will not touch the DOM, it just prepares the styles
+   * so that `applyStyle` modifier can apply it. This separation is useful
+   * in case you need to replace `applyStyle` with a custom implementation.
+   *
+   * This modifier has `850` as `order` value to maintain backward compatibility
+   * with previous versions of Popper.js. Expect the modifiers ordering method
+   * to change in future major versions of the library.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  computeStyle: {
+    /** @prop {number} order=850 - Index used to define the order of execution */
+    order: 850,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: computeStyle,
+    /**
+     * @prop {Boolean} gpuAcceleration=true
+     * If true, it uses the CSS 3D transformation to position the popper.
+     * Otherwise, it will use the `top` and `left` properties
+     */
+    gpuAcceleration: true,
+    /**
+     * @prop {string} [x='bottom']
+     * Where to anchor the X axis (`bottom` or `top`). AKA X offset origin.
+     * Change this if your popper should grow in a direction different from `bottom`
+     */
+    x: 'bottom',
+    /**
+     * @prop {string} [x='left']
+     * Where to anchor the Y axis (`left` or `right`). AKA Y offset origin.
+     * Change this if your popper should grow in a direction different from `right`
+     */
+    y: 'right'
+  },
+
+  /**
+   * Applies the computed styles to the popper element.
+   *
+   * All the DOM manipulations are limited to this modifier. This is useful in case
+   * you want to integrate Popper.js inside a framework or view library and you
+   * want to delegate all the DOM manipulations to it.
+   *
+   * Note that if you disable this modifier, you must make sure the popper element
+   * has its position set to `absolute` before Popper.js can do its work!
+   *
+   * Just disable this modifier and define your own to achieve the desired effect.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  applyStyle: {
+    /** @prop {number} order=900 - Index used to define the order of execution */
+    order: 900,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: applyStyle,
+    /** @prop {Function} */
+    onLoad: applyStyleOnLoad,
+    /**
+     * @deprecated since version 1.10.0, the property moved to `computeStyle` modifier
+     * @prop {Boolean} gpuAcceleration=true
+     * If true, it uses the CSS 3D transformation to position the popper.
+     * Otherwise, it will use the `top` and `left` properties
+     */
+    gpuAcceleration: undefined
+  }
+};
+
+/**
+ * The `dataObject` is an object containing all the information used by Popper.js.
+ * This object is passed to modifiers and to the `onCreate` and `onUpdate` callbacks.
+ * @name dataObject
+ * @property {Object} data.instance The Popper.js instance
+ * @property {String} data.placement Placement applied to popper
+ * @property {String} data.originalPlacement Placement originally defined on init
+ * @property {Boolean} data.flipped True if popper has been flipped by flip modifier
+ * @property {Boolean} data.hide True if the reference element is out of boundaries, useful to know when to hide the popper
+ * @property {HTMLElement} data.arrowElement Node used as arrow by arrow modifier
+ * @property {Object} data.styles Any CSS property defined here will be applied to the popper. It expects the JavaScript nomenclature (eg. `marginBottom`)
+ * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow. It expects the JavaScript nomenclature (eg. `marginBottom`)
+ * @property {Object} data.boundaries Offsets of the popper boundaries
+ * @property {Object} data.offsets The measurements of popper, reference and arrow elements
+ * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values
+ * @property {Object} data.offsets.reference `top`, `left`, `width`, `height` values
+ * @property {Object} data.offsets.arrow] `top` and `left` offsets, only one of them will be different from 0
+ */
+
+/**
+ * Default options provided to Popper.js constructor.<br />
+ * These can be overridden using the `options` argument of Popper.js.<br />
+ * To override an option, simply pass an object with the same
+ * structure of the `options` object, as the 3rd argument. For example:
+ * ```
+ * new Popper(ref, pop, {
+ *   modifiers: {
+ *     preventOverflow: { enabled: false }
+ *   }
+ * })
+ * ```
+ * @type {Object}
+ * @static
+ * @memberof Popper
+ */
+var Defaults = {
+  /**
+   * Popper's placement.
+   * @prop {Popper.placements} placement='bottom'
+   */
+  placement: 'bottom',
+
+  /**
+   * Set this to true if you want popper to position it self in 'fixed' mode
+   * @prop {Boolean} positionFixed=false
+   */
+  positionFixed: false,
+
+  /**
+   * Whether events (resize, scroll) are initially enabled.
+   * @prop {Boolean} eventsEnabled=true
+   */
+  eventsEnabled: true,
+
+  /**
+   * Set to true if you want to automatically remove the popper when
+   * you call the `destroy` method.
+   * @prop {Boolean} removeOnDestroy=false
+   */
+  removeOnDestroy: false,
+
+  /**
+   * Callback called when the popper is created.<br />
+   * By default, it is set to no-op.<br />
+   * Access Popper.js instance with `data.instance`.
+   * @prop {onCreate}
+   */
+  onCreate: function onCreate() {},
+
+  /**
+   * Callback called when the popper is updated. This callback is not called
+   * on the initialization/creation of the popper, but only on subsequent
+   * updates.<br />
+   * By default, it is set to no-op.<br />
+   * Access Popper.js instance with `data.instance`.
+   * @prop {onUpdate}
+   */
+  onUpdate: function onUpdate() {},
+
+  /**
+   * List of modifiers used to modify the offsets before they are applied to the popper.
+   * They provide most of the functionalities of Popper.js.
+   * @prop {modifiers}
+   */
+  modifiers: modifiers
+};
+
+/**
+ * @callback onCreate
+ * @param {dataObject} data
+ */
+
+/**
+ * @callback onUpdate
+ * @param {dataObject} data
+ */
+
+// Utils
+// Methods
+var Popper = function () {
+  /**
+   * Creates a new Popper.js instance.
+   * @class Popper
+   * @param {HTMLElement|referenceObject} reference - The reference element used to position the popper
+   * @param {HTMLElement} popper - The HTML element used as the popper
+   * @param {Object} options - Your custom options to override the ones defined in [Defaults](#defaults)
+   * @return {Object} instance - The generated Popper.js instance
+   */
+  function Popper(reference, popper) {
+    var _this = this;
+
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    classCallCheck(this, Popper);
+
+    this.scheduleUpdate = function () {
+      return requestAnimationFrame(_this.update);
+    };
+
+    // make update() debounced, so that it only runs at most once-per-tick
+    this.update = debounce(this.update.bind(this));
+
+    // with {} we create a new object with the options inside it
+    this.options = _extends({}, Popper.Defaults, options);
+
+    // init state
+    this.state = {
+      isDestroyed: false,
+      isCreated: false,
+      scrollParents: []
+    };
+
+    // get reference and popper elements (allow jQuery wrappers)
+    this.reference = reference && reference.jquery ? reference[0] : reference;
+    this.popper = popper && popper.jquery ? popper[0] : popper;
+
+    // Deep merge modifiers options
+    this.options.modifiers = {};
+    Object.keys(_extends({}, Popper.Defaults.modifiers, options.modifiers)).forEach(function (name) {
+      _this.options.modifiers[name] = _extends({}, Popper.Defaults.modifiers[name] || {}, options.modifiers ? options.modifiers[name] : {});
+    });
+
+    // Refactoring modifiers' list (Object => Array)
+    this.modifiers = Object.keys(this.options.modifiers).map(function (name) {
+      return _extends({
+        name: name
+      }, _this.options.modifiers[name]);
+    })
+    // sort the modifiers by order
+    .sort(function (a, b) {
+      return a.order - b.order;
+    });
+
+    // modifiers have the ability to execute arbitrary code when Popper.js get inited
+    // such code is executed in the same order of its modifier
+    // they could add new properties to their options configuration
+    // BE AWARE: don't add options to `options.modifiers.name` but to `modifierOptions`!
+    this.modifiers.forEach(function (modifierOptions) {
+      if (modifierOptions.enabled && isFunction(modifierOptions.onLoad)) {
+        modifierOptions.onLoad(_this.reference, _this.popper, _this.options, modifierOptions, _this.state);
+      }
+    });
+
+    // fire the first update to position the popper in the right place
+    this.update();
+
+    var eventsEnabled = this.options.eventsEnabled;
+    if (eventsEnabled) {
+      // setup event listeners, they will take care of update the position in specific situations
+      this.enableEventListeners();
+    }
+
+    this.state.eventsEnabled = eventsEnabled;
+  }
+
+  // We can't use class properties because they don't get listed in the
+  // class prototype and break stuff like Sinon stubs
+
+
+  createClass(Popper, [{
+    key: 'update',
+    value: function update$$1() {
+      return update.call(this);
+    }
+  }, {
+    key: 'destroy',
+    value: function destroy$$1() {
+      return destroy.call(this);
+    }
+  }, {
+    key: 'enableEventListeners',
+    value: function enableEventListeners$$1() {
+      return enableEventListeners.call(this);
+    }
+  }, {
+    key: 'disableEventListeners',
+    value: function disableEventListeners$$1() {
+      return disableEventListeners.call(this);
+    }
+
+    /**
+     * Schedules an update. It will run on the next UI update available.
+     * @method scheduleUpdate
+     * @memberof Popper
+     */
+
+
+    /**
+     * Collection of utilities useful when writing custom modifiers.
+     * Starting from version 1.7, this method is available only if you
+     * include `popper-utils.js` before `popper.js`.
+     *
+     * **DEPRECATION**: This way to access PopperUtils is deprecated
+     * and will be removed in v2! Use the PopperUtils module directly instead.
+     * Due to the high instability of the methods contained in Utils, we can't
+     * guarantee them to follow semver. Use them at your own risk!
+     * @static
+     * @private
+     * @type {Object}
+     * @deprecated since version 1.8
+     * @member Utils
+     * @memberof Popper
+     */
+
+  }]);
+  return Popper;
+}();
+
+/**
+ * The `referenceObject` is an object that provides an interface compatible with Popper.js
+ * and lets you use it as replacement of a real DOM node.<br />
+ * You can use this method to position a popper relatively to a set of coordinates
+ * in case you don't have a DOM node to use as reference.
+ *
+ * ```
+ * new Popper(referenceObject, popperNode);
+ * ```
+ *
+ * NB: This feature isn't supported in Internet Explorer 10.
+ * @name referenceObject
+ * @property {Function} data.getBoundingClientRect
+ * A function that returns a set of coordinates compatible with the native `getBoundingClientRect` method.
+ * @property {number} data.clientWidth
+ * An ES6 getter that will return the width of the virtual reference element.
+ * @property {number} data.clientHeight
+ * An ES6 getter that will return the height of the virtual reference element.
+ */
+
+
+Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
+Popper.placements = placements;
+Popper.Defaults = Defaults;
+
+/* harmony default export */ __webpack_exports__["a"] = (Popper);
+//# sourceMappingURL=popper.js.map
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("c8ba")))
 
 /***/ }),
 
@@ -14693,6 +15731,65 @@ module.exports = function (O, D) {
   var S;
   return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);
 };
+
+
+/***/ }),
+
+/***/ "f2dd":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("2350")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".resize-observer[data-v-b329ee4c]{border:none;background-color:transparent;opacity:0}.resize-observer[data-v-b329ee4c],.resize-observer[data-v-b329ee4c] object{position:absolute;top:0;left:0;z-index:-1;width:100%;height:100%;pointer-events:none;display:block;overflow:hidden}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "f3c1":
+/***/ (function(module, exports) {
+
+/** Used to detect hot functions by number of calls within a span of milliseconds. */
+var HOT_COUNT = 800,
+    HOT_SPAN = 16;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeNow = Date.now;
+
+/**
+ * Creates a function that'll short out and invoke `identity` instead
+ * of `func` when it's called `HOT_COUNT` or more times in `HOT_SPAN`
+ * milliseconds.
+ *
+ * @private
+ * @param {Function} func The function to restrict.
+ * @returns {Function} Returns the new shortable function.
+ */
+function shortOut(func) {
+  var count = 0,
+      lastCalled = 0;
+
+  return function() {
+    var stamp = nativeNow(),
+        remaining = HOT_SPAN - (stamp - lastCalled);
+
+    lastCalled = stamp;
+    if (remaining > 0) {
+      if (++count >= HOT_COUNT) {
+        return arguments[0];
+      }
+    } else {
+      count = 0;
+    }
+    return func.apply(undefined, arguments);
+  };
+}
+
+module.exports = shortOut;
 
 
 /***/ }),
@@ -14814,6 +15911,29 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "f8af":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Uint8Array = __webpack_require__("2474");
+
+/**
+ * Creates a clone of `arrayBuffer`.
+ *
+ * @private
+ * @param {ArrayBuffer} arrayBuffer The array buffer to clone.
+ * @returns {ArrayBuffer} Returns the cloned array buffer.
+ */
+function cloneArrayBuffer(arrayBuffer) {
+  var result = new arrayBuffer.constructor(arrayBuffer.byteLength);
+  new Uint8Array(result).set(new Uint8Array(arrayBuffer));
+  return result;
+}
+
+module.exports = cloneArrayBuffer;
+
+
+/***/ }),
+
 /***/ "f8c4":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14825,6 +15945,55 @@ exports = module.exports = __webpack_require__("2350")(false);
 exports.push([module.i, "li{list-style:none}h1,h2,h3,h4,h5,h6{margin:0}.fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.ui-input{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:100%;height:46px;line-height:46px;font-size:16px;margin:1rem 0;color:#2e3238;border-radius:7px;border:1px solid #e9ebee;padding:11px 0;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out;background:#fff}.ui-input>.ui-spinner{margin-right:10px}.ui-input .ui-input-inner{caret-color:#08d7b8;border:none;font-size:16px;font-weight:300;color:#2e3238;width:100%;margin-left:1px;margin-right:2px;padding:0 12px;height:100%}.ui-input .ui-input-inner:focus{outline:none}.ui-input .ui-input-inner::-webkit-input-placeholder{color:#9b9b9b}.ui-input-focusin{border-color:#34f7da;-webkit-box-shadow:0 0 10px rgba(0,0,0,.1);box-shadow:0 0 10px rgba(0,0,0,.1)}.ui-input-focusin .ui-input-prefix,.ui-input-focusin .ui-input-suffix{color:#08d7b8}.ui-input-focusin.ui-input-disabled .ui-input-prefix,.ui-input-focusin.ui-input-disabled .ui-input-suffix,.ui-input-focusin.ui-input-readonly .ui-input-prefix,.ui-input-focusin.ui-input-readonly .ui-input-suffix{color:#9b9b9b}.ui-input-disabled,.ui-input-disabled .ui-input-inner{cursor:not-allowed;background:#e9ebee;border-color:#9b9b9b}.ui-input-readonly,.ui-input-readonly .ui-input-inner{border-color:#9b9b9b;color:#9b9b9b;cursor:crosshair}.ui-input-with-prefix .ui-input-inner{margin-top:2px;padding-left:0}.ui-input-with-suffix .ui-input-inner{padding-right:0}.ui-input-with-error{border-color:#ff8f6c;position:relative}.ui-input-with-error .ui-icon,.ui-input-with-error .ui-input-inner{color:#ff8f6c}.ui-input~.ui-v-error-list,.ui-textarea~.ui-v-error-list{margin-top:-10px}.ui-v-error-list{color:#ff8f6c;font-size:12px;padding:0 10px}.ui-v-error-list span:last-child em{display:none}input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #fff inset}.ui-input-clear,.ui-input-prefix,.ui-input-suffix{margin:0 8px;color:#9b9b9b;white-space:nowrap;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out}.ui-input-clear{cursor:pointer;color:#e9ebee}.ui-input-clear:hover{color:#08d7b8}grammarly-ghost>div{border:2px solid #9b9b9b}grammarly-ghost span{color:#333!important}.ui-input-theme-ghost{border-color:rgba(0,0,0,.6);background:rgba(0,0,0,.3)}.ui-input-theme-ghost .ui-input-inner{background:none;color:hsla(0,0%,100%,.9);caret-color:#e9ebee}.ui-input-theme-ghost .ui-input-inner::-webkit-input-placeholder{color:#e9ebee}.ui-input-theme-ghost .ui-input-clear,.ui-input-theme-ghost .ui-input-prefix,.ui-input-theme-ghost .ui-input-suffix{color:#fff}.ui-input-theme-ghost.ui-input-focusin{border-color:rgba(0,0,0,.8)}.ui-input-theme-ghost.ui-input-with-error{border-color:rgba(255,143,108,.6)}.ui-input-theme-solid{border-color:#08d7b8;background:#08d7b8}.ui-input-theme-solid .ui-input-inner{background:none;color:#fff;caret-color:hsla(0,0%,100%,.8)}.ui-input-theme-solid .ui-input-inner::-webkit-input-placeholder{color:hsla(0,0%,100%,.8)}.ui-input-theme-solid .ui-input-clear,.ui-input-theme-solid .ui-input-prefix,.ui-input-theme-solid .ui-input-suffix{color:#fff}.ui-input-theme-solid.ui-input-focusin{border-color:#08d7b8}.ui-input-theme-inline{border:none;border-bottom:1px solid #e9ebee;background:none;border-radius:0!important;padding:0;margin:0;height:auto;width:auto;line-height:1;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex}.ui-input-theme-inline .ui-input-inner{background:none;padding:0 2px;line-height:1}.ui-input-theme-inline .ui-input-clear{margin:0 2px}.ui-input-theme-inline.ui-input-focusin{border-color:#08d7b8;-webkit-box-shadow:none;box-shadow:none}.ui-input-group{display:-webkit-box;display:-ms-flexbox;display:flex}.ui-input-group .ui-input{border-radius:0}.ui-input-group .ui-input:first-child{border-radius:7px 0 0 7px}.ui-input-group .ui-input:last-child{border-radius:0 7px 7px 0}.ui-input-group .ui-input~.ui-input{border-left-width:0}.ui-input-group .ui-input~.ui-input-focusin{border-left-width:1px}.ui-input-group .ui-input .ui-input-inner{text-align:center}", ""]);
 
 // exports
+
+
+/***/ }),
+
+/***/ "f909":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Stack = __webpack_require__("7e64"),
+    assignMergeValue = __webpack_require__("b760"),
+    baseFor = __webpack_require__("72af"),
+    baseMergeDeep = __webpack_require__("4f50"),
+    isObject = __webpack_require__("1a8c"),
+    keysIn = __webpack_require__("9934"),
+    safeGet = __webpack_require__("8adb");
+
+/**
+ * The base implementation of `_.merge` without support for multiple sources.
+ *
+ * @private
+ * @param {Object} object The destination object.
+ * @param {Object} source The source object.
+ * @param {number} srcIndex The index of `source`.
+ * @param {Function} [customizer] The function to customize merged values.
+ * @param {Object} [stack] Tracks traversed source values and their merged
+ *  counterparts.
+ */
+function baseMerge(object, source, srcIndex, customizer, stack) {
+  if (object === source) {
+    return;
+  }
+  baseFor(source, function(srcValue, key) {
+    if (isObject(srcValue)) {
+      stack || (stack = new Stack);
+      baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
+    }
+    else {
+      var newValue = customizer
+        ? customizer(safeGet(object, key), srcValue, (key + ''), object, source, stack)
+        : undefined;
+
+      if (newValue === undefined) {
+        newValue = srcValue;
+      }
+      assignMergeValue(object, key, newValue);
+    }
+  }, keysIn);
+}
+
+module.exports = baseMerge;
 
 
 /***/ }),
@@ -14849,6 +16018,31 @@ module.exports = __webpack_require__("584a").Symbol;
 /* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slide_panel_vue_vue_type_style_index_0_id_0985f30b_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slide_panel_vue_vue_type_style_index_0_id_0985f30b_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
  /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slide_panel_vue_vue_type_style_index_0_id_0985f30b_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "fa21":
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseCreate = __webpack_require__("7530"),
+    getPrototype = __webpack_require__("2dcb"),
+    isPrototype = __webpack_require__("eac5");
+
+/**
+ * Initializes an object clone.
+ *
+ * @private
+ * @param {Object} object The object to clone.
+ * @returns {Object} Returns the initialized clone.
+ */
+function initCloneObject(object) {
+  return (typeof object.constructor == 'function' && !isPrototype(object))
+    ? baseCreate(getPrototype(object))
+    : {};
+}
+
+module.exports = initCloneObject;
+
 
 /***/ }),
 
@@ -14936,9 +16130,207 @@ var es6_string_includes = __webpack_require__("2fdb");
 // EXTERNAL MODULE: ./packages/assets/scss/avatar.scss
 var avatar = __webpack_require__("3b89");
 
-// EXTERNAL MODULE: ./packages/icon/icon.vue + 4 modules
-var icon = __webpack_require__("383c");
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/icon/icon.vue?vue&type=template&id=551a70ba&
+var iconvue_type_template_id_551a70ba_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.iconId)?_c('svg',{staticClass:"ui-icon",attrs:{"aria-hidden":"true"}},[_c('use',{attrs:{"xlink:href":_vm.iconId}})]):_vm._e()}
+var iconvue_type_template_id_551a70ba_staticRenderFns = []
 
+
+// CONCATENATED MODULE: ./packages/icon/icon.vue?vue&type=template&id=551a70ba&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.starts-with.js
+var es6_string_starts_with = __webpack_require__("f559");
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/promise.js
+var promise = __webpack_require__("795b");
+var promise_default = /*#__PURE__*/__webpack_require__.n(promise);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js
+var get_own_property_descriptor = __webpack_require__("268f");
+var get_own_property_descriptor_default = /*#__PURE__*/__webpack_require__.n(get_own_property_descriptor);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js
+var define_property = __webpack_require__("85f2");
+var define_property_default = /*#__PURE__*/__webpack_require__.n(define_property);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/interopRequireWildcard.js
+
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};
+
+    if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          var desc = define_property_default.a && get_own_property_descriptor_default.a ? get_own_property_descriptor_default()(obj, key) : {};
+
+          if (desc.get || desc.set) {
+            define_property_default()(newObj, key, desc);
+          } else {
+            newObj[key] = obj[key];
+          }
+        }
+      }
+    }
+
+    newObj.default = obj;
+    return newObj;
+  }
+}
+// EXTERNAL MODULE: ./packages/assets/scss/icon.scss
+var icon = __webpack_require__("4cc0");
+
+// EXTERNAL MODULE: ./packages/assets/image/iconfont.svg
+var iconfont = __webpack_require__("fb97");
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/icon/icon.vue?vue&type=script&lang=js&
+
+
+
+
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ var iconvue_type_script_lang_js_ = ({
+  name: "ui-icon",
+  props: {
+    name: String
+  },
+  mounted: function mounted() {
+    promise_default.a.resolve().then(function () {
+      return _interopRequireWildcard(__webpack_require__("ee47"));
+    }).then(function (module) {});
+  },
+  computed: {
+    iconId: function iconId() {
+      return this.name ? this.name.startsWith("icon-") ? "#".concat(this.name) : "#icon-".concat(this.name) : "";
+    }
+  }
+});
+// CONCATENATED MODULE: ./packages/icon/icon.vue?vue&type=script&lang=js&
+ /* harmony default export */ var icon_iconvue_type_script_lang_js_ = (iconvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+// CONCATENATED MODULE: ./packages/icon/icon.vue
+
+
+
+
+
+/* normalize component */
+
+var component = normalizeComponent(
+  icon_iconvue_type_script_lang_js_,
+  iconvue_type_template_id_551a70ba_render,
+  iconvue_type_template_id_551a70ba_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "icon.vue"
+/* harmony default export */ var icon_icon = (component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/image/image.vue?vue&type=template&id=845904a0&
 var imagevue_type_template_id_845904a0_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-image",class:[_vm.keepSize && 'ui-image-keep-size']},[_c('transition',{attrs:{"name":"fade"}},[(!_vm.loading)?_c('div',{staticClass:"ui-image-image",style:(_vm.backgroundStyle)}):_vm._e()]),(_vm.cover)?_c('div',{staticClass:"ui-image-cover"}):_vm._e(),(_vm.loading)?_vm._t("loader",[_c('div',{staticClass:"ui-image-loader"},[_c('ui-spinner',{attrs:{"center":""}})],1)]):_vm._e(),(_vm.$slots.default)?_c('div',{staticClass:"ui-image-slot",style:(_vm.slotStyles)},[_vm._t("default")],2):_vm._e()],2)}
 var imagevue_type_template_id_845904a0_staticRenderFns = []
@@ -15000,9 +16392,6 @@ var spinner = __webpack_require__("1521");
 });
 // CONCATENATED MODULE: ./packages/spinner/spinner.vue?vue&type=script&lang=js&
  /* harmony default export */ var spinner_spinnervue_type_script_lang_js_ = (spinnervue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
-var componentNormalizer = __webpack_require__("2877");
-
 // CONCATENATED MODULE: ./packages/spinner/spinner.vue
 
 
@@ -15011,7 +16400,7 @@ var componentNormalizer = __webpack_require__("2877");
 
 /* normalize component */
 
-var component = Object(componentNormalizer["a" /* default */])(
+var spinner_component = normalizeComponent(
   spinner_spinnervue_type_script_lang_js_,
   spinnervue_type_template_id_6f503344_render,
   spinnervue_type_template_id_6f503344_staticRenderFns,
@@ -15022,12 +16411,8 @@ var component = Object(componentNormalizer["a" /* default */])(
   
 )
 
-component.options.__file = "spinner.vue"
-/* harmony default export */ var spinner_spinner = (component.exports);
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/promise.js
-var promise = __webpack_require__("795b");
-var promise_default = /*#__PURE__*/__webpack_require__.n(promise);
-
+spinner_component.options.__file = "spinner.vue"
+/* harmony default export */ var spinner_spinner = (spinner_component.exports);
 // CONCATENATED MODULE: ./src/utils/imgLoader.js
 
 
@@ -15133,7 +16518,7 @@ var scss_image = __webpack_require__("fabe");
 
 /* normalize component */
 
-var image_component = Object(componentNormalizer["a" /* default */])(
+var image_component = normalizeComponent(
   image_imagevue_type_script_lang_js_,
   imagevue_type_template_id_845904a0_render,
   imagevue_type_template_id_845904a0_staticRenderFns,
@@ -15176,7 +16561,7 @@ image_component.options.__file = "image.vue"
 /* harmony default export */ var avatarvue_type_script_lang_js_ = ({
   name: "ui-avatar",
   components: {
-    UiIcon: icon["a" /* default */],
+    UiIcon: icon_icon,
     UiImage: image_image
   },
   props: {
@@ -15236,7 +16621,7 @@ image_component.options.__file = "image.vue"
 
 /* normalize component */
 
-var avatar_component = Object(componentNormalizer["a" /* default */])(
+var avatar_component = normalizeComponent(
   avatar_avatarvue_type_script_lang_js_,
   avatarvue_type_template_id_f0fc2b18_render,
   staticRenderFns,
@@ -15258,9 +16643,15 @@ avatar_avatar.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_avatar = (avatar_avatar);
-// EXTERNAL MODULE: ./packages/icon/index.js
-var packages_icon = __webpack_require__("07fc");
+// CONCATENATED MODULE: ./packages/icon/index.js
 
+
+
+icon_icon.install = function (Vue) {
+  Vue.component(icon_icon.name, icon_icon);
+};
+
+/* harmony default export */ var packages_icon = (icon_icon);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/loader/loader.vue?vue&type=template&id=cc5b8d78&
 var loadervue_type_template_id_cc5b8d78_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-loader"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:('pull-down' === _vm.pull.type),expression:"'pull-down' === pull.type"}],staticClass:"ui-loader__header",style:({ height: _vm.pullHeight + 'px' })},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.pull.available),expression:"!pull.available"}],staticClass:"ui-loader__header-text"},[_vm._v("\n      "+_vm._s(_vm.lang.pullDownToRefresh)+"\n    ")]),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.pull.available && 'pull-down' !== _vm.loadingType),expression:"pull.available && 'pull-down' !== loadingType"}],staticClass:"ui-loader__header-text"},[_vm._v("\n      "+_vm._s(_vm.lang.releaseToRefresh)+"\n    ")]),_c('div',{directives:[{name:"show",rawName:"v-show",value:('pull-down' === _vm.loadingType),expression:"'pull-down' === loadingType"}],staticClass:"ui-loader__header-text"},[_vm._t('pull-down-loading',[_c('ui-spinner')])],2)]),_c('div',{staticClass:"ui-loader__content"},[_vm._t("default")],2),(_vm.showFooter)?_c('div',{directives:[{name:"show",rawName:"v-show",value:('pull-up' === _vm.pull.type),expression:"'pull-up' === pull.type"}],staticClass:"ui-loader__footer",style:({ height: _vm.pullHeight + 'px' })},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.pull.available),expression:"!pull.available"}],staticClass:"ui-loader__footer-text"},[_vm._v("\n      "+_vm._s(_vm.lang.pullUpToLoad)+"\n    ")]),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.pull.available && 'pull-up' !== _vm.loadingType),expression:"pull.available && 'pull-up' !== loadingType"}],staticClass:"ui-loader__footer-text"},[_vm._v("\n      "+_vm._s(_vm.lang.releaseToRefresh)+"\n    ")]),_c('div',{directives:[{name:"show",rawName:"v-show",value:('pull-up' === _vm.loadingType),expression:"'pull-up' === loadingType"}],staticClass:"ui-loader__footer-text"},[_vm._t('pull-up-loading',[_c('ui-spinner')])],2)]):_vm._e(),(_vm.showFooter)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading && 'scroll' === _vm.loadingType),expression:"loading && 'scroll' === loadingType"}],staticClass:"ui-loader__footer",style:({ height: _vm.distance + 'px' })},[_c('div',{staticClass:"footer-text"},[_vm._t('scroll-loading',[_c('ui-spinner')])],2)]):_vm._e(),(_vm.showFooter)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.showCompleted),expression:"showCompleted"}],staticClass:"ui-loader__footer",style:({ height: _vm.distance + 'px' })},[_c('div',{staticClass:"ui-loader__footer-text"},[_vm._v(_vm._s(_vm.lang.loadCompleted))])]):_vm._e()])}
 var loadervue_type_template_id_cc5b8d78_staticRenderFns = []
@@ -15579,7 +16970,7 @@ var loader = __webpack_require__("4aa0");
 
 /* normalize component */
 
-var loader_component = Object(componentNormalizer["a" /* default */])(
+var loader_component = normalizeComponent(
   loader_loadervue_type_script_lang_js_,
   loadervue_type_template_id_cc5b8d78_render,
   loadervue_type_template_id_cc5b8d78_staticRenderFns,
@@ -16132,10 +17523,6 @@ var imgUtils_b64toBlob = function b64toBlob(base64) {
     }
   }
 });
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js
-var define_property = __webpack_require__("85f2");
-var define_property_default = /*#__PURE__*/__webpack_require__.n(define_property);
-
 // CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js
 
 function _defineProperty(obj, key, value) {
@@ -16509,7 +17896,7 @@ var ringvue_type_template_id_2622812e_staticRenderFns = []
 
 /* normalize component */
 
-var ring_component = Object(componentNormalizer["a" /* default */])(
+var ring_component = normalizeComponent(
   types_ringvue_type_script_lang_js_,
   ringvue_type_template_id_2622812e_render,
   ringvue_type_template_id_2622812e_staticRenderFns,
@@ -16595,7 +17982,7 @@ var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpac
 
 /* normalize component */
 
-var bar_component = Object(componentNormalizer["a" /* default */])(
+var bar_component = normalizeComponent(
   types_barvue_type_script_lang_js_,
   barvue_type_template_id_4952e4e6_render,
   barvue_type_template_id_4952e4e6_staticRenderFns,
@@ -16689,7 +18076,7 @@ bar_component.options.__file = "bar.vue"
 
 /* normalize component */
 
-var progress_component = Object(componentNormalizer["a" /* default */])(
+var progress_component = normalizeComponent(
   progress_progressvue_type_script_lang_js_,
   progressvue_type_template_id_7802ff5a_render,
   progressvue_type_template_id_7802ff5a_staticRenderFns,
@@ -16827,7 +18214,7 @@ progress_component.options.__file = "progress.vue"
 
 /* normalize component */
 
-var uploader_list_component = Object(componentNormalizer["a" /* default */])(
+var uploader_list_component = normalizeComponent(
   uplaoder_uploader_listvue_type_script_lang_js_,
   uploader_listvue_type_template_id_4a79b1b0_render,
   uploader_listvue_type_template_id_4a79b1b0_staticRenderFns,
@@ -16924,7 +18311,7 @@ var scss_uploader = __webpack_require__("a0b0");
 
 /* normalize component */
 
-var uploader_component = Object(componentNormalizer["a" /* default */])(
+var uploader_component = normalizeComponent(
   uplaoder_uploadervue_type_script_lang_js_,
   uploadervue_type_template_id_5188ec18_render,
   uploadervue_type_template_id_5188ec18_staticRenderFns,
@@ -16996,7 +18383,7 @@ var card = __webpack_require__("610b");
 
 /* normalize component */
 
-var card_component = Object(componentNormalizer["a" /* default */])(
+var card_component = normalizeComponent(
   card_cardvue_type_script_lang_js_,
   cardvue_type_template_id_5a2b5d25_render,
   cardvue_type_template_id_5a2b5d25_staticRenderFns,
@@ -17095,7 +18482,7 @@ var scss_alert = __webpack_require__("571b");
 
 /* normalize component */
 
-var alert_component = Object(componentNormalizer["a" /* default */])(
+var alert_component = normalizeComponent(
   alert_alertvue_type_script_lang_js_,
   alertvue_type_template_id_243a9488_render,
   alertvue_type_template_id_243a9488_staticRenderFns,
@@ -17235,7 +18622,7 @@ var input = __webpack_require__("babd");
     width: Number
   },
   components: {
-    UiIcon: icon["a" /* default */],
+    UiIcon: icon_icon,
     UiSpinner: spinner_spinner
   },
   computed: {
@@ -17316,7 +18703,7 @@ var input = __webpack_require__("babd");
 
 /* normalize component */
 
-var input_component = Object(componentNormalizer["a" /* default */])(
+var input_component = normalizeComponent(
   input_inputvue_type_script_lang_js_,
   inputvue_type_template_id_ebdb30fe_render,
   inputvue_type_template_id_ebdb30fe_staticRenderFns,
@@ -17602,7 +18989,7 @@ var flattenArray_flatten = function flatten(arr) {
 
 /* normalize component */
 
-var input_group_component = Object(componentNormalizer["a" /* default */])(
+var input_group_component = normalizeComponent(
   input_group_input_groupvue_type_script_lang_js_,
   input_groupvue_type_template_id_87a4b806_render,
   input_groupvue_type_template_id_87a4b806_staticRenderFns,
@@ -17804,7 +19191,7 @@ var autosize_default = /*#__PURE__*/__webpack_require__.n(autosize);
 
 /* normalize component */
 
-var textarea_component = Object(componentNormalizer["a" /* default */])(
+var textarea_component = normalizeComponent(
   textarea_textareavue_type_script_lang_js_,
   textareavue_type_template_id_1752f5b2_render,
   textareavue_type_template_id_1752f5b2_staticRenderFns,
@@ -17894,7 +19281,7 @@ var heading_render, heading_staticRenderFns
 
 /* normalize component */
 
-var heading_component = Object(componentNormalizer["a" /* default */])(
+var heading_component = normalizeComponent(
   heading_headingvue_type_script_lang_js_,
   heading_render,
   heading_staticRenderFns,
@@ -18073,7 +19460,7 @@ function camelCaseToDash(str) {
 
 /* normalize component */
 
-var row_component = Object(componentNormalizer["a" /* default */])(
+var row_component = normalizeComponent(
   row_rowvue_type_script_lang_js_,
   rowvue_type_template_id_9655f2f0_render,
   rowvue_type_template_id_9655f2f0_staticRenderFns,
@@ -18224,7 +19611,7 @@ var colvue_type_template_id_3f854140_staticRenderFns = []
 
 /* normalize component */
 
-var col_component = Object(componentNormalizer["a" /* default */])(
+var col_component = normalizeComponent(
   col_colvue_type_script_lang_js_,
   colvue_type_template_id_3f854140_render,
   colvue_type_template_id_3f854140_staticRenderFns,
@@ -18356,7 +19743,7 @@ var scss_button = __webpack_require__("be7d");
 
 /* normalize component */
 
-var button_component = Object(componentNormalizer["a" /* default */])(
+var button_component = normalizeComponent(
   button_buttonvue_type_script_lang_js_,
   buttonvue_type_template_id_d41b06d8_render,
   buttonvue_type_template_id_d41b06d8_staticRenderFns,
@@ -18423,7 +19810,7 @@ var button_groupvue_type_template_id_64c93366_staticRenderFns = []
 
 /* normalize component */
 
-var button_group_component = Object(componentNormalizer["a" /* default */])(
+var button_group_component = normalizeComponent(
   button_group_button_groupvue_type_script_lang_js_,
   button_groupvue_type_template_id_64c93366_render,
   button_groupvue_type_template_id_64c93366_staticRenderFns,
@@ -18516,7 +19903,7 @@ var accordionvue_type_style_index_0_id_eea9540e_lang_css_scoped_true_ = __webpac
 
 /* normalize component */
 
-var accordion_component = Object(componentNormalizer["a" /* default */])(
+var accordion_component = normalizeComponent(
   accordion_accordionvue_type_script_lang_js_,
   accordionvue_type_template_id_eea9540e_scoped_true_render,
   accordionvue_type_template_id_eea9540e_scoped_true_staticRenderFns,
@@ -18633,7 +20020,7 @@ var height_transitionvue_type_style_index_0_id_38c12aec_scoped_true_lang_css_ = 
 
 /* normalize component */
 
-var height_transition_component = Object(componentNormalizer["a" /* default */])(
+var height_transition_component = normalizeComponent(
   height_transition_height_transitionvue_type_script_lang_js_,
   height_transitionvue_type_template_id_38c12aec_scoped_true_render,
   height_transitionvue_type_template_id_38c12aec_scoped_true_staticRenderFns,
@@ -18700,7 +20087,7 @@ height_transition_component.options.__file = "height-transition.vue"
     duration: Number
   },
   components: {
-    UiIcon: packages_icon["a" /* default */],
+    UiIcon: packages_icon,
     UiHeightTransition: height_transition_height_transition
   },
   computed: {
@@ -18754,7 +20141,7 @@ height_transition_component.options.__file = "height-transition.vue"
 
 /* normalize component */
 
-var accordion_item_component = Object(componentNormalizer["a" /* default */])(
+var accordion_item_component = normalizeComponent(
   accordion_item_accordion_itemvue_type_script_lang_js_,
   accordion_itemvue_type_template_id_001f9448_render,
   accordion_itemvue_type_template_id_001f9448_staticRenderFns,
@@ -19004,7 +20391,7 @@ function isObjectEqual(a, b) {
 
 /* normalize component */
 
-var checkbox_component = Object(componentNormalizer["a" /* default */])(
+var checkbox_component = normalizeComponent(
   checkbox_checkboxvue_type_script_lang_js_,
   checkboxvue_type_template_id_18812838_render,
   checkboxvue_type_template_id_18812838_staticRenderFns,
@@ -19124,7 +20511,7 @@ var radiovue_type_template_id_7b505353_staticRenderFns = []
 
 /* normalize component */
 
-var radio_component = Object(componentNormalizer["a" /* default */])(
+var radio_component = normalizeComponent(
   radio_radiovue_type_script_lang_js_,
   radiovue_type_template_id_7b505353_render,
   radiovue_type_template_id_7b505353_staticRenderFns,
@@ -19184,7 +20571,7 @@ var tag = __webpack_require__("0ec0");
     };
   },
   components: {
-    UiIcon: packages_icon["a" /* default */]
+    UiIcon: packages_icon
   },
   computed: {
     classes: function classes() {
@@ -19226,7 +20613,7 @@ var tagvue_type_style_index_0_id_36e0a100_lang_css_scoped_true_ = __webpack_requ
 
 /* normalize component */
 
-var tag_component = Object(componentNormalizer["a" /* default */])(
+var tag_component = normalizeComponent(
   tag_tagvue_type_script_lang_js_,
   tagvue_type_template_id_36e0a100_scoped_true_render,
   tagvue_type_template_id_36e0a100_scoped_true_staticRenderFns,
@@ -19399,7 +20786,7 @@ var hr = __webpack_require__("18e3");
 
 /* normalize component */
 
-var hr_component = Object(componentNormalizer["a" /* default */])(
+var hr_component = normalizeComponent(
   hr_hrvue_type_script_lang_js_,
   hrvue_type_template_id_c37f8af4_render,
   hrvue_type_template_id_c37f8af4_staticRenderFns,
@@ -19524,7 +20911,7 @@ var backdrop = __webpack_require__("a109");
 
 /* normalize component */
 
-var backdrop_component = Object(componentNormalizer["a" /* default */])(
+var backdrop_component = normalizeComponent(
   backdrop_backdropvue_type_script_lang_js_,
   backdropvue_type_template_id_f4e5844a_render,
   backdropvue_type_template_id_f4e5844a_staticRenderFns,
@@ -19687,9 +21074,13 @@ var es6_array_find_index = __webpack_require__("20d6");
     }
   }
 });
-// EXTERNAL MODULE: ./src/utils/getAxis.js
-var getAxis = __webpack_require__("d871");
-
+// CONCATENATED MODULE: ./src/utils/getAxis.js
+/* harmony default export */ var getAxis = (function () {
+  return {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2
+  };
+});
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/autocomplete/autocomplete.vue?vue&type=script&lang=js&
 
 //
@@ -19791,7 +21182,7 @@ var getAxis = __webpack_require__("d871");
     UiInput: packages_input,
     UiHeightTransition: height_transition_height_transition,
     UiSpinner: packages_spinner,
-    UiIcon: icon["a" /* default */]
+    UiIcon: icon_icon
   },
   computed: {
     highlightOptions: function highlightOptions() {
@@ -19944,7 +21335,7 @@ var getAxis = __webpack_require__("d871");
 
 /* normalize component */
 
-var autocomplete_component = Object(componentNormalizer["a" /* default */])(
+var autocomplete_component = normalizeComponent(
   autocomplete_autocompletevue_type_script_lang_js_,
   autocompletevue_type_template_id_4d4b29aa_render,
   autocompletevue_type_template_id_4d4b29aa_staticRenderFns,
@@ -20145,9 +21536,6 @@ var modalvue_type_template_id_a4ac8b02_staticRenderFns = []
 
 // CONCATENATED MODULE: ./packages/modal/modal.vue?vue&type=template&id=a4ac8b02&
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/interopRequireWildcard.js
-var interopRequireWildcard = __webpack_require__("8793");
-
 // EXTERNAL MODULE: ./packages/assets/scss/modal.scss
 var modal = __webpack_require__("6093");
 
@@ -20242,7 +21630,7 @@ var modal = __webpack_require__("6093");
     }
   },
   components: {
-    UiIcon: icon["a" /* default */],
+    UiIcon: icon_icon,
     UiButtonGroup: button_group,
     UiButton: button_button,
     UiBackdrop: backdrop_backdrop
@@ -20296,7 +21684,7 @@ var modal = __webpack_require__("6093");
 
       if (this.disableScroll) {
         promise_default.a.resolve().then(function () {
-          return Object(interopRequireWildcard["a" /* default */])(__webpack_require__("ec82"));
+          return _interopRequireWildcard(__webpack_require__("ec82"));
         }).then(function (module) {
           var scrollbarWidth = module.default();
           document.body.style.overflow = "hidden";
@@ -20319,7 +21707,7 @@ var modal = __webpack_require__("6093");
 
 /* normalize component */
 
-var modal_component = Object(componentNormalizer["a" /* default */])(
+var modal_component = normalizeComponent(
   modal_modalvue_type_script_lang_js_,
   modalvue_type_template_id_a4ac8b02_render,
   modalvue_type_template_id_a4ac8b02_staticRenderFns,
@@ -20432,7 +21820,7 @@ var scss_confirm = __webpack_require__("3279");
 
 /* normalize component */
 
-var confirm_component = Object(componentNormalizer["a" /* default */])(
+var confirm_component = normalizeComponent(
   confirm_confirmvue_type_script_lang_js_,
   confirmvue_type_template_id_55801cb5_render,
   confirmvue_type_template_id_55801cb5_staticRenderFns,
@@ -20828,7 +22216,7 @@ var errorvue_type_style_index_0_lang_css_ = __webpack_require__("3209");
 
 /* normalize component */
 
-var error_component = Object(componentNormalizer["a" /* default */])(
+var error_component = normalizeComponent(
   v_errorvue_type_script_lang_js_,
   errorvue_type_template_id_35da741c_render,
   errorvue_type_template_id_35da741c_staticRenderFns,
@@ -21147,7 +22535,7 @@ var v_render, v_staticRenderFns
 
 /* normalize component */
 
-var v_component = Object(componentNormalizer["a" /* default */])(
+var v_component = normalizeComponent(
   v_vvue_type_script_lang_js_,
   v_render,
   v_staticRenderFns,
@@ -21251,7 +22639,7 @@ function injectStyles (context) {
 
 /* normalize component */
 
-var marquee_component = Object(componentNormalizer["a" /* default */])(
+var marquee_component = normalizeComponent(
   marquee_marqueevue_type_script_lang_js_,
   marquee_render,
   marquee_staticRenderFns,
@@ -21273,12 +22661,12 @@ marquee.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_marquee = (marquee);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/share/share.vue?vue&type=template&id=d3fa0e4e&scoped=true&
-var sharevue_type_template_id_d3fa0e4e_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"share-btn",staticClass:"ui-share",on:{"click":_vm.doShare}},[_vm._t("default")],2)}
-var sharevue_type_template_id_d3fa0e4e_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/share/share.vue?vue&type=template&id=3f2cfcf3&scoped=true&
+var sharevue_type_template_id_3f2cfcf3_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"share-btn",staticClass:"ui-share",on:{"click":_vm.doShare}},[_vm._t("default")],2)}
+var sharevue_type_template_id_3f2cfcf3_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/share/share.vue?vue&type=template&id=d3fa0e4e&scoped=true&
+// CONCATENATED MODULE: ./packages/share/share.vue?vue&type=template&id=3f2cfcf3&scoped=true&
 
 // CONCATENATED MODULE: ./packages/share/share.js
 
@@ -21309,8 +22697,6 @@ var makeUrl = function makeUrl(_ref) {
 
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/share/share.vue?vue&type=script&lang=js&
-
-
 //
 //
 //
@@ -21337,60 +22723,53 @@ var makeUrl = function makeUrl(_ref) {
     wechatContent: function wechatContent(url) {
       return "\n       <p>".concat(this.wechatQrcodeTitle, "</p>\n       <p><img src=\"").concat(url, "\" /></p>\n     ");
     },
-    doShare: function doShare() {
-      var _this = this;
-
-      if (this.site !== "wechat") {
-        var shareLink = makeUrl({
-          site: this.site,
-          data: this.data
-        });
-        window.open(shareLink);
-      } else {
-        if (!this.data.qrcode && this.data.url) {
-          promise_default.a.resolve().then(function () {
-            return Object(interopRequireWildcard["a" /* default */])(__webpack_require__("d055"));
-          }).then(function (module) {
-            return module.default.toDataURL(_this.data.url);
-          }).then(function (base64) {
-            _this.wechatQrcode = base64;
-            return promise_default.a.resolve().then(function () {
-              return Object(interopRequireWildcard["a" /* default */])(__webpack_require__("51a1"));
-            });
-          }).then(function (module) {
-            var Popover = module.default;
-            new Popover({
-              trigger: _this.$refs["share-btn"],
-              content: _this.wechatContent(_this.wechatQrcode),
-              textAlign: "center"
-            });
-          }).catch(function (err) {
-            console.error(err);
-          });
-        }
-
-        if (this.data.qrcode && !this.data.url) {
-          promise_default.a.resolve().then(function () {
-            return Object(interopRequireWildcard["a" /* default */])(__webpack_require__("51a1"));
-          }).then(function (module) {
-            var Popover = module.default;
-            new Popover({
-              trigger: _this.$refs["share-btn"],
-              content: _this.wechatContent(_this.data.qrcode),
-              textAlign: "center"
-            });
-          }).catch(function (err) {
-            console.error(err);
-          });
-        }
-      }
+    doShare: function doShare() {// if (this.site !== "wechat") {
+      //   let shareLink = makeUrl({ site: this.site, data: this.data });
+      //   window.open(shareLink);
+      // } else {
+      //   if (!this.data.qrcode && this.data.url) {
+      //     import(/* webpackChunkName: "vendor" */ "qrcode")
+      //       .then(module => {
+      //         return module.default.toDataURL(this.data.url);
+      //       })
+      //       .then(base64 => {
+      //         this.wechatQrcode = base64;
+      //         return import("../popover/popover.js");
+      //       })
+      //       .then(module => {
+      //         const Popover = module.default;
+      //         new Popover({
+      //           trigger: this.$refs["share-btn"],
+      //           content: this.wechatContent(this.wechatQrcode),
+      //           textAlign: "center"
+      //         });
+      //       })
+      //       .catch(err => {
+      //         console.error(err);
+      //       });
+      //   }
+      //   if (this.data.qrcode && !this.data.url) {
+      //     import("../popover/popover.js")
+      //       .then(module => {
+      //         const Popover = module.default;
+      //         new Popover({
+      //           trigger: this.$refs["share-btn"],
+      //           content: this.wechatContent(this.data.qrcode),
+      //           textAlign: "center"
+      //         });
+      //       })
+      //       .catch(err => {
+      //         console.error(err);
+      //       });
+      //   }
+      // }
     }
   }
 });
 // CONCATENATED MODULE: ./packages/share/share.vue?vue&type=script&lang=js&
  /* harmony default export */ var share_sharevue_type_script_lang_js_ = (sharevue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./packages/share/share.vue?vue&type=style&index=0&id=d3fa0e4e&scoped=true&lang=css&
-var sharevue_type_style_index_0_id_d3fa0e4e_scoped_true_lang_css_ = __webpack_require__("bc16");
+// EXTERNAL MODULE: ./packages/share/share.vue?vue&type=style&index=0&id=3f2cfcf3&scoped=true&lang=css&
+var sharevue_type_style_index_0_id_3f2cfcf3_scoped_true_lang_css_ = __webpack_require__("10d2");
 
 // CONCATENATED MODULE: ./packages/share/share.vue
 
@@ -21401,13 +22780,13 @@ var sharevue_type_style_index_0_id_d3fa0e4e_scoped_true_lang_css_ = __webpack_re
 
 /* normalize component */
 
-var share_component = Object(componentNormalizer["a" /* default */])(
+var share_component = normalizeComponent(
   share_sharevue_type_script_lang_js_,
-  sharevue_type_template_id_d3fa0e4e_scoped_true_render,
-  sharevue_type_template_id_d3fa0e4e_scoped_true_staticRenderFns,
+  sharevue_type_template_id_3f2cfcf3_scoped_true_render,
+  sharevue_type_template_id_3f2cfcf3_scoped_true_staticRenderFns,
   false,
   null,
-  "d3fa0e4e",
+  "3f2cfcf3",
   null
   
 )
@@ -21551,7 +22930,7 @@ var typervue_type_style_index_0_id_b82cf0c6_lang_css_scoped_true_ = __webpack_re
 
 /* normalize component */
 
-var typer_component = Object(componentNormalizer["a" /* default */])(
+var typer_component = normalizeComponent(
   typer_typervue_type_script_lang_js_,
   typervue_type_template_id_b82cf0c6_scoped_true_render,
   typervue_type_template_id_b82cf0c6_scoped_true_staticRenderFns,
@@ -21617,7 +22996,7 @@ var carousel_item_render, carousel_item_staticRenderFns
 
 /* normalize component */
 
-var carousel_item_component = Object(componentNormalizer["a" /* default */])(
+var carousel_item_component = normalizeComponent(
   carousel_carousel_itemvue_type_script_lang_js_,
   carousel_item_render,
   carousel_item_staticRenderFns,
@@ -21760,7 +23139,7 @@ var touchHandler = function touchHandler(_ref) {
   },
   components: {
     UiCarouselItem: carousel_item,
-    UiIcon: icon["a" /* default */]
+    UiIcon: icon_icon
   },
   props: {
     scrollCount: {
@@ -21988,7 +23367,7 @@ var touchHandler = function touchHandler(_ref) {
 
 /* normalize component */
 
-var carousel_component = Object(componentNormalizer["a" /* default */])(
+var carousel_component = normalizeComponent(
   carousel_carouselvue_type_script_lang_js_,
   carouselvue_type_template_id_997c1e12_render,
   carouselvue_type_template_id_997c1e12_staticRenderFns,
@@ -22189,7 +23568,7 @@ var coutdown = __webpack_require__("ab8a");
 
 /* normalize component */
 
-var countdown_component = Object(componentNormalizer["a" /* default */])(
+var countdown_component = normalizeComponent(
   countdown_countdownvue_type_script_lang_js_,
   countdownvue_type_template_id_74106fd2_render,
   countdownvue_type_template_id_74106fd2_staticRenderFns,
@@ -22331,7 +23710,7 @@ var slide_panelvue_type_style_index_0_id_0985f30b_lang_css_scoped_true_ = __webp
 
 /* normalize component */
 
-var slide_panel_component = Object(componentNormalizer["a" /* default */])(
+var slide_panel_component = normalizeComponent(
   slide_panel_slide_panelvue_type_script_lang_js_,
   slide_panelvue_type_template_id_0985f30b_scoped_true_render,
   slide_panelvue_type_template_id_0985f30b_scoped_true_staticRenderFns,
@@ -22502,225 +23881,9 @@ height_transition_height_transition.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_height_transition = (height_transition_height_transition);
-// EXTERNAL MODULE: ./packages/popover/popover.js
-var popover = __webpack_require__("51a1");
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/assign.js
-var object_assign = __webpack_require__("5176");
-var assign_default = /*#__PURE__*/__webpack_require__.n(object_assign);
-
-// CONCATENATED MODULE: ./packages/popover/tooltip.js
-
-
-
-var tooltip_tooltipOptins = function tooltipOptins(el, options) {
-  if (typeof options == "string") {
-    options = {
-      content: options
-    };
-  }
-
-  var defaultOptions = {
-    insertAfter: false,
-    closeDelay: 50,
-    interactive: true,
-    tooltip: true,
-    openOnMouseover: true,
-    closeOnMouseleave: true
-  };
-  options.trigger = el;
-  options = assign_default()(defaultOptions, options);
-  return options;
-};
-
-var tooltip_tooltip = function tooltip(el, binding) {
-  var options = tooltip_tooltipOptins(el, binding.value);
-  var instance;
-
-  if (el.instance) {
-    instance = el.instance;
-  } else {
-    instance = new popover["default"](options);
-  }
-
-  el.addEventListener("mouseover", function (e) {
-    setTimeout(function () {
-      instance.isShow = true;
-    }, options.openDelay);
-  });
-  el.addEventListener("mouseleave", function (e) {
-    var target = e.target;
-    setTimeout(function () {
-      if (!instance.isMouseIn) {
-        setTimeout(function () {
-          instance.isShow = false;
-          delete el.instance;
-        }, options.closeDelay);
-      }
-    }, 300);
-  });
-  return instance;
-};
-
-/* harmony default export */ var popover_tooltip = ({
-  name: "ui-tooltip",
-  inserted: function inserted(el, binding, vnode) {
-    if (!binding.value) {
-      return;
-    }
-
-    tooltip_tooltip(el, binding);
-  },
-  update: function update(el, binding, vnode) {
-    if (!binding.value) {
-      return;
-    }
-
-    tooltip_tooltip(el, binding);
-  }
-});
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/popover/dropdown.vue?vue&type=template&id=66491787&
-var dropdownvue_type_template_id_66491787_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-dropdown"},[_c('div',{ref:"trigger",staticClass:"ui-dropdown-trigger",attrs:{"data-popover":_vm.id},on:{"click":_vm.open}},[_vm._t("trigger")],2),_c('popover',{ref:"popover",attrs:{"triggerId":_vm.id,"dropdown":"","close-on-click":_vm.closeOnClick,"open-on-mouseover":_vm.openOnMouseover,"close-on-mouseleave":_vm.closeOnMouseleave,"on-close":_vm.onClose,"open-delay":_vm.openDelay,"close-delay":_vm.closeDelay,"arrow":_vm.arrow,"offset":_vm.offset,"arrow-size":_vm.arrowSize,"arrow-offset":_vm.arrowOffset,"radius":_vm.radius,"throttle":_vm.throttle},on:{"open":_vm.onPopOpen,"close":_vm.onPopClose}},[_vm._t("default")],2)],1)}
-var dropdownvue_type_template_id_66491787_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./packages/popover/dropdown.vue?vue&type=template&id=66491787&
-
-// EXTERNAL MODULE: ./packages/popover/popover.vue + 10 modules
-var popover_popover = __webpack_require__("d4da");
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/popover/dropdown.vue?vue&type=script&lang=js&
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ var dropdownvue_type_script_lang_js_ = ({
-  name: "ui-dropdown",
-  data: function data() {
-    return {
-      id: ""
-    };
-  },
-  props: {
-    closeOnClick: {
-      type: Boolean,
-      default: true
-    },
-    openOnMouseover: Boolean,
-    closeOnMouseleave: Boolean,
-    onClose: Function,
-    openDelay: Number,
-    closeDelay: Number,
-    arrow: {
-      type: Boolean,
-      default: true
-    },
-    offset: {
-      type: Number,
-      default: 10
-    },
-    arrowSize: {
-      type: Number,
-      default: 10
-    },
-    arrowOffset: {
-      type: Number,
-      default: 10
-    },
-    radius: {
-      type: Number,
-      default: 8
-    },
-    throttle: {
-      type: Number,
-      default: 20
-    }
-  },
-  components: {
-    popover: popover_popover["a" /* default */]
-  },
-  methods: {
-    open: function open() {
-      this.id = "popover-" + index_browser_default()();
-      this.$refs["popover"].isShow = true;
-    },
-    onPopOpen: function onPopOpen() {
-      this.$emit("open");
-    },
-    onPopClose: function onPopClose() {
-      this.$emit("close");
-    }
-  }
-});
-// CONCATENATED MODULE: ./packages/popover/dropdown.vue?vue&type=script&lang=js&
- /* harmony default export */ var popover_dropdownvue_type_script_lang_js_ = (dropdownvue_type_script_lang_js_); 
-// CONCATENATED MODULE: ./packages/popover/dropdown.vue
-
-
-
-
-
-/* normalize component */
-
-var dropdown_component = Object(componentNormalizer["a" /* default */])(
-  popover_dropdownvue_type_script_lang_js_,
-  dropdownvue_type_template_id_66491787_render,
-  dropdownvue_type_template_id_66491787_staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-dropdown_component.options.__file = "dropdown.vue"
-/* harmony default export */ var dropdown = (dropdown_component.exports);
-// CONCATENATED MODULE: ./packages/popover/index.js
-
-
-
-
-
-dropdown.install = function (Vue) {
-  Vue.component(dropdown.name, dropdown);
-};
-
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js
-var get_own_property_descriptor = __webpack_require__("268f");
-var get_own_property_descriptor_default = /*#__PURE__*/__webpack_require__.n(get_own_property_descriptor);
+// EXTERNAL MODULE: ./node_modules/lodash/merge.js
+var merge = __webpack_require__("42454");
+var merge_default = /*#__PURE__*/__webpack_require__.n(merge);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js
 var get_own_property_symbols = __webpack_require__("e265");
@@ -22750,15 +23913,9 @@ function _objectSpread(target) {
 
   return target;
 }
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/toast/toast.vue?vue&type=template&id=f4596f9c&
-var toastvue_type_template_id_f4596f9c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.classes,on:{"mouseenter":_vm.pause,"mouseleave":_vm.resume}},[_c('transition',{attrs:{"enter-active-class":"bounceIn","leave-active-class":"fadeOut"},on:{"after-enter":_vm.entered,"after-leave":_vm.destroy,"before-leave":function($event){_vm.isEntered = false}}},[(!_vm.isMessage && _vm.show)?_c('div',{staticClass:"ui-toast-icon",style:(_vm.iconStyles),on:{"click":_vm.clickIcon}},[(_vm.iconName)?_c('ui-icon',{attrs:{"name":_vm.iconName}}):_vm._e()],1):_vm._e()]),_c('transition',{attrs:{"enter-active-class":_vm.toastInTransition,"leave-active-class":_vm.toastOutTransition},on:{"after-enter":function($event){_vm.showContent = true},"before-leave":function($event){_vm.showContent = false}}},[(!_vm.isMessage && _vm.isEntered)?_c('div',{staticClass:"ui-toast-background",style:(_vm.backgroundStyles)}):_vm._e()]),(!_vm.isMessage && _vm.message)?_c('div',{staticClass:"ui-toast-content",style:(_vm.contentStyles)},[_vm._v("\n    "+_vm._s(_vm.message)+"\n  ")]):_vm._e(),_c('transition',{attrs:{"enter-active-class":"slideInDown","leave-active-class":"slideOutUp"},on:{"after-leave":_vm.destroy}},[(_vm.isMessage && _vm.show)?_c('div',{staticClass:"ui-message-content",class:[
-        _vm.iconName && 'ui-message-content-with-icon',
-        _vm.showClose && 'ui-message-content-with-close'
-      ]},[(_vm.title)?_c('div',{staticClass:"ui-message-title"},[_vm._v(_vm._s(_vm.title))]):_vm._e(),(_vm.message)?_c('div',{staticClass:"ui-message-message"},[_vm._v(_vm._s(_vm.message))]):_vm._e(),(_vm.iconName)?_c('div',{staticClass:"ui-message-icon"},[_c('ui-icon',{attrs:{"name":_vm.iconName}})],1):_vm._e(),(_vm.showClose)?_c('div',{staticClass:"ui-message-close",on:{"click":_vm.stop}},[_c('ui-icon',{attrs:{"name":"icon-close-circle-fill"}})],1):_vm._e(),(_vm.actions.length)?_c('div',{staticClass:"ui-message-actions"},_vm._l((_vm.actions),function(action){return _c('span',{key:action.content,staticClass:"ui-message-action-item",on:{"click":function($event){_vm.clickOnMessageIcon(action)}}},[(action.icon)?_c('ui-icon',{attrs:{"name":action.icon}}):_vm._e(),_vm._v("\n          "+_vm._s(action.content))],1)}),0):_vm._e()]):_vm._e()])],1)}
-var toastvue_type_template_id_f4596f9c_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./packages/toast/toast.vue?vue&type=template&id=f4596f9c&
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/assign.js
+var object_assign = __webpack_require__("5176");
+var assign_default = /*#__PURE__*/__webpack_require__.n(object_assign);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js
 function _classCallCheck(instance, Constructor) {
@@ -22785,6 +23942,1864 @@ function _createClass(Constructor, protoProps, staticProps) {
   if (staticProps) _defineProperties(Constructor, staticProps);
   return Constructor;
 }
+// EXTERNAL MODULE: ./node_modules/popper.js/dist/esm/popper.js
+var popper = __webpack_require__("f0bd");
+
+// CONCATENATED MODULE: ./node_modules/buxton/array/toArray.js
+const toArray = (value, split = " ") => {
+    if (typeof value === 'string') {
+        value = value.split(split)
+    }
+    if (Array.isArray(value)) {
+        return value
+    }
+}
+
+
+/* harmony default export */ var array_toArray = (toArray);
+// CONCATENATED MODULE: ./node_modules/buxton/browser/addClass.js
+ 
+ const addClass = (el, classes) => {
+     const newClasses = array_toArray(classes)
+     let classList = array_toArray(el.className)
+     newClasses.forEach((newClass) => {
+         if (classList.indexOf(newClass) === -1) {
+             classList.push(newClass)
+         }
+     })
+     if (el instanceof SVGElement) {
+         el.setAttribute('class', classList.join(' '))
+     } else {
+         el.className = classList.join(' ')
+     }
+ }
+
+ /* harmony default export */ var browser_addClass = (addClass);
+// CONCATENATED MODULE: ./node_modules/buxton/browser/removeClass.js
+
+const removeClass = (el, classes) => {
+    const newClasses = array_toArray(classes)
+    let classList = array_toArray(el.className)
+    newClasses.forEach((newClass) => {
+        const index = classList.indexOf(newClass)
+        if (index !== -1) {
+            classList.splice(index, 1)
+        }
+    })
+    if (el instanceof SVGElement) {
+        el.setAttribute('class', classList.join(' '))
+    } else {
+        el.className = classList.join(' ')
+    }
+}
+
+/* harmony default export */ var browser_removeClass = (removeClass);
+// CONCATENATED MODULE: ./node_modules/buxton/browser/supportsPassive.js
+let supportsPassive = false
+
+if (typeof window !== 'undefined') {
+    supportsPassive = false
+    try {
+        var supportsPassive_opts = Object.defineProperty({}, 'passive', {
+            get() {
+                supportsPassive = true
+            },
+        })
+        window.addEventListener('test', null, supportsPassive_opts)
+    } catch (e) {}
+}
+
+
+/* harmony default export */ var browser_supportsPassive = (supportsPassive);
+// CONCATENATED MODULE: ./packages/popover/tooltip.js
+
+
+
+
+
+
+
+
+
+
+/* Forked from https://github.com/FezVrasta/popper.js/blob/master/packages/tooltip/src/index.js */
+
+
+
+
+
+var DEFAULT_OPTIONS = {
+  container: false,
+  delay: 0,
+  html: false,
+  placement: "top",
+  title: "",
+  template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+  trigger: "hover focus",
+  offset: 0
+};
+var openTooltips = [];
+
+var tooltip_Tooltip =
+/*#__PURE__*/
+function () {
+  /**
+   * Create a new Tooltip.js instance
+   * @class Tooltip
+   * @param {HTMLElement} reference - The DOM node used as reference of the tooltip (it can be a jQuery element).
+   * @param {Object} options
+   * @param {String} options.placement=bottom
+   *   Placement of the popper accepted values: `top(-start, -end), right(-start, -end), bottom(-start, -end),
+   *   left(-start, -end)`
+   * @param {HTMLElement|String|false} options.container=false - Append the tooltip to a specific element.
+   * @param {Number|Object} options.delay=0
+   *   Delay showing and hiding the tooltip (ms) - does not apply to manual trigger type.
+   *   If a number is supplied, delay is applied to both hide/show.
+   *   Object structure is: `{ show: 500, hide: 100 }`
+   * @param {Boolean} options.html=false - Insert HTML into the tooltip. If false, the content will inserted with `innerText`.
+   * @param {String|PlacementFunction} options.placement='top' - One of the allowed placements, or a function returning one of them.
+   * @param {String} [options.template='<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>']
+   *   Base HTML to used when creating the tooltip.
+   *   The tooltip's `title` will be injected into the `.tooltip-inner` or `.tooltip__inner`.
+   *   `.tooltip-arrow` or `.tooltip__arrow` will become the tooltip's arrow.
+   *   The outermost wrapper element should have the `.tooltip` class.
+   * @param {String|HTMLElement|TitleFunction} options.title='' - Default title value if `title` attribute isn't present.
+   * @param {String} [options.trigger='hover focus']
+   *   How tooltip is triggered - click, hover, focus, manual.
+   *   You may pass multiple triggers; separate them with a space. `manual` cannot be combined with any other trigger.
+   * @param {HTMLElement} options.boundariesElement
+   *   The element used as boundaries for the tooltip. For more information refer to Popper.js'
+   *   [boundariesElement docs](https://popper.js.org/popper-documentation.html)
+   * @param {Number|String} options.offset=0 - Offset of the tooltip relative to its reference. For more information refer to Popper.js'
+   *   [offset docs](https://popper.js.org/popper-documentation.html)
+   * @param {Object} options.popperOptions={} - Popper options, will be passed directly to popper instance. For more information refer to Popper.js'
+   *   [options docs](https://popper.js.org/popper-documentation.html)
+   * @return {Object} instance - The generated tooltip instance
+   */
+  function Tooltip(_reference, _options) {
+    var _this = this;
+
+    _classCallCheck(this, Tooltip);
+
+    _defineProperty(this, "_events", []);
+
+    _defineProperty(this, "_setTooltipNodeEvent", function (evt, reference, delay, options) {
+      var relatedreference = evt.relatedreference || evt.toElement || evt.relatedTarget;
+
+      var callback = function callback(evt2) {
+        var relatedreference2 = evt2.relatedreference || evt2.toElement || evt2.relatedTarget; // Remove event listener after call
+
+        _this._tooltipNode.removeEventListener(evt.type, callback); // If the new reference is not the reference element
+
+
+        if (!reference.contains(relatedreference2)) {
+          // Schedule to hide tooltip
+          _this._scheduleHide(reference, options.delay, options, evt2);
+        }
+      };
+
+      if (_this._tooltipNode.contains(relatedreference)) {
+        // listen to mouseleave on the tooltip element to be able to hide the tooltip
+        _this._tooltipNode.addEventListener(evt.type, callback);
+
+        return true;
+      }
+
+      return false;
+    });
+
+    // apply user options over default ones
+    _options = _objectSpread({}, DEFAULT_OPTIONS, _options);
+    _reference.jquery && (_reference = _reference[0]); // cache reference and options
+
+    this.reference = _reference;
+    this.options = _options; // set initial state
+
+    this._isOpen = false;
+
+    this._init();
+  } //
+  // Public methods
+  //
+
+  /**
+   * Reveals an element's tooltip. This is considered a "manual" triggering of the tooltip.
+   * Tooltips with zero-length titles are never displayed.
+   * @method Tooltip#show
+   * @memberof Tooltip
+   */
+
+
+  _createClass(Tooltip, [{
+    key: "show",
+    value: function show() {
+      this._show(this.reference, this.options);
+    }
+    /**
+     * Hides an element’s tooltip. This is considered a “manual” triggering of the tooltip.
+     * @method Tooltip#hide
+     * @memberof Tooltip
+     */
+
+  }, {
+    key: "hide",
+    value: function hide() {
+      this._hide();
+    }
+    /**
+     * Hides and destroys an element’s tooltip.
+     * @method Tooltip#dispose
+     * @memberof Tooltip
+     */
+
+  }, {
+    key: "dispose",
+    value: function dispose() {
+      this._dispose();
+    }
+    /**
+     * Toggles an element’s tooltip. This is considered a “manual” triggering of the tooltip.
+     * @method Tooltip#toggle
+     * @memberof Tooltip
+     */
+
+  }, {
+    key: "toggle",
+    value: function toggle() {
+      if (this._isOpen) {
+        return this.hide();
+      } else {
+        return this.show();
+      }
+    }
+  }, {
+    key: "setClasses",
+    value: function setClasses(classes) {
+      this._classes = classes;
+    }
+  }, {
+    key: "setContent",
+    value: function setContent(content) {
+      this.options.title = content;
+
+      if (this._tooltipNode) {
+        this._setContent(content, this.options);
+      }
+    }
+  }, {
+    key: "setOptions",
+    value: function setOptions(options) {
+      var classesUpdated = false;
+      var classes = options && options.classes || directive.options.defaultClass;
+
+      if (this._classes !== classes) {
+        this.setClasses(classes);
+        classesUpdated = true;
+      }
+
+      options = getOptions(options);
+      var needPopperUpdate = false;
+      var needRestart = false;
+
+      if (this.options.offset !== options.offset || this.options.placement !== options.placement) {
+        needPopperUpdate = true;
+      }
+
+      if (this.options.template !== options.template || this.options.trigger !== options.trigger || this.options.container !== options.container || classesUpdated) {
+        needRestart = true;
+      }
+
+      for (var key in options) {
+        this.options[key] = options[key];
+      }
+
+      if (this._tooltipNode) {
+        if (needRestart) {
+          var isOpen = this._isOpen;
+          this.dispose();
+
+          this._init();
+
+          if (isOpen) {
+            this.show();
+          }
+        } else if (needPopperUpdate) {
+          this.popperInstance.update();
+        }
+      }
+    } //
+    // Private methods
+    //
+
+  }, {
+    key: "_init",
+    value: function _init() {
+      // get events list
+      var events = typeof this.options.trigger === "string" ? this.options.trigger.split(" ").filter(function (trigger) {
+        return ["click", "hover", "focus"].indexOf(trigger) !== -1;
+      }) : [];
+      this._isDisposed = false;
+      this._enableDocumentTouch = events.indexOf("manual") === -1; // set event listeners
+
+      this._setEventListeners(this.reference, events, this.options);
+    }
+    /**
+     * Creates a new tooltip node
+     * @memberof Tooltip
+     * @private
+     * @param {HTMLElement} reference
+     * @param {String} template
+     * @param {String|HTMLElement|TitleFunction} title
+     * @param {Boolean} allowHtml
+     * @return {HTMLelement} tooltipNode
+     */
+
+  }, {
+    key: "_create",
+    value: function _create(reference, template) {
+      // create tooltip element
+      var tooltipGenerator = window.document.createElement("div");
+      tooltipGenerator.innerHTML = template.trim();
+      var tooltipNode = tooltipGenerator.childNodes[0]; // add unique ID to our tooltip (needed for accessibility reasons)
+
+      tooltipNode.id = "tooltip_".concat(Math.random().toString(36).substr(2, 10)); // Initially hide the tooltip
+      // The attribute will be switched in a next frame so
+      // CSS transitions can play
+
+      tooltipNode.setAttribute("aria-hidden", "true");
+
+      if (this.options.autoHide && this.options.trigger.indexOf("hover") !== -1) {
+        tooltipNode.addEventListener("mouseenter", this.hide);
+        tooltipNode.addEventListener("click", this.hide);
+      } // return the generated tooltip node
+
+
+      return tooltipNode;
+    }
+  }, {
+    key: "_setContent",
+    value: function _setContent(content, options) {
+      var _this2 = this;
+
+      this.asyncContent = false;
+
+      this._applyContent(content, options).then(function () {
+        _this2.popperInstance.update();
+      });
+    }
+  }, {
+    key: "_applyContent",
+    value: function _applyContent(title, options) {
+      var _this3 = this;
+
+      return new promise_default.a(function (resolve, reject) {
+        var allowHtml = options.html;
+        var rootNode = _this3._tooltipNode;
+        if (!rootNode) return;
+        var titleNode = rootNode.querySelector(_this3.options.innerSelector);
+
+        if (title.nodeType === 1) {
+          // if title is a node, append it only if allowHtml is true
+          if (allowHtml) {
+            while (titleNode.firstChild) {
+              titleNode.removeChild(titleNode.firstChild);
+            }
+
+            titleNode.appendChild(title);
+          }
+        } else if (typeof title === "function") {
+          // if title is a function, call it and set innerText or innerHtml depending by `allowHtml` value
+          var result = title();
+
+          if (result && typeof result.then === "function") {
+            _this3.asyncContent = true;
+            options.loadingClass && browser_addClass(rootNode, options.loadingClass);
+
+            if (options.loadingContent) {
+              _this3._applyContent(options.loadingContent, options);
+            }
+
+            result.then(function (asyncResult) {
+              options.loadingClass && browser_removeClass(rootNode, options.loadingClass);
+              return _this3._applyContent(asyncResult, options);
+            }).then(resolve).catch(reject);
+          } else {
+            _this3._applyContent(result, options).then(resolve).catch(reject);
+          }
+
+          return;
+        } else {
+          // if it's just a simple text, set innerText or innerHtml depending by `allowHtml` value
+          allowHtml ? titleNode.innerHTML = title : titleNode.innerText = title;
+        }
+
+        resolve();
+      });
+    }
+  }, {
+    key: "_show",
+    value: function _show(reference, options) {
+      if (options && typeof options.container === "string") {
+        var container = document.querySelector(options.container);
+        if (!container) return;
+      }
+
+      clearTimeout(this._disposeTimer);
+      options = assign_default()({}, options);
+      delete options.offset;
+      var updateClasses = true;
+
+      if (this._tooltipNode) {
+        browser_addClass(this._tooltipNode, this._classes);
+        updateClasses = false;
+      }
+
+      var result = this._ensureShown(reference, options);
+
+      if (updateClasses && this._tooltipNode) {
+        browser_addClass(this._tooltipNode, this._classes);
+      }
+
+      browser_addClass(reference, ["v-tooltip-open"]);
+      return result;
+    }
+  }, {
+    key: "_ensureShown",
+    value: function _ensureShown(reference, options) {
+      var _this4 = this;
+
+      // don't show if it's already visible
+      if (this._isOpen) {
+        return this;
+      }
+
+      this._isOpen = true;
+      openTooltips.push(this); // if the tooltipNode already exists, just show it
+
+      if (this._tooltipNode) {
+        this._tooltipNode.style.display = "";
+
+        this._tooltipNode.setAttribute("aria-hidden", "false");
+
+        this.popperInstance.enableEventListeners();
+        this.popperInstance.update();
+
+        if (this.asyncContent) {
+          this._setContent(options.title, options);
+        }
+
+        return this;
+      } // get title
+
+
+      var title = reference.getAttribute("title") || options.title; // don't show tooltip if no title is defined
+
+      if (!title) {
+        return this;
+      } // create tooltip node
+
+
+      var tooltipNode = this._create(reference, options.template);
+
+      this._tooltipNode = tooltipNode;
+
+      this._setContent(title, options); // Add `aria-describedby` to our reference element for accessibility reasons
+
+
+      reference.setAttribute("aria-describedby", tooltipNode.id); // append tooltip to container
+
+      var container = this._findContainer(options.container, reference);
+
+      this._append(tooltipNode, container);
+
+      var popperOptions = _objectSpread({}, options.popperOptions, {
+        placement: options.placement
+      });
+
+      popperOptions.modifiers = _objectSpread({}, popperOptions.modifiers, {
+        arrow: {
+          element: this.options.arrowSelector
+        }
+      });
+
+      if (options.boundariesElement) {
+        popperOptions.modifiers.preventOverflow = {
+          boundariesElement: options.boundariesElement
+        };
+      }
+
+      this.popperInstance = new popper["a" /* default */](reference, tooltipNode, popperOptions); // Fix position
+
+      requestAnimationFrame(function () {
+        if (!_this4._isDisposed && _this4.popperInstance) {
+          _this4.popperInstance.update(); // Show the tooltip
+
+
+          requestAnimationFrame(function () {
+            if (!_this4._isDisposed) {
+              _this4._isOpen && tooltipNode.setAttribute("aria-hidden", "false");
+            } else {
+              _this4.dispose();
+            }
+          });
+        } else {
+          _this4.dispose();
+        }
+      });
+      return this;
+    }
+  }, {
+    key: "_noLongerOpen",
+    value: function _noLongerOpen() {
+      var index = openTooltips.indexOf(this);
+
+      if (index !== -1) {
+        openTooltips.splice(index, 1);
+      }
+    }
+  }, {
+    key: "_hide",
+    value: function _hide()
+    /* reference, options */
+    {
+      var _this5 = this;
+
+      // don't hide if it's already hidden
+      if (!this._isOpen) {
+        return this;
+      }
+
+      this._isOpen = false;
+
+      this._noLongerOpen(); // hide tooltipNode
+
+
+      this._tooltipNode.style.display = "none";
+
+      this._tooltipNode.setAttribute("aria-hidden", "true");
+
+      this.popperInstance.disableEventListeners();
+      clearTimeout(this._disposeTimer);
+      var disposeTime = directive.options.disposeTimeout;
+
+      if (disposeTime !== null) {
+        this._disposeTimer = setTimeout(function () {
+          if (_this5._tooltipNode) {
+            _this5._tooltipNode.removeEventListener("mouseenter", _this5.hide);
+
+            _this5._tooltipNode.removeEventListener("click", _this5.hide); // Don't remove popper instance, just the HTML element
+
+
+            _this5._tooltipNode.parentNode.removeChild(_this5._tooltipNode);
+
+            _this5._tooltipNode = null;
+          }
+        }, disposeTime);
+      }
+
+      browser_removeClass(this.reference, ["v-tooltip-open"]);
+      return this;
+    }
+  }, {
+    key: "_dispose",
+    value: function _dispose() {
+      var _this6 = this;
+
+      this._isDisposed = true; // remove event listeners first to prevent any unexpected behaviour
+
+      this._events.forEach(function (_ref) {
+        var func = _ref.func,
+            event = _ref.event;
+
+        _this6.reference.removeEventListener(event, func);
+      });
+
+      this._events = [];
+
+      if (this._tooltipNode) {
+        this._hide();
+
+        this._tooltipNode.removeEventListener("mouseenter", this.hide);
+
+        this._tooltipNode.removeEventListener("click", this.hide); // destroy instance
+
+
+        this.popperInstance.destroy(); // destroy tooltipNode if removeOnDestroy is not set, as popperInstance.destroy() already removes the element
+
+        if (!this.popperInstance.options.removeOnDestroy) {
+          this._tooltipNode.parentNode.removeChild(this._tooltipNode);
+
+          this._tooltipNode = null;
+        }
+      } else {
+        this._noLongerOpen();
+      }
+
+      return this;
+    }
+  }, {
+    key: "_findContainer",
+    value: function _findContainer(container, reference) {
+      // if container is a query, get the relative element
+      if (typeof container === "string") {
+        container = window.document.querySelector(container);
+      } else if (container === false) {
+        // if container is `false`, set it to reference parent
+        container = reference.parentNode;
+      }
+
+      return container;
+    }
+    /**
+     * Append tooltip to container
+     * @memberof Tooltip
+     * @private
+     * @param {HTMLElement} tooltip
+     * @param {HTMLElement|String|false} container
+     */
+
+  }, {
+    key: "_append",
+    value: function _append(tooltipNode, container) {
+      container.appendChild(tooltipNode);
+    }
+  }, {
+    key: "_setEventListeners",
+    value: function _setEventListeners(reference, events, options) {
+      var _this7 = this;
+
+      var directEvents = [];
+      var oppositeEvents = [];
+      events.forEach(function (event) {
+        switch (event) {
+          case "hover":
+            directEvents.push("mouseenter");
+            oppositeEvents.push("mouseleave");
+            if (_this7.options.hideOnTargetClick) oppositeEvents.push("click");
+            break;
+
+          case "focus":
+            directEvents.push("focus");
+            oppositeEvents.push("blur");
+            if (_this7.options.hideOnTargetClick) oppositeEvents.push("click");
+            break;
+
+          case "click":
+            directEvents.push("click");
+            oppositeEvents.push("click");
+            break;
+        }
+      }); // schedule show tooltip
+
+      directEvents.forEach(function (event) {
+        var func = function func(evt) {
+          if (_this7._isOpen === true) {
+            return;
+          }
+
+          evt.usedByTooltip = true;
+
+          _this7._scheduleShow(reference, options.delay, options, evt);
+        };
+
+        _this7._events.push({
+          event: event,
+          func: func
+        });
+
+        reference.addEventListener(event, func);
+      }); // schedule hide tooltip
+
+      oppositeEvents.forEach(function (event) {
+        var func = function func(evt) {
+          if (evt.usedByTooltip === true) {
+            return;
+          }
+
+          _this7._scheduleHide(reference, options.delay, options, evt);
+        };
+
+        _this7._events.push({
+          event: event,
+          func: func
+        });
+
+        reference.addEventListener(event, func);
+      });
+    }
+  }, {
+    key: "_onDocumentTouch",
+    value: function _onDocumentTouch(event) {
+      if (this._enableDocumentTouch) {
+        this._scheduleHide(this.reference, this.options.delay, this.options, event);
+      }
+    }
+  }, {
+    key: "_scheduleShow",
+    value: function _scheduleShow(reference, delay, options
+    /*, evt */
+    ) {
+      var _this8 = this;
+
+      // defaults to 0
+      var computedDelay = delay && delay.show || delay || 0;
+      clearTimeout(this._scheduleTimer);
+      this._scheduleTimer = window.setTimeout(function () {
+        return _this8._show(reference, options);
+      }, computedDelay);
+    }
+  }, {
+    key: "_scheduleHide",
+    value: function _scheduleHide(reference, delay, options, evt) {
+      var _this9 = this;
+
+      // defaults to 0
+      var computedDelay = delay && delay.hide || delay || 0;
+      clearTimeout(this._scheduleTimer);
+      this._scheduleTimer = window.setTimeout(function () {
+        if (_this9._isOpen === false) {
+          return;
+        }
+
+        if (!document.body.contains(_this9._tooltipNode)) {
+          return;
+        } // if we are hiding because of a mouseleave, we must check that the new
+        // reference isn't the tooltip, because in this case we don't want to hide it
+
+
+        if (evt.type === "mouseleave") {
+          var isSet = _this9._setTooltipNodeEvent(evt, reference, delay, options); // if we set the new event, don't hide the tooltip yet
+          // the new event will take care to hide it if necessary
+
+
+          if (isSet) {
+            return;
+          }
+        }
+
+        _this9._hide(reference, options);
+      }, computedDelay);
+    }
+  }]);
+
+  return Tooltip;
+}(); // Hide tooltips on touch devices
+
+
+
+
+if (typeof document !== "undefined") {
+  document.addEventListener("touchstart", function (event) {
+    for (var i = 0; i < openTooltips.length; i++) {
+      openTooltips[i]._onDocumentTouch(event);
+    }
+  }, browser_supportsPassive ? {
+    passive: true,
+    capture: true
+  } : true);
+}
+/**
+ * Placement function, its context is the Tooltip instance.
+ * @memberof Tooltip
+ * @callback PlacementFunction
+ * @param {HTMLElement} tooltip - tooltip DOM node.
+ * @param {HTMLElement} reference - reference DOM node.
+ * @return {String} placement - One of the allowed placement options.
+ */
+
+/**
+ * Title function, its context is the Tooltip instance.
+ * @memberof Tooltip
+ * @callback TitleFunction
+ * @return {String} placement - The desired title.
+ */
+// CONCATENATED MODULE: ./packages/popover/directive/tooltip.js
+
+
+
+
+
+var state = {
+  enabled: true
+};
+var positions = ["top", "top-start", "top-end", "right", "right-start", "right-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end"];
+var defaultOptions = {
+  // Default tooltip placement relative to target element
+  defaultPlacement: "top",
+  // Default CSS classes applied to the tooltip element
+  defaultClass: "ui-popover",
+  // Default CSS classes applied to the target element of the tooltip
+  defaultTargetClass: "ui-has-popover",
+  // Is the content HTML by default?
+  defaultHtml: true,
+  // Default HTML template of the tooltip element
+  // It must include `tooltip-arrow` & `tooltip-inner` CSS classes (can be configured, see below)
+  // Change if the classes conflict with other libraries (for example bootstrap)
+  defaultTemplate: '<div class="ui-popover" role="tooltip"><div class="ui-popover-arrow"></div><div class="ui-popover-inner"></div></div>',
+  // Selector used to get the arrow element in the tooltip template
+  defaultArrowSelector: ".ui-popover-arrow, .ui-popover__arrow",
+  // Selector used to get the inner content element in the tooltip template
+  defaultInnerSelector: ".ui-popover-inner, .ui-popover__inner",
+  // Delay (ms)
+  defaultDelay: 0,
+  // Default events that trigger the tooltip
+  defaultTrigger: "hover focus",
+  // Default position offset (px)
+  defaultOffset: 0,
+  // Default container where the tooltip will be appended
+  defaultContainer: "body",
+  defaultBoundariesElement: undefined,
+  defaultPopperOptions: {},
+  // Class added when content is loading
+  defaultLoadingClass: "ui-popover-loading",
+  // Displayed when tooltip content is loading
+  defaultLoadingContent: "...",
+  // Hide on mouseover tooltip
+  autoHide: true,
+  // Close tooltip on click on tooltip target?
+  defaultHideOnTargetClick: true,
+  // Auto destroy tooltip DOM nodes (ms)
+  disposeTimeout: 5000,
+  // Options for popover
+  popover: {
+    defaultPlacement: "bottom",
+    // Use the `popoverClass` prop for theming
+    defaultClass: "",
+    // Base class (change if conflicts with other libraries)
+    defaultBaseClass: "ui-popover",
+    // Wrapper class (contains arrow and inner)
+    defaultWrapperClass: "ui-popover-wrapper",
+    // Inner content class
+    defaultInnerClass: "ui-popover-inner",
+    // Arrow class
+    defaultArrowClass: "ui-popover-arrow",
+    defaultDelay: 0,
+    defaultTrigger: "click",
+    defaultOffset: 0,
+    defaultContainer: "body",
+    defaultBoundariesElement: undefined,
+    defaultPopperOptions: {},
+    // Hides if clicked outside of popover
+    defaultAutoHide: true,
+    // Update popper on content resize
+    defaultHandleResize: true
+  }
+};
+function getOptions(options) {
+  var result = {
+    placement: typeof options.placement !== "undefined" ? options.placement : directive.options.defaultPlacement,
+    delay: typeof options.delay !== "undefined" ? options.delay : directive.options.defaultDelay,
+    html: typeof options.html !== "undefined" ? options.html : directive.options.defaultHtml,
+    template: typeof options.template !== "undefined" ? options.template : directive.options.defaultTemplate,
+    arrowSelector: typeof options.arrowSelector !== "undefined" ? options.arrowSelector : directive.options.defaultArrowSelector,
+    innerSelector: typeof options.innerSelector !== "undefined" ? options.innerSelector : directive.options.defaultInnerSelector,
+    trigger: typeof options.trigger !== "undefined" ? options.trigger : directive.options.defaultTrigger,
+    offset: typeof options.offset !== "undefined" ? options.offset : directive.options.defaultOffset,
+    container: typeof options.container !== "undefined" ? options.container : directive.options.defaultContainer,
+    boundariesElement: typeof options.boundariesElement !== "undefined" ? options.boundariesElement : directive.options.defaultBoundariesElement,
+    autoHide: typeof options.autoHide !== "undefined" ? options.autoHide : directive.options.autoHide,
+    hideOnTargetClick: typeof options.hideOnTargetClick !== "undefined" ? options.hideOnTargetClick : directive.options.defaultHideOnTargetClick,
+    loadingClass: typeof options.loadingClass !== "undefined" ? options.loadingClass : directive.options.defaultLoadingClass,
+    loadingContent: typeof options.loadingContent !== "undefined" ? options.loadingContent : directive.options.defaultLoadingContent,
+    popperOptions: _objectSpread({}, typeof options.popperOptions !== "undefined" ? options.popperOptions : directive.options.defaultPopperOptions)
+  };
+
+  if (result.offset) {
+    var typeofOffset = typeof_typeof(result.offset);
+
+    var offset = result.offset; // One value -> switch
+
+    if (typeofOffset === "number" || typeofOffset === "string" && offset.indexOf(",") === -1) {
+      offset = "0, ".concat(offset);
+    }
+
+    if (!result.popperOptions.modifiers) {
+      result.popperOptions.modifiers = {};
+    }
+
+    result.popperOptions.modifiers.offset = {
+      offset: offset
+    };
+  }
+
+  if (result.trigger && result.trigger.indexOf("click") !== -1) {
+    result.hideOnTargetClick = false;
+  }
+
+  return result;
+}
+function getPlacement(value, modifiers) {
+  var placement = value.placement;
+
+  for (var i = 0; i < positions.length; i++) {
+    var pos = positions[i];
+
+    if (modifiers[pos]) {
+      placement = pos;
+    }
+  }
+
+  return placement;
+}
+function getContent(value) {
+  var type = typeof_typeof(value);
+
+  if (type === "string") {
+    return value;
+  } else if (value && type === "object") {
+    return value.content;
+  } else {
+    return false;
+  }
+}
+function createTooltip(el, value) {
+  var modifiers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var content = getContent(value);
+  var classes = typeof value.classes !== "undefined" ? value.classes : directive.options.defaultClass;
+
+  var opts = _objectSpread({
+    title: content
+  }, getOptions(_objectSpread({}, value, {
+    placement: getPlacement(value, modifiers)
+  })));
+
+  var tooltip = el._tooltip = new tooltip_Tooltip(el, opts);
+  tooltip.setClasses(classes);
+  tooltip._vueEl = el; // Class on target
+
+  var targetClasses = typeof value.targetClasses !== "undefined" ? value.targetClasses : directive.options.defaultTargetClass;
+  el._tooltipTargetClasses = targetClasses;
+  browser_addClass(el, targetClasses);
+  return tooltip;
+}
+function destroyTooltip(el) {
+  if (el._tooltip) {
+    el._tooltip.dispose();
+
+    delete el._tooltip;
+    delete el._tooltipOldShow;
+  }
+
+  if (el._tooltipTargetClasses) {
+    browser_removeClass(el, el._tooltipTargetClasses);
+    delete el._tooltipTargetClasses;
+  }
+}
+function tooltip_bind(el, _ref) {
+  var value = _ref.value,
+      oldValue = _ref.oldValue,
+      modifiers = _ref.modifiers;
+  var content = getContent(value);
+
+  if (!content || !state.enabled) {
+    destroyTooltip(el);
+  } else {
+    var tooltip;
+
+    if (el._tooltip) {
+      tooltip = el._tooltip; // Content
+
+      tooltip.setContent(content); // Options
+
+      tooltip.setOptions(_objectSpread({}, value, {
+        placement: getPlacement(value, modifiers)
+      }));
+    } else {
+      tooltip = createTooltip(el, value, modifiers);
+    } // Manual show
+
+
+    if (typeof value.show !== "undefined" && value.show !== el._tooltipOldShow) {
+      el._tooltipOldShow = value.show;
+      value.show ? tooltip.show() : tooltip.hide();
+    }
+  }
+}
+var directive = {
+  options: defaultOptions,
+  bind: tooltip_bind,
+  update: tooltip_bind,
+  name: "ui-tooltip",
+  unbind: function unbind(el) {
+    destroyTooltip(el);
+  }
+};
+/* harmony default export */ var directive_tooltip = (directive);
+// CONCATENATED MODULE: ./packages/popover/directive/close-popover.js
+
+
+function addListeners(el) {
+  el.addEventListener("click", onClick);
+  el.addEventListener("touchstart", onTouchStart, browser_supportsPassive ? {
+    passive: true
+  } : false);
+}
+
+function removeListeners(el) {
+  el.removeEventListener("click", onClick);
+  el.removeEventListener("touchstart", onTouchStart);
+  el.removeEventListener("touchend", onTouchEnd);
+  el.removeEventListener("touchcancel", onTouchCancel);
+}
+
+function onClick(event) {
+  var el = event.currentTarget;
+  event.closePopover = !el.$_vclosepopover_touch;
+  event.closeAllPopover = el.$_closePopoverModifiers && !!el.$_closePopoverModifiers.all;
+}
+
+function onTouchStart(event) {
+  if (event.changedTouches.length === 1) {
+    var el = event.currentTarget;
+    el.$_vclosepopover_touch = true;
+    var touch = event.changedTouches[0];
+    el.$_vclosepopover_touchPoint = touch;
+    el.addEventListener("touchend", onTouchEnd);
+    el.addEventListener("touchcancel", onTouchCancel);
+  }
+}
+
+function onTouchEnd(event) {
+  var el = event.currentTarget;
+  el.$_vclosepopover_touch = false;
+
+  if (event.changedTouches.length === 1) {
+    var touch = event.changedTouches[0];
+    var firstTouch = el.$_vclosepopover_touchPoint;
+    event.closePopover = Math.abs(touch.screenY - firstTouch.screenY) < 20 && Math.abs(touch.screenX - firstTouch.screenX) < 20;
+    event.closeAllPopover = el.$_closePopoverModifiers && !!el.$_closePopoverModifiers.all;
+  }
+}
+
+function onTouchCancel(event) {
+  var el = event.currentTarget;
+  el.$_vclosepopover_touch = false;
+}
+
+/* harmony default export */ var close_popover = ({
+  name: "ui-close-popover",
+  bind: function bind(el, _ref) {
+    var value = _ref.value,
+        modifiers = _ref.modifiers;
+    el.$_closePopoverModifiers = modifiers;
+
+    if (typeof value === "undefined" || value) {
+      addListeners(el);
+    }
+  },
+  update: function update(el, _ref2) {
+    var value = _ref2.value,
+        oldValue = _ref2.oldValue,
+        modifiers = _ref2.modifiers;
+    el.$_closePopoverModifiers = modifiers;
+
+    if (value !== oldValue) {
+      if (typeof value === "undefined" || value) {
+        addListeners(el);
+      } else {
+        removeListeners(el);
+      }
+    }
+  },
+  unbind: function unbind(el) {
+    removeListeners(el);
+  }
+});
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/popover/Popover.vue?vue&type=template&id=3c1ef697&
+var Popovervue_type_template_id_3c1ef697_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-popover",class:_vm.cssClass},[_c('span',{ref:"trigger",staticClass:"trigger",staticStyle:{"display":"inline-block"},attrs:{"aria-describedby":_vm.popoverId,"tabindex":_vm.trigger.indexOf('focus') !== -1 ? 0 : -1}},[_vm._t("default")],2),_c('div',{ref:"popover",class:[_vm.popoverBaseClass, _vm.popoverClass, _vm.cssClass],style:({
+      visibility: _vm.isOpen ? 'visible' : 'hidden'
+    }),attrs:{"id":_vm.popoverId,"aria-hidden":_vm.isOpen ? 'false' : 'true'}},[_c('div',{class:_vm.popoverWrapperClass},[_c('div',{ref:"inner",class:_vm.popoverInnerClass,staticStyle:{"position":"relative"}},[_c('div',[_vm._t("popover")],2),(_vm.handleResize)?_c('ResizeObserver',{on:{"notify":_vm.$_handleResize}}):_vm._e()],1),_c('div',{ref:"arrow",class:_vm.popoverArrowClass})])])])}
+var Popovervue_type_template_id_3c1ef697_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./packages/popover/Popover.vue?vue&type=template&id=3c1ef697&
+
+// EXTERNAL MODULE: ./node_modules/vue-resize/dist/vue-resize.esm.js
+var vue_resize_esm = __webpack_require__("252c");
+
+// EXTERNAL MODULE: ./node_modules/vue-resize/dist/vue-resize.css
+var vue_resize = __webpack_require__("6eb0");
+
+// CONCATENATED MODULE: ./node_modules/buxton/browser/isIOS.js
+let isIOS = false
+if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
+  isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+}
+
+
+/* harmony default export */ var browser_isIOS = (isIOS);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/popover/Popover.vue?vue&type=script&lang=js&
+
+
+
+
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+function getDefault(key) {
+  var value = directive.options.popover[key];
+
+  if (typeof value === "undefined") {
+    return directive.options[key];
+  }
+
+  return value;
+}
+
+var openPopovers = [];
+
+var Element = function Element() {};
+
+if (typeof window !== "undefined") {
+  Element = window.Element;
+}
+
+/* harmony default export */ var Popovervue_type_script_lang_js_ = ({
+  name: "UiPopover",
+  components: {
+    ResizeObserver: vue_resize_esm["a" /* ResizeObserver */]
+  },
+  props: {
+    open: {
+      type: Boolean,
+      default: false
+    },
+    dropdown: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    placement: {
+      type: String,
+      default: function _default() {
+        return getDefault("defaultPlacement");
+      }
+    },
+    delay: {
+      type: [String, Number, Object],
+      default: function _default() {
+        return getDefault("defaultDelay");
+      }
+    },
+    offset: {
+      type: [String, Number],
+      default: function _default() {
+        return getDefault("defaultOffset");
+      }
+    },
+    trigger: {
+      type: String,
+      default: function _default() {
+        return getDefault("defaultTrigger");
+      }
+    },
+    container: {
+      type: [String, Object, Element, Boolean],
+      default: function _default() {
+        return getDefault("defaultContainer");
+      }
+    },
+    boundariesElement: {
+      type: [String, Element],
+      default: function _default() {
+        return getDefault("defaultBoundariesElement");
+      }
+    },
+    popperOptions: {
+      type: Object,
+      default: function _default() {
+        return getDefault("defaultPopperOptions");
+      }
+    },
+    popoverClass: {
+      type: [String, Array],
+      default: function _default() {
+        return getDefault("defaultClass");
+      }
+    },
+    popoverBaseClass: {
+      type: [String, Array],
+      default: function _default() {
+        return directive.options.popover.defaultBaseClass;
+      }
+    },
+    popoverInnerClass: {
+      type: [String, Array],
+      default: function _default() {
+        return directive.options.popover.defaultInnerClass;
+      }
+    },
+    popoverWrapperClass: {
+      type: [String, Array],
+      default: function _default() {
+        return directive.options.popover.defaultWrapperClass;
+      }
+    },
+    popoverArrowClass: {
+      type: [String, Array],
+      default: function _default() {
+        return directive.options.popover.defaultArrowClass;
+      }
+    },
+    autoHide: {
+      type: Boolean,
+      default: function _default() {
+        return directive.options.popover.defaultAutoHide;
+      }
+    },
+    handleResize: {
+      type: Boolean,
+      default: function _default() {
+        return directive.options.popover.defaultHandleResize;
+      }
+    },
+    openGroup: {
+      type: String,
+      default: null
+    }
+  },
+  data: function data() {
+    return {
+      isOpen: false,
+      id: Math.random().toString(36).substr(2, 10)
+    };
+  },
+  computed: {
+    cssClass: function cssClass() {
+      return {
+        open: this.isOpen,
+        "ui-dropdown": this.dropdown
+      };
+    },
+    popoverId: function popoverId() {
+      return "popover_".concat(this.id);
+    }
+  },
+  watch: {
+    open: function open(val) {
+      if (val) {
+        this.show();
+      } else {
+        this.hide();
+      }
+    },
+    disabled: function disabled(val, oldVal) {
+      if (val !== oldVal) {
+        if (val) {
+          this.hide();
+        } else if (this.open) {
+          this.show();
+        }
+      }
+    },
+    container: function container(val) {
+      if (this.isOpen && this.popperInstance) {
+        var popoverNode = this.$refs.popover;
+        var reference = this.$refs.trigger;
+        var container = this.$_findContainer(this.container, reference);
+
+        if (!container) {
+          console.warn("No container for popover", this);
+          return;
+        }
+
+        container.appendChild(popoverNode);
+        this.popperInstance.scheduleUpdate();
+      }
+    },
+    trigger: function trigger(val) {
+      this.$_removeEventListeners();
+      this.$_addEventListeners();
+    },
+    placement: function placement(val) {
+      var _this = this;
+
+      this.$_updatePopper(function () {
+        _this.popperInstance.options.placement = val;
+      });
+    },
+    offset: "$_restartPopper",
+    boundariesElement: "$_restartPopper",
+    popperOptions: {
+      handler: "$_restartPopper",
+      deep: true
+    }
+  },
+  created: function created() {
+    this.$_isDisposed = false;
+    this.$_mounted = false;
+    this.$_events = [];
+    this.$_preventOpen = false;
+  },
+  mounted: function mounted() {
+    var popoverNode = this.$refs.popover;
+    popoverNode.parentNode && popoverNode.parentNode.removeChild(popoverNode);
+    this.$_init();
+
+    if (this.open) {
+      this.show();
+    }
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.dispose();
+  },
+  methods: {
+    show: function show() {
+      var _this2 = this;
+
+      var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+          event = _ref.event,
+          _ref$skipDelay = _ref.skipDelay,
+          skipDelay = _ref$skipDelay === void 0 ? false : _ref$skipDelay,
+          _ref$force = _ref.force,
+          force = _ref$force === void 0 ? false : _ref$force;
+
+      if (force || !this.disabled) {
+        this.$_scheduleShow(event);
+        this.$emit("show");
+      }
+
+      this.$emit("update:open", true);
+      this.$_beingShowed = true;
+      requestAnimationFrame(function () {
+        _this2.$_beingShowed = false;
+      });
+    },
+    hide: function hide() {
+      var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+          event = _ref2.event,
+          _ref2$skipDelay = _ref2.skipDelay,
+          skipDelay = _ref2$skipDelay === void 0 ? false : _ref2$skipDelay;
+
+      this.$_scheduleHide(event);
+      this.$emit("hide");
+      this.$emit("update:open", false);
+    },
+    dispose: function dispose() {
+      this.$_isDisposed = true;
+      this.$_removeEventListeners();
+      this.hide({
+        skipDelay: true
+      });
+
+      if (this.popperInstance) {
+        this.popperInstance.destroy(); // destroy tooltipNode if removeOnDestroy is not set, as popperInstance.destroy() already removes the element
+
+        if (!this.popperInstance.options.removeOnDestroy) {
+          var popoverNode = this.$refs.popover;
+          popoverNode.parentNode && popoverNode.parentNode.removeChild(popoverNode);
+        }
+      }
+
+      this.$_mounted = false;
+      this.popperInstance = null;
+      this.isOpen = false;
+      this.$emit("dispose");
+    },
+    $_init: function $_init() {
+      if (this.trigger.indexOf("manual") === -1) {
+        this.$_addEventListeners();
+      }
+    },
+    $_show: function $_show() {
+      var _this3 = this;
+
+      var reference = this.$refs.trigger;
+      var popoverNode = this.$refs.popover;
+      clearTimeout(this.$_disposeTimer); // Already open
+
+      if (this.isOpen) {
+        return;
+      } // Popper is already initialized
+
+
+      if (this.popperInstance) {
+        this.isOpen = true;
+        this.popperInstance.enableEventListeners();
+        this.popperInstance.scheduleUpdate();
+      }
+
+      if (!this.$_mounted) {
+        var container = this.$_findContainer(this.container, reference);
+
+        if (!container) {
+          console.warn("No container for popover", this);
+          return;
+        }
+
+        container.appendChild(popoverNode);
+        this.$_mounted = true;
+      }
+
+      if (!this.popperInstance) {
+        var popperOptions = _objectSpread({}, this.popperOptions, {
+          placement: this.placement
+        });
+
+        popperOptions.modifiers = _objectSpread({}, popperOptions.modifiers, {
+          arrow: _objectSpread({}, popperOptions.modifiers && popperOptions.modifiers.arrow, {
+            element: this.$refs.arrow
+          })
+        });
+
+        if (this.offset) {
+          var offset = this.$_getOffset();
+          popperOptions.modifiers.offset = _objectSpread({}, popperOptions.modifiers && popperOptions.modifiers.offset, {
+            offset: offset
+          });
+        }
+
+        if (this.boundariesElement) {
+          popperOptions.modifiers.preventOverflow = _objectSpread({}, popperOptions.modifiers && popperOptions.modifiers.preventOverflow, {
+            boundariesElement: this.boundariesElement
+          });
+        }
+
+        this.popperInstance = new popper["a" /* default */](reference, popoverNode, popperOptions); // Fix position
+
+        requestAnimationFrame(function () {
+          if (!_this3.$_isDisposed && _this3.popperInstance) {
+            _this3.popperInstance.scheduleUpdate(); // Show the tooltip
+
+
+            requestAnimationFrame(function () {
+              if (!_this3.$_isDisposed) {
+                _this3.isOpen = true;
+              } else {
+                _this3.dispose();
+              }
+            });
+          } else {
+            _this3.dispose();
+          }
+        });
+      }
+
+      var openGroup = this.openGroup;
+
+      if (openGroup) {
+        var popover;
+
+        for (var i = 0; i < openPopovers.length; i++) {
+          popover = openPopovers[i];
+
+          if (popover.openGroup !== openGroup) {
+            popover.hide();
+            popover.$emit("close-group");
+          }
+        }
+      }
+
+      openPopovers.push(this);
+      this.$emit("apply-show");
+    },
+    $_hide: function $_hide() {
+      var _this4 = this;
+
+      // Already hidden
+      if (!this.isOpen) {
+        return;
+      }
+
+      var index = openPopovers.indexOf(this);
+
+      if (index !== -1) {
+        openPopovers.splice(index, 1);
+      }
+
+      this.isOpen = false;
+
+      if (this.popperInstance) {
+        this.popperInstance.disableEventListeners();
+      }
+
+      clearTimeout(this.$_disposeTimer);
+      var disposeTime = directive.options.popover.disposeTimeout || directive.options.disposeTimeout;
+
+      if (disposeTime !== null) {
+        this.$_disposeTimer = setTimeout(function () {
+          var popoverNode = _this4.$refs.popover;
+
+          if (popoverNode) {
+            // Don't remove popper instance, just the HTML element
+            popoverNode.parentNode && popoverNode.parentNode.removeChild(popoverNode);
+            _this4.$_mounted = false;
+          }
+        }, disposeTime);
+      }
+
+      this.$emit("apply-hide");
+    },
+    $_findContainer: function $_findContainer(container, reference) {
+      // if container is a query, get the relative element
+      if (typeof container === "string") {
+        container = window.document.querySelector(container);
+      } else if (container === false) {
+        // if container is `false`, set it to reference parent
+        container = reference.parentNode;
+      }
+
+      return container;
+    },
+    $_getOffset: function $_getOffset() {
+      var typeofOffset = typeof_typeof(this.offset);
+
+      var offset = this.offset; // One value -> switch
+
+      if (typeofOffset === "number" || typeofOffset === "string" && offset.indexOf(",") === -1) {
+        offset = "0, ".concat(offset);
+      }
+
+      return offset;
+    },
+    $_addEventListeners: function $_addEventListeners() {
+      var _this5 = this;
+
+      var reference = this.$refs.trigger;
+      var directEvents = [];
+      var oppositeEvents = [];
+      var events = typeof this.trigger === "string" ? this.trigger.split(" ").filter(function (trigger) {
+        return ["click", "hover", "focus"].indexOf(trigger) !== -1;
+      }) : [];
+      events.forEach(function (event) {
+        switch (event) {
+          case "hover":
+            directEvents.push("mouseenter");
+            oppositeEvents.push("mouseleave");
+            break;
+
+          case "focus":
+            directEvents.push("focus");
+            oppositeEvents.push("blur");
+            break;
+
+          case "click":
+            directEvents.push("click");
+            oppositeEvents.push("click");
+            break;
+        }
+      }); // schedule show tooltip
+
+      directEvents.forEach(function (event) {
+        var func = function func(event) {
+          if (_this5.isOpen) {
+            return;
+          }
+
+          event.usedByTooltip = true;
+          !_this5.$_preventOpen && _this5.show({
+            event: event
+          });
+        };
+
+        _this5.$_events.push({
+          event: event,
+          func: func
+        });
+
+        reference.addEventListener(event, func);
+      }); // schedule hide tooltip
+
+      oppositeEvents.forEach(function (event) {
+        var func = function func(event) {
+          if (event.usedByTooltip) {
+            return;
+          }
+
+          _this5.hide({
+            event: event
+          });
+        };
+
+        _this5.$_events.push({
+          event: event,
+          func: func
+        });
+
+        reference.addEventListener(event, func);
+      });
+    },
+    $_scheduleShow: function $_scheduleShow() {
+      var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var skipDelay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      clearTimeout(this.$_scheduleTimer);
+
+      if (skipDelay) {
+        this.$_show();
+      } else {
+        // defaults to 0
+        var computedDelay = parse_int_default()(this.delay && this.delay.show || this.delay || 0);
+
+        this.$_scheduleTimer = setTimeout(this.$_show.bind(this), computedDelay);
+      }
+    },
+    $_scheduleHide: function $_scheduleHide() {
+      var _this6 = this;
+
+      var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var skipDelay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      clearTimeout(this.$_scheduleTimer);
+
+      if (skipDelay) {
+        this.$_hide();
+      } else {
+        // defaults to 0
+        var computedDelay = parse_int_default()(this.delay && this.delay.hide || this.delay || 0);
+
+        this.$_scheduleTimer = setTimeout(function () {
+          if (!_this6.isOpen) {
+            return;
+          } // if we are hiding because of a mouseleave, we must check that the new
+          // reference isn't the tooltip, because in this case we don't want to hide it
+
+
+          if (event && event.type === "mouseleave") {
+            var isSet = _this6.$_setTooltipNodeEvent(event); // if we set the new event, don't hide the tooltip yet
+            // the new event will take care to hide it if necessary
+
+
+            if (isSet) {
+              return;
+            }
+          }
+
+          _this6.$_hide();
+        }, computedDelay);
+      }
+    },
+    $_setTooltipNodeEvent: function $_setTooltipNodeEvent(event) {
+      var _this7 = this;
+
+      var reference = this.$refs.trigger;
+      var popoverNode = this.$refs.popover;
+      var relatedreference = event.relatedreference || event.toElement || event.relatedTarget;
+
+      var callback = function callback(event2) {
+        var relatedreference2 = event2.relatedreference || event2.toElement || event2.relatedTarget; // Remove event listener after call
+
+        popoverNode.removeEventListener(event.type, callback); // If the new reference is not the reference element
+
+        if (!reference.contains(relatedreference2)) {
+          // Schedule to hide tooltip
+          _this7.hide({
+            event: event2
+          });
+        }
+      };
+
+      if (popoverNode.contains(relatedreference)) {
+        // listen to mouseleave on the tooltip element to be able to hide the tooltip
+        popoverNode.addEventListener(event.type, callback);
+        return true;
+      }
+
+      return false;
+    },
+    $_removeEventListeners: function $_removeEventListeners() {
+      var reference = this.$refs.trigger;
+      this.$_events.forEach(function (_ref3) {
+        var func = _ref3.func,
+            event = _ref3.event;
+        reference.removeEventListener(event, func);
+      });
+      this.$_events = [];
+    },
+    $_updatePopper: function $_updatePopper(cb) {
+      if (this.popperInstance) {
+        cb();
+        if (this.isOpen) this.popperInstance.scheduleUpdate();
+      }
+    },
+    $_restartPopper: function $_restartPopper() {
+      if (this.popperInstance) {
+        var isOpen = this.isOpen;
+        this.dispose();
+        this.$_isDisposed = false;
+        this.$_init();
+
+        if (isOpen) {
+          this.show({
+            skipDelay: true,
+            force: true
+          });
+        }
+      }
+    },
+    $_handleGlobalClose: function $_handleGlobalClose(event) {
+      var _this8 = this;
+
+      var touch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      if (this.$_beingShowed) return;
+      this.hide({
+        event: event
+      });
+
+      if (event.closePopover) {
+        this.$emit("close-directive");
+      } else {
+        this.$emit("auto-hide");
+      }
+
+      if (touch) {
+        this.$_preventOpen = true;
+        setTimeout(function () {
+          _this8.$_preventOpen = false;
+        }, 300);
+      }
+    },
+    $_handleResize: function $_handleResize() {
+      if (this.isOpen && this.popperInstance) {
+        this.popperInstance.scheduleUpdate();
+        this.$emit("resize");
+      }
+    }
+  }
+});
+
+if (typeof document !== "undefined" && typeof window !== "undefined") {
+  if (browser_isIOS) {
+    document.addEventListener("touchend", handleGlobalTouchend, browser_supportsPassive ? {
+      passive: true,
+      capture: true
+    } : true);
+  } else {
+    window.addEventListener("click", handleGlobalClick, true);
+  }
+}
+
+function handleGlobalClick(event) {
+  handleGlobalClose(event);
+}
+
+function handleGlobalTouchend(event) {
+  handleGlobalClose(event, true);
+}
+
+function handleGlobalClose(event) {
+  var touch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  // Delay so that close directive has time to set values
+  requestAnimationFrame(function () {
+    var popover;
+
+    for (var i = 0; i < openPopovers.length; i++) {
+      popover = openPopovers[i];
+
+      if (popover.$refs.popover) {
+        var contains = popover.$refs.popover.contains(event.target);
+
+        if (event.closeAllPopover || event.closePopover && contains || popover.autoHide && !contains) {
+          popover.$_handleGlobalClose(event, touch);
+        }
+      }
+    }
+  });
+}
+// CONCATENATED MODULE: ./packages/popover/Popover.vue?vue&type=script&lang=js&
+ /* harmony default export */ var popover_Popovervue_type_script_lang_js_ = (Popovervue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./packages/popover/Popover.vue
+
+
+
+
+
+/* normalize component */
+
+var Popover_component = normalizeComponent(
+  popover_Popovervue_type_script_lang_js_,
+  Popovervue_type_template_id_3c1ef697_render,
+  Popovervue_type_template_id_3c1ef697_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+Popover_component.options.__file = "Popover.vue"
+/* harmony default export */ var Popover = (Popover_component.exports);
+// EXTERNAL MODULE: ./packages/assets/scss/popover.scss
+var scss_popover = __webpack_require__("4055");
+
+// CONCATENATED MODULE: ./packages/popover/index.js
+
+
+
+
+
+
+
+function popover_install(Vue) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  if (popover_install.installed) return;
+  popover_install.installed = true;
+  var finalOptions = {};
+
+  merge_default()(finalOptions, defaultOptions, options);
+
+  directive_tooltip.options = finalOptions;
+  Vue.directive(directive_tooltip.name, directive_tooltip);
+  Vue.directive(close_popover.name, close_popover);
+  Vue.component(UiPopover.name, UiPopover);
+}
+var UiTooltip = directive_tooltip;
+var UiClosePopover = close_popover;
+var UiPopover = Popover;
+
+UiPopover.install = function (Vue) {
+  Vue.component(UiPopover.name, UiPopover);
+};
+
+/* harmony default export */ var packages_popover = (UiPopover);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/toast/toast.vue?vue&type=template&id=f4596f9c&
+var toastvue_type_template_id_f4596f9c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.classes,on:{"mouseenter":_vm.pause,"mouseleave":_vm.resume}},[_c('transition',{attrs:{"enter-active-class":"bounceIn","leave-active-class":"fadeOut"},on:{"after-enter":_vm.entered,"after-leave":_vm.destroy,"before-leave":function($event){_vm.isEntered = false}}},[(!_vm.isMessage && _vm.show)?_c('div',{staticClass:"ui-toast-icon",style:(_vm.iconStyles),on:{"click":_vm.clickIcon}},[(_vm.iconName)?_c('ui-icon',{attrs:{"name":_vm.iconName}}):_vm._e()],1):_vm._e()]),_c('transition',{attrs:{"enter-active-class":_vm.toastInTransition,"leave-active-class":_vm.toastOutTransition},on:{"after-enter":function($event){_vm.showContent = true},"before-leave":function($event){_vm.showContent = false}}},[(!_vm.isMessage && _vm.isEntered)?_c('div',{staticClass:"ui-toast-background",style:(_vm.backgroundStyles)}):_vm._e()]),(!_vm.isMessage && _vm.message)?_c('div',{staticClass:"ui-toast-content",style:(_vm.contentStyles)},[_vm._v("\n    "+_vm._s(_vm.message)+"\n  ")]):_vm._e(),_c('transition',{attrs:{"enter-active-class":"slideInDown","leave-active-class":"slideOutUp"},on:{"after-leave":_vm.destroy}},[(_vm.isMessage && _vm.show)?_c('div',{staticClass:"ui-message-content",class:[
+        _vm.iconName && 'ui-message-content-with-icon',
+        _vm.showClose && 'ui-message-content-with-close'
+      ]},[(_vm.title)?_c('div',{staticClass:"ui-message-title"},[_vm._v(_vm._s(_vm.title))]):_vm._e(),(_vm.message)?_c('div',{staticClass:"ui-message-message"},[_vm._v(_vm._s(_vm.message))]):_vm._e(),(_vm.iconName)?_c('div',{staticClass:"ui-message-icon"},[_c('ui-icon',{attrs:{"name":_vm.iconName}})],1):_vm._e(),(_vm.showClose)?_c('div',{staticClass:"ui-message-close",on:{"click":_vm.stop}},[_c('ui-icon',{attrs:{"name":"icon-close-circle-fill"}})],1):_vm._e(),(_vm.actions.length)?_c('div',{staticClass:"ui-message-actions"},_vm._l((_vm.actions),function(action){return _c('span',{key:action.content,staticClass:"ui-message-action-item",on:{"click":function($event){_vm.clickOnMessageIcon(action)}}},[(action.icon)?_c('ui-icon',{attrs:{"name":action.icon}}):_vm._e(),_vm._v("\n          "+_vm._s(action.content))],1)}),0):_vm._e()]):_vm._e()])],1)}
+var toastvue_type_template_id_f4596f9c_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./packages/toast/toast.vue?vue&type=template&id=f4596f9c&
+
 // CONCATENATED MODULE: ./src/utils/timer.js
 
 
@@ -22953,7 +25968,7 @@ var toast = __webpack_require__("539c");
     };
   },
   components: {
-    UiIcon: icon["a" /* default */]
+    UiIcon: icon_icon
   },
   computed: {
     iconName: function iconName() {
@@ -23081,7 +26096,7 @@ var toast = __webpack_require__("539c");
 
 /* normalize component */
 
-var toast_component = Object(componentNormalizer["a" /* default */])(
+var toast_component = normalizeComponent(
   toast_toastvue_type_script_lang_js_,
   toastvue_type_template_id_f4596f9c_render,
   toastvue_type_template_id_f4596f9c_staticRenderFns,
@@ -23223,16 +26238,16 @@ message_types.forEach(function (type) {
   };
 });
 /* harmony default export */ var packages_message = (message_$UiMessage);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/loading-bar/loading-bar.vue?vue&type=template&id=77536715&
-var loading_barvue_type_template_id_77536715_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"fade"}},[(_vm.show)?_c('div',{staticClass:"ui-loading-bar",style:({
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/loading-bar/loading-bar.vue?vue&type=template&id=367a6f92&
+var loading_barvue_type_template_id_367a6f92_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"fade"}},[(_vm.show)?_c('div',{staticClass:"ui-loading-bar",style:({
       'background-color': _vm.backColor,
       zIndex: _vm.zIndex,
       height: _vm.size + 'px'
     })},[(!_vm.indeterminate)?_c('div',{staticClass:"ui-loading-bar-inner",style:(_vm.styles)}):_vm._e(),(_vm.indeterminate)?_c('div',{staticClass:"ui-loading-bar-indeterminate-bg1",style:({ backgroundColor: _vm.foreColor })}):_vm._e(),(_vm.indeterminate)?_c('div',{staticClass:"ui-loading-bar-indeterminate-bg2",style:({ backgroundColor: _vm.foreColor })}):_vm._e()]):_vm._e()])}
-var loading_barvue_type_template_id_77536715_staticRenderFns = []
+var loading_barvue_type_template_id_367a6f92_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/loading-bar/loading-bar.vue?vue&type=template&id=77536715&
+// CONCATENATED MODULE: ./packages/loading-bar/loading-bar.vue?vue&type=template&id=367a6f92&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/loading-bar/loading-bar.vue?vue&type=script&lang=js&
 
@@ -23307,8 +26322,6 @@ var loading_barvue_type_template_id_77536715_staticRenderFns = []
     }
   },
   mounted: function mounted() {
-    console.log(this);
-
     if (this.indeterminate) {
       this.show = true;
     }
@@ -23324,10 +26337,10 @@ var loading_barvue_type_template_id_77536715_staticRenderFns = []
 
 /* normalize component */
 
-var loading_bar_component = Object(componentNormalizer["a" /* default */])(
+var loading_bar_component = normalizeComponent(
   loading_bar_loading_barvue_type_script_lang_js_,
-  loading_barvue_type_template_id_77536715_render,
-  loading_barvue_type_template_id_77536715_staticRenderFns,
+  loading_barvue_type_template_id_367a6f92_render,
+  loading_barvue_type_template_id_367a6f92_staticRenderFns,
   false,
   null,
   null,
@@ -23369,7 +26382,6 @@ var $UiLoadingBar = function $UiLoadingBar() {
     data: options
   });
   loading_bar_instance.$mount();
-  console.log(loading_bar_instance);
   document.body.appendChild(loading_bar_instance.$el);
 
   if (!options.indeterminate) {
@@ -23568,7 +26580,7 @@ var router_transition = __webpack_require__("6e7c");
 
 /* normalize component */
 
-var router_transition_component = Object(componentNormalizer["a" /* default */])(
+var router_transition_component = normalizeComponent(
   router_transition_router_transitionvue_type_script_lang_js_,
   router_transitionvue_type_template_id_6d3bdb08_render,
   router_transitionvue_type_template_id_6d3bdb08_staticRenderFns,
@@ -23666,7 +26678,7 @@ var scss_select = __webpack_require__("2895");
 
 /* normalize component */
 
-var select_component = Object(componentNormalizer["a" /* default */])(
+var select_component = normalizeComponent(
   select_selectvue_type_script_lang_js_,
   selectvue_type_template_id_5a2fe4d2_render,
   selectvue_type_template_id_5a2fe4d2_staticRenderFns,
@@ -23763,6 +26775,8 @@ ZHandler.prototype.remove = function () {
 
 
 
+ // import { $UiPopover, UiTooltip, UiDropdown } from "./popover/index.js";
+
 
 
 
@@ -23773,16 +26787,18 @@ ZHandler.prototype.remove = function () {
 
  // import Rem from '../src/utils/rem.js'
 
-var components = [packages_avatar, packages_icon["a" /* default */], packages_v, packages_loader, packages_spinner, uplaoder, dropdown, packages_alert, packages_row, packages_col, packages_card, packages_input, packages_input_group, packages_image, packages_heading, packages_button, packages_button_group, packages_checkbox, packages_radio, packages_accordion, packages_accordion_item, packages_autocomplete, packages_tag, packages_hr, packages_backdrop, packages_textarea, modal_modal, confirm_confirm, packages_progress, packages_marquee, packages_share, packages_typer, packages_carousel, packages_countdown, packages_slide_panel, packages_height_transition, packages_router_transition, packages_select];
+var components = [packages_avatar, packages_icon, packages_v, packages_loader, packages_spinner, uplaoder, // UiDropdown,
+packages_alert, packages_row, packages_col, packages_card, packages_input, packages_input_group, packages_image, packages_heading, packages_button, packages_button_group, packages_checkbox, packages_radio, packages_accordion, packages_accordion_item, packages_autocomplete, packages_tag, packages_hr, packages_backdrop, packages_textarea, modal_modal, confirm_confirm, packages_progress, packages_marquee, packages_share, packages_typer, packages_carousel, packages_countdown, packages_slide_panel, packages_height_transition, packages_router_transition, packages_select, packages_popover];
 var plugins = {
-  $UiPopover: popover["default"],
+  // $UiPopover,
   $UiToast: packages_toast,
   $UiModal: packages_modal_modal,
   $UiConfirm: packages_confirm_confirm,
   $UiMessage: packages_message,
   $UiLoadingBar: packages_loading_bar
 };
-var directives = [popover_tooltip, packages_highlight, packages_loading, packages_mask, packages_sticky];
+console.log(UiTooltip, UiClosePopover);
+var directives = [UiTooltip, UiClosePopover, packages_highlight, packages_loading, packages_mask, packages_sticky];
 
 
 var packages_install = function install(Vue) {
@@ -23809,12 +26825,12 @@ if (typeof window !== "undefined" && window.Vue) {
 /* harmony default export */ var packages_0 = ({
   install: packages_install,
   UiAvatar: packages_avatar,
-  UiIcon: packages_icon["a" /* default */],
+  UiIcon: packages_icon,
   UiLoader: packages_loader,
   UiSpinner: packages_spinner,
   UiUpload: uplaoder,
-  UiDropdown: dropdown,
-  UiTooltip: popover_tooltip,
+  // UiDropdown,
+  // UiTooltip,
   UiRow: packages_row,
   UiCol: packages_col,
   UiCard: packages_card,
@@ -23846,7 +26862,7 @@ if (typeof window !== "undefined" && window.Vue) {
   UiModal: modal_modal,
   UiHeightTransition: packages_height_transition,
   UiRouterTransition: packages_router_transition,
-  $UiPopover: popover["default"],
+  // $UiPopover,
   $UiToast: packages_toast,
   $UiModal: packages_modal_modal,
   $UiConfirm: packages_confirm_confirm,
@@ -23868,6 +26884,29 @@ if (typeof window !== "undefined" && window.Vue) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "img/iconfont.735f1c2a.svg";
+
+/***/ }),
+
+/***/ "fba5":
+/***/ (function(module, exports, __webpack_require__) {
+
+var assocIndexOf = __webpack_require__("cb5a");
+
+/**
+ * Checks if a list cache value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf ListCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function listCacheHas(key) {
+  return assocIndexOf(this.__data__, key) > -1;
+}
+
+module.exports = listCacheHas;
+
 
 /***/ }),
 

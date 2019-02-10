@@ -99,7 +99,6 @@ const plugins = {
   $UiLoadingBar
 };
 
-console.log(UiTooltip, UiClosePopover);
 const directives = [
   UiTooltip,
   UiClosePopover,
