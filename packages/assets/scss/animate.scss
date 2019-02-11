@@ -709,7 +709,7 @@
   animation-duration: .3s;
   animation-fill-mode: both;
 
-  &.infinite {
+  &-infinite {
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
   }

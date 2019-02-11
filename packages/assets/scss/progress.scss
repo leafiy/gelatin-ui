@@ -48,7 +48,7 @@
       transform-origin: 50% 50%;
       animation-duration: 1s;
       @extend .animated;
-      @extend .animated.infinite;
+      @extend .animated-infinite;
       @extend .spin;
     }
 
@@ -57,7 +57,7 @@
       background-size: 1rem 1rem;
       transition: all 1s ease-in-out;
       @extend .animated;
-      @extend .animated.infinite;
+      @extend .animated-infinite;
       @extend .stripes;
     }
   }
