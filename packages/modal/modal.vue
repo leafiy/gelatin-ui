@@ -84,7 +84,8 @@ export default {
     size: {
       type: String,
       default: "sm"
-    }
+    },
+    customClass:String
   },
   components: {
     UiIcon,
@@ -97,7 +98,8 @@ export default {
       return [
         this.value && "ui-modal-active",
         this.confirm && "ui-confirm",
-        this.size && `ui-modal-size-${this.size}`
+        this.size && `ui-modal-size-${this.size}`,
+        this.customClass
       ];
     },
     modalTransition() {

@@ -45,6 +45,7 @@ this.$UiModal({
 |showCloseIcon|Boolean|是否显示关闭按钮|true||
 |backdropColor|String|遮罩层颜色|dark|['white', 'light', 'dark', 'darker']||
 |disableScroll|Boolean|打开modal时是否禁用滚动|true||
+|customClass|String|||
 
 
 #### 组件调用 slots
