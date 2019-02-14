@@ -47,7 +47,7 @@
     <slot></slot>
     <div
       class="ui-input-suffix"
-      @click="focus"
+      @click="$refs['input'] && focus"
       v-if="$slots.suffix"
       ref="suffix"
     >
@@ -128,10 +128,10 @@ export default {
   },
   methods: {
     select() {
-      this.$refs["input"].select();
+      this.$refs["input"] && this.$refs["input"].select();
     },
     focus() {
-      this.$refs["input"].focus();
+      this.$refs["input"] && this.$refs["input"].focus();
     },
     handleEnter(e) {
       this.$emit("submit", this.inputVal);

@@ -85,7 +85,7 @@ export default {
       type: String,
       default: "sm"
     },
-    customClass:String
+    customClass: String
   },
   components: {
     UiIcon,
