@@ -134,7 +134,8 @@ export default {
       this.$refs["input"] && this.$refs["input"].focus();
     },
     handleEnter(e) {
-      this.$emit("submit", this.inputVal);
+      // this.$emit("submit", this.inputVal);
+      this.$emit("enter", this.inputVal);
     },
     handleEsc(e) {
       this.$emit("esc", this.inputVal);
