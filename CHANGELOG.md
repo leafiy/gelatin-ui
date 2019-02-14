@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.37"></a>
+## [0.1.37](https://github.com/leafiy/gelatin-ui/compare/v0.1.36...v0.1.37) (2019-02-14)
+
+
+### Bug Fixes
+
+* **input:** add input enter event ([9e9f96c](https://github.com/leafiy/gelatin-ui/commit/9e9f96c))
+
+
+
 <a name="0.1.36"></a>
 ## [0.1.36](https://github.com/leafiy/gelatin-ui/compare/v0.1.35...v0.1.36) (2019-02-14)
 
