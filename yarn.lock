@@ -1927,10 +1927,10 @@ builtin-status-codes@^3.0.0:
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
 
-buxton@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/buxton/-/buxton-0.2.2.tgz#5e8bb722ef94115cdca8cbd048cae976190ade65"
-  integrity sha512-F0wMIn8oo9HGKmWprW583LF3seuTWdkXd503LsFxq6oR/JdaZR+droPZcApCnVGjL5VgFAMnEsjzoh35USpMwQ==
+buxton@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/buxton/-/buxton-0.2.5.tgz#121ad98229cbddc9725440f5b60f181a76ae05f2"
+  integrity sha512-RL3aTMm18kx50yvIKdhKXdEblDZjkgmA2ipOUALeWEagW8PHKXfPF3HQDo02rY2LRuhtYXhJuJIjyro96M7DCQ==
 
 bytes@3.0.0:
   version "3.0.0"

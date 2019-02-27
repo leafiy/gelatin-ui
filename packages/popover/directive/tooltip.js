@@ -1,5 +1,5 @@
 import Tooltip from "../tooltip";
-import addClass from "buxton/browser/addClass";
+import addClass from "buxton/browser/addClass.js";
 import removeClass from "buxton/browser/removeClass";
 
 export let state = {

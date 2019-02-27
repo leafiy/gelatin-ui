@@ -2,7 +2,6 @@
   <div class="ui-tabs">
     <div
       class="ui-tabs-item"
-      type="button"
       v-for="(item, index) in items"
       :ref="id + index + item.title"
       :key="id + index + item.title"
@@ -46,6 +45,7 @@ export default {
   watch: {
     value() {
       this.activeIndex = this.value;
+      this.moveActiveLine(this.items[this.value],this.value)
     }
   },
   computed: {
