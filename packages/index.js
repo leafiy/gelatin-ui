@@ -47,6 +47,7 @@ import { $UiConfirm } from "./confirm/index.js";
 import { $UiModal } from "./modal/index.js";
 import UiRouterTransition from "./router-transition/index.js";
 import UiSelect from "./select/index.js";
+import UiTabs from "./tabs/index.js";
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
@@ -87,7 +88,8 @@ const components = [
   UiHeightTransition,
   UiRouterTransition,
   UiSelect,
-  UiPopover
+  UiPopover,
+  UiTabs
 ];
 
 const plugins = {
@@ -172,6 +174,7 @@ export default {
   $UiConfirm,
   $UiMessage,
   $UiLoadingBar,
-  UiSelect
+  UiSelect,
+  UiTabs
   // Rem
 };

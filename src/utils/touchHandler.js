@@ -10,32 +10,29 @@ const touchHandler = ({ event, axis = "x" }) => {
   if (typeof event !== "undefined") {
     event.preventDefault();
     if (typeof event.touches !== "undefined") {
+      let type = event.type;
       touch = event.touches[0];
-      switch (event.type) {
-        case "touchstart":
-        case "touchmove":
-          touches[event.type].x = touch.pageX;
-          touches[event.type].y = touch.pageY;
-          break;
-        case "touchend":
-          touches[event.type] = true;
-          if (axis == "x") {
-            if (touches.touchstart.x > -1 && touches.touchmove.x > -1) {
-              touches.direction =
-                touches.touchstart.x < touches.touchmove.x ? "right" : "left";
+      if (type == "touchmove" || type == "touchstart") {
+        touches[event.type].x = touch.pageX;
+        touches[event.type].y = touch.pageY;
+      }
 
-              return touches.direction;
-            }
-          } else {
-            if (touches.touchstart.y > -1 && touches.touchmove.y > -1) {
-              touches.direction =
-                touches.touchstart.y < touches.touchmove.y ? "down" : "up";
-              return touches.direction;
-            }
+      if (type == "touchend") {
+        touches[event.type] = true;
+        if (axis == "x") {
+          if (touches.touchstart.x > -1 && touches.touchmove.x > -1) {
+            touches.direction =
+              touches.touchstart.x < touches.touchmove.x ? "right" : "left";
+
+            return touches.direction;
           }
-          break;
-        default:
-          break;
+        } else {
+          if (touches.touchstart.y > -1 && touches.touchmove.y > -1) {
+            touches.direction =
+              touches.touchstart.y < touches.touchmove.y ? "down" : "up";
+            return touches.direction;
+          }
+        }
       }
     }
   }

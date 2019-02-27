@@ -1,0 +1,30 @@
+@import './var.scss';
+
+.ui-tabs {
+  display: inline-flex;
+  background: $lighter;
+  border-radius: $radius;
+  position: relative;
+  &-item {
+    padding: 8px 14px;
+    white-space:nowrap;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    z-index: 20;
+    transition: all .3s ease-in-out;
+    &-active{
+     color:$primary-color;
+    }
+
+  }
+  &-active-line{
+   border-radius: $radius;
+   background:#fff;
+   position: absolute;
+   z-index: 1;
+   transition: all .3s ease-in-out;
+   box-shadow:$shadow;
+   height: 100%;
+  }
+}
