@@ -1,26 +1,18 @@
 <template>
   <div class="ui-accordion-item" :class="classes">
-    <div
-      class="ui-accordion-title"
-      @mouseenter="mouseenter"
-      @click="clickTitle"
-    >
+    <div class="ui-accordion-title" @mouseenter="mouseenter" @click="clickTitle">
       <span v-html="title" class="ui-accordion-title-content"></span>
       <slot name="close">
-        <span class="ui-accordion-close-icon" @click.self="click"
-          ><ui-icon name="plus"></ui-icon
-        ></span>
+        <span class="ui-accordion-close-icon" @click.self="click">
+          <ui-icon name="plus"></ui-icon>
+        </span>
       </slot>
     </div>
-    <ui-height-transition
-      :duration="duration"
-      @before-enter="animating = true"
-      @after-enter="animating = false"
-      @before-leave="animating = true"
-      @after-leave="animating = false"
-    >
+    <ui-height-transition :duration="duration" @before-enter="animating = true" @after-enter="animating = false" @before-leave="animating = true" @after-leave="animating = false">
       <div class="ui-accordion-content" v-show="show">
-        <div class="ui-accordion-content-inner"><slot></slot></div>
+        <div class="ui-accordion-content-inner">
+          <slot></slot>
+        </div>
       </div>
     </ui-height-transition>
   </div>
@@ -70,6 +62,9 @@ export default {
       } else {
         this.$emit("close");
       }
+    },
+    active() {
+      this.show = this.active
     }
   },
   methods: {
@@ -91,4 +86,5 @@ export default {
     if (this.active) this.show = true;
   }
 };
+
 </script>

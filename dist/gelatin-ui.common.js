@@ -19995,12 +19995,12 @@ accordion.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_accordion = (accordion);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/accordion-item/accordion-item.vue?vue&type=template&id=001f9448&
-var accordion_itemvue_type_template_id_001f9448_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-accordion-item",class:_vm.classes},[_c('div',{staticClass:"ui-accordion-title",on:{"mouseenter":_vm.mouseenter,"click":_vm.clickTitle}},[_c('span',{staticClass:"ui-accordion-title-content",domProps:{"innerHTML":_vm._s(_vm.title)}}),_vm._t("close",[_c('span',{staticClass:"ui-accordion-close-icon",on:{"click":function($event){if($event.target !== $event.currentTarget){ return null; }return _vm.click($event)}}},[_c('ui-icon',{attrs:{"name":"plus"}})],1)])],2),_c('ui-height-transition',{attrs:{"duration":_vm.duration},on:{"before-enter":function($event){_vm.animating = true},"after-enter":function($event){_vm.animating = false},"before-leave":function($event){_vm.animating = true},"after-leave":function($event){_vm.animating = false}}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.show),expression:"show"}],staticClass:"ui-accordion-content"},[_c('div',{staticClass:"ui-accordion-content-inner"},[_vm._t("default")],2)])])],1)}
-var accordion_itemvue_type_template_id_001f9448_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"325c1899-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/accordion-item/accordion-item.vue?vue&type=template&id=89b56e36&
+var accordion_itemvue_type_template_id_89b56e36_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-accordion-item",class:_vm.classes},[_c('div',{staticClass:"ui-accordion-title",on:{"mouseenter":_vm.mouseenter,"click":_vm.clickTitle}},[_c('span',{staticClass:"ui-accordion-title-content",domProps:{"innerHTML":_vm._s(_vm.title)}}),_vm._t("close",[_c('span',{staticClass:"ui-accordion-close-icon",on:{"click":function($event){if($event.target !== $event.currentTarget){ return null; }return _vm.click($event)}}},[_c('ui-icon',{attrs:{"name":"plus"}})],1)])],2),_c('ui-height-transition',{attrs:{"duration":_vm.duration},on:{"before-enter":function($event){_vm.animating = true},"after-enter":function($event){_vm.animating = false},"before-leave":function($event){_vm.animating = true},"after-leave":function($event){_vm.animating = false}}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.show),expression:"show"}],staticClass:"ui-accordion-content"},[_c('div',{staticClass:"ui-accordion-content-inner"},[_vm._t("default")],2)])])],1)}
+var accordion_itemvue_type_template_id_89b56e36_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/accordion-item/accordion-item.vue?vue&type=template&id=001f9448&
+// CONCATENATED MODULE: ./packages/accordion-item/accordion-item.vue?vue&type=template&id=89b56e36&
 
 // EXTERNAL MODULE: ./packages/assets/scss/accordion.scss
 var scss_accordion = __webpack_require__("868c");
@@ -20124,14 +20124,6 @@ height_transition_component.options.__file = "height-transition.vue"
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -20180,6 +20172,9 @@ height_transition_component.options.__file = "height-transition.vue"
       } else {
         this.$emit("close");
       }
+    },
+    active: function active() {
+      this.show = this.active;
     }
   },
   methods: {
@@ -20213,8 +20208,8 @@ height_transition_component.options.__file = "height-transition.vue"
 
 var accordion_item_component = normalizeComponent(
   accordion_item_accordion_itemvue_type_script_lang_js_,
-  accordion_itemvue_type_template_id_001f9448_render,
-  accordion_itemvue_type_template_id_001f9448_staticRenderFns,
+  accordion_itemvue_type_template_id_89b56e36_render,
+  accordion_itemvue_type_template_id_89b56e36_staticRenderFns,
   false,
   null,
   null,
