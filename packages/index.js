@@ -37,9 +37,7 @@ import UiCountdown from "./countdown/index.js";
 import UiSlidePanel from "./slide-panel/index.js";
 import UiSticky from "./sticky/index.js";
 import UiHeightTransition from "./height-transition/index.js";
-// import { $UiPopover, UiTooltip, UiDropdown } from "./popover/index.js";
 import UiPopover from "./popover/index.js";
-import { UiTooltip, UiClosePopover } from "./popover/index.js";
 import $UiToast from "./toast/index.js";
 import $UiMessage from "./message/index.js";
 import $UiLoadingBar from "./loading-bar/index.js";
@@ -48,6 +46,7 @@ import { $UiModal } from "./modal/index.js";
 import UiRouterTransition from "./router-transition/index.js";
 import UiSelect from "./select/index.js";
 import UiTabs from "./tabs/index.js";
+import UiCaptcha from "./captcha/index.js";
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
@@ -56,7 +55,6 @@ const components = [
   UiLoader,
   UiSpinner,
   UiUpload,
-  // UiDropdown,
   UiAlert,
   UiRow,
   UiCol,
@@ -89,11 +87,11 @@ const components = [
   UiRouterTransition,
   UiSelect,
   UiPopover,
-  UiTabs
+  UiTabs,
+  UiCaptcha
 ];
 
 const plugins = {
-  // $UiPopover,
   $UiToast,
   $UiModal,
   $UiConfirm,
@@ -101,14 +99,7 @@ const plugins = {
   $UiLoadingBar
 };
 
-const directives = [
-  UiTooltip,
-  UiClosePopover,
-  UiHightlight,
-  UiLoading,
-  UiMask,
-  UiSticky
-];
+const directives = [UiHightlight, UiLoading, UiMask, UiSticky];
 
 import ZHandler from "../src/utils/zHandler.js";
 
@@ -135,8 +126,6 @@ export default {
   UiLoader,
   UiSpinner,
   UiUpload,
-  // UiDropdown,
-  // UiTooltip,
   UiRow,
   UiCol,
   UiCard,
@@ -168,13 +157,14 @@ export default {
   UiModal,
   UiHeightTransition,
   UiRouterTransition,
-  // $UiPopover,
+  UiPopover,
   $UiToast,
   $UiModal,
   $UiConfirm,
   $UiMessage,
   $UiLoadingBar,
   UiSelect,
-  UiTabs
+  UiTabs,
+  UiCaptcha
   // Rem
 };

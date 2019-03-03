@@ -2,7 +2,7 @@
   <div class="container">
     <ClientOnly>
       <ui-accordion>
-        <ui-accordion-item :title="title">
+        <ui-accordion-item :title="title" active>
           <pre><slot></slot></pre>
         </ui-accordion-item>
       </ui-accordion>

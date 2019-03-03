@@ -71,7 +71,7 @@ module.exports = {
           ['/confirm/', 'Confirm'],
           ['/toast/', 'Toast'],
           ['/message/', 'Message'],
-          // ['/popover/', 'Popover/Tooltip/Dropdown 弹出框']
+          ['/popover/', 'Popover/Tooltip/Dropdown 弹出框']
 
         ]
       },
@@ -79,6 +79,7 @@ module.exports = {
         title: 'utils',
         collapsable: false,
         children: [
+          ['/captcha/','验证码'],
           ['/image/', 'Image 图片懒加载'],
           ['/height-transition/', 'Height transition'],
           ['/router-transition/', 'Router transition'],
