@@ -71,7 +71,7 @@ module.exports = {
           ['/confirm/', 'Confirm'],
           ['/toast/', 'Toast'],
           ['/message/', 'Message'],
-          // ['/popover/', 'Popover/Tooltip/Dropdown 弹出框']
+          ['/popover/', 'Popover/Tooltip/Dropdown 弹出框']
 
         ]
       },

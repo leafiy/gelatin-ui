@@ -37,9 +37,7 @@ import UiCountdown from "./countdown/index.js";
 import UiSlidePanel from "./slide-panel/index.js";
 import UiSticky from "./sticky/index.js";
 import UiHeightTransition from "./height-transition/index.js";
-// import { $UiPopover, UiTooltip, UiDropdown } from "./popover/index.js";
 import UiPopover from "./popover/index.js";
-import { UiTooltip, UiClosePopover } from "./popover/index.js";
 import $UiToast from "./toast/index.js";
 import $UiMessage from "./message/index.js";
 import $UiLoadingBar from "./loading-bar/index.js";
@@ -56,7 +54,6 @@ const components = [
   UiLoader,
   UiSpinner,
   UiUpload,
-  // UiDropdown,
   UiAlert,
   UiRow,
   UiCol,
@@ -93,7 +90,6 @@ const components = [
 ];
 
 const plugins = {
-  // $UiPopover,
   $UiToast,
   $UiModal,
   $UiConfirm,
@@ -102,8 +98,6 @@ const plugins = {
 };
 
 const directives = [
-  UiTooltip,
-  UiClosePopover,
   UiHightlight,
   UiLoading,
   UiMask,
@@ -135,8 +129,6 @@ export default {
   UiLoader,
   UiSpinner,
   UiUpload,
-  // UiDropdown,
-  // UiTooltip,
   UiRow,
   UiCol,
   UiCard,
@@ -168,7 +160,7 @@ export default {
   UiModal,
   UiHeightTransition,
   UiRouterTransition,
-  // $UiPopover,
+  UiPopover,
   $UiToast,
   $UiModal,
   $UiConfirm,
