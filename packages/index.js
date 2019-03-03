@@ -46,6 +46,7 @@ import { $UiModal } from "./modal/index.js";
 import UiRouterTransition from "./router-transition/index.js";
 import UiSelect from "./select/index.js";
 import UiTabs from "./tabs/index.js";
+import UiCaptcha from "./captcha/index.js";
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
@@ -86,7 +87,8 @@ const components = [
   UiRouterTransition,
   UiSelect,
   UiPopover,
-  UiTabs
+  UiTabs,
+  UiCaptcha
 ];
 
 const plugins = {
@@ -97,12 +99,7 @@ const plugins = {
   $UiLoadingBar
 };
 
-const directives = [
-  UiHightlight,
-  UiLoading,
-  UiMask,
-  UiSticky
-];
+const directives = [UiHightlight, UiLoading, UiMask, UiSticky];
 
 import ZHandler from "../src/utils/zHandler.js";
 
@@ -167,6 +164,7 @@ export default {
   $UiMessage,
   $UiLoadingBar,
   UiSelect,
-  UiTabs
+  UiTabs,
+  UiCaptcha
   // Rem
 };

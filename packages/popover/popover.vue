@@ -1,7 +1,13 @@
 <template>
   <div class="ui-popover">
     <slot name="reference"></slot>
-    <transition :name="transition" :enter-active-class="enterActiveClass" :leave-active-class="leaveActiveClass" @after-enter="afterEnter" @after-leave="afterLeave">
+    <transition
+      :name="transition"
+      :enter-active-class="enterActiveClass"
+      :leave-active-class="leaveActiveClass"
+      @after-enter="afterEnter"
+      @after-leave="afterLeave"
+    >
       <div class="ui-popover-menu" ref="popper" v-if="!disable && showPopper">
         <div class="ui-popover-arrow" v-if="arrow"></div>
         <slot></slot>
@@ -10,34 +16,34 @@
   </div>
 </template>
 <script>
-import popperJS from 'popper.js'
+import popperJS from "popper.js";
 export default {
-  name: 'ui-popover',
+  name: "ui-popover",
   data() {
     return {
       showPopper: false,
       referenceElm: null,
       popperJS: null,
-      currentPlacement: '',
+      currentPlacement: "",
       defaultOptions: {
-        placement: 'bottom',
+        placement: "bottom",
         computeStyle: {
           gpuAcceleration: false
         }
       }
-    }
+    };
   },
   props: {
     transition: {
       type: String,
-      default: 'fade'
+      default: "fade"
     },
     enterActiveClass: String,
     leaveActiveClass: String,
     trigger: {
       type: String,
-      default: 'click',
-      validator: value => ['click', 'hover'].includes(value)
+      default: "click",
+      validator: value => ["click", "hover"].includes(value)
     },
     disable: Boolean,
     delayIn: {
@@ -61,16 +67,15 @@ export default {
     boundariesSelector: String,
     popperOptions: {
       type: Object,
-      default () {
-        return {}
+      default() {
+        return {};
       }
     }
-
   },
   watch: {
     showPopper(value) {
       if (value) {
-        this.$emit('show');
+        this.$emit("show");
         if (this.popperJS) {
           this.popperJS.enableEventListeners();
         }
@@ -79,7 +84,7 @@ export default {
         if (this.popperJS) {
           this.popperJS.disableEventListeners();
         }
-        this.$emit('hide');
+        this.$emit("hide");
       }
     },
     disable(value) {
@@ -96,31 +101,31 @@ export default {
   mounted() {
     this.referenceElm = this.reference || this.$slots.reference[0].elm;
     this.popper = this.$slots.default[0].elm;
-    this.bindEvents()
+    this.bindEvents();
   },
   methods: {
     afterEnter() {},
     afterLeave() {},
     on(el, event, handler) {
-      el.addEventListener(event, handler, false)
+      el.addEventListener(event, handler, false);
     },
     off(el, event, handler) {
-      el.removeEventListener(event, handler, false)
+      el.removeEventListener(event, handler, false);
     },
     bindEvents() {
-      if (this.trigger == 'click') {
-        this.on(this.referenceElm, 'click', this.doToggle);
-        this.on(document, 'click', this.handleDocumentClick);
+      if (this.trigger == "click") {
+        this.on(this.referenceElm, "click", this.doToggle);
+        this.on(document, "click", this.handleDocumentClick);
       }
-      if (this.trigger == 'hover') {
-        this.on(this.referenceElm, 'mouseover', this.onMouseOver);
-        this.on(this.referenceElm, 'focus', this.onMouseOver);
-        this.on(this.popper, 'mouseover', this.onMouseOver);
-        this.on(this.popper, 'focus', this.onMouseOver);
-        this.on(this.referenceElm, 'mouseout', this.onMouseOut);
-        this.on(this.referenceElm, 'blur', this.onMouseOut);
-        this.on(this.popper, 'mouseout', this.onMouseOut);
-        this.on(this.popper, 'blur', this.onMouseOut);
+      if (this.trigger == "hover") {
+        this.on(this.referenceElm, "mouseover", this.onMouseOver);
+        this.on(this.referenceElm, "focus", this.onMouseOver);
+        this.on(this.popper, "mouseover", this.onMouseOver);
+        this.on(this.popper, "focus", this.onMouseOver);
+        this.on(this.referenceElm, "mouseout", this.onMouseOut);
+        this.on(this.referenceElm, "blur", this.onMouseOut);
+        this.on(this.popper, "mouseout", this.onMouseOut);
+        this.on(this.popper, "blur", this.onMouseOut);
       }
     },
     doToggle(event) {
@@ -130,7 +135,7 @@ export default {
       if (this.preventDefault) {
         event.preventDefault();
       }
-      this.showPopper = true
+      this.showPopper = true;
     },
     doShow() {
       this.showPopper = true;
@@ -152,14 +157,14 @@ export default {
       }
     },
     destroyPopper() {
-      this.off(this.referenceElm, 'click', this.doToggle);
-      this.off(this.referenceElm, 'mouseup', this.doClose);
-      this.off(this.referenceElm, 'mousedown', this.doShow);
-      this.off(this.referenceElm, 'focus', this.doShow);
-      this.off(this.referenceElm, 'blur', this.doClose);
-      this.off(this.referenceElm, 'mouseout', this.onMouseOut);
-      this.off(this.referenceElm, 'mouseover', this.onMouseOver);
-      this.off(document, 'click', this.handleDocumentClick);
+      this.off(this.referenceElm, "click", this.doToggle);
+      this.off(this.referenceElm, "mouseup", this.doClose);
+      this.off(this.referenceElm, "mousedown", this.doShow);
+      this.off(this.referenceElm, "focus", this.doShow);
+      this.off(this.referenceElm, "blur", this.doClose);
+      this.off(this.referenceElm, "mouseout", this.onMouseOut);
+      this.off(this.referenceElm, "mouseover", this.onMouseOver);
+      this.off(document, "click", this.handleDocumentClick);
       this.showPopper = false;
       this.doDestroy();
     },
@@ -172,16 +177,29 @@ export default {
         if (this.popperJS && this.popperJS.destroy) {
           this.popperJS.destroy();
         }
-        if (this.boundariesSelector && document.querySelector(this.boundariesSelector)) {
-          this.popperOptions.modifiers = Object.assign({}, this.popperOptions.modifiers);
-          this.popperOptions.modifiers.preventOverflow = Object.assign({}, this.popperOptions.modifiers.preventOverflow);
+        if (
+          this.boundariesSelector &&
+          document.querySelector(this.boundariesSelector)
+        ) {
+          this.popperOptions.modifiers = Object.assign(
+            {},
+            this.popperOptions.modifiers
+          );
+          this.popperOptions.modifiers.preventOverflow = Object.assign(
+            {},
+            this.popperOptions.modifiers.preventOverflow
+          );
           this.popperOptions.modifiers.preventOverflow.boundariesElement = boundariesElement;
         }
         this.popperOptions.onCreate = () => {
-          this.$emit('created', this);
+          this.$emit("created", this);
           this.$nextTick(this.updatePopper);
         };
-        this.popperJS = new Popper(this.referenceElm, this.popper, this.popperOptions);
+        this.popperJS = new Popper(
+          this.referenceElm,
+          this.popper,
+          this.popperOptions
+        );
       });
     },
 
@@ -201,21 +219,24 @@ export default {
       }, this.delayOut);
     },
     handleDocumentClick(e) {
-      if (!this.$el || !this.referenceElm ||
+      if (
+        !this.$el ||
+        !this.referenceElm ||
         this.elementContains(this.$el, e.target) ||
         this.elementContains(this.referenceElm, e.target) ||
-        !this.popper || this.elementContains(this.popper, e.target)
+        !this.popper ||
+        this.elementContains(this.popper, e.target)
       ) {
         return;
       }
-      this.$emit('documentClick', this);
+      this.$emit("documentClick", this);
       if (this.forceShow) {
         return;
       }
       this.showPopper = false;
     },
     elementContains(elm, otherElm) {
-      if (typeof elm.contains === 'function') {
+      if (typeof elm.contains === "function") {
         return elm.contains(otherElm);
       }
       return false;
@@ -224,6 +245,5 @@ export default {
   destroyed() {
     this.destroyPopper();
   }
-}
-
+};
 </script>
