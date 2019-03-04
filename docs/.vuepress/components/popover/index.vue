@@ -2,7 +2,11 @@
     <div class="container">
         <ui-popover>
             <span slot="reference">click me</span>
-            content
+            <div>content</div>
+        </ui-popover>
+        <ui-popover :popper-options="{placement:'left'}">
+            <span slot="reference">click me</span>
+            <div>contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</div>
         </ui-popover>
     </div>
 </template>
