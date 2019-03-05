@@ -1,11 +1,9 @@
 <template>
   <div class="ui-popover">
-    <span class="ui-popover-reference">
-      <slot name="reference"></slot>
-    </span>
+    <slot name="reference"></slot>
     <transition :name="transition" :enter-active-class="enterActiveClass" :leave-active-class="leaveActiveClass" @after-enter="afterEnter" @after-leave="afterLeave">
-      <div class="ui-popover-menu" ref="popper" v-show="!disable && showPopper">
-        <div class="ui-popover-arrow" v-if="arrow" :style="arrowStyle"></div>
+      <div class="ui-popover-menu" ref="popper" v-show="!disable && showPopper" :style="menuStyle">
+        <div class="ui-popover-arrow" v-if="arrow" :style="arrowStyle" ref="arrow"></div>
         <slot></slot>
       </div>
     </transition>
@@ -19,7 +17,6 @@ export default {
   name: 'ui-popover',
   data() {
     return {
-      arrowStyle: null,
       currentPosition: '',
       showPopper: false,
       referenceElm: null,
@@ -64,7 +61,7 @@ export default {
     },
     arrowSize: {
       type: Number,
-      default: 10
+      default: 6
     },
     stopPropagation: Boolean,
     preventDefault: Boolean,
@@ -79,7 +76,58 @@ export default {
 
   },
   computed: {
+    menuStyle() {
+      if (this.currentPosition == 'bottom') {
+        return {
+          marginTop: `${this.arrowSize}px`
+        }
+      }
+      if(this.currentPosition == 'top'){
+        return {
+          marginBottom: `${this.arrowSize}px`
+        }
+      }
+      if (this.currentPosition == 'left') {
+        return {
+          marginRight: `${this.arrowSize}px`
+        }
+      }
+      if(this.currentPosition == 'right'){
+        return {
+          marginLeft: `${this.arrowSize}px`
+        }
+      }
 
+
+    },
+    arrowStyle() {
+      let transform, top, bottom,left,right
+      if (this.currentPosition == 'bottom') {
+        transform = `translate3d(-${this.arrowSize}px,0,0)`
+        top = `-${this.arrowSize*2}px`
+      }
+      if (this.currentPosition == 'top') {
+        transform = `translate3d(-${this.arrowSize}px,0,0)`
+        bottom = `-${this.arrowSize*2}px`
+      }
+      if (this.currentPosition == 'left') {
+        transform = `translate3d(0,-${this.arrowSize}px,0)`
+        right = `-${this.arrowSize*2}px`
+      }
+      if (this.currentPosition == 'right') {
+        transform = `translate3d(0,-${this.arrowSize}px,0)`
+        left = `-${this.arrowSize*2}px`
+      }
+      return {
+        borderWidth: this.arrowSize + 'px',
+        transform,
+        top,
+        bottom,
+        left,
+        right
+      }
+
+    }
   },
   watch: {
     showPopper(value) {
@@ -100,9 +148,6 @@ export default {
       if (value) {
         this.showPopper = false;
       }
-    },
-    currentPosition(value){
-      console.log(value)
     }
   },
   created() {
@@ -204,8 +249,8 @@ export default {
           this.$emit('created', this);
           this.$nextTick(this.updatePopper);
         };
-
         this.popperJS = new Popper(this.referenceElm, this.popper, this.popperOptions);
+        this.currentPosition = this.popperOptions.placement
       });
     },
 

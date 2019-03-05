@@ -1,7 +1,39 @@
 # popover / tooltip / dropdown
 
+
+## 组件调用
+
 <popover-index></popover-index>
 
+<code-code>
+```html
+<ui-popover>
+  <ui-button slot="reference">default</ui-button>
+  <div>content</div>
+</ui-popover>
+<ui-popover :popper-options="{placement:'top'}">
+  <ui-button slot="reference">placement:'top'</ui-button>
+  <div>content</div>
+</ui-popover>
+<ui-popover :popper-options="{placement:'left'}">
+  <ui-button slot="reference">placement:'left'</ui-button>
+  <div>content</div>
+</ui-popover>
+<ui-popover :popper-options="{placement:'right'}">
+  <ui-button slot="reference">placement:'right'</ui-button>
+  <div>content</div>
+</ui-popover>
+<ui-popover>
+  <ui-button slot="reference">复杂元素</ui-button>
+  <div>
+    <div class="a">npm install</div>
+    <div class="a"># install dependencies</div>
+    <div class="a">npm run build</div>
+    <div class="a"># build dist files</div>
+  </div>
+</ui-popover>
+```
+</code-code>
 
  ## JS 调用
 
