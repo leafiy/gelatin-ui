@@ -1,7 +1,7 @@
 # popover / tooltip / dropdown
 
 
-## 组件调用
+## popover 组件调用
 
 <popover-index></popover-index>
 

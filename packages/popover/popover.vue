@@ -37,12 +37,14 @@ export default {
     },
     enterActiveClass: String,
     leaveActiveClass: String,
+    reference: String,
     trigger: {
       type: String,
       default: 'click',
       validator: value => ['click', 'hover'].includes(value)
     },
     disable: Boolean,
+    destroyOnLeave: Boolean,
     delayIn: {
       type: Number,
       default: 10
@@ -82,7 +84,7 @@ export default {
           marginTop: `${this.arrowSize}px`
         }
       }
-      if(this.currentPosition == 'top'){
+      if (this.currentPosition == 'top') {
         return {
           marginBottom: `${this.arrowSize}px`
         }
@@ -92,7 +94,7 @@ export default {
           marginRight: `${this.arrowSize}px`
         }
       }
-      if(this.currentPosition == 'right'){
+      if (this.currentPosition == 'right') {
         return {
           marginLeft: `${this.arrowSize}px`
         }
@@ -101,7 +103,7 @@ export default {
 
     },
     arrowStyle() {
-      let transform, top, bottom,left,right
+      let transform, top, bottom, left, right
       if (this.currentPosition == 'bottom') {
         transform = `translate3d(-${this.arrowSize}px,0,0)`
         top = `-${this.arrowSize*2}px`
@@ -156,16 +158,23 @@ export default {
     this.options = Object.assign(this.defaultOptions, this.popperOptions);
   },
   mounted() {
-    this.referenceElm = this.reference || this.$slots.reference[0].elm;
+    this.referenceElm = this.$slots.reference[0].elm;
+    if (!this.referenceElm) {
+      throw new Error('cannot find reference element')
+    }
     this.popper = this.$refs['popper']
     this.bindEvents()
   },
   methods: {
-    updateStyles() {
-
+    afterEnter() {
+      this.$emit('enter')
     },
-    afterEnter() {},
-    afterLeave() {},
+    afterLeave() {
+      this.$emit('leave')
+      if (this.destroyOnLeave) {
+        this.doDestroy()
+      }
+    },
     on(el, event, handler) {
       el.addEventListener(event, handler, false)
     },
@@ -230,6 +239,7 @@ export default {
     },
     createPopper() {
       this.$nextTick(() => {
+        let referenceElm = this.referenceElm
         if (this.appendToBody && !this.appendedToBody) {
           this.appendedToBody = true;
           document.body.appendChild(this.popper);
@@ -249,7 +259,10 @@ export default {
           this.$emit('created', this);
           this.$nextTick(this.updatePopper);
         };
-        this.popperJS = new Popper(this.referenceElm, this.popper, this.popperOptions);
+        if (this.reference && document.querySelector(this.reference)) {
+          referenceElm = document.querySelector(this.reference)
+        }
+        this.popperJS = new Popper(referenceElm, this.popper, this.popperOptions);
         this.currentPosition = this.popperOptions.placement
       });
     },
@@ -266,6 +279,7 @@ export default {
       if (fn && typeof fn == 'fucntion') {
         fn()
       }
+      this.$emit('update', data)
 
     },
     onMouseOver() {
@@ -284,7 +298,8 @@ export default {
       if (!this.$el || !this.referenceElm ||
         elementContains(this.$el, e.target) ||
         elementContains(this.referenceElm, e.target) ||
-        !this.popper || elementContains(this.popper, e.target)
+        !this.popper || elementContains(this.popper, e.target) ||
+        (this.reference && document.querySelector(this.reference) && elementContains(document.querySelector(this.reference), e.target))
       ) {
         return;
       }
@@ -294,6 +309,7 @@ export default {
   },
   destroyed() {
     this.destroyPopper();
+    this.$emit('destroyed')
   }
 }
 

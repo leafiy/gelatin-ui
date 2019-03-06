@@ -28,6 +28,17 @@
           <div class="a"># build dist files</div>
         </div>
       </ui-popover>
+      <ui-popover :popper-options="{placement:'right'}" trigger="hover">
+        <ui-button slot="reference">hover trigger</ui-button>
+        <div>content</div>
+      </ui-popover>
+    </div>
+    <div class="container">
+      <ui-popover reference="#popover1">
+        <ui-button slot="reference">reference selector #popover1</ui-button>
+        <div>content</div>
+      </ui-popover>
+      <ui-button id="popover1">I'm #popover1</ui-button>
     </div>
   </div>
 </template>
