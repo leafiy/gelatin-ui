@@ -46,6 +46,7 @@ import { $UiModal } from "./modal/index.js";
 import UiRouterTransition from "./router-transition/index.js";
 import UiSelect from "./select/index.js";
 import UiTabs from "./tabs/index.js";
+import $UiDropdown from './dropdown/index.js'
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
@@ -94,7 +95,8 @@ const plugins = {
   $UiModal,
   $UiConfirm,
   $UiMessage,
-  $UiLoadingBar
+  $UiLoadingBar,
+  $UiDropdown
 };
 
 const directives = [
@@ -166,6 +168,7 @@ export default {
   $UiConfirm,
   $UiMessage,
   $UiLoadingBar,
+  $UiDropdown,
   UiSelect,
   UiTabs
   // Rem

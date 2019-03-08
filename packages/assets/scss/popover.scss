@@ -1,68 +1,69 @@
 @import './var.scss';
 
 .ui-popover {
-  display: inline-block;
-
-  &-menu {
-    background: #fff;
-    border-radius: $radius/2;
-    padding: 4px 11px;
-    box-shadow: $shadow;
-    word-break: break-all;
-    &[x-placement^="top"] {
-      .ui-popover-arrow {
-        border-left-color: transparent;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
-        left:50%;
-      }
-    }
-
-    &[x-placement^="bottom"] {
-      .ui-popover-arrow {
-        border-left-color: transparent;
-        border-right-color: transparent;
-        border-top-color: transparent;
-        left:50%;
-      }
-    }
-
-    &[x-placement^="right"] {
-      .ui-popover-arrow {
-        border-left-color: transparent;
-        border-top-color: transparent;
-        border-bottom-color: transparent;
-        top:50%;
-      }
-    }
-
-    &[x-placement^="left"] {
-      .ui-popover-arrow {
-        border-top-color: transparent;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
-        top:50%;
-      }
-    }
-  }
-
-  &-arrow {
-    position: absolute;
-    box-sizing: border-box;
-    height: 0;
-    width: 0;
-    border-style: solid;
-    border-color: #fff;
-  }
-
+  display: inline;
 }
 
+.ui-popover-inner {
+  position: relative;
+  border-radius: $radius/2;
+  padding: 4px 11px;
+  box-shadow: $shadow;
+  word-break: break-all;
+  background: #fff;
+}
+
+.ui-popover-arrow {
+  position: absolute;
+  box-sizing: border-box;
+  height: 0;
+  width: 0;
+  border-style: solid;
+  border-color: #fff;
+}
+
+[x-placement^="top"] {
+  .ui-popover-arrow {
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    left: 50%;
+  }
+}
+
+[x-placement^="bottom"] {
+  .ui-popover-arrow {
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    left: 50%;
+  }
+}
+
+[x-placement^="right"] {
+  .ui-popover-arrow {
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    top: 50%;
+  }
+}
+
+[x-placement^="left"] {
+  .ui-popover-arrow {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    top: 50%;
+  }
+}
 
 .ui-dropdown {
   .ui-popover-inner {
     padding: 0;
   }
 }
+
 
 // .ui-popover-menu {
 //   // border-radius: $radius;

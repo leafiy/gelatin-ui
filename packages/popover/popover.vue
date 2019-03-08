@@ -1,12 +1,15 @@
 <template>
   <div class="ui-popover">
     <slot name="reference"></slot>
-    <transition :name="transition" :enter-active-class="enterActiveClass" :leave-active-class="leaveActiveClass" @after-enter="afterEnter" @after-leave="afterLeave">
-      <div class="ui-popover-menu" ref="popper" v-show="!disable && showPopper" :style="menuStyle">
-        <div class="ui-popover-arrow" v-if="arrow" :style="arrowStyle" ref="arrow"></div>
-        <slot></slot>
-      </div>
-    </transition>
+    <div class="ui-popover-menu" ref="popper" v-show="visible" :style="menuStyle">
+      <transition :name="transition" @after-enter="afterEnter" @after-leave="afterLeave">
+        <div class="ui-popover-inner" v-show="showMenu">
+          <div class="ui-popover-arrow" v-if="arrow" :style="arrowStyle" ref="arrow"></div>
+          <slot></slot>
+          <div v-html="content" v-if="content"></div>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 <script>
@@ -17,6 +20,7 @@ export default {
   name: 'ui-popover',
   data() {
     return {
+      showMenu: false,
       currentPosition: '',
       showPopper: false,
       referenceElm: null,
@@ -35,8 +39,7 @@ export default {
       type: String,
       default: 'fade'
     },
-    enterActiveClass: String,
-    leaveActiveClass: String,
+    refer: String,
     reference: String,
     trigger: {
       type: String,
@@ -44,6 +47,7 @@ export default {
       validator: value => ['click', 'hover'].includes(value)
     },
     disable: Boolean,
+    content: String,
     destroyOnLeave: Boolean,
     delayIn: {
       type: Number,
@@ -74,32 +78,34 @@ export default {
         return {}
       }
     },
-    zIndex: Number
+    zIndex: {
+      type: Number,
+      default () {
+        return this.$zIndex ? this.$zIndex.add() : 1000
+      }
+    }
 
   },
   computed: {
+    visible() {
+      return !this.disable && this.showPopper
+    },
     menuStyle() {
+      let styles = {}
+      styles.zIndex = this.zIndex
       if (this.currentPosition == 'bottom') {
-        return {
-          marginTop: `${this.arrowSize}px`
-        }
+        styles.marginTop = `${this.arrowSize}px`
       }
       if (this.currentPosition == 'top') {
-        return {
-          marginBottom: `${this.arrowSize}px`
-        }
+        styles.marginBottom = `${this.arrowSize}px`
       }
       if (this.currentPosition == 'left') {
-        return {
-          marginRight: `${this.arrowSize}px`
-        }
+        styles.marginRight = `${this.arrowSize}px`
       }
       if (this.currentPosition == 'right') {
-        return {
-          marginLeft: `${this.arrowSize}px`
-        }
+        styles.marginLeft = `${this.arrowSize}px`
       }
-
+      return styles
 
     },
     arrowStyle() {
@@ -134,16 +140,20 @@ export default {
   watch: {
     showPopper(value) {
       if (value) {
-        this.$emit('show');
+        this.$nextTick(() => {
+          this.showMenu = true
+        })
         if (this.popperJS) {
           this.popperJS.enableEventListeners();
         }
         this.updatePopper();
       } else {
+        if (this.destroyOnLeave) {
+          this.doDestroy()
+        }
         if (this.popperJS) {
           this.popperJS.disableEventListeners();
         }
-        this.$emit('hide');
       }
     },
     disable(value) {
@@ -153,12 +163,11 @@ export default {
     }
   },
   created() {
-    this.appendedArrow = false;
     this.appendedToBody = false;
     this.options = Object.assign(this.defaultOptions, this.popperOptions);
   },
   mounted() {
-    this.referenceElm = this.$slots.reference[0].elm;
+    this.referenceElm = (this.$slots.reference && this.$slots.reference[0].elm) || (this.reference && document.querySelector(this.reference));
     if (!this.referenceElm) {
       throw new Error('cannot find reference element')
     }
@@ -167,13 +176,11 @@ export default {
   },
   methods: {
     afterEnter() {
-      this.$emit('enter')
+      this.$emit('show')
     },
     afterLeave() {
-      this.$emit('leave')
-      if (this.destroyOnLeave) {
-        this.doDestroy()
-      }
+      this.$emit('hide')
+      this.showPopper = false
     },
     on(el, event, handler) {
       el.addEventListener(event, handler, false)
@@ -205,12 +212,13 @@ export default {
         event.preventDefault();
       }
       this.showPopper = true
+
     },
     doShow() {
       this.showPopper = true;
     },
     doClose() {
-      this.showPopper = false;
+      this.showMenu = false;
     },
     doDestroy() {
       if (this.showPopper) {
@@ -234,7 +242,7 @@ export default {
       this.off(this.referenceElm, 'mouseout', this.onMouseOut);
       this.off(this.referenceElm, 'mouseover', this.onMouseOver);
       this.off(document, 'click', this.handleDocumentClick);
-      this.showPopper = false;
+      this.showMenu = false;
       this.doDestroy();
     },
     createPopper() {
@@ -256,11 +264,10 @@ export default {
           this.onUpdate(this.popperOptions.onUpdate, data)
         }
         this.popperOptions.onCreate = () => {
-          this.$emit('created', this);
           this.$nextTick(this.updatePopper);
         };
-        if (this.reference && document.querySelector(this.reference)) {
-          referenceElm = document.querySelector(this.reference)
+        if (this.refer && document.querySelector(this.refer)) {
+          referenceElm = document.querySelector(this.refer)
         }
         this.popperJS = new Popper(referenceElm, this.popper, this.popperOptions);
         this.currentPosition = this.popperOptions.placement
@@ -291,7 +298,7 @@ export default {
     onMouseOut() {
       clearTimeout(this._timer);
       this._timer = setTimeout(() => {
-        this.showPopper = false;
+        this.showMenu = false;
       }, this.delayOut);
     },
     handleDocumentClick(e) {
@@ -304,7 +311,7 @@ export default {
         return;
       }
       this.$emit('documentClick', this);
-      this.showPopper = false;
+      this.showMenu = false;
     }
   },
   destroyed() {

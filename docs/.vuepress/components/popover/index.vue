@@ -34,11 +34,15 @@
       </ui-popover>
     </div>
     <div class="container">
-      <ui-popover reference="#popover1">
+      <ui-popover refer="#popover1">
         <ui-button slot="reference">reference selector #popover1</ui-button>
         <div>content</div>
       </ui-popover>
       <ui-button id="popover1">I'm #popover1</ui-button>
+      <ui-popover :popper-options="{placement:'right'}" trigger="hover" :destroy-on-leave="true">
+        <ui-button slot="reference">destroy element on after leave</ui-button>
+        <div>content</div>
+      </ui-popover>
     </div>
   </div>
 </template>
