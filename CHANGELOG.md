@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.40"></a>
+## [0.1.40](https://github.com/leafiy/gelatin-ui/compare/v0.1.39...v0.1.40) (2019-03-09)
+
+
+### Features
+
+* **captcha:** add captcha component ([76b31bb](https://github.com/leafiy/gelatin-ui/commit/76b31bb))
+
+
+
 <a name="0.1.39"></a>
 ## [0.1.39](https://github.com/leafiy/gelatin-ui/compare/v0.1.38...v0.1.39) (2019-03-09)
 
