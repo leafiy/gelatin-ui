@@ -46,7 +46,8 @@ import { $UiModal } from "./modal/index.js";
 import UiRouterTransition from "./router-transition/index.js";
 import UiSelect from "./select/index.js";
 import UiTabs from "./tabs/index.js";
-import $UiDropdown from './dropdown/index.js'
+import $UiDropdown from "./dropdown/index.js";
+import UiTooltip from "./tooltip/index.js";
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
@@ -99,12 +100,7 @@ const plugins = {
   $UiDropdown
 };
 
-const directives = [
-  UiHightlight,
-  UiLoading,
-  UiMask,
-  UiSticky
-];
+const directives = [UiHightlight, UiLoading, UiMask, UiSticky, UiTooltip];
 
 import ZHandler from "../src/utils/zHandler.js";
 

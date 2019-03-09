@@ -1,53 +1,86 @@
 <template>
   <div class="ui-popover">
     <slot name="reference"></slot>
-    <div class="ui-popover-menu" ref="popper" v-show="visible" :style="menuStyle">
-      <transition :name="transition" @after-enter="afterEnter" @after-leave="afterLeave">
-        <div class="ui-popover-inner" v-show="showMenu">
-          <div class="ui-popover-arrow" v-if="arrow" :style="arrowStyle" ref="arrow"></div>
+    <div
+      class="ui-popover-menu"
+      ref="popper"
+      v-show="visible"
+      :style="menuStyle"
+    >
+      <transition
+        :name="transition"
+        @after-enter="afterEnter"
+        @after-leave="afterLeave"
+      >
+        <div
+          class="ui-popover-inner"
+          :class="{ 'ui-popover-menu-list': list && list.length }"
+          v-show="showMenu"
+        >
+          <div
+            class="ui-popover-arrow"
+            v-if="arrow"
+            :style="arrowStyle"
+            ref="arrow"
+          ></div>
           <slot></slot>
           <div v-html="content" v-if="content"></div>
+          <ul v-if="list && list.length">
+            <li
+              class="ui-popover-menu-list-item"
+              v-for="(item, index) of list"
+              :key="index"
+              v-html="item.title"
+              @click="
+                () => {
+                  handleListClick(item);
+                }
+              "
+            ></li>
+          </ul>
         </div>
       </transition>
     </div>
   </div>
 </template>
 <script>
-import Popper from 'popper.js'
-import '../assets/scss/popover.scss'
-import elementContains from 'buxton/browser/elementContains'
+import Popper from "popper.js";
+import "../assets/scss/popover.scss";
+import elementContains from "buxton/browser/elementContains";
 export default {
-  name: 'ui-popover',
+  name: "ui-popover",
   data() {
     return {
       showMenu: false,
-      currentPosition: '',
+      currentPosition: "",
       showPopper: false,
       referenceElm: null,
       popperJS: null,
-      currentPlacement: '',
+      currentPlacement: "",
       defaultOptions: {
-        placement: 'bottom',
+        placement: "bottom",
         computeStyle: {
           gpuAcceleration: false
         }
       }
-    }
+    };
   },
   props: {
     transition: {
       type: String,
-      default: 'fade'
+      default: "fade"
     },
     refer: String,
-    reference: String,
+    reference: [String, HTMLDivElement],
     trigger: {
       type: String,
-      default: 'click',
-      validator: value => ['click', 'hover'].includes(value)
+      default: "click",
+      validator: value => ["click", "hover"].includes(value)
     },
     disable: Boolean,
     content: String,
+    list: Array,
+    placement: String,
     destroyOnLeave: Boolean,
     delayIn: {
       type: Number,
@@ -72,84 +105,82 @@ export default {
     stopPropagation: Boolean,
     preventDefault: Boolean,
     boundariesSelector: String,
+    closeOnClick: Boolean,
     popperOptions: {
       type: Object,
-      default () {
-        return {}
+      default() {
+        return {};
       }
     },
     zIndex: {
       type: Number,
-      default () {
-        return this.$zIndex ? this.$zIndex.add() : 1000
+      default() {
+        return this.$zIndex ? this.$zIndex.add() : 1000;
       }
     }
-
   },
   computed: {
     visible() {
-      return !this.disable && this.showPopper
+      return !this.disable && this.showPopper;
     },
     menuStyle() {
-      let styles = {}
-      styles.zIndex = this.zIndex
-      if (this.currentPosition == 'bottom') {
-        styles.marginTop = `${this.arrowSize}px`
+      let styles = {};
+      styles.zIndex = this.zIndex;
+      if (this.currentPosition == "bottom") {
+        styles.marginTop = `${this.arrowSize}px`;
       }
-      if (this.currentPosition == 'top') {
-        styles.marginBottom = `${this.arrowSize}px`
+      if (this.currentPosition == "top") {
+        styles.marginBottom = `${this.arrowSize}px`;
       }
-      if (this.currentPosition == 'left') {
-        styles.marginRight = `${this.arrowSize}px`
+      if (this.currentPosition == "left") {
+        styles.marginRight = `${this.arrowSize}px`;
       }
-      if (this.currentPosition == 'right') {
-        styles.marginLeft = `${this.arrowSize}px`
+      if (this.currentPosition == "right") {
+        styles.marginLeft = `${this.arrowSize}px`;
       }
-      return styles
-
+      return styles;
     },
     arrowStyle() {
-      let transform, top, bottom, left, right
-      if (this.currentPosition == 'bottom') {
-        transform = `translate3d(-${this.arrowSize}px,0,0)`
-        top = `-${this.arrowSize*2}px`
+      let transform, top, bottom, left, right;
+      if (this.currentPosition == "bottom") {
+        transform = `translate3d(-${this.arrowSize}px,0,0)`;
+        top = `-${this.arrowSize * 2}px`;
       }
-      if (this.currentPosition == 'top') {
-        transform = `translate3d(-${this.arrowSize}px,0,0)`
-        bottom = `-${this.arrowSize*2}px`
+      if (this.currentPosition == "top") {
+        transform = `translate3d(-${this.arrowSize}px,0,0)`;
+        bottom = `-${this.arrowSize * 2}px`;
       }
-      if (this.currentPosition == 'left') {
-        transform = `translate3d(0,-${this.arrowSize}px,0)`
-        right = `-${this.arrowSize*2}px`
+      if (this.currentPosition == "left") {
+        transform = `translate3d(0,-${this.arrowSize}px,0)`;
+        right = `-${this.arrowSize * 2}px`;
       }
-      if (this.currentPosition == 'right') {
-        transform = `translate3d(0,-${this.arrowSize}px,0)`
-        left = `-${this.arrowSize*2}px`
+      if (this.currentPosition == "right") {
+        transform = `translate3d(0,-${this.arrowSize}px,0)`;
+        left = `-${this.arrowSize * 2}px`;
       }
       return {
-        borderWidth: this.arrowSize + 'px',
+        borderWidth: this.arrowSize + "px",
         transform,
         top,
         bottom,
         left,
         right
-      }
-
+      };
     }
   },
   watch: {
     showPopper(value) {
       if (value) {
         this.$nextTick(() => {
-          this.showMenu = true
-        })
+          this.showMenu = true;
+        });
         if (this.popperJS) {
           this.popperJS.enableEventListeners();
         }
         this.updatePopper();
       } else {
         if (this.destroyOnLeave) {
-          this.doDestroy()
+          this.doDestroy();
         }
         if (this.popperJS) {
           this.popperJS.disableEventListeners();
@@ -167,41 +198,54 @@ export default {
     this.options = Object.assign(this.defaultOptions, this.popperOptions);
   },
   mounted() {
-    this.referenceElm = (this.$slots.reference && this.$slots.reference[0].elm) || (this.reference && document.querySelector(this.reference));
+    this.referenceElm =
+      (this.$slots.reference && this.$slots.reference[0].elm) ||
+      (this.reference &&
+        typeof this.reference == "string" &&
+        document.querySelector(this.reference)) ||
+      this.reference;
     if (!this.referenceElm) {
-      throw new Error('cannot find reference element')
+      throw new Error("cannot find reference element");
     }
-    this.popper = this.$refs['popper']
-    this.bindEvents()
+    this.popper = this.$refs["popper"];
+    this.bindEvents();
   },
   methods: {
     afterEnter() {
-      this.$emit('show')
+      this.$emit("show");
     },
     afterLeave() {
-      this.$emit('hide')
-      this.showPopper = false
+      this.$emit("hide");
+      this.showPopper = false;
+    },
+    handleListClick(item) {
+      if (item && item.onClick && typeof item.onClick == "function") {
+        item.onClick(item);
+      }
+      if (this.closeOnClick) {
+        this.doClose();
+      }
     },
     on(el, event, handler) {
-      el.addEventListener(event, handler, false)
+      el.addEventListener(event, handler, false);
     },
     off(el, event, handler) {
-      el.removeEventListener(event, handler, false)
+      el.removeEventListener(event, handler, false);
     },
     bindEvents() {
-      if (this.trigger == 'click') {
-        this.on(this.referenceElm, 'click', this.doToggle);
-        this.on(document, 'click', this.handleDocumentClick);
+      if (this.trigger == "click") {
+        this.on(this.referenceElm, "click", this.doToggle);
+        this.on(document, "click", this.handleDocumentClick);
       }
-      if (this.trigger == 'hover') {
-        this.on(this.referenceElm, 'mouseover', this.onMouseOver);
-        this.on(this.referenceElm, 'focus', this.onMouseOver);
-        this.on(this.popper, 'mouseover', this.onMouseOver);
-        this.on(this.popper, 'focus', this.onMouseOver);
-        this.on(this.referenceElm, 'mouseout', this.onMouseOut);
-        this.on(this.referenceElm, 'blur', this.onMouseOut);
-        this.on(this.popper, 'mouseout', this.onMouseOut);
-        this.on(this.popper, 'blur', this.onMouseOut);
+      if (this.trigger == "hover") {
+        this.on(this.referenceElm, "mouseover", this.onMouseOver);
+        this.on(this.referenceElm, "focus", this.onMouseOver);
+        this.on(this.popper, "mouseover", this.onMouseOver);
+        this.on(this.popper, "focus", this.onMouseOver);
+        this.on(this.referenceElm, "mouseout", this.onMouseOut);
+        this.on(this.referenceElm, "blur", this.onMouseOut);
+        this.on(this.popper, "mouseout", this.onMouseOut);
+        this.on(this.popper, "blur", this.onMouseOut);
       }
     },
     doToggle(event) {
@@ -211,8 +255,7 @@ export default {
       if (this.preventDefault) {
         event.preventDefault();
       }
-      this.showPopper = true
-
+      this.showPopper = true;
     },
     doShow() {
       this.showPopper = true;
@@ -234,20 +277,20 @@ export default {
       }
     },
     destroyPopper() {
-      this.off(this.referenceElm, 'click', this.doToggle);
-      this.off(this.referenceElm, 'mouseup', this.doClose);
-      this.off(this.referenceElm, 'mousedown', this.doShow);
-      this.off(this.referenceElm, 'focus', this.doShow);
-      this.off(this.referenceElm, 'blur', this.doClose);
-      this.off(this.referenceElm, 'mouseout', this.onMouseOut);
-      this.off(this.referenceElm, 'mouseover', this.onMouseOver);
-      this.off(document, 'click', this.handleDocumentClick);
+      this.off(this.referenceElm, "click", this.doToggle);
+      this.off(this.referenceElm, "mouseup", this.doClose);
+      this.off(this.referenceElm, "mousedown", this.doShow);
+      this.off(this.referenceElm, "focus", this.doShow);
+      this.off(this.referenceElm, "blur", this.doClose);
+      this.off(this.referenceElm, "mouseout", this.onMouseOut);
+      this.off(this.referenceElm, "mouseover", this.onMouseOver);
+      this.off(document, "click", this.handleDocumentClick);
       this.showMenu = false;
       this.doDestroy();
     },
     createPopper() {
       this.$nextTick(() => {
-        let referenceElm = this.referenceElm
+        let referenceElm = this.referenceElm;
         if (this.appendToBody && !this.appendedToBody) {
           this.appendedToBody = true;
           document.body.appendChild(this.popper);
@@ -255,22 +298,38 @@ export default {
         if (this.popperJS && this.popperJS.destroy) {
           this.popperJS.destroy();
         }
-        if (this.boundariesSelector && document.querySelector(this.boundariesSelector)) {
-          this.popperOptions.modifiers = Object.assign({}, this.popperOptions.modifiers);
-          this.popperOptions.modifiers.preventOverflow = Object.assign({}, this.popperOptions.modifiers.preventOverflow);
-          this.popperOptions.modifiers.preventOverflow.boundariesElement = boundariesElement;
+        if (
+          this.boundariesSelector &&
+          document.querySelector(this.boundariesSelector)
+        ) {
+          this.popperOptions.modifiers = Object.assign(
+            {},
+            this.popperOptions.modifiers
+          );
+          this.popperOptions.modifiers.preventOverflow = Object.assign(
+            {},
+            this.popperOptions.modifiers.preventOverflow
+          );
+          this.popperOptions.modifiers.preventOverflow.boundariesElement = this.boundariesElement;
         }
-        this.popperOptions.onUpdate = (data) => {
-          this.onUpdate(this.popperOptions.onUpdate, data)
-        }
+        this.popperOptions.onUpdate = data => {
+          this.onUpdate(this.popperOptions.onUpdate, data);
+        };
         this.popperOptions.onCreate = () => {
           this.$nextTick(this.updatePopper);
         };
         if (this.refer && document.querySelector(this.refer)) {
-          referenceElm = document.querySelector(this.refer)
+          referenceElm = document.querySelector(this.refer);
         }
-        this.popperJS = new Popper(referenceElm, this.popper, this.popperOptions);
-        this.currentPosition = this.popperOptions.placement
+        if (this.placement) {
+          this.popperOptions.placement = this.placement;
+        }
+        this.popperJS = new Popper(
+          referenceElm,
+          this.popper,
+          this.popperOptions
+        );
+        this.currentPosition = this.popperOptions.placement;
       });
     },
 
@@ -279,15 +338,13 @@ export default {
     },
     onUpdate(fn, data) {
       if (this.currentPosition !== data.placement) {
-        this.currentPosition = data.placement
+        this.currentPosition = data.placement;
       }
 
-
-      if (fn && typeof fn == 'fucntion') {
-        fn()
+      if (typeof fn == "function") {
+        fn();
       }
-      this.$emit('update', data)
-
+      this.$emit("update", data);
     },
     onMouseOver() {
       clearTimeout(this._timer);
@@ -302,22 +359,26 @@ export default {
       }, this.delayOut);
     },
     handleDocumentClick(e) {
-      if (!this.$el || !this.referenceElm ||
+      if (
+        !this.$el ||
+        !this.referenceElm ||
         elementContains(this.$el, e.target) ||
         elementContains(this.referenceElm, e.target) ||
-        !this.popper || elementContains(this.popper, e.target) ||
-        (this.reference && document.querySelector(this.reference) && elementContains(document.querySelector(this.reference), e.target))
+        !this.popper ||
+        elementContains(this.popper, e.target) ||
+        (this.reference &&
+          document.querySelector(this.reference) &&
+          elementContains(document.querySelector(this.reference), e.target))
       ) {
         return;
       }
-      this.$emit('documentClick', this);
+      this.$emit("documentClick", this);
       this.showMenu = false;
     }
   },
   destroyed() {
     this.destroyPopper();
-    this.$emit('destroyed')
+    this.$emit("destroyed");
   }
-}
-
+};
 </script>

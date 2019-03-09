@@ -1,7 +1,7 @@
 # popover / tooltip / dropdown
 
 
-## popover 组件调用
+## popover - 组件调用
 
 <popover-index></popover-index>
 
@@ -40,48 +40,87 @@
 
 <popover-dropdown></popover-dropdown>
 
+<code-code>
+```html
+<ui-button @click="click" id="dropdown">click me</ui-button>
+<ui-button @click="click2" id="dropdown2">list dropdown menu</ui-button>
+click() {
+  this.$UiDropdown({
+    reference: '#dropdown',
+    content: 'content'
+  })
+},
+click2() {
+  this.$UiDropdown({
+    reference: '#dropdown2',
+    list: [{
+        title: 'list item 1',
+        onClick: () => {
+          this.$UiToast('clicked list item 1')
+        }
+      },
+      {
+        title: 'list item 2',
+        onClick: () => {
+          this.$UiToast('clicked list item 2')
+        }
+      },
+      {
+        title: 'list item 3',
+        onClick: () => {
+          this.$UiToast('clicked list item 3')
+        }
+      }
+    ]
+  })
+}
+```
 
-## Directive 调用
+</code-code>
 
 
+## Tooltip - Directive 调用
+
+<popover-tooltip></popover-tooltip>
 
 
----
-
-
-
-## Component 调用
-
-
-options
+#### options
 
 |option|type|default|description|
 |--|--|--|--|
-|trigger|element||必须,触发弹出的元素|
-|closeOnMouseleave|Boolean|false|鼠标离开时隐藏|
-|insertAfter|Boolean|false|false时插入到body中，true时插入到trigger的nextSibling,dropdown时不可用|
-|openDelay|Number|0|打开延迟|
-|closeDelay|Number|0|关闭延迟|
-|closeOnClick|Boolean|true|点击popover是否关闭|
-|content|String|''|文字内容|
-|textCetner|Boolean|true|文字是否居中|
+|transition|String|fade||
+|refer|String||实际popover跟随的元素，用于触发其他元素上的popover|
+|reference|String,HTMLDivElement||触发元素|
+|trigger|String|click|click or hover|
+|disable|Boolean|false|是否禁用|
+|content|String||dropdown tooltip中显示的内容|
+|list|Array||dropdown list每个项目包含title onCLick两个属性|
+|placement|String||覆盖popoverOptions的placement|
+|destroyOnLeave|Boolean|false|消失时是否销毁实例|
+|delayIn|Number|10|现实延迟|
+|delayOut|Number|10|消失延迟|
+|appendToBody|Boolean|true|是否插入到body末端|
 |arrow|Boolean|true|是否显示小箭头|
-|arrowSize|Number|10|箭头大小|
-|arrowOffset|Number|10|箭头偏移|
-|offset|Number||菜单偏移|
-|align|String|center|[center,left,right]菜单对齐方式|
-|radius|Number|8|菜单圆角|
-|menu|Array|||
-|menuType|String|horizon|menu排列方向['horizon','vertical']|
-|params|||当使用menu时,向action传递的参数|
-|onClose|Function||关闭回调|
-|showCloseIcon|Boolean|false|显示关闭按钮,dropdown不可用|
-|width|Number||popover宽度|
-|throttle|Number|30|当浏览器尺寸改变时重新计算位置的throttle|
+|arrowSize|Number|6|箭头尺寸|
+|stopPropagation|Boolean|||
+|preventDefault|Boolean|||
+|boundariesSelector|String||边界元素，参考popperjs|
+|closeOnClick|Boolean|false|点击后是否关闭|
+|popperOptions|Object||[popperJs设置](https://popper.js.org/popper-documentation.html) |
+|zIndex|Number|||
 
 
+#### events
 
+`hide`
 
+`show`
+
+`documentClick`
+
+`destroyed`
+
+`update`
 
 
 

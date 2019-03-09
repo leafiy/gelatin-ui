@@ -45,7 +45,7 @@ export default {
   watch: {
     value() {
       this.activeIndex = this.value;
-      this.moveActiveLine(this.items[this.value],this.value)
+      this.moveActiveLine(this.items[this.value], this.value);
     }
   },
   computed: {

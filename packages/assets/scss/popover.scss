@@ -58,6 +58,24 @@
   }
 }
 
+.ui-popover-menu-list {
+  padding: 0;
+  margin: 0;
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  .ui-popover-menu-list-item {
+    border-bottom: 1px solid $lighter;
+    padding: 4px 11px;
+    &:last-child{
+      border:none;
+    }
+  }
+}
+
 .ui-dropdown {
   .ui-popover-inner {
     padding: 0;
