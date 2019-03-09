@@ -48,6 +48,7 @@ import UiSelect from "./select/index.js";
 import UiTabs from "./tabs/index.js";
 import $UiDropdown from "./dropdown/index.js";
 import UiTooltip from "./tooltip/index.js";
+import UiCaptcha from "./captcha/index.js";
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
@@ -88,7 +89,8 @@ const components = [
   UiRouterTransition,
   UiSelect,
   UiPopover,
-  UiTabs
+  UiTabs,
+  UiCaptcha
 ];
 
 const plugins = {
@@ -99,9 +101,7 @@ const plugins = {
   $UiLoadingBar,
   $UiDropdown
 };
-
 const directives = [UiHightlight, UiLoading, UiMask, UiSticky, UiTooltip];
-
 import ZHandler from "../src/utils/zHandler.js";
 
 const install = function(Vue, options = {}) {
@@ -166,6 +166,7 @@ export default {
   $UiLoadingBar,
   $UiDropdown,
   UiSelect,
-  UiTabs
+  UiTabs,
+  UiCaptcha
   // Rem
 };
