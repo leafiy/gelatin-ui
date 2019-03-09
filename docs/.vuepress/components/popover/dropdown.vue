@@ -1,7 +1,9 @@
 <template>
   <div class="container">
+    <ClientOnly>
     <ui-button @click="click" id="dropdown">click me</ui-button>
     <ui-button @click="click2" id="dropdown2">list dropdown menu</ui-button>
+    </ClientOnly>
   </div>
 </template>
 <script>

@@ -71,7 +71,7 @@ export default {
       default: "fade"
     },
     refer: String,
-    reference: [String, HTMLDivElement],
+    reference: null,
     trigger: {
       type: String,
       default: "click",
@@ -313,7 +313,9 @@ export default {
           this.popperOptions.modifiers.preventOverflow.boundariesElement = this.boundariesElement;
         }
         this.popperOptions.onUpdate = data => {
-          this.onUpdate(this.popperOptions.onUpdate, data);
+          if (data) {
+            this.onUpdate(this.popperOptions.onUpdate, data);
+          }
         };
         this.popperOptions.onCreate = () => {
           this.$nextTick(this.updatePopper);

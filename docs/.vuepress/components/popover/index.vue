@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <ClientOnly>
     <div class="container">
       <ui-popover>
         <ui-button slot="reference">default</ui-button>
@@ -44,6 +45,7 @@
         <div>content</div>
       </ui-popover>
     </div>
+    </ClientOnly>
   </div>
 </template>
 <script>
