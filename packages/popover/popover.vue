@@ -6,6 +6,7 @@
       ref="popper"
       v-show="visible"
       :style="menuStyle"
+      :class="classes"
     >
       <transition
         :name="transition"
@@ -106,6 +107,7 @@ export default {
     preventDefault: Boolean,
     boundariesSelector: String,
     closeOnClick: Boolean,
+    classes:String,
     popperOptions: {
       type: Object,
       default() {

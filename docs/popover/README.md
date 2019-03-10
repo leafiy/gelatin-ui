@@ -108,6 +108,7 @@ click2() {
 |closeOnClick|Boolean|false|点击后是否关闭|
 |popperOptions|Object||[popperJs设置](https://popper.js.org/popper-documentation.html) |
 |zIndex|Number|||
+|classes|String||给popover menu加个class|
 
 
 #### events

@@ -1,51 +1,37 @@
 <template>
-  <div class="ui-autocomplete">
-    <ui-input
-      :placeholder="placeholder"
-      @keydown.native="onKeyDown"
-      @focus="focus"
-      @blur="blur"
-      v-model="query"
-      @keydown.native.enter="enterHandler"
-    >
-      <ui-icon slot="prefix" :name="icon"></ui-icon>
-    </ui-input>
-    <ui-height-transition
-      :duration="100"
-      @after-enter="$emit('open')"
-      @after-leave="$emit('close')"
-    >
+  <div class=" ui-autocomplete">
+    <ui-popperover transition="" :arrow="false" classes="ui-autocomplete-popperover" :append-to-body="appendToBody" ref="popper">
+      <ui-input v-resize="handleResize" :placeholder="placeholder" @keydown.native="onKeyDown" @focus="focus" @blur="blur" v-model="query" @keydown.native.enter="enterHandler" slot="reference" ref="input">
+        <ui-icon slot="prefix" :name="icon"></ui-icon>
+      </ui-input>
       <div class="ui-autocomplete-list" ref="list" :style="listStyles">
         <ui-spinner center v-if="loading"></ui-spinner>
-        <div
-          v-for="(item, index) of items_"
-          class="ui-autocomplete-list-item"
-          :class="{ 'ui-autocomplete-list-item-disabled': item.disabled }"
-          :key="index + Date.now()"
-          @click="item.disabled ? '' : selectItem(index)"
-        >
+        <div v-for="(item, index) of items_" class="ui-autocomplete-list-item" :class="{ 'ui-autocomplete-list-item-disabled': item.disabled }" :key="index + Date.now()" @click="item.disabled ? '' : selectItem(index)">
           <div v-html="item.item" v-ui-highlight="highlightOptions"></div>
         </div>
       </div>
-    </ui-height-transition>
+    </ui-popperover>
   </div>
 </template>
 <script>
+import UiPopperover from '../popover/popover.vue'
 import UiIcon from "../icon/icon.vue";
 import UiHighlight from "../highlight/index.js";
 import UiInput from "../input/index.js";
 import UiSpinner from "../spinner/index.js";
 import { debounce } from "lodash";
 import validators from "../../src/utils/validator.js";
-import isElement from "iselement";
+import isElement from "buxton/browser/isElement";
 import "../assets/scss/autocomplete.scss";
 import keyNavi from "./key-navi.js";
-import UiHeightTransition from "../height-transition/height-transition.vue";
 import axis from "../../src/utils/getAxis.js";
+import resize from 'vue-resize-directive'
+
 export default {
   name: "ui-autocomplete",
   data() {
     return {
+      width: '',
       activeItemIndex: -1,
       selectedIndex: -1,
       query: this.value === undefined || this.value === null ? "" : this.value,
@@ -61,12 +47,16 @@ export default {
   props: {
     items: {
       type: Array,
-      default() {
+      default () {
         return [];
       }
     },
     loose: Boolean,
     highlight: {
+      type: Boolean,
+      default: true
+    },
+    appendToBody: {
       type: Boolean,
       default: true
     },
@@ -97,9 +87,10 @@ export default {
   },
   components: {
     UiInput,
-    UiHeightTransition,
     UiSpinner,
-    UiIcon
+    UiIcon,
+    UiPopperover,
+
   },
   computed: {
     highlightOptions() {
@@ -115,27 +106,31 @@ export default {
     },
     listStyles() {
       return {
-        zIndex: this.$zIndex.get()
+        zIndex: this.$zIndex.get(),
+        width: this.width + 'px'
       };
     }
   },
   methods: {
+    handleResize() {
+      this.width = this.$refs['input'].$el.offsetWidth
+    },
     focus() {
-      if (this.showOnFocus) {
-        this.show();
-      }
+      // if (this.showOnFocus) {
+      //   this.show();
+      // }
     },
     blur() {
-      setTimeout(() => {
-        this.showList = false;
-      }, this.debounce);
+      // setTimeout(() => {
+      //   this.showList = false;
+      // }, this.debounce);
     },
     show() {
-      this.showList = true;
+      // this.showList = true;
       this.$zIndex.add();
     },
     hide() {
-      this.showList = false;
+      // this.showList = false;
       this.$zIndex.remove();
     },
     itemHandler(item) {
@@ -224,9 +219,12 @@ export default {
   },
   mounted() {
     this.itemsHandler();
+    this.width = this.$refs['input'].$el.offsetWidth
   },
   directives: {
-    UiHighlight
+    UiHighlight,
+    resize
   }
 };
+
 </script>

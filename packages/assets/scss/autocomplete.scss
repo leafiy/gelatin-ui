@@ -5,6 +5,8 @@
   position: relative;
   margin: 1rem 0;
 
+
+
   .ui-autocomplete-list {
     position: absolute;
     width: 100%;
@@ -13,6 +15,14 @@
 
   .ui-input {
     margin: 0;
+  }
+}
+
+.ui-autocomplete-popperover {
+  .ui-popover-inner {
+    background: none;
+    box-shadow: none;
+    padding: 0;
   }
 }
 
@@ -43,7 +53,8 @@
     background: $lighter;
     cursor: pointer;
   }
-  &-disabled{
+
+  &-disabled {
     background: $lighter;
   }
 }
