@@ -52,7 +52,6 @@ export default {
 |highlight|Boolean|true||
 |highlightColor|String|primary|see `highlight` document|
 |loading|Boolean|true||
-|debounce|Number|100||
 |icon|String|team||
 |placeholder|String|||
 |onItemSelected|Function|||

@@ -15,20 +15,17 @@
   justify-content: center;
   text-align: center;
   background: $lighter;
-
-
   .ui-avatar-image {
     width: calc(100% - 2px);
     height: calc(100% - 2px);
     border: 1px solid #fff;
-    margin-left: 8px;
   }
 
 }
 
 
-.ui-avatar-name {
-  padding-right: 8px;
+.ui-avatar-name,.ui-avatar-container {
+  margin-right: 8px;
 }
 
 .ui-avatar-string {

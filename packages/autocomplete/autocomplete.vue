@@ -1,37 +1,61 @@
 <template>
   <div class=" ui-autocomplete">
-    <ui-popperover transition="" :arrow="false" classes="ui-autocomplete-popperover" :append-to-body="appendToBody" ref="popper">
-      <ui-input v-resize="handleResize" :placeholder="placeholder" @keydown.native="onKeyDown" @focus="focus" @blur="blur" v-model="query" @keydown.native.enter="enterHandler" slot="reference" ref="input">
+    <ui-popperover
+      transition=""
+      @show="popperShow"
+      @hide="popperHide"
+      :arrow="arrow"
+      classes="ui-autocomplete-popperover"
+      ref="popper"
+      :disable="disablePopper"
+    >
+      <ui-input
+        v-resize="handleResize"
+        :placeholder="placeholder"
+        @focus="handleFocus"
+        @input="handleInput"
+        @blur="handleBlur"
+        v-model="query"
+        @keydown.native.enter="enterHandler"
+        slot="reference"
+        ref="input"
+      >
         <ui-icon slot="prefix" :name="icon"></ui-icon>
       </ui-input>
       <div class="ui-autocomplete-list" ref="list" :style="listStyles">
         <ui-spinner center v-if="loading"></ui-spinner>
-        <div v-for="(item, index) of items_" class="ui-autocomplete-list-item" :class="{ 'ui-autocomplete-list-item-disabled': item.disabled }" :key="index + Date.now()" @click="item.disabled ? '' : selectItem(index)">
-          <div v-html="item.item" v-ui-highlight="highlightOptions"></div>
-        </div>
+        <vue-perfect-scrollbar class="scroll-area" ref="ps" v-else>
+          <div
+            v-for="(item, index) of items_"
+            class="ui-autocomplete-list-item"
+            :class="{ 'ui-autocomplete-list-item-disabled': item.disabled }"
+            :key="index + Date.now()"
+            @click="item.disabled ? '' : selectItem(index)"
+          >
+            <div v-html="item.item" v-ui-highlight="highlightOptions"></div>
+          </div>
+        </vue-perfect-scrollbar>
       </div>
     </ui-popperover>
   </div>
 </template>
 <script>
-import UiPopperover from '../popover/popover.vue'
+import UiPopperover from "../popover/popover.vue";
 import UiIcon from "../icon/icon.vue";
 import UiHighlight from "../highlight/index.js";
 import UiInput from "../input/index.js";
 import UiSpinner from "../spinner/index.js";
 import { debounce } from "lodash";
-import validators from "../../src/utils/validator.js";
-import isElement from "buxton/browser/isElement";
 import "../assets/scss/autocomplete.scss";
 import keyNavi from "./key-navi.js";
-import axis from "../../src/utils/getAxis.js";
-import resize from 'vue-resize-directive'
+import resize from "vue-resize-directive";
+import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
   name: "ui-autocomplete",
   data() {
     return {
-      width: '',
+      width: "",
       activeItemIndex: -1,
       selectedIndex: -1,
       query: this.value === undefined || this.value === null ? "" : this.value,
@@ -40,23 +64,20 @@ export default {
       items_: [],
       list: "",
       lastQuery: "",
-      axis: {}
+      axis: {},
+      disablePopper: true
     };
   },
   mixins: [keyNavi],
   props: {
     items: {
       type: Array,
-      default () {
+      default() {
         return [];
       }
     },
     loose: Boolean,
     highlight: {
-      type: Boolean,
-      default: true
-    },
-    appendToBody: {
       type: Boolean,
       default: true
     },
@@ -83,14 +104,15 @@ export default {
     value: [String, Number],
     disabelSelectedItem: Boolean,
     multiple: [Boolean, Number],
-    showCheckIcon: Boolean
+    showCheckIcon: Boolean,
+    arrow: Boolean
   },
   components: {
     UiInput,
     UiSpinner,
     UiIcon,
     UiPopperover,
-
+    VuePerfectScrollbar
   },
   computed: {
     highlightOptions() {
@@ -106,41 +128,40 @@ export default {
     },
     listStyles() {
       return {
-        zIndex: this.$zIndex.get(),
-        width: this.width + 'px'
+        width: this.width + "px"
       };
     }
   },
   methods: {
     handleResize() {
-      this.width = this.$refs['input'].$el.offsetWidth
+      this.width = this.$refs["input"].$el.offsetWidth;
     },
-    focus() {
-      // if (this.showOnFocus) {
-      //   this.show();
-      // }
+    popperShow() {},
+    popperHide() {
+      this.disablePopper = true;
     },
-    blur() {
-      // setTimeout(() => {
-      //   this.showList = false;
-      // }, this.debounce);
+    handleFocus() {
+      if (this.showOnFocus) {
+        this.disablePopper = false;
+        this.show();
+      }
+    },
+    handleInput() {
+      this.disablePopper = false;
+      this.show();
+    },
+    handleBlur() {
+      // this.disablePopper = true
     },
     show() {
-      // this.showList = true;
-      this.$zIndex.add();
-    },
-    hide() {
-      // this.showList = false;
-      this.$zIndex.remove();
+      this.$refs["popper"].showPopper = true;
+      this.$refs["popper"].updatePopper();
     },
     itemHandler(item) {
       if (typeof item == "string" || typeof item == "number") {
-        return validators.htmlStrict.test(item) ? item : `<span>${item}</span>`;
-      } else if (isElement(item)) {
-        // todo: make element react
-        return item.innerHTML;
+        return `<span>${item}</span>`;
       } else {
-        throw new Error("each item should be a string or an element");
+        throw new Error("item should be string or number");
       }
     },
     onItemSelectedDefault(index) {
@@ -150,7 +171,6 @@ export default {
         this.$emit("select", index);
       }
       this.activeItemIndex = -1;
-      this.hide();
     },
     enterHandler() {
       setTimeout(() => {
@@ -167,7 +187,6 @@ export default {
       } else {
         item = this.items[index];
       }
-      this.hide();
 
       if (!item) {
         return;
@@ -204,27 +223,18 @@ export default {
     },
     items() {
       this.itemsHandler(this.items);
-    },
-    getAxis() {
-      // this.axis = getAxis();
-    },
-    unbindEvents() {
-      // window.removeEventListener("scroll", this.getAxis);
-      // window.removeEventListener("resize", this.getAxis);
-    },
-    bindEvents() {
-      // window.addEventListener("scroll", this.getAxis);
-      // window.addEventListener("resize", this.getAxis);
     }
   },
   mounted() {
     this.itemsHandler();
-    this.width = this.$refs['input'].$el.offsetWidth
+    this.width = this.$refs["input"].$el.offsetWidth;
+    this.$nextTick(() => {
+      this.$refs["popper"].disableEventListeners();
+    });
   },
   directives: {
     UiHighlight,
     resize
   }
 };
-
 </script>

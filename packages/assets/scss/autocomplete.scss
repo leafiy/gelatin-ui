@@ -18,6 +18,14 @@
   }
 }
 
+.scroll-area {
+  position: relative;
+  margin: auto;
+  max-height: 220px;
+
+
+}
+
 .ui-autocomplete-popperover {
   .ui-popover-inner {
     background: none;
@@ -31,9 +39,6 @@
   background: #fff;
   box-shadow: $shadow-light;
   border: 1px solid $lighter;
-  overflow-y: scroll;
-  max-height: 220px;
-  height: auto;
   margin: 0;
   padding: 0;
 }

@@ -1,8 +1,6 @@
 <template>
   <div class="container">
     <ui-autocomplete :items="items" v-model="value" :show-on-focus="true"></ui-autocomplete>
-    <ui-hr>传入element列表</ui-hr>
-    <ui-autocomplete :items="items2" v-model="value2" :show-on-focus="true"></ui-autocomplete>
   </div>
 </template>
 <script>
@@ -20,15 +18,6 @@ export default {
     }
   },
   computed: {
-    items2() {
-      let arr = []
-      for (let item of this.items) {
-        let div = typeof document === 'object' ? document.createElement('div') : {}
-        div.innerHTML = item
-        arr.push(div)
-      }
-      return arr
-    }
   }
 }
 

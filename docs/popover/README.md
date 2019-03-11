@@ -117,11 +117,11 @@ click2() {
 
 `show`
 
-`documentClick`
+`document-click`
 
 `destroyed`
 
 `update`
 
-
+`click-menu`
 

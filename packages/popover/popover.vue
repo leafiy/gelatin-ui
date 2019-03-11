@@ -7,6 +7,7 @@
       v-show="visible"
       :style="menuStyle"
       :class="classes"
+      @click="clickMenu"
     >
       <transition
         :name="transition"
@@ -107,7 +108,7 @@ export default {
     preventDefault: Boolean,
     boundariesSelector: String,
     closeOnClick: Boolean,
-    classes:String,
+    classes: String,
     popperOptions: {
       type: Object,
       default() {
@@ -215,10 +216,27 @@ export default {
   methods: {
     afterEnter() {
       this.$emit("show");
+      if (this.trigger == "click") {
+        this.on(document, "click", this.handleDocumentClick);
+      }
     },
     afterLeave() {
       this.$emit("hide");
       this.showPopper = false;
+      this.off(document, "click", this.handleDocumentClick);
+    },
+    enableEventListeners() {
+      if (this.popperJS) {
+        this.popperJS.enableEventListeners();
+      }
+    },
+    disableEventListeners() {
+      if (this.popperJS) {
+        this.popperJS.disableEventListeners();
+      }
+    },
+    clickMenu() {
+      this.$emit("click-menu");
     },
     handleListClick(item) {
       if (item && item.onClick && typeof item.onClick == "function") {
@@ -237,7 +255,6 @@ export default {
     bindEvents() {
       if (this.trigger == "click") {
         this.on(this.referenceElm, "click", this.doToggle);
-        this.on(document, "click", this.handleDocumentClick);
       }
       if (this.trigger == "hover") {
         this.on(this.referenceElm, "mouseover", this.onMouseOver);
@@ -286,7 +303,6 @@ export default {
       this.off(this.referenceElm, "blur", this.doClose);
       this.off(this.referenceElm, "mouseout", this.onMouseOut);
       this.off(this.referenceElm, "mouseover", this.onMouseOver);
-      this.off(document, "click", this.handleDocumentClick);
       this.showMenu = false;
       this.doDestroy();
     },
@@ -376,7 +392,7 @@ export default {
       ) {
         return;
       }
-      this.$emit("documentClick", this);
+      this.$emit("document-click", this);
       this.showMenu = false;
     }
   },
