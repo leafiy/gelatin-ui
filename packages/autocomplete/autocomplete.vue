@@ -1,37 +1,13 @@
 <template>
   <div class=" ui-autocomplete">
-    <ui-popperover
-      transition=""
-      @show="popperShow"
-      @hide="popperHide"
-      :arrow="arrow"
-      classes="ui-autocomplete-popperover"
-      ref="popper"
-      :disable="disablePopper"
-    >
-      <ui-input
-        v-resize="handleResize"
-        :placeholder="placeholder"
-        @focus="handleFocus"
-        @input="handleInput"
-        @blur="handleBlur"
-        v-model="query"
-        @keydown.native.enter="enterHandler"
-        slot="reference"
-        ref="input"
-      >
+    <ui-popperover transition="" @show="popperShow" @hide="popperHide" :arrow="arrow" classes="ui-autocomplete-popperover" ref="popper" :disable="disablePopper">
+      <ui-input :placeholder="placeholder" @focus="handleFocus" @input="handleInput" @blur="handleBlur" v-model="query" @keydown.native.enter="enterHandler" slot="reference" ref="input">
         <ui-icon slot="prefix" :name="icon"></ui-icon>
       </ui-input>
       <div class="ui-autocomplete-list" ref="list" :style="listStyles">
         <ui-spinner center v-if="loading"></ui-spinner>
         <vue-perfect-scrollbar class="scroll-area" ref="ps" v-else>
-          <div
-            v-for="(item, index) of items_"
-            class="ui-autocomplete-list-item"
-            :class="{ 'ui-autocomplete-list-item-disabled': item.disabled }"
-            :key="index + Date.now()"
-            @click="item.disabled ? '' : selectItem(index)"
-          >
+          <div v-for="(item, index) of items_" class="ui-autocomplete-list-item" :class="{ 'ui-autocomplete-list-item-disabled': item.disabled }" :key="index + Date.now()" @click="item.disabled ? '' : selectItem(index)">
             <div v-html="item.item" v-ui-highlight="highlightOptions"></div>
           </div>
         </vue-perfect-scrollbar>
@@ -45,11 +21,10 @@ import UiIcon from "../icon/icon.vue";
 import UiHighlight from "../highlight/index.js";
 import UiInput from "../input/index.js";
 import UiSpinner from "../spinner/index.js";
-import { debounce } from "lodash";
 import "../assets/scss/autocomplete.scss";
 import keyNavi from "./key-navi.js";
-import resize from "vue-resize-directive";
-import VuePerfectScrollbar from "vue-perfect-scrollbar";
+
+// import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
   name: "ui-autocomplete",
@@ -72,7 +47,7 @@ export default {
   props: {
     items: {
       type: Array,
-      default() {
+      default () {
         return [];
       }
     },
@@ -82,10 +57,6 @@ export default {
       default: true
     },
     highlightColor: String,
-    debounce: {
-      type: Number,
-      default: 100
-    },
     icon: {
       type: String,
       default: "team"
@@ -112,7 +83,7 @@ export default {
     UiSpinner,
     UiIcon,
     UiPopperover,
-    VuePerfectScrollbar
+    VuePerfectScrollbar: () => import("vue-perfect-scrollbar")
   },
   computed: {
     highlightOptions() {
@@ -133,6 +104,12 @@ export default {
     }
   },
   methods: {
+    bindEvents() {
+      window.addEventListener('resize', this.handleResize)
+    },
+    unBindEvents() {
+      window.removeEventListener('resize', this.handleResize)
+    },
     handleResize() {
       this.width = this.$refs["input"].$el.offsetWidth;
     },
@@ -175,7 +152,7 @@ export default {
     enterHandler() {
       setTimeout(() => {
         this.$emit("enter", this.query);
-      }, this.debounce);
+      }, 1);
     },
     selectItem(index) {
       let item = null;
@@ -231,10 +208,14 @@ export default {
     this.$nextTick(() => {
       this.$refs["popper"].disableEventListeners();
     });
+    this.bindEvents()
+  },
+  destroyed() {
+    this.unBindEvents()
   },
   directives: {
-    UiHighlight,
-    resize
+    UiHighlight
   }
 };
+
 </script>

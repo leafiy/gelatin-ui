@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <ui-autocomplete :items="items" v-model="value" :show-on-focus="true"></ui-autocomplete>
+    <ClientOnly>
+      <ui-autocomplete :items="items" v-model="value" :show-on-focus="true"></ui-autocomplete>
+    </ClientOnly>
   </div>
 </template>
 <script>
@@ -16,8 +18,6 @@ export default {
       value: '',
       value2: '',
     }
-  },
-  computed: {
   }
 }
 

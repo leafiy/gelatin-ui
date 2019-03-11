@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <ui-autocomplete :items="items" v-model="value" :show-on-focus="true" :on-input-change="onInputChange" :on-item-selected="onItemSelected"></ui-autocomplete>
+    <ClientOnly>
+      <ui-autocomplete :items="items" v-model="value" :show-on-focus="true" :on-input-change="onInputChange" :on-item-selected="onItemSelected"></ui-autocomplete>
+    </ClientOnly>
     <p>{{selected}}</p>
   </div>
 </template>

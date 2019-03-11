@@ -59,7 +59,7 @@ module.exports = {
           ['/textarea/', 'Textarea'],
           ['/checkbox/', 'Checkbox'],
           ['/v/', 'V Validation'],
-          ['/select/', 'Select'],
+          // ['/select/', 'Select'],
           // ['/radio/', 'Radio'],
         ]
       },
