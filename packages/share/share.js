@@ -9,7 +9,6 @@ const templates = {
   facebook: "https://www.facebook.com/sharer/sharer.php?u={{URL}}",
   twitter:
     "https://twitter.com/intent/tweet?text={{TITLE}}&url={{URL}}&via={{ORIGIN}}",
-  google: "https://plus.google.com/share?url={{URL}}"
 };
 
 const makeUrl = function({ site, data }) {

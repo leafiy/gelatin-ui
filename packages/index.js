@@ -49,6 +49,7 @@ import UiTabs from "./tabs/index.js";
 import $UiDropdown from "./dropdown/index.js";
 import UiTooltip from "./tooltip/index.js";
 import UiCaptcha from "./captcha/index.js";
+import UiLightbox from './lightbox/index.js'
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
@@ -90,7 +91,8 @@ const components = [
   UiSelect,
   UiPopover,
   UiTabs,
-  UiCaptcha
+  UiCaptcha,
+  UiLightbox
 ];
 
 const plugins = {
@@ -167,6 +169,7 @@ export default {
   $UiDropdown,
   UiSelect,
   UiTabs,
-  UiCaptcha
+  UiCaptcha,
+  UiLightbox
   // Rem
 };

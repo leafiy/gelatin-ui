@@ -379,6 +379,7 @@ export default {
       }, this.delayOut);
     },
     handleDocumentClick(e) {
+      let reference = typeof this.reference == 'string' ? document.querySelector(this.reference) : reference
       if (
         !this.$el ||
         !this.referenceElm ||
@@ -386,8 +387,7 @@ export default {
         elementContains(this.referenceElm, e.target) ||
         !this.popper ||
         elementContains(this.popper, e.target) ||
-        (this.reference &&
-          document.querySelector(this.reference) &&
+        (reference &&
           elementContains(document.querySelector(this.reference), e.target))
       ) {
         return;
