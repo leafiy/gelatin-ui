@@ -379,7 +379,10 @@ export default {
       }, this.delayOut);
     },
     handleDocumentClick(e) {
-      let reference = typeof this.reference == 'string' ? document.querySelector(this.reference) : reference
+      let reference =
+        typeof this.reference == "string"
+          ? document.querySelector(this.reference)
+          : reference;
       if (
         !this.$el ||
         !this.referenceElm ||

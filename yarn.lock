@@ -2104,10 +2104,10 @@ builtin-status-codes@^3.0.0:
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
 
-buxton@^0.2.9:
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/buxton/-/buxton-0.2.9.tgz#3f88c9e8cf7af0d8020040c41f4f4fa2178c0372"
-  integrity sha512-HzzUtu7l3QKGV/F75a/iAarvH8/d1TvodMYNT9H4opsc66TZWiqN0d5bT1ipqF0A8+ABBdsy0GftIMNT5I0Akw==
+buxton@^0.2.10:
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/buxton/-/buxton-0.2.10.tgz#00765559f96e08bd288393b959bc1067f63c127f"
+  integrity sha512-DOwoaBzCCaqWZaAQKsOpY7EYhoXtaTT+z9/p+hYV5gnjCIxCr7CH67TyQWjD35eGPrvpVwDknp110HisqH3RMQ==
 
 bytes@3.0.0:
   version "3.0.0"

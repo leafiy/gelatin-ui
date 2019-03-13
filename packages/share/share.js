@@ -8,7 +8,7 @@ const templates = {
     "http://www.linkedin.com/shareArticle?mini=true&ro=true&title={{TITLE}}&url={{URL}}&summary={{SUMMARY}}&source={{SOURCE}}&armin=armin",
   facebook: "https://www.facebook.com/sharer/sharer.php?u={{URL}}",
   twitter:
-    "https://twitter.com/intent/tweet?text={{TITLE}}&url={{URL}}&via={{ORIGIN}}",
+    "https://twitter.com/intent/tweet?text={{TITLE}}&url={{URL}}&via={{ORIGIN}}"
 };
 
 const makeUrl = function({ site, data }) {

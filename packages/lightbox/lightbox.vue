@@ -4,16 +4,12 @@
   </div>
 </template>
 <script>
-import '../assets/scss/lightbox.scss'
+import "../assets/scss/lightbox.scss";
 export default {
-
-  name: 'ui-lightbox',
+  name: "ui-lightbox",
 
   data() {
-    return {
-
-    }
+    return {};
   }
-}
-
+};
 </script>

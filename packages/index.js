@@ -49,7 +49,8 @@ import UiTabs from "./tabs/index.js";
 import $UiDropdown from "./dropdown/index.js";
 import UiTooltip from "./tooltip/index.js";
 import UiCaptcha from "./captcha/index.js";
-import UiLightbox from './lightbox/index.js'
+import UiLightbox from "./lightbox/index.js";
+import UiPoster from "./poster/index.js";
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
@@ -92,7 +93,8 @@ const components = [
   UiPopover,
   UiTabs,
   UiCaptcha,
-  UiLightbox
+  UiLightbox,
+  UiPoster
 ];
 
 const plugins = {
@@ -170,6 +172,7 @@ export default {
   UiSelect,
   UiTabs,
   UiCaptcha,
-  UiLightbox
+  UiLightbox,
+  UiPoster
   // Rem
 };

@@ -1,13 +1,36 @@
 <template>
   <div class=" ui-autocomplete">
-    <ui-popperover transition="" @show="popperShow" @hide="popperHide" :arrow="arrow" classes="ui-autocomplete-popperover" ref="popper" :disable="disablePopper">
-      <ui-input :placeholder="placeholder" @focus="handleFocus" @input="handleInput" @blur="handleBlur" v-model="query" @keydown.native.enter="enterHandler" slot="reference" ref="input">
+    <ui-popperover
+      transition=""
+      @show="popperShow"
+      @hide="popperHide"
+      :arrow="arrow"
+      classes="ui-autocomplete-popperover"
+      ref="popper"
+      :disable="disablePopper"
+    >
+      <ui-input
+        :placeholder="placeholder"
+        @focus="handleFocus"
+        @input="handleInput"
+        @blur="handleBlur"
+        v-model="query"
+        @keydown.native.enter="enterHandler"
+        slot="reference"
+        ref="input"
+      >
         <ui-icon slot="prefix" :name="icon"></ui-icon>
       </ui-input>
       <div class="ui-autocomplete-list" ref="list" :style="listStyles">
         <ui-spinner center v-if="loading"></ui-spinner>
         <vue-perfect-scrollbar class="scroll-area" ref="ps" v-else>
-          <div v-for="(item, index) of items_" class="ui-autocomplete-list-item" :class="{ 'ui-autocomplete-list-item-disabled': item.disabled }" :key="index + Date.now()" @click="item.disabled ? '' : selectItem(index)">
+          <div
+            v-for="(item, index) of items_"
+            class="ui-autocomplete-list-item"
+            :class="{ 'ui-autocomplete-list-item-disabled': item.disabled }"
+            :key="index + Date.now()"
+            @click="item.disabled ? '' : selectItem(index)"
+          >
             <div v-html="item.item" v-ui-highlight="highlightOptions"></div>
           </div>
         </vue-perfect-scrollbar>
@@ -47,7 +70,7 @@ export default {
   props: {
     items: {
       type: Array,
-      default () {
+      default() {
         return [];
       }
     },
@@ -105,10 +128,10 @@ export default {
   },
   methods: {
     bindEvents() {
-      window.addEventListener('resize', this.handleResize)
+      window.addEventListener("resize", this.handleResize);
     },
     unBindEvents() {
-      window.removeEventListener('resize', this.handleResize)
+      window.removeEventListener("resize", this.handleResize);
     },
     handleResize() {
       this.width = this.$refs["input"].$el.offsetWidth;
@@ -208,14 +231,13 @@ export default {
     this.$nextTick(() => {
       this.$refs["popper"].disableEventListeners();
     });
-    this.bindEvents()
+    this.bindEvents();
   },
   destroyed() {
-    this.unBindEvents()
+    this.unBindEvents();
   },
   directives: {
     UiHighlight
   }
 };
-
 </script>

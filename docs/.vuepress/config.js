@@ -81,6 +81,7 @@ module.exports = {
         collapsable: false,
         children: [
           ['/captcha/','验证码'],
+          ['/poster/','海报'],
           ['/image/', 'Image 图片懒加载'],
           ['/height-transition/', 'Height transition'],
           ['/router-transition/', 'Router transition'],
