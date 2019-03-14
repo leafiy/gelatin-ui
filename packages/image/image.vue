@@ -13,7 +13,9 @@
     </transition>
     <div class="ui-image-cover" v-if="cover"></div>
     <slot name="loader" v-if="loading">
-      <div class="ui-image-loader"><ui-spinner center></ui-spinner></div>
+      <div class="ui-image-loader">
+        <ui-spinner center></ui-spinner>
+      </div>
     </slot>
     <div class="ui-image-slot" :style="slotStyles" v-if="$slots.default">
       <slot></slot>
@@ -67,6 +69,11 @@ export default {
   },
   mounted() {
     this.load();
+  },
+  watch: {
+    src(value) {
+      this.load();
+    }
   },
   computed: {
     slotStyles() {
