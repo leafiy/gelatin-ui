@@ -15,7 +15,9 @@
       </div>
       <ui-icon :name="icon" v-if="!url && !displayName"></ui-icon>
     </div>
-    <span class="ui-avatar-name" v-if="showName">{{ username }}</span>
+    <span class="ui-avatar-name" v-if="showName && username">{{
+      username
+    }}</span>
     <span class="ui-avatar-slot" v-if="$slots.default"><slot></slot></span>
   </div>
 </template>

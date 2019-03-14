@@ -15,6 +15,7 @@
   justify-content: center;
   text-align: center;
   background: $lighter;
+
   .ui-avatar-image {
     width: calc(100% - 2px);
     height: calc(100% - 2px);
@@ -24,8 +25,9 @@
 }
 
 
-.ui-avatar-name,.ui-avatar-container {
-  margin-right: 8px;
+.ui-avatar-name,
+.ui-avatar-slot {
+  margin-left: 8px;
 }
 
 .ui-avatar-string {
