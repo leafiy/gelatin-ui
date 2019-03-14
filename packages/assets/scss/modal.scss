@@ -2,7 +2,7 @@
 
 .ui-modal {
   position: fixed;
-  top: 40%;
+  top: 46%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   // z-index: 1200;
@@ -10,18 +10,11 @@
 
   &-size {
     &-lg {
-      width: 90%;
-      @include md {
-        max-width: 860px;
-      }
+      width: 620px;
     }
 
     &-sm {
-      width: 85%;
-
-      @include sm {
-        max-width: 380px;
-      }
+      width: 460px;
     }
   }
 

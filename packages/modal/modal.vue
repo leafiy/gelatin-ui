@@ -1,12 +1,19 @@
 <template>
   <div class="ui-modal-wrapper">
     <transition :name="modalTransition">
-      <div class="ui-modal" :class="classes" v-if="value" :style="styles">
+      <div
+        class="ui-modal"
+        :class="classes"
+        v-if="value"
+        :style="styles"
+        ref="modal"
+      >
         <div class="ui-modal-inner">
           <ui-icon
             @click.native="closeModal"
             name="close"
             class="ui-modal-close-icon"
+            v-if="showCloseIcon"
           ></ui-icon>
           <div class="ui-modal-header" v-if="header || $slots.header">
             <div v-if="header" v-html="header"></div>
@@ -49,6 +56,7 @@ import UiButtonGroup from "../button-group/button-group.vue";
 import UiButton from "../button/button.vue";
 import UiBackdrop from "../backdrop/backdrop.vue";
 import "../assets/scss/modal.scss";
+import elementContains from "buxton/browser/elementContains";
 export default {
   name: "ui-modal",
 
@@ -121,16 +129,30 @@ export default {
     }
   },
   watch: {
-    value() {
-      if (this.value) {
+    value(value) {
+      if (value) {
         this.openModal();
+        this.bindEvents();
       } else {
         this.closeModal();
+        this.unBindEvents();
       }
     }
   },
 
   methods: {
+    bindEvents() {
+      window.addEventListener("click", this.handleDocumentClick);
+    },
+    unBindEvents() {
+      window.removeEventListener("click", this.handleDocumentClick);
+    },
+    handleDocumentClick(e) {
+      let el = e.target;
+      if (!elementContains(this.$refs["modal"], el)) {
+        this.closeModal();
+      }
+    },
     closeModal() {
       if (this.disableScroll) {
         document.body.style.overflow = "";

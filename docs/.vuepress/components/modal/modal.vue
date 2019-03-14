@@ -4,6 +4,7 @@
       <ui-button @click.native="openModal">组件调用</ui-button>
       <ui-button @click.native="openModal2">JS调用</ui-button>
       <ui-hr></ui-hr>
+      {{open}}
       <ui-modal v-model="open" backdrop-color="darker" :close-on-click="false" >
         <div slot="header">Modal Header</div>
         <p>modal content</p>
