@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.42"></a>
+## [0.1.42](https://github.com/leafiy/gelatin-ui/compare/v0.1.41...v0.1.42) (2019-03-14)
+
+
+### Bug Fixes
+
+* **modal:** bugs fix ([2beace8](https://github.com/leafiy/gelatin-ui/commit/2beace8))
+
+
+
 <a name="0.1.41"></a>
 ## [0.1.41](https://github.com/leafiy/gelatin-ui/compare/v0.1.40...v0.1.41) (2019-03-11)
 
