@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.44"></a>
+## [0.1.44](https://github.com/leafiy/gelatin-ui/compare/v0.1.43...v0.1.44) (2019-03-16)
+
+
+### Bug Fixes
+
+* **popover,modal:** minor bugs fix ([1060d68](https://github.com/leafiy/gelatin-ui/commit/1060d68))
+
+
+
 <a name="0.1.43"></a>
 ## [0.1.43](https://github.com/leafiy/gelatin-ui/compare/v0.1.42...v0.1.43) (2019-03-14)
 
