@@ -49,6 +49,7 @@
 import Popper from "popper.js";
 import "../assets/scss/popover.scss";
 import elementContains from "buxton/browser/elementContains";
+
 export default {
   name: "ui-popover",
   data() {
@@ -283,9 +284,6 @@ export default {
       this.showMenu = false;
     },
     doDestroy() {
-      if (this.showPopper) {
-        return;
-      }
       if (this.popperJS) {
         this.popperJS.destroy();
         this.popperJS = null;

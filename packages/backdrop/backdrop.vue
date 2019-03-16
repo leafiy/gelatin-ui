@@ -11,15 +11,13 @@ import "../assets/scss/backdrop.scss";
 export default {
   name: "ui-backdrop",
   data() {
-    return {
-
-    };
+    return {};
   },
   props: {
-    show:Boolean,
+    show: Boolean,
     transition: {
       type: String,
-      default: 'fade'
+      default: "fade"
     },
     onClick: Function,
     zIndex: Number,
@@ -36,10 +34,12 @@ export default {
   },
   computed: {
     styles() {
-      return [{
-        zIndex: this.zIndex,
-        borderRadius: `${this.radius}px`
-      }];
+      return [
+        {
+          zIndex: this.zIndex,
+          borderRadius: `${this.radius}px`
+        }
+      ];
     },
     classes() {
       return [
@@ -58,5 +58,4 @@ export default {
     }
   }
 };
-
 </script>
