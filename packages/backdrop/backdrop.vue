@@ -1,45 +1,31 @@
 <template>
-  <transition name="fade">
-    <div
-      class="ui-backdrop"
-      v-if="show"
-      :style="styles"
-      :class="classes"
-      @click="click"
-    >
+  <transition :name="transition">
+    <div class="ui-backdrop" v-if="show" :style="styles" :class="classes">
       <slot></slot>
-      <ui-spinner v-if="loading"></ui-spinner>
       <span v-if="content">{{ content }}</span>
     </div>
   </transition>
 </template>
 <script>
-import UiSpinner from "../spinner/spinner.vue";
 import "../assets/scss/backdrop.scss";
-import events from "../../src/utils/events.js";
-import Vue from "vue";
-
 export default {
   name: "ui-backdrop",
   data() {
     return {
-      show: false
+
     };
   },
-  components: {
-    UiSpinner
-  },
   props: {
-    type: {
-      type: String
+    show:Boolean,
+    transition: {
+      type: String,
+      default: 'fade'
     },
     onClick: Function,
-    loading: Boolean,
     zIndex: Number,
     fullscreen: Boolean,
     content: String,
-    closeOnClick: Boolean,
-    radius: [Number, String],
+    radius: Number,
     color: {
       type: String,
       default: "dark",
@@ -50,13 +36,10 @@ export default {
   },
   computed: {
     styles() {
-      return [
-        {
-          zIndex: this.zIndex,
-          borderRadius:
-            typeof this.radius == "number" ? this.radius + "px" : this.radius
-        }
-      ];
+      return [{
+        zIndex: this.zIndex,
+        borderRadius: `${this.radius}px`
+      }];
     },
     classes() {
       return [
@@ -65,23 +48,15 @@ export default {
       ];
     }
   },
-  methods: {
-    click() {
-      if (this.closeOnClick) {
-        this.close();
+  watch: {
+    show(value) {
+      if (value) {
+        this.$emit("open");
+      } else {
+        this.$emit("close");
       }
-      if (this.onClick && typeof this.onClick == "function") {
-        this.onClick();
-      }
-    },
-    close() {
-      this.show = false;
-      this.$emit("close");
-    },
-    open() {
-      this.show = true;
-      this.$emit("open");
     }
   }
 };
+
 </script>

@@ -17,7 +17,7 @@
   "dependencies": {
     "autosize": "^4.0.2",
     "axios": "^0.18.0",
-    "buxton": "^0.2.9",
+    "buxton": "^0.2.11",
     "lodash": "^4.17.11",
     "nanoid": "^2.0.0",
     "normalize.css": "^8.0.1",
