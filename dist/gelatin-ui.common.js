@@ -1247,7 +1247,7 @@ exports = module.exports = __webpack_require__("2350")(false);
 
 
 // module
-exports.push([module.i, "li{list-style:none}h1,h2,h3,h4,h5,h6{margin:0}.fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.ui-checkbox,.ui-radio{display:inline-block;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:relative;height:24px;line-height:23px}.ui-checkbox~.ui-checkbox,.ui-checkbox~.ui-radio,.ui-radio~.ui-checkbox,.ui-radio~.ui-radio{margin-left:24px}.ui-checkbox .ui-checkbox-box,.ui-checkbox .ui-radio-box,.ui-radio .ui-checkbox-box,.ui-radio .ui-radio-box{-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out;-webkit-box-sizing:content-box;box-sizing:content-box}.ui-checkbox label,.ui-radio label{position:relative;cursor:pointer;display:inline-block;padding-left:32px}.ui-checkbox input[type=checkbox],.ui-checkbox input[type=radio],.ui-radio input[type=checkbox],.ui-radio input[type=radio]{display:none}.ui-checkbox-disabled,.ui-radio-disabled{color:#9b9b9b}.ui-checkbox-disabled label,.ui-radio-disabled label{cursor:not-allowed}.ui-checkbox-disabled .ui-checkbox-box,.ui-checkbox-disabled .ui-radio-box,.ui-radio-disabled .ui-checkbox-box,.ui-radio-disabled .ui-radio-box{border-color:#e9ebee!important}.ui-checkbox-disabled .ui-radio-box:before,.ui-radio-disabled .ui-radio-box:before{background:#e9ebee!important}.ui-checkbox .ui-checkbox-box{color:#08d7b8;border:1px solid #e9ebee;width:22px;height:22px;position:absolute;left:0;top:0;border-radius:3px;background:#fff}.ui-checkbox .ui-checkbox-box svg{fill:currentColor;opacity:0;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out;-webkit-transform:scale(.4);transform:scale(.4);position:absolute;top:4px;left:4px}.ui-checkbox-indeterminate.ui-checkbox-checked .ui-checkbox-box{background:#08d7b8;color:#fff}.ui-checkbox-checked .ui-checkbox-box{border-color:#34f7da;-webkit-box-shadow:1px 1px 8px rgba(8,215,184,.4);box-shadow:1px 1px 8px rgba(8,215,184,.4)}.ui-checkbox-indeterminate .ui-checkbox-box{border-color:#9b9b9b;-webkit-box-shadow:1px 1px 8px hsla(0,0%,60.8%,.3);box-shadow:1px 1px 8px hsla(0,0%,60.8%,.3)}.ui-checkbox-indeterminate-bar{position:absolute;height:4px;width:14px;border-radius:10px;background:#9b9b9b;top:8px;left:3px}.ui-checkbox-checked .ui-checkbox-box svg{-webkit-transform:scale(1);transform:scale(1);opacity:1}.ui-radio .ui-radio-box{width:22px;height:22px;border:1px solid #e9ebee;border-radius:50%;position:absolute;left:0;background:#fff}.ui-radio .ui-radio-box:before{content:\" \";position:absolute;width:16px;height:16px;opacity:0;border-radius:50%;-webkit-transition:all .2s ease-in;transition:all .2s ease-in;-webkit-transform:scale(.2);transform:scale(.2);top:3px;left:3px}.ui-radio-checked .ui-radio-box{border-color:#34f7da;-webkit-box-shadow:1px 1px 8px rgba(8,215,184,.3);box-shadow:1px 1px 8px rgba(8,215,184,.3)}.ui-radio-checked .ui-radio-box:before{background:#08d7b8;-webkit-transform:scale(1);transform:scale(1);opacity:1}.ui-checkbox-toggle.ui-checkbox label,.ui-radio-toggle.ui-radio label{padding-left:58px}.ui-checkbox-toggle.ui-checkbox .ui-checkbox-box,.ui-radio-toggle.ui-radio .ui-checkbox-box{position:absolute;height:24px;-webkit-box-sizing:border-box;box-sizing:border-box}.ui-checkbox-toggle.ui-checkbox .ui-checkbox-box:before,.ui-radio-toggle.ui-radio .ui-checkbox-box:before{content:\" \";position:absolute;border-radius:50%;left:2px;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out}.ui-checkbox-toggle.ui-checkbox .ui-checkbox-box,.ui-checkbox-toggle.ui-checkbox .ui-radio-box,.ui-radio-toggle.ui-radio .ui-checkbox-box,.ui-radio-toggle.ui-radio .ui-radio-box{width:48px;border-radius:24px}.ui-checkbox-toggle.ui-checkbox .ui-checkbox-box:before,.ui-checkbox-toggle.ui-checkbox .ui-radio-box:before,.ui-radio-toggle.ui-radio .ui-checkbox-box:before,.ui-radio-toggle.ui-radio .ui-radio-box:before{top:1px;width:20px;height:20px;opacity:1;background:#e9ebee;-webkit-transform:scale(1);transform:scale(1)}.ui-checkbox-toggle.ui-checkbox.ui-checkbox-checked .ui-checkbox-box,.ui-checkbox-toggle.ui-checkbox.ui-checkbox-checked .ui-radio-box,.ui-checkbox-toggle.ui-checkbox.ui-radio-checked .ui-checkbox-box,.ui-checkbox-toggle.ui-checkbox.ui-radio-checked .ui-radio-box,.ui-radio-toggle.ui-radio.ui-checkbox-checked .ui-checkbox-box,.ui-radio-toggle.ui-radio.ui-checkbox-checked .ui-radio-box,.ui-radio-toggle.ui-radio.ui-radio-checked .ui-checkbox-box,.ui-radio-toggle.ui-radio.ui-radio-checked .ui-radio-box{background:#08d7b8;border-color:#08d7b8}.ui-checkbox-toggle.ui-checkbox.ui-checkbox-checked .ui-checkbox-box:before,.ui-checkbox-toggle.ui-checkbox.ui-checkbox-checked .ui-radio-box:before,.ui-checkbox-toggle.ui-checkbox.ui-radio-checked .ui-checkbox-box:before,.ui-checkbox-toggle.ui-checkbox.ui-radio-checked .ui-radio-box:before,.ui-radio-toggle.ui-radio.ui-checkbox-checked .ui-checkbox-box:before,.ui-radio-toggle.ui-radio.ui-checkbox-checked .ui-radio-box:before,.ui-radio-toggle.ui-radio.ui-radio-checked .ui-checkbox-box:before,.ui-radio-toggle.ui-radio.ui-radio-checked .ui-radio-box:before{background:#fff;-webkit-transform:translateX(23px);transform:translateX(23px)}", ""]);
+exports.push([module.i, "li{list-style:none}h1,h2,h3,h4,h5,h6{margin:0}.fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.ui-checkbox,.ui-radio{position:relative;display:inline-block}.ui-checkbox label,.ui-radio label{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;cursor:pointer}.ui-checkbox .ui-checkbox-input-box,.ui-radio .ui-checkbox-input-box{border-radius:4px}.ui-checkbox .ui-checkbox-input-box svg,.ui-radio .ui-checkbox-input-box svg{-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out;opacity:0;top:calc(50% + 1px);left:calc(50% + 1px);position:absolute;-webkit-transform:translate3d(-50%,-50%,0) scale(.4);transform:translate3d(-50%,-50%,0) scale(.4)}.ui-checkbox .ui-radio-input-box,.ui-radio .ui-radio-input-box{border-radius:50%}.ui-checkbox .ui-radio-input-box:before,.ui-radio .ui-radio-input-box:before{content:\" \";width:.7em;height:.7em;display:inline-block;background:#08d7b8;border-radius:50%;position:absolute;top:50%;left:50%;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out;-webkit-transform:translate3d(-50%,-50%,0) scale(.3);transform:translate3d(-50%,-50%,0) scale(.3);opacity:0}.ui-checkbox .ui-checkbox-input-box,.ui-checkbox .ui-radio-input-box,.ui-radio .ui-checkbox-input-box,.ui-radio .ui-radio-input-box{-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out;border:1px solid #9b9b9b;width:1em;height:1em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;display:inline-block;margin-right:.2em;position:relative}.ui-checkbox-checked .ui-checkbox-input-box,.ui-checkbox-checked .ui-radio-input-box,.ui-radio-checked .ui-checkbox-input-box,.ui-radio-checked .ui-radio-input-box{border-color:#08d7b8}.ui-checkbox-checked .ui-checkbox-input-box svg,.ui-radio-checked .ui-checkbox-input-box svg{fill:#08d7b8}.ui-checkbox-checked .ui-checkbox-input-box svg,.ui-checkbox-checked .ui-radio-input-box:before,.ui-radio-checked .ui-checkbox-input-box svg,.ui-radio-checked .ui-radio-input-box:before{opacity:1;-webkit-transform:translate3d(-50%,-50%,0) scale(1);transform:translate3d(-50%,-50%,0) scale(1)}.ui-checkbox input[type=checkbox],.ui-checkbox input[type=radio],.ui-radio input[type=checkbox],.ui-radio input[type=radio]{opacity:0;position:absolute}.ui-checkbox-disabled,.ui-radio-disabled{color:#9b9b9b}.ui-checkbox-disabled label,.ui-radio-disabled label{cursor:not-allowed}.ui-checkbox-disabled .ui-checkbox-box,.ui-checkbox-disabled .ui-radio-box,.ui-radio-disabled .ui-checkbox-box,.ui-radio-disabled .ui-radio-box{border-color:#e9ebee!important}.ui-checkbox-disabled .ui-radio-box:before,.ui-radio-disabled .ui-radio-box:before{background:#e9ebee!important}.ui-checkbox .ui-checkbox-box{color:#08d7b8;border:1px solid #e9ebee;width:22px;height:22px;position:absolute;left:0;top:0;border-radius:3px;background:#fff}.ui-checkbox .ui-checkbox-box svg{fill:currentColor;opacity:0;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out;-webkit-transform:scale(.4);transform:scale(.4);position:absolute;top:4px;left:4px}.ui-checkbox-indeterminate.ui-checkbox-checked .ui-checkbox-box{background:#08d7b8;color:#fff}.ui-checkbox-checked .ui-checkbox-box{border-color:#34f7da;-webkit-box-shadow:1px 1px 8px rgba(8,215,184,.4);box-shadow:1px 1px 8px rgba(8,215,184,.4)}.ui-checkbox-indeterminate .ui-checkbox-box{border-color:#9b9b9b;-webkit-box-shadow:1px 1px 8px hsla(0,0%,60.8%,.3);box-shadow:1px 1px 8px hsla(0,0%,60.8%,.3)}.ui-checkbox-indeterminate-bar{position:absolute;height:4px;width:14px;border-radius:10px;background:#9b9b9b;top:8px;left:3px}.ui-checkbox-checked .ui-checkbox-box svg{-webkit-transform:scale(1);transform:scale(1);opacity:1}.ui-radio .ui-radio-box{width:22px;height:22px;border:1px solid #e9ebee;border-radius:50%;position:absolute;left:0;background:#fff}.ui-radio .ui-radio-box:before{content:\" \";position:absolute;width:16px;height:16px;opacity:0;border-radius:50%;-webkit-transition:all .2s ease-in;transition:all .2s ease-in;-webkit-transform:scale(.2);transform:scale(.2);top:3px;left:3px}.ui-radio-checked .ui-radio-box{border-color:#34f7da;-webkit-box-shadow:1px 1px 8px rgba(8,215,184,.3);box-shadow:1px 1px 8px rgba(8,215,184,.3)}.ui-radio-checked .ui-radio-box:before{background:#08d7b8;-webkit-transform:scale(1);transform:scale(1);opacity:1}.ui-checkbox-toggle.ui-checkbox label,.ui-radio-toggle.ui-radio label{padding-left:58px}.ui-checkbox-toggle.ui-checkbox .ui-checkbox-box,.ui-radio-toggle.ui-radio .ui-checkbox-box{position:absolute;height:24px;-webkit-box-sizing:border-box;box-sizing:border-box}.ui-checkbox-toggle.ui-checkbox .ui-checkbox-box:before,.ui-radio-toggle.ui-radio .ui-checkbox-box:before{content:\" \";position:absolute;border-radius:50%;left:2px;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out}.ui-checkbox-toggle.ui-checkbox .ui-checkbox-box,.ui-checkbox-toggle.ui-checkbox .ui-radio-box,.ui-radio-toggle.ui-radio .ui-checkbox-box,.ui-radio-toggle.ui-radio .ui-radio-box{width:48px;border-radius:24px}.ui-checkbox-toggle.ui-checkbox .ui-checkbox-box:before,.ui-checkbox-toggle.ui-checkbox .ui-radio-box:before,.ui-radio-toggle.ui-radio .ui-checkbox-box:before,.ui-radio-toggle.ui-radio .ui-radio-box:before{top:1px;width:20px;height:20px;opacity:1;background:#e9ebee;-webkit-transform:scale(1);transform:scale(1)}.ui-checkbox-toggle.ui-checkbox.ui-checkbox-checked .ui-checkbox-box,.ui-checkbox-toggle.ui-checkbox.ui-checkbox-checked .ui-radio-box,.ui-checkbox-toggle.ui-checkbox.ui-radio-checked .ui-checkbox-box,.ui-checkbox-toggle.ui-checkbox.ui-radio-checked .ui-radio-box,.ui-radio-toggle.ui-radio.ui-checkbox-checked .ui-checkbox-box,.ui-radio-toggle.ui-radio.ui-checkbox-checked .ui-radio-box,.ui-radio-toggle.ui-radio.ui-radio-checked .ui-checkbox-box,.ui-radio-toggle.ui-radio.ui-radio-checked .ui-radio-box{background:#08d7b8;border-color:#08d7b8}.ui-checkbox-toggle.ui-checkbox.ui-checkbox-checked .ui-checkbox-box:before,.ui-checkbox-toggle.ui-checkbox.ui-checkbox-checked .ui-radio-box:before,.ui-checkbox-toggle.ui-checkbox.ui-radio-checked .ui-checkbox-box:before,.ui-checkbox-toggle.ui-checkbox.ui-radio-checked .ui-radio-box:before,.ui-radio-toggle.ui-radio.ui-checkbox-checked .ui-checkbox-box:before,.ui-radio-toggle.ui-radio.ui-checkbox-checked .ui-radio-box:before,.ui-radio-toggle.ui-radio.ui-radio-checked .ui-checkbox-box:before,.ui-radio-toggle.ui-radio.ui-radio-checked .ui-radio-box:before{background:#fff;-webkit-transform:translateX(23px);transform:translateX(23px)}", ""]);
 
 // exports
 
@@ -17102,98 +17102,29 @@ accordion_item.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_accordion_item = (accordion_item);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/checkbox/checkbox.vue?vue&type=template&id=18812838&
-var checkboxvue_type_template_id_18812838_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-checkbox",class:_vm.classes},[_c('input',{attrs:{"type":"checkbox","id":_vm.id,"name":_vm.name,"disabled":_vm.disabled,"indeterminate":!_vm.isChecked && _vm.indeterminate},domProps:{"value":_vm.value,"checked":_vm.isChecked},on:{"change":_vm.setValue}}),_c('label',{attrs:{"for":_vm.id},on:{"click":_vm.prevent}},[_vm._t("checkbox-box",[_c('span',{staticClass:"ui-checkbox-box"},[_c('svg',{attrs:{"width":"16","height":"16","viewBox":"0 0 12 12","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M11.5385 0.228769C11.0395 -0.16 10.3415 -0.0410482 9.97806 0.492783L4.78903 8.12889L1.93058 5.01584C1.50946 4.53423 0.802782 4.51102 0.352815 4.96362C-0.0971515 5.41331 -0.120227 6.17054 0.30378 6.64925C0.30378 6.64925 3.7766 10.5253 4.2756 10.9141C4.7746 11.3029 5.47263 11.1839 5.83606 10.6501L11.7866 1.89699C12.15 1.36026 12.0375 0.614635 11.5385 0.228769Z"}})])]),(_vm.indeterminate && !_vm.toggle)?_c('span',{staticClass:"ui-checkbox-indeterminate-bar"}):_vm._e()]),_vm._t("default")],2)])}
-var checkboxvue_type_template_id_18812838_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/checkbox/checkbox.vue?vue&type=template&id=1e28eeec&
+var checkboxvue_type_template_id_1e28eeec_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-checkbox",class:_vm.classes},[_c('input',{attrs:{"type":"checkbox","id":_vm.id,"name":_vm.name,"required":_vm.required,"disabled":_vm.disabled,"indeterminate":!_vm.isChecked && _vm.indeterminate},domProps:{"value":_vm.value,"checked":_vm.isChecked},on:{"change":_vm.onChange}}),_c('label',{attrs:{"for":_vm.id}},[_vm._t("input-box",[_c('span',{staticClass:"ui-checkbox-input-box"},[_c('svg',{attrs:{"viewBox":"0 0 14 14","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M11.5385 0.228769C11.0395 -0.16 10.3415 -0.0410482 9.97806 0.492783L4.78903 8.12889L1.93058 5.01584C1.50946 4.53423 0.802782 4.51102 0.352815 4.96362C-0.0971515 5.41331 -0.120227 6.17054 0.30378 6.64925C0.30378 6.64925 3.7766 10.5253 4.2756 10.9141C4.7746 11.3029 5.47263 11.1839 5.83606 10.6501L11.7866 1.89699C12.15 1.36026 12.0375 0.614635 11.5385 0.228769Z"}})])]),(_vm.indeterminate && !_vm.toggle)?_c('span',{staticClass:"ui-checkbox-indeterminate-bar"}):_vm._e()]),_vm._t("default")],2)])}
+var checkboxvue_type_template_id_1e28eeec_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/checkbox/checkbox.vue?vue&type=template&id=18812838&
+// CONCATENATED MODULE: ./packages/checkbox/checkbox.vue?vue&type=template&id=1e28eeec&
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js
-var iterator = __webpack_require__("5d58");
-var iterator_default = /*#__PURE__*/__webpack_require__.n(iterator);
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol.js
-var symbol = __webpack_require__("67bb");
-var symbol_default = /*#__PURE__*/__webpack_require__.n(symbol);
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/typeof.js
-
-
-
-function typeof_typeof2(obj) { if (typeof symbol_default.a === "function" && typeof iterator_default.a === "symbol") { typeof_typeof2 = function _typeof2(obj) { return typeof obj; }; } else { typeof_typeof2 = function _typeof2(obj) { return obj && typeof symbol_default.a === "function" && obj.constructor === symbol_default.a && obj !== symbol_default.a.prototype ? "symbol" : typeof obj; }; } return typeof_typeof2(obj); }
-
-function typeof_typeof(obj) {
-  if (typeof symbol_default.a === "function" && typeof_typeof2(iterator_default.a) === "symbol") {
-    typeof_typeof = function _typeof(obj) {
-      return typeof_typeof2(obj);
-    };
-  } else {
-    typeof_typeof = function _typeof(obj) {
-      return obj && typeof symbol_default.a === "function" && obj.constructor === symbol_default.a && obj !== symbol_default.a.prototype ? "symbol" : typeof_typeof2(obj);
-    };
-  }
-
-  return typeof_typeof(obj);
+// CONCATENATED MODULE: ./node_modules/buxton/string/guid.js
+const guid = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0,
+            v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
 }
+
+/* harmony default export */ var string_guid = (guid);
 // EXTERNAL MODULE: ./packages/assets/scss/checkbox.scss
 var scss_checkbox = __webpack_require__("9780");
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js
-var get_iterator = __webpack_require__("5d73");
-var get_iterator_default = /*#__PURE__*/__webpack_require__.n(get_iterator);
-
-// CONCATENATED MODULE: ./src/utils/isObjectEqual.js
-
-
-function isObjectEqual(a, b) {
-  if (!a || !b) {
-    return false;
-  }
-
-  var aKeys = keys_default()(a);
-
-  var bKeys = keys_default()(b);
-
-  if (aKeys.length != bKeys.length) {
-    return false;
-  }
-
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
-  try {
-    for (var _iterator = get_iterator_default()(aKeys), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var key = _step.value;
-
-      if (a[key] !== b[key]) {
-        return false;
-      }
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return != null) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
-  }
-
-  return true;
-}
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/checkbox/checkbox.vue?vue&type=script&lang=js&
 
 
-
-
-
 //
 //
 //
@@ -17225,11 +17156,6 @@ function isObjectEqual(a, b) {
 //
 //
 //
-//
-//
-//
-//
-
 
 
 /* harmony default export */ var checkboxvue_type_script_lang_js_ = ({
@@ -17242,81 +17168,70 @@ function isObjectEqual(a, b) {
     id: {
       type: String,
       default: function _default() {
-        return index_browser_default()();
+        return "checkbox-id-" + string_guid();
       }
     },
-    value: [String, Number, Object],
-    modelValue: [Array, String, Number, Boolean, Object],
+    name: String,
+    value: [String, Number, Boolean, Array],
+    modelValue: {
+      default: undefined
+    },
     checked: Boolean,
+    required: Boolean,
     disabled: Boolean,
-    indeterminate: Boolean,
-    toggle: Boolean,
-    name: String
+    model: {},
+    indeterminate: Boolean
   },
   computed: {
     classes: function classes() {
       return {
-        "ui-checkbox-disabled": this.disabled,
-        "ui-checkbox-checked": this.isChecked,
-        "ui-checkbox-toggle": this.toggle,
-        "ui-checkbox-indeterminate": this.$options.propsData.hasOwnProperty("indeterminate") && this.indeterminate
+        "ui-checkbox-checked": this.isChecked
       };
     },
     isChecked: function isChecked() {
-      var _this = this;
-
-      if (!this.modelValue) {
+      if (this.modelValue === undefined) {
         return this.checked;
       }
 
-      if (this.isGroup) {
-        if (typeof_typeof(this.value) == "object") {
-          return this.modelValue.some(function (item) {
-            return isObjectEqual(item, _this.value);
-          });
-        } else {
-          return this.modelValue.includes(this.value);
-        }
+      if (is_array_default()(this.modelValue)) {
+        return this.modelValue.indexOf(this.value) > -1;
       }
 
       return !!this.modelValue;
-    },
-    isGroup: function isGroup() {
-      return this.$options.propsData.hasOwnProperty("value") && is_array_default()(this.modelValue);
-    },
-    checkList: function checkList() {
-      return this.isGroup && this.modelValue;
     }
   },
   methods: {
-    prevent: function prevent(e) {
-      if (this.$options.propsData.hasOwnProperty("indeterminate")) {
-        e.preventDefault();
-        return;
-      }
+    onChange: function onChange() {
+      this.toggle();
     },
-    setValue: function setValue(e) {
-      if (this.disabled || this.$options.hasOwnProperty("indeterminate")) return;
+    toggle: function toggle() {
       var value;
 
-      if (!this.isGroup) {
-        if (!this.isChecked && this.value) {
-          value = this.value;
+      if (is_array_default()(this.modelValue)) {
+        value = this.modelValue.slice(0);
+
+        if (this.isChecked) {
+          value.splice(value.indexOf(this.value), 1);
         } else {
-          value = !this.isChecked;
+          value.push(this.value);
         }
       } else {
-        if (this.isChecked) {
-          this.checkList.splice(this.checkList.indexOf(this.value), 1);
-        } else {
-          this.checkList.push(this.value);
-        }
-
-        value = this.checkList;
+        value = this.value;
       }
 
       this.$emit("input", value);
-      this.$emit("change", value);
+    }
+  },
+  watch: {
+    checked: function checked(newValue) {
+      if (newValue !== this.isChecked) {
+        this.toggle();
+      }
+    }
+  },
+  mounted: function mounted() {
+    if (this.checked && !this.isChecked) {
+      this.toggle();
     }
   }
 });
@@ -17332,8 +17247,8 @@ function isObjectEqual(a, b) {
 
 var checkbox_component = normalizeComponent(
   checkbox_checkboxvue_type_script_lang_js_,
-  checkboxvue_type_template_id_18812838_render,
-  checkboxvue_type_template_id_18812838_staticRenderFns,
+  checkboxvue_type_template_id_1e28eeec_render,
+  checkboxvue_type_template_id_1e28eeec_staticRenderFns,
   false,
   null,
   null,
@@ -17351,16 +17266,14 @@ checkbox_checkbox.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_checkbox = (checkbox_checkbox);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/radio/radio.vue?vue&type=template&id=7b505353&
-var radiovue_type_template_id_7b505353_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-radio",class:_vm.classes,on:{"click":_vm.setValue}},[_c('input',{attrs:{"type":"radio","name":_vm.name,"id":_vm.id,"disabled":_vm.disabled},domProps:{"value":_vm.value,"checked":_vm.isChecked},on:{"change":_vm.change}}),_c('label',{attrs:{"for":_vm.id}},[_vm._t("radio-box",[_c('span',{staticClass:"ui-radio-box"})]),_vm._t("default")],2)])}
-var radiovue_type_template_id_7b505353_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/radio/radio.vue?vue&type=template&id=6615c41e&
+var radiovue_type_template_id_6615c41e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-radio",class:_vm.classes},[_c('input',{attrs:{"type":"radio","id":_vm.id,"name":_vm.name,"required":_vm.required,"disabled":_vm.disabled},domProps:{"value":_vm.value,"checked":_vm.isChecked},on:{"change":_vm.onChange}}),_c('label',{attrs:{"for":_vm.id}},[_vm._t("input-bix",[_c('span',{staticClass:"ui-radio-input-box"})]),_vm._t("default")],2)])}
+var radiovue_type_template_id_6615c41e_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/radio/radio.vue?vue&type=template&id=7b505353&
+// CONCATENATED MODULE: ./packages/radio/radio.vue?vue&type=template&id=6615c41e&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/radio/radio.vue?vue&type=script&lang=js&
-
-
 //
 //
 //
@@ -17378,7 +17291,9 @@ var radiovue_type_template_id_7b505353_staticRenderFns = []
 //
 //
 //
-
+//
+//
+//
 
 
 /* harmony default export */ var radiovue_type_script_lang_js_ = ({
@@ -17391,51 +17306,51 @@ var radiovue_type_template_id_7b505353_staticRenderFns = []
     id: {
       type: String,
       default: function _default() {
-        return "ui-radio-" + index_browser_default()();
+        return "radio-id-" + string_guid();
       }
     },
     name: String,
-    value: [String, Number, Object, Boolean],
-    modelValue: [Array, String, Number, Boolean, Object],
+    value: String,
+    modelValue: {
+      default: undefined
+    },
     checked: Boolean,
+    required: Boolean,
     disabled: Boolean,
-    toggle: Boolean
+    model: {}
   },
   computed: {
     classes: function classes() {
       return {
-        "ui-radio-disabled": this.disabled,
-        "ui-radio-checked": this.isChecked,
-        "ui-radio-toggle": this.toggle
+        "ui-radio-checked": this.isChecked
       };
     },
     isChecked: function isChecked() {
-      if (!this.modelValue) {
+      if (this.modelValue === undefined) {
         return this.checked;
-      } else {
-        if (typeof_typeof(this.value) == "object") {
-          return isObjectEqual(this.modelValue, this.value);
-        } else {
-          return this.modelValue == this.value;
-        }
       }
+
+      return this.modelValue === this.value;
     }
   },
   methods: {
-    change: function change(e) {
-      this.$emit("change", e.target.value);
+    onChange: function onChange() {
+      this.toggle();
     },
-    setValue: function setValue(e) {
-      if (this.disabled) return;
-      var value;
-
-      if (this.isChecked) {
-        value = false;
-      } else {
-        value = this.value ? this.value : true;
+    toggle: function toggle() {
+      this.$emit("input", this.isChecked ? "" : this.value);
+    }
+  },
+  watch: {
+    checked: function checked(newValue) {
+      if (newValue !== this.isChecked) {
+        this.toggle();
       }
-
-      this.$emit("input", value);
+    }
+  },
+  mounted: function mounted() {
+    if (this.checked && !this.isChecked) {
+      this.toggle();
     }
   }
 });
@@ -17451,8 +17366,8 @@ var radiovue_type_template_id_7b505353_staticRenderFns = []
 
 var radio_component = normalizeComponent(
   radio_radiovue_type_script_lang_js_,
-  radiovue_type_template_id_7b505353_render,
-  radiovue_type_template_id_7b505353_staticRenderFns,
+  radiovue_type_template_id_6615c41e_render,
+  radiovue_type_template_id_6615c41e_staticRenderFns,
   false,
   null,
   null,
@@ -18718,6 +18633,33 @@ autocomplete_autocomplete.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_autocomplete = (autocomplete_autocomplete);
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js
+var iterator = __webpack_require__("5d58");
+var iterator_default = /*#__PURE__*/__webpack_require__.n(iterator);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol.js
+var symbol = __webpack_require__("67bb");
+var symbol_default = /*#__PURE__*/__webpack_require__.n(symbol);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/typeof.js
+
+
+
+function typeof_typeof2(obj) { if (typeof symbol_default.a === "function" && typeof iterator_default.a === "symbol") { typeof_typeof2 = function _typeof2(obj) { return typeof obj; }; } else { typeof_typeof2 = function _typeof2(obj) { return obj && typeof symbol_default.a === "function" && obj.constructor === symbol_default.a && obj !== symbol_default.a.prototype ? "symbol" : typeof obj; }; } return typeof_typeof2(obj); }
+
+function typeof_typeof(obj) {
+  if (typeof symbol_default.a === "function" && typeof_typeof2(iterator_default.a) === "symbol") {
+    typeof_typeof = function _typeof(obj) {
+      return typeof_typeof2(obj);
+    };
+  } else {
+    typeof_typeof = function _typeof(obj) {
+      return obj && typeof symbol_default.a === "function" && obj.constructor === symbol_default.a && obj !== symbol_default.a.prototype ? "symbol" : typeof_typeof2(obj);
+    };
+  }
+
+  return typeof_typeof(obj);
+}
 // CONCATENATED MODULE: ./packages/backdrop/render.js
 
 
@@ -19638,6 +19580,55 @@ var error_component = normalizeComponent(
 )
 
 /* harmony default export */ var v_error = (error_component.exports);
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js
+var get_iterator = __webpack_require__("5d73");
+var get_iterator_default = /*#__PURE__*/__webpack_require__.n(get_iterator);
+
+// CONCATENATED MODULE: ./src/utils/isObjectEqual.js
+
+
+function isObjectEqual(a, b) {
+  if (!a || !b) {
+    return false;
+  }
+
+  var aKeys = keys_default()(a);
+
+  var bKeys = keys_default()(b);
+
+  if (aKeys.length != bKeys.length) {
+    return false;
+  }
+
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = get_iterator_default()(aKeys), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var key = _step.value;
+
+      if (a[key] !== b[key]) {
+        return false;
+      }
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return != null) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  return true;
+}
 // CONCATENATED MODULE: ./src/utils/isInstance.js
 
 /* harmony default export */ var isInstance = (function (item) {
@@ -21129,10 +21120,10 @@ var throttle_default = /*#__PURE__*/__webpack_require__.n(throttle);
 var listenAction;
 var supportCSSSticky;
 
-var sticky_getBindingConfig = function getBindingConfig(binding) {
+var getBindingConfig = function getBindingConfig(binding) {
   var params = binding.value || {};
   var top = params.top || 0;
-  var zIndex = binding.value.zIndex ? binding.value.zIndex : external_commonjs_vue_commonjs2_vue_root_Vue_default.a.prototype.$zIndex.get();
+  var zIndex = binding.value.zIndex ? binding.value.zIndex : 300;
   var disabled = params.disabled;
   return {
     top: top,
@@ -21160,7 +21151,7 @@ var initialConfig = {};
 /* harmony default export */ var sticky_sticky = ({
   name: "ui-sticky",
   bind: function bind(el, binding) {
-    bindingConfig = sticky_getBindingConfig(binding);
+    bindingConfig = getBindingConfig(binding);
     initialConfig = getInitialiConfig(el);
     var _bindingConfig = bindingConfig,
         disabled = _bindingConfig.disabled,
@@ -21216,7 +21207,7 @@ var initialConfig = {};
   },
   unbind: unwatch,
   update: function update(el, binding) {
-    bindingConfig = sticky_getBindingConfig(binding);
+    bindingConfig = getBindingConfig(binding);
     var _bindingConfig2 = bindingConfig,
         top = _bindingConfig2.top,
         zIndex = _bindingConfig2.zIndex;
@@ -22844,6 +22835,7 @@ var packages_install = function install(Vue) {
   });
 
   directives.forEach(function (directive) {
+    directive.$zIndex = Vue.prototype.$zIndex;
     Vue.directive(directive.name, directive);
   });
 };

@@ -47,7 +47,8 @@ export default {
   computed: {
     classes() {
       return {
-        "ui-radio-checked": this.isChecked
+        "ui-radio-checked": this.isChecked,
+        "ui-radio-disabled": this.disabled
       };
     },
     isChecked() {

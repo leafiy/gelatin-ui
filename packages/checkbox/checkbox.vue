@@ -9,7 +9,7 @@
       :disabled="disabled"
       @change="onChange"
       :checked="isChecked"
-      :indeterminate="!isChecked && indeterminate"
+      ref="input"
     />
     <label :for="id">
       <slot name="input-box">
@@ -22,7 +22,7 @@
         </span>
         <span
           class="ui-checkbox-indeterminate-bar"
-          v-if="indeterminate && !toggle"
+          v-if="isIndeterminate"
         ></span>
       </slot>
       <slot></slot>
@@ -35,6 +35,13 @@ import "../assets/scss/checkbox.scss";
 
 export default {
   name: "ui-checkbox",
+  data() {
+    return {
+      len: "",
+      isIndeterminate: false,
+      forceChecked: false
+    };
+  },
   model: {
     prop: "modelValue",
     event: "input"
@@ -60,21 +67,30 @@ export default {
   computed: {
     classes() {
       return {
-        "ui-checkbox-checked": this.isChecked
+        "ui-checkbox-checked": this.isChecked,
+        "ui-checkbox-disabled": this.disabled,
+        "ui-checkbox-indeterminate": this.isIndeterminate
       };
     },
     isChecked() {
+      if (this.forceChecked) {
+        return !!this.forceChecked;
+      }
       if (this.modelValue === undefined) {
         return this.checked;
       }
       if (Array.isArray(this.modelValue)) {
-        return this.modelValue.indexOf(this.value) > -1;
+        return this.modelValue.includes(this.value);
       }
       return !!this.modelValue;
     }
   },
   methods: {
-    onChange() {
+    onChange(e) {
+      if (this.indeterminate) {
+        let value = e.target.checked;
+        return this.checkIndeterminate(value);
+      }
       this.toggle();
     },
     toggle() {
@@ -89,8 +105,25 @@ export default {
       } else {
         value = this.value;
       }
-
       this.$emit("input", value);
+    },
+    checkIndeterminate(value) {
+      let model = [];
+      this.getGroup().forEach(el => {
+        if (el.value) {
+          model.push(el.value);
+        }
+      });
+      if (value) {
+        this.$emit("input", model);
+      } else {
+        this.$emit("input", []);
+      }
+    },
+    getGroup() {
+      return Array.from(
+        document.querySelectorAll(`input[name="${this.name}"]`)
+      );
     }
   },
   watch: {
@@ -98,9 +131,30 @@ export default {
       if (newValue !== this.isChecked) {
         this.toggle();
       }
+    },
+    modelValue(value) {
+      if (this.indeterminate && Array.isArray(value)) {
+        let len = this.getGroup().length - 1;
+        this.$refs["input"].checked = !!this.$refs["input"].checked;
+        if (value.length > 0 && value.length < len) {
+          this.isIndeterminate = true;
+          this.forceChecked = false;
+        }
+        if (value.length == 0) {
+          this.isIndeterminate = false;
+          this.forceChecked = false;
+        }
+        if (value.length == len) {
+          this.isIndeterminate = false;
+          this.forceChecked = true;
+        }
+      }
     }
   },
   mounted() {
+    if (this.indeterminate && !Array.isArray(this.modelValue)) {
+      throw new Error("indeterminate requires Array model");
+    }
     if (this.checked && !this.isChecked) {
       this.toggle();
     }
