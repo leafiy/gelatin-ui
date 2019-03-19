@@ -112,6 +112,7 @@ const install = function(Vue, options = {}) {
     plugins.$zIndex = Vue.prototype.$zIndex;
   });
   directives.forEach(directive => {
+    directive.$zIndex = Vue.prototype.$zIndex;
     Vue.directive(directive.name, directive);
   });
 };

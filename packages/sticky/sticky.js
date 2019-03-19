@@ -6,9 +6,7 @@ let supportCSSSticky;
 const getBindingConfig = binding => {
   const params = binding.value || {};
   let top = params.top || 0;
-  let zIndex = binding.value.zIndex
-    ? binding.value.zIndex
-    : Vue.prototype.$zIndex.get();
+  let zIndex = binding.value.zIndex ? binding.value.zIndex : 300;
   let disabled = params.disabled;
   return { top, zIndex, disabled };
 };

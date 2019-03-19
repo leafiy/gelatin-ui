@@ -1,24 +1,26 @@
 <template>
-  <div :class="classes" class="ui-radio" @click="setValue">
+  <div class="ui-radio" :class="classes">
     <input
       type="radio"
-      :name="name"
       :id="id"
+      :name="name"
       :value="value"
-      @change="change"
-      :checked="isChecked"
+      :required="required"
       :disabled="disabled"
+      @change="onChange"
+      :checked="isChecked"
     />
     <label :for="id">
-      <slot name="radio-box"> <span class="ui-radio-box"> </span> </slot>
+      <slot name="input-bix">
+        <span class="ui-radio-input-box"> </span>
+      </slot>
       <slot></slot>
     </label>
   </div>
 </template>
 <script>
-import nanoid from "nanoid";
+import guid from "buxton/string/guid";
 import "../assets/scss/checkbox.scss";
-import isObjectEqual from "../../src/utils/isObjectEqual.js";
 export default {
   name: "ui-radio",
   model: {
@@ -28,50 +30,51 @@ export default {
   props: {
     id: {
       type: String,
-      default: function() {
-        return "ui-radio-" + nanoid();
+      default() {
+        return "radio-id-" + guid();
       }
     },
     name: String,
-    value: [String, Number, Object, Boolean],
-    modelValue: [Array, String, Number, Boolean, Object],
+    value: String,
+    modelValue: {
+      default: undefined
+    },
     checked: Boolean,
+    required: Boolean,
     disabled: Boolean,
-    toggle: Boolean
+    model: {}
   },
   computed: {
     classes() {
       return {
-        "ui-radio-disabled": this.disabled,
-        "ui-radio-checked": this.isChecked,
-        "ui-radio-toggle": this.toggle
+        "ui-radio-checked": this.isChecked
       };
     },
     isChecked() {
-      if (!this.modelValue) {
+      if (this.modelValue === undefined) {
         return this.checked;
-      } else {
-        if (typeof this.value == "object") {
-          return isObjectEqual(this.modelValue, this.value);
-        } else {
-          return this.modelValue == this.value;
-        }
       }
+      return this.modelValue === this.value;
     }
   },
   methods: {
-    change(e) {
-      this.$emit("change", e.target.value);
+    onChange() {
+      this.toggle();
     },
-    setValue(e) {
-      if (this.disabled) return;
-      let value;
-      if (this.isChecked) {
-        value = false;
-      } else {
-        value = this.value ? this.value : true;
+    toggle() {
+      this.$emit("input", this.isChecked ? "" : this.value);
+    }
+  },
+  watch: {
+    checked(newValue) {
+      if (newValue !== this.isChecked) {
+        this.toggle();
       }
-      this.$emit("input", value);
+    }
+  },
+  mounted() {
+    if (this.checked && !this.isChecked) {
+      this.toggle();
     }
   }
 };

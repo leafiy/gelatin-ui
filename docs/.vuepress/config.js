@@ -57,7 +57,7 @@ module.exports = {
           ['/autocomplete/', 'Autocomplete'],
           ['/input/', 'Input'],
           ['/textarea/', 'Textarea'],
-          ['/checkbox/', 'Checkbox'],
+          ['/checkbox/', 'Checkbox & Radio'],
           ['/v/', 'V Validation'],
           // ['/select/', 'Select'],
           // ['/radio/', 'Radio'],

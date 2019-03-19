@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <ClientOnly>
-      <div>
+      <!-- <div>
         <ui-checkbox v-model="checkbox1" :value="1">checkbox</ui-checkbox>
         <ui-checkbox v-model="checkbox1" :value="'string'">checkbox</ui-checkbox>
         <ui-checkbox v-model="checkbox1" :value="{a:'b'}">checkbox</ui-checkbox>
@@ -12,7 +12,7 @@
         <ui-checkbox v-model="checkbox2" :value="'string'">checkbox</ui-checkbox>
         <ui-checkbox v-model="checkbox2" :value="{a:'b'}">checkbox</ui-checkbox>
         <p>{{checkbox2}}</p>
-      </div>
+      </div> -->
     </ClientOnly>
   </div>
 </template>

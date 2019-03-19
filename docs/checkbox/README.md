@@ -10,6 +10,3 @@
 <ui-radio v-model="checkbox1" :value="checkbox1">radio</ui-radio>
 ```
 
-#### group
-`v-model`传入array，
-<checkbox-checkbox-group></checkbox-checkbox-group>
