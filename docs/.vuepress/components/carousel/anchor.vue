@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <ClientOnly>
-      <ui-carousel :scroll-count="1" full-width auto loop :delay="5000" :start-index="3">
+      <ui-carousel :scroll-count="1" full-width :delay="2000" :anchors="[]">
         <div class="item">1</div>
         <div class="item">2</div>
         <div class="item">3</div>
@@ -15,7 +15,7 @@
 <script>
 export default {
 
-  name: 'carousel',
+  name: 'anchor',
 
   data() {
     return {

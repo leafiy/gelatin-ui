@@ -60,6 +60,11 @@
 </code-code>
 
 
+#### Anchor
+
+<carousel-anchor></carousel-anchor>
+
+
 #### props
 |prop|type|default|description|
 |--|--|--|--|

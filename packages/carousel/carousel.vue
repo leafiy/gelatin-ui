@@ -3,41 +3,18 @@
     <div class="ui-carousel">
       <div class="ui-carousel-overflow" :style="expandStyles">
         <div class="ui-carousel-items" :style="listStyles">
-          <ui-carousel-item
-            :class="{ 'ui-carousel-item-active': index == idx }"
-            :style="itemStyles"
-            v-for="(item, idx) of items"
-            :index="idx"
-            :item="item"
-            :key="idx"
-          ></ui-carousel-item>
+          <ui-carousel-item :class="{ 'ui-carousel-item-active': index == idx }" :style="itemStyles" v-for="(item, idx) of items" :index="idx" :item="item" :key="idx"></ui-carousel-item>
         </div>
       </div>
     </div>
-    <div
-      v-if="navStyle == 'arrow'"
-      class="ui-carousel-nav-item ui-carousel-arrow-left"
-      @click="moveCarousel(-1)"
-      :disabled="atHead"
-    >
+    <div v-if="navStyle == 'arrow'" class="ui-carousel-nav-item ui-carousel-arrow-left" @click="moveCarousel(-1)" :disabled="atHead">
       <ui-icon name="left"></ui-icon>
     </div>
-    <div
-      v-if="navStyle == 'arrow'"
-      class="ui-carousel-nav-item ui-carousel-arrow-right"
-      @click="moveCarousel(1)"
-      :disabled="atEnd"
-    >
+    <div v-if="navStyle == 'arrow'" class="ui-carousel-nav-item ui-carousel-arrow-right" @click="moveCarousel(1)" :disabled="atEnd">
       <ui-icon name="right"></ui-icon>
     </div>
     <div v-if="navStyle == 'bar'" class="ui-carousel-navbar">
-      <span
-        v-for="(item, idx) of items"
-        class="ui-carousel-navbar-bar"
-        :class="{ 'ui-carousel-navbar-bar-active': index == idx }"
-        :key="idx"
-        @click="barClick(idx)"
-      ></span>
+      <span v-for="(item, idx) of items" class="ui-carousel-navbar-bar" :class="{ 'ui-carousel-navbar-bar-active': index == idx }" :key="idx" @click="barClick(idx)"></span>
     </div>
   </div>
 </template>
@@ -47,6 +24,7 @@ import UiCarouselItem from "./carousel-item.vue";
 import UiIcon from "../icon/icon.vue";
 import touchHandler from "../../src/utils/touchHandler.js";
 import { debounce } from "lodash";
+import guid from 'buxton/string/guid'
 
 export default {
   name: "ui-carousel",
@@ -57,15 +35,9 @@ export default {
       currentOffset: 0,
       items: [],
       index: 0,
-      timer: null
-      // list: [],
-      // pull: {
-      //   from: -1,
-      //   to: -1,
-      //   distance: 0,
-      //   type: null,
-      //   available: false
-      // },
+      timer: null,
+      direction: '',
+      anchorsArr: []
     };
   },
   components: {
@@ -89,7 +61,12 @@ export default {
     },
     loop: Boolean,
     expand: Number, // 解决overflow可能盖住元素阴影或其他效果的可能
-    fullWidth: Boolean
+    fullWidth: Boolean,
+    anchors: Array,
+    startIndex: {
+      type: Number,
+      default: 0
+    }
   },
   computed: {
     expandStyles() {
@@ -114,25 +91,32 @@ export default {
     },
     atHead() {
       return this.index == 0;
+    },
+    addAnchor() {
+      return !!this.anchorsArr.length
     }
   },
   watch: {
-    index(val) {
+    index(newIndex, oldIndex) {
       this.currentOffset = -this.getOffset(this.index);
-      this.$emit("change", val);
-    }
+      //direction : 1 for next , -1 for prev
+      this.$emit("change", { newIndex, oldIndex, direction: this.direction });
+      if (this.addAnchor) {
+
+      }
+    },
   },
   methods: {
+    getAll() {
+      return Array.from(this.$el.querySelectorAll(".ui-carousel-item"))
+    },
     getOffset(index) {
-      let list = Array.prototype.slice.call(
-        this.$el.querySelectorAll(".ui-carousel-item"),
-        0,
-        index
-      );
+      let list = this.getAll().slice(0, index)
       list = list.map((item, index) => item.clientWidth);
       return list.reduce((a, b) => a + b, 0);
     },
     moveCarousel(direction, count = this.scrollCount) {
+      this.direction = direction
       if (direction === 1 && !this.atEnd) {
         this.index += count;
         if (this.index > this.items.length - 1) {
@@ -150,8 +134,6 @@ export default {
       if (this.fullWidth) {
         this.setWidth();
       }
-
-      // this.renderContainer()
     },
     setWidth() {
       this.$nextTick(() => {
@@ -164,7 +146,6 @@ export default {
         );
       });
     },
-    renderContainer() {},
     bindEvents() {
       window.addEventListener("resize", this.setWidth);
     },
@@ -234,36 +215,56 @@ export default {
         "touchend",
         this.handleTouchEnd
       );
+    },
+    makeAnchors() {
+      let sum = this.getAll().length
+      for (var i = 0; i < sum; i++) {
+        this.anchorsArr.push(guid())
+      }
+      // console.log(this.anchorsArr)
     }
   },
   mounted() {
     this.renderItems();
-    this.$nextTick(() => {
-      if (this.touch) {
-        this.bindTouchEvents();
-        this.inited = true;
-      }
-      if (this.auto) {
-        this.startAuto();
-      }
-      this.bindEvents();
-    });
-  },
-  activated() {
-    if (this.touch && this.inited) {
-      this.bindTouchEvents();
-    }
-    if (this.inited) {
-      this.bindEvents();
-    }
-  },
-  deactivated() {
-    if (this.touch) {
-      this.unBindTouchEvents();
-    }
 
-    this.unBindEvents();
+    setTimeout(() => {
+      this.$nextTick(() => {
+        if (this.touch) {
+          this.bindTouchEvents();
+          this.inited = true;
+        }
+        if (this.auto) {
+          this.startAuto();
+        }
+        this.bindEvents();
+      });
+    }, 10)
+    if (this.anchors && !this.anchors.length) {
+      setTimeout(() => {
+        this.$nextTick(() => {
+          this.makeAnchors()
+        })
+      })
+    }
+    if (this.anchors && this.anchors.length) {
+      this.anchorsArr = this.anchors
+    }
   },
+  // activated() {
+  //   if (this.touch && this.inited) {
+  //     this.bindTouchEvents();
+  //   }
+  //   if (this.inited) {
+  //     this.bindEvents();
+  //   }
+  // },
+  // deactivated() {
+  //   if (this.touch) {
+  //     this.unBindTouchEvents();
+  //   }
+
+  //   this.unBindEvents();
+  // },
   beforeDestroy() {
     if (this.touch) {
       this.unBindTouchEvents();
@@ -274,4 +275,5 @@ export default {
     this.setWidth = debounce(this.setWidth, 100);
   }
 };
+
 </script>
