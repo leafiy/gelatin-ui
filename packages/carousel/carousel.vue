@@ -3,18 +3,41 @@
     <div class="ui-carousel">
       <div class="ui-carousel-overflow" :style="expandStyles">
         <div class="ui-carousel-items" :style="listStyles">
-          <ui-carousel-item :class="{ 'ui-carousel-item-active': index == idx }" :style="itemStyles" v-for="(item, idx) of items" :index="idx" :item="item" :key="idx"></ui-carousel-item>
+          <ui-carousel-item
+            :class="{ 'ui-carousel-item-active': index == idx }"
+            :style="itemStyles"
+            v-for="(item, idx) of items"
+            :index="idx"
+            :item="item"
+            :key="idx"
+          ></ui-carousel-item>
         </div>
       </div>
     </div>
-    <div v-if="navStyle == 'arrow'" class="ui-carousel-nav-item ui-carousel-arrow-left" @click="moveCarousel(-1)" :disabled="atHead">
+    <div
+      v-if="navStyle == 'arrow'"
+      class="ui-carousel-nav-item ui-carousel-arrow-left"
+      @click="moveCarousel(-1)"
+      :disabled="atHead"
+    >
       <ui-icon name="left"></ui-icon>
     </div>
-    <div v-if="navStyle == 'arrow'" class="ui-carousel-nav-item ui-carousel-arrow-right" @click="moveCarousel(1)" :disabled="atEnd">
+    <div
+      v-if="navStyle == 'arrow'"
+      class="ui-carousel-nav-item ui-carousel-arrow-right"
+      @click="moveCarousel(1)"
+      :disabled="atEnd"
+    >
       <ui-icon name="right"></ui-icon>
     </div>
     <div v-if="navStyle == 'bar'" class="ui-carousel-navbar">
-      <span v-for="(item, idx) of items" class="ui-carousel-navbar-bar" :class="{ 'ui-carousel-navbar-bar-active': index == idx }" :key="idx" @click="barClick(idx)"></span>
+      <span
+        v-for="(item, idx) of items"
+        class="ui-carousel-navbar-bar"
+        :class="{ 'ui-carousel-navbar-bar-active': index == idx }"
+        :key="idx"
+        @click="barClick(idx)"
+      ></span>
     </div>
   </div>
 </template>
@@ -24,19 +47,19 @@ import UiCarouselItem from "./carousel-item.vue";
 import UiIcon from "../icon/icon.vue";
 import touchHandler from "../../src/utils/touchHandler.js";
 import { debounce } from "lodash";
-import guid from 'buxton/string/guid'
+import guid from "buxton/string/guid";
+import fillArray from "buxton/array/fill";
 
 export default {
   name: "ui-carousel",
 
   data() {
     return {
-      inited: false,
       currentOffset: 0,
       items: [],
       index: 0,
       timer: null,
-      direction: '',
+      direction: "",
       anchorsArr: []
     };
   },
@@ -93,7 +116,7 @@ export default {
       return this.index == 0;
     },
     addAnchor() {
-      return !!this.anchorsArr.length
+      return !!this.anchorsArr.length;
     }
   },
   watch: {
@@ -102,21 +125,20 @@ export default {
       //direction : 1 for next , -1 for prev
       this.$emit("change", { newIndex, oldIndex, direction: this.direction });
       if (this.addAnchor) {
-
       }
-    },
+    }
   },
   methods: {
     getAll() {
-      return Array.from(this.$el.querySelectorAll(".ui-carousel-item"))
+      return Array.from(this.$el.querySelectorAll(".ui-carousel-item"));
     },
     getOffset(index) {
-      let list = this.getAll().slice(0, index)
+      let list = this.getAll().slice(0, index);
       list = list.map((item, index) => item.clientWidth);
       return list.reduce((a, b) => a + b, 0);
     },
     moveCarousel(direction, count = this.scrollCount) {
-      this.direction = direction
+      this.direction = direction;
       if (direction === 1 && !this.atEnd) {
         this.index += count;
         if (this.index > this.items.length - 1) {
@@ -129,13 +151,15 @@ export default {
         }
       }
     },
-    renderItems() {
+    renderItems(cb) {
       this.items = this.$slots.default.filter(item => item.tag);
       if (this.fullWidth) {
-        this.setWidth();
+        this.setWidth(cb);
+      } else {
+        cb();
       }
     },
-    setWidth() {
+    setWidth(cb) {
       this.$nextTick(() => {
         let width = this.$el.offsetWidth;
         Array.prototype.forEach.call(
@@ -144,6 +168,7 @@ export default {
             item.style.width = width + "px";
           }
         );
+        cb();
       });
     },
     bindEvents() {
@@ -178,10 +203,10 @@ export default {
       }, this.delay);
     },
     handleTouchStart(event) {
-      touchHandler({ event });
+      // touchHandler({ event });
     },
     handleTouchMove(event) {
-      touchHandler({ event });
+      // touchHandler({ event });
     },
     handleTouchEnd(event) {
       if (touchHandler({ event }) == "left") {
@@ -217,37 +242,38 @@ export default {
       );
     },
     makeAnchors() {
-      let sum = this.getAll().length
+      let sum = this.getAll().length;
       for (var i = 0; i < sum; i++) {
-        this.anchorsArr.push(guid())
+        this.anchorsArr.push(guid());
       }
       // console.log(this.anchorsArr)
     }
   },
   mounted() {
-    this.renderItems();
+    this.renderItems(() => {
+      this.index = this.startIndex;
+    });
 
     setTimeout(() => {
       this.$nextTick(() => {
         if (this.touch) {
           this.bindTouchEvents();
-          this.inited = true;
         }
         if (this.auto) {
           this.startAuto();
         }
         this.bindEvents();
       });
-    }, 10)
+    }, 10);
     if (this.anchors && !this.anchors.length) {
       setTimeout(() => {
         this.$nextTick(() => {
-          this.makeAnchors()
-        })
-      })
+          this.makeAnchors();
+        });
+      });
     }
     if (this.anchors && this.anchors.length) {
-      this.anchorsArr = this.anchors
+      this.anchorsArr = this.anchors;
     }
   },
   // activated() {
@@ -275,5 +301,4 @@ export default {
     this.setWidth = debounce(this.setWidth, 100);
   }
 };
-
 </script>
