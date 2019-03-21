@@ -76,6 +76,7 @@
 |loop|Boolean|false|是否循环|
 |expand|Number||扩展容器显示范围，以显示卡片阴影|
 |fullWidth|Boolean|false|强制item宽度等于容器宽度|
+|startIndex|Number|0|从第几个item开始|
 
 
 #### events
