@@ -65,6 +65,8 @@
 <carousel-anchor></carousel-anchor>
 
 
+
+
 #### props
 |prop|type|default|description|
 |--|--|--|--|
@@ -77,8 +79,9 @@
 |expand|Number||扩展容器显示范围，以显示卡片阴影|
 |fullWidth|Boolean|false|强制item宽度等于容器宽度|
 |startIndex|Number|0|从第几个item开始|
+|anchors|Array||传入包含每个item名称的数组，更改浏览器hash，以达到前进后退效果[指定anchor名称的例子](/carousel/anchor.md)|
 
 
 #### events
 
-`change` 返回current item index
+`change` 返回{newIndex,oldIndex,direction}

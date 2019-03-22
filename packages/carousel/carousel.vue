@@ -47,9 +47,8 @@ import UiCarouselItem from "./carousel-item.vue";
 import UiIcon from "../icon/icon.vue";
 import touchHandler from "../../src/utils/touchHandler.js";
 import { debounce } from "lodash";
-import guid from "buxton/string/guid";
 import fillArray from "buxton/array/fill";
-
+import hashTag from "buxton/browser/hashTag";
 export default {
   name: "ui-carousel",
 
@@ -124,11 +123,21 @@ export default {
       this.currentOffset = -this.getOffset(this.index);
       //direction : 1 for next , -1 for prev
       this.$emit("change", { newIndex, oldIndex, direction: this.direction });
-      if (this.addAnchor) {
+      window.location.hash = this.anchorsArr[newIndex];
+    },
+    $route() {
+      if (!this.addAnchor || !this.$route.hash) {
+        return;
       }
+      let anchor = this.$route.hash.replace("#", "");
+      this.moveToAnchor(anchor);
     }
   },
   methods: {
+    moveToAnchor(anchor) {
+      let index = this.anchorsArr.findIndex(i => i == anchor);
+      this.index = index;
+    },
     getAll() {
       return Array.from(this.$el.querySelectorAll(".ui-carousel-item"));
     },
@@ -243,10 +252,7 @@ export default {
     },
     makeAnchors() {
       let sum = this.getAll().length;
-      for (var i = 0; i < sum; i++) {
-        this.anchorsArr.push(guid());
-      }
-      // console.log(this.anchorsArr)
+      this.anchorsArr = fillArray(sum);
     }
   },
   mounted() {
@@ -263,34 +269,23 @@ export default {
           this.startAuto();
         }
         this.bindEvents();
-      });
-    }, 10);
-    if (this.anchors && !this.anchors.length) {
-      setTimeout(() => {
-        this.$nextTick(() => {
-          this.makeAnchors();
-        });
-      });
-    }
-    if (this.anchors && this.anchors.length) {
-      this.anchorsArr = this.anchors;
-    }
-  },
-  // activated() {
-  //   if (this.touch && this.inited) {
-  //     this.bindTouchEvents();
-  //   }
-  //   if (this.inited) {
-  //     this.bindEvents();
-  //   }
-  // },
-  // deactivated() {
-  //   if (this.touch) {
-  //     this.unBindTouchEvents();
-  //   }
 
-  //   this.unBindEvents();
-  // },
+        if (this.anchors) {
+          if (!this.anchors.length) {
+            this.makeAnchors();
+          }
+          if (this.anchors.length) {
+            if (this.anchors.length !== this.getAll().length) {
+              throw new Error("anchors lenght must equals to item's lenght");
+            } else {
+              this.anchorsArr = this.anchors;
+            }
+          }
+          window.location.hash = this.anchorsArr[this.index];
+        }
+      });
+    });
+  },
   beforeDestroy() {
     if (this.touch) {
       this.unBindTouchEvents();
