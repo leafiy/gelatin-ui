@@ -20419,12 +20419,12 @@ typer_typer.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_typer = (typer_typer);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/carousel/carousel.vue?vue&type=template&id=cbc2689c&
-var carouselvue_type_template_id_cbc2689c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.items.length)?_c('div',{ref:"container",staticClass:"ui-carousel-wrapper"},[_c('div',{staticClass:"ui-carousel"},[_c('div',{staticClass:"ui-carousel-overflow",style:(_vm.expandStyles)},[_c('div',{staticClass:"ui-carousel-items",style:(_vm.listStyles)},_vm._l((_vm.items),function(item,idx){return _c('ui-carousel-item',{key:idx,class:{ 'ui-carousel-item-active': _vm.index == idx },style:(_vm.itemStyles),attrs:{"index":idx,"item":item}})}),1)])]),(_vm.navStyle == 'arrow')?_c('div',{staticClass:"ui-carousel-nav-item ui-carousel-arrow-left",attrs:{"disabled":_vm.atHead},on:{"click":function($event){return _vm.moveCarousel(-1)}}},[_c('ui-icon',{attrs:{"name":"left"}})],1):_vm._e(),(_vm.navStyle == 'arrow')?_c('div',{staticClass:"ui-carousel-nav-item ui-carousel-arrow-right",attrs:{"disabled":_vm.atEnd},on:{"click":function($event){return _vm.moveCarousel(1)}}},[_c('ui-icon',{attrs:{"name":"right"}})],1):_vm._e(),(_vm.navStyle == 'bar')?_c('div',{staticClass:"ui-carousel-navbar"},_vm._l((_vm.items),function(item,idx){return _c('span',{key:idx,staticClass:"ui-carousel-navbar-bar",class:{ 'ui-carousel-navbar-bar-active': _vm.index == idx },on:{"click":function($event){return _vm.barClick(idx)}}})}),0):_vm._e()]):_vm._e()}
-var carouselvue_type_template_id_cbc2689c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/carousel/carousel.vue?vue&type=template&id=dac92e20&
+var carouselvue_type_template_id_dac92e20_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.items.length)?_c('div',{ref:"container",staticClass:"ui-carousel-wrapper"},[_c('div',{staticClass:"ui-carousel"},[_c('div',{staticClass:"ui-carousel-overflow",style:(_vm.expandStyles)},[_c('div',{staticClass:"ui-carousel-items",style:(_vm.listStyles)},_vm._l((_vm.items),function(item,idx){return _c('ui-carousel-item',{key:idx,class:{ 'ui-carousel-item-active': _vm.index == idx },style:(_vm.itemStyles),attrs:{"index":idx,"item":item}})}),1)])]),(_vm.navStyle == 'arrow')?_c('div',{staticClass:"ui-carousel-nav-item ui-carousel-arrow-left",attrs:{"disabled":_vm.atHead},on:{"click":function($event){return _vm.moveCarousel(-1)}}},[_c('ui-icon',{attrs:{"name":"left"}})],1):_vm._e(),(_vm.navStyle == 'arrow')?_c('div',{staticClass:"ui-carousel-nav-item ui-carousel-arrow-right",attrs:{"disabled":_vm.atEnd},on:{"click":function($event){return _vm.moveCarousel(1)}}},[_c('ui-icon',{attrs:{"name":"right"}})],1):_vm._e(),(_vm.navStyle == 'bar')?_c('div',{staticClass:"ui-carousel-navbar"},_vm._l((_vm.items),function(item,idx){return _c('span',{key:idx,staticClass:"ui-carousel-navbar-bar",class:{ 'ui-carousel-navbar-bar-active': _vm.index == idx },on:{"click":function($event){return _vm.barClick(idx)}}})}),0):_vm._e()]):_vm._e()}
+var carouselvue_type_template_id_dac92e20_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/carousel/carousel.vue?vue&type=template&id=cbc2689c&
+// CONCATENATED MODULE: ./packages/carousel/carousel.vue?vue&type=template&id=dac92e20&
 
 // EXTERNAL MODULE: ./node_modules/lodash/debounce.js
 var debounce = __webpack_require__("b047");
@@ -20674,7 +20674,10 @@ const hashTag = (tag) => {
         oldIndex: oldIndex,
         direction: this.direction
       });
-      window.location.hash = this.anchorsArr[newIndex];
+
+      if (this.addAnchor) {
+        window.location.hash = this.anchorsArr[newIndex];
+      }
     },
     $route: function $route() {
       if (!this.addAnchor || !this.$route.hash) {
@@ -20873,8 +20876,8 @@ const hashTag = (tag) => {
 
 var carousel_component = normalizeComponent(
   carousel_carouselvue_type_script_lang_js_,
-  carouselvue_type_template_id_cbc2689c_render,
-  carouselvue_type_template_id_cbc2689c_staticRenderFns,
+  carouselvue_type_template_id_dac92e20_render,
+  carouselvue_type_template_id_dac92e20_staticRenderFns,
   false,
   null,
   null,
