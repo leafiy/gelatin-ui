@@ -123,7 +123,9 @@ export default {
       this.currentOffset = -this.getOffset(this.index);
       //direction : 1 for next , -1 for prev
       this.$emit("change", { newIndex, oldIndex, direction: this.direction });
-      window.location.hash = this.anchorsArr[newIndex];
+      if (this.addAnchor) {
+        window.location.hash = this.anchorsArr[newIndex];
+      }
     },
     $route() {
       if (!this.addAnchor || !this.$route.hash) {

@@ -9,7 +9,7 @@
     "publish-dev": "yarn run lint && git add . && git cz",
     "publish-master": "yarn build && git add .  && git commit -m 'update build packages' && yarn release",
     "sync": "git add . && git commit -m 'dev in progress' && git push",
-    "release": "standard-version -r patch && git push --follow-tags origin master",
+    "release": "standard-version -r patch && git push -u origin master",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "deploy": "sh deploy.sh",
