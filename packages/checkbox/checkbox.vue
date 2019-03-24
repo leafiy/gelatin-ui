@@ -102,6 +102,8 @@ export default {
         } else {
           value.push(this.value);
         }
+      } else if (typeof this.value == "boolean") {
+        value = !this.isChecked;
       } else {
         value = this.value;
       }

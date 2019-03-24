@@ -57,7 +57,8 @@ module.exports = {
           ['/autocomplete/', 'Autocomplete'],
           ['/input/', 'Input'],
           ['/textarea/', 'Textarea'],
-          ['/checkbox/', 'Checkbox & Radio'],
+          ['/checkbox/', 'Checkbox 复选框'],
+          ['/radio/', 'Radio 单选框'],
           ['/v/', 'V Validation'],
           // ['/select/', 'Select'],
           // ['/radio/', 'Radio'],
@@ -79,7 +80,7 @@ module.exports = {
         title: 'utils',
         collapsable: false,
         children: [
-          ['/captcha/','验证码'],
+          ['/captcha/', '验证码'],
           ['/image/', 'Image 图片懒加载'],
           ['/height-transition/', 'Height transition'],
           ['/router-transition/', 'Router transition'],

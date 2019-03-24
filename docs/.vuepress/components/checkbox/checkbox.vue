@@ -21,6 +21,10 @@
       <ui-checkbox v-model="checkbox2" value="小米" name="checkbox2">小米</ui-checkbox>
       <ui-checkbox v-model="checkbox2" value="oppo" name="checkbox2">oppo</ui-checkbox>
       <ui-checkbox v-model="checkbox2" value="屎壳郎" name="checkbox2">屎壳郎</ui-checkbox>
+      <ui-hr>boolean checkbox</ui-hr>
+      <div class="container">
+        <ui-checkbox v-model="foo">{{foo}}</ui-checkbox>
+      </div>
     </ClientOnly>
   </div>
 </template>
@@ -33,7 +37,8 @@ export default {
     return {
       radio: '2',
       checkbox: ['小米'],
-      checkbox2:[]
+      checkbox2: [],
+      foo: false
     }
   }
 }
