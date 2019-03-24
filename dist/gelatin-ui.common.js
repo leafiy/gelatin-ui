@@ -17102,12 +17102,12 @@ accordion_item.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_accordion_item = (accordion_item);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/checkbox/checkbox.vue?vue&type=template&id=3f4e7822&
-var checkboxvue_type_template_id_3f4e7822_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-checkbox",class:_vm.classes},[_c('input',{ref:"input",attrs:{"type":"checkbox","id":_vm.id,"name":_vm.name,"required":_vm.required,"disabled":_vm.disabled},domProps:{"value":_vm.value,"checked":_vm.isChecked},on:{"change":_vm.onChange}}),_c('label',{attrs:{"for":_vm.id}},[_vm._t("input-box",[_c('span',{staticClass:"ui-checkbox-input-box"},[_c('svg',{attrs:{"viewBox":"0 0 14 14","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M11.5385 0.228769C11.0395 -0.16 10.3415 -0.0410482 9.97806 0.492783L4.78903 8.12889L1.93058 5.01584C1.50946 4.53423 0.802782 4.51102 0.352815 4.96362C-0.0971515 5.41331 -0.120227 6.17054 0.30378 6.64925C0.30378 6.64925 3.7766 10.5253 4.2756 10.9141C4.7746 11.3029 5.47263 11.1839 5.83606 10.6501L11.7866 1.89699C12.15 1.36026 12.0375 0.614635 11.5385 0.228769Z"}})])]),(_vm.isIndeterminate)?_c('span',{staticClass:"ui-checkbox-indeterminate-bar"}):_vm._e()]),_vm._t("default")],2)])}
-var checkboxvue_type_template_id_3f4e7822_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/checkbox/checkbox.vue?vue&type=template&id=0fdea51f&
+var checkboxvue_type_template_id_0fdea51f_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-checkbox",class:_vm.classes},[_c('input',{ref:"input",attrs:{"type":"checkbox","id":_vm.id,"name":_vm.name,"required":_vm.required,"disabled":_vm.disabled},domProps:{"value":_vm.value,"checked":_vm.isChecked},on:{"change":_vm.onChange}}),_c('label',{attrs:{"for":_vm.id}},[_vm._t("input-box",[_c('span',{staticClass:"ui-checkbox-input-box"},[_c('svg',{attrs:{"viewBox":"0 0 14 14","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M11.5385 0.228769C11.0395 -0.16 10.3415 -0.0410482 9.97806 0.492783L4.78903 8.12889L1.93058 5.01584C1.50946 4.53423 0.802782 4.51102 0.352815 4.96362C-0.0971515 5.41331 -0.120227 6.17054 0.30378 6.64925C0.30378 6.64925 3.7766 10.5253 4.2756 10.9141C4.7746 11.3029 5.47263 11.1839 5.83606 10.6501L11.7866 1.89699C12.15 1.36026 12.0375 0.614635 11.5385 0.228769Z"}})])]),(_vm.isIndeterminate)?_c('span',{staticClass:"ui-checkbox-indeterminate-bar"}):_vm._e()]),_vm._t("default")],2)])}
+var checkboxvue_type_template_id_0fdea51f_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/checkbox/checkbox.vue?vue&type=template&id=3f4e7822&
+// CONCATENATED MODULE: ./packages/checkbox/checkbox.vue?vue&type=template&id=0fdea51f&
 
 // CONCATENATED MODULE: ./node_modules/buxton/string/guid.js
 const guid = () => {
@@ -17238,6 +17238,8 @@ var scss_checkbox = __webpack_require__("9780");
         } else {
           value.push(this.value);
         }
+      } else if (typeof this.value == "boolean") {
+        value = !this.isChecked;
       } else {
         value = this.value;
       }
@@ -17312,8 +17314,8 @@ var scss_checkbox = __webpack_require__("9780");
 
 var checkbox_component = normalizeComponent(
   checkbox_checkboxvue_type_script_lang_js_,
-  checkboxvue_type_template_id_3f4e7822_render,
-  checkboxvue_type_template_id_3f4e7822_staticRenderFns,
+  checkboxvue_type_template_id_0fdea51f_render,
+  checkboxvue_type_template_id_0fdea51f_staticRenderFns,
   false,
   null,
   null,
