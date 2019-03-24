@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.50"></a>
+## [0.1.50](https://github.com/leafiy/gelatin-ui/compare/v0.1.46...v0.1.50) (2019-03-24)
+
+
+### Bug Fixes
+
+* **carousel:** bugs fix ([ff92b08](https://github.com/leafiy/gelatin-ui/commit/ff92b08))
+* **checkbox:** boolean value support ([b673292](https://github.com/leafiy/gelatin-ui/commit/b673292))
+
+
+### Features
+
+* **carousel:** browser hashtag support ([170bbd2](https://github.com/leafiy/gelatin-ui/commit/170bbd2))
+* **carousel:** support start index ([8c24e80](https://github.com/leafiy/gelatin-ui/commit/8c24e80))
+
+
+
 <a name="0.1.49"></a>
 ## 0.1.49 (2019-03-22)
 
