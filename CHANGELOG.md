@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.52"></a>
+## [0.1.52](https://github.com/leafiy/gelatin-ui/compare/v0.1.49...v0.1.52) (2019-03-24)
+
+
+### Bug Fixes
+
+* **checkbox:** boolean value support ([b673292](https://github.com/leafiy/gelatin-ui/commit/b673292))
+* **input:** correct input number type ([109ee08](https://github.com/leafiy/gelatin-ui/commit/109ee08))
+
+
+### Features
+
+* **input:** number type support ([4c17d09](https://github.com/leafiy/gelatin-ui/commit/4c17d09))
+
+
+
 <a name="0.1.51"></a>
 ## [0.1.51](https://github.com/leafiy/gelatin-ui/compare/v0.1.50...v0.1.51) (2019-03-24)
 
