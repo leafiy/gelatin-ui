@@ -31,6 +31,8 @@
       @keyup.esc.exact="handleEsc"
       @change.exact="handleChange"
       @keyup.delete.exact="handleDelete"
+      :min="min"
+      :max="max"
     />
     <transition name="fade">
       <div
@@ -81,8 +83,10 @@ export default {
       default: "text"
     },
     name: String,
-    maxLength: Number,
-    minLength: Number,
+    maxLength: [Number, String],
+    minLength: [Number, String],
+    max: [Number, String],
+    min: [Number, String],
     placeholder: {
       type: String,
       default: "type in here"
