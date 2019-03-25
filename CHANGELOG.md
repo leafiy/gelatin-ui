@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.53"></a>
+## [0.1.53](https://github.com/leafiy/gelatin-ui/compare/v0.1.52...v0.1.53) (2019-03-25)
+
+
+### Features
+
+* **input:** add lg and sm sizes stylee ([a456bf8](https://github.com/leafiy/gelatin-ui/commit/a456bf8))
+
+
+
 <a name="0.1.52"></a>
 ## [0.1.52](https://github.com/leafiy/gelatin-ui/compare/v0.1.49...v0.1.52) (2019-03-24)
 
