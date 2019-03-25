@@ -106,7 +106,13 @@ export default {
     },
     autofocus: Boolean,
     theme: String, // flat/ghost
-    width: Number
+    width: Number,
+    size: {
+      type: String,
+      validator(value) {
+        return ["sm", "lg", ""].includes(value);
+      }
+    }
   },
   components: {
     UiIcon,
@@ -121,7 +127,8 @@ export default {
         this.$slots.suffix && `ui-input-with-suffix`,
         this.$slots.prefix && `ui-input-with-prefix`,
         this.theme && `ui-input-theme-${this.theme}`,
-        this.readonly && `ui-input-readonly`
+        this.readonly && `ui-input-readonly`,
+        this.size && `ui-input-size-${this.size}`
       ];
     },
     styles() {

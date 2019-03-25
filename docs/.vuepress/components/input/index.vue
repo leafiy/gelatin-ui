@@ -5,6 +5,8 @@
     <ui-input readonly v-model="readonly"></ui-input>
     <ui-input loading></ui-input>
     <ui-input :width="200" value="width=200"></ui-input>
+    <ui-input size="lg" placeholder="size : lg"></ui-input>
+    <ui-input size="sm" placeholder="size : sm"></ui-input>
   </div>
 </template>
 <script>
