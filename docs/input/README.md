@@ -5,15 +5,16 @@
 
 <input-index></input-index>
 
-<code-code>
  ```html
 <ui-input></ui-input>
- <ui-input disabled v-model="disabled"></ui-input>
- <ui-input readonly v-model="readonly"></ui-input>
- <ui-input loading></ui-input>
+<ui-input disabled v-model="disabled"></ui-input>
+<ui-input readonly v-model="readonly"></ui-input>
+<ui-input loading></ui-input>
+<ui-input :width="200" value="width=200"></ui-input>
+<ui-input size="lg" placeholder="size : lg"></ui-input>
+<ui-input size="sm" placeholder="size : sm"></ui-input>
 ```
 
-</code-code>
 
 |prop|type|default|description|
 |--|--|--|--|
