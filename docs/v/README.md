@@ -143,12 +143,10 @@ rules: {
 
 <v-submit></v-submit>
 
-手动触发`trigger`为`submit`,将返回一个`promise`方法
-
+手动触发`trigger`为`submit`,将返回一个`promise` ，其`reject`方法返回一个包含错误信息的`Array`
 触发方法支持所有的`html input`事件
 
 
-<code-code>
 ```html
 <ui-v :rules="rules" ref="form">
       <ui-input name="email"></ui-input>
@@ -177,13 +175,13 @@ data() {
     validate() {
       this.$refs['form'].validate().then(_ => {
         this.$UiToast('没错！')
-      }).catch(_ => {
+      }).catch(errorArr => {
+        // errorArr : [{name:'email',message:'不是email'},{name:'trigger',message:'必须填写'}]
         this.$UiToast.error('有错')
       })
     }
   }
 ```
-</code-code>
 
 
 #### 内置方法和事件

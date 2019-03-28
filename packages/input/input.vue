@@ -106,7 +106,13 @@ export default {
     },
     autofocus: Boolean,
     theme: String, // flat/ghost
-    width: Number
+    width: Number,
+    size: {
+      type: String,
+      validator(value) {
+        return ["sm", "lg", ""].includes(value);
+      }
+    }
   },
   components: {
     UiIcon,
@@ -121,7 +127,8 @@ export default {
         this.$slots.suffix && `ui-input-with-suffix`,
         this.$slots.prefix && `ui-input-with-prefix`,
         this.theme && `ui-input-theme-${this.theme}`,
-        this.readonly && `ui-input-readonly`
+        this.readonly && `ui-input-readonly`,
+        this.size && `ui-input-size-${this.size}`
       ];
     },
     styles() {
@@ -138,36 +145,36 @@ export default {
       this.$refs["input"] && this.$refs["input"].focus();
     },
     handleEnter(e) {
-      // this.$emit("submit", this.inputVal);
-      this.$emit("enter", this.inputVal);
+      // this.$emit("enter", this.inputVal);
+      this.correctType("enter");
     },
     handleEsc(e) {
-      this.$emit("esc", this.inputVal);
       this.$refs["input"].blur();
+      this.correctType("esc");
     },
     handleKeyup(e) {
-      this.$emit("keyup", this.inputVal);
+      this.correctType("keyup");
     },
     handleKeydown(e) {
-      this.$emit("keydown", this.inputVal);
+      this.correctType("keydown");
     },
     handleInput(e) {
       this.inputVal = e.target.value;
-      this.$emit("input", this.inputVal);
+      this.correctType("input");
     },
     handleFocus(e) {
       this.focusIn = true;
-      this.$emit("focus", this.inputVal);
+      this.correctType("focus");
     },
     handleBlur(e) {
       this.focusIn = false;
-      this.$emit("blur", this.inputVal);
+      this.correctType("blur");
     },
     handleChange(e) {
-      this.$emit("change", this.inputVal);
+      this.correctType("change");
     },
     handleDelete(e) {
-      this.$emit("delete", this.inputVal);
+      this.correctType("delete");
     },
     clear() {
       this.$emit("input", "");
@@ -178,6 +185,13 @@ export default {
         this.errors = false;
         this.focus();
       });
+    },
+    correctType(event) {
+      if (this.type == "number") {
+        this.$emit(event, Number(this.inputVal));
+      } else {
+        this.$emit(event, this.inputVal);
+      }
     }
   },
   watch: {
