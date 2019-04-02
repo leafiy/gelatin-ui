@@ -1,6 +1,6 @@
 <template>
   <div class="container"><ClientOnly>
-    <ui-carousel nav-style="bar">
+    <ui-carousel bar>
       <div class="item"><img src="https://placehold.it/200x200"></div>
         <div class="item"><img src="https://placehold.it/230x200"></div>
           <div class="item"><img src="https://placehold.it/220x200"></div>

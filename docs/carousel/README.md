@@ -71,7 +71,8 @@
 |prop|type|default|description|
 |--|--|--|--|
 |scrollCount|Number|1|每次滚动的数量|
-|navStyle|String||bar,arrow 箭头或bar样式，没有则不显示|
+|bar|Boolean||bar导航样式|
+|arrow|Boolean||arrow导航样式|
 |touch|Boolean|true|支持触摸滚动|
 |auto|Boolean|false|自动滚动|
 |delay|Number|2000|每次滚动延迟|

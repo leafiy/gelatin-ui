@@ -15,7 +15,7 @@
       </div>
     </div>
     <div
-      v-if="navStyle == 'arrow'"
+      v-if="arrow"
       class="ui-carousel-nav-item ui-carousel-arrow-left"
       @click="moveCarousel(-1)"
       :disabled="atHead"
@@ -23,14 +23,14 @@
       <ui-icon name="left"></ui-icon>
     </div>
     <div
-      v-if="navStyle == 'arrow'"
+      v-if="arrow"
       class="ui-carousel-nav-item ui-carousel-arrow-right"
       @click="moveCarousel(1)"
       :disabled="atEnd"
     >
       <ui-icon name="right"></ui-icon>
     </div>
-    <div v-if="navStyle == 'bar'" class="ui-carousel-navbar">
+    <div v-if="bar" class="ui-carousel-navbar">
       <span
         v-for="(item, idx) of items"
         class="ui-carousel-navbar-bar"
@@ -48,7 +48,7 @@ import UiIcon from "../icon/icon.vue";
 import touchHandler from "../../src/utils/touchHandler.js";
 import { debounce } from "lodash";
 import fillArray from "buxton/array/fill";
-import hashTag from "buxton/browser/hashTag";
+
 export default {
   name: "ui-carousel",
 
@@ -71,7 +71,6 @@ export default {
       type: Number,
       default: 1
     },
-    navStyle: String,
     touch: {
       type: Boolean,
       default: true
@@ -88,7 +87,9 @@ export default {
     startIndex: {
       type: Number,
       default: 0
-    }
+    },
+    arrow: Boolean,
+    bar: Boolean
   },
   computed: {
     expandStyles() {

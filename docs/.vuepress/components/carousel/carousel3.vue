@@ -1,6 +1,6 @@
 <template>
   <div class="container"><ClientOnly>
-    <ui-carousel :scroll-count="3" nav-style="arrow" auto loop :expand="12" :delay="1000">
+    <ui-carousel :scroll-count="3" arrow auto loop :expand="12" :delay="1000">
       <div class="item"><img src="https://placehold.it/200x200"></div>
         <div class="item"><img src="https://placehold.it/230x200"></div>
           <div class="item"><img src="https://placehold.it/220x200"></div>
