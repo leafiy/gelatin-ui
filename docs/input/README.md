@@ -32,6 +32,8 @@
 |readonly|Boolean|false||
 |autofocus|Boolean|false||
 |width|Number|||
+|min|Number,String|||
+|max|Number,String|||
 
 
 ## suffix / prefix
