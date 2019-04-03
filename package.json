@@ -1,6 +1,6 @@
 {
   "name": "gelatin-ui",
-  "version": "0.1.55",
+  "version": "0.1.56",
   "private": false,
   "main": "./dist/gelatin-ui.umd.min.js",
   "scripts": {
