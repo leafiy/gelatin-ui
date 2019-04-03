@@ -1,11 +1,10 @@
 const path = require('path')
-const config = require('../config.js')
 
 module.exports = {
   title: 'Gelatin-Ui',
   description: '🎨 简单好看的VueJs UI from unicapsule.com',
   port: 8108,
-  host: config.host,
+  host: '0.0.0.0',
   base: "/",
   themeConfig: {
     displayAllHeaders: true,
