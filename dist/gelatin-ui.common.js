@@ -20431,12 +20431,12 @@ typer_typer.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_typer = (typer_typer);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/carousel/carousel.vue?vue&type=template&id=18d990fb&
-var carouselvue_type_template_id_18d990fb_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.items.length)?_c('div',{ref:"container",staticClass:"ui-carousel-wrapper"},[_c('div',{staticClass:"ui-carousel"},[_c('div',{staticClass:"ui-carousel-overflow",style:(_vm.expandStyles)},[_c('div',{staticClass:"ui-carousel-items",style:(_vm.listStyles)},_vm._l((_vm.items),function(item,idx){return _c('ui-carousel-item',{key:idx,class:{ 'ui-carousel-item-active': _vm.index == idx },style:(_vm.itemStyles),attrs:{"index":idx,"item":item}})}),1)])]),(_vm.arrow)?_c('div',{staticClass:"ui-carousel-nav-item ui-carousel-arrow-left",attrs:{"disabled":_vm.atHead},on:{"click":function($event){return _vm.moveCarousel(-1)}}},[_c('ui-icon',{attrs:{"name":"left"}})],1):_vm._e(),(_vm.arrow)?_c('div',{staticClass:"ui-carousel-nav-item ui-carousel-arrow-right",attrs:{"disabled":_vm.atEnd},on:{"click":function($event){return _vm.moveCarousel(1)}}},[_c('ui-icon',{attrs:{"name":"right"}})],1):_vm._e(),(_vm.bar)?_c('div',{staticClass:"ui-carousel-navbar"},_vm._l((_vm.items),function(item,idx){return _c('span',{key:idx,staticClass:"ui-carousel-navbar-bar",class:{ 'ui-carousel-navbar-bar-active': _vm.index == idx },on:{"click":function($event){return _vm.barClick(idx)}}})}),0):_vm._e()]):_vm._e()}
-var carouselvue_type_template_id_18d990fb_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fc08105a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/carousel/carousel.vue?vue&type=template&id=739a9d8e&
+var carouselvue_type_template_id_739a9d8e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.items.length)?_c('div',{ref:"container",staticClass:"ui-carousel-wrapper"},[_c('div',{staticClass:"ui-carousel"},[_c('div',{staticClass:"ui-carousel-overflow",style:(_vm.expandStyles)},[_c('div',{staticClass:"ui-carousel-items",style:(_vm.listStyles)},_vm._l((_vm.items),function(item,idx){return _c('ui-carousel-item',{key:idx,class:{ 'ui-carousel-item-active': _vm.index == idx },style:(_vm.itemStyles),attrs:{"index":idx,"item":item}})}),1)])]),(_vm.arrow)?_c('div',{staticClass:"ui-carousel-nav-item ui-carousel-arrow-left",attrs:{"disabled":_vm.atHead},on:{"click":function($event){return _vm.moveCarousel(-1)}}},[_c('ui-icon',{attrs:{"name":"left"}})],1):_vm._e(),(_vm.arrow)?_c('div',{staticClass:"ui-carousel-nav-item ui-carousel-arrow-right",attrs:{"disabled":_vm.atEnd},on:{"click":function($event){return _vm.moveCarousel(1)}}},[_c('ui-icon',{attrs:{"name":"right"}})],1):_vm._e(),(_vm.bar)?_c('div',{staticClass:"ui-carousel-navbar"},_vm._l((_vm.items),function(item,idx){return _c('span',{key:idx,staticClass:"ui-carousel-navbar-bar",class:{ 'ui-carousel-navbar-bar-active': _vm.index == idx },on:{"click":function($event){return _vm.barClick(idx)}}})}),0):_vm._e()]):_vm._e()}
+var carouselvue_type_template_id_739a9d8e_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/carousel/carousel.vue?vue&type=template&id=18d990fb&
+// CONCATENATED MODULE: ./packages/carousel/carousel.vue?vue&type=template&id=739a9d8e&
 
 // EXTERNAL MODULE: ./node_modules/lodash/debounce.js
 var debounce = __webpack_require__("b047");
@@ -20742,15 +20742,11 @@ const fillArray = (n) => {
       }
     },
     setWidth: function setWidth(cb) {
-      var _this = this;
-
-      this.$nextTick(function () {
-        var width = _this.$el.offsetWidth;
-        Array.prototype.forEach.call(_this.$el.querySelectorAll(".ui-carousel-item > *"), function (item) {
-          item.style.width = width + "px";
-        });
-        cb();
+      var width = this.$el.offsetWidth;
+      Array.prototype.forEach.call(this.$el.querySelectorAll(".ui-carousel-item > *"), function (item) {
+        item.style.width = width + "px";
       });
+      if (cb) cb();
     },
     bindEvents: function bindEvents() {
       window.addEventListener("resize", this.setWidth);
@@ -20762,32 +20758,32 @@ const fillArray = (n) => {
       this.index = index;
     },
     startAuto: function startAuto() {
-      var _this2 = this;
+      var _this = this;
 
       this.timer = setInterval(function () {
-        if (_this2.index < _this2.items.length - _this2.scrollCount) {
-          _this2.moveCarousel(1);
+        if (_this.index < _this.items.length - _this.scrollCount) {
+          _this.moveCarousel(1);
         } else {
-          clearInterval(_this2.timer);
-          _this2.timer = null;
+          clearInterval(_this.timer);
+          _this.timer = null;
 
-          if (_this2.loop) {
-            _this2.back();
+          if (_this.loop) {
+            _this.back();
           }
         }
       }, this.delay);
     },
     back: function back() {
-      var _this3 = this;
+      var _this2 = this;
 
       this.timer = setInterval(function () {
-        if (_this3.index <= _this3.scrollCount) {
-          clearInterval(_this3.timer);
+        if (_this2.index <= _this2.scrollCount) {
+          clearInterval(_this2.timer);
 
-          _this3.startAuto();
+          _this2.startAuto();
         }
 
-        _this3.moveCarousel(-1);
+        _this2.moveCarousel(-1);
       }, this.delay);
     },
     handleTouchStart: function handleTouchStart(event) {// touchHandler({ event });
@@ -20823,37 +20819,37 @@ const fillArray = (n) => {
     }
   },
   mounted: function mounted() {
-    var _this4 = this;
+    var _this3 = this;
 
     this.renderItems(function () {
-      _this4.index = _this4.startIndex;
+      _this3.index = _this3.startIndex;
     });
     setTimeout(function () {
-      _this4.$nextTick(function () {
-        if (_this4.touch) {
-          _this4.bindTouchEvents();
+      _this3.$nextTick(function () {
+        if (_this3.touch) {
+          _this3.bindTouchEvents();
         }
 
-        if (_this4.auto) {
-          _this4.startAuto();
+        if (_this3.auto) {
+          _this3.startAuto();
         }
 
-        _this4.bindEvents();
+        _this3.bindEvents();
 
-        if (_this4.anchors) {
-          if (!_this4.anchors.length) {
-            _this4.makeAnchors();
+        if (_this3.anchors) {
+          if (!_this3.anchors.length) {
+            _this3.makeAnchors();
           }
 
-          if (_this4.anchors.length) {
-            if (_this4.anchors.length !== _this4.getAll().length) {
+          if (_this3.anchors.length) {
+            if (_this3.anchors.length !== _this3.getAll().length) {
               throw new Error("anchors lenght must equals to item's lenght");
             } else {
-              _this4.anchorsArr = _this4.anchors;
+              _this3.anchorsArr = _this3.anchors;
             }
           }
 
-          window.location.hash = _this4.anchorsArr[_this4.index];
+          window.location.hash = _this3.anchorsArr[_this3.index];
         }
       });
     });
@@ -20881,8 +20877,8 @@ const fillArray = (n) => {
 
 var carousel_component = normalizeComponent(
   carousel_carouselvue_type_script_lang_js_,
-  carouselvue_type_template_id_18d990fb_render,
-  carouselvue_type_template_id_18d990fb_staticRenderFns,
+  carouselvue_type_template_id_739a9d8e_render,
+  carouselvue_type_template_id_739a9d8e_staticRenderFns,
   false,
   null,
   null,
