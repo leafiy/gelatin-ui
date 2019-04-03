@@ -172,16 +172,14 @@ export default {
       }
     },
     setWidth(cb) {
-      this.$nextTick(() => {
-        let width = this.$el.offsetWidth;
-        Array.prototype.forEach.call(
-          this.$el.querySelectorAll(".ui-carousel-item > *"),
-          item => {
-            item.style.width = width + "px";
-          }
-        );
-        cb();
-      });
+      let width = this.$el.offsetWidth;
+      Array.prototype.forEach.call(
+        this.$el.querySelectorAll(".ui-carousel-item > *"),
+        item => {
+          item.style.width = width + "px";
+        }
+      );
+      if (cb) cb();
     },
     bindEvents() {
       window.addEventListener("resize", this.setWidth);
