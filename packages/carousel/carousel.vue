@@ -179,7 +179,7 @@ export default {
           item.style.width = width + "px";
         }
       );
-      if (cb) cb();
+      if (cb && typeof cb == "function") cb();
     },
     bindEvents() {
       window.addEventListener("resize", this.setWidth);

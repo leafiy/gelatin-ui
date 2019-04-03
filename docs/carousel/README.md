@@ -7,7 +7,7 @@
 > 如果发生堆叠,只需用css为每个item增加固定的宽度值,gelatin可以做到每次滚动前自动判断item的宽度,即使是宽度发生变化也无需担心,也可通过`fullWidth`属性,强制每个item宽度都等于容器宽度
 
 
-#### 默认配置
+### 默认配置
 
 <carousel-carousel></carousel-carousel>
 
@@ -28,7 +28,7 @@
  ```
 </code-code>
 
-#### 自动滚动
+### 自动滚动
 
 <carousel-carousel2></carousel-carousel2>
 
@@ -39,7 +39,7 @@
 
 </code-code>
 
-#### expand,每次滚动3个卡片
+### expand,每次滚动3个卡片
 
 如果卡片的阴影被`overflow:hidden`覆盖，可以根据阴影的尺寸设置expand
 
@@ -51,16 +51,29 @@
  ```
 </code-code>
 
+### 自定义控制按钮及状态获取
+
+
 <carousel-carousel4></carousel-carousel4>
 
-<code-code title="usage">
- ```html
- <ui-carousel :scroll-count="1" full-width auto loop :expand="12" :delay="1000">
- ```
-</code-code>
+```html
+ <ui-carousel ref="carousel" :scroll-count="1" full-width auto loop :expand="12" :delay="1000">
+```
+
+```javascript
+next() {
+  this.$refs['carousel'].moveCarousel(1)
+},
+prev() {
+  this.$refs['carousel'].moveCarousel(-1)
+},
+next2() {
+  this.$refs['carousel'].moveCarousel(1, 2)
+}
+```
 
 
-#### Anchor
+### Anchor
 
 <carousel-anchor></carousel-anchor>
 
