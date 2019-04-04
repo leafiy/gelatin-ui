@@ -61,6 +61,7 @@ export default {
   methods: {
     onChange() {
       this.toggle();
+      this.$emit("change", this.value);
     },
     toggle() {
       this.$emit("input", this.isChecked ? "" : this.value);
