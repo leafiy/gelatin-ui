@@ -1,6 +1,6 @@
 <template>
   <div class="ui-carousel-wrapper" v-if="items.length" ref="container">
-    <div class="ui-carousel">
+    <div class="ui-carousel" v-show="show">
       <div class="ui-carousel-overflow" :style="expandStyles">
         <div class="ui-carousel-items" :style="listStyles">
           <ui-carousel-item
@@ -59,7 +59,8 @@ export default {
       index: 0,
       timer: null,
       direction: "",
-      anchorsArr: []
+      anchorsArr: [],
+      show: false
     };
   },
   components: {
@@ -259,6 +260,7 @@ export default {
   mounted() {
     this.renderItems(() => {
       this.index = this.startIndex;
+      this.show = true;
     });
 
     setTimeout(() => {
