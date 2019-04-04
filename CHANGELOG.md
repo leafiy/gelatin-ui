@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.59"></a>
+## [0.1.59](https://github.com/leafiy/gelatin-ui/compare/v0.1.57...v0.1.59) (2019-04-04)
+
+
+### Bug Fixes
+
+* **carousel:** 加载时不会造成项目堆叠 ([c399ad5](https://github.com/leafiy/gelatin-ui/commit/c399ad5))
+* **v:** minor bugs fixed ([917db95](https://github.com/leafiy/gelatin-ui/commit/917db95))
+
+
+### Features
+
+* **radio:** add change event to radio input ([46afabd](https://github.com/leafiy/gelatin-ui/commit/46afabd))
+
+
+
 <a name="0.1.58"></a>
 ## [0.1.58](https://github.com/leafiy/gelatin-ui/compare/v0.1.32...v0.1.58) (2019-04-04)
 
