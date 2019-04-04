@@ -4,7 +4,7 @@
     <!-- <transition name="fade"> -->
     <ui-height-transition>
       <div class="ui-v-error-list" v-if="errorArr && errorArr.length">
-        <span v-for="error of errorArr" :key="error.message"
+        <span v-for="(error, index) of errorArr" :key="index"
           >{{ error.message }} <em>, </em>
         </span>
       </div>

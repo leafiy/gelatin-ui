@@ -188,7 +188,8 @@ export default {
     },
     correctType(event) {
       if (this.type == "number") {
-        this.$emit(event, Number(this.inputVal));
+        let val = Number(this.inputVal);
+        this.$emit(event, val);
       } else {
         this.$emit(event, this.inputVal);
       }
