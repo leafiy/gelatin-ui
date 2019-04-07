@@ -11,7 +11,6 @@
 
 <carousel-carousel></carousel-carousel>
 
-<code-code title="默认配置">
  ```html
  <ui-carousel>
       <div class="item"><img src="https://placehold.it/200x200"></div>
@@ -26,18 +25,16 @@
                           <div class="item"><img src="https://placehold.it/320x200"></div>
     </ui-carousel>
  ```
-</code-code>
+
 
 ### 自动滚动
 
 <carousel-carousel2></carousel-carousel2>
-
-<code-code title="usage">
  ```html
  <ui-carousel auto loop :delay="1000">
  ```
 
-</code-code>
+
 
 ### expand,每次滚动3个卡片
 
@@ -45,11 +42,10 @@
 
 <carousel-carousel3></carousel-carousel3>
 
-<code-code title="usage">
  ```html
  <ui-carousel :scroll-count="3" nav-style="arrow" auto loop :expand="12" :delay="1000">
  ```
-</code-code>
+
 
 ### 自定义控制按钮及状态获取
 

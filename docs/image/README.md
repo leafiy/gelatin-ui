@@ -5,7 +5,7 @@
 <image-image></image-image>
 
 
-<code-code>
+
  ```html
 <ui-image src="https://leafiy.oss-cn-beijing.aliyuncs.com/thomas-kinto-1178082-unsplash.jpg"></ui-image>
 <ui-image src="https://leafiy.oss-cn-beijing.aliyuncs.com/thomas-kinto-1178082-unsplash.jpg">
@@ -16,7 +16,7 @@
 <ui-image cover src="https://leafiy.oss-cn-beijing.aliyuncs.com/jonny-caspari-1148429-unsplash.jpg"></ui-image>
  ```
 
-</code-code>
+
 
 
 |prop|type|default|description|

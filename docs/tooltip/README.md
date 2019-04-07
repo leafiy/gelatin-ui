@@ -2,13 +2,13 @@
 
 <tooltip-tooltip></tooltip-tooltip>
 
-<code-code>
+
  ```html
 <p v-ui-tooltip="'I am a full with el'">I am a full with el </p>
 <span v-ui-tooltip="'span span span'">I am a span </span>
 <ui-button v-ui-tooltip="{content:'I am with a button',closeOnMouseleave:false,showCloseIcon:true}">????????????</ui-button>
  ```
-</code-code>
+
 
 #### options
 |options|type|default|description|

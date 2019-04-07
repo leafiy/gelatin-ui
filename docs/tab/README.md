@@ -3,7 +3,7 @@
 <tab-index></tab-index>
 
 
-<code-code>
+
  ```html
 <template>
   <div class="container">
@@ -48,7 +48,7 @@ export default {
 </script>
  ```
 
-</code-code>
+
 
 #### events
 

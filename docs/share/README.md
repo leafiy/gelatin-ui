@@ -3,7 +3,6 @@
 <share-share></share-share>
 
 
-<code-code title="usage">
 
 ```html
 <ui-share site="weibo" :data="weiboData">
@@ -26,7 +25,7 @@
 </ui-share>
 ```
 
-</code-code>
+
 
 微博实例
 ```js

@@ -2,7 +2,7 @@
 
 <confirm-confirm></confirm-confirm>
 
-<code-code>
+
 ```html
 <ui-button @click.native="openConfirm">组件调用</ui-button>
 <ui-button @click.native="openConfirmJS">JS调用</ui-button>
@@ -19,7 +19,7 @@ openConfirmJS() {
       })
     }
 ```
-</code-code>
+
 
 #### options与modal相同
 

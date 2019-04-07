@@ -5,7 +5,7 @@
 **约定: 只能highlight指令元素内span元素内的内容 && 只匹配文字**
 
 
-<code-code>
+
 ```html
 <p v-ui-highlight="'High light'"><span>High light 文字高亮</span></p>
 <div v-ui-highlight="'i'">
@@ -24,7 +24,7 @@
       <p><span>Lorem Ipsum is <b>simply dummy text of</b> the printing and <span>typesetting industry</span>. <br>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</span></p>
     </div>
 ```
-</code-code>
+
 
 |option|type|default|description|
 |--|--|--|--|

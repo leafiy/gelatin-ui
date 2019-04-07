@@ -1,8 +1,9 @@
 <template>
   <transition :name="transition">
     <div class="ui-backdrop" v-if="show" :style="styles" :class="classes">
-      <slot></slot>
-      <span v-if="content">{{ content }}</span>
+      <slot>
+        <span v-if="content">{{ content }}</span>
+      </slot>
     </div>
   </transition>
 </template>
@@ -28,18 +29,16 @@ export default {
       type: String,
       default: "dark",
       validator(value) {
-        return ["white", "light", "dark", "darker"].includes(value);
+        return ["lighter", "light", "dark", "darker"].includes(value);
       }
     }
   },
   computed: {
     styles() {
-      return [
-        {
-          zIndex: this.zIndex,
-          borderRadius: `${this.radius}px`
-        }
-      ];
+      return [{
+        zIndex: this.zIndex,
+        borderRadius: `${this.radius}px`
+      }];
     },
     classes() {
       return [
@@ -58,4 +57,5 @@ export default {
     }
   }
 };
+
 </script>

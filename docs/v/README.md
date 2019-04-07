@@ -6,7 +6,7 @@
 
 <v-index></v-index>
 
-<code-code>
+
  ```html
 <ui-v ref="form1" :rules="rules">
  <ui-input placeholder="required validate" type="text" name="required"></ui-input>
@@ -74,14 +74,14 @@ rules: {
  }],
 }
 ```
-</code-code>
+
 
 ## 自定义验证规则
 
 <v-custom></v-custom>
 
 
-<code-code>
+
 ```html
  <ui-v :rules="rules" ref="form">
   <ui-input placeholder="异步验证" type="text" name="async" :loading="loading1"></ui-input>
@@ -136,7 +136,7 @@ rules: {
  }]
 },
 ```
-</code-code>
+
 
 
 ## 触发规则

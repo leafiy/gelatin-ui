@@ -5,7 +5,7 @@
 
 <popover-index></popover-index>
 
-<code-code>
+
 ```html
 <ui-popover>
   <ui-button slot="reference">default</ui-button>
@@ -33,14 +33,14 @@
   </div>
 </ui-popover>
 ```
-</code-code>
+
 
  ## Dropdown - JS 调用
 
 
 <popover-dropdown></popover-dropdown>
 
-<code-code>
+
 ```html
 <ui-button @click="click" id="dropdown">click me</ui-button>
 <ui-button @click="click2" id="dropdown2">list dropdown menu</ui-button>
@@ -76,7 +76,7 @@ click2() {
 }
 ```
 
-</code-code>
+
 
 
 ## Tooltip - Directive 调用

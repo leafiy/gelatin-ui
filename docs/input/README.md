@@ -40,7 +40,7 @@
 
 <input-slot></input-slot>
 
-<code-code>
+
 
  ```html
 <ui-input>
@@ -52,7 +52,7 @@
  <div slot="suffix">.com</div>
 </ui-input>
 ```
-</code-code>
+
 
 
 
@@ -80,7 +80,7 @@ props
 |type|String|text|the same with input|
 |autoSelect|Boolean|true|selcet input when focus|
 
-<code-code>
+
  ```html
 <ui-input-group v-model="model1" :max-length="2">
     </ui-input-group>
@@ -94,7 +94,7 @@ props
     </ui-input-group>
  ```
 
-</code-code>
+
 
 ### events
 

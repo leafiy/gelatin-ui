@@ -6,7 +6,7 @@
 
 <autocomplete-index></autocomplete-index>
 
-<code-code>
+
  ```html
 <template>
   <div class="container">
@@ -42,7 +42,7 @@ export default {
 
 </script>
  ```
-</code-code>
+
 
 
 |prop|type|default|descript|
@@ -64,7 +64,7 @@ export default {
 
 <autocomplete-custom></autocomplete-custom>
 
-<code-code>
+
  ```html
   <ui-autocomplete :items="items" v-model="value" :show-on-focus="true" :on-input-change="onInputChange" :on-item-selected="onItemSelected"></ui-autocomplete>
  ```
@@ -80,7 +80,7 @@ export default {
       this.selected = 'selected: no.' + index + ' in this list and content is ' + this.items[index]
     }
  ```
-</code-code>
+
 
 
 `onInputChange` 每次输入时,传回自定义结果数组,可以直接`return array` 也可以传入`promise resolve(array)` , 例子中是输入后给每个结果后面加一个笑脸

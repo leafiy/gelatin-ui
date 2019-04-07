@@ -1,27 +1,10 @@
 <template>
   <div class="ui-modal-wrapper">
-    <ui-backdrop
-      :show="show && showBackdrop"
-      fullscreen
-      :z-index="_zIndex"
-      @click.native="handleClickBackdrop"
-      :color="backdropColor"
-    ></ui-backdrop>
+    <ui-backdrop :show="value && showBackdrop" v-if="showBackdrop" fullscreen :z-index="_zIndex" :color="backdropColor"></ui-backdrop>
     <transition :name="transition">
-      <div
-        class="ui-modal"
-        :class="modalClasses"
-        v-if="show"
-        :style="modalStyles"
-        ref="modal"
-      >
+      <div class="ui-modal" :class="modalClasses" v-if="value" :style="modalStyles" ref="modal">
         <div class="ui-modal-inner">
-          <ui-icon
-            @click.native="closeModal"
-            name="close"
-            class="ui-modal-close-icon"
-            v-if="showCloseIcon"
-          ></ui-icon>
+          <ui-icon @click.native="closeModal" name="close" class="ui-modal-close-icon" v-if="showCloseIcon"></ui-icon>
           <div class="ui-modal-header" v-if="header || $slots.header">
             <div v-if="header" v-html="header"></div>
             <slot name="header"></slot>
@@ -32,22 +15,12 @@
           </div>
           <div class="ui-modal-footer" v-if="footer || $slots.footer">
             <div v-html="footer" v-if="footer"></div>
-            <ui-button-group
-              class="ui-modal-btn"
-              size="sm"
-              v-if="buttons.length"
-            >
-              <ui-button
-                v-for="btn of buttons"
-                :type="btn.type"
-                :key="btn.text"
-                @click.native="
+            <ui-button-group class="ui-modal-btn" size="sm" v-if="buttons.length">
+              <ui-button v-for="btn of buttons" :type="btn.type" :key="btn.text" @click.native="
                   () => {
                     btn.action && btn.action();
                   }
-                "
-                >{{ btn.content }}</ui-button
-              >
+                ">{{ btn.content }}</ui-button>
             </ui-button-group>
             <slot name="footer"></slot>
           </div>
@@ -63,16 +36,16 @@ import UiButton from "../button/button.vue";
 import UiBackdrop from "../backdrop/backdrop.vue";
 import "../assets/scss/modal.scss";
 import elementContains from "buxton/browser/elementContains";
+import UiResizer from '../resizer/resizer.vue'
 export default {
   name: "ui-modal",
 
   data() {
     return {
-      show: this.value,
       header: "",
       content: "",
       footer: "",
-      buttons: []
+      buttons: [],
     };
   },
   props: {
@@ -88,6 +61,10 @@ export default {
     },
     value: Boolean,
     showCloseIcon: {
+      type: Boolean,
+      default: true
+    },
+    closeOnPressEscape: {
       type: Boolean,
       default: true
     },
@@ -107,7 +84,8 @@ export default {
     UiIcon,
     UiButtonGroup,
     UiButton,
-    UiBackdrop
+    UiBackdrop,
+    UiResizer
   },
   computed: {
     modalClasses() {
@@ -120,58 +98,50 @@ export default {
     },
 
     _zIndex() {
-      return this.$zIndex
-        ? this.$zIndex.add()
-        : this.zIndex
-        ? this.zIndex
-        : 1000;
+      return this.$zIndex ?
+        this.$zIndex.add() :
+        this.zIndex ?
+        this.zIndex :
+        1000;
     },
     modalStyles() {
-      return [
-        {
-          zIndex: this._zIndex + 1
-        }
-      ];
+      return [{
+        zIndex: this._zIndex + 1
+      }];
     }
   },
   watch: {
     value(value) {
-      this.show = value;
       if (value) {
         this.openModal();
-        setTimeout(() => {
-          this.$nextTick(() => {
-            this.bindEvents();
-          });
-        });
+        this.bindEvents();
       } else {
-        this.closeModal();
-        setTimeout(() => {
-          this.$nextTick(() => {
-            this.unBindEvents();
-          });
-        });
+        this.unBindEvents();
       }
     }
   },
 
   methods: {
     bindEvents() {
-      window.addEventListener("click", this.handleDocumentClick);
+      document.addEventListener("click", this.handleDocumentClick);
+      document.addEventListener('keyup', this.handleKeyup)
     },
     unBindEvents() {
-      window.removeEventListener("click", this.handleDocumentClick);
+      document.removeEventListener("click", this.handleDocumentClick);
+      document.removeEventListener('keyup', this.handleKeyup)
     },
-    handleClickBackdrop() {},
+    handleKeyup(e) {
+      if (e.key === "Escape" || e.key === "Esc" && this.closeOnPressEscape) {
+        this.closeModal()
+      }
+    },
     handleDocumentClick(e) {
       let el = e.target;
-      if (!this.$refs["modal"]) {
+      if (!this.value) {
         return;
       }
-      if (!elementContains(this.$refs["modal"], el)) {
-        if (this.closeOnClick) {
-          this.closeModal();
-        }
+      if (!elementContains(this.$refs["modal"], el) && this.closeOnClick) {
+        this.closeModal()
       }
     },
     closeModal() {
@@ -180,14 +150,11 @@ export default {
         document.body.style.paddingRight = "";
       }
       this.$emit("input", false);
-      this.$emit("close");
-      document.body.removeChild(this.$el);
     },
     openModal() {
-      this.$emit("open");
       document.body.appendChild(this.$el);
       if (this.disableScroll) {
-        import(/* webpackChunkName: "vendor" */ "../../src/utils/scrollbar.js").then(
+        import( /* webpackChunkName: "vendor" */ "../../src/utils/scrollbar.js").then(
           module => {
             let scrollbarWidth = module.default();
             document.body.style.overflow = "hidden";
@@ -198,8 +165,7 @@ export default {
         );
       }
     }
-  },
-  mounted() {},
-  destroyed() {}
+  }
 };
+
 </script>

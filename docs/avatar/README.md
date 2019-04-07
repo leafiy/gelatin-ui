@@ -2,7 +2,7 @@
 
 <avatar-avatar></avatar-avatar>
 
-<code-code>
+
  ```html
  <ui-avatar></ui-avatar>
     <ui-avatar shape="square"></ui-avatar>
@@ -18,7 +18,7 @@ https://leafiy.oss-cn-beijing.aliyuncs.com/leafiyanthony-tuil-512016-unsplash.jp
 <ui-avatar size="lg" fallback="https://leafiy.oss-cn-beijing.aliyuncs.com/Snipaste_2018-12-26_14-10-06.png" url="
 https://leafiy.oss-cn-beijing.aliyuncs.com/leafiyanthony-tuil-512016-splash.jpg" username="size-lg"></ui-avatar>
  ```
-</code-code>
+
 
 |prop|type|default|description|
 |--|--|--|--|

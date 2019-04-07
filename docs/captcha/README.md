@@ -2,13 +2,13 @@
 
 <captcha-index></captcha-index>
 
-<code-code>
+
 
  ```html
 <ui-captcha></ui-captcha>
 <ui-captcha :width="160" :height="55" ref="captcha2"></ui-captcha>
  ```
-</code-code>
+
 
 
 |prop|type|default|description|

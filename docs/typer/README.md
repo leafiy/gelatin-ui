@@ -2,11 +2,10 @@
 
 <typer-typer></typer-typer>
 
-<code-code title="usage">
 ```html
 <ui-typer content="Typer 模拟打字机效果" loop cursor="🦛"></ui-typer>
 ```
-</code-code>
+
 
 props
 

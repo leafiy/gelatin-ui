@@ -3,7 +3,7 @@
 <modal-modal></modal-modal>
 
 
-<code-code>
+
   ```html
   <ui-modal v-model="open" backdrop-color="light">
         <div slot="header">Modal Header</div>
@@ -33,7 +33,7 @@ this.$UiModal({
         ]
       })
 ```
-</code-code>
+
 
 #### 通用options
 

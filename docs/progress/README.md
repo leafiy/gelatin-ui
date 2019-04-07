@@ -2,7 +2,7 @@
 
 <progress-ring></progress-ring>
 
-<code-code>
+
  ```html
 <ui-progress type="ring" :percentage="60"></ui-progress>
 <ui-progress type="ring" :percentage="40" animate :show-number="false"></ui-progress>
@@ -11,7 +11,7 @@
 <ui-progress type="bar" :percentage="22" :size="22"></ui-progress>
 <ui-progress type="bar" animate :percentage="66" :size="22"></ui-progress>
 ```
-</code-code>
+
 
 
 props

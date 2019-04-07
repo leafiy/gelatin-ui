@@ -3,7 +3,7 @@
 <accordion-index></accordion-index>
 
 
-<code-code>
+
 
 ```html
 <ui-accordion>
@@ -33,7 +33,7 @@
   </ui-accordion-item>
 </ui-accordion>
 ```
-</code-code>
+
 
 
 `ui-accordion` props

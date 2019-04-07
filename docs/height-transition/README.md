@@ -2,14 +2,14 @@
 
 <height-transition-index></height-transition-index>
 
-<code-code>
+
  ```html
   <ui-height-transition :duration="1000">
    put your element here
   </ui-height-transition>
  ```
 
-</code-code>
+
 
 
 动画event与vue transition 钩子相同
