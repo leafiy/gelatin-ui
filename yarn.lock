@@ -2104,10 +2104,10 @@ builtin-status-codes@^3.0.0:
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
 
-buxton@^0.2.16:
-  version "0.2.16"
-  resolved "https://registry.yarnpkg.com/buxton/-/buxton-0.2.16.tgz#520ac25015918f57ca8bdb31fa6e24407c87b8f8"
-  integrity sha512-bMUzpopIVhz0J+Ehk+uTHv6NxR/KRv3nWvnePFZMZd1FjlRAnzKfVz95OPRtoIwBwJXDE2xCfZeSq2uG5G/B+w==
+buxton@^0.2.19:
+  version "0.2.19"
+  resolved "https://registry.yarnpkg.com/buxton/-/buxton-0.2.19.tgz#21dd2cb1e7b3e9f1a392ce2545e7ccad6ec8af0f"
+  integrity sha512-vuiTHZo8cFCh6+dCjPqC6HI/cecmb4MCUQ2llN8XIhTQt1bZgo7MzmDFbxpwfsGh7HqnjrIVWKftTu1KGC82qg==
 
 bytes@3.0.0:
   version "3.0.0"
@@ -9804,6 +9804,11 @@ tty-browserify@0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
   integrity sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY=
+
+tua-body-scroll-lock@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/tua-body-scroll-lock/-/tua-body-scroll-lock-0.1.0.tgz#98babf2804cdb8bdadcb2c4516e62aad9f6b3f3f"
+  integrity sha512-ZqIGUs2jiSJXwACGnuSiBTGZk5cFDEguXMRipTla7NDoMBZNBcIdfkGwugnpM00Vz1E1IW/hMagWmOFg7FDjQw==
 
 tunnel-agent@^0.6.0:
   version "0.6.0"

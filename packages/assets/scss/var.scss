@@ -98,3 +98,34 @@ h6 {
     transform: rotate(-90deg);
   }
 }
+
+
+.fold-enter-active {
+  animation-name: fold-in;
+  animation-duration: .5s;
+}
+
+.fold-leave-active {
+  animation-name: fold-out;
+  animation-duration: .5s;
+}
+
+@keyframes fold-in {
+  0% {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fold-out {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 100%, 0);
+  }
+}
