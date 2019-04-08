@@ -79,6 +79,7 @@ module.exports = {
         title: 'utils',
         collapsable: false,
         children: [
+          ['/backdrop/', '遮罩层'],
           ['/captcha/', '验证码'],
           ['/image/', 'Image 图片懒加载'],
           ['/height-transition/', 'Height transition'],

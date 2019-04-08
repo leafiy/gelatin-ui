@@ -1,5 +1,5 @@
 <template>
-  <transition :name="transition">
+  <transition :name="transition" @after-enter="afterEnter" @after-leave="afterLeave">
     <div class="ui-backdrop" v-if="show" :style="styles" :class="classes">
       <slot>
         <span v-if="content">{{ content }}</span>
@@ -24,7 +24,8 @@ export default {
     zIndex: Number,
     fullscreen: Boolean,
     content: String,
-    radius: Number,
+    appendToBody: Boolean,
+    radius: [Number, String],
     color: {
       type: String,
       default: "dark",
@@ -37,7 +38,7 @@ export default {
     styles() {
       return [{
         zIndex: this.zIndex,
-        borderRadius: `${this.radius}px`
+        borderRadius: typeof this.radius == 'number' ? `${this.radius}px` : `${this.radius}`
       }];
     },
     classes() {
@@ -50,11 +51,19 @@ export default {
   watch: {
     show(value) {
       if (value) {
-        this.$emit("open");
+        this.$emit("show");
       } else {
-        this.$emit("close");
+        this.$emit("hide");
       }
     }
+  },
+  methods: {
+    afterEnter() {
+      this.$emit('after-enter')
+    },
+    afterLeave() {
+      this.$emit('after-leave')
+    },
   }
 };
 
