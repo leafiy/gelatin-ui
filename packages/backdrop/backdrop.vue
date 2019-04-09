@@ -43,7 +43,8 @@ export default {
       }
     },
     lock: Boolean,
-    loading: Boolean
+    loading: Boolean,
+    parentEl: Array
   },
   components: {
     UiSpinner
@@ -78,6 +79,14 @@ export default {
     }
   },
   methods: {
+    getParent() {
+      if (this.parentEl) {
+        return this.parentEl[0] ? this.parentEl[0] : null
+      } else {
+        return this.$el.parentNode
+      }
+
+    },
     lockScroll() {
       if (this.fullscreen) {
         lock(null)
@@ -95,14 +104,15 @@ export default {
       }
     },
     fitContainer() {
-      if (!this.fullscreen && this.$el.parentNode) {
-        this.parentPosition = getComputedStyle(this.$el.parentNode).position
+      let el = this.getParent()
+      if (!this.fullscreen && el) {
+        this.parentPosition = getComputedStyle(el).position
         if (this.parentPosition !== 'relative' && this.parentPosition !== 'absolute') {
-          this.$el.parentNode.style.position = 'relative'
+          el.style.position = 'relative'
         }
       }
       if (this.autoRadius && !this.radius && !this.fullscreen) {
-        let radius = getComputedStyle(this.$el.parentNode).borderRadius
+        let radius = getComputedStyle(el).borderRadius
         this.radius_ = radius
       }
       if (this.fullscreen) {
@@ -110,8 +120,9 @@ export default {
       }
     },
     resetContainer() {
-      if (!this.fullscreen && this.$el.parentNode) {
-        this.$el.parentNode.style.position = this.parentPosition
+      let el = this.getParent()
+      if (!this.fullscreen && el) {
+        el.style.position = this.parentPosition
       }
       if (this.fullscreen) {
         document.body.removeChild(this.$el)

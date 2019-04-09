@@ -8,22 +8,29 @@ maskDirective.install = Vue => {
   Vue.directive('ui-mask', Mask)
 }
 
-
+const makeMask = (el, options = { autoRadius: true }) => {
+  options.parentEl = [el]
+  let instance = el.instance ? el.instance : new BackdropConstructor({
+    propsData: options
+  })
+  instance.show = true
+  instance.$mount()
+  el.appendChild(instance.$el)
+  el.instance = instance
+}
 
 
 const UiMask = {
   name: "ui-mask",
-  bind(el, binding, vnode) {
-    console.log('bind')
-  },
   inserted(el, binding, vnode) {
-    console.log('instered')
+    if (binding && !binding.value) {
+      makeMask(el)
+    }
     if (binding.value) {
-
+      makeMask(el, binding.value)
     }
   },
   update(el, binding, vnode) {
-    console.log('update')
     if (!binding.value && el.mask) {
 
     }
@@ -32,7 +39,7 @@ const UiMask = {
     }
   },
   unbind(el) {
-    console.log('unbind')
+    console.log('unbind', binding.value)
   }
 }
 

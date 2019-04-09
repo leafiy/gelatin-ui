@@ -4,7 +4,7 @@
       <ui-button @click.native="()=>show(1)">覆盖元素</ui-button>
       <ui-button @click.native="()=>close(1)">关闭遮罩</ui-button>
     </ui-button-group>
-    <div class="box" v-ui-mask="options1"></div>
+    <div class="box" v-ui-mask></div>
   </div>
 </template>
 <script>
@@ -20,8 +20,9 @@ export default {
 
   methods: {
     show(n) {
-      this.options1.show = true
-      console.log(this.options1)
+      this.options1 = {
+        show: true
+      }
     },
     close(n) {
       this.options1.show = false
