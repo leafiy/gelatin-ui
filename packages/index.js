@@ -24,7 +24,7 @@ import UiHr from "./hr/index.js";
 import UiBackdrop from "./backdrop/index.js";
 import UiAutocomplete from "./autocomplete/index.js";
 import UiLoading from "./loading/index.js";
-import UiMask from "./mask/index.js";
+import UiMask from "./backdrop/mask.js";
 import { UiConfirm } from "./confirm/index.js";
 import { UiModal } from "./modal/index.js";
 import UiV from "./v/index.js";

@@ -43,9 +43,9 @@ export default {
       }
     },
     lock: Boolean,
-    loading:Boolean
+    loading: Boolean
   },
-  components:{
+  components: {
     UiSpinner
   },
   computed: {
@@ -105,7 +105,7 @@ export default {
         let radius = getComputedStyle(this.$el.parentNode).borderRadius
         this.radius_ = radius
       }
-      if(this.fullscreen){
+      if (this.fullscreen) {
         document.body.appendChild(this.$el)
       }
     },
@@ -113,7 +113,7 @@ export default {
       if (!this.fullscreen && this.$el.parentNode) {
         this.$el.parentNode.style.position = this.parentPosition
       }
-      if(this.fullscreen){
+      if (this.fullscreen) {
         document.body.removeChild(this.$el)
       }
     },
@@ -126,7 +126,9 @@ export default {
     },
   },
   mounted() {
-
+    this.$root.$on('clear-backdrop', () => {
+      this.show = false
+    })
 
   }
 };

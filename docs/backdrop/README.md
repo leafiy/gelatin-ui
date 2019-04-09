@@ -1,6 +1,6 @@
 # Backdrop
 
-### 组件调用
+## 组件调用
 
 <backdrop-index></backdrop-index>
 
@@ -19,3 +19,9 @@
 |selectable|Boolean|true|是否可选 user-select|
 |color|String|dark|["lighter", "light", "dark", "darker"]|
 |lock|Boolean|false|是否锁定滚动|
+
+
+## 指令directive调用
+
+<backdrop-directive></backdrop-directive>
+
