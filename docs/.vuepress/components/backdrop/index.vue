@@ -25,12 +25,13 @@
     </div>
     <ui-hr></ui-hr>
     <ui-button-group size="sm">
-      <ui-button @click.native="show4 = true">全屏遮罩</ui-button>
-      <ui-button @click.native="show4 = true;color='lighter'">颜色：lighter</ui-button>
-      <ui-button @click.native="show4 = true;color='light'">颜色：light</ui-button>
-      <ui-button @click.native="show4 = true;color='darker'">颜色：darker</ui-button>
+      <ui-button @click.native="show4 = true;lock=true">全屏遮罩</ui-button>
+      <ui-button @click.native="show4 = true;lock=false">不锁定滚动</ui-button>
+      <ui-button @click.native="show4 = true;color='lighter';lock=true">lighter</ui-button>
+      <ui-button @click.native="show4 = true;color='light';lock=true">light</ui-button>
+      <ui-button @click.native="show4 = true;color='darker';lock=true">darker</ui-button>
     </ui-button-group>
-    <ui-backdrop :show="show4" auto-radius fullscreen lock :color="color" :z-index="1000" @click.native="show4 = false"></ui-backdrop>
+    <ui-backdrop :show="show4" auto-radius fullscreen :lock="lock" :color="color" :z-index="1000" @click.native="show4 = false">全屏遮罩</ui-backdrop>
   </div>
 </template>
 <script>
@@ -46,6 +47,7 @@ export default {
       show4: false,
       transition: 'fold',
       color: 'dark',
+      lock:true,
       afterEnter: () => { this.$UiToast('backdrop open') },
       afterLeave: () => { this.$UiToast('backdrop close') },
     }

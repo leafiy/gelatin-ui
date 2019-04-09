@@ -82,6 +82,7 @@ module.exports = {
           ['/backdrop/', '遮罩层'],
           ['/captcha/', '验证码'],
           ['/image/', 'Image 图片懒加载'],
+          ['/spinner/', 'Css spinners'],
           ['/height-transition/', 'Height transition'],
           ['/router-transition/', 'Router transition'],
           ['/share/', 'Share'],

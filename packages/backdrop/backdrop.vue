@@ -11,7 +11,7 @@
 import "../assets/scss/backdrop.scss";
 import { lock, unlock } from 'tua-body-scroll-lock'
 import isIOS from 'buxton/browser/isIOS.js'
-
+import UiSpinner from '../spinner/spinner.vue'
 export default {
   name: "ui-backdrop",
   data() {
@@ -26,7 +26,6 @@ export default {
       type: String,
       default: "fade"
     },
-    onClick: Function,
     zIndex: Number,
     fullscreen: Boolean,
     content: String,
@@ -43,7 +42,11 @@ export default {
         return ["lighter", "light", "dark", "darker"].includes(value);
       }
     },
-    lock: Boolean
+    lock: Boolean,
+    loading:Boolean
+  },
+  components:{
+    UiSpinner
   },
   computed: {
     styles() {
@@ -98,14 +101,20 @@ export default {
           this.$el.parentNode.style.position = 'relative'
         }
       }
-      if (this.autoRadius && !this.radius) {
+      if (this.autoRadius && !this.radius && !this.fullscreen) {
         let radius = getComputedStyle(this.$el.parentNode).borderRadius
         this.radius_ = radius
+      }
+      if(this.fullscreen){
+        document.body.appendChild(this.$el)
       }
     },
     resetContainer() {
       if (!this.fullscreen && this.$el.parentNode) {
         this.$el.parentNode.style.position = this.parentPosition
+      }
+      if(this.fullscreen){
+        document.body.removeChild(this.$el)
       }
     },
     afterEnter() {
