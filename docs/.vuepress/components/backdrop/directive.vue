@@ -11,7 +11,7 @@
     <div class="box" v-ui-mask="options2">
       {{text3}}
     </div>
-    <div class="box" v-ui-mask="true">
+    <div class="box" v-ui-mask="t">
       v-ui-mask="true"
     </div>
     <ui-hr>动态指令</ui-hr>
@@ -30,6 +30,7 @@ export default {
 
   data() {
     return {
+      t: true,
       options1: { show: true },
       options2: { show: false },
       text: '<div class="box" v-ui-mask></div>',
