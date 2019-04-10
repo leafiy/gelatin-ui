@@ -68,9 +68,7 @@ export default {
     show(value) {
       if (value) {
         this.fitContainer()
-        if (this.lock) {
-          this.lockScroll()
-        }
+
       } else {
         if (this.lock) {
           this.unlockScroll()
@@ -118,6 +116,9 @@ export default {
       if (this.fullscreen) {
         document.body.appendChild(this.$el)
       }
+      if (this.lock) {
+        this.lockScroll()
+      }
     },
     resetContainer() {
       let el = this.getParent()
@@ -140,7 +141,9 @@ export default {
     this.$root.$on('clear-backdrop', () => {
       this.show = false
     })
-
+    if(this.show){
+      this.fitContainer()
+    }
   }
 };
 

@@ -25,3 +25,6 @@
 
 <backdrop-directive></backdrop-directive>
 
+## Loading
+
+<backdrop-loading></backdrop-loading>
