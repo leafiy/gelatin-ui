@@ -32,24 +32,25 @@ const makeMask = (el, options = {}) => {
 }
 
 
+const makeOptions = (el, binding) => {
+  if (binding && !binding.value && !binding.hasOwnProperty('value')) {
+    makeMask(el, { show: true })
+  }
+  if (binding.value && binding.hasOwnProperty('value')) {
+    makeMask(el, binding.value)
+  }
+  if (binding.value && typeof binding.value == 'boolean') {
+    makeMask(el, { show: true })
+  }
+}
+
 const UiMask = {
   name: "ui-mask",
-  inserted(el, binding, vnode) {
-    if (binding && !binding.value && !binding.hasOwnProperty('value')) {
-      makeMask(el, { show: true })
-    }
-    if (binding.value && binding.hasOwnProperty('value')) {
-      makeMask(el, binding.value)
-    }
-    if (binding.value && typeof binding.value == 'boolean') {
-      makeMask(el, { show: true })
-    }
+  inserted(el, binding) {
+    makeOptions(el, binding)
   },
-  update(el, binding, vnode) {
-    if (binding.oldValue !== binding.value) {
-      makeMask(el, binding.value)
-
-    }
+  update(el, binding) {
+    makeOptions(el, binding)
   }
 }
 
