@@ -23,7 +23,6 @@ import UiHightlight from "./highlight/index.js";
 import UiHr from "./hr/index.js";
 import UiBackdrop from "./backdrop/index.js";
 import UiAutocomplete from "./autocomplete/index.js";
-import UiLoading from "./loading/index.js";
 import UiMask from "./backdrop/mask.js";
 import { UiConfirm } from "./confirm/index.js";
 import { UiModal } from "./modal/index.js";
@@ -49,6 +48,7 @@ import UiTabs from "./tabs/index.js";
 import $UiDropdown from "./dropdown/index.js";
 import UiTooltip from "./tooltip/index.js";
 import UiCaptcha from "./captcha/index.js";
+import UiLoading from "./backdrop/loading.js";
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
@@ -101,7 +101,14 @@ const plugins = {
   $UiLoadingBar,
   $UiDropdown
 };
-const directives = [UiHightlight, UiLoading, UiMask, UiSticky, UiTooltip];
+const directives = [
+  UiHightlight,
+  UiLoading,
+  UiMask,
+  UiSticky,
+  UiTooltip,
+  UiLoading
+];
 import ZHandler from "../src/utils/zHandler.js";
 
 const install = function(Vue, options = {}) {

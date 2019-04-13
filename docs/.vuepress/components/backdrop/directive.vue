@@ -11,6 +11,12 @@
     <div class="box" v-ui-mask="options2">
       {{text3}}
     </div>
+    <div class="box" v-ui-mask="options4">
+       {
+        content: '文字遮罩',
+        show: true
+      }
+    </div>
     <div class="box" v-ui-mask="t">
       v-ui-mask="true"
     </div>
@@ -36,7 +42,12 @@ export default {
       text: '<div class="box" v-ui-mask></div>',
       text2: '<div class="box" v-ui-mask="{show:true}"></div>',
       text3: '<div class="box" v-ui-mask="{show:false}"></div>',
-      options3: {}
+      text4: '',
+      options3: {},
+      options4: {
+        content: '文字遮罩',
+        show: true
+      }
     }
   },
 

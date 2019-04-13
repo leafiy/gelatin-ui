@@ -1,10 +1,27 @@
 <template>
   <div class="ui-modal-wrapper">
-    <ui-backdrop :show="value && showBackdrop" v-if="showBackdrop" fullscreen :z-index="_zIndex" :color="backdropColor"></ui-backdrop>
+    <ui-backdrop
+      :show="value && showBackdrop"
+      v-if="showBackdrop"
+      fullscreen
+      :z-index="_zIndex"
+      :color="backdropColor"
+    ></ui-backdrop>
     <transition :name="transition">
-      <div class="ui-modal" :class="modalClasses" v-if="value" :style="modalStyles" ref="modal">
+      <div
+        class="ui-modal"
+        :class="modalClasses"
+        v-if="value"
+        :style="modalStyles"
+        ref="modal"
+      >
         <div class="ui-modal-inner">
-          <ui-icon @click.native="closeModal" name="close" class="ui-modal-close-icon" v-if="showCloseIcon"></ui-icon>
+          <ui-icon
+            @click.native="closeModal"
+            name="close"
+            class="ui-modal-close-icon"
+            v-if="showCloseIcon"
+          ></ui-icon>
           <div class="ui-modal-header" v-if="header || $slots.header">
             <div v-if="header" v-html="header"></div>
             <slot name="header"></slot>
@@ -15,12 +32,22 @@
           </div>
           <div class="ui-modal-footer" v-if="footer || $slots.footer">
             <div v-html="footer" v-if="footer"></div>
-            <ui-button-group class="ui-modal-btn" size="sm" v-if="buttons.length">
-              <ui-button v-for="btn of buttons" :type="btn.type" :key="btn.text" @click.native="
+            <ui-button-group
+              class="ui-modal-btn"
+              size="sm"
+              v-if="buttons.length"
+            >
+              <ui-button
+                v-for="btn of buttons"
+                :type="btn.type"
+                :key="btn.text"
+                @click.native="
                   () => {
                     btn.action && btn.action();
                   }
-                ">{{ btn.content }}</ui-button>
+                "
+                >{{ btn.content }}</ui-button
+              >
             </ui-button-group>
             <slot name="footer"></slot>
           </div>
@@ -36,7 +63,7 @@ import UiButton from "../button/button.vue";
 import UiBackdrop from "../backdrop/backdrop.vue";
 import "../assets/scss/modal.scss";
 import elementContains from "buxton/browser/elementContains";
-import UiResizer from '../resizer/resizer.vue'
+// import UiResizer from "../resizer/resizer.vue";
 export default {
   name: "ui-modal",
 
@@ -45,7 +72,7 @@ export default {
       header: "",
       content: "",
       footer: "",
-      buttons: [],
+      buttons: []
     };
   },
   props: {
@@ -84,8 +111,8 @@ export default {
     UiIcon,
     UiButtonGroup,
     UiButton,
-    UiBackdrop,
-    UiResizer
+    UiBackdrop
+    // UiResizer
   },
   computed: {
     modalClasses() {
@@ -98,16 +125,18 @@ export default {
     },
 
     _zIndex() {
-      return this.$zIndex ?
-        this.$zIndex.add() :
-        this.zIndex ?
-        this.zIndex :
-        1000;
+      return this.$zIndex
+        ? this.$zIndex.add()
+        : this.zIndex
+        ? this.zIndex
+        : 1000;
     },
     modalStyles() {
-      return [{
-        zIndex: this._zIndex + 1
-      }];
+      return [
+        {
+          zIndex: this._zIndex + 1
+        }
+      ];
     }
   },
   watch: {
@@ -124,15 +153,15 @@ export default {
   methods: {
     bindEvents() {
       document.addEventListener("click", this.handleDocumentClick);
-      document.addEventListener('keyup', this.handleKeyup)
+      document.addEventListener("keyup", this.handleKeyup);
     },
     unBindEvents() {
       document.removeEventListener("click", this.handleDocumentClick);
-      document.removeEventListener('keyup', this.handleKeyup)
+      document.removeEventListener("keyup", this.handleKeyup);
     },
     handleKeyup(e) {
-      if (e.key === "Escape" || e.key === "Esc" && this.closeOnPressEscape) {
-        this.closeModal()
+      if (e.key === "Escape" || (e.key === "Esc" && this.closeOnPressEscape)) {
+        this.closeModal();
       }
     },
     handleDocumentClick(e) {
@@ -141,7 +170,7 @@ export default {
         return;
       }
       if (!elementContains(this.$refs["modal"], el) && this.closeOnClick) {
-        this.closeModal()
+        this.closeModal();
       }
     },
     closeModal() {
@@ -154,7 +183,7 @@ export default {
     openModal() {
       document.body.appendChild(this.$el);
       if (this.disableScroll) {
-        import( /* webpackChunkName: "vendor" */ "../../src/utils/scrollbar.js").then(
+        import(/* webpackChunkName: "vendor" */ "../../src/utils/scrollbar.js").then(
           module => {
             let scrollbarWidth = module.default();
             document.body.style.overflow = "hidden";
@@ -167,5 +196,4 @@ export default {
     }
   }
 };
-
 </script>

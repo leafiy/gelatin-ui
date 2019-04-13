@@ -19,6 +19,8 @@
 |selectable|Boolean|true|是否可选 user-select|
 |color|String|dark|["lighter", "light", "dark", "darker"]|
 |lock|Boolean|false|是否锁定滚动|
+|loading|String||[dot,bounce,scale,circle,ring]使用内置loading|
+|content|String||文字遮罩|
 
 
 ## 指令directive调用
@@ -28,3 +30,15 @@
 ## Loading
 
 <backdrop-loading></backdrop-loading>
+
+
+```html
+<div class="box" v-ui-loading>文字文字</div>
+<p v-ui-loading>一段文字</p>
+<div v-ui-loading="'ring'">任意元素</div>
+<p v-ui-loading="{loading:'bounce'}">一段文字</p>
+<p v-ui-loading="{loading:'bounce',color:'light'}">一段文字</p>
+<p>
+  <span v-ui-loading>一行文字</span>
+</p>
+```

@@ -21,7 +21,7 @@
       <ui-button @click.native="show3 = false">关闭遮罩</ui-button>
     </ui-button-group>
     <div class="box">
-      <ui-backdrop :show="show3" auto-radius :transition="transition" @after-enter="afterEnter" @after-leave="afterLeave"></ui-backdrop>好多文字好多文字好多文字好多文字好多文字
+      <ui-backdrop :show="show3" auto-radius :transition="transition" @after-enter="afterEnter" @after-leave="afterLeave" content="文字遮罩文字遮罩文字遮罩文字遮罩文字遮罩"></ui-backdrop>好多文字好多文字好多文字好多文字好多文字
     </div>
     <ui-hr></ui-hr>
     <ui-button-group size="sm">
@@ -32,6 +32,20 @@
       <ui-button @click.native="show4 = true;color='darker';lock=true">darker</ui-button>
     </ui-button-group>
     <ui-backdrop :show="show4" auto-radius fullscreen :lock="lock" :color="color" :z-index="1000" @click.native="show4 = false">全屏遮罩</ui-backdrop>
+    <ui-hr>文字遮罩</ui-hr>
+    <div class="box">
+      <ui-backdrop :show="true" auto-radius content="文字遮罩文字遮罩文字遮罩文字遮罩"></ui-backdrop>好多文字好多文字好多文字好多文字好多文字
+    </div>
+    <ui-hr>内置loading</ui-hr>
+    <div class="box" style="display:inline-block">
+      <ui-backdrop :show="true" loading="dot" auto-radius></ui-backdrop>loading
+    </div>
+    <div class="box" style="display:inline-block">
+      <ui-backdrop :show="true" loading="circle" auto-radius></ui-backdrop>loading="circle"
+    </div>
+    <div class="box" style="display:inline-block">
+      <ui-backdrop :show="true" color="light" loading="ring" auto-radius></ui-backdrop>loading="ring"
+    </div>
   </div>
 </template>
 <script>
@@ -47,7 +61,7 @@ export default {
       show4: false,
       transition: 'fold',
       color: 'dark',
-      lock:true,
+      lock: true,
       afterEnter: () => { this.$UiToast('backdrop open') },
       afterLeave: () => { this.$UiToast('backdrop close') },
     }

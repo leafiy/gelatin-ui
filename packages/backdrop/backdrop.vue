@@ -1,23 +1,33 @@
 <template>
-  <transition :name="transition" @after-enter="afterEnter" @after-leave="afterLeave">
+  <transition
+    :name="transition"
+    @after-enter="afterEnter"
+    @after-leave="afterLeave"
+  >
     <div class="ui-backdrop" v-if="show" :style="styles" :class="classes">
       <slot>
         <span v-if="content">{{ content }}</span>
       </slot>
+      <ui-spinner
+        :color="spinnerColor"
+        :type="loading"
+        v-if="loading"
+      ></ui-spinner>
     </div>
   </transition>
 </template>
 <script>
 import "../assets/scss/backdrop.scss";
-import { lock, unlock } from 'tua-body-scroll-lock'
-import isIOS from 'buxton/browser/isIOS.js'
-import UiSpinner from '../spinner/spinner.vue'
+import { lock, unlock } from "tua-body-scroll-lock";
+import isIOS from "buxton/browser/isIOS.js";
+import UiSpinner from "../spinner/spinner.vue";
 export default {
   name: "ui-backdrop",
   data() {
     return {
-      parentPosition: '',
-      radius_: typeof this.radius == 'number' ? `${this.radius}px` : `${this.radius}`
+      parentPosition: "",
+      radius_:
+        typeof this.radius == "number" ? `${this.radius}px` : `${this.radius}`
     };
   },
   props: {
@@ -43,35 +53,40 @@ export default {
       }
     },
     lock: Boolean,
-    loading: Boolean,
-    parentEl: Array
+    parentEl: Array,
+    loading: [String, Boolean],
+    blur: [Boolean, Number]
   },
   components: {
     UiSpinner
   },
   computed: {
     styles() {
-      return [{
-        zIndex: this.zIndex,
-        borderRadius: this.radius_,
-        userSelect: this.selectable ? '' : 'none'
-      }];
+      return [
+        {
+          zIndex: this.zIndex,
+          borderRadius: this.radius_,
+          userSelect: this.selectable ? "" : "none"
+        }
+      ];
     },
     classes() {
       return [
         `ui-backdrop-${this.color}`,
         this.fullscreen && "ui-backdrop-fullscreen"
       ];
+    },
+    spinnerColor() {
+      return this.color == "dark" || this.color == "darker" ? "light" : "dark";
     }
   },
   watch: {
     show(value) {
       if (value) {
-        this.fitContainer()
-
+        this.fitContainer();
       } else {
         if (this.lock) {
-          this.unlockScroll()
+          this.unlockScroll();
         }
       }
     }
@@ -79,72 +94,73 @@ export default {
   methods: {
     getParent() {
       if (this.parentEl) {
-        return this.parentEl[0] ? this.parentEl[0] : null
+        return this.parentEl[0] ? this.parentEl[0] : null;
       } else {
-        return this.$el.parentNode
+        return this.$el.parentNode;
       }
-
     },
     lockScroll() {
       if (this.fullscreen) {
-        lock(null)
+        lock(null);
       }
       if (isIOS()) {
-        lock(this.$el)
+        lock(this.$el);
       }
     },
     unlockScroll() {
       if (this.fullscreen) {
-        unlock(null)
+        unlock(null);
       }
       if (isIOS()) {
-        unlock(this.$el)
+        unlock(this.$el);
       }
     },
     fitContainer() {
-      let el = this.getParent()
+      let el = this.getParent();
       if (!this.fullscreen && el) {
-        this.parentPosition = getComputedStyle(el).position
-        if (this.parentPosition !== 'relative' && this.parentPosition !== 'absolute') {
-          el.style.position = 'relative'
+        this.parentPosition = getComputedStyle(el).position;
+        if (
+          this.parentPosition !== "relative" &&
+          this.parentPosition !== "absolute"
+        ) {
+          el.style.position = "relative";
         }
       }
       if (this.autoRadius && !this.radius && !this.fullscreen) {
-        let radius = getComputedStyle(el).borderRadius
-        this.radius_ = radius
+        let radius = getComputedStyle(el).borderRadius;
+        this.radius_ = radius;
       }
       if (this.fullscreen) {
-        document.body.appendChild(this.$el)
+        document.body.appendChild(this.$el);
       }
       if (this.lock) {
-        this.lockScroll()
+        this.lockScroll();
       }
     },
     resetContainer() {
-      let el = this.getParent()
+      let el = this.getParent();
       if (!this.fullscreen && el) {
-        el.style.position = this.parentPosition
+        el.style.position = this.parentPosition;
       }
       if (this.fullscreen) {
-        document.body.removeChild(this.$el)
+        document.body.removeChild(this.$el);
       }
     },
     afterEnter() {
-      this.$emit('after-enter')
+      this.$emit("after-enter");
     },
     afterLeave() {
-      this.resetContainer()
-      this.$emit('after-leave')
-    },
+      this.resetContainer();
+      this.$emit("after-leave");
+    }
   },
   mounted() {
-    this.$root.$on('clear-backdrop', () => {
-      this.show = false
-    })
-    if(this.show){
-      this.fitContainer()
+    this.$root.$on("clear-backdrop", () => {
+      this.show = false;
+    });
+    if (this.show) {
+      this.fitContainer();
     }
   }
 };
-
 </script>

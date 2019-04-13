@@ -272,10 +272,10 @@
   height: 26px;
   position: relative;
   text-indent: -9999em;
-  border-top: 4px solid $lighter;
-  border-right: 4px solid $lighter;
-  border-bottom: 4px solid $lighter;
-  border-left: 4px solid $light;
+  border-top: 4px solid lighten($light, 10%);
+  border-right: 4px solid lighten($light, 10%);
+  border-bottom: 4px solid lighten($light, 10%);
+  border-left: 4px solid darken($light, 15%);
   transform: translateZ(0);
   animation: ring 1.1s infinite linear;
 }
@@ -307,4 +307,27 @@
 
 .ui-spinner-dot .rect3 {
   animation-delay: -1s
+}
+
+
+.ui-spinner-color-light {
+  &.ui-spinner {
+    >div {
+      background-color: rgba(255, 255, 255, .9);
+
+      &:before {
+        background-color: rgba(255, 255, 255, .9);
+      }
+    }
+
+    .ui-spinner-ring-inner,
+    .ui-spinner-ring-inner:before {
+
+      border-top: 4px solid rgba(255, 255, 255, .5);
+      border-right: 4px solid rgba(255, 255, 255, .5);
+      border-bottom: 4px solid rgba(255, 255, 255, .5);
+      border-left: 4px solid #fff;
+
+    }
+  }
 }

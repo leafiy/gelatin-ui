@@ -13,7 +13,7 @@
       <template v-if="type == 'scale'">
         <div class="scale-inner"></div>
       </template>
-      <template v-if="type=='circle'">
+      <template v-if="type == 'circle'">
         <div class="ui-spinner-circle1 ui-spinner-circle-inner"></div>
         <div class="ui-spinner-circle2 ui-spinner-circle-inner"></div>
         <div class="ui-spinner-circle3 ui-spinner-circle-inner"></div>
@@ -27,7 +27,7 @@
         <div class="ui-spinner-circle11 ui-spinner-circle-inner"></div>
         <div class="ui-spinner-circle12 ui-spinner-circle-inner"></div>
       </template>
-      <template v-if="type =='ring'">
+      <template v-if="type == 'ring'">
         <div class="ui-spinner-ring-inner"></div>
       </template>
     </div>
@@ -44,16 +44,20 @@ export default {
     },
     transition: {
       type: String,
-      default: 'fade'
+      default: "fade"
+    },
+    color: {
+      type: String,
+      default: "dark",
+      validator(value) {
+        return ["light", "dark"].includes(value);
+      }
     }
   },
   computed: {
     classes() {
-      return [
-        `ui-spinner-${this.type}`,
-      ];
+      return [`ui-spinner-${this.type}`, `ui-spinner-color-${this.color}`];
     }
   }
 };
-
 </script>
