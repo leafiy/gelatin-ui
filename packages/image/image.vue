@@ -1,15 +1,7 @@
 <template>
-  <div
-    class="ui-image"
-    :class="[keepSize && 'ui-image-keep-size']"
-    :style="{ height: imageHeight + 'px', width: imageWidth + 'px' }"
-  >
+  <div class="ui-image" :class="[keepSize && 'ui-image-keep-size']" :style="{ height: imageHeight + 'px', width: imageWidth + 'px' }">
     <transition name="fade">
-      <div
-        class="ui-image-image"
-        v-if="!loading"
-        :style="backgroundStyle"
-      ></div>
+      <div class="ui-image-image" v-if="!loading" :style="backgroundStyle"></div>
     </transition>
     <div class="ui-image-cover" v-if="cover"></div>
     <slot name="loader" v-if="loading">
@@ -32,7 +24,8 @@ export default {
     src: String,
     cover: Boolean,
     keepSize: Boolean,
-    fallback: String
+    fallback: String,
+    zIndex: Number
   },
   components: {
     UiSpinner
@@ -78,16 +71,17 @@ export default {
   computed: {
     slotStyles() {
       return {
-        zIndex: this.$zIndex ? this.$zIndex.add() : 100
+        zIndex: this.zIndex ? this.zIndex : this.$zIndex ? this.$zIndex.add() : 200
       };
     },
     backgroundStyle() {
       return {
-        backgroundImage: this.failed
-          ? `url(${this.fallback})`
-          : `url(${this.src})`
+        backgroundImage: this.failed ?
+          `url(${this.fallback})` :
+          `url(${this.src})`
       };
     }
   }
 };
+
 </script>

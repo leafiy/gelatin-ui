@@ -5,26 +5,26 @@
   top: 46%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-  // z-index: 1200;
 
 
   &-size {
     &-lg {
-      width: 620px;
+      // width: 620px;
     }
 
     &-sm {
-      width: 460px;
+      // width: 460px;
     }
   }
 
 
   &-inner {
     position: relative;
-    border-radius: $radius;
+    border-radius: $radius/2;
     background: #fff;
     box-shadow: $shadow;
     padding: 16px 22px;
+
   }
 
   &-close-icon {
@@ -46,7 +46,10 @@
   }
 
   &-content {
-    padding: 20px 0;
+    margin: 20px 0;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   &-footer {}
@@ -58,10 +61,11 @@
 .modal-leave-active {
   transition: all .2s ease-in-out;
   // transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0) scale(1);
 }
 
 .modal-enter,
 .modal-leave-to {
   opacity: 0;
-  transform: translate3d(-50%, -80%, 0);
+  transform: translate3d(-50%, -80%, 0) scale(.8);
 }

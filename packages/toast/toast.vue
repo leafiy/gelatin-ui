@@ -1,53 +1,21 @@
 <template>
   <div :class="classes" @mouseenter="pause" @mouseleave="resume">
-    <transition
-      enter-active-class="bounceIn"
-      leave-active-class="fadeOut"
-      @after-enter="entered"
-      @after-leave="destroy"
-      @before-leave="isEntered = false"
-    >
-      <div
-        class="ui-toast-icon"
-        @click="clickIcon"
-        v-if="!isMessage && show"
-        :style="iconStyles"
-      >
+    <transition enter-active-class="bounceIn" leave-active-class="fadeOut" @after-enter="entered" @after-leave="destroy" @before-leave="isEntered = false">
+      <div class="ui-toast-icon" @click="clickIcon" v-if="!isMessage && show" :style="iconStyles">
         <ui-icon :name="iconName" v-if="iconName"></ui-icon>
       </div>
     </transition>
-    <transition
-      :enter-active-class="toastInTransition"
-      :leave-active-class="toastOutTransition"
-      @after-enter="showContent = true"
-      @before-leave="showContent = false"
-    >
-      <div
-        class="ui-toast-background"
-        v-if="!isMessage && isEntered"
-        :style="backgroundStyles"
-      ></div>
+    <transition :enter-active-class="toastInTransition" :leave-active-class="toastOutTransition" @after-enter="showContent = true" @before-leave="showContent = false">
+      <div class="ui-toast-background" v-if="!isMessage && isEntered" :style="backgroundStyles"></div>
     </transition>
-    <div
-      class="ui-toast-content"
-      :style="contentStyles"
-      v-if="!isMessage && message"
-    >
+    <div class="ui-toast-content" :style="contentStyles" v-if="!isMessage && message">
       {{ message }}
     </div>
-    <transition
-      enter-active-class="slideInDown"
-      leave-active-class="slideOutUp"
-      @after-leave="destroy"
-    >
-      <div
-        class="ui-message-content"
-        :class="[
+    <transition enter-active-class="slideInDown" leave-active-class="slideOutUp" @after-leave="destroy">
+      <div class="ui-message-content" :class="[
           iconName && 'ui-message-content-with-icon',
           showClose && 'ui-message-content-with-close'
-        ]"
-        v-if="isMessage && show"
-      >
+        ]" v-if="isMessage && show">
         <div class="ui-message-title" v-if="title">{{ title }}</div>
         <div class="ui-message-message" v-if="message">{{ message }}</div>
         <div class="ui-message-icon" v-if="iconName">
@@ -57,15 +25,10 @@
           <ui-icon name="icon-close-circle-fill"></ui-icon>
         </div>
         <div class="ui-message-actions" v-if="actions.length">
-          <span
-            class="ui-message-action-item"
-            v-for="action of actions"
-            :key="action.content"
-            @click="clickOnMessageIcon(action)"
-          >
+          <span class="ui-message-action-item" v-for="action of actions" :key="action.content" @click="clickOnMessageIcon(action)">
             <ui-icon v-if="action.icon" :name="action.icon"></ui-icon>
-            {{ action.content }}</span
-          >
+            {{ action.content }}
+          </span>
         </div>
       </div>
     </transition>
@@ -95,7 +58,7 @@ export default {
       icon: "",
       title: "",
       actions: [],
-      zIndex: this.$zIndex ? this.$zIndex.get() : 1000,
+      zIndex: this.zIndex ? this.zIndex : this.$zIndex ? this.$zIndex.add() : 200,
       isEntered: false,
       closeOnClick: false,
       onClick: null,
@@ -221,4 +184,5 @@ export default {
     }
   }
 };
+
 </script>

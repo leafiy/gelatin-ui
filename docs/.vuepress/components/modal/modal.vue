@@ -1,14 +1,100 @@
 <template>
   <div class="container">
     <ClientOnly>
-      <ui-button @click.native="openModal">组件调用</ui-button>
-      <ui-button @click.native="openModal2">JS调用</ui-button>
+      <ui-button-group size="sm">
+        <ui-button @click.native="show = true">组件调用</ui-button>
+        <ui-button @click.native="show2 = true">超多文字并锁定滚动</ui-button>
+      </ui-button-group>
       <ui-hr></ui-hr>
-      <ui-modal v-model="open">
+      <ui-modal v-model="show">
         <div slot="header">Modal Header</div>
         <p>modal content</p>
         <div slot="footer">Modal Footer</div>
       </ui-modal>
+      <ui-modal v-model="show2" lock>
+        <div slot="header">Modal Header</div>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <p>modal content</p>
+        <div slot="footer">Modal Footer</div>
+      </ui-modal>
+      <!-- <ui-button @click.native="openModal2">JS调用</ui-button> -->
     </ClientOnly>
   </div>
 </template>
@@ -19,7 +105,8 @@ export default {
 
   data() {
     return {
-      open: false
+      show: false,
+      show2: false
     }
   },
   methods: {

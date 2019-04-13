@@ -1,44 +1,18 @@
 <template>
   <div class="ui-popover">
     <slot name="reference"></slot>
-    <div
-      class="ui-popover-menu"
-      ref="popper"
-      v-show="visible"
-      :style="menuStyle"
-      :class="classes"
-      @click="clickMenu"
-    >
-      <transition
-        :name="transition"
-        @after-enter="afterEnter"
-        @after-leave="afterLeave"
-      >
-        <div
-          class="ui-popover-inner"
-          :class="{ 'ui-popover-menu-list': list && list.length }"
-          v-show="showMenu"
-        >
-          <div
-            class="ui-popover-arrow"
-            v-if="arrow"
-            :style="arrowStyle"
-            ref="arrow"
-          ></div>
+    <div class="ui-popover-menu" ref="popper" v-show="visible" :style="menuStyle" :class="classes" @click="clickMenu">
+      <transition :name="transition" @after-enter="afterEnter" @after-leave="afterLeave">
+        <div class="ui-popover-inner" :class="{ 'ui-popover-menu-list': list && list.length }" v-show="showMenu">
+          <div class="ui-popover-arrow" v-if="arrow" :style="arrowStyle" ref="arrow"></div>
           <slot></slot>
           <div v-html="content" v-if="content"></div>
           <ul v-if="list && list.length">
-            <li
-              class="ui-popover-menu-list-item"
-              v-for="(item, index) of list"
-              :key="index"
-              v-html="item.title"
-              @click="
+            <li class="ui-popover-menu-list-item" v-for="(item, index) of list" :key="index" v-html="item.title" @click="
                 () => {
                   handleListClick(item);
                 }
-              "
-            ></li>
+              "></li>
           </ul>
         </div>
       </transition>
@@ -112,24 +86,22 @@ export default {
     classes: String,
     popperOptions: {
       type: Object,
-      default() {
+      default () {
         return {};
       }
     },
-    zIndex: {
-      type: Number,
-      default() {
-        return this.$zIndex ? this.$zIndex.add() : 1000;
-      }
-    }
+    zIndex: Number
   },
   computed: {
     visible() {
       return !this.disable && this.showPopper;
     },
+    zIndex_() {
+      return this.zIndex ? this.zIndex : this.$zIndex ? this.$zIndex.add() : 200
+    },
     menuStyle() {
       let styles = {};
-      styles.zIndex = this.zIndex;
+      styles.zIndex = this.zIndex_;
       if (this.currentPosition == "bottom") {
         styles.marginTop = `${this.arrowSize}px`;
       }
@@ -318,12 +290,10 @@ export default {
           this.boundariesSelector &&
           document.querySelector(this.boundariesSelector)
         ) {
-          this.popperOptions.modifiers = Object.assign(
-            {},
+          this.popperOptions.modifiers = Object.assign({},
             this.popperOptions.modifiers
           );
-          this.popperOptions.modifiers.preventOverflow = Object.assign(
-            {},
+          this.popperOptions.modifiers.preventOverflow = Object.assign({},
             this.popperOptions.modifiers.preventOverflow
           );
           this.popperOptions.modifiers.preventOverflow.boundariesElement = this.boundariesElement;
@@ -378,9 +348,9 @@ export default {
     },
     handleDocumentClick(e) {
       let reference =
-        typeof this.reference == "string"
-          ? document.querySelector(this.reference)
-          : reference;
+        typeof this.reference == "string" ?
+        document.querySelector(this.reference) :
+        reference;
       if (
         !this.$el ||
         !this.referenceElm ||
@@ -402,4 +372,5 @@ export default {
     this.$emit("destroyed");
   }
 };
+
 </script>

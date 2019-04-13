@@ -21,11 +21,7 @@ const $UiToast = function(options) {
       position.x
     } ui-toast-wrapper-y-${position.y}`;
     document.body.appendChild(toastContainer[p]);
-    toastContainer[p].style.zIndex = options.zIndex
-      ? options.zIndex
-      : Vue.prototype.$zIndex
-      ? Vue.prototype.$zIndex.add()
-      : 1000;
+    toastContainer[p].style.zIndex = options.zIndex ? options.zIndex : this.$zIndex ? this.$zIndex.get() : 200
   }
   const id = nanoid();
 
@@ -37,7 +33,7 @@ const $UiToast = function(options) {
     el: document.createElement("div"),
     data: options
   });
-  instance.$zIndex = this.$zIndex;
+  instance.$zIndex = this.$zIndex ? this.$zIndex : 200;
   instance.$mount();
   instance.show = true;
   instance.$id = id;
