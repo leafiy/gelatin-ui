@@ -1,11 +1,12 @@
 @import './var.scss';
 
+
 .ui-modal {
   position: fixed;
   top: 46%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-
+  width: auto;
 
   &-size {
     &-lg {
@@ -23,14 +24,17 @@
     border-radius: $radius/2;
     background: #fff;
     box-shadow: $shadow;
-    padding: 16px 22px;
-
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    outline: 0;
+    background-clip: padding-box;
   }
 
-  &-close-icon {
-    position: absolute;
-    top: 18px;
-    right: 22px;
+  &-close {
+    // position: absolute;
+    // top: 18px;
+    // right: 22px;
     cursor: pointer;
     font-size: 16px;
 
@@ -42,17 +46,25 @@
   }
 
   &-header {
-    font-size: 18px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: $padding/2;
   }
 
   &-content {
-    margin: 20px 0;
+    margin: $padding/2 0;
     max-height: calc(100vh - 240px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    position: relative;
+    flex: 1 1 auto;
+    padding: $padding/2;
   }
 
-  &-footer {}
+  &-footer {
+    padding: $padding/2;
+  }
 }
 
 

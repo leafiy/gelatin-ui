@@ -1,13 +1,16 @@
 <template>
-  <div class="ui-modal-wrapper">
+  <div class="ui-modal-wrapper" tabindex="-1" role="dialog">
     <ui-backdrop :show="value && showBackdrop" :lock="lock" v-if="showBackdrop" fullscreen :z-index="_zIndex" :color="backdropColor"></ui-backdrop>
     <transition :name="transition">
-      <div class="ui-modal" :class="modalClasses" v-if="value" :style="modalStyles" ref="modal" tabindex="-1" role="dialog">
+      <div class="ui-modal" :class="modalClasses" v-if="value" :style="modalStyles" ref="modal">
         <div class="ui-modal-inner">
-          <ui-icon @click.native="closeModal" name="close" class="ui-modal-close-icon" v-if="showCloseIcon"></ui-icon>
-          <div class="ui-modal-header" v-if="header || $slots.header">
+          <div class="ui-modal-header">
             <div v-if="header" v-html="header"></div>
+
             <slot name="header"></slot>
+            <span class="ui-modal-close" v-if="showCloseIcon">
+              <ui-icon @click.native="closeModal" name="close"></ui-icon>
+            </span>
           </div>
           <div class="ui-modal-content" ref="modal-content" :style="contentStyles" v-if="content || $slots.default">
             <div v-if="content" v-html="content"></div>
