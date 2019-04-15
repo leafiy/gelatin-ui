@@ -1,4 +1,5 @@
 import { mergeData } from 'vue-functional-data-merge'
+import '../assets/scss/bootstrap-grid/grid.scss'
 export default {
   name: 'ui-container',
   functional: true,
