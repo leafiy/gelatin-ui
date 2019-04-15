@@ -1,13 +1,17 @@
 # layout
 
-使用flex布局，rem为单位，不支持ie10以下浏览器
+使用flex布局，基本沿用bootstrapV4的代码，不支持ie10以下浏览器
+
+<layout-index></layout-index>
+
 
 
 ### Responsive
 
 使用Number传入props
 
-<layout-row-responsive></layout-row-responsive>
+
+<!-- <layout-row-responsive></layout-row-responsive> -->
 
 
 ```html
@@ -47,7 +51,7 @@
 
 ### Responsive by percertage
 
-<layout-row-responsive-percertage></layout-row-responsive-percertage>
+<!-- <layout-row-responsive-percertage></layout-row-responsive-percertage> -->
 
 ```html
 <ui-row>
@@ -66,7 +70,7 @@
 
 ### Offset
 
-<layout-offset></layout-offset>
+<!-- <layout-offset></layout-offset> -->
 
 ```html
     <ui-row>
@@ -88,7 +92,7 @@
 
 ### Gutter
 
-<layout-gutter></layout-gutter>
+<!-- <layout-gutter></layout-gutter> -->
 
 gutter unit is **rem**
 

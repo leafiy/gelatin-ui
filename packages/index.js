@@ -10,8 +10,9 @@ import UiInputGroup from "./input-group/index.js";
 import UiTextarea from "./textarea/index.js";
 import UiImage from "./image/index.js";
 import UiHeading from "./heading/index.js";
-import UiRow from "./row/index.js";
-import UiCol from "./col/index.js";
+// import UiRow from "./row/index.js";
+// import UiCol from "./col/index.js";
+import { UiRow, UiCol, UiContainer } from "./layout/index.js"
 import UiButton from "./button/index.js";
 import UiButtonGroup from "./button-group/index.js";
 import UiAccordion from "./accordion/index.js";
@@ -60,6 +61,7 @@ const components = [
   UiAlert,
   UiRow,
   UiCol,
+  UiContainer,
   UiCard,
   UiInput,
   UiInputGroup,

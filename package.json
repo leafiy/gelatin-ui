@@ -27,6 +27,7 @@
     "resize-sensor": "^0.0.6",
     "tua-body-scroll-lock": "^0.1.0",
     "vue": "^2.5.21",
+    "vue-functional-data-merge": "^2.0.7",
     "vue-perfect-scrollbar": "^0.1.0",
     "vue-resize": "^0.4.5",
     "vue-resize-directive": "^1.1.4"
