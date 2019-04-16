@@ -26,12 +26,12 @@ export default {
   },
   render(h, { props, data, children }) {
     let componentData = mergeData(data, {
-      staticClass: 'ui-[layout-row]',
+      staticClass: 'ui-layout-row',
       class: {
-        'ui-[layout-row]-no-gutters': props.noGutters,
-          [`ui-[layout-row]-align-items-${props.alignV}`]: props.alignV,
-          [`ui-[layout-row]-justify-content-${props.alignH}`]: props.alignH,
-          [`ui-[layout-row]-align-content-${props.alignContent}`]: props.alignContent
+        'ui-layout-row__no-gutters': props.noGutters,
+          [`ui-layout-row__align-items-${props.alignV}`]: props.alignV,
+          [`ui-layout-row__justify-content-${props.alignH}`]: props.alignH,
+          [`ui-layout-row__align-content-${props.alignContent}`]: props.alignContent
       }
     })
     return h(props.tag, componentData, children)

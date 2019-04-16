@@ -19,7 +19,10 @@ const compProps = {
 
 
 breakpoints.forEach(p => {
-  compProps[`col-${p}`] = [String, Number]
+  compProps[`col-${p}`] = {
+    type: [Boolean, String, Number],
+    default: false
+  }
   compProps[`order-${p}`] = [String, Number]
   compProps[`offset-${p}`] = [String, Number]
 })
@@ -30,10 +33,10 @@ const getResponsiveProps = (props) => {
   let respClasses = {}
   Object.keys(props).forEach(p => {
     if (props[p]) {
-      let P = camelToDash(p)
       breakpoints.forEach(b => {
-        if (P.includes(b)) {
-          respClasses[`ui-[layout-col]-col-${b}-${props[p]}`] = true
+        if (camelToDash(p).includes(b)) {
+          let suffix = typeof props[p] == 'string' ? `ui-layout-col__col-${b}-${props[p]}` : `ui-layout-col__col-${b}`
+          respClasses[suffix] = true
         }
       })
     }
@@ -48,15 +51,15 @@ export default {
   render(h, { props, data, children }) {
     let respClasses = getResponsiveProps(props)
     let classes = {
-      ['ui-[layout-col]-col']: props.col,
-      [`ui-[layout-col]-col-${props.cols}`]: props.cols,
-      [`ui-[layout-col]-offset-${props.offset}`]: props.offset,
-      [`ui-[layout-col]-order-${props.order}`]: props.order,
-      [`ui-[layout-col]-align-self-${props.alignSelf}`]: props.alignSelf,
+      ['ui-layout-col__col']: props.col,
+      [`ui-layout-col__cols-${props.cols}`]: props.cols,
+      [`ui-layout-col__offset-${props.offset}`]: props.offset,
+      [`ui-layout-col__order-${props.order}`]: props.order,
+      [`ui-layout-col__align-self-${props.alignSelf}`]: props.alignSelf,
 
     }
     let componentData = mergeData(data, {
-      staticClass: 'ui-[layout-col]',
+      staticClass: 'ui-layout-col',
       class: Object.assign({}, classes, respClasses)
     })
     return h(props.tag, componentData, children)

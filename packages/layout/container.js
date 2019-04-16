@@ -1,5 +1,5 @@
 import { mergeData } from 'vue-functional-data-merge'
-import '../assets/scss/bootstrap-grid/grid.scss'
+import '../assets/scss/grid.scss'
 export default {
   name: 'ui-container',
   functional: true,
@@ -13,8 +13,8 @@ export default {
   render(h, { props, data, children }) {
     let componentData = mergeData(data, {
       class: {
-        'ui-layout-container': !props.fluid,
-        'ui-layout-container-fluid': props.fluid
+        'ui-layout__container': !props.fluid,
+        'ui-layout__container-fluid': props.fluid
       }
     })
     return h(props.tag, componentData, children)
