@@ -11,34 +11,53 @@ $shadow-light:0 0px 10px rgba(0, 0, 0, 0.1);
 $radius:14px;
 $gutter:1rem;
 $margin:2rem;
-$xs:30;
-$sm:48;
-$md:64;
-$lg:75;
-$xlg:96;
-$screen-xs:$xs+0em;
-$screen-sm:$sm+0em;
-$screen-md:$md+0em;
-$screen-lg:$lg+0em;
-$screen-xlg:$xlg+0em;
+$xs:0;
+$sm:576px;
+$md:768px;
+$lg:992px;
+$xl:1200px;
+
+
 
 // bootstrap v4 grid
+@import 'bootstrap/grid/_functions.scss';
 $grid-breakpoints: (xs: 0,
 sm: 576px,
 md: 768px,
 lg: 992px,
 xl: 1200px) !default;
 
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints);
 
 $container-max-widths: (sm: 540px,
 md: 720px,
 lg: 960px,
 xl: 1140px) !default;
 
+@include _assert-ascending($container-max-widths, "$container-max-widths");
 
 $grid-columns: 12 !default;
 $grid-gutter-width: 30px !default;
-
+$enable-grid-classes: true !default;
+$sizes: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$sizes: map-merge((25: 25%,
+50: 50%,
+75: 75%,
+100: 100%,
+auto: auto),
+$sizes);
+$spacer: 1rem !default;
+$spacers: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge((0: 0,
+1: ($spacer * .25),
+2: ($spacer * .5),
+3: $spacer,
+4: ($spacer * 1.5),
+5: ($spacer * 3)),
+$spacers);
 
 
 li {
@@ -57,31 +76,30 @@ h6 {
 
 
 @mixin xs {
-  @media (min-width: $xs+0rem) {
+  @media (min-width: $xs) {
     @content
   }
 }
 
 @mixin sm {
-  @media (min-width: $sm+0rem) {
+  @media (min-width: $sm) {
     @content
   }
 }
 
 @mixin md {
-  @media (min-width: $md+0rem) {
+  @media (min-width: $md) {
     @content
   }
 }
 
 @mixin lg {
-  @media (min-width: $lg+0rem) {
+  @media (min-width: $lg) {
     @content
   }
 }
-
-@mixin xlg {
-  @media (min-width: $xlg+0rem) {
+@mixin xl {
+  @media (min-width: $xl) {
     @content
   }
 }

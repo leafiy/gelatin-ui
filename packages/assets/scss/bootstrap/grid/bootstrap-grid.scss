@@ -21,7 +21,7 @@ html {
 }
 
 @import "functions";
-@import "variables";
+@import "../../var.scss";
 
 @import "mixins/breakpoints";
 @import "mixins/grid-framework";

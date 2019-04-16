@@ -1,132 +1,89 @@
-# layout
+# Layout 布局
 
-使用flex布局，基本沿用bootstrapV4的代码，不支持ie10以下浏览器
+使用flex布局，使用[bootstrapV4](https://getbootstrap.com/docs/4.3/layout/grid/)Grid部分的的代码，简化了使用方式，不支持ie10以下浏览器
 
 <layout-index></layout-index>
 
+使用3个组件构成布局系统 `ui-container` > `ui-row` > `ui-col` 每个组件都可传入 `tag:String` 属性指定元素类型，默认为`div`
 
+`ui-container` 属性： `fluid` 则为占满 `viewport` 宽度
 
-### Responsive
+`ui-row`
 
-使用Number传入props
-
-
-<!-- <layout-row-responsive></layout-row-responsive> -->
-
-
-```html
-<ui-row>
-  <ui-col :xs="6" :sm="10" :md="8" :lg="4">
-    <div class="box"></div>
-  </ui-col>
-  <ui-col :xs="6" :sm="2" :md="4" :lg="8">
-    <div class="box"></div>
-  </ui-col>
-</ui-row>
-<ui-row>
-  <ui-col :xs="3" :sm="2" :md="3" :lg="2">
-    <div class="box"></div>
-  </ui-col>
-  <ui-col :xs="3" :sm="2" :md="3" :lg="3">
-    <div class="box"></div>
-  </ui-col>
-  <ui-col :xs="3" :sm="2" :md="3" :lg="4">
-    <div class="box"></div>
-  </ui-col>
-  <ui-col :xs="3" :sm="6" :md="3" :lg="3">
-    <div class="box"></div>
-  </ui-col>
-</ui-row>
-
-```
-
-
-|breakpoint|size|
-|---------|---|
-|xs|30em|
-|sm|48em|
-|md|64em|
-|lg|75em|
-|xlg|96em|
-
-### Responsive by percertage
-
-<!-- <layout-row-responsive-percertage></layout-row-responsive-percertage> -->
-
-```html
-<ui-row>
- <ui-col :basis="50">
-   <div class="box">50</div>
- </ui-col>
- <ui-col :basis="40">
-   <div class="box">40</div>
- </ui-col>
- <ui-col :basis="10">
-   <div class="box">10</div>
- </ui-col>
-</ui-row>
-```
-
-
-### Offset
-
-<!-- <layout-offset></layout-offset> -->
-
-```html
-    <ui-row>
-      <ui-col :xs-offset="10" :xs="2">
-        <div class="box"></div>
-      </ui-col>
-    </ui-row>
-    <ui-row>
-      <ui-col :xs-offset="8" :xs="4">
-        <div class="box"></div>
-      </ui-col>
-    </ui-row>
-    <ui-row>
-      <ui-col :xs-offset="6" :xs="6">
-        <div class="box"></div>
-      </ui-col>
-    </ui-row>
-```
-
-### Gutter
-
-<!-- <layout-gutter></layout-gutter> -->
-
-gutter unit is **rem**
+|prop|type|default|despcription|
+|-|-|-|-|
+|noGutters|Boolean||取消`ui-row`左右`margin` 和子 `ui-col` 左右`padding`|
+|alignV|String||`flex`容器垂直方向对齐 ['start', 'end', 'center', 'baseline', 'stretch']|
+|alignH|String||`flex`容器水平方向对齐 ['start', 'end', 'center', 'between', 'around']|
+|alignContent|String||`flex`多行容器水平方向对齐 ['start', 'end', 'center', 'between', 'around', 'stretch']|
 
 
 ```html
-<ui-row :gutter="2">
-      <ui-col :xs="3" :sm="2" :md="3" :lg="2">
-        <div class="box"></div>
-      </ui-col>
-      <ui-col :xs="3" :sm="2" :md="3" :lg="3">
-        <div class="box"></div>
-      </ui-col>
-      <ui-col :xs="3" :sm="2" :md="3" :lg="4">
-        <div class="box"></div>
-      </ui-col>
-      <ui-col :xs="3" :sm="6" :md="3" :lg="3">
-        <div class="box"></div>
-      </ui-col>
-    </ui-row>
-    <ui-row :gutter="1">
-      <ui-col :xs="3" :sm="2" :md="3" :lg="2">
-        <div class="box"></div>
-      </ui-col>
-      <ui-col :xs="3" :sm="2" :md="3" :lg="3">
-        <div class="box"></div>
-      </ui-col>
-      <ui-col :xs="3" :sm="2" :md="3" :lg="4">
-        <div class="box"></div>
-      </ui-col>
-      <ui-col :xs="3" :sm="6" :md="3" :lg="3">
-        <div class="box"></div>
-      </ui-col>
-    </ui-row>
+<ui-container>
+  <ui-row>
+    <ui-col col-sm>
+      One of three columns
+    </ui-col>
+    <ui-col col-sm>
+      One of three columns
+    </ui-col>
+    <ui-col col-sm>
+      One of three columns
+    </ui-col>
+  </ui-row>
+</ui-container>
 ```
+
+
+### 等宽列
+
+<layout-equal></layout-equal>
+
+```html
+<ui-container>
+  <ui-row>
+    <ui-col col>
+      1 of 2
+    </ui-col>
+    <ui-col col>
+      2 of 2
+    </ui-col>
+  </ui-row>
+  <ui-row>
+    <ui-col col>
+      1 of 3
+    </ui-col>
+    <ui-col col>
+      2 of 3
+    </ui-col>
+    <ui-col col>
+      3 of 3
+    </ui-col>
+  </ui-row>
+</ui-container>
+
+<ui-container>
+  <ui-row>
+    <ui-col col>Column</ui-col>
+    <ui-col col>Column</ui-col>
+    <div style="width:100%;">100% width element</div>
+    <ui-col col>Column</ui-col>
+    <ui-col col>Column</ui-col>
+  </ui-row>
+</ui-container>
+```
+
+### 设置单列宽度
+<layout-one></layout-one>
+
+
+### 可变列宽
+
+<layout-variable-width-content></layout-variable-width-content>
+
+
+
+
 
 
 ### space between 最后一个item对齐方式
