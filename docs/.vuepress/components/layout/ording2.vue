@@ -2,14 +2,14 @@
   <div class="container layout-doc">
     <ui-container>
       <ui-row>
-        <ui-col col="4">col="4"</ui-col>
-        <ui-col col="4" offset="4">col="4" offset="4"</ui-col>
+        <ui-col col="2">no order</ui-col>
+        <ui-col col="2" order-md="2" order-lg="3">order-md="2" order-lg="3"</ui-col>
+        <ui-col col="2" order-md="3" order-lg="1">order-md="3" order-lg="1"</ui-col>
+        <ui-col col="2" order-md="1" order-lg="4">order-md="1" order-lg="4"</ui-col>
+        <ui-col col="2" order-md="4" order-lg="2">order-md="4" order-lg="2"</ui-col>
+
       </ui-row>
-      <ui-row>
-        <ui-col col="3">col="3"</ui-col>
-        <ui-col col="3" offset="2">col="3" offset="2"</ui-col>
-        <ui-col col="3" offset="1">col="3" offset="1"</ui-col>
-      </ui-row>
+
     </ui-container>
   </div>
 </template>

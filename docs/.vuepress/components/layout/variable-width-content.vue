@@ -1,14 +1,15 @@
 <template>
-  <div class="container layout-doc">
+  <div class="container">
     <ui-container>
-      <ui-row>
-        <ui-col col="4">col="4"</ui-col>
-        <ui-col col="4" offset="4">col="4" offset="4"</ui-col>
+      <ui-row align-h="center">
+        <ui-col col-lg="2">col-lg="2"</ui-col>
+        <ui-col col-md="auto">col-md="auto"</ui-col>
+        <ui-col col-lg="2">col-lg="2"</ui-col>
       </ui-row>
       <ui-row>
-        <ui-col col="3">col="3"</ui-col>
-        <ui-col col="3" offset="2">col="3" offset="2"</ui-col>
-        <ui-col col="3" offset="1">col="3" offset="1"</ui-col>
+        <ui-col col>col</ui-col>
+        <ui-col col-md="auto">col-md="auto"</ui-col>
+        <ui-col col-lg="2">col-lg="2"</ui-col>
       </ui-row>
     </ui-container>
   </div>
@@ -16,7 +17,7 @@
 <script>
 export default {
 
-  name: 'percent',
+  name: 'index',
 
   data() {
     return {
