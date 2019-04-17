@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container layout-doc">
     <ui-container>
       <ui-row>
         <ui-col col>

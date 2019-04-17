@@ -81,8 +81,14 @@
 
 <layout-variable-width-content></layout-variable-width-content>
 
+### 百分比列
+
+<layout-percent></layout-percent>
 
 
+### Responsive 响应式
+
+<layout-responsive1></layout-responsive1>
 
 
 

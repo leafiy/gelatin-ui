@@ -2,14 +2,13 @@
   <div class="container layout-doc">
     <ui-container>
       <ui-row>
-        <ui-col col>col</ui-col>
-        <ui-col col="6">col="6"</ui-col>
-        <ui-col col>col</ui-col>
+        <ui-col col="2">col="2"</ui-col>
+        <ui-col col="10">col="10"</ui-col>
       </ui-row>
-      <ui-row>
-        <ui-col col>col</ui-col>
+     <ui-row>
+        <ui-col col="2">col="2"</ui-col>
+        <ui-col col="6">col="6"</ui-col>
         <ui-col col="4">col="4"</ui-col>
-        <ui-col col>col</ui-col>
       </ui-row>
     </ui-container>
   </div>
@@ -17,7 +16,7 @@
 <script>
 export default {
 
-  name: 'index',
+  name: 'percent',
 
   data() {
     return {

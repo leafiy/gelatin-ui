@@ -1,15 +1,22 @@
 <template>
   <div class="container layout-doc">
     <ui-container>
+      <ui-hr>sm以上的屏幕</ui-hr>
       <ui-row>
-        <ui-col col>col</ui-col>
-        <ui-col col="6">col="6"</ui-col>
-        <ui-col col>col</ui-col>
+        <ui-col col-sm>col-sm</ui-col>
+        <ui-col col-sm>col-sm</ui-col>
+        <ui-col col-sm>col-sm</ui-col>
       </ui-row>
+      <ui-hr>lg以上的屏幕</ui-hr>
       <ui-row>
-        <ui-col col>col</ui-col>
+        <ui-col col-lg>col-lg</ui-col>
+        <ui-col col-lg>col-lg</ui-col>
+        <ui-col col-lg>col-lg</ui-col>
+      </ui-row>
+     <ui-row>
+        <ui-col col="2">col="2"</ui-col>
+        <ui-col col="6">col="6"</ui-col>
         <ui-col col="4">col="4"</ui-col>
-        <ui-col col>col</ui-col>
       </ui-row>
     </ui-container>
   </div>
@@ -17,7 +24,7 @@
 <script>
 export default {
 
-  name: 'index',
+  name: 'percent',
 
   data() {
     return {
@@ -36,6 +43,9 @@ export default {
   text-align: center;
 }
 .ui-layout__container{
+  margin:1em 0;
+}
+.ui-layout-row{
   margin:1em 0;
 }
 </style>
