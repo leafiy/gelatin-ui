@@ -1,71 +1,82 @@
 @import './var.scss';
 
-
 .ui-modal {
   position: fixed;
-  top: 46%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  width: auto;
-
-  &-size {
-    &-lg {
-      // width: 620px;
-    }
-
-    &-sm {
-      // width: 460px;
-    }
-  }
-
-
-  &-inner {
-    position: relative;
-    border-radius: $radius/2;
-    background: #fff;
-    box-shadow: $shadow;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    outline: 0;
-    background-clip: padding-box;
-  }
-
-  &-close {
-    // position: absolute;
-    // top: 18px;
-    // right: 22px;
-    cursor: pointer;
-    font-size: 16px;
-
-    &:hover {
-      color: $primary-color;
-    }
-
-    @extend .close-icon;
-  }
-
-  &-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: $padding/2;
-  }
-
-  &-content {
-    margin: $padding/2 0;
-    max-height: calc(100vh - 240px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    position: relative;
-    flex: 1 1 auto;
-    padding: $padding/2;
-  }
-
-  &-footer {
-    padding: $padding/2;
-  }
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  outline: 0;
 }
+
+.ui-modal-dialog {
+  position: relative;
+  width: auto;
+  pointer-events: none;
+  margin: 0.5rem;
+}
+
+
+// .ui-modal {
+//   position: fixed;
+//   top: 46%;
+//   left: 50%;
+//   transform: translate3d(-50%, -50%, 0);
+//   width: 500px;
+
+//   @include xs {
+//     width: auto;
+//   }
+
+
+
+//   &-inner {
+//     position: relative;
+//     border-radius: $radius/2;
+//     background: #fff;
+//     box-shadow: $shadow;
+//     display: flex;
+//     flex-direction: column;
+//     width: 100%;
+//     outline: 0;
+//     background-clip: padding-box;
+//   }
+
+//   &-close {
+//     // position: absolute;
+//     // top: 18px;
+//     // right: 22px;
+//     cursor: pointer;
+//     font-size: 16px;
+
+//     &:hover {
+//       color: $primary-color;
+//     }
+
+//     @extend .close-icon;
+//   }
+
+//   &-header {
+//     display: flex;
+//     align-items: flex-start;
+//     justify-content: space-between;
+//     padding: $padding/2;
+//   }
+
+//   &-content {
+//     margin: $padding/2 0;
+//     max-height: calc(100vh - 240px);
+//     overflow-y: auto;
+//     -webkit-overflow-scrolling: touch;
+//     position: relative;
+//     flex: 1 1 auto;
+//     padding: $padding/2;
+//   }
+
+//   &-footer {
+//     padding: $padding/2;
+//   }
+// }
 
 
 
@@ -79,5 +90,5 @@
 .modal-enter,
 .modal-leave-to {
   opacity: 0;
-  transform: translate3d(-50%, -80%, 0) scale(.8);
+  transform: translate3d(-50%, -80%, 0) scale(.9);
 }

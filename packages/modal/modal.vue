@@ -1,18 +1,18 @@
 <template>
-  <div class="ui-modal-wrapper" tabindex="-1" role="dialog">
-    <ui-backdrop :show="value && showBackdrop" :lock="lock" v-if="showBackdrop" fullscreen :z-index="_zIndex" :color="backdropColor"></ui-backdrop>
+  <div class="ui-modal-wrapper">
+    <ui-backdrop :show="value && showBackdrop" :lock="lock" v-if="showBackdrop" fullscreen :z-index="_zIndex" :color="backdropColor">
+    </ui-backdrop>
     <transition :name="transition">
-      <div class="ui-modal" :class="modalClasses" v-if="value" :style="modalStyles" ref="modal">
-        <div class="ui-modal-inner">
+      <div class="ui-modal-dialog" v-if="value">
+        <div class="ui-modal-content" :class="modalClasses" :style="modalStyles" ref="modal">
           <div class="ui-modal-header">
             <div v-if="header" v-html="header"></div>
-
             <slot name="header"></slot>
             <span class="ui-modal-close" v-if="showCloseIcon">
               <ui-icon @click.native="closeModal" name="close"></ui-icon>
             </span>
           </div>
-          <div class="ui-modal-content" ref="modal-content" :style="contentStyles" v-if="content || $slots.default">
+          <div class="ui-modal-body" ref="modal-body" :style="contentStyles" v-if="content || $slots.default">
             <div v-if="content" v-html="content"></div>
             <slot></slot>
           </div>
@@ -76,10 +76,7 @@ export default {
       default: true
     },
     backdropColor: String,
-    size: {
-      type: String,
-      default: "sm"
-    },
+    size: String,
     transition: {
       type: String,
       default: "modal"

@@ -13,7 +13,6 @@ $black:#2E3238;
 
 body {
   font-family: -apple-system, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Arial, sans-serif;
-  font-size: 12px;
 }
 .navbar{
   border-bottom: none !important;
@@ -134,7 +133,7 @@ div[class*="language-"] pre[class*="language-"] {
   }
 }
 
-main.page{
+.page{
   > .content{
     width:100%;
     max-width: 99%;

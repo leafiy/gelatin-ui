@@ -2,7 +2,9 @@
   <div class="container">
     <ClientOnly>
       <ui-button-group size="sm">
-        <ui-button @click.native="show = true">组件调用</ui-button>
+        <ui-button @click.native="show = true">默认设置</ui-button>
+        <ui-button @click.native="show = true">size:lg</ui-button>
+        <ui-button @click.native="show = true">size:sm</ui-button>
         <ui-button @click.native="show2 = true">超多文字并锁定滚动</ui-button>
       </ui-button-group>
       <ui-hr></ui-hr>
