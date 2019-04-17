@@ -70,7 +70,7 @@ export default {
   bottom: 0;
   right: 0;
   background: #000;
-  padding: .5em .75em;
+  padding: .2em .75em;
   color: #fff;
   z-index: 1000;
 }

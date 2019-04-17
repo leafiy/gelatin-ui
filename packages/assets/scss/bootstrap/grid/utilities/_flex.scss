@@ -38,11 +38,11 @@
     .ui-layout-row__align-content#{$infix}-between { align-content: space-between !important; }
     .ui-layout-row__align-content#{$infix}-around  { align-content: space-around !important; }
     .ui-layout-row__align-content#{$infix}-stretch { align-content: stretch !important; }
-    .ui-layout-row__align-self#{$infix}-auto     { align-self: auto !important; }
-    .ui-layout-row__align-self#{$infix}-start    { align-self: flex-start !important; }
-    .ui-layout-row__align-self#{$infix}-end      { align-self: flex-end !important; }
-    .ui-layout-row__align-self#{$infix}-center   { align-self: center !important; }
-    .ui-layout-row__align-self#{$infix}-baseline { align-self: baseline !important; }
-    .ui-layout-row__align-self#{$infix}-stretch  { align-self: stretch !important; }
+    .ui-layout-col__align-self#{$infix}-auto     { align-self: auto !important; }
+    .ui-layout-col__align-self#{$infix}-start    { align-self: flex-start !important; }
+    .ui-layout-col__align-self#{$infix}-end      { align-self: flex-end !important; }
+    .ui-layout-col__align-self#{$infix}-center   { align-self: center !important; }
+    .ui-layout-col__align-self#{$infix}-baseline { align-self: baseline !important; }
+    .ui-layout-col__align-self#{$infix}-stretch  { align-self: stretch !important; }
   }
 }

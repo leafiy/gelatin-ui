@@ -1,7 +1,7 @@
-const breakpoints = ['xs', 'sm', 'md', 'lg', 'xl']
+const breakpoints = ["xs", "sm", "md", "lg", "xl"];
 import camelToDash from "buxton/string/camelToDash.js";
 
-const compProps = {
+const props = {
   col: {
     type: [Boolean, String, Number],
     default: false
@@ -11,29 +11,54 @@ const compProps = {
   alignSelf: {
     type: String,
     default: null,
-    validator: val => ['auto', 'start', 'end', 'center', 'baseline', 'stretch'].includes(val)
+    validator: val =>
+      ["auto", "start", "end", "center", "baseline", "stretch"].includes(val)
   },
   tag: {
     type: String,
-    default: 'div'
+    default: "div"
   }
-}
-
+};
 
 const colProps = () => {
   breakpoints.forEach(p => {
-    compProps[`col-${p}`] = {
+    props[`col-${p}`] = {
       type: [Boolean, String, Number],
       default: false
-    }
-    compProps[p] = {
+    };
+    props[p] = {
       type: [String, Number]
+    };
+    props[`order-${p}`] = [String, Number];
+    props[`offset-${p}`] = [String, Number];
+  });
+  return props;
+};
+
+const getResponsiveProps = props => {
+  let respClasses = {};
+
+  Object.keys(props).forEach(p => {
+    if (props[p]) {
+      breakpoints.forEach(b => {
+        let camelP = camelToDash(p);
+        let splitP = camelP.split("-");
+        if (camelP.includes(b)) {
+          let suffix;
+          if (p == b) {
+            suffix = `ui-layout-col__col-${b}-${props[p]}`;
+          } else {
+            suffix =
+              typeof props[p] == "string"
+                ? `ui-layout-col__${splitP[0]}-${b}-${props[p]}`
+                : `ui-layout-col__${splitP[0]}-${b}`;
+          }
+          respClasses[suffix] = true;
+        }
+      });
     }
-    compProps[`order-${p}`] = [String, Number]
-    compProps[`offset-${p}`] = [String, Number]
-  })
-  return compProps
-}
+  });
+  return respClasses;
+};
 
-
-export default colProps
+export { colProps, getResponsiveProps };
