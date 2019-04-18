@@ -3,8 +3,8 @@
     <ClientOnly>
       <ui-button-group size="sm">
         <ui-button @click.native="show = true">默认设置</ui-button>
-        <ui-button @click.native="show = true">size:lg</ui-button>
-        <ui-button @click.native="show = true">size:sm</ui-button>
+        <ui-button @click.native="show2 = true">size:lg</ui-button>
+        <ui-button @click.native="show3 = true">size:sm</ui-button>
         <ui-button @click.native="show2 = true">超多文字并锁定滚动</ui-button>
       </ui-button-group>
       <ui-hr></ui-hr>
@@ -13,7 +13,17 @@
         <p>modal content</p>
         <div slot="footer">Modal Footer</div>
       </ui-modal>
-      <ui-modal v-model="show2" lock>
+      <ui-modal v-model="show2" size="lg">
+        <div slot="header">Modal Header</div>
+        <p>modal content</p>
+        <div slot="footer">Modal Footer</div>
+      </ui-modal>
+      <ui-modal v-model="show3" size="sm">
+        <div slot="header">Modal Header</div>
+        <p>modal content</p>
+        <div slot="footer">Modal Footer</div>
+      </ui-modal>
+      <!-- <ui-modal v-model="show2" lock>
         <div slot="header">Modal Header</div>
         <p>modal content</p>
         <p>modal content</p>
@@ -95,7 +105,7 @@
         <p>modal content</p>
         <p>modal content</p>
         <div slot="footer">Modal Footer</div>
-      </ui-modal>
+      </ui-modal> -->
       <!-- <ui-button @click.native="openModal2">JS调用</ui-button> -->
     </ClientOnly>
   </div>
@@ -108,7 +118,8 @@ export default {
   data() {
     return {
       show: false,
-      show2: false
+      show2: false,
+      show3: false
     }
   },
   methods: {

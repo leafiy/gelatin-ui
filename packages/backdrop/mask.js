@@ -17,16 +17,21 @@ const defaultOptions = {
 const makeMask = (el, options = {}) => {
   options = Object.assign({}, defaultOptions, options);
   options.parentEl = [el];
-  let instance = el.instance
-    ? el.instance
-    : new BackdropConstructor({
-        propsData: options
-      });
+  let instance = el.instance ?
+    el.instance :
+    new BackdropConstructor({
+      propsData: options
+    });
   if (!el.instance) {
     instance.$mount();
   }
-  instance.show = options.hasOwnProperty("show") ? options.show : false;
-  el.appendChild(instance.$el);
+  instance.show = options.show;
+  if (options.fullscreen && !document.querySelector('.ui-backdrop-fullscreen')) {
+    document.body.appendChild(instance.$el)
+  } else {
+    el.appendChild(instance.$el);
+  }
+
   el.instance = instance;
   return instance;
 };

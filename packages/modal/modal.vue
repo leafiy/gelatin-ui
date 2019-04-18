@@ -1,32 +1,28 @@
 <template>
-  <div class="ui-modal-wrapper">
-    <ui-backdrop :show="value && showBackdrop" :lock="lock" v-if="showBackdrop" fullscreen :z-index="_zIndex" :color="backdropColor">
+  <div class="ui-modal-container">
+    <ui-backdrop :show="value" :lock="lock" v-if="showBackdrop" fullscreen :z-index="_zIndex" :color="backdropColor">
     </ui-backdrop>
-    <transition :name="transition">
-      <div class="ui-modal-dialog" v-if="value">
-        <div class="ui-modal-content" :class="modalClasses" :style="modalStyles" ref="modal">
-          <div class="ui-modal-header">
-            <div v-if="header" v-html="header"></div>
-            <slot name="header"></slot>
-            <span class="ui-modal-close" v-if="showCloseIcon">
-              <ui-icon @click.native="closeModal" name="close"></ui-icon>
-            </span>
-          </div>
-          <div class="ui-modal-body" ref="modal-body" :style="contentStyles" v-if="content || $slots.default">
-            <div v-if="content" v-html="content"></div>
-            <slot></slot>
-          </div>
-          <div class="ui-modal-footer" v-if="footer || $slots.footer">
-            <div v-html="footer" v-if="footer"></div>
-            <ui-button-group class="ui-modal-btn" size="sm" v-if="buttons.length">
-              <ui-button v-for="btn of buttons" :type="btn.type" :key="btn.text" @click.native="
+    <transition :name="transition" @after-enter="afterEnter" @after-leave="afterLeave">
+      <div class="ui-modal" :class="modalClasses" :style="modalStyles" ref="modal" v-show="value">
+        <div class="ui-modal-header">
+          <div v-if="header" v-html="header"></div>
+          <slot name="header"></slot>
+          <ui-close-icon v-if="showCloseIcon" @click="closeModal"></ui-close-icon>
+        </div>
+        <div class="ui-modal-body" ref="modal-body" :style="contentStyles" v-if="content || $slots.default">
+          <div v-if="content" v-html="content"></div>
+          <slot></slot>
+        </div>
+        <div class="ui-modal-footer" v-if="footer || $slots.footer">
+          <div v-html="footer" v-if="footer"></div>
+          <ui-button-group class="ui-modal-btn" size="sm" v-if="buttons.length">
+            <ui-button v-for="btn of buttons" :type="btn.type" :key="btn.text" @click.native="
                   () => {
                     btn.action && btn.action();
                   }
                 ">{{ btn.content }}</ui-button>
-            </ui-button-group>
-            <slot name="footer"></slot>
-          </div>
+          </ui-button-group>
+          <slot name="footer"></slot>
         </div>
       </div>
     </transition>
@@ -37,6 +33,7 @@ import UiIcon from "../icon/icon.vue";
 import UiButtonGroup from "../button-group/button-group.vue";
 import UiButton from "../button/button.vue";
 import UiBackdrop from "../backdrop/backdrop.vue";
+import UiCloseIcon from '../close-icon/close-icon.vue'
 import "../assets/scss/modal.scss";
 import elementContains from "buxton/browser/elementContains";
 import { lock, unlock } from "tua-body-scroll-lock";
@@ -51,7 +48,8 @@ export default {
       content: "",
       footer: "",
       buttons: [],
-      contentStyles: ''
+      contentStyles: '',
+      wrapper: ''
 
     };
   },
@@ -66,7 +64,10 @@ export default {
       type: Boolean,
       default: true
     },
-    value: Boolean,
+    value: {
+      type: Boolean,
+      default: false
+    },
     showCloseIcon: {
       type: Boolean,
       default: true
@@ -87,7 +88,8 @@ export default {
     UiIcon,
     UiButtonGroup,
     UiButton,
-    UiBackdrop
+    UiBackdrop,
+    UiCloseIcon
     // UiResizer
   },
   computed: {
@@ -157,9 +159,8 @@ export default {
 
     },
     openModal() {
-      document.body.appendChild(this.$el);
+      this.wrapper.appendChild(this.$refs['modal'])
       if (this.lock && isMobile()) {
-
         this.contentStyles = {
           overflow: 'scroll'
         }
@@ -167,6 +168,19 @@ export default {
           lock(this.$refs['modal-content'])
         }, 10)
       }
+    },
+    createWrapper() {
+      this.wrapper = document.createElement('div');
+      this.wrapper.id = 'ui-modal-wrapper'
+      document.body.appendChild(this.wrapper)
+    },
+    afterEnter() { this.$emit('after-enter') },
+    afterLeave() { this.$emit('after-leave'); },
+  },
+  mounted() {
+    this.wrapper = document.getElementById('ui-modal-wrapper');
+    if (!this.wrapper) {
+      this.createWrapper()
     }
   }
 };

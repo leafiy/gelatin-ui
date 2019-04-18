@@ -1,18 +1,10 @@
 <template>
-  <transition
-    :name="transition"
-    @after-enter="afterEnter"
-    @after-leave="afterLeave"
-  >
+  <transition :name="transition" @after-enter="afterEnter" @after-leave="afterLeave">
     <div class="ui-backdrop" v-if="show" :style="styles" :class="classes">
       <slot>
         <span v-if="content">{{ content }}</span>
       </slot>
-      <ui-spinner
-        :color="spinnerColor"
-        :type="loading"
-        v-if="loading"
-      ></ui-spinner>
+      <ui-spinner :color="spinnerColor" :type="loading" v-if="loading"></ui-spinner>
     </div>
   </transition>
 </template>
@@ -26,12 +18,14 @@ export default {
   data() {
     return {
       parentPosition: "",
-      radius_:
-        typeof this.radius == "number" ? `${this.radius}px` : `${this.radius}`
+      radius_: typeof this.radius == "number" ? `${this.radius}px` : `${this.radius}`
     };
   },
   props: {
-    show: Boolean,
+    show: {
+      type: Boolean,
+      default: false
+    },
     transition: {
       type: String,
       default: "fade"
@@ -62,13 +56,11 @@ export default {
   },
   computed: {
     styles() {
-      return [
-        {
-          zIndex: this.zIndex,
-          borderRadius: this.radius_,
-          userSelect: this.selectable ? "" : "none"
-        }
-      ];
+      return [{
+        zIndex: this.zIndex,
+        borderRadius: this.radius_,
+        userSelect: this.selectable ? "" : "none"
+      }];
     },
     classes() {
       return [
@@ -82,7 +74,8 @@ export default {
   },
   watch: {
     show(value) {
-      if (value) {
+      console.log(value)
+      if (value && !document.querySelector('.ui-backdrop-fullscreen')) {
         this.fitContainer();
       } else {
         if (this.lock) {
@@ -163,4 +156,5 @@ export default {
     }
   }
 };
+
 </script>

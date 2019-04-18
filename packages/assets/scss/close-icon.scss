@@ -1,0 +1,13 @@
+@import './var.scss';
+
+.ui-close-icon {
+  transition: transform .2s ease-in-out;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 22px;
+
+  &:hover {
+    transform: rotate(-45deg);
+    color: $primary-color;
+  }
+}

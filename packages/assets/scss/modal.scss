@@ -1,13 +1,7 @@
 @import './var.scss';
 
-.ui-modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  outline: 0;
-}
+
+
 
 .ui-modal-dialog {
   position: relative;
@@ -17,66 +11,42 @@
 }
 
 
-// .ui-modal {
-//   position: fixed;
-//   top: 46%;
-//   left: 50%;
-//   transform: translate3d(-50%, -50%, 0);
-//   width: 500px;
+.ui-modal {
+  position: fixed;
+  top: 46%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 470px;
+  max-width: 90%;
+  box-shadow: $shadow;
+  background: #fff;
+  border-radius: $radius/2;
+  display: flex;
+  flex-direction: column;
+  outline: 0;
+  background-clip: padding-box;
 
-//   @include xs {
-//     width: auto;
-//   }
+  &-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: $padding/2 $padding;
+  }
 
+  &-body {
+    margin: $padding/2 0;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    flex: 1 1 auto;
+    padding: $padding/2 $padding;
+  }
 
-
-//   &-inner {
-//     position: relative;
-//     border-radius: $radius/2;
-//     background: #fff;
-//     box-shadow: $shadow;
-//     display: flex;
-//     flex-direction: column;
-//     width: 100%;
-//     outline: 0;
-//     background-clip: padding-box;
-//   }
-
-//   &-close {
-//     // position: absolute;
-//     // top: 18px;
-//     // right: 22px;
-//     cursor: pointer;
-//     font-size: 16px;
-
-//     &:hover {
-//       color: $primary-color;
-//     }
-
-//     @extend .close-icon;
-//   }
-
-//   &-header {
-//     display: flex;
-//     align-items: flex-start;
-//     justify-content: space-between;
-//     padding: $padding/2;
-//   }
-
-//   &-content {
-//     margin: $padding/2 0;
-//     max-height: calc(100vh - 240px);
-//     overflow-y: auto;
-//     -webkit-overflow-scrolling: touch;
-//     position: relative;
-//     flex: 1 1 auto;
-//     padding: $padding/2;
-//   }
-
-//   &-footer {
-//     padding: $padding/2;
-//   }
-// }
+  &-footer {
+    padding: $padding/2 $padding;
+  }
+}
 
 
 
