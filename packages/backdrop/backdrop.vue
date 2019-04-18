@@ -74,7 +74,6 @@ export default {
   },
   watch: {
     show(value) {
-      console.log(value)
       if (value && !document.querySelector('.ui-backdrop-fullscreen')) {
         this.fitContainer();
       } else {

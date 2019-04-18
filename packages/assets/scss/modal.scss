@@ -25,7 +25,12 @@
   flex-direction: column;
   outline: 0;
   background-clip: padding-box;
-
+  &-size-lg{
+    width:640px;
+  }
+  &-size-sm{
+    width:340px;
+  }
   &-header {
     display: flex;
     align-items: flex-start;

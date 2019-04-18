@@ -1,18 +1,50 @@
 # Modal
 
-### 组件调用
+## 组件调用
 
 <modal-modal></modal-modal>
 
 
+```html
+<ui-modal v-model="show" :before-close="beforeClose">
+  <div slot="header">Modal Header</div>
+  <p>modal content</p>
+  <div slot="footer">Modal Footer</div>
+</ui-modal>
+<ui-modal v-model="show2" size="lg">
+  <div slot="header">Large size modal</div>
+  <p>modal content</p>
+  <div slot="footer">Modal Footer</div>
+</ui-modal>
+<ui-modal v-model="show3" size="sm">
+  <div slot="header">Small size modal</div>
+  <p>modal content</p>
+  <div slot="footer">Modal Footer</div>
+</ui-modal>
+```
 
-  ```html
-  <ui-modal v-model="open" backdrop-color="light">
-        <div slot="header">Modal Header</div>
-        <p>modal content</p>
-        <div slot="footer">Modal Footer</div>
-      </ui-modal>
-  ```
+### 锁定滚动
+
+<modal-lock></modal-lock>
+
+
+### Options
+
+<modal-options></modal-options>
+
+```html
+<ui-modal v-model="show1" lock>
+  <div slot="header">Modal Header</div>
+  <p>modal content</p>
+  <div slot="footer">Modal Footer</div>
+</ui-modal>
+```
+
+
+
+
+
+
 
   ```js
 this.$UiModal({

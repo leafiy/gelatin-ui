@@ -5,108 +5,22 @@
         <ui-button @click.native="show = true">默认设置</ui-button>
         <ui-button @click.native="show2 = true">size:lg</ui-button>
         <ui-button @click.native="show3 = true">size:sm</ui-button>
-        <ui-button @click.native="show2 = true">超多文字并锁定滚动</ui-button>
       </ui-button-group>
-      <ui-hr></ui-hr>
-      <ui-modal v-model="show">
+      <ui-modal v-model="show" :before-close="beforeClose">
         <div slot="header">Modal Header</div>
         <p>modal content</p>
         <div slot="footer">Modal Footer</div>
       </ui-modal>
       <ui-modal v-model="show2" size="lg">
-        <div slot="header">Modal Header</div>
+        <div slot="header">Large size modal</div>
         <p>modal content</p>
         <div slot="footer">Modal Footer</div>
       </ui-modal>
       <ui-modal v-model="show3" size="sm">
-        <div slot="header">Modal Header</div>
+        <div slot="header">Small size modal</div>
         <p>modal content</p>
         <div slot="footer">Modal Footer</div>
       </ui-modal>
-      <!-- <ui-modal v-model="show2" lock>
-        <div slot="header">Modal Header</div>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <p>modal content</p>
-        <div slot="footer">Modal Footer</div>
-      </ui-modal> -->
-      <!-- <ui-button @click.native="openModal2">JS调用</ui-button> -->
     </ClientOnly>
   </div>
 </template>
@@ -119,36 +33,15 @@ export default {
     return {
       show: false,
       show2: false,
-      show3: false
+      show3: false,
+      beforeClose: ()=> {
+        this.$UiToast('modal closed')
+      }
     }
   },
   methods: {
-    openModal() {
-      this.open = !this.open
-    },
-    openModal2() {
-      this.$UiModal({
-        header: 'I am Header',
-        content: 'I am Content',
-        buttons: [{
-            content: 'ok',
-            action: () => {
-              alert('clicked ok')
-            }
-          },
-          {
-            content: 'no no no',
-            type: 'warning',
-            action: () => {
-              alert('clicked no')
-            }
-          }
-        ]
-      })
-    }
+
   }
 }
 
 </script>
-<style lang="css" scoped>
-</style>

@@ -5,16 +5,16 @@
     <transition :name="transition" @after-enter="afterEnter" @after-leave="afterLeave">
       <div class="ui-modal" :class="modalClasses" :style="modalStyles" ref="modal" v-show="value">
         <div class="ui-modal-header">
-          <div v-if="header" v-html="header"></div>
+          <div v-if="title && !slots.header" v-html="title"></div>
           <slot name="header"></slot>
           <ui-close-icon v-if="showCloseIcon" @click="closeModal"></ui-close-icon>
         </div>
-        <div class="ui-modal-body" ref="modal-body" :style="contentStyles" v-if="content || $slots.default">
-          <div v-if="content" v-html="content"></div>
+        <div class="ui-modal-body" ref="modal-body" :style="contentStyles">
+          <div v-if="body &&  !$slots.default" v-html="body"></div>
           <slot></slot>
         </div>
-        <div class="ui-modal-footer" v-if="footer || $slots.footer">
-          <div v-html="footer" v-if="footer"></div>
+        <div class="ui-modal-footer">
+          <div v-html="footer" v-if="footer && !$slots.footer"></div>
           <ui-button-group class="ui-modal-btn" size="sm" v-if="buttons.length">
             <ui-button v-for="btn of buttons" :type="btn.type" :key="btn.text" @click.native="
                   () => {
@@ -44,9 +44,6 @@ export default {
 
   data() {
     return {
-      header: "",
-      content: "",
-      footer: "",
       buttons: [],
       contentStyles: '',
       wrapper: ''
@@ -54,6 +51,9 @@ export default {
     };
   },
   props: {
+    title: String,
+    body: String,
+    footer: String,
     confirm: Boolean,
     zIndex: Number,
     showBackdrop: {
@@ -82,7 +82,11 @@ export default {
       type: String,
       default: "modal"
     },
-    lock: Boolean
+    lock: {
+      type: Boolean,
+      default: false
+    },
+    beforeClose: Function,
   },
   components: {
     UiIcon,
@@ -142,9 +146,9 @@ export default {
       if (!this.value) {
         return;
       }
-      if (!elementContains(this.$refs["modal"], el) && this.closeOnClick) {
-        this.closeModal();
-      }
+      // if (!elementContains(this.$refs["modal"], el) && this.closeOnClick) {
+      //   this.closeModal();
+      // }
     },
     closeModal() {
       this.$emit("input", false);
@@ -156,7 +160,9 @@ export default {
           unlock(this.$refs['modal-content'])
         }, 10)
       }
-
+      if (typeof this.beforeClose === 'function') {
+        this.beforeClose()
+      }
     },
     openModal() {
       this.wrapper.appendChild(this.$refs['modal'])
