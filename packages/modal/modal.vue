@@ -112,7 +112,8 @@ export default {
       type: Boolean,
       default: false
     },
-    beforeClose: Function
+    beforeClose: Function,
+    customClass: String
   },
   components: {
     UiButtonGroup,
@@ -126,7 +127,8 @@ export default {
       return [
         this.value && "ui-modal-active",
         this.confirm && "ui-confirm",
-        this.size && `ui-modal-size-${this.size}`
+        this.size && `ui-modal-size-${this.size}`,
+        this.customClass
       ];
     },
 

@@ -60,7 +60,7 @@
     "sass-loader": "^7.1.0",
     "standard-version": "^5.0.2",
     "vue-template-compiler": "^2.6.10",
-    "vuepress": "^0.14.11",
+    "vuepress": "^1.0.0-alpha.47",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.0"
   },
