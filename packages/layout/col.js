@@ -9,7 +9,9 @@ export default {
   render(h, { props, data, children }) {
     let respClasses = getResponsiveProps(props);
     let classes = {
-      ["ui-layout-col__col"]: props.col && typeof props.col == "boolean",
+      ["ui-layout-col__col"]:
+        (props.col && typeof props.col == "boolean") ||
+        Object.keys(respClasses).length === 0,
       [`ui-layout-col__col-${props.col}`]:
         typeof props.col == "string" || typeof props.col == "number",
       [`ui-layout-col__offset-${props.offset}`]: props.offset,
