@@ -1,10 +1,18 @@
 <template>
-  <transition :name="transition" @after-enter="afterEnter" @after-leave="afterLeave">
-    <div class="ui-backdrop" v-if="show" :style="styles" :class="classes">
+  <transition
+    :name="transition"
+    @after-enter="afterEnter"
+    @after-leave="afterLeave"
+  >
+    <div class="ui-backdrop" v-if="show_" :style="styles" :class="classes">
       <slot>
         <span v-if="content">{{ content }}</span>
       </slot>
-      <ui-spinner :color="spinnerColor" :type="loading" v-if="loading"></ui-spinner>
+      <ui-spinner
+        :color="spinnerColor"
+        :type="loading"
+        v-if="loading"
+      ></ui-spinner>
     </div>
   </transition>
 </template>
@@ -13,12 +21,15 @@ import "../assets/scss/backdrop.scss";
 import { lock, unlock } from "tua-body-scroll-lock";
 import isIOS from "buxton/browser/isIOS.js";
 import UiSpinner from "../spinner/spinner.vue";
+import { globalStore } from "../../src/utils/globalStore.js";
 export default {
   name: "ui-backdrop",
   data() {
     return {
       parentPosition: "",
-      radius_: typeof this.radius == "number" ? `${this.radius}px` : `${this.radius}`
+      radius_:
+        typeof this.radius == "number" ? `${this.radius}px` : `${this.radius}`,
+      show_: false
     };
   },
   props: {
@@ -56,11 +67,13 @@ export default {
   },
   computed: {
     styles() {
-      return [{
-        zIndex: this.zIndex,
-        borderRadius: this.radius_,
-        userSelect: this.selectable ? "" : "none"
-      }];
+      return [
+        {
+          zIndex: this.zIndex,
+          borderRadius: this.radius_,
+          userSelect: this.selectable ? "" : "none"
+        }
+      ];
     },
     classes() {
       return [
@@ -74,7 +87,13 @@ export default {
   },
   watch: {
     show(value) {
-      if (value && !document.querySelector('.ui-backdrop-fullscreen')) {
+      this.show_ = value;
+      if (value) {
+        if (this.fullscreen && globalStore.fullscreenBackdrop) {
+          this.show_ = false;
+          return;
+        }
+
         this.fitContainer();
       } else {
         if (this.lock) {
@@ -124,6 +143,7 @@ export default {
       }
       if (this.fullscreen) {
         document.body.appendChild(this.$el);
+        globalStore.fullscreenBackdrop = true;
       }
       if (this.lock) {
         this.lockScroll();
@@ -136,6 +156,7 @@ export default {
       }
       if (this.fullscreen) {
         document.body.removeChild(this.$el);
+        globalStore.fullscreenBackdrop = false;
       }
     },
     afterEnter() {
@@ -147,13 +168,10 @@ export default {
     }
   },
   mounted() {
-    this.$root.$on("clear-backdrop", () => {
-      this.show = false;
-    });
     if (this.show) {
+      this.show_ = true;
       this.fitContainer();
     }
   }
 };
-
 </script>

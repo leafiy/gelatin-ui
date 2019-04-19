@@ -21,7 +21,11 @@ const $UiToast = function(options) {
       position.x
     } ui-toast-wrapper-y-${position.y}`;
     document.body.appendChild(toastContainer[p]);
-    toastContainer[p].style.zIndex = options.zIndex ? options.zIndex : this.$zIndex ? this.$zIndex.get() : 200
+    toastContainer[p].style.zIndex = options.zIndex
+      ? options.zIndex
+      : this.$zIndex
+      ? this.$zIndex.get()
+      : 200;
   }
   const id = nanoid();
 

@@ -2,7 +2,7 @@
   <div class="container">
     <ClientOnly>
       <ui-button-group size="sm">
-        <ui-button @click.native="show = true">默认设置</ui-button>
+        <ui-button @click="click">默认设置</ui-button>
         <ui-button @click.native="show2 = true">size:lg</ui-button>
         <ui-button @click.native="show3 = true">size:sm</ui-button>
       </ui-button-group>
@@ -34,13 +34,15 @@ export default {
       show: false,
       show2: false,
       show3: false,
-      beforeClose: ()=> {
+      beforeClose: () => {
         this.$UiToast('modal closed')
       }
     }
   },
   methods: {
-
+    click(e) {
+        this.show = true
+    }
   }
 }
 

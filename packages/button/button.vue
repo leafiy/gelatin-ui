@@ -4,12 +4,12 @@
     :class="classes"
     :disabled="disabled"
     :loading="loading"
-    @click.self="handleClick"
+    @click="handleClick"
     @mousedown="mouseDown"
     @mouseup="mouseUp"
     ref="button"
   >
-    <div class="ui-btn-inner" @click="clickInner">
+    <div class="ui-btn-inner">
       <span><slot></slot></span>
       <transition name="fade">
         <ui-spinner :light="type !== 'border'" v-if="loading"></ui-spinner>
@@ -83,6 +83,7 @@ export default {
   methods: {
     handleClick(event) {
       if (!this.loading && !this.disabled) {
+        event.stopPropagation();
         this.$emit("click", event);
       }
     },

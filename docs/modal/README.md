@@ -27,6 +27,13 @@
 
 <modal-lock></modal-lock>
 
+```html
+<ui-modal v-model="show1" lock>
+  <div slot="header">Modal Header</div>
+  <p>modal content</p>
+  <div slot="footer">Modal Footer</div>
+</ui-modal>
+```
 
 ### Options
 
@@ -41,67 +48,21 @@
 ```
 
 
+#### 所有选项
 
+|prop|type|default|description|
+|-|-|-|-|
+|zIndex|Number|||
+|showBackdrop|Boolean|true|是否显示遮罩背景|
+|closeOnClick|Boolean|true|点击modal外是否关闭|
+|value|v-model|Boolean|控制显示的model|
+|showCloseIcon|Boolean|true|显示关闭按钮|
+|closeOnPressEscape|Boolean|true|是否按Esc键关闭|
+|backdropColor|String|dark|遮罩背景颜色[backdrop](/backdrop/README.md)|
+|size|String||['lg','sm']|
+|transition|String|modal||
+|lock|Boolean|false|锁定body滚动|
+|beforeClose|Function||`before-close` 仅当用户通过点击关闭图标或遮罩关闭 Dialog 时起效|
 
-
-
-
-  ```js
-this.$UiModal({
-        header: 'I am Header',
-        content: 'I am Content',
-        buttons: [{
-            content: 'ok',
-            action: () => {
-              alert('clicked ok')
-            }
-          },
-          {
-            content: 'no no no',
-            type: 'border'
-          },
-          {
-            content: 'no no no',
-            type: 'warning'
-          }
-        ]
-      })
-```
-
-
-#### 通用options
-
-|options|type|description|defalut|optional|
-|--|--|--|--|--|--|
-|zIndex|Number| | ||
-|showBackdrop|Boolean|是否显示遮罩层|true||
-|closeOnClick|Boolean|点击遮罩层是否关闭modal|true||
-|showCloseIcon|Boolean|是否显示关闭按钮|true||
-|backdropColor|String|遮罩层颜色|dark|['white', 'light', 'dark', 'darker']||
-|disableScroll|Boolean|打开modal时是否禁用滚动|true||
-|customClass|String|||
-
-
-#### 组件调用 slots
-
-|slot||
-|--|--|
-|header|modal标题|
-|footer|modal底部|
-|default|modal内容|
-
-#### 事件
-
-|events|description|
-|--|--|
-|modal-close||
-|modal-open||
-
-#### JS调用属性
-
-|options|type||
-|-|-|-|
-|buttons|Array|嵌入按钮|
-|size|String|['lg','sm']|
 
 

@@ -1,26 +1,54 @@
 <template>
   <div class="ui-modal-container">
-    <ui-backdrop :show="value" :lock="lock" v-if="showBackdrop" fullscreen :z-index="_zIndex" :color="backdropColor">
+    <ui-backdrop
+      :show="value"
+      :lock="lock"
+      v-if="showBackdrop"
+      fullscreen
+      :z-index="zIndex_"
+      :color="backdropColor"
+    >
     </ui-backdrop>
-    <transition :name="transition" @after-enter="afterEnter" @after-leave="afterLeave">
-      <div class="ui-modal" :class="modalClasses" :style="modalStyles" ref="modal" v-show="value">
+    <transition
+      :name="transition"
+      @after-enter="afterEnter"
+      @after-leave="afterLeave"
+    >
+      <div
+        class="ui-modal"
+        :class="modalClasses"
+        :style="modalStyles"
+        ref="modal"
+        v-if="value"
+      >
         <div class="ui-modal-header">
           <div v-if="title && !slots.header" v-html="title"></div>
-          <slot name="header"></slot>
-          <ui-close-icon v-if="showCloseIcon" @click="closeModal"></ui-close-icon>
+          <div>
+            <slot name="header"></slot>
+          </div>
+          <ui-close-icon
+            v-if="showCloseIcon"
+            @click="closeModal"
+          ></ui-close-icon>
         </div>
         <div class="ui-modal-body" ref="modal-body" :style="contentStyles">
-          <div v-if="body &&  !$slots.default" v-html="body"></div>
+          <div v-if="body && !$slots.default" v-html="body"></div>
           <slot></slot>
         </div>
         <div class="ui-modal-footer">
           <div v-html="footer" v-if="footer && !$slots.footer"></div>
           <ui-button-group class="ui-modal-btn" size="sm" v-if="buttons.length">
-            <ui-button v-for="btn of buttons" :type="btn.type" :key="btn.text" @click.native="
-                  () => {
-                    btn.action && btn.action();
-                  }
-                ">{{ btn.content }}</ui-button>
+            <ui-button
+              v-for="btn of buttons"
+              :type="btn.type"
+              :key="btn.text"
+              @click.native="
+                () => {
+                  btn.action && btn.action();
+                }
+              "
+              >{{ btn.content }}</ui-button
+            >
           </ui-button-group>
           <slot name="footer"></slot>
         </div>
@@ -29,11 +57,10 @@
   </div>
 </template>
 <script>
-import UiIcon from "../icon/icon.vue";
 import UiButtonGroup from "../button-group/button-group.vue";
 import UiButton from "../button/button.vue";
 import UiBackdrop from "../backdrop/backdrop.vue";
-import UiCloseIcon from '../close-icon/close-icon.vue'
+import UiCloseIcon from "../close-icon/close-icon.vue";
 import "../assets/scss/modal.scss";
 import elementContains from "buxton/browser/elementContains";
 import { lock, unlock } from "tua-body-scroll-lock";
@@ -45,9 +72,8 @@ export default {
   data() {
     return {
       buttons: [],
-      contentStyles: '',
-      wrapper: ''
-
+      contentStyles: "",
+      wrapper: ""
     };
   },
   props: {
@@ -86,10 +112,9 @@ export default {
       type: Boolean,
       default: false
     },
-    beforeClose: Function,
+    beforeClose: Function
   },
   components: {
-    UiIcon,
     UiButtonGroup,
     UiButton,
     UiBackdrop,
@@ -105,13 +130,19 @@ export default {
       ];
     },
 
-    _zIndex() {
-      return this.zIndex ? this.zIndex : this.$zIndex ? this.$zIndex.add() : 200
+    zIndex_() {
+      return this.zIndex
+        ? this.zIndex
+        : this.$zIndex
+        ? this.$zIndex.add()
+        : 200;
     },
     modalStyles() {
-      return [{
-        zIndex: this._zIndex + 1
-      }];
+      return [
+        {
+          zIndex: this.zIndex_ + 1
+        }
+      ];
     }
   },
   watch: {
@@ -146,49 +177,54 @@ export default {
       if (!this.value) {
         return;
       }
-      // if (!elementContains(this.$refs["modal"], el) && this.closeOnClick) {
-      //   this.closeModal();
-      // }
+      if (this.closeOnClick && !elementContains(this.$refs["modal"], el)) {
+        this.closeModal();
+      }
     },
     closeModal() {
       this.$emit("input", false);
       if (this.lock && isMobile()) {
         this.contentStyles = {
-          overflow: ''
-        }
+          overflow: ""
+        };
         setTimeout(() => {
-          unlock(this.$refs['modal-content'])
-        }, 10)
+          unlock(this.$refs["modal-content"]);
+        }, 10);
       }
-      if (typeof this.beforeClose === 'function') {
-        this.beforeClose()
+      if (typeof this.beforeClose === "function") {
+        this.beforeClose();
       }
     },
     openModal() {
-      this.wrapper.appendChild(this.$refs['modal'])
       if (this.lock && isMobile()) {
         this.contentStyles = {
-          overflow: 'scroll'
-        }
+          overflow: "scroll"
+        };
         setTimeout(() => {
-          lock(this.$refs['modal-content'])
-        }, 10)
+          lock(this.$refs["modal-content"]);
+        }, 10);
       }
+      this.$nextTick(() => {
+        this.wrapper.appendChild(this.$refs["modal"]);
+      });
     },
     createWrapper() {
-      this.wrapper = document.createElement('div');
-      this.wrapper.id = 'ui-modal-wrapper'
-      document.body.appendChild(this.wrapper)
+      this.wrapper = document.createElement("div");
+      this.wrapper.id = "ui-modal-wrapper";
+      document.body.appendChild(this.wrapper);
     },
-    afterEnter() { this.$emit('after-enter') },
-    afterLeave() { this.$emit('after-leave'); },
+    afterEnter() {
+      this.$emit("after-enter");
+    },
+    afterLeave() {
+      this.$emit("after-leave");
+    }
   },
   mounted() {
-    this.wrapper = document.getElementById('ui-modal-wrapper');
+    this.wrapper = document.getElementById("ui-modal-wrapper");
     if (!this.wrapper) {
-      this.createWrapper()
+      this.createWrapper();
     }
   }
 };
-
 </script>
