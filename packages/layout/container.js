@@ -15,7 +15,8 @@ export default {
       class: {
         "ui-layout__container": !props.fluid,
         "ui-layout__container-fluid": props.fluid
-      }
+      },
+      staticClass: "ui-layout-container"
     });
     return h(props.tag, componentData, children);
   }
