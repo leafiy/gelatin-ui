@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.64](https://github.com/leafiy/gelatin-ui/compare/v0.1.63...v0.1.64) (2019-04-20)
+
+
+### Bug Fixes
+
+* **layout:** add container default class ([2df0254](https://github.com/leafiy/gelatin-ui/commit/2df0254))
+
+
+
 ## 0.1.63 (2019-04-19)
 
 
