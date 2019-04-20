@@ -176,6 +176,7 @@ export default {
     },
     handleDocumentClick(e) {
       let el = e.target;
+      console.log(e.target.contains)
       if (!this.value) {
         return;
       }
