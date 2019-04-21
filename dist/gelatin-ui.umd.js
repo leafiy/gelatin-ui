@@ -19104,14 +19104,14 @@ var confirmvue_type_template_id_55801cb5_staticRenderFns = []
 
 // CONCATENATED MODULE: ./packages/confirm/confirm.vue?vue&type=template&id=55801cb5&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6a83156a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/modal/modal.vue?vue&type=template&id=4afb4e2a&
-var modalvue_type_template_id_4afb4e2a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-modal-container"},[(_vm.showBackdrop)?_c('ui-backdrop',{attrs:{"show":_vm.value,"lock":_vm.lock,"fullscreen":"","z-index":_vm.zIndex_,"color":_vm.backdropColor}}):_vm._e(),_c('transition',{attrs:{"name":_vm.transition},on:{"after-enter":_vm.afterEnter,"after-leave":_vm.afterLeave}},[(_vm.value)?_c('div',{ref:"modal",staticClass:"ui-modal",class:_vm.modalClasses,style:(_vm.modalStyles)},[_c('div',{staticClass:"ui-modal-header"},[(_vm.title && !_vm.slots.header)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.title)}}):_vm._e(),_c('div',[_vm._t("header")],2),(_vm.showCloseIcon)?_c('ui-close-icon',{on:{"click":_vm.closeModal}}):_vm._e()],1),_c('div',{ref:"modal-body",staticClass:"ui-modal-body",style:(_vm.contentStyles)},[(_vm.body && !_vm.$slots.default)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.body)}}):_vm._e(),_vm._t("default")],2),_c('div',{staticClass:"ui-modal-footer"},[(_vm.footer && !_vm.$slots.footer)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.footer)}}):_vm._e(),(_vm.buttons.length)?_c('ui-button-group',{staticClass:"ui-modal-btn",attrs:{"size":"sm"}},_vm._l((_vm.buttons),function(btn){return _c('ui-button',{key:btn.text,attrs:{"type":btn.type},nativeOn:{"click":function($event){return (function () {
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6a83156a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/modal/modal.vue?vue&type=template&id=1887a3d1&
+var modalvue_type_template_id_1887a3d1_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui-modal-container"},[(_vm.showBackdrop)?_c('ui-backdrop',{attrs:{"show":_vm.value,"lock":_vm.lock,"fullscreen":"","z-index":_vm.zIndex_,"color":_vm.backdropColor}}):_vm._e(),_c('transition',{attrs:{"name":_vm.transition},on:{"after-enter":_vm.afterEnter,"after-leave":_vm.afterLeave}},[(_vm.value)?_c('div',{directives:[{name:"ui-click-outside",rawName:"v-ui-click-outside",value:(_vm.clickOutside),expression:"clickOutside"}],ref:"modal",staticClass:"ui-modal",class:_vm.modalClasses,style:(_vm.modalStyles)},[_c('div',{staticClass:"ui-modal-header"},[(_vm.title && !_vm.slots.header)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.title)}}):_vm._e(),_c('div',[_vm._t("header")],2),(_vm.showCloseIcon)?_c('ui-close-icon',{on:{"click":_vm.closeModal}}):_vm._e()],1),_c('div',{ref:"modal-body",staticClass:"ui-modal-body",style:(_vm.contentStyles)},[(_vm.body && !_vm.$slots.default)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.body)}}):_vm._e(),_vm._t("default")],2),_c('div',{staticClass:"ui-modal-footer"},[(_vm.footer && !_vm.$slots.footer)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.footer)}}):_vm._e(),(_vm.buttons.length)?_c('ui-button-group',{staticClass:"ui-modal-btn",attrs:{"size":"sm"}},_vm._l((_vm.buttons),function(btn){return _c('ui-button',{key:btn.text,attrs:{"type":btn.type},nativeOn:{"click":function($event){return (function () {
                 btn.action && btn.action();
               })($event)}}},[_vm._v(_vm._s(btn.content))])}),1):_vm._e(),_vm._t("footer")],2)]):_vm._e()])],1)}
-var modalvue_type_template_id_4afb4e2a_staticRenderFns = []
+var modalvue_type_template_id_1887a3d1_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/modal/modal.vue?vue&type=template&id=4afb4e2a&
+// CONCATENATED MODULE: ./packages/modal/modal.vue?vue&type=template&id=1887a3d1&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6a83156a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/close-icon/close-icon.vue?vue&type=template&id=d4690168&
 var close_iconvue_type_template_id_d4690168_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ui-icon',{staticClass:"ui-close-icon",attrs:{"name":_vm.name},nativeOn:{"click":function($event){return _vm.click($event)}}})}
@@ -19177,6 +19177,7 @@ var modal = __webpack_require__("6093");
 });
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/modal/modal.vue?vue&type=script&lang=js&
 
+//
 //
 //
 //
@@ -19315,26 +19316,29 @@ var modal = __webpack_require__("6093");
   watch: {
     value: function value(_value) {
       if (_value) {
-        this.openModal();
-        this.bindEvents();
-      } else {
-        this.unBindEvents();
-      }
+        this.openModal(); // this.bindEvents();
+      } else {// this.unBindEvents();
+        }
     }
   },
   methods: {
-    bindEvents: function bindEvents() {
-      document.addEventListener("click", this.handleDocumentClick);
-      document.addEventListener("touchstart", this.handleDocumentClick);
-      document.addEventListener("keyup", this.handleKeyup);
-    },
-    unBindEvents: function unBindEvents() {
-      document.removeEventListener("click", this.handleDocumentClick);
-      document.removeEventListener("touchstart", this.handleDocumentClick);
-      document.removeEventListener("keyup", this.handleKeyup);
-    },
+    // bindEvents() {
+    //   document.addEventListener("click", this.handleDocumentClick);
+    //   document.addEventListener("touchstart", this.handleDocumentClick);
+    //   document.addEventListener("keyup", this.handleKeyup);
+    // },
+    // unBindEvents() {
+    //   document.removeEventListener("click", this.handleDocumentClick);
+    //   document.removeEventListener("touchstart", this.handleDocumentClick);
+    //   document.removeEventListener("keyup", this.handleKeyup);
+    // },
     handleKeyup: function handleKeyup(e) {
       if (e.key === "Escape" || e.key === "Esc" && this.closeOnPressEscape) {
+        this.closeModal();
+      }
+    },
+    clickOutside: function clickOutside() {
+      if (this.closeOnClick) {
         this.closeModal();
       }
     },
@@ -19415,8 +19419,8 @@ var modal = __webpack_require__("6093");
 
 var modal_component = normalizeComponent(
   modal_modalvue_type_script_lang_js_,
-  modalvue_type_template_id_4afb4e2a_render,
-  modalvue_type_template_id_4afb4e2a_staticRenderFns,
+  modalvue_type_template_id_1887a3d1_render,
+  modalvue_type_template_id_1887a3d1_staticRenderFns,
   false,
   null,
   null,
@@ -23195,6 +23199,67 @@ var UiLoading = {
   }
 };
 /* harmony default export */ var loading = (UiLoading);
+// CONCATENATED MODULE: ./packages/click-outside/index.js
+
+var HANDLER = "__click_outside";
+
+function click_outside_bind(el, binding, vnode) {
+  unbind(el);
+  var vm = vnode.context;
+  var callback = binding.value;
+
+  if (typeof callback !== "function") {
+    throw new Error("binding.value should be a function");
+  } // @NOTE: Vue binds directives in microtasks, while UI events are dispatched
+  //        in macrotasks. This causes the listener to be set up before
+  //        the "origin" click event (the event that lead to the binding of
+  //        the directive) arrives at the document root. To work around that,
+  //        we ignore events until the end of the "initial" macrotask.
+  // @REFERENCE: https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+  // @REFERENCE: https://github.com/simplesmiler/vue-clickaway/issues/8
+
+
+  var initialMacrotaskEnded = false;
+  setTimeout(function () {
+    initialMacrotaskEnded = true;
+  }, 0);
+
+  el[HANDLER] = function (ev) {
+    // @NOTE: this test used to be just `el.containts`, but working with path is better,
+    //        because it tests whether the element was there at the time of
+    //        the click, not whether it is there now, that the event has arrived
+    //        to the top.
+    // @NOTE: `.path` is non-standard, the standard way is `.composedPath()`
+    var path = ev.path || (ev.composedPath ? ev.composedPath() : undefined);
+
+    if (initialMacrotaskEnded && (path ? path.indexOf(el) < 0 : !el.contains(ev.target))) {
+      return callback.call(vm, ev);
+    }
+  };
+
+  document.documentElement.addEventListener("click", el[HANDLER], false);
+}
+
+function unbind(el) {
+  document.documentElement.removeEventListener("click", el[HANDLER], false);
+  delete el[HANDLER];
+}
+
+var directive = {
+  name: "ui-click-outside",
+  bind: click_outside_bind,
+  update: function update(el, binding) {
+    if (binding.value === binding.oldValue) return;
+    click_outside_bind(el, binding);
+  },
+  unbind: unbind
+};
+var mixin = {
+  directives: {
+    onClickOutside: directive
+  }
+};
+
 // CONCATENATED MODULE: ./src/utils/zHandler.js
 // class zHandler {
 //   constructor(init = 200) {
@@ -23283,6 +23348,7 @@ ZHandler.prototype.remove = function () {
 
 
 
+
  // import Rem from '../src/utils/rem.js'
 
 var components = [packages_avatar, packages_icon, packages_v, packages_loader, packages_spinner, uplaoder, packages_alert, row, col, container, packages_card, packages_input, packages_input_group, packages_image, packages_heading, packages_button, packages_button_group, packages_checkbox, packages_radio, packages_accordion, packages_accordion_item, packages_autocomplete, packages_tag, packages_hr, packages_backdrop, packages_textarea, modal_modal, confirm_confirm, packages_progress, packages_marquee, packages_share, packages_typer, packages_carousel, packages_countdown, packages_slide_panel, packages_height_transition, packages_router_transition, packages_select, packages_popover, packages_tabs, packages_captcha];
@@ -23294,7 +23360,8 @@ var plugins = {
   $UiLoadingBar: packages_loading_bar,
   $UiDropdown: dropdown
 };
-var directives = [packages_highlight, loading, mask, packages_sticky, packages_tooltip, loading];
+var directives = [packages_highlight, loading, mask, packages_sticky, packages_tooltip, loading, directive];
+console.log(directive);
 
 
 var packages_install = function install(Vue) {
@@ -23366,7 +23433,8 @@ if (typeof window !== "undefined" && window.Vue) {
   $UiDropdown: dropdown,
   UiSelect: packages_select,
   UiTabs: packages_tabs,
-  UiCaptcha: packages_captcha // Rem
+  UiCaptcha: packages_captcha,
+  UiClickOutside: directive // Rem
 
 });
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
