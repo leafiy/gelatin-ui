@@ -81,6 +81,7 @@ module.exports = {
         children: [
           ['/backdrop/', '遮罩层'],
           ['/captcha/', '验证码'],
+          ['/click-outside/', '点击外部检测'],
           ['/image/', 'Image 图片懒加载'],
           ['/spinner/', 'Css spinners'],
           ['/height-transition/', 'Height transition'],

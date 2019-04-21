@@ -50,6 +50,7 @@ import $UiDropdown from "./dropdown/index.js";
 import UiTooltip from "./tooltip/index.js";
 import UiCaptcha from "./captcha/index.js";
 import UiLoading from "./backdrop/loading.js";
+import { directive as UiClickOutside } from "./click-outside/index.js";
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
@@ -109,8 +110,10 @@ const directives = [
   UiMask,
   UiSticky,
   UiTooltip,
-  UiLoading
+  UiLoading,
+  UiClickOutside
 ];
+console.log(UiClickOutside);
 import ZHandler from "../src/utils/zHandler.js";
 
 const install = function(Vue, options = {}) {
@@ -177,6 +180,7 @@ export default {
   $UiDropdown,
   UiSelect,
   UiTabs,
-  UiCaptcha
+  UiCaptcha,
+  UiClickOutside
   // Rem
 };

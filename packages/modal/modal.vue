@@ -20,6 +20,7 @@
         :style="modalStyles"
         ref="modal"
         v-if="value"
+        v-ui-click-outside="clickOutside"
       >
         <div class="ui-modal-header">
           <div v-if="title && !slots.header" v-html="title"></div>
@@ -151,32 +152,37 @@ export default {
     value(value) {
       if (value) {
         this.openModal();
-        this.bindEvents();
+        // this.bindEvents();
       } else {
-        this.unBindEvents();
+        // this.unBindEvents();
       }
     }
   },
 
   methods: {
-    bindEvents() {
-      document.addEventListener("click", this.handleDocumentClick);
-      document.addEventListener("touchstart", this.handleDocumentClick);
-      document.addEventListener("keyup", this.handleKeyup);
-    },
-    unBindEvents() {
-      document.removeEventListener("click", this.handleDocumentClick);
-      document.removeEventListener("touchstart", this.handleDocumentClick);
-      document.removeEventListener("keyup", this.handleKeyup);
-    },
+    // bindEvents() {
+    //   document.addEventListener("click", this.handleDocumentClick);
+    //   document.addEventListener("touchstart", this.handleDocumentClick);
+    //   document.addEventListener("keyup", this.handleKeyup);
+    // },
+    // unBindEvents() {
+    //   document.removeEventListener("click", this.handleDocumentClick);
+    //   document.removeEventListener("touchstart", this.handleDocumentClick);
+    //   document.removeEventListener("keyup", this.handleKeyup);
+    // },
     handleKeyup(e) {
       if (e.key === "Escape" || (e.key === "Esc" && this.closeOnPressEscape)) {
         this.closeModal();
       }
     },
+    clickOutside() {
+      if (this.closeOnClick) {
+        this.closeModal();
+      }
+    },
     handleDocumentClick(e) {
       let el = e.target;
-      console.log(e.target.contains)
+
       if (!this.value) {
         return;
       }
