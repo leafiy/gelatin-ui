@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.65](https://github.com/leafiy/gelatin-ui/compare/v0.1.63...v0.1.65) (2019-04-21)
+
+
+### Bug Fixes
+
+* **layout:** add container default class ([2df0254](https://github.com/leafiy/gelatin-ui/commit/2df0254))
+* **modal:** using clickoutside directive instead of element.contains ([972ca64](https://github.com/leafiy/gelatin-ui/commit/972ca64))
+
+
+
 ## [0.1.64](https://github.com/leafiy/gelatin-ui/compare/v0.1.63...v0.1.64) (2019-04-20)
 
 
