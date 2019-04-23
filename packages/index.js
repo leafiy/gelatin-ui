@@ -113,7 +113,7 @@ const directives = [
   UiLoading,
   UiClickOutside
 ];
-console.log(UiClickOutside);
+
 import ZHandler from "../src/utils/zHandler.js";
 
 const install = function(Vue, options = {}) {
