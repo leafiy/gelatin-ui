@@ -23352,7 +23352,6 @@ var plugins = {
   $UiDropdown: dropdown
 };
 var directives = [packages_highlight, loading, mask, packages_sticky, packages_tooltip, loading, directive];
-console.log(directive);
 
 
 var packages_install = function install(Vue) {
