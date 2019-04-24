@@ -1,15 +1,7 @@
 <template>
-  <div
-    class="ui-image"
-    :class="[keepSize && 'ui-image-keep-size']"
-    :style="{ height: imageHeight + 'px', width: imageWidth + 'px' }"
-  >
+  <div class="ui-image" :class="[keepSize && 'ui-image-keep-size']" :style="{ height: imageHeight + 'px', width: imageWidth + 'px' }">
     <transition name="fade">
-      <div
-        class="ui-image-image"
-        v-if="!loading"
-        :style="backgroundStyle"
-      ></div>
+      <div class="ui-image-image" v-if="!loading" :style="backgroundStyle"></div>
     </transition>
     <div class="ui-image-cover" v-if="cover"></div>
     <slot name="loader" v-if="loading">
@@ -43,13 +35,15 @@ export default {
       loading: true,
       failed: false,
       imageHeight: "",
-      imageWidth: ""
+      imageWidth: "",
+      loader: null
     };
   },
   methods: {
     load() {
-      imgLoader(this.src)
+      this.loader = imgLoader(this.src)
         .then(url => {
+          console.log(url)
           this.loading = false;
           this.$emit("load-finished");
           if (this.keepSize) {
@@ -62,6 +56,7 @@ export default {
           }
         })
         .catch(err => {
+          console.log(err)
           this.loading = false;
           this.failed = true;
           this.$emit("load-failed");
@@ -69,30 +64,29 @@ export default {
     }
   },
   mounted() {
-    this.load();
+    // this.load();
   },
   watch: {
     src(value) {
+      this.loader = null
       this.load();
     }
   },
   computed: {
     slotStyles() {
       return {
-        zIndex: this.zIndex
-          ? this.zIndex
-          : this.$zIndex
-          ? this.$zIndex.add()
-          : 200
+        zIndex: this.zIndex ?
+          this.zIndex : this.$zIndex ?
+          this.$zIndex.add() : 200
       };
     },
     backgroundStyle() {
       return {
-        backgroundImage: this.failed
-          ? `url(${this.fallback})`
-          : `url(${this.src})`
+        backgroundImage: this.failed ?
+          `url(${this.fallback})` : `url(${this.src})`
       };
     }
   }
 };
+
 </script>

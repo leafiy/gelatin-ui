@@ -19,6 +19,7 @@
     "autosize": "^4.0.2",
     "axios": "^0.18.0",
     "buxton": "^0.2.21",
+    "lazyload": "^2.0.0-rc.2",
     "lodash": "^4.17.11",
     "nanoid": "^2.0.1",
     "normalize.css": "^8.0.1",

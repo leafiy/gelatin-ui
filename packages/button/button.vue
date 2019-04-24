@@ -12,7 +12,7 @@
     <div class="ui-btn-inner">
       <span><slot></slot></span>
       <transition name="fade">
-        <ui-spinner :light="type !== 'border'" v-if="loading"></ui-spinner>
+        <ui-spinner v-if="loading"></ui-spinner>
       </transition>
     </div>
   </div>

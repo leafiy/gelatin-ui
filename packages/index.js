@@ -51,6 +51,7 @@ import UiTooltip from "./tooltip/index.js";
 import UiCaptcha from "./captcha/index.js";
 import UiLoading from "./backdrop/loading.js";
 import { directive as UiClickOutside } from "./click-outside/index.js";
+import UiLazyLoad from './lazy-load/index.js'
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
@@ -111,7 +112,8 @@ const directives = [
   UiSticky,
   UiTooltip,
   UiLoading,
-  UiClickOutside
+  UiClickOutside,
+  UiLazyLoad
 ];
 
 import ZHandler from "../src/utils/zHandler.js";
@@ -181,6 +183,7 @@ export default {
   UiSelect,
   UiTabs,
   UiCaptcha,
-  UiClickOutside
+  UiClickOutside,
+  UiLazyLoad
   // Rem
 };

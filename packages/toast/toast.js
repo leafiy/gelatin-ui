@@ -37,7 +37,6 @@ const $UiToast = function(options) {
     el: document.createElement("div"),
     data: options
   });
-  instance.$zIndex = this.$zIndex ? this.$zIndex : 200;
   instance.$mount();
   instance.show = true;
   instance.$id = id;
