@@ -25,7 +25,7 @@
 </template>
 <script>
 import UiSpinner from "../spinner/spinner.vue";
-import loadImage from "../../../buxton/browser/loadImage.js";
+import loadImage from "buxton/browser/loadImage.js";
 
 import "../assets/scss/image.scss";
 export default {
