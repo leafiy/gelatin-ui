@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.67](https://github.com/leafiy/gelatin-ui/compare/v0.1.66...v0.1.67) (2019-04-24)
+
+
+### Features
+
+* **image loader:** add timeout option ([22c98c2](https://github.com/leafiy/gelatin-ui/commit/22c98c2))
+
+
+
 ## [0.1.66](https://github.com/leafiy/gelatin-ui/compare/v0.1.65...v0.1.66) (2019-04-23)
 
 
