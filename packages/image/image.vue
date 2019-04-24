@@ -1,7 +1,16 @@
 <template>
-  <div class="ui-image" :class="[keepSize && 'ui-image-keep-size']" :style="{ height: imageHeight + 'px', width: imageWidth + 'px' }">
+  <div
+    class="ui-image"
+    :key="componentKey"
+    :class="[keepSize && 'ui-image-keep-size']"
+    :style="{ height: imageHeight + 'px', width: imageWidth + 'px' }"
+  >
     <transition name="fade">
-      <div class="ui-image-image" v-if="!loading" :style="backgroundStyle"></div>
+      <div
+        class="ui-image-image"
+        v-if="!loading"
+        :style="backgroundStyle"
+      ></div>
     </transition>
     <div class="ui-image-cover" v-if="cover"></div>
     <slot name="loader" v-if="loading">
@@ -16,7 +25,8 @@
 </template>
 <script>
 import UiSpinner from "../spinner/spinner.vue";
-import imgLoader from "../../src/utils/imgLoader.js";
+import loadImage from "../../../buxton/browser/loadImage.js";
+
 import "../assets/scss/image.scss";
 export default {
   name: "ui-image",
@@ -25,7 +35,8 @@ export default {
     cover: Boolean,
     keepSize: Boolean,
     fallback: String,
-    zIndex: Number
+    zIndex: Number,
+    timeout: Number
   },
   components: {
     UiSpinner
@@ -36,57 +47,53 @@ export default {
       failed: false,
       imageHeight: "",
       imageWidth: "",
-      loader: null
+      loader: null,
+      componentKey: Date.now()
     };
   },
   methods: {
     load() {
-      this.loader = imgLoader(this.src)
-        .then(url => {
-          console.log(url)
+      loadImage(this.src, this.timeout)
+        .then(({ src, width, height }) => {
           this.loading = false;
           this.$emit("load-finished");
           if (this.keepSize) {
-            import("buxton/browser/imageSize").then(module => {
-              module.default(this.src).then(({ width, height }) => {
-                let aspect = this.$el.offsetWidth / width;
-                this.imageHeight = height * aspect;
-              });
-            });
+            let aspect = this.$el.offsetWidth / width;
+            this.imageHeight = height * aspect;
           }
         })
         .catch(err => {
-          console.log(err)
           this.loading = false;
           this.failed = true;
-          this.$emit("load-failed");
+          this.$emit("load-failed", err.message);
         });
     }
   },
   mounted() {
-    // this.load();
+    this.load();
   },
   watch: {
     src(value) {
-      this.loader = null
-      this.load();
+      this.componentKey = Date.now();
     }
   },
   computed: {
     slotStyles() {
       return {
-        zIndex: this.zIndex ?
-          this.zIndex : this.$zIndex ?
-          this.$zIndex.add() : 200
+        zIndex: this.zIndex
+          ? this.zIndex
+          : this.$zIndex
+          ? this.$zIndex.add()
+          : 200
       };
     },
     backgroundStyle() {
       return {
-        backgroundImage: this.failed ?
-          `url(${this.fallback})` : `url(${this.src})`
+        backgroundImage: this.failed
+          ? `url(${this.fallback})`
+          : `url(${this.src})`
       };
     }
   }
 };
-
 </script>

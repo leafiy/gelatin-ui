@@ -11,6 +11,8 @@
     </ui-image>
     <ui-hr>加个遮罩</ui-hr>
     <ui-image cover src="https://leafiy.oss-cn-beijing.aliyuncs.com/jonny-caspari-1148429-unsplash.jpg"></ui-image>
+    <ui-hr>timeout:200</ui-hr>
+    <ui-image :timeout="200" cover src="https://leafiy.oss-cn-beijing.aliyuncs.com/jonny-caspari-1148429-unsplash.jpg"></ui-image>
   </div>
 </template>
 <script>

@@ -51,7 +51,7 @@ import UiTooltip from "./tooltip/index.js";
 import UiCaptcha from "./captcha/index.js";
 import UiLoading from "./backdrop/loading.js";
 import { directive as UiClickOutside } from "./click-outside/index.js";
-import UiLazyLoad from './lazy-load/index.js'
+import UiLazyLoad from "./lazy-load/index.js";
 // import Rem from '../src/utils/rem.js'
 const components = [
   UiAvatar,
