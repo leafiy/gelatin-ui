@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.69](https://github.com/leafiy/gelatin-ui/compare/v0.1.68...v0.1.69) (2019-04-24)
+
+
+
 ## [0.1.68](https://github.com/leafiy/gelatin-ui/compare/v0.1.67...v0.1.68) (2019-04-24)
 
 
