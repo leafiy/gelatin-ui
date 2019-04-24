@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.68](https://github.com/leafiy/gelatin-ui/compare/v0.1.67...v0.1.68) (2019-04-24)
+
+
+### Bug Fixes
+
+* **image loader:** fix path ([a9c7e1f](https://github.com/leafiy/gelatin-ui/commit/a9c7e1f))
+
+
+
 ## [0.1.67](https://github.com/leafiy/gelatin-ui/compare/v0.1.66...v0.1.67) (2019-04-24)
 
 
