@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.71](https://github.com/leafiy/gelatin-ui/compare/v0.1.70...v0.1.71) (2019-04-26)
+
+
+### Features
+
+* **image:** support cover color ([27e7b8e](https://github.com/leafiy/gelatin-ui/commit/27e7b8e))
+
+
+
 ## [0.1.70](https://github.com/leafiy/gelatin-ui/compare/v0.1.69...v0.1.70) (2019-04-26)
 
 
