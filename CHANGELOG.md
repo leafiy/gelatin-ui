@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.70](https://github.com/leafiy/gelatin-ui/compare/v0.1.69...v0.1.70) (2019-04-26)
+
+
+### Bug Fixes
+
+* **V:** support no rules fields ([c59940a](https://github.com/leafiy/gelatin-ui/commit/c59940a))
+
+
+
 ## [0.1.69](https://github.com/leafiy/gelatin-ui/compare/v0.1.68...v0.1.69) (2019-04-24)
 
 
