@@ -22,7 +22,7 @@
 |prop|type|default|description|
 |--|--|--|--|
 |src|String|||
-|cover|Boolean|false||
+|cover|Boolean,String|false|`true`时为dark，`string`可使用`["lighter", "light", "dark", "darker"]`|
 |keepSize|Boolean|false|保持原图片比例和大小|
 |fallback|String|||
 

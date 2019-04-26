@@ -12,7 +12,7 @@
         :style="backgroundStyle"
       ></div>
     </transition>
-    <div class="ui-image-cover" v-if="cover"></div>
+    <ui-backdrop :show="cover" auto-radius :color="coverColor"></ui-backdrop>
     <slot name="loader" v-if="loading">
       <div class="ui-image-loader">
         <ui-spinner center></ui-spinner>
@@ -26,20 +26,24 @@
 <script>
 import UiSpinner from "../spinner/spinner.vue";
 import loadImage from "buxton/browser/loadImage.js";
-
+import UiBackdrop from "../backdrop/backdrop.vue";
 import "../assets/scss/image.scss";
 export default {
   name: "ui-image",
   props: {
     src: String,
-    cover: Boolean,
+    cover: {
+      type: [Boolean, String],
+      default: false
+    },
     keepSize: Boolean,
     fallback: String,
     zIndex: Number,
     timeout: Number
   },
   components: {
-    UiSpinner
+    UiSpinner,
+    UiBackdrop
   },
   data() {
     return {
@@ -94,6 +98,17 @@ export default {
           ? `url(${this.fallback})`
           : `url(${this.src})`
       };
+    },
+    coverColor() {
+      if (this.cover) {
+        if (typeof this.cover == "boolean") {
+          return "dark";
+        } else {
+          return this.cover;
+        }
+      } else {
+        return false;
+      }
     }
   }
 };

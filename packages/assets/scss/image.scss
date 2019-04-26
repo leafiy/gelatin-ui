@@ -18,7 +18,6 @@
   align-items: center;
 }
 
-.ui-image-cover,
 .ui-image-image {
   position: absolute;
   top: 0;
@@ -30,8 +29,4 @@
 
 .ui-image-image {
   @include ui-image();
-}
-
-.ui-image-cover {
-  background-color: rgba(0, 0, 0, .1)
 }
