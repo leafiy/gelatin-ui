@@ -12,7 +12,7 @@
         :style="backgroundStyle"
       ></div>
     </transition>
-    <ui-backdrop :show="cover" auto-radius :color="coverColor"></ui-backdrop>
+    <ui-backdrop :show="cover" v-if="cover" auto-radius :color="coverColor"></ui-backdrop>
     <slot name="loader" v-if="loading">
       <div class="ui-image-loader">
         <ui-spinner center></ui-spinner>
@@ -107,7 +107,7 @@ export default {
           return this.cover;
         }
       } else {
-        return false;
+        return '';
       }
     }
   }
