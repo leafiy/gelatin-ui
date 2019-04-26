@@ -497,7 +497,7 @@ exports = module.exports = __webpack_require__("2350")(false);
 
 
 // module
-exports.push([module.i, "li{list-style:none}h1,h2,h3,h4,h5,h6{margin:0}.fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.fold-enter-active{-webkit-animation-name:fold-in;animation-name:fold-in}.fold-enter-active,.fold-leave-active{-webkit-animation-duration:.5s;animation-duration:.5s}.fold-leave-active{-webkit-animation-name:fold-out;animation-name:fold-out}@-webkit-keyframes fold-in{0%{-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes fold-in{0%{-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@-webkit-keyframes fold-out{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}}@keyframes fold-out{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}}.ui-image{position:relative;background:#e9ebee;height:160px;width:100%;overflow:hidden;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.ui-image-cover,.ui-image-image{position:absolute;top:0;right:0;width:100%;height:100%;-webkit-transition:all 1s;transition:all 1s}.ui-image-image{background-size:cover;background-position:50%;background-repeat:no-repeat}.ui-image-cover{background-color:rgba(0,0,0,.1)}", ""]);
+exports.push([module.i, "li{list-style:none}h1,h2,h3,h4,h5,h6{margin:0}.fade-enter-active,.fade-leave-active{-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.fade-enter,.fade-leave-to{opacity:0}.close-icon{cursor:pointer;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out,-webkit-transform .2s ease-in-out}.close-icon:hover{-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.fold-enter-active{-webkit-animation-name:fold-in;animation-name:fold-in}.fold-enter-active,.fold-leave-active{-webkit-animation-duration:.5s;animation-duration:.5s}.fold-leave-active{-webkit-animation-name:fold-out;animation-name:fold-out}@-webkit-keyframes fold-in{0%{-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@keyframes fold-in{0%{-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}to{-webkit-transform:translateZ(0);transform:translateZ(0)}}@-webkit-keyframes fold-out{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}}@keyframes fold-out{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}}.ui-image{position:relative;background:#e9ebee;height:160px;width:100%;overflow:hidden;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.ui-image-image{position:absolute;top:0;right:0;width:100%;height:100%;-webkit-transition:all 1s;transition:all 1s;background-size:cover;background-position:50%;background-repeat:no-repeat}", ""]);
 
 // exports
 
@@ -13318,12 +13318,12 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var icon_icon = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6a83156a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/image/image.vue?vue&type=template&id=3b0fd0fc&
-var imagevue_type_template_id_3b0fd0fc_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{key:_vm.componentKey,staticClass:"ui-image",class:[_vm.keepSize && 'ui-image-keep-size'],style:({ height: _vm.imageHeight + 'px', width: _vm.imageWidth + 'px' })},[_c('transition',{attrs:{"name":"fade"}},[(!_vm.loading)?_c('div',{staticClass:"ui-image-image",style:(_vm.backgroundStyle)}):_vm._e()]),(_vm.cover)?_c('div',{staticClass:"ui-image-cover"}):_vm._e(),(_vm.loading)?_vm._t("loader",[_c('div',{staticClass:"ui-image-loader"},[_c('ui-spinner',{attrs:{"center":""}})],1)]):_vm._e(),(_vm.$slots.default)?_c('div',{staticClass:"ui-image-slot",style:(_vm.slotStyles)},[_vm._t("default")],2):_vm._e()],2)}
-var imagevue_type_template_id_3b0fd0fc_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6a83156a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/image/image.vue?vue&type=template&id=41a2d68c&
+var imagevue_type_template_id_41a2d68c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{key:_vm.componentKey,staticClass:"ui-image",class:[_vm.keepSize && 'ui-image-keep-size'],style:({ height: _vm.imageHeight + 'px', width: _vm.imageWidth + 'px' })},[_c('transition',{attrs:{"name":"fade"}},[(!_vm.loading)?_c('div',{staticClass:"ui-image-image",style:(_vm.backgroundStyle)}):_vm._e()]),_c('ui-backdrop',{attrs:{"show":_vm.cover,"auto-radius":"","color":_vm.coverColor}}),(_vm.loading)?_vm._t("loader",[_c('div',{staticClass:"ui-image-loader"},[_c('ui-spinner',{attrs:{"center":""}})],1)]):_vm._e(),(_vm.$slots.default)?_c('div',{staticClass:"ui-image-slot",style:(_vm.slotStyles)},[_vm._t("default")],2):_vm._e()],2)}
+var imagevue_type_template_id_41a2d68c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/image/image.vue?vue&type=template&id=3b0fd0fc&
+// CONCATENATED MODULE: ./packages/image/image.vue?vue&type=template&id=41a2d68c&
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/date/now.js
 var now = __webpack_require__("0a0d");
@@ -13489,6 +13489,435 @@ const loadImage = function(src, timeout) {
 
 /* harmony default export */ var browser_loadImage = (loadImage);
 
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6a83156a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/backdrop/backdrop.vue?vue&type=template&id=e7f5bc86&
+var backdropvue_type_template_id_e7f5bc86_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":_vm.transition},on:{"after-enter":_vm.afterEnter,"after-leave":_vm.afterLeave}},[(_vm.show_)?_c('div',{staticClass:"ui-backdrop",class:_vm.classes,style:(_vm.styles)},[_vm._t("default",[(_vm.content)?_c('span',[_vm._v(_vm._s(_vm.content))]):_vm._e()]),(_vm.loading)?_c('ui-spinner',{attrs:{"color":_vm.spinnerColor,"type":_vm.loading}}):_vm._e()],2):_vm._e()])}
+var backdropvue_type_template_id_e7f5bc86_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./packages/backdrop/backdrop.vue?vue&type=template&id=e7f5bc86&
+
+// EXTERNAL MODULE: ./packages/assets/scss/backdrop.scss
+var backdrop = __webpack_require__("a109");
+
+// CONCATENATED MODULE: ./node_modules/tua-body-scroll-lock/lib/tua-bsl.esm.js
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      _defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+var locksElement = [];
+var lockedNum = 0;
+var initialClientY;
+var unLockCallback;
+var documentListenerAdded;
+var hasPassiveEvents = false;
+
+if (typeof window !== 'undefined') {
+  var passiveTestOptions = {
+    get passive() {
+      hasPassiveEvents = true;
+      return undefined;
+    }
+
+  };
+  window.addEventListener('testPassive', null, passiveTestOptions);
+  window.removeEventListener('testPassive', null, passiveTestOptions);
+}
+
+var detectOS = function detectOS() {
+  var ua = navigator.userAgent;
+  var android = /(Android);?[\s/]+([\d.]+)?/.test(ua);
+  var ipad = /(iPad).*OS\s([\d_]+)/.test(ua);
+  var iphone = !ipad && /(iPhone\sOS)\s([\d_]+)/.test(ua);
+  var ios = iphone || ipad;
+  return {
+    os: android ? 'android' : 'ios',
+    ios: ios,
+    ipad: ipad,
+    iphone: iphone,
+    android: android
+  };
+};
+
+var setOverflowHiddenPc = function setOverflowHiddenPc() {
+  var _context;
+
+  var $ = (_context = document, document.querySelector).bind(_context);
+  var $body = $('body');
+
+  var bodyStyle = _objectSpread({}, $body.style);
+
+  var scrollBarWidth = window.innerWidth - document.body.clientWidth;
+  $body.style.overflow = 'hidden';
+  $body.style.paddingRight = scrollBarWidth + 'px';
+  $body.style.boxSizing = 'border-box';
+  return function () {
+    $body.style.overflow = bodyStyle.overflow || '';
+    $body.style.paddingRight = bodyStyle.paddingRight || '';
+    $body.style.boxSizing = bodyStyle.boxSizing || '';
+  };
+};
+
+var setOverflowHiddenMobile = function setOverflowHiddenMobile() {
+  var _context2;
+
+  var $ = (_context2 = document, document.querySelector).bind(_context2);
+  var $html = $('html');
+  var $body = $('body');
+
+  var htmlStyle = _objectSpread({}, $html.style);
+
+  var bodyStyle = _objectSpread({}, $body.style);
+
+  var scrollTop = $html.scrollTop || $body.scrollTop;
+  $html.style.overflow = 'hidden';
+  $html.style.height = '100%';
+  $body.style.overflow = 'hidden';
+  $body.style.top = "-".concat(scrollTop, "px");
+  $body.style.width = '100%';
+  $body.style.position = 'fixed';
+  return function () {
+    $html.style.overflow = htmlStyle.overflow || '';
+    $html.style.height = htmlStyle.height || '';
+    $body.style.overflow = bodyStyle.overflow || '';
+    $body.style.height = bodyStyle.height || '';
+    $body.style.width = bodyStyle.width || '';
+    $body.style.position = '';
+    $body.style.top = '';
+    window.scrollTo(0, scrollTop);
+  };
+};
+
+var preventDefault = function preventDefault(event) {
+  if (event.cancelable) {
+    event.preventDefault();
+  }
+};
+
+var handleScroll = function handleScroll(event, targetElement) {
+  var clientY = event.targetTouches[0].clientY - initialClientY;
+
+  if (targetElement && targetElement.scrollTop === 0 && clientY > 0) {
+    return preventDefault(event);
+  }
+
+  if (targetElement && targetElement.scrollHeight - 1 - targetElement.scrollTop <= targetElement.clientHeight && clientY < 0) {
+    return preventDefault(event);
+  }
+
+  event.stopPropagation();
+  return true;
+};
+
+var checkTargetElement = function checkTargetElement(targetElement) {
+  if (!targetElement && targetElement !== null && "production" !== 'production') {
+    console.warn('If scrolling is also required in the floating layer, the target element must be provided');
+  }
+};
+
+var lock = function lock(targetElement) {
+  checkTargetElement(targetElement);
+
+  if (detectOS().ios) {
+    if (targetElement && locksElement.indexOf(targetElement) < 0) {
+      targetElement.ontouchstart = function (event) {
+        initialClientY = event.targetTouches[0].clientY;
+      };
+
+      targetElement.ontouchmove = function (event) {
+        if (event.targetTouches.length === 1) {
+          handleScroll(event, targetElement);
+        }
+      };
+
+      locksElement.push(targetElement);
+    }
+
+    if (!documentListenerAdded) {
+      document.addEventListener('touchmove', preventDefault, hasPassiveEvents ? {
+        passive: false
+      } : undefined);
+      documentListenerAdded = true;
+    }
+  } else {
+    unLockCallback = detectOS().android ? setOverflowHiddenMobile() : setOverflowHiddenPc();
+  }
+
+  lockedNum += 1;
+};
+var unlock = function unlock(targetElement) {
+  checkTargetElement(targetElement);
+  lockedNum -= 1;
+  if (lockedNum > 0 && !targetElement) return;
+
+  if (detectOS().ios) {
+    var targetElementIndex = locksElement.indexOf(targetElement);
+
+    if (targetElementIndex > -1) {
+      targetElement.ontouchstart = null;
+      targetElement.ontouchmove = null;
+      locksElement.splice(targetElementIndex, 1);
+    }
+
+    if (documentListenerAdded && lockedNum <= 0) {
+      document.removeEventListener('touchmove', preventDefault, hasPassiveEvents ? {
+        passive: false
+      } : undefined);
+      documentListenerAdded = false;
+    }
+  } else {
+    lockedNum <= 0 && unLockCallback();
+  }
+};
+
+
+
+// CONCATENATED MODULE: ./node_modules/buxton/browser/isIOS.js
+const isIOS = () => navigator.platform.match(/(iPhone|iPod|iPad)/i) ? true : false
+
+/* harmony default export */ var browser_isIOS = (isIOS);
+// EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
+var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
+var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
+
+// CONCATENATED MODULE: ./src/utils/globalStore.js
+
+var globalStore = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
+  data: {
+    fullscreenBackdrop: false
+  }
+});
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/backdrop/backdrop.vue?vue&type=script&lang=js&
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ var backdropvue_type_script_lang_js_ = ({
+  name: "ui-backdrop",
+  data: function data() {
+    return {
+      parentPosition: "",
+      radius_: typeof this.radius == "number" ? "".concat(this.radius, "px") : "".concat(this.radius),
+      show_: false
+    };
+  },
+  props: {
+    show: {
+      type: Boolean,
+      default: false
+    },
+    transition: {
+      type: String,
+      default: "fade"
+    },
+    zIndex: Number,
+    fullscreen: Boolean,
+    content: String,
+    radius: [Number, String],
+    autoRadius: Boolean,
+    selectable: {
+      type: Boolean,
+      default: true
+    },
+    color: {
+      type: String,
+      default: "dark",
+      validator: function validator(value) {
+        return ["lighter", "light", "dark", "darker"].includes(value);
+      }
+    },
+    lock: Boolean,
+    parentEl: Array,
+    loading: [String, Boolean],
+    blur: [Boolean, Number]
+  },
+  components: {
+    UiSpinner: spinner_spinner
+  },
+  computed: {
+    styles: function styles() {
+      return [{
+        zIndex: this.zIndex,
+        borderRadius: this.radius_,
+        userSelect: this.selectable ? "" : "none"
+      }];
+    },
+    classes: function classes() {
+      return ["ui-backdrop-".concat(this.color), this.fullscreen && "ui-backdrop-fullscreen"];
+    },
+    spinnerColor: function spinnerColor() {
+      return this.color == "dark" || this.color == "darker" ? "light" : "dark";
+    }
+  },
+  watch: {
+    show: function show(value) {
+      this.show_ = value;
+
+      if (value) {
+        if (this.fullscreen && globalStore.fullscreenBackdrop) {
+          this.show_ = false;
+          return;
+        }
+
+        this.fitContainer();
+      } else {
+        if (this.lock) {
+          this.unlockScroll();
+        }
+      }
+    }
+  },
+  methods: {
+    getParent: function getParent() {
+      if (this.parentEl) {
+        return this.parentEl[0] ? this.parentEl[0] : null;
+      } else {
+        return this.$el.parentNode;
+      }
+    },
+    lockScroll: function lockScroll() {
+      if (this.fullscreen) {
+        lock(null);
+      }
+
+      if (browser_isIOS()) {
+        lock(this.$el);
+      }
+    },
+    unlockScroll: function unlockScroll() {
+      if (this.fullscreen) {
+        unlock(null);
+      }
+
+      if (browser_isIOS()) {
+        unlock(this.$el);
+      }
+    },
+    fitContainer: function fitContainer() {
+      var el = this.getParent();
+
+      if (!this.fullscreen && el) {
+        this.parentPosition = getComputedStyle(el).position;
+
+        if (this.parentPosition !== "relative" && this.parentPosition !== "absolute") {
+          el.style.position = "relative";
+        }
+      }
+
+      if (this.autoRadius && !this.radius && !this.fullscreen) {
+        var radius = getComputedStyle(el).borderRadius;
+        this.radius_ = radius;
+      }
+
+      if (this.fullscreen) {
+        document.body.appendChild(this.$el);
+        globalStore.fullscreenBackdrop = true;
+      }
+
+      if (this.lock) {
+        this.lockScroll();
+      }
+    },
+    resetContainer: function resetContainer() {
+      var el = this.getParent();
+
+      if (!this.fullscreen && el) {
+        el.style.position = this.parentPosition;
+      }
+
+      if (this.fullscreen) {
+        document.body.removeChild(this.$el);
+        globalStore.fullscreenBackdrop = false;
+      }
+    },
+    afterEnter: function afterEnter() {
+      this.$emit("after-enter");
+    },
+    afterLeave: function afterLeave() {
+      this.resetContainer();
+      this.$emit("after-leave");
+    }
+  },
+  mounted: function mounted() {
+    if (this.show) {
+      this.show_ = true;
+      this.fitContainer();
+    }
+  }
+});
+// CONCATENATED MODULE: ./packages/backdrop/backdrop.vue?vue&type=script&lang=js&
+ /* harmony default export */ var backdrop_backdropvue_type_script_lang_js_ = (backdropvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./packages/backdrop/backdrop.vue
+
+
+
+
+
+/* normalize component */
+
+var backdrop_component = normalizeComponent(
+  backdrop_backdropvue_type_script_lang_js_,
+  backdropvue_type_template_id_e7f5bc86_render,
+  backdropvue_type_template_id_e7f5bc86_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var backdrop_backdrop = (backdrop_component.exports);
 // EXTERNAL MODULE: ./packages/assets/scss/image.scss
 var scss_image = __webpack_require__("fabe");
 
@@ -13523,18 +13952,23 @@ var scss_image = __webpack_require__("fabe");
 
 
 
+
 /* harmony default export */ var imagevue_type_script_lang_js_ = ({
   name: "ui-image",
   props: {
     src: String,
-    cover: Boolean,
+    cover: {
+      type: [Boolean, String],
+      default: false
+    },
     keepSize: Boolean,
     fallback: String,
     zIndex: Number,
     timeout: Number
   },
   components: {
-    UiSpinner: spinner_spinner
+    UiSpinner: spinner_spinner,
+    UiBackdrop: backdrop_backdrop
   },
   data: function data() {
     return {
@@ -13589,6 +14023,17 @@ var scss_image = __webpack_require__("fabe");
       return {
         backgroundImage: this.failed ? "url(".concat(this.fallback, ")") : "url(".concat(this.src, ")")
       };
+    },
+    coverColor: function coverColor() {
+      if (this.cover) {
+        if (typeof this.cover == "boolean") {
+          return "dark";
+        } else {
+          return this.cover;
+        }
+      } else {
+        return false;
+      }
     }
   }
 });
@@ -13604,8 +14049,8 @@ var scss_image = __webpack_require__("fabe");
 
 var image_component = normalizeComponent(
   image_imagevue_type_script_lang_js_,
-  imagevue_type_template_id_3b0fd0fc_render,
-  imagevue_type_template_id_3b0fd0fc_staticRenderFns,
+  imagevue_type_template_id_41a2d68c_render,
+  imagevue_type_template_id_41a2d68c_staticRenderFns,
   false,
   null,
   null,
@@ -14605,7 +15050,7 @@ var imgUtils_b64toBlob = function b64toBlob(base64) {
 });
 // CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js
 
-function _defineProperty(obj, key, value) {
+function defineProperty_defineProperty(obj, key, value) {
   if (key in obj) {
     define_property_default()(obj, key, {
       value: value,
@@ -14626,10 +15071,10 @@ function _defineProperty(obj, key, value) {
     wrapperClass: function wrapperClass() {
       var _ref;
 
-      return [(_ref = {}, _defineProperty(_ref, "ui-upload-single", this.maxNumber == 1), _defineProperty(_ref, "ui-upload-drag-supportted", this.drag), _defineProperty(_ref, "ui-upload-list-card", this.listStyle == "card"), _ref), "ui-upload-".concat(this.type)];
+      return [(_ref = {}, defineProperty_defineProperty(_ref, "ui-upload-single", this.maxNumber == 1), defineProperty_defineProperty(_ref, "ui-upload-drag-supportted", this.drag), defineProperty_defineProperty(_ref, "ui-upload-list-card", this.listStyle == "card"), _ref), "ui-upload-".concat(this.type)];
     },
     triggerClass: function triggerClass() {
-      return [_defineProperty({}, "ui-upload-drag-over", this.dragOver)];
+      return [defineProperty_defineProperty({}, "ui-upload-drag-over", this.dragOver)];
     },
     triggerStyles: function triggerStyles() {// if (this.type == "drag") {
       //   return {
@@ -14994,10 +15439,6 @@ var barvue_type_template_id_4952e4e6_staticRenderFns = []
 
 
 // CONCATENATED MODULE: ./packages/progress/types/bar.vue?vue&type=template&id=4952e4e6&
-
-// EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
-var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
-var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/progress/types/bar.vue?vue&type=script&lang=js&
 //
@@ -16353,7 +16794,7 @@ var heading = __webpack_require__("04d1");
     classes: function classes() {
       var _ref;
 
-      return ["ui-heading", (_ref = {}, _defineProperty(_ref, "ui-heading-margin", this.margin), _defineProperty(_ref, "ui-heading-bold", this.bold), _defineProperty(_ref, "ui-heading-primary", this.primary), _defineProperty(_ref, "ui-heading-divider", this.divider), _defineProperty(_ref, "ui-heading-bullet", this.bullet), _ref)];
+      return ["ui-heading", (_ref = {}, defineProperty_defineProperty(_ref, "ui-heading-margin", this.margin), defineProperty_defineProperty(_ref, "ui-heading-bold", this.bold), defineProperty_defineProperty(_ref, "ui-heading-primary", this.primary), defineProperty_defineProperty(_ref, "ui-heading-divider", this.divider), defineProperty_defineProperty(_ref, "ui-heading-bullet", this.bullet), _ref)];
     }
   },
   render: function render(h) {
@@ -16443,7 +16884,7 @@ var __assign=function(){return(__assign=Object.assign||function(e){for(var a,s=1
       staticClass: "ui-layout-row",
       class: (_class = {
         "ui-layout-row__no-gutters": props.noGutters
-      }, _defineProperty(_class, "ui-layout-row__align-items-".concat(props.alignV), props.alignV), _defineProperty(_class, "ui-layout-row__justify-content-".concat(props.alignH), props.alignH), _defineProperty(_class, "ui-layout-row__align-content-".concat(props.alignContent), props.alignContent), _class)
+      }, defineProperty_defineProperty(_class, "ui-layout-row__align-items-".concat(props.alignV), props.alignV), defineProperty_defineProperty(_class, "ui-layout-row__justify-content-".concat(props.alignH), props.alignH), defineProperty_defineProperty(_class, "ui-layout-row__align-content-".concat(props.alignContent), props.alignContent), _class)
     });
     return h(props.tag, componentData, children);
   }
@@ -16547,7 +16988,7 @@ var compProps = colProps();
         data = _ref.data,
         children = _ref.children;
     var respClasses = colProps_getResponsiveProps(props);
-    var classes = (_classes = {}, _defineProperty(_classes, "ui-layout-col__col", props.col && typeof props.col == "boolean" || keys_default()(respClasses).length === 0), _defineProperty(_classes, "ui-layout-col__col-".concat(props.col), typeof props.col == "string" || typeof props.col == "number"), _defineProperty(_classes, "ui-layout-col__offset-".concat(props.offset), props.offset), _defineProperty(_classes, "ui-layout-col__order-".concat(props.order), props.order), _defineProperty(_classes, "ui-layout-col__align-self-".concat(props.alignSelf), props.alignSelf), _classes);
+    var classes = (_classes = {}, defineProperty_defineProperty(_classes, "ui-layout-col__col", props.col && typeof props.col == "boolean" || keys_default()(respClasses).length === 0), defineProperty_defineProperty(_classes, "ui-layout-col__col-".concat(props.col), typeof props.col == "string" || typeof props.col == "number"), defineProperty_defineProperty(_classes, "ui-layout-col__offset-".concat(props.offset), props.offset), defineProperty_defineProperty(_classes, "ui-layout-col__order-".concat(props.order), props.order), defineProperty_defineProperty(_classes, "ui-layout-col__align-self-".concat(props.alignSelf), props.alignSelf), _classes);
     var componentData = mergeData(data, {
       staticClass: "ui-layout-col",
       class: assign_default()({}, classes, respClasses)
@@ -16767,7 +17208,7 @@ var button_groupvue_type_template_id_64c93366_staticRenderFns = []
     classes: function classes() {
       var _ref;
 
-      return ["ui-btn-group", this.gutter && "ui-btn-group-gutter", (_ref = {}, _defineProperty(_ref, "ui-btn-group-size-".concat(this.size), !!this.size), _defineProperty(_ref, "ui-btn-group-vertical", this.vertical), _ref)];
+      return ["ui-btn-group", this.gutter && "ui-btn-group-gutter", (_ref = {}, defineProperty_defineProperty(_ref, "ui-btn-group-size-".concat(this.size), !!this.size), defineProperty_defineProperty(_ref, "ui-btn-group-vertical", this.vertical), _ref)];
     }
   }
 });
@@ -17753,431 +18194,6 @@ hr_hr.install = function (Vue) {
 };
 
 /* harmony default export */ var packages_hr = (hr_hr);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6a83156a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/backdrop/backdrop.vue?vue&type=template&id=e7f5bc86&
-var backdropvue_type_template_id_e7f5bc86_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":_vm.transition},on:{"after-enter":_vm.afterEnter,"after-leave":_vm.afterLeave}},[(_vm.show_)?_c('div',{staticClass:"ui-backdrop",class:_vm.classes,style:(_vm.styles)},[_vm._t("default",[(_vm.content)?_c('span',[_vm._v(_vm._s(_vm.content))]):_vm._e()]),(_vm.loading)?_c('ui-spinner',{attrs:{"color":_vm.spinnerColor,"type":_vm.loading}}):_vm._e()],2):_vm._e()])}
-var backdropvue_type_template_id_e7f5bc86_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./packages/backdrop/backdrop.vue?vue&type=template&id=e7f5bc86&
-
-// EXTERNAL MODULE: ./packages/assets/scss/backdrop.scss
-var backdrop = __webpack_require__("a109");
-
-// CONCATENATED MODULE: ./node_modules/tua-body-scroll-lock/lib/tua-bsl.esm.js
-function tua_bsl_esm_defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    var ownKeys = Object.keys(source);
-
-    if (typeof Object.getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
-    }
-
-    ownKeys.forEach(function (key) {
-      tua_bsl_esm_defineProperty(target, key, source[key]);
-    });
-  }
-
-  return target;
-}
-
-var locksElement = [];
-var lockedNum = 0;
-var initialClientY;
-var unLockCallback;
-var documentListenerAdded;
-var hasPassiveEvents = false;
-
-if (typeof window !== 'undefined') {
-  var passiveTestOptions = {
-    get passive() {
-      hasPassiveEvents = true;
-      return undefined;
-    }
-
-  };
-  window.addEventListener('testPassive', null, passiveTestOptions);
-  window.removeEventListener('testPassive', null, passiveTestOptions);
-}
-
-var detectOS = function detectOS() {
-  var ua = navigator.userAgent;
-  var android = /(Android);?[\s/]+([\d.]+)?/.test(ua);
-  var ipad = /(iPad).*OS\s([\d_]+)/.test(ua);
-  var iphone = !ipad && /(iPhone\sOS)\s([\d_]+)/.test(ua);
-  var ios = iphone || ipad;
-  return {
-    os: android ? 'android' : 'ios',
-    ios: ios,
-    ipad: ipad,
-    iphone: iphone,
-    android: android
-  };
-};
-
-var setOverflowHiddenPc = function setOverflowHiddenPc() {
-  var _context;
-
-  var $ = (_context = document, document.querySelector).bind(_context);
-  var $body = $('body');
-
-  var bodyStyle = _objectSpread({}, $body.style);
-
-  var scrollBarWidth = window.innerWidth - document.body.clientWidth;
-  $body.style.overflow = 'hidden';
-  $body.style.paddingRight = scrollBarWidth + 'px';
-  $body.style.boxSizing = 'border-box';
-  return function () {
-    $body.style.overflow = bodyStyle.overflow || '';
-    $body.style.paddingRight = bodyStyle.paddingRight || '';
-    $body.style.boxSizing = bodyStyle.boxSizing || '';
-  };
-};
-
-var setOverflowHiddenMobile = function setOverflowHiddenMobile() {
-  var _context2;
-
-  var $ = (_context2 = document, document.querySelector).bind(_context2);
-  var $html = $('html');
-  var $body = $('body');
-
-  var htmlStyle = _objectSpread({}, $html.style);
-
-  var bodyStyle = _objectSpread({}, $body.style);
-
-  var scrollTop = $html.scrollTop || $body.scrollTop;
-  $html.style.overflow = 'hidden';
-  $html.style.height = '100%';
-  $body.style.overflow = 'hidden';
-  $body.style.top = "-".concat(scrollTop, "px");
-  $body.style.width = '100%';
-  $body.style.position = 'fixed';
-  return function () {
-    $html.style.overflow = htmlStyle.overflow || '';
-    $html.style.height = htmlStyle.height || '';
-    $body.style.overflow = bodyStyle.overflow || '';
-    $body.style.height = bodyStyle.height || '';
-    $body.style.width = bodyStyle.width || '';
-    $body.style.position = '';
-    $body.style.top = '';
-    window.scrollTo(0, scrollTop);
-  };
-};
-
-var preventDefault = function preventDefault(event) {
-  if (event.cancelable) {
-    event.preventDefault();
-  }
-};
-
-var handleScroll = function handleScroll(event, targetElement) {
-  var clientY = event.targetTouches[0].clientY - initialClientY;
-
-  if (targetElement && targetElement.scrollTop === 0 && clientY > 0) {
-    return preventDefault(event);
-  }
-
-  if (targetElement && targetElement.scrollHeight - 1 - targetElement.scrollTop <= targetElement.clientHeight && clientY < 0) {
-    return preventDefault(event);
-  }
-
-  event.stopPropagation();
-  return true;
-};
-
-var checkTargetElement = function checkTargetElement(targetElement) {
-  if (!targetElement && targetElement !== null && "production" !== 'production') {
-    console.warn('If scrolling is also required in the floating layer, the target element must be provided');
-  }
-};
-
-var lock = function lock(targetElement) {
-  checkTargetElement(targetElement);
-
-  if (detectOS().ios) {
-    if (targetElement && locksElement.indexOf(targetElement) < 0) {
-      targetElement.ontouchstart = function (event) {
-        initialClientY = event.targetTouches[0].clientY;
-      };
-
-      targetElement.ontouchmove = function (event) {
-        if (event.targetTouches.length === 1) {
-          handleScroll(event, targetElement);
-        }
-      };
-
-      locksElement.push(targetElement);
-    }
-
-    if (!documentListenerAdded) {
-      document.addEventListener('touchmove', preventDefault, hasPassiveEvents ? {
-        passive: false
-      } : undefined);
-      documentListenerAdded = true;
-    }
-  } else {
-    unLockCallback = detectOS().android ? setOverflowHiddenMobile() : setOverflowHiddenPc();
-  }
-
-  lockedNum += 1;
-};
-var unlock = function unlock(targetElement) {
-  checkTargetElement(targetElement);
-  lockedNum -= 1;
-  if (lockedNum > 0 && !targetElement) return;
-
-  if (detectOS().ios) {
-    var targetElementIndex = locksElement.indexOf(targetElement);
-
-    if (targetElementIndex > -1) {
-      targetElement.ontouchstart = null;
-      targetElement.ontouchmove = null;
-      locksElement.splice(targetElementIndex, 1);
-    }
-
-    if (documentListenerAdded && lockedNum <= 0) {
-      document.removeEventListener('touchmove', preventDefault, hasPassiveEvents ? {
-        passive: false
-      } : undefined);
-      documentListenerAdded = false;
-    }
-  } else {
-    lockedNum <= 0 && unLockCallback();
-  }
-};
-
-
-
-// CONCATENATED MODULE: ./node_modules/buxton/browser/isIOS.js
-const isIOS = () => navigator.platform.match(/(iPhone|iPod|iPad)/i) ? true : false
-
-/* harmony default export */ var browser_isIOS = (isIOS);
-// CONCATENATED MODULE: ./src/utils/globalStore.js
-
-var globalStore = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
-  data: {
-    fullscreenBackdrop: false
-  }
-});
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/backdrop/backdrop.vue?vue&type=script&lang=js&
-
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-/* harmony default export */ var backdropvue_type_script_lang_js_ = ({
-  name: "ui-backdrop",
-  data: function data() {
-    return {
-      parentPosition: "",
-      radius_: typeof this.radius == "number" ? "".concat(this.radius, "px") : "".concat(this.radius),
-      show_: false
-    };
-  },
-  props: {
-    show: {
-      type: Boolean,
-      default: false
-    },
-    transition: {
-      type: String,
-      default: "fade"
-    },
-    zIndex: Number,
-    fullscreen: Boolean,
-    content: String,
-    radius: [Number, String],
-    autoRadius: Boolean,
-    selectable: {
-      type: Boolean,
-      default: true
-    },
-    color: {
-      type: String,
-      default: "dark",
-      validator: function validator(value) {
-        return ["lighter", "light", "dark", "darker"].includes(value);
-      }
-    },
-    lock: Boolean,
-    parentEl: Array,
-    loading: [String, Boolean],
-    blur: [Boolean, Number]
-  },
-  components: {
-    UiSpinner: spinner_spinner
-  },
-  computed: {
-    styles: function styles() {
-      return [{
-        zIndex: this.zIndex,
-        borderRadius: this.radius_,
-        userSelect: this.selectable ? "" : "none"
-      }];
-    },
-    classes: function classes() {
-      return ["ui-backdrop-".concat(this.color), this.fullscreen && "ui-backdrop-fullscreen"];
-    },
-    spinnerColor: function spinnerColor() {
-      return this.color == "dark" || this.color == "darker" ? "light" : "dark";
-    }
-  },
-  watch: {
-    show: function show(value) {
-      this.show_ = value;
-
-      if (value) {
-        if (this.fullscreen && globalStore.fullscreenBackdrop) {
-          this.show_ = false;
-          return;
-        }
-
-        this.fitContainer();
-      } else {
-        if (this.lock) {
-          this.unlockScroll();
-        }
-      }
-    }
-  },
-  methods: {
-    getParent: function getParent() {
-      if (this.parentEl) {
-        return this.parentEl[0] ? this.parentEl[0] : null;
-      } else {
-        return this.$el.parentNode;
-      }
-    },
-    lockScroll: function lockScroll() {
-      if (this.fullscreen) {
-        lock(null);
-      }
-
-      if (browser_isIOS()) {
-        lock(this.$el);
-      }
-    },
-    unlockScroll: function unlockScroll() {
-      if (this.fullscreen) {
-        unlock(null);
-      }
-
-      if (browser_isIOS()) {
-        unlock(this.$el);
-      }
-    },
-    fitContainer: function fitContainer() {
-      var el = this.getParent();
-
-      if (!this.fullscreen && el) {
-        this.parentPosition = getComputedStyle(el).position;
-
-        if (this.parentPosition !== "relative" && this.parentPosition !== "absolute") {
-          el.style.position = "relative";
-        }
-      }
-
-      if (this.autoRadius && !this.radius && !this.fullscreen) {
-        var radius = getComputedStyle(el).borderRadius;
-        this.radius_ = radius;
-      }
-
-      if (this.fullscreen) {
-        document.body.appendChild(this.$el);
-        globalStore.fullscreenBackdrop = true;
-      }
-
-      if (this.lock) {
-        this.lockScroll();
-      }
-    },
-    resetContainer: function resetContainer() {
-      var el = this.getParent();
-
-      if (!this.fullscreen && el) {
-        el.style.position = this.parentPosition;
-      }
-
-      if (this.fullscreen) {
-        document.body.removeChild(this.$el);
-        globalStore.fullscreenBackdrop = false;
-      }
-    },
-    afterEnter: function afterEnter() {
-      this.$emit("after-enter");
-    },
-    afterLeave: function afterLeave() {
-      this.resetContainer();
-      this.$emit("after-leave");
-    }
-  },
-  mounted: function mounted() {
-    if (this.show) {
-      this.show_ = true;
-      this.fitContainer();
-    }
-  }
-});
-// CONCATENATED MODULE: ./packages/backdrop/backdrop.vue?vue&type=script&lang=js&
- /* harmony default export */ var backdrop_backdropvue_type_script_lang_js_ = (backdropvue_type_script_lang_js_); 
-// CONCATENATED MODULE: ./packages/backdrop/backdrop.vue
-
-
-
-
-
-/* normalize component */
-
-var backdrop_component = normalizeComponent(
-  backdrop_backdropvue_type_script_lang_js_,
-  backdropvue_type_template_id_e7f5bc86_render,
-  backdropvue_type_template_id_e7f5bc86_staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* harmony default export */ var backdrop_backdrop = (backdrop_component.exports);
 // CONCATENATED MODULE: ./packages/backdrop/index.js
 
 
@@ -21731,7 +21747,7 @@ function objectSpread_objectSpread(target) {
     }
 
     ownKeys.forEach(function (key) {
-      _defineProperty(target, key, source[key]);
+      defineProperty_defineProperty(target, key, source[key]);
     });
   }
 
