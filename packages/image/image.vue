@@ -63,7 +63,7 @@ export default {
           }
         })
         .catch(err => {
-          console.log(err)
+          console.log(err);
           this.loading = false;
           this.failed = true;
           this.$emit("load-failed", err.message);

@@ -42,6 +42,9 @@ export default {
   },
   methods: {
     parseFileds() {
+      if (!this.rules) {
+        return;
+      }
       let rulesKey = Object.keys(this.rules);
       this.$slots.default.forEach(field => {
         if (
