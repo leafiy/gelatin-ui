@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.72](https://github.com/leafiy/gelatin-ui/compare/v0.1.71...v0.1.72) (2019-04-27)
+
+
+### Bug Fixes
+
+* **image:** slot zindex ([b93510f](https://github.com/leafiy/gelatin-ui/commit/b93510f))
+
+
+
 ## [0.1.71](https://github.com/leafiy/gelatin-ui/compare/v0.1.70...v0.1.71) (2019-04-26)
 
 
