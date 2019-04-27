@@ -12,13 +12,19 @@
         :style="backgroundStyle"
       ></div>
     </transition>
-    <ui-backdrop :show="cover" v-if="cover" auto-radius :color="coverColor"></ui-backdrop>
+    <ui-backdrop
+      :show="cover"
+      v-if="cover"
+      auto-radius
+      :color="coverColor"
+      z-index=""
+    ></ui-backdrop>
     <slot name="loader" v-if="loading">
       <div class="ui-image-loader">
         <ui-spinner center></ui-spinner>
       </div>
     </slot>
-    <div class="ui-image-slot" :style="slotStyles" v-if="$slots.default">
+    <div class="ui-image-slot" v-if="$slots.default">
       <slot></slot>
     </div>
   </div>
@@ -83,15 +89,6 @@ export default {
     }
   },
   computed: {
-    slotStyles() {
-      return {
-        zIndex: this.zIndex
-          ? this.zIndex
-          : this.$zIndex
-          ? this.$zIndex.add()
-          : 200
-      };
-    },
     backgroundStyle() {
       return {
         backgroundImage: this.failed
@@ -107,7 +104,7 @@ export default {
           return this.cover;
         }
       } else {
-        return '';
+        return "";
       }
     }
   }
