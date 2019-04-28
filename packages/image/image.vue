@@ -17,7 +17,7 @@
       v-if="cover"
       auto-radius
       :color="coverColor"
-      z-index=""
+      :z-index="0"
     ></ui-backdrop>
     <slot name="loader" v-if="loading">
       <div class="ui-image-loader">
