@@ -30,6 +30,9 @@ let initialConfig = {};
 export default {
   name: "ui-sticky",
   bind(el, binding) {
+    if (!binding.value) {
+      return;
+    }
     bindingConfig = getBindingConfig(binding);
     initialConfig = getInitialiConfig(el);
     const { disabled, top, zIndex } = bindingConfig;
@@ -86,6 +89,9 @@ export default {
   unbind: unwatch,
 
   update(el, binding) {
+    if (!binding.value) {
+      return;
+    }
     bindingConfig = getBindingConfig(binding);
     const { top, zIndex } = bindingConfig;
 
