@@ -34,8 +34,9 @@ export default {
       show: false,
       show2: false,
       show3: false,
-      beforeClose: () => {
+      beforeClose: (done) => {
         this.$UiToast('modal closed')
+        done()
       }
     }
   },

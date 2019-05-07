@@ -22,6 +22,7 @@ import { lock, unlock } from "tua-body-scroll-lock";
 import isIOS from "buxton/browser/isIOS.js";
 import UiSpinner from "../spinner/spinner.vue";
 import { globalStore } from "../../src/utils/globalStore.js";
+import events from "../../src/utils/events.js";
 export default {
   name: "ui-backdrop",
   data() {
@@ -172,6 +173,11 @@ export default {
       this.show_ = true;
       this.fitContainer();
     }
+    events.$on("close-all-backdrop", () => {
+      if (this.$el && this.$el.parentNode) {
+        this.$el.parentNode.removeChild(this.$el);
+      }
+    });
   }
 };
 </script>

@@ -1,7 +1,8 @@
 <template>
   <div class="ui-modal-container">
     <ui-backdrop
-      :show="value"
+      :show="showBackdrop_"
+      ref="backdrop"
       :lock="lock"
       v-if="showBackdrop"
       fullscreen
@@ -67,6 +68,7 @@ import "../assets/scss/modal.scss";
 import elementContains from "buxton/browser/elementContains";
 import { lock, unlock } from "tua-body-scroll-lock";
 import isMobile from "buxton/browser/isMobile.js";
+import events from "../../src/utils/events.js";
 // import UiResizer from "../resizer/resizer.vue";
 export default {
   name: "ui-modal",
@@ -75,7 +77,8 @@ export default {
     return {
       buttons: [],
       contentStyles: "",
-      wrapper: ""
+      closed: false,
+      showBackdrop_: false
     };
   },
   props: {
@@ -153,24 +156,14 @@ export default {
     value(value) {
       if (value) {
         this.openModal();
-        // this.bindEvents();
       } else {
-        // this.unBindEvents();
+        if (!closed) {
+          this.closeModal();
+        }
       }
     }
   },
-
   methods: {
-    // bindEvents() {
-    //   document.addEventListener("click", this.handleDocumentClick);
-    //   document.addEventListener("touchstart", this.handleDocumentClick);
-    //   document.addEventListener("keyup", this.handleKeyup);
-    // },
-    // unBindEvents() {
-    //   document.removeEventListener("click", this.handleDocumentClick);
-    //   document.removeEventListener("touchstart", this.handleDocumentClick);
-    //   document.removeEventListener("keyup", this.handleKeyup);
-    // },
     handleKeyup(e) {
       if (e.key === "Escape" || (e.key === "Esc" && this.closeOnPressEscape)) {
         this.closeModal();
@@ -181,18 +174,19 @@ export default {
         this.closeModal();
       }
     },
-    handleDocumentClick(e) {
-      let el = e.target;
 
-      if (!this.value) {
+    closeModal() {
+      this.showBackdrop_ = false;
+      if (this.closed) {
         return;
       }
-      if (this.closeOnClick && !elementContains(this.$refs["modal"], el)) {
-        this.closeModal();
+      if (typeof this.beforeClose === "function") {
+        this.beforeClose(this.close);
+      } else {
+        this.close();
       }
     },
-    closeModal() {
-      this.$emit("input", false);
+    close() {
       if (this.lock && isMobile()) {
         this.contentStyles = {
           overflow: ""
@@ -201,9 +195,10 @@ export default {
           unlock(this.$refs["modal-content"]);
         }, 10);
       }
-      if (typeof this.beforeClose === "function") {
-        this.beforeClose();
-      }
+      this.$emit("input", false);
+      this.closed = true;
+
+      // this.$el.parentNode.removeChild(this.$el);
     },
     openModal() {
       if (this.lock && isMobile()) {
@@ -214,14 +209,14 @@ export default {
           lock(this.$refs["modal-content"]);
         }, 10);
       }
+      this.closed = false;
+      if (this.showBackdrop) {
+        this.showBackdrop_ = true;
+      }
       this.$nextTick(() => {
-        this.wrapper.appendChild(this.$refs["modal"]);
+        this.$refs["modal"].scrollTop = 0;
       });
-    },
-    createWrapper() {
-      this.wrapper = document.createElement("div");
-      this.wrapper.id = "ui-modal-wrapper";
-      document.body.appendChild(this.wrapper);
+      document.body.appendChild(this.$el);
     },
     afterEnter() {
       this.$emit("after-enter");
@@ -230,11 +225,10 @@ export default {
       this.$emit("after-leave");
     }
   },
-  mounted() {
-    this.wrapper = document.getElementById("ui-modal-wrapper");
-    if (!this.wrapper) {
-      this.createWrapper();
-    }
+  mounted() {},
+  destroyed() {
+    this.$el.parentNode.removeChild(this.$el);
+    events.$emit("close-all-backdrop");
   }
 };
 </script>

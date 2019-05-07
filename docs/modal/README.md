@@ -62,7 +62,7 @@
 |size|String||['lg','sm']|
 |transition|String|modal||
 |lock|Boolean|false|锁定body滚动|
-|beforeClose|Function||`before-close` 仅当用户通过点击关闭图标或遮罩关闭 Dialog 时起效|
+|beforeClose|Function||`before-close` 仅当用户通过点击关闭图标或遮罩关闭 modal 时起效 `function(done)，done 用于关闭 modal`|
 
 
 
