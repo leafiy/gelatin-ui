@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.75](https://github.com/leafiy/gelatin-ui/compare/v0.1.74...v0.1.75) (2019-05-07)
+
+
+### Bug Fixes
+
+* **modal:** destroy methods ([6b9a89e](https://github.com/leafiy/gelatin-ui/commit/6b9a89e))
+
+
+
 ## [0.1.74](https://github.com/leafiy/gelatin-ui/compare/v0.1.73...v0.1.74) (2019-05-07)
 
 
