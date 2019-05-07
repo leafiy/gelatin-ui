@@ -7,6 +7,7 @@
       fullscreen
       :z-index="zIndex_"
       :color="backdropColor"
+      @click.native="clickOutside"
     >
     </ui-backdrop>
     <transition
