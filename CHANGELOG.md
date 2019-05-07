@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.74](https://github.com/leafiy/gelatin-ui/compare/v0.1.73...v0.1.74) (2019-05-07)
+
+
+### Bug Fixes
+
+* **modal:** fix backdrop click event ([ae83f22](https://github.com/leafiy/gelatin-ui/commit/ae83f22))
+
+
+
 ## 0.1.73 (2019-05-06)
 
 
