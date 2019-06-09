@@ -44,7 +44,7 @@ Gelatin简单在哪，几个例子：
 - [x] progress
 - [x] spinner
 - [x] toast
-- [x] uplaoder
+- [x] uploader
 - [x] alert
 - [x] avatar
 - [x] card
