@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.77](https://github.com/leafiy/gelatin-ui/compare/v0.1.76...v0.1.77) (2019-06-09)
+
+
+### Bug Fixes
+
+* **uploader:** change name: uploader to upload ([170e209](https://github.com/leafiy/gelatin-ui/commit/170e209))
+
+
+
 ## 0.1.76 (2019-06-09)
 
 
