@@ -2,6 +2,74 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.1.76 (2019-06-09)
+
+
+### Bug Fixes
+
+* **avatar:** avatar container style ([60ea101](https://github.com/leafiy/gelatin-ui/commit/60ea101))
+* **avatar,modal:** fix style bug ([3efd712](https://github.com/leafiy/gelatin-ui/commit/3efd712))
+* **carousel:** 加载时不会造成项目堆叠 ([c399ad5](https://github.com/leafiy/gelatin-ui/commit/c399ad5))
+* **carousel:** bug fix ([9ba7cbe](https://github.com/leafiy/gelatin-ui/commit/9ba7cbe))
+* **carousel:** bugs fix ([ff92b08](https://github.com/leafiy/gelatin-ui/commit/ff92b08))
+* **checkbox:** boolean value support ([b673292](https://github.com/leafiy/gelatin-ui/commit/b673292))
+* **fix validation bugs:** validation增加状态事件，简化使用方法 ([41863ad](https://github.com/leafiy/gelatin-ui/commit/41863ad))
+* **image:** slot zindex ([b93510f](https://github.com/leafiy/gelatin-ui/commit/b93510f))
+* **image loader:** fix path ([a9c7e1f](https://github.com/leafiy/gelatin-ui/commit/a9c7e1f))
+* **input:** add input enter event ([9e9f96c](https://github.com/leafiy/gelatin-ui/commit/9e9f96c))
+* **input:** correct input number type ([109ee08](https://github.com/leafiy/gelatin-ui/commit/109ee08))
+* **input:** fix foucs bug ([07247e5](https://github.com/leafiy/gelatin-ui/commit/07247e5))
+* **input:** input only emit value ([a4bf782](https://github.com/leafiy/gelatin-ui/commit/a4bf782))
+* **layout:** 当使用无属性ui-col时自动加入col属性 ([d2a1ea3](https://github.com/leafiy/gelatin-ui/commit/d2a1ea3))
+* **layout:** add container default class ([2df0254](https://github.com/leafiy/gelatin-ui/commit/2df0254))
+* **loading bar:** remove progress ([5369c9d](https://github.com/leafiy/gelatin-ui/commit/5369c9d))
+* **modal:** backdrop bug ([037013a](https://github.com/leafiy/gelatin-ui/commit/037013a))
+* **modal:** bugs fix ([2beace8](https://github.com/leafiy/gelatin-ui/commit/2beace8))
+* **modal:** destroy methods ([6b9a89e](https://github.com/leafiy/gelatin-ui/commit/6b9a89e))
+* **modal:** fix backdrop click event ([ae83f22](https://github.com/leafiy/gelatin-ui/commit/ae83f22))
+* **modal:** fix modal bugs ([93c12a8](https://github.com/leafiy/gelatin-ui/commit/93c12a8))
+* **modal:** using clickoutside directive instead of element.contains ([972ca64](https://github.com/leafiy/gelatin-ui/commit/972ca64))
+* **popover:** popover update callback ([ea1c20c](https://github.com/leafiy/gelatin-ui/commit/ea1c20c))
+* **popover, image:** minor bugs fix ([767cd08](https://github.com/leafiy/gelatin-ui/commit/767cd08))
+* **popover,modal:** minor bugs fix ([1060d68](https://github.com/leafiy/gelatin-ui/commit/1060d68))
+* **progess:** props validate ([9f1e64f](https://github.com/leafiy/gelatin-ui/commit/9f1e64f))
+* **progress ring:** fix color ([52c62ed](https://github.com/leafiy/gelatin-ui/commit/52c62ed))
+* **remove toast intances on close:** n ([831df9e](https://github.com/leafiy/gelatin-ui/commit/831df9e))
+* **sticky:** null for deactived ([f3a0238](https://github.com/leafiy/gelatin-ui/commit/f3a0238))
+* **style:** remove scss extend selector ([b0ae83a](https://github.com/leafiy/gelatin-ui/commit/b0ae83a))
+* **ui bugs fix:** add some component ([a4b9ae6](https://github.com/leafiy/gelatin-ui/commit/a4b9ae6))
+* **update button style:** use div instead of button for ui-button ([6fb2631](https://github.com/leafiy/gelatin-ui/commit/6fb2631))
+* **v:** minor bugs fixed ([917db95](https://github.com/leafiy/gelatin-ui/commit/917db95))
+* **V:** support no rules fields ([c59940a](https://github.com/leafiy/gelatin-ui/commit/c59940a))
+
+
+### Features
+
+* **增加dropdown和tooltip:** 使用popover统一构建dropdown和 ([0114c29](https://github.com/leafiy/gelatin-ui/commit/0114c29))
+* **add $Message:** update $Toast ([e6bb5bf](https://github.com/leafiy/gelatin-ui/commit/e6bb5bf))
+* **add dropdown component:** 增加dropdown组件 ([0abe4ef](https://github.com/leafiy/gelatin-ui/commit/0abe4ef))
+* **captcha:** add captcha component ([76b31bb](https://github.com/leafiy/gelatin-ui/commit/76b31bb))
+* **carousel:** browser hashtag support ([170bbd2](https://github.com/leafiy/gelatin-ui/commit/170bbd2))
+* **carousel:** support start index ([8c24e80](https://github.com/leafiy/gelatin-ui/commit/8c24e80))
+* **checkbox:** add indeterminate ([99d803b](https://github.com/leafiy/gelatin-ui/commit/99d803b))
+* **image:** add keep orgin size props ([9522dbd](https://github.com/leafiy/gelatin-ui/commit/9522dbd))
+* **image:** support cover color ([27e7b8e](https://github.com/leafiy/gelatin-ui/commit/27e7b8e))
+* **image loader:** add timeout option ([22c98c2](https://github.com/leafiy/gelatin-ui/commit/22c98c2))
+* **input:** add lg and sm sizes stylee ([a456bf8](https://github.com/leafiy/gelatin-ui/commit/a456bf8))
+* **input:** number type support ([4c17d09](https://github.com/leafiy/gelatin-ui/commit/4c17d09))
+* **layout:** 移植于bootstrap v4 grid部分，并简化了使用方式 ([c9d3ca5](https://github.com/leafiy/gelatin-ui/commit/c9d3ca5))
+* **radio:** add change event to radio input ([46afabd](https://github.com/leafiy/gelatin-ui/commit/46afabd))
+* **tabs:** add tabs component ([c89a084](https://github.com/leafiy/gelatin-ui/commit/c89a084))
+* **update change log:** new commit rule ([08f94fd](https://github.com/leafiy/gelatin-ui/commit/08f94fd))
+
+
+### BREAKING CHANGES
+
+* **增加dropdown和tooltip:** popover定位方式
+* **add dropdown component:** 优化弹出框定位
+
+
+
 ## [0.1.75](https://github.com/leafiy/gelatin-ui/compare/v0.1.74...v0.1.75) (2019-05-07)
 
 
