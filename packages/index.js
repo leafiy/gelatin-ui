@@ -2,7 +2,7 @@ import UiAvatar from "./avatar/index.js";
 import UiIcon from "./icon/index.js";
 import UiLoader from "./loader/index.js";
 import UiSpinner from "./spinner/index.js";
-import UiUpload from "./uploader/index.js";
+import UiUpload from "./upload/index.js";
 import UiCard from "./card/index.js";
 import UiAlert from "./alert/index.js";
 import UiInput from "./input/index.js";

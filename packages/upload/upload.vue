@@ -18,7 +18,7 @@
       <input
         ref="input"
         type="file"
-        class="ui-uploader-input"
+        class="ui-upload-input"
         :multiple="multiple"
         @change="handleChange"
         :accept="accept"
@@ -43,16 +43,16 @@
   </div>
 </template>
 <script>
-import uploadPropsFunctions from "../../src/mixins/uploader/uploadPropsFunctions.js";
-import uploadPropsOptions from "../../src/mixins/uploader/uploadPropsOptions.js";
-import uploadMethods from "../../src/mixins/uploader/uploadMethods.js";
-import uploadComputed from "../../src/mixins/uploader/uploadComputed.js";
-import uploadAction from "../../src/mixins/uploader/uploadAction.js";
-import uploadValidate from "../../src/mixins/uploader/uploadValidate.js";
-import UploadList from "./uploader-list.vue";
-import "../assets/scss/uploader.scss";
+import uploadPropsFunctions from "../../src/mixins/upload/uploadPropsFunctions.js";
+import uploadPropsOptions from "../../src/mixins/upload/uploadPropsOptions.js";
+import uploadMethods from "../../src/mixins/upload/uploadMethods.js";
+import uploadComputed from "../../src/mixins/upload/uploadComputed.js";
+import uploadAction from "../../src/mixins/upload/uploadAction.js";
+import uploadValidate from "../../src/mixins/upload/uploadValidate.js";
+import UploadList from "./upload-list.vue";
+import "../assets/scss/upload.scss";
 export default {
-  name: "ui-uploader",
+  name: "ui-upload",
   data() {
     return {
       dragOver: false,

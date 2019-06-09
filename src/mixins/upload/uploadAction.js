@@ -1,4 +1,4 @@
-import uploader from "../../utils/uploader.js";
+import upload from "../../utils/upload.js";
 export default {
   methods: {
     startUpload(file) {
@@ -29,7 +29,7 @@ export default {
     post(file) {
       if (!file) return;
       file.status = "uploading";
-      uploader(file, {
+      upload(file, {
         headers: this.headers,
         uploadApi: this.uploadApi,
         data: this.data,

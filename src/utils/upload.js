@@ -1,5 +1,5 @@
 import axios from "axios";
-const uploader = (file, uploadOptions) => {
+const upload = (file, uploadOptions) => {
   return new Promise((resolve, reject) => {
     let {
       uploadApi,
@@ -56,4 +56,4 @@ const handleProgress = (e, file) => {
   file.percentage = percent || 0;
 };
 
-export default uploader;
+export default upload;

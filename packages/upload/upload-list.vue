@@ -51,7 +51,7 @@
 <script>
 import UiProgress from "../progress/progress.vue";
 export default {
-  name: "ui-uploader-list",
+  name: "ui-upload-list",
 
   data() {
     return {};
