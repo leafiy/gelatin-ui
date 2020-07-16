@@ -20,7 +20,7 @@
     "axios": "^0.18.0",
     "buxton": "^0.2.26",
     "lazyload": "^2.0.0-rc.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "nanoid": "^2.0.1",
     "normalize.css": "^8.0.1",
     "popper.js": "^1.15.0",
