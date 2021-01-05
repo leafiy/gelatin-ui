@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "autosize": "^4.0.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "buxton": "^0.2.26",
     "lazyload": "^2.0.0-rc.2",
     "lodash": "^4.17.11",
