@@ -39,7 +39,7 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/runtime-corejs2": "^7.4.3",
     "@vue/cli-plugin-babel": "^3.6.0",
-    "@vue/cli-service": "^3.6.0",
+    "@vue/cli-service": "^5.0.8",
     "@vue/eslint-config-prettier": "^4.0.1",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
@@ -61,7 +61,7 @@
     "sass-loader": "^7.1.0",
     "standard-version": "^5.0.2",
     "vue-template-compiler": "^2.6.10",
-    "vuepress": "^1.0.0-alpha.47",
+    "vuepress": "^1.9.7",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.0"
   },
